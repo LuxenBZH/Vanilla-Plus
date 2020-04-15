@@ -1,6 +1,7 @@
 Project Divine Game Master Overhaul
 =======
 Project Divine Game Master is a overhaul designed to provide an experience closest to the vanilla one, reworking some features while preserving the core gameplay.
+Participate in the project ! Join the hub below to discuss about this project.
 Discord server : https://discord.gg/4QbbMj
 
 # Releases
