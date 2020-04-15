@@ -1,0 +1,143 @@
+Version 1
+SubGoalCombiner SGC_AND
+INITSECTION
+
+KBSECTION
+//// Talents check
+IF
+CharacterUnlockedTalent(_Char, _Talent)
+THEN
+LX_EXT_CheckBoostTalents(_Char, _Talent, 1);
+
+IF
+CharacterLockedTalent(_Char, _Talent)
+THEN
+LX_EXT_CheckBoostTalents(_Char, _Talent, 0);
+
+IF
+CharacterResurrected(_Char)
+THEN
+LX_EXT_CheckBoostTalents(_Char, "Resurrection", 0);
+
+//// Escapist immunities
+IF
+NRD_OnStatusAttempt((CHARACTERGUID)_Char, "ENTANGLED", _Handle, _)
+AND
+CharacterHasTalent(_Char, "Escapist", 1)
+THEN
+NRD_StatusPreventApply(_Char, _Handle, 1);
+
+IF
+NRD_OnStatusAttempt((CHARACTERGUID)_Char, "CRIPPLED", _Handle, _)
+AND
+CharacterHasTalent(_Char, "Escapist", 1)
+THEN
+NRD_StatusPreventApply(_Char, _Handle, 1);
+
+IF
+NRD_OnStatusAttempt((CHARACTERGUID)_Char, "WEB", _Handle, _)
+AND
+CharacterHasTalent(_Char, "Escapist", 1)
+THEN
+NRD_StatusPreventApply(_Char, _Handle, 1);
+
+//// Stench disease immunity
+IF
+NRD_OnStatusAttempt((CHARACTERGUID)_Char, "DISEASE", _Handle, _)
+AND
+CharacterHasTalent(_Char, "Stench", 1)
+THEN
+NRD_StatusPreventApply(_Char, _Handle, 1);
+
+//// Pet Pal summon debuff
+IF
+CharacterStatusApplied((CHARACTERGUID)_Summon, "SUMMONING_ABILITY", _)
+AND
+CharacterGetOwner(_Summon, _Summoner)
+AND
+CharacterHasTalent(_Summoner, "AnimalEmpathy", 1)
+THEN
+ApplyStatus(_Summon, "LX_PETPAL", -1.0, 1);
+
+//// Duelist check
+IF
+ItemEquipped(_Item, _Char)
+AND
+CharacterHasTalent(_Char, "ExtraStatPoints", 1)
+THEN
+LX_EXT_CheckDuelist(_Char);
+
+IF
+ItemUnEquipped(_Item, _Char)
+AND
+CharacterHasTalent(_Char, "ExtraStatPoints", 1)
+THEN
+LX_EXT_CheckDuelist(_Char);
+
+//// HotHead check
+IF
+CharacterVitalityChanged(_Char, _Remaining)
+AND
+CharacterHasTalent(_Char, "Perfectionist", 1)
+AND
+_Remaining < 75
+THEN
+RemoveStatus(_Char, "LX_HOTHEAD");
+
+IF
+CharacterVitalityChanged(_Char, _Remaining)
+AND
+CharacterHasTalent(_Char, "Perfectionist", 1)
+AND
+_Remaining > 74
+THEN
+ApplyStatus(_Char, "LX_HOTHEAD", -1.0, 1);
+
+// ////Walk it off
+// IF
+// NRD_OnStatusAttempt((CHARACTERGUID)_Char, "LX_WALKITOFF", (INTEGER64)_Handle, _)
+// THEN
+// LX_EXT_WalkItOffReplacement(_Char, _Handle);
+
+IF
+CharacterUsedSkill(_Char, "Shout_FleshSacrifice", _, _)
+THEN
+CharacterRemoveTalent(_Char, "Demon");
+CharacterAddTalentPoint(_Char, 1);
+
+IF
+ObjectTurnStarted(_Object)
+AND
+ObjectIsCharacter(_Object, 1)
+AND
+CharacterHasTalent((CHARACTERGUID)_Object, "ExtraSkillPoints", 1)
+THEN
+SetVarInteger(_Object, "LX_AllSkilledUp_Counter", 0);
+
+IF
+CharacterUsedSkill(_Char, _Skill, _, _)
+AND
+CharacterHasTalent(_Char, "ExtraSkillPoints", 1)
+AND
+GetVarInteger(_Char, "LX_AllSkilledUp_Counter", _Used)
+AND
+_Used == 0
+AND
+NRD_SkillGetCooldown(_Char, _Skill, _Cooldown)
+THEN
+NRD_SkillSetCooldown(_Char, _Skill, 0.0);
+DB_LX_AllSkilledUp(_Char, _Skill, _Cooldown);
+TimerLaunch("LX_AllSkilledUp_Decrease_Cooldown", 250);
+
+
+IF
+TimerFinished("LX_AllSkilledUp_Decrease_Cooldown")
+AND
+DB_LX_AllSkilledUp(_Char, _Skill, _Cooldown)
+THEN
+LX_EXT_ManageAllSkilledUp(_Char, _Skill, _Cooldown);
+NOT DB_LX_AllSkilledUp(_Char, _Skill, _Cooldown);
+
+EXITSECTION
+
+ENDEXITSECTION

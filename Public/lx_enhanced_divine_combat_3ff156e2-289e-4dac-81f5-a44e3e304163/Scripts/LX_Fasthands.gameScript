@@ -1,0 +1,71 @@
+/*
+INIT
+EVENTS
+EVENT LX_InitCount
+VARS
+	INT: _Combat
+	INT: %Count
+ON
+	OnCombatStarted(_Combat)
+ACTIONS
+	Set(%Count, 0)
+
+EVENT LX_Quickswitch
+VARS
+	CHARACTER: _Char
+	ITEM: _Item
+	FLOAT: _AP
+	FLOAT: _MaxAP
+	INT: %Refund
+	CHARACTER: %Character
+ON
+	OnItemEquipped(_Char, _Item)
+ACTIONS
+	Set(%Refund, 0)
+	IF "c1&c2&c3"
+		CharacterHasTalent(_Char, "Ambidextrous")
+		IsInCombat(_Char)
+		IsGreaterThen(2, %Count)
+	THEN
+		IF "c1&c2&!c3"
+			CharacterGetStat(_AP, _Char, ActionPoints)
+			CharacterGetStat(_MaxAP, _Char, APMaximum)
+			IsEqual(_MaxAP, _AP)
+		THEN
+			CharacterAddActionPoints(_Char, 1)
+			Add(%Count, 1)
+		ELSE
+			CharacterApplyStatus(_Char, LX_FASTHANDS)
+			Add(%Count, 1)
+		ENDIF
+	ENDIF
+
+EVENT LX_Refund
+VARS
+	CHARACTER: _Char
+	ITEM: _Item
+	FLOAT: _AP
+	FLOAT: _MaxAP
+ON
+	OnTurn(_Char, _Item)
+ACTIONS
+	IF "c1&c2&c3&c4"
+		CharacterGetStat(_AP, _Char, ActionPoints)
+		CharacterGetStat(_MaxAP, _Char, APMaximum)
+		IsEqual(_AP, _MaxAP)
+		CharacterHasTalent(_Char, "Ambidextrous")
+	THEN
+		CharacterApplyStatus(_Char, LX_FASTHANDS)
+	ENDIF
+	
+EVENT LX_ResetCount
+VARS
+	CHARACTER: _Char
+	ITEM: _Item
+ON
+	OnTurnEnded(_Char, _Item)
+ACTIONS
+	Set(%Count, 0)
+
+
+*/

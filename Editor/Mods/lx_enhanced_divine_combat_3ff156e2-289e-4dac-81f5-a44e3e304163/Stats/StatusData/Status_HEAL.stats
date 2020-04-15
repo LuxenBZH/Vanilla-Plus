@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="utf-8"?>
+<stats stat_object_definition_id="c5fef72f-f776-419b-a5a2-a6e9d3e0926c">
+  <stat_objects>
+    <stat_object is_substat="false">
+      <fields>
+        <field name="Name" type="NameStatObjectFieldDefinition" value="HARMONY" />
+        <field name="ForGameMaster" type="EnumerationStatObjectFieldDefinition" value="0" enumeration_type_name="YesNo" />
+        <field name="InitiateCombat" type="EnumerationStatObjectFieldDefinition" value="0" enumeration_type_name="YesNo" />
+        <field name="BringIntoCombat" type="EnumerationStatObjectFieldDefinition" value="1" enumeration_type_name="YesNo" />
+        <field name="DisplayName" type="TranslatedStringStatObjectFieldDefinition" value="|Harmony|" />
+        <field name="StatusEffect" type="StringStatObjectFieldDefinition" value="RS3_FX_GP_Status_Heal_Impact_01" />
+        <field name="HealStat" type="EnumerationStatObjectFieldDefinition" value="1" enumeration_type_name="StatusHealType" />
+        <field name="HealType" type="EnumerationStatObjectFieldDefinition" value="2" enumeration_type_name="HealValueType" />
+        <field name="HealValue" type="IntegerStatObjectFieldDefinition" value="35" />
+      </fields>
+    </stat_object>
+    <stat_object is_substat="false">
+      <fields>
+        <field name="Name" type="NameStatObjectFieldDefinition" value="HARMONY_MA" />
+        <field name="ForGameMaster" type="EnumerationStatObjectFieldDefinition" value="0" enumeration_type_name="YesNo" />
+        <field name="InitiateCombat" type="EnumerationStatObjectFieldDefinition" value="0" enumeration_type_name="YesNo" />
+        <field name="BringIntoCombat" type="EnumerationStatObjectFieldDefinition" value="1" enumeration_type_name="YesNo" />
+        <field name="DisplayName" type="TranslatedStringStatObjectFieldDefinition" value="|Harmony Magic Armour|" />
+        <field name="HealStat" type="EnumerationStatObjectFieldDefinition" value="3" enumeration_type_name="StatusHealType" />
+        <field name="HealType" type="EnumerationStatObjectFieldDefinition" value="2" enumeration_type_name="HealValueType" />
+        <field name="HealValue" type="IntegerStatObjectFieldDefinition" value="15" />
+      </fields>
+    </stat_object>
+    <stat_object is_substat="false">
+      <fields>
+        <field name="Name" type="NameStatObjectFieldDefinition" value="POTION_MA_MINOR" />
+        <field name="ForGameMaster" type="EnumerationStatObjectFieldDefinition" value="0" enumeration_type_name="YesNo" />
+        <field name="InitiateCombat" type="EnumerationStatObjectFieldDefinition" value="0" enumeration_type_name="YesNo" />
+        <field name="BringIntoCombat" type="EnumerationStatObjectFieldDefinition" value="0" enumeration_type_name="YesNo" />
+        <field name="HealStat" type="EnumerationStatObjectFieldDefinition" value="3" enumeration_type_name="StatusHealType" />
+        <field name="HealType" type="EnumerationStatObjectFieldDefinition" value="1" enumeration_type_name="HealValueType" />
+        <field name="HealValue" type="IntegerStatObjectFieldDefinition" value="35" />
+      </fields>
+    </stat_object>
+    <stat_object is_substat="false">
+      <fields>
+        <field name="Name" type="NameStatObjectFieldDefinition" value="POTION_MA_MEDIUM" />
+        <field name="ForGameMaster" type="EnumerationStatObjectFieldDefinition" value="0" enumeration_type_name="YesNo" />
+        <field name="InitiateCombat" type="EnumerationStatObjectFieldDefinition" value="0" enumeration_type_name="YesNo" />
+        <field name="BringIntoCombat" type="EnumerationStatObjectFieldDefinition" value="0" enumeration_type_name="YesNo" />
+        <field name="HealStat" type="EnumerationStatObjectFieldDefinition" value="3" enumeration_type_name="StatusHealType" />
+        <field name="HealType" type="EnumerationStatObjectFieldDefinition" value="1" enumeration_type_name="HealValueType" />
+        <field name="HealValue" type="IntegerStatObjectFieldDefinition" value="55" />
+      </fields>
+    </stat_object>
+    <stat_object is_substat="false">
+      <fields>
+        <field name="Name" type="NameStatObjectFieldDefinition" value="POTION_MA_LARGE" />
+        <field name="ForGameMaster" type="EnumerationStatObjectFieldDefinition" value="0" enumeration_type_name="YesNo" />
+        <field name="InitiateCombat" type="EnumerationStatObjectFieldDefinition" value="0" enumeration_type_name="YesNo" />
+        <field name="BringIntoCombat" type="EnumerationStatObjectFieldDefinition" value="0" enumeration_type_name="YesNo" />
+        <field name="HealStat" type="EnumerationStatObjectFieldDefinition" value="3" enumeration_type_name="StatusHealType" />
+        <field name="HealType" type="EnumerationStatObjectFieldDefinition" value="1" enumeration_type_name="HealValueType" />
+        <field name="HealValue" type="IntegerStatObjectFieldDefinition" value="75" />
+      </fields>
+    </stat_object>
+    <stat_object is_substat="false">
+      <fields>
+        <field name="Name" type="NameStatObjectFieldDefinition" value="POTION_MA_HUGE" />
+        <field name="ForGameMaster" type="EnumerationStatObjectFieldDefinition" value="0" enumeration_type_name="YesNo" />
+        <field name="InitiateCombat" type="EnumerationStatObjectFieldDefinition" value="0" enumeration_type_name="YesNo" />
+        <field name="BringIntoCombat" type="EnumerationStatObjectFieldDefinition" value="0" enumeration_type_name="YesNo" />
+        <field name="HealStat" type="EnumerationStatObjectFieldDefinition" value="3" enumeration_type_name="StatusHealType" />
+        <field name="HealType" type="EnumerationStatObjectFieldDefinition" value="1" enumeration_type_name="HealValueType" />
+        <field name="HealValue" type="IntegerStatObjectFieldDefinition" value="100" />
+      </fields>
+    </stat_object>
+    <stat_object is_substat="false">
+      <fields>
+        <field name="Name" type="NameStatObjectFieldDefinition" value="POTION_PA_MINOR" />
+        <field name="ForGameMaster" type="EnumerationStatObjectFieldDefinition" value="0" enumeration_type_name="YesNo" />
+        <field name="InitiateCombat" type="EnumerationStatObjectFieldDefinition" value="0" enumeration_type_name="YesNo" />
+        <field name="BringIntoCombat" type="EnumerationStatObjectFieldDefinition" value="0" enumeration_type_name="YesNo" />
+        <field name="HealStat" type="EnumerationStatObjectFieldDefinition" value="2" enumeration_type_name="StatusHealType" />
+        <field name="HealType" type="EnumerationStatObjectFieldDefinition" value="1" enumeration_type_name="HealValueType" />
+        <field name="HealValue" type="IntegerStatObjectFieldDefinition" value="35" />
+      </fields>
+    </stat_object>
+    <stat_object is_substat="false">
+      <fields>
+        <field name="Name" type="NameStatObjectFieldDefinition" value="POTION_PA_MEDIUM" />
+        <field name="ForGameMaster" type="EnumerationStatObjectFieldDefinition" value="0" enumeration_type_name="YesNo" />
+        <field name="InitiateCombat" type="EnumerationStatObjectFieldDefinition" value="0" enumeration_type_name="YesNo" />
+        <field name="BringIntoCombat" type="EnumerationStatObjectFieldDefinition" value="0" enumeration_type_name="YesNo" />
+        <field name="HealStat" type="EnumerationStatObjectFieldDefinition" value="2" enumeration_type_name="StatusHealType" />
+        <field name="HealType" type="EnumerationStatObjectFieldDefinition" value="1" enumeration_type_name="HealValueType" />
+        <field name="HealValue" type="IntegerStatObjectFieldDefinition" value="55" />
+      </fields>
+    </stat_object>
+    <stat_object is_substat="false">
+      <fields>
+        <field name="Name" type="NameStatObjectFieldDefinition" value="POTION_PA_LARGE" />
+        <field name="ForGameMaster" type="EnumerationStatObjectFieldDefinition" value="0" enumeration_type_name="YesNo" />
+        <field name="InitiateCombat" type="EnumerationStatObjectFieldDefinition" value="0" enumeration_type_name="YesNo" />
+        <field name="BringIntoCombat" type="EnumerationStatObjectFieldDefinition" value="0" enumeration_type_name="YesNo" />
+        <field name="HealStat" type="EnumerationStatObjectFieldDefinition" value="2" enumeration_type_name="StatusHealType" />
+        <field name="HealType" type="EnumerationStatObjectFieldDefinition" value="1" enumeration_type_name="HealValueType" />
+        <field name="HealValue" type="IntegerStatObjectFieldDefinition" value="75" />
+      </fields>
+    </stat_object>
+    <stat_object is_substat="false">
+      <fields>
+        <field name="Name" type="NameStatObjectFieldDefinition" value="POTION_PA_HUGE" />
+        <field name="ForGameMaster" type="EnumerationStatObjectFieldDefinition" value="0" enumeration_type_name="YesNo" />
+        <field name="InitiateCombat" type="EnumerationStatObjectFieldDefinition" value="0" enumeration_type_name="YesNo" />
+        <field name="BringIntoCombat" type="EnumerationStatObjectFieldDefinition" value="0" enumeration_type_name="YesNo" />
+        <field name="HealStat" type="EnumerationStatObjectFieldDefinition" value="2" enumeration_type_name="StatusHealType" />
+        <field name="HealType" type="EnumerationStatObjectFieldDefinition" value="1" enumeration_type_name="HealValueType" />
+        <field name="HealValue" type="IntegerStatObjectFieldDefinition" value="100" />
+      </fields>
+    </stat_object>
+    <stat_object is_substat="false">
+      <fields>
+        <field name="Name" type="NameStatObjectFieldDefinition" value="ARMOR_ABSORB_P" />
+        <field name="ForGameMaster" type="EnumerationStatObjectFieldDefinition" value="0" enumeration_type_name="YesNo" />
+        <field name="InitiateCombat" type="EnumerationStatObjectFieldDefinition" value="0" enumeration_type_name="YesNo" />
+        <field name="BringIntoCombat" type="EnumerationStatObjectFieldDefinition" value="0" enumeration_type_name="YesNo" />
+        <field name="HealStat" type="EnumerationStatObjectFieldDefinition" value="2" enumeration_type_name="StatusHealType" />
+        <field name="HealType" type="EnumerationStatObjectFieldDefinition" value="0" enumeration_type_name="HealValueType" />
+        <field name="HealValue" type="IntegerStatObjectFieldDefinition" value="0" />
+      </fields>
+    </stat_object>
+    <stat_object is_substat="false">
+      <fields>
+        <field name="Name" type="NameStatObjectFieldDefinition" value="ARMOR_ABSORB_M" />
+        <field name="ForGameMaster" type="EnumerationStatObjectFieldDefinition" value="0" enumeration_type_name="YesNo" />
+        <field name="InitiateCombat" type="EnumerationStatObjectFieldDefinition" value="0" enumeration_type_name="YesNo" />
+        <field name="BringIntoCombat" type="EnumerationStatObjectFieldDefinition" value="0" enumeration_type_name="YesNo" />
+        <field name="HealStat" type="EnumerationStatObjectFieldDefinition" value="3" enumeration_type_name="StatusHealType" />
+        <field name="HealType" type="EnumerationStatObjectFieldDefinition" value="0" enumeration_type_name="HealValueType" />
+        <field name="HealValue" type="IntegerStatObjectFieldDefinition" value="0" />
+      </fields>
+    </stat_object>
+    <stat_object is_substat="false">
+      <fields>
+        <field name="Name" type="NameStatObjectFieldDefinition" value="POTION_STONESKIN" />
+        <field name="ForGameMaster" type="EnumerationStatObjectFieldDefinition" value="0" enumeration_type_name="YesNo" />
+        <field name="InitiateCombat" type="EnumerationStatObjectFieldDefinition" value="0" enumeration_type_name="YesNo" />
+        <field name="BringIntoCombat" type="EnumerationStatObjectFieldDefinition" value="0" enumeration_type_name="YesNo" />
+        <field name="HealStat" type="EnumerationStatObjectFieldDefinition" value="2" enumeration_type_name="StatusHealType" />
+        <field name="HealType" type="EnumerationStatObjectFieldDefinition" value="1" enumeration_type_name="HealValueType" />
+        <field name="HealValue" type="IntegerStatObjectFieldDefinition" value="50" />
+      </fields>
+    </stat_object>
+  </stat_objects>
+</stats>

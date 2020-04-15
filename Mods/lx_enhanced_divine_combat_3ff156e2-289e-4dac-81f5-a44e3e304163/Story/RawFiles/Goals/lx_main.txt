@@ -1,0 +1,75 @@
+Version 1
+SubGoalCombiner SGC_AND
+INITSECTION
+
+KBSECTION
+//Timer functions
+IF
+GameStarted(_, _)
+THEN
+NRD_LuaReset(1);
+TimerLaunch("LX_Player_Loop_Check", 1000);
+TimerLaunch("LX_Character_Loop_Check", 5000);
+
+//Loop check for NPCs around players
+IF
+TimerFinished("LX_Character_Loop_Check")
+AND
+DB_IsPlayer(_Char)
+THEN
+CharacterLaunchIteratorAroundObject(_Char, 30.0, "LX_Character_Check");
+TimerLaunch("LX_Character_Loop_Check", 5000);
+
+IF
+StoryEvent((CHARACTERGUID)_Char, "LX_Character_Check")
+AND
+NOT DB_IsPlayer(_Char)
+THEN
+PROC_LX_CheckCharacter(_Char);
+
+//Loop check for players (more frequent than NPCs)
+IF
+TimerFinished("LX_Player_Loop_Check")
+AND
+DB_IsPlayer(_Char)
+THEN
+PROC_LX_CheckCharacter(_Char);
+TimerLaunch("LX_Player_Loop_Check", 1000);
+
+IF
+CharacterStatusApplied(_Char, _, _)
+THEN
+PROC_LX_CheckCharacter(_Char);
+
+
+PROC
+PROC_LX_CheckCharacter((CHARACTERGUID)_Char)
+AND
+NOT _Char == NULL_00000000-0000-0000-0000-000000000000
+AND
+LX_EXT_CheckStatChange(_Char)
+THEN 
+LX_EXT_ApplyAttributeBonuses(_Char);
+
+//Weapon check for ability bonuses
+IF
+ItemEquipped(_, _Char)
+THEN
+LX_EXT_ApplyOverhaulBonusesCheck(_Char);
+
+IF
+ItemUnEquipped(_, _Char)
+THEN
+LX_EXT_ApplyOverhaulBonusesCheck(_Char);
+
+//Create weapons
+IF
+GameStarted(_,_)
+AND
+DB_IsPlayer(_Char)
+THEN
+GenerateTreasure(LOOT_Pouch_A_000_66db1925-fcc2-4ff3-a5c6-76f9f9c0d543, "ST_WeaponNormal", 10, _Char);
+
+EXITSECTION
+
+ENDEXITSECTION

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<save>
+    <header version="2" />
+    <version major="3" minor="6" revision="4" build="1" />
+    <region id="MetaData">
+        <node id="root">
+            <attribute id="Module" value="3ff156e2-289e-4dac-81f5-a44e3e304163" type="23" />
+            <attribute id="Name" value="lx_enhanced_divine_combat" type="23" />
+            <attribute id="Type" value="Add-on" type="23" />
+            <attribute id="UUID" value="6bd02b56-d1e2-45e4-a1cf-7bf1ac73febf" type="23" />
+        </node>
+    </region>
+</save>

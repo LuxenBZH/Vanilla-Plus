@@ -1,0 +1,260 @@
+<?xml version="1.0" encoding="utf-8"?>
+<stats stat_object_definition_id="e2a8d59b-0e34-4a7c-bf5f-db7a2bb34cde">
+  <stat_objects>
+    <stat_object is_substat="false">
+      <fields>
+        <field name="Name" type="NameStatObjectFieldDefinition" value="FIREBLOOD" />
+        <field name="ForGameMaster" type="EnumerationStatObjectFieldDefinition" value="1" enumeration_type_name="YesNo" />
+        <field name="InitiateCombat" type="EnumerationStatObjectFieldDefinition" value="1" enumeration_type_name="YesNo" />
+        <field name="DisplayName" type="TranslatedStringStatObjectFieldDefinition" value="Fireblood" />
+        <field name="Description" type="TranslatedStringStatObjectFieldDefinition" value="|Character is bleeding fire when hit.|" />
+        <field name="Icon" type="StringStatObjectFieldDefinition" value="Skill_Fire_FireBlood" />
+        <field name="FormatColor" type="EnumerationStatObjectFieldDefinition" value="4" enumeration_type_name="FormatStringColor" />
+        <field name="StatusEffect" type="StringStatObjectFieldDefinition" value="RS3_FX_GP_Status_Fireblood_01,KeepRot:Dummy_BodyFX" />
+        <field name="SavingThrow" type="EnumerationStatObjectFieldDefinition" value="0" enumeration_type_name="SavingThrow" />
+        <field name="StatsId" type="StringStatObjectFieldDefinition" value="Stats_Fireblood" />
+        <field name="StackId" type="StringStatObjectFieldDefinition" value="Stack_Fireblood" />
+      </fields>
+    </stat_object>
+    <stat_object is_substat="false">
+      <fields>
+        <field name="Name" type="NameStatObjectFieldDefinition" value="LX_WALKITOFF" />
+        <field name="DisplayName" type="TranslatedStringStatObjectFieldDefinition" value="Walk It Off" />
+        <field name="StatsId" type="StringStatObjectFieldDefinition" value="Stats_LX_WalkItOff" />
+        <field name="StackId" type="StringStatObjectFieldDefinition" value="Stack_LX_WalkItOff" />
+        <field name="Icon" type="StringStatObjectFieldDefinition" value="Talent_WalkItOff" />
+      </fields>
+    </stat_object>
+    <stat_object is_substat="false">
+      <fields>
+        <field name="Name" type="NameStatObjectFieldDefinition" value="LX_WALKITOFF_2" />
+        <field name="DisplayName" type="TranslatedStringStatObjectFieldDefinition" value="Walk It Off" />
+        <field name="StatsId" type="StringStatObjectFieldDefinition" value="Stats_LX_WalkItOff_2" />
+        <field name="StackId" type="StringStatObjectFieldDefinition" value="Stack_LX_WalkItOff" />
+        <field name="Icon" type="StringStatObjectFieldDefinition" value="Talent_WalkItOff" />
+      </fields>
+    </stat_object>
+    <stat_object is_substat="false">
+      <fields>
+        <field name="Name" type="NameStatObjectFieldDefinition" value="LX_WALKITOFF_3" />
+        <field name="DisplayName" type="TranslatedStringStatObjectFieldDefinition" value="Walk It Off" />
+        <field name="StatsId" type="StringStatObjectFieldDefinition" value="Stats_LX_WalkItOff_3" />
+        <field name="StackId" type="StringStatObjectFieldDefinition" value="Stack_LX_WalkItOff" />
+        <field name="Icon" type="StringStatObjectFieldDefinition" value="Talent_WalkItOff" />
+      </fields>
+    </stat_object>
+    <stat_object is_substat="false">
+      <fields>
+        <field name="Name" type="NameStatObjectFieldDefinition" value="LX_WALKITOFF_4" />
+        <field name="DisplayName" type="TranslatedStringStatObjectFieldDefinition" value="Walk It Off" />
+        <field name="StatsId" type="StringStatObjectFieldDefinition" value="Stats_LX_WalkItOff_4" />
+        <field name="StackId" type="StringStatObjectFieldDefinition" value="Stack_LX_WalkItOff" />
+        <field name="Icon" type="StringStatObjectFieldDefinition" value="Talent_WalkItOff" />
+      </fields>
+    </stat_object>
+    <stat_object is_substat="false">
+      <fields>
+        <field name="Name" type="NameStatObjectFieldDefinition" value="LX_WALKITOFF_5" />
+        <field name="DisplayName" type="TranslatedStringStatObjectFieldDefinition" value="Walk It Off" />
+        <field name="StatsId" type="StringStatObjectFieldDefinition" value="Stats_LX_WalkItOff_5" />
+        <field name="StackId" type="StringStatObjectFieldDefinition" value="Stack_LX_WalkItOff" />
+        <field name="Icon" type="StringStatObjectFieldDefinition" value="Talent_WalkItOff" />
+      </fields>
+    </stat_object>
+    <stat_object is_substat="false">
+      <fields>
+        <field name="Name" type="NameStatObjectFieldDefinition" value="INT_ACC_BONUS" />
+        <field name="ForGameMaster" type="EnumerationStatObjectFieldDefinition" value="0" enumeration_type_name="YesNo" />
+        <field name="StackId" type="StringStatObjectFieldDefinition" value="Stack_Int_Acc_Bonus" />
+      </fields>
+    </stat_object>
+    <stat_object is_substat="false">
+      <fields>
+        <field name="Name" type="NameStatObjectFieldDefinition" value="LX_PETPAL" />
+        <field name="ForGameMaster" type="EnumerationStatObjectFieldDefinition" value="0" enumeration_type_name="YesNo" />
+        <field name="DisplayName" type="TranslatedStringStatObjectFieldDefinition" value="Weaker Summon" />
+        <field name="Description" type="TranslatedStringStatObjectFieldDefinition" value="This summon is weaker." />
+        <field name="Icon" type="StringStatObjectFieldDefinition" value="Skill_Fire_ExplodeSelf" />
+        <field name="StatsId" type="StringStatObjectFieldDefinition" value="Stats_LX_PetPal" />
+        <field name="StackId" type="StringStatObjectFieldDefinition" value="Stack_LX_PetPal" />
+      </fields>
+    </stat_object>
+    <stat_object is_substat="false">
+      <fields>
+        <field name="Name" type="NameStatObjectFieldDefinition" value="LX_STAGGERED" />
+        <field name="ForGameMaster" type="EnumerationStatObjectFieldDefinition" value="0" enumeration_type_name="YesNo" />
+        <field name="DisplayName" type="TranslatedStringStatObjectFieldDefinition" value="Staggered" />
+        <field name="Description" type="TranslatedStringStatObjectFieldDefinition" value="This character have staggered during his recovery." />
+        <field name="Icon" type="StringStatObjectFieldDefinition" value="statIcons_LingeringWounds" />
+        <field name="StatsId" type="StringStatObjectFieldDefinition" value="Stats_LX_Staggered" />
+        <field name="StackId" type="StringStatObjectFieldDefinition" value="Stack_LX_Staggered" />
+      </fields>
+    </stat_object>
+    <stat_object is_substat="false">
+      <fields>
+        <field name="Name" type="NameStatObjectFieldDefinition" value="LX_STAGGERED2" />
+        <field name="DisplayName" type="TranslatedStringStatObjectFieldDefinition" value="Staggered (2)" />
+        <field name="Description" type="TranslatedStringStatObjectFieldDefinition" value="This character have staggered during his recovery." />
+        <field name="Icon" type="StringStatObjectFieldDefinition" value="statIcons_LingeringWounds" />
+        <field name="StatsId" type="StringStatObjectFieldDefinition" value="Stats_LX_Staggered2" />
+        <field name="StackId" type="StringStatObjectFieldDefinition" value="Stack_LX_Staggered" />
+      </fields>
+    </stat_object>
+    <stat_object is_substat="false">
+      <fields>
+        <field name="Name" type="NameStatObjectFieldDefinition" value="LX_STAGGERED3" />
+        <field name="DisplayName" type="TranslatedStringStatObjectFieldDefinition" value="Staggered (3)" />
+        <field name="Description" type="TranslatedStringStatObjectFieldDefinition" value="This character have staggered during his recovery." />
+        <field name="Icon" type="StringStatObjectFieldDefinition" value="statIcons_LingeringWounds" />
+        <field name="StatsId" type="StringStatObjectFieldDefinition" value="Stats_LX_Staggered3" />
+        <field name="StackId" type="StringStatObjectFieldDefinition" value="Stack_LX_Staggered" />
+      </fields>
+    </stat_object>
+    <stat_object is_substat="false">
+      <fields>
+        <field name="Name" type="NameStatObjectFieldDefinition" value="LX_CONFUSED" />
+        <field name="ForGameMaster" type="EnumerationStatObjectFieldDefinition" value="0" enumeration_type_name="YesNo" />
+        <field name="DisplayName" type="TranslatedStringStatObjectFieldDefinition" value="Confused" />
+        <field name="Description" type="TranslatedStringStatObjectFieldDefinition" value="This character have been magically affected during recovery." />
+        <field name="Icon" type="StringStatObjectFieldDefinition" value="statIcons_Clean" />
+        <field name="StatsId" type="StringStatObjectFieldDefinition" value="Stats_LX_Confused" />
+        <field name="StackId" type="StringStatObjectFieldDefinition" value="Stack_LX_Confused" />
+      </fields>
+    </stat_object>
+    <stat_object is_substat="false">
+      <fields>
+        <field name="Name" type="NameStatObjectFieldDefinition" value="LX_CONFUSED2" />
+        <field name="DisplayName" type="TranslatedStringStatObjectFieldDefinition" value="Confused (2)" />
+        <field name="Description" type="TranslatedStringStatObjectFieldDefinition" value="This character have been magically affected during recovery." />
+        <field name="Icon" type="StringStatObjectFieldDefinition" value="statIcons_Clean" />
+        <field name="StatsId" type="StringStatObjectFieldDefinition" value="Stats_LX_Confused2" />
+        <field name="StackId" type="StringStatObjectFieldDefinition" value="Stack_LX_Confused" />
+      </fields>
+    </stat_object>
+    <stat_object is_substat="false">
+      <fields>
+        <field name="Name" type="NameStatObjectFieldDefinition" value="LX_CONFUSED3" />
+        <field name="DisplayName" type="TranslatedStringStatObjectFieldDefinition" value="Confused (3)" />
+        <field name="Description" type="TranslatedStringStatObjectFieldDefinition" value="This character have been magically affected during recovery." />
+        <field name="Icon" type="StringStatObjectFieldDefinition" value="statIcons_Clean" />
+        <field name="StatsId" type="StringStatObjectFieldDefinition" value="Stats_LX_Confused3" />
+        <field name="StackId" type="StringStatObjectFieldDefinition" value="Stack_LX_Confused" />
+      </fields>
+    </stat_object>
+    <stat_object is_substat="false">
+      <fields>
+        <field name="Name" type="NameStatObjectFieldDefinition" value="LX_MOMENTUM" />
+        <field name="DisplayName" type="TranslatedStringStatObjectFieldDefinition" value="Momentum" />
+        <field name="Description" type="TranslatedStringStatObjectFieldDefinition" value="Any attempt to apply Knocked Down or Chicken will apply Staggered instead." />
+        <field name="Icon" type="StringStatObjectFieldDefinition" value="statIcons_Perseverance" />
+      </fields>
+    </stat_object>
+    <stat_object is_substat="false">
+      <fields>
+        <field name="Name" type="NameStatObjectFieldDefinition" value="LX_LINGERING" />
+        <field name="DisplayName" type="TranslatedStringStatObjectFieldDefinition" value="Lingering" />
+        <field name="Description" type="TranslatedStringStatObjectFieldDefinition" value="Any attempt to apply Stunned, Petrified, Frozen, Madness, Terrified or Charm will apply Confused instead." />
+        <field name="Icon" type="StringStatObjectFieldDefinition" value="statIcons_ferocity" />
+      </fields>
+    </stat_object>
+    <stat_object is_substat="false">
+      <fields>
+        <field name="Name" type="NameStatObjectFieldDefinition" value="LX_DODGE_FATIGUE1" />
+        <field name="DisplayName" type="TranslatedStringStatObjectFieldDefinition" value="Dodge Fatigue" />
+        <field name="Description" type="TranslatedStringStatObjectFieldDefinition" value="This character dodges become less effective." />
+        <field name="Icon" type="StringStatObjectFieldDefinition" value="Skill_Rogue_Trip" />
+        <field name="StatsId" type="StringStatObjectFieldDefinition" value="Stats_LX_DodgeFatigue1" />
+        <field name="StackId" type="StringStatObjectFieldDefinition" value="Stack_LX_DodgeFatigue" />
+      </fields>
+    </stat_object>
+    <stat_object is_substat="false">
+      <fields>
+        <field name="Name" type="NameStatObjectFieldDefinition" value="LX_DODGE_FATIGUE2" />
+        <field name="DisplayName" type="TranslatedStringStatObjectFieldDefinition" value="Dodge Fatigue" />
+        <field name="Description" type="TranslatedStringStatObjectFieldDefinition" value="This character dodges become less effective." />
+        <field name="Icon" type="StringStatObjectFieldDefinition" value="Skill_Rogue_Trip" />
+        <field name="StatsId" type="StringStatObjectFieldDefinition" value="Stats_LX_DodgeFatigue2" />
+        <field name="StackId" type="StringStatObjectFieldDefinition" value="Stack_LX_DodgeFatigue" />
+      </fields>
+    </stat_object>
+    <stat_object is_substat="false">
+      <fields>
+        <field name="Name" type="NameStatObjectFieldDefinition" value="LX_DODGE_FATIGUE3" />
+        <field name="DisplayName" type="TranslatedStringStatObjectFieldDefinition" value="Dodge Fatigue" />
+        <field name="Description" type="TranslatedStringStatObjectFieldDefinition" value="This character dodges become less effective." />
+        <field name="Icon" type="StringStatObjectFieldDefinition" value="Skill_Rogue_Trip" />
+        <field name="StatsId" type="StringStatObjectFieldDefinition" value="Stats_LX_DodgeFatigue3" />
+        <field name="StackId" type="StringStatObjectFieldDefinition" value="Stack_LX_DodgeFatigue" />
+      </fields>
+    </stat_object>
+    <stat_object is_substat="false">
+      <fields>
+        <field name="Name" type="NameStatObjectFieldDefinition" value="LX_DDGOOSE" />
+        <field name="StatsId" type="StringStatObjectFieldDefinition" value="Stats_LX_DDGoose" />
+        <field name="StackId" type="StringStatObjectFieldDefinition" value="Stack_LX_DDGoose" />
+      </fields>
+    </stat_object>
+    <stat_object is_substat="false">
+      <fields>
+        <field name="Name" type="NameStatObjectFieldDefinition" value="LX_DEMON" />
+        <field name="StatsId" type="StringStatObjectFieldDefinition" value="Stats_LX_Demon" />
+        <field name="StackId" type="StringStatObjectFieldDefinition" value="Stack_LX_Demon" />
+      </fields>
+    </stat_object>
+    <stat_object is_substat="false">
+      <fields>
+        <field name="Name" type="NameStatObjectFieldDefinition" value="LX_LEECH" />
+        <field name="StatsId" type="StringStatObjectFieldDefinition" value="Stats_LX_Leech" />
+        <field name="StackId" type="StringStatObjectFieldDefinition" value="Stack_LX_Leech" />
+      </fields>
+    </stat_object>
+    <stat_object is_substat="false">
+      <fields>
+        <field name="Name" type="NameStatObjectFieldDefinition" value="LX_MORNINGPERSON" />
+        <field name="StatsId" type="StringStatObjectFieldDefinition" value="Stats_LX_MorningPerson" />
+        <field name="StackId" type="StringStatObjectFieldDefinition" value="Stack_LX_MorningPerson" />
+      </fields>
+    </stat_object>
+    <stat_object is_substat="false">
+      <fields>
+        <field name="Name" type="NameStatObjectFieldDefinition" value="LX_STENCH" />
+        <field name="StatsId" type="StringStatObjectFieldDefinition" value="Stats_LX_Stench" />
+        <field name="StackId" type="StringStatObjectFieldDefinition" value="Stack_LX_Stench" />
+      </fields>
+    </stat_object>
+    <stat_object is_substat="false">
+      <fields>
+        <field name="Name" type="NameStatObjectFieldDefinition" value="LX_HOTHEAD" />
+        <field name="StatsId" type="StringStatObjectFieldDefinition" value="Stats_LX_Hothead" />
+        <field name="StackId" type="StringStatObjectFieldDefinition" value="Stack_LX_Hothead" />
+      </fields>
+    </stat_object>
+    <stat_object is_substat="false">
+      <fields>
+        <field name="Name" type="NameStatObjectFieldDefinition" value="LX_PETPALSUMMONER" />
+        <field name="StatsId" type="StringStatObjectFieldDefinition" value="Stats_LX_PetPalSummoner" />
+        <field name="StackId" type="StringStatObjectFieldDefinition" value="Stack_LX_PetPalSummoner" />
+      </fields>
+    </stat_object>
+    <stat_object is_substat="false">
+      <fields>
+        <field name="Name" type="NameStatObjectFieldDefinition" value="LX_DUELIST" />
+        <field name="StatsId" type="StringStatObjectFieldDefinition" value="Stats_LX_Duelist" />
+        <field name="StackId" type="StringStatObjectFieldDefinition" value="Stack_LX_Duelist" />
+      </fields>
+    </stat_object>
+    <stat_object is_substat="false">
+      <fields>
+        <field name="Name" type="NameStatObjectFieldDefinition" value="HEALING_ELIXIR" />
+        <field name="ForGameMaster" type="EnumerationStatObjectFieldDefinition" value="0" enumeration_type_name="YesNo" />
+        <field name="InitiateCombat" type="EnumerationStatObjectFieldDefinition" value="0" enumeration_type_name="YesNo" />
+        <field name="DisplayName" type="TranslatedStringStatObjectFieldDefinition" value="Healing Elixir" />
+        <field name="Icon" type="StringStatObjectFieldDefinition" value="statIcons_HealingElixir" />
+        <field name="FormatColor" type="EnumerationStatObjectFieldDefinition" value="34" enumeration_type_name="FormatStringColor" />
+        <field name="StatusEffect" type="StringStatObjectFieldDefinition" value="RS3_FX_GP_Status_Regenerating_01" />
+        <field name="StatsId" type="StringStatObjectFieldDefinition" value="Stats_Healing_Elixir" />
+        <field name="StackId" type="StringStatObjectFieldDefinition" value="Stack_HealingElixir" />
+      </fields>
+    </stat_object>
+  </stat_objects>
+</stats>

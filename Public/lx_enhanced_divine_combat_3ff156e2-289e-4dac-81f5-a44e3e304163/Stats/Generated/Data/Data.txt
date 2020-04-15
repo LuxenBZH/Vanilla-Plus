@@ -1,0 +1,106 @@
+key "ArmorToVitalityRatio","0.4"
+
+key "VitalityToDamageRatio","7.5"
+
+key "UnstableRadius","6"
+
+key "VitalityBoostFromAttribute","0.12"
+
+key "AttributeLevelGrowth","2"
+
+key "AttributeBaseValue","10"
+
+key "AttributeBoostGrowth","0.75"
+
+key "AttributeGrowthDamp","0.7"
+
+key "AttributeSoftCap","40"
+
+key "ExpectedConGrowthForArmorCalculation","1"
+
+key "DamageBoostFromAttribute","0"
+
+key "MonsterDamageBoostPerLevel","0.03"
+
+key "CharacterBaseMemoryCapacity","5"
+
+key "CharacterBaseMemoryCapacityGrowth","0.25"
+
+key "CombatAbilityReflectionBonus","8"
+
+key "CombatAbilityDodgingBonus","3"
+
+key "CombatAbilityAccuracyBonus","5"
+
+key "CombatAbilityCritMultiplierBonus","5"
+
+key "CombatAbilityCritBonus","1"
+
+key "CombatAbilityDamageBonus","7"
+
+key "CombatAbilityCap","10"
+
+key "CombatAbilityNpcGrowth","0.1"
+
+key "CombatAbilityLevelGrowth","1"
+
+key "LeadershipRange","16"
+
+key "LeadershipDodgingBonus","2"
+
+key "LeadershipAllResBonus","3"
+
+key "SkillAbilityVitalityRestoredPerPoint","5"
+
+key "SkillAbilityLifeStealPerPoint","10"
+
+key "SkillAbilitySulfuricDamageBoostPerPoint","5"
+
+key "SkillAbilityPhysicalDamageBoostPerPoint","5"
+
+key "SkillAbilityWaterDamageBoostPerPoint","5"
+
+key "SkillAbilityAirDamageBoostPerPoint","5"
+
+key "SkillAbilityPoisonAndEarthDamageBoostPerPoint","5"
+
+key "SkillAbilityFireDamageBoostPerPoint","5"
+
+key "SkillAbilityHighGroundBonusPerPoint","5"
+
+key "SkillAbilityArmorRestoredPerPoint","8"
+
+key "TalentAttributePointsBonus","0"
+
+key "TalentMemoryBonus","0"
+
+key "TalentCivilAbilityPointsBonus","0"
+
+key "TalentCombatAbilityPointsBonus","0"
+
+key "SoftLevelCap","30"
+
+key "LevelCap","30"
+
+key "TalentSneakingAPCost","2"
+
+key "TalentViolentMagicCriticalChancePercent","110"
+
+key "DodgingBoostFromAttribute","0.01"
+
+key "Flanked penalty","20"
+
+key "TalentPerfectionistAccuracyBonus","0"
+
+key "TalentPerfectionistCriticalChanceBonus","0"
+
+key "End Of Combat SightRange Multiplier","2.5"
+
+key "CriticalBonusFromWits","2"
+
+key "AbilityVitalityBonusMax","4"
+
+key "AbilityVitalityBonusBase","4"
+
+key "AbilityVitalityBonusPerPoint","1"
+

@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<stats stat_object_definition_id="68e50044-f0bd-499d-94ad-7aa52f7abe18">
+  <stat_objects>
+    <stat_object is_substat="false">
+      <fields>
+        <field name="Name" type="NameStatObjectFieldDefinition" value="Summon_BonePile" />
+        <field name="Skills" type="StatReferenceStatObjectFieldDefinition" stat_name="Target_BonePileConsumeCorpse" />
+      </fields>
+    </stat_object>
+    <stat_object is_substat="true">
+      <fields>
+        <field name="Name" type="NameStatObjectFieldDefinition" value="Summon_BonePile_substat_0" />
+        <field name="Using" type="BaseClassStatObjectFieldDefinition" value="Summon_BonePile" />
+        <field name="Skills" type="StatReferenceStatObjectFieldDefinition" stat_name="Jump_BonePileBurrow" />
+      </fields>
+    </stat_object>
+    <stat_object is_substat="true">
+      <fields>
+        <field name="Name" type="NameStatObjectFieldDefinition" value="Summon_BonePile_substat" />
+        <field name="Skills" type="StatReferenceStatObjectFieldDefinition" stat_name="Shout_BoneCage" />
+        <field name="Using" type="BaseClassStatObjectFieldDefinition" value="Summon_BonePile" />
+      </fields>
+    </stat_object>
+    <stat_object is_substat="false">
+      <fields>
+        <field name="Name" type="NameStatObjectFieldDefinition" value="Summon_OilBlob" />
+        <field name="Skills" type="StatReferenceStatObjectFieldDefinition" stat_name="Projectile_PyroclasticRock" />
+      </fields>
+    </stat_object>
+    <stat_object is_substat="true">
+      <fields>
+        <field name="Name" type="NameStatObjectFieldDefinition" value="Summon_OilBlob_substat_0" />
+        <field name="Skills" type="StatReferenceStatObjectFieldDefinition" stat_name="Target_Condense" />
+        <field name="Using" type="BaseClassStatObjectFieldDefinition" value="Summon_OilBlob" />
+      </fields>
+    </stat_object>
+    <stat_object is_substat="true">
+      <fields>
+        <field name="Name" type="NameStatObjectFieldDefinition" value="Summon_OilBlob_substat" />
+        <field name="Skills" type="StatReferenceStatObjectFieldDefinition" stat_name="Rain_Oil" />
+        <field name="Using" type="BaseClassStatObjectFieldDefinition" value="Summon_OilBlob" />
+      </fields>
+    </stat_object>
+    <stat_object is_substat="false">
+      <fields>
+        <field name="Name" type="NameStatObjectFieldDefinition" value="Summon_FireSlug" />
+        <field name="Skills" type="StatReferenceStatObjectFieldDefinition" stat_name="Rush_SlugBatteringRam" />
+      </fields>
+    </stat_object>
+    <stat_object is_substat="true">
+      <fields>
+        <field name="Name" type="NameStatObjectFieldDefinition" value="Summon_FireSlug_substat_0" />
+        <field name="Using" type="BaseClassStatObjectFieldDefinition" value="Summon_FireSlug" />
+        <field name="Skills" type="StatReferenceStatObjectFieldDefinition" stat_name="Zone_SlugRay" />
+      </fields>
+    </stat_object>
+    <stat_object is_substat="true">
+      <fields>
+        <field name="Name" type="NameStatObjectFieldDefinition" value="Summon_FireSlug_substat" />
+        <field name="Skills" type="StatReferenceStatObjectFieldDefinition" stat_name="Shout_FlamingTongues" />
+        <field name="Using" type="BaseClassStatObjectFieldDefinition" value="Summon_FireSlug" />
+      </fields>
+    </stat_object>
+  </stat_objects>
+</stats>

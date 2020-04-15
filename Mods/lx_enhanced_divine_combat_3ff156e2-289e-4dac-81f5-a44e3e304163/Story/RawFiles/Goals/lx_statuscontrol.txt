@@ -1,0 +1,118 @@
+Version 1
+SubGoalCombiner SGC_AND
+INITSECTION
+
+KBSECTION
+//Momentum proc
+IF
+CharacterStatusRemoved(_Char, "KNOCKED_DOWN", _)
+THEN
+ApplyStatus(_Char, "LX_MOMENTUM", 6.0, 1);
+
+IF
+CharacterStatusRemoved(_Char, "CHICKEN", _)
+THEN
+ApplyStatus(_Char, "LX_MOMENTUM", 6.0, 1);
+
+//Ligering proc
+IF
+CharacterStatusRemoved(_Char, "STUNNED", _)
+THEN
+ApplyStatus(_Char, "LX_LINGERING", 6.0, 1);
+
+IF
+CharacterStatusRemoved(_Char, "FROZEN", _)
+THEN
+ApplyStatus(_Char, "LX_LINGERING", 6.0, 1);
+
+IF
+CharacterStatusRemoved(_Char, "PETRIFIED", _)
+THEN
+ApplyStatus(_Char, "LX_LINGERING", 6.0, 1);
+
+IF
+CharacterStatusRemoved(_Char, "MADNESS", _)
+THEN
+ApplyStatus(_Char, "LX_LINGERING", 6.0, 1);
+
+IF
+CharacterStatusRemoved(_Char, "FEAR", _)
+THEN
+ApplyStatus(_Char, "LX_LINGERING", 6.0, 1);
+
+IF
+CharacterStatusRemoved(_Char, "CHARM", _)
+THEN
+ApplyStatus(_Char, "LX_LINGERING", 6.0, 1);
+
+
+//Physical
+IF
+NRD_OnStatusAttempt(_Target, "KNOCKED_DOWN", _Handle, _Instigator)
+AND
+HasActiveStatus(_Target, "LX_MOMENTUM", 1)
+THEN
+LX_EXT_CheckPhysicalCC(_Target, "KNOCKED_DOWN", _Handle);
+
+IF
+NRD_OnStatusAttempt(_Target, "CHICKEN", _Handle, _Instigator)
+AND
+HasActiveStatus(_Target, "LX_MOMENTUM", 1)
+THEN
+LX_EXT_CheckPhysicalCC(_Target, "CHICKEN", _Handle);
+
+//Magical
+IF
+NRD_OnStatusAttempt(_Target, "STUNNED", _Handle, _Instigator)
+AND
+HasActiveStatus(_Target, "LX_LINGERING", 1)
+THEN
+LX_EXT_CheckMagicalCC(_Target, "STUNNED", _Handle);
+
+IF
+NRD_OnStatusAttempt(_Target, "FEAR", _Handle, _Instigator)
+AND
+HasActiveStatus(_Target, "LX_LINGERING", 1)
+THEN
+LX_EXT_CheckMagicalCC(_Target, "FEAR", _Handle);
+
+IF
+NRD_OnStatusAttempt(_Target, "FROZEN", _Handle, _Instigator)
+AND
+HasActiveStatus(_Target, "LX_LINGERING", 1)
+THEN
+LX_EXT_CheckMagicalCC(_Target, "FROZEN", _Handle);
+
+IF
+NRD_OnStatusAttempt(_Target, "PETRIFIED", _Handle, _Instigator)
+AND
+HasActiveStatus(_Target, "LX_LINGERING", 1)
+THEN
+LX_EXT_CheckMagicalCC(_Target, "PETRIFIED", _Handle);
+
+IF
+NRD_OnStatusAttempt(_Target, "MADNESS", _Handle, _Instigator)
+AND
+HasActiveStatus(_Target, "LX_LINGERING", 1)
+THEN
+LX_EXT_CheckMagicalCC(_Target, "MADNESS", _Handle);
+
+
+//Perseverance HP rejuveration
+IF
+CharacterStatusApplied(_Char, "POST_MAGIC_CONTROL", _)
+AND
+CharacterGetAbility(_Char, "Perseverance", _Pers)
+THEN
+LX_EXT_ManagePerseverance(_Char, _Pers);
+
+IF
+CharacterStatusApplied(_Char, "POST_PHYS_CONTROL", _)
+AND
+CharacterGetAbility(_Char, "Perseverance", _Pers)
+THEN
+LX_EXT_ManagePerseverance(_Char, _Pers);
+
+EXITSECTION
+
+ENDEXITSECTION

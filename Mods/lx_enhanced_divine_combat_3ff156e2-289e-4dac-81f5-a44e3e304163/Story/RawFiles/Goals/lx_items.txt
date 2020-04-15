@@ -1,0 +1,18 @@
+Version 1
+SubGoalCombiner SGC_AND
+INITSECTION
+
+KBSECTION
+IF
+CharacterUsedItem(_Char, _Item)
+THEN
+LX_EXT_PoisonedPotionManagement(_Char, _Item);
+
+IF
+CharacterStatusApplied(_Char, "HEALING_ELIXIR", _)
+THEN
+RemoveStatus(_Char, "DISARMED");
+
+EXITSECTION
+
+ENDEXITSECTION

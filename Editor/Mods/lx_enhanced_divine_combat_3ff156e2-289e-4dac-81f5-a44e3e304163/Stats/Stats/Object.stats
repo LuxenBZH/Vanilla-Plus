@@ -1,0 +1,385 @@
+<?xml version="1.0" encoding="utf-8"?>
+<stats stat_object_definition_id="e078e210-b9ba-48e5-afe3-c5eb91ba8545">
+  <stat_objects>
+    <stat_object is_substat="false">
+      <fields>
+        <field name="Name" type="NameStatObjectFieldDefinition" value="GRN_Grenade_BlessedOilFlask_A" />
+        <field name="Using" type="BaseClassStatObjectFieldDefinition" value="_Grenades" />
+        <field name="RootTemplate" type="RootTemplateStatObjectFieldDefinition" value="d44fa069-7708-4c0f-a924-f66a75802113" />
+        <field name="Act part" type="EnumerationStatObjectFieldDefinition" value="16" enumeration_type_name="ActPart" />
+        <field name="Value" type="IntegerStatObjectFieldDefinition" value="450" />
+        <field name="Weight" type="IntegerStatObjectFieldDefinition" value="100" />
+        <field name="Constitution" type="EnumerationStatObjectFieldDefinition" value="11" enumeration_type_name="PreciseQualifier" />
+        <field name="ObjectCategory" type="StringStatObjectFieldDefinition" value="GrenadeLate" />
+        <field name="Priority" type="IntegerStatObjectFieldDefinition" value="1" />
+        <field name="MinLevel" type="IntegerStatObjectFieldDefinition" value="16" />
+      </fields>
+    </stat_object>
+    <stat_object is_substat="false">
+      <fields>
+        <field name="Name" type="NameStatObjectFieldDefinition" value="GRN_Grenade_CursedPoisonFlask_A" />
+        <field name="Using" type="BaseClassStatObjectFieldDefinition" value="_Grenades" />
+        <field name="RootTemplate" type="RootTemplateStatObjectFieldDefinition" value="f216b8d2-4158-4ce6-b8c9-15e920a6add4" />
+        <field name="Act part" type="EnumerationStatObjectFieldDefinition" value="16" enumeration_type_name="ActPart" />
+        <field name="Value" type="IntegerStatObjectFieldDefinition" value="450" />
+        <field name="Weight" type="IntegerStatObjectFieldDefinition" value="200" />
+        <field name="Constitution" type="EnumerationStatObjectFieldDefinition" value="11" enumeration_type_name="PreciseQualifier" />
+        <field name="ObjectCategory" type="StringStatObjectFieldDefinition" value="GrenadeLate" />
+        <field name="Priority" type="IntegerStatObjectFieldDefinition" value="1" />
+        <field name="MinLevel" type="IntegerStatObjectFieldDefinition" value="16" />
+      </fields>
+    </stat_object>
+    <stat_object is_substat="false">
+      <fields>
+        <field name="Name" type="NameStatObjectFieldDefinition" value="GRN_Grenade_CursedMolotov_A" />
+        <field name="Using" type="BaseClassStatObjectFieldDefinition" value="_Grenades" />
+        <field name="RootTemplate" type="RootTemplateStatObjectFieldDefinition" value="4f63b088-f686-4e09-8c0f-16df6504f0ea" />
+        <field name="Act part" type="EnumerationStatObjectFieldDefinition" value="16" enumeration_type_name="ActPart" />
+        <field name="Value" type="IntegerStatObjectFieldDefinition" value="450" />
+        <field name="Constitution" type="EnumerationStatObjectFieldDefinition" value="11" enumeration_type_name="PreciseQualifier" />
+        <field name="ObjectCategory" type="StringStatObjectFieldDefinition" value="GrenadeLate" />
+        <field name="Priority" type="IntegerStatObjectFieldDefinition" value="1" />
+        <field name="MinLevel" type="IntegerStatObjectFieldDefinition" value="16" />
+      </fields>
+    </stat_object>
+    <stat_object is_substat="false">
+      <fields>
+        <field name="Name" type="NameStatObjectFieldDefinition" value="GRN_Grenade_CursedClusterBomb_A" />
+        <field name="Using" type="BaseClassStatObjectFieldDefinition" value="_Grenades" />
+        <field name="RootTemplate" type="RootTemplateStatObjectFieldDefinition" value="d9e9a62c-0266-440d-9501-a6c2c43a22f6" />
+        <field name="Act part" type="EnumerationStatObjectFieldDefinition" value="16" enumeration_type_name="ActPart" />
+        <field name="Value" type="IntegerStatObjectFieldDefinition" value="500" />
+        <field name="Constitution" type="EnumerationStatObjectFieldDefinition" value="11" enumeration_type_name="PreciseQualifier" />
+        <field name="ObjectCategory" type="StringStatObjectFieldDefinition" value="GrenadeLate" />
+        <field name="Priority" type="IntegerStatObjectFieldDefinition" value="1" />
+        <field name="MinLevel" type="IntegerStatObjectFieldDefinition" value="16" />
+      </fields>
+    </stat_object>
+    <stat_object is_substat="false">
+      <fields>
+        <field name="Name" type="NameStatObjectFieldDefinition" value="GRN_Grenade_BlessedIce_A" />
+        <field name="Using" type="BaseClassStatObjectFieldDefinition" value="_Grenades" />
+        <field name="RootTemplate" type="RootTemplateStatObjectFieldDefinition" value="4b70b9dc-ac99-415c-bfc8-15cd6dc9aa7d" />
+        <field name="Act part" type="EnumerationStatObjectFieldDefinition" value="16" enumeration_type_name="ActPart" />
+        <field name="Value" type="IntegerStatObjectFieldDefinition" value="500" />
+        <field name="Constitution" type="EnumerationStatObjectFieldDefinition" value="11" enumeration_type_name="PreciseQualifier" />
+        <field name="ObjectCategory" type="StringStatObjectFieldDefinition" value="GrenadeLate" />
+        <field name="Priority" type="IntegerStatObjectFieldDefinition" value="1" />
+        <field name="MinLevel" type="IntegerStatObjectFieldDefinition" value="16" />
+      </fields>
+    </stat_object>
+    <stat_object is_substat="false">
+      <fields>
+        <field name="Name" type="NameStatObjectFieldDefinition" value="GRN_Grenade_WaterBlessedBalloon_A" />
+        <field name="Using" type="BaseClassStatObjectFieldDefinition" value="_Grenades" />
+        <field name="RootTemplate" type="RootTemplateStatObjectFieldDefinition" value="40ce7ae0-d0a9-4d76-b638-4bbd2814075f" />
+        <field name="Act part" type="EnumerationStatObjectFieldDefinition" value="16" enumeration_type_name="ActPart" />
+        <field name="Value" type="IntegerStatObjectFieldDefinition" value="400" />
+        <field name="Weight" type="IntegerStatObjectFieldDefinition" value="200" />
+        <field name="Constitution" type="EnumerationStatObjectFieldDefinition" value="11" enumeration_type_name="PreciseQualifier" />
+        <field name="ObjectCategory" type="StringStatObjectFieldDefinition" value="GrenadeLate" />
+        <field name="Priority" type="IntegerStatObjectFieldDefinition" value="1" />
+        <field name="MinLevel" type="IntegerStatObjectFieldDefinition" value="16" />
+      </fields>
+    </stat_object>
+    <stat_object is_substat="false">
+      <fields>
+        <field name="Name" type="NameStatObjectFieldDefinition" value="GRN_Grenade_ChemicalWarfare_A" />
+        <field name="Using" type="BaseClassStatObjectFieldDefinition" value="_Grenades" />
+        <field name="RootTemplate" type="RootTemplateStatObjectFieldDefinition" value="bdff5d65-29ef-425c-9096-a119e4de228f" />
+        <field name="Act part" type="EnumerationStatObjectFieldDefinition" value="16" enumeration_type_name="ActPart" />
+        <field name="Value" type="IntegerStatObjectFieldDefinition" value="450" />
+        <field name="Constitution" type="EnumerationStatObjectFieldDefinition" value="11" enumeration_type_name="PreciseQualifier" />
+        <field name="ObjectCategory" type="StringStatObjectFieldDefinition" value="GrenadeLate" />
+        <field name="Priority" type="IntegerStatObjectFieldDefinition" value="2" />
+        <field name="MinLevel" type="IntegerStatObjectFieldDefinition" value="16" />
+      </fields>
+    </stat_object>
+    <stat_object is_substat="false">
+      <fields>
+        <field name="Name" type="NameStatObjectFieldDefinition" value="GRN_Grenade_ClusterBomb_A" />
+        <field name="Using" type="BaseClassStatObjectFieldDefinition" value="_Grenades" />
+        <field name="RootTemplate" type="RootTemplateStatObjectFieldDefinition" value="f70ee2c6-9dda-4eed-b59b-75e4256c9059" />
+        <field name="Act part" type="EnumerationStatObjectFieldDefinition" value="16" enumeration_type_name="ActPart" />
+        <field name="Value" type="IntegerStatObjectFieldDefinition" value="450" />
+        <field name="Constitution" type="EnumerationStatObjectFieldDefinition" value="11" enumeration_type_name="PreciseQualifier" />
+        <field name="ObjectCategory" type="StringStatObjectFieldDefinition" value="GrenadeLate" />
+        <field name="Priority" type="IntegerStatObjectFieldDefinition" value="2" />
+        <field name="MinLevel" type="IntegerStatObjectFieldDefinition" value="16" />
+      </fields>
+    </stat_object>
+    <stat_object is_substat="false">
+      <fields>
+        <field name="Name" type="NameStatObjectFieldDefinition" value="GRN_Grenade_Tremor_A" />
+        <field name="Using" type="BaseClassStatObjectFieldDefinition" value="_Grenades" />
+        <field name="RootTemplate" type="RootTemplateStatObjectFieldDefinition" value="220f7257-faa9-4bc4-903b-ae52765948ea" />
+        <field name="Act part" type="EnumerationStatObjectFieldDefinition" value="9" enumeration_type_name="ActPart" />
+        <field name="Value" type="IntegerStatObjectFieldDefinition" value="200" />
+        <field name="Constitution" type="EnumerationStatObjectFieldDefinition" value="11" enumeration_type_name="PreciseQualifier" />
+        <field name="ObjectCategory" type="StringStatObjectFieldDefinition" value="GrenadeMid" />
+        <field name="Priority" type="IntegerStatObjectFieldDefinition" value="2" />
+        <field name="MinLevel" type="IntegerStatObjectFieldDefinition" value="9" />
+      </fields>
+    </stat_object>
+    <stat_object is_substat="false">
+      <fields>
+        <field name="Name" type="NameStatObjectFieldDefinition" value="GRN_Grenade_Holy_A" />
+        <field name="Using" type="BaseClassStatObjectFieldDefinition" value="_Grenades" />
+        <field name="RootTemplate" type="RootTemplateStatObjectFieldDefinition" value="f7ecad76-b074-4164-a99f-9262d3cd66db" />
+        <field name="Act part" type="EnumerationStatObjectFieldDefinition" value="9" enumeration_type_name="ActPart" />
+        <field name="Value" type="IntegerStatObjectFieldDefinition" value="300" />
+        <field name="Constitution" type="EnumerationStatObjectFieldDefinition" value="11" enumeration_type_name="PreciseQualifier" />
+        <field name="ObjectCategory" type="StringStatObjectFieldDefinition" value="GrenadeMid" />
+        <field name="Priority" type="IntegerStatObjectFieldDefinition" value="2" />
+        <field name="MinLevel" type="IntegerStatObjectFieldDefinition" value="9" />
+      </fields>
+    </stat_object>
+    <stat_object is_substat="false">
+      <fields>
+        <field name="Name" type="NameStatObjectFieldDefinition" value="GRN_Grenade_Ice_A" />
+        <field name="Using" type="BaseClassStatObjectFieldDefinition" value="_Grenades" />
+        <field name="RootTemplate" type="RootTemplateStatObjectFieldDefinition" value="a16947e3-5f2f-42c7-b05b-7cdaeb204d28" />
+        <field name="Act part" type="EnumerationStatObjectFieldDefinition" value="9" enumeration_type_name="ActPart" />
+        <field name="Value" type="IntegerStatObjectFieldDefinition" value="200" />
+        <field name="Constitution" type="EnumerationStatObjectFieldDefinition" value="11" enumeration_type_name="PreciseQualifier" />
+        <field name="ObjectCategory" type="StringStatObjectFieldDefinition" value="GrenadeMid" />
+        <field name="Priority" type="IntegerStatObjectFieldDefinition" value="2" />
+        <field name="MinLevel" type="IntegerStatObjectFieldDefinition" value="9" />
+      </fields>
+    </stat_object>
+    <stat_object is_substat="false">
+      <fields>
+        <field name="Name" type="NameStatObjectFieldDefinition" value="GRN_Grenade_Terror_A" />
+        <field name="Using" type="BaseClassStatObjectFieldDefinition" value="_Grenades" />
+        <field name="RootTemplate" type="RootTemplateStatObjectFieldDefinition" value="cbdc1f53-1acf-4288-bdb2-3ab085d27f29" />
+        <field name="Act part" type="EnumerationStatObjectFieldDefinition" value="9" enumeration_type_name="ActPart" />
+        <field name="Value" type="IntegerStatObjectFieldDefinition" value="215" />
+        <field name="Constitution" type="EnumerationStatObjectFieldDefinition" value="11" enumeration_type_name="PreciseQualifier" />
+        <field name="ObjectCategory" type="StringStatObjectFieldDefinition" value="GrenadeMid" />
+        <field name="Priority" type="IntegerStatObjectFieldDefinition" value="2" />
+        <field name="MinLevel" type="IntegerStatObjectFieldDefinition" value="9" />
+      </fields>
+    </stat_object>
+    <stat_object is_substat="false">
+      <fields>
+        <field name="Name" type="NameStatObjectFieldDefinition" value="GRN_Grenade_Love_A" />
+        <field name="Using" type="BaseClassStatObjectFieldDefinition" value="_Grenades" />
+        <field name="RootTemplate" type="RootTemplateStatObjectFieldDefinition" value="22cd2247-45d7-432c-93bd-782777af3b33" />
+        <field name="Act part" type="EnumerationStatObjectFieldDefinition" value="9" enumeration_type_name="ActPart" />
+        <field name="Value" type="IntegerStatObjectFieldDefinition" value="300" />
+        <field name="Constitution" type="EnumerationStatObjectFieldDefinition" value="11" enumeration_type_name="PreciseQualifier" />
+        <field name="ObjectCategory" type="StringStatObjectFieldDefinition" value="GrenadeMid" />
+        <field name="Priority" type="IntegerStatObjectFieldDefinition" value="2" />
+        <field name="MinLevel" type="IntegerStatObjectFieldDefinition" value="9" />
+      </fields>
+    </stat_object>
+    <stat_object is_substat="false">
+      <fields>
+        <field name="Name" type="NameStatObjectFieldDefinition" value="GRN_Grenade_Nailbomb_A" />
+        <field name="Using" type="BaseClassStatObjectFieldDefinition" value="_Grenades" />
+        <field name="RootTemplate" type="RootTemplateStatObjectFieldDefinition" value="c2dac4cd-724b-4179-b72b-84e0d9ffa7a1" />
+        <field name="Act part" type="EnumerationStatObjectFieldDefinition" value="5" enumeration_type_name="ActPart" />
+        <field name="Value" type="IntegerStatObjectFieldDefinition" value="55" />
+        <field name="Constitution" type="EnumerationStatObjectFieldDefinition" value="11" enumeration_type_name="PreciseQualifier" />
+        <field name="ObjectCategory" type="StringStatObjectFieldDefinition" value="GrenadeEarly" />
+        <field name="Priority" type="IntegerStatObjectFieldDefinition" value="2" />
+        <field name="MinLevel" type="IntegerStatObjectFieldDefinition" value="5" />
+      </fields>
+    </stat_object>
+    <stat_object is_substat="false">
+      <fields>
+        <field name="Name" type="NameStatObjectFieldDefinition" value="GRN_Grenade_MustardGas_A" />
+        <field name="Using" type="BaseClassStatObjectFieldDefinition" value="_Grenades" />
+        <field name="RootTemplate" type="RootTemplateStatObjectFieldDefinition" value="2cba3327-1650-4749-89ce-daeb6139aa17" />
+        <field name="Act part" type="EnumerationStatObjectFieldDefinition" value="5" enumeration_type_name="ActPart" />
+        <field name="Value" type="IntegerStatObjectFieldDefinition" value="75" />
+        <field name="Constitution" type="EnumerationStatObjectFieldDefinition" value="11" enumeration_type_name="PreciseQualifier" />
+        <field name="ObjectCategory" type="StringStatObjectFieldDefinition" value="GrenadeEarly" />
+        <field name="Priority" type="IntegerStatObjectFieldDefinition" value="2" />
+        <field name="MinLevel" type="IntegerStatObjectFieldDefinition" value="5" />
+      </fields>
+    </stat_object>
+    <stat_object is_substat="false">
+      <fields>
+        <field name="Name" type="NameStatObjectFieldDefinition" value="GRN_Grenade_Flashbang_A" />
+        <field name="Using" type="BaseClassStatObjectFieldDefinition" value="_Grenades" />
+        <field name="RootTemplate" type="RootTemplateStatObjectFieldDefinition" value="a71888d9-9d3f-4004-96c3-bbc1a158c3f6" />
+        <field name="Act part" type="EnumerationStatObjectFieldDefinition" value="5" enumeration_type_name="ActPart" />
+        <field name="Value" type="IntegerStatObjectFieldDefinition" value="85" />
+        <field name="Constitution" type="EnumerationStatObjectFieldDefinition" value="11" enumeration_type_name="PreciseQualifier" />
+        <field name="ObjectCategory" type="StringStatObjectFieldDefinition" value="GrenadeEarly" />
+        <field name="Priority" type="IntegerStatObjectFieldDefinition" value="2" />
+        <field name="MinLevel" type="IntegerStatObjectFieldDefinition" value="5" />
+      </fields>
+    </stat_object>
+    <stat_object is_substat="false">
+      <fields>
+        <field name="Name" type="NameStatObjectFieldDefinition" value="GRN_Grenade_SmokeBomb_A" />
+        <field name="Using" type="BaseClassStatObjectFieldDefinition" value="_Grenades" />
+        <field name="RootTemplate" type="RootTemplateStatObjectFieldDefinition" value="0c16cc46-26f9-4c07-b334-7905a10591ea" />
+        <field name="Act part" type="EnumerationStatObjectFieldDefinition" value="5" enumeration_type_name="ActPart" />
+        <field name="Value" type="IntegerStatObjectFieldDefinition" value="50" />
+        <field name="Constitution" type="EnumerationStatObjectFieldDefinition" value="11" enumeration_type_name="PreciseQualifier" />
+        <field name="ObjectCategory" type="StringStatObjectFieldDefinition" value="GrenadeEarly" />
+        <field name="Priority" type="IntegerStatObjectFieldDefinition" value="2" />
+        <field name="MinLevel" type="IntegerStatObjectFieldDefinition" value="5" />
+      </fields>
+    </stat_object>
+    <stat_object is_substat="false">
+      <fields>
+        <field name="Name" type="NameStatObjectFieldDefinition" value="GRN_Grenade_Taser_A" />
+        <field name="Using" type="BaseClassStatObjectFieldDefinition" value="_Grenades" />
+        <field name="RootTemplate" type="RootTemplateStatObjectFieldDefinition" value="29373e1d-5f91-490e-89dd-747042a1d6c7" />
+        <field name="Act part" type="EnumerationStatObjectFieldDefinition" value="5" enumeration_type_name="ActPart" />
+        <field name="Value" type="IntegerStatObjectFieldDefinition" value="75" />
+        <field name="Constitution" type="EnumerationStatObjectFieldDefinition" value="11" enumeration_type_name="PreciseQualifier" />
+        <field name="ObjectCategory" type="StringStatObjectFieldDefinition" value="GrenadeEarly" />
+        <field name="Priority" type="IntegerStatObjectFieldDefinition" value="2" />
+        <field name="MinLevel" type="IntegerStatObjectFieldDefinition" value="5" />
+      </fields>
+    </stat_object>
+    <stat_object is_substat="false">
+      <fields>
+        <field name="Name" type="NameStatObjectFieldDefinition" value="GRN_Grenade_PoisonFlask_A" />
+        <field name="Using" type="BaseClassStatObjectFieldDefinition" value="_Grenades" />
+        <field name="RootTemplate" type="RootTemplateStatObjectFieldDefinition" value="6409a204-1ad0-4082-89b9-1edca837da2a" />
+        <field name="Act part" type="EnumerationStatObjectFieldDefinition" value="1" enumeration_type_name="ActPart" />
+        <field name="Value" type="IntegerStatObjectFieldDefinition" value="20" />
+        <field name="Weight" type="IntegerStatObjectFieldDefinition" value="200" />
+        <field name="Constitution" type="EnumerationStatObjectFieldDefinition" value="11" enumeration_type_name="PreciseQualifier" />
+        <field name="ObjectCategory" type="StringStatObjectFieldDefinition" value="GrenadeStarter" />
+        <field name="Priority" type="IntegerStatObjectFieldDefinition" value="2" />
+        <field name="MinLevel" type="IntegerStatObjectFieldDefinition" value="1" />
+      </fields>
+    </stat_object>
+    <stat_object is_substat="false">
+      <fields>
+        <field name="Name" type="NameStatObjectFieldDefinition" value="GRN_Grenade_WaterBalloon_A" />
+        <field name="Using" type="BaseClassStatObjectFieldDefinition" value="_Grenades" />
+        <field name="RootTemplate" type="RootTemplateStatObjectFieldDefinition" value="ee4b83e0-b2dc-4880-a974-af7742e6e960" />
+        <field name="Act part" type="EnumerationStatObjectFieldDefinition" value="1" enumeration_type_name="ActPart" />
+        <field name="Value" type="IntegerStatObjectFieldDefinition" value="5" />
+        <field name="Weight" type="IntegerStatObjectFieldDefinition" value="200" />
+        <field name="Constitution" type="EnumerationStatObjectFieldDefinition" value="11" enumeration_type_name="PreciseQualifier" />
+        <field name="ObjectCategory" type="StringStatObjectFieldDefinition" value="GrenadeStarter" />
+        <field name="Priority" type="IntegerStatObjectFieldDefinition" value="2" />
+        <field name="MinLevel" type="IntegerStatObjectFieldDefinition" value="1" />
+      </fields>
+    </stat_object>
+    <stat_object is_substat="false">
+      <fields>
+        <field name="Name" type="NameStatObjectFieldDefinition" value="GRN_Grenade_OilFlask_A" />
+        <field name="Using" type="BaseClassStatObjectFieldDefinition" value="_Grenades" />
+        <field name="RootTemplate" type="RootTemplateStatObjectFieldDefinition" value="54b64fbb-86bf-4f8d-a5c3-a25eac3f8d9d" />
+        <field name="Act part" type="EnumerationStatObjectFieldDefinition" value="1" enumeration_type_name="ActPart" />
+        <field name="Value" type="IntegerStatObjectFieldDefinition" value="15" />
+        <field name="Weight" type="IntegerStatObjectFieldDefinition" value="200" />
+        <field name="Constitution" type="EnumerationStatObjectFieldDefinition" value="11" enumeration_type_name="PreciseQualifier" />
+        <field name="ObjectCategory" type="StringStatObjectFieldDefinition" value="GrenadeStarter" />
+        <field name="Priority" type="IntegerStatObjectFieldDefinition" value="2" />
+        <field name="MinLevel" type="IntegerStatObjectFieldDefinition" value="1" />
+      </fields>
+    </stat_object>
+    <stat_object is_substat="false">
+      <fields>
+        <field name="Name" type="NameStatObjectFieldDefinition" value="GRN_Grenade_Molotov_A" />
+        <field name="Using" type="BaseClassStatObjectFieldDefinition" value="_Grenades" />
+        <field name="RootTemplate" type="RootTemplateStatObjectFieldDefinition" value="5208b121-64fa-4704-8924-c61c576e1ac5" />
+        <field name="Act part" type="EnumerationStatObjectFieldDefinition" value="1" enumeration_type_name="ActPart" />
+        <field name="Value" type="IntegerStatObjectFieldDefinition" value="20" />
+        <field name="Constitution" type="EnumerationStatObjectFieldDefinition" value="11" enumeration_type_name="PreciseQualifier" />
+        <field name="ObjectCategory" type="StringStatObjectFieldDefinition" value="GrenadeStarter" />
+        <field name="Priority" type="IntegerStatObjectFieldDefinition" value="2" />
+        <field name="MinLevel" type="IntegerStatObjectFieldDefinition" value="1" />
+      </fields>
+    </stat_object>
+    <stat_object is_substat="false">
+      <fields>
+        <field name="Name" type="NameStatObjectFieldDefinition" value="GRN_Grenade_MindMaggots_A" />
+        <field name="Using" type="BaseClassStatObjectFieldDefinition" value="_Grenades" />
+        <field name="RootTemplate" type="RootTemplateStatObjectFieldDefinition" value="2b8f5417-b1f4-4978-983b-a59dc67d903f" />
+        <field name="Act part" type="EnumerationStatObjectFieldDefinition" value="12" enumeration_type_name="ActPart" />
+        <field name="Value" type="IntegerStatObjectFieldDefinition" value="300" />
+        <field name="Constitution" type="EnumerationStatObjectFieldDefinition" value="11" enumeration_type_name="PreciseQualifier" />
+      </fields>
+    </stat_object>
+    <stat_object is_substat="false">
+      <fields>
+        <field name="Name" type="NameStatObjectFieldDefinition" value="GRN_Grenade_ArmorPiercing_A" />
+        <field name="Using" type="BaseClassStatObjectFieldDefinition" value="_Grenades" />
+        <field name="RootTemplate" type="RootTemplateStatObjectFieldDefinition" value="e057dc4a-3921-4740-a5ac-a4ca6a7a32f7" />
+        <field name="Constitution" type="EnumerationStatObjectFieldDefinition" value="11" enumeration_type_name="PreciseQualifier" />
+      </fields>
+    </stat_object>
+    <stat_object is_substat="false">
+      <fields>
+        <field name="Name" type="NameStatObjectFieldDefinition" value="GRN_Ingredient_Flask_Empty_A" />
+        <field name="Using" type="BaseClassStatObjectFieldDefinition" value="_Generics" />
+        <field name="RootTemplate" type="RootTemplateStatObjectFieldDefinition" value="072e556f-0a3c-4cd9-b07b-818320954bee" />
+        <field name="Act part" type="EnumerationStatObjectFieldDefinition" value="1" enumeration_type_name="ActPart" />
+        <field name="Value" type="IntegerStatObjectFieldDefinition" value="25" />
+        <field name="Weight" type="IntegerStatObjectFieldDefinition" value="10" />
+        <field name="InventoryTab" type="EnumerationStatObjectFieldDefinition" value="4" enumeration_type_name="InventoryTabs" />
+        <field name="ObjectCategory" type="StringStatObjectFieldDefinition" value="IngredientEarly" />
+        <field name="Priority" type="IntegerStatObjectFieldDefinition" value="3" />
+        <field name="MinLevel" type="IntegerStatObjectFieldDefinition" value="1" />
+      </fields>
+    </stat_object>
+    <stat_object is_substat="false">
+      <fields>
+        <field name="Name" type="NameStatObjectFieldDefinition" value="GRN_Ingredient_Round_Empty_A" />
+        <field name="Using" type="BaseClassStatObjectFieldDefinition" value="_Generics" />
+        <field name="RootTemplate" type="RootTemplateStatObjectFieldDefinition" value="bc439c9f-d331-49b9-8059-5096ef6b39bd" />
+        <field name="Act part" type="EnumerationStatObjectFieldDefinition" value="5" enumeration_type_name="ActPart" />
+        <field name="Value" type="IntegerStatObjectFieldDefinition" value="40" />
+        <field name="Weight" type="IntegerStatObjectFieldDefinition" value="100" />
+        <field name="InventoryTab" type="EnumerationStatObjectFieldDefinition" value="4" enumeration_type_name="InventoryTabs" />
+        <field name="ObjectCategory" type="StringStatObjectFieldDefinition" value="IngredientSwamps" />
+        <field name="Priority" type="IntegerStatObjectFieldDefinition" value="3" />
+        <field name="MinLevel" type="IntegerStatObjectFieldDefinition" value="4" />
+      </fields>
+    </stat_object>
+    <stat_object is_substat="false">
+      <fields>
+        <field name="Name" type="NameStatObjectFieldDefinition" value="GRN_Ingredient_Holy_Empty" />
+        <field name="Using" type="BaseClassStatObjectFieldDefinition" value="_Generics" />
+        <field name="RootTemplate" type="RootTemplateStatObjectFieldDefinition" value="b5d0f1f3-b4a1-4425-8b01-07a6588d1ffa" />
+        <field name="Act part" type="EnumerationStatObjectFieldDefinition" value="9" enumeration_type_name="ActPart" />
+        <field name="Value" type="IntegerStatObjectFieldDefinition" value="75" />
+        <field name="Weight" type="IntegerStatObjectFieldDefinition" value="100" />
+        <field name="InventoryTab" type="EnumerationStatObjectFieldDefinition" value="4" enumeration_type_name="InventoryTabs" />
+        <field name="ObjectCategory" type="StringStatObjectFieldDefinition" value="IngredientMid" />
+        <field name="Priority" type="IntegerStatObjectFieldDefinition" value="2" />
+        <field name="MinLevel" type="IntegerStatObjectFieldDefinition" value="8" />
+      </fields>
+    </stat_object>
+    <stat_object is_substat="false">
+      <fields>
+        <field name="Name" type="NameStatObjectFieldDefinition" value="GRN_Ingredient_Love_Empty_A" />
+        <field name="Using" type="BaseClassStatObjectFieldDefinition" value="_Generics" />
+        <field name="RootTemplate" type="RootTemplateStatObjectFieldDefinition" value="e18f5587-50d1-4d1e-8eb4-98cd2b058dfd" />
+        <field name="Act part" type="EnumerationStatObjectFieldDefinition" value="9" enumeration_type_name="ActPart" />
+        <field name="Value" type="IntegerStatObjectFieldDefinition" value="85" />
+        <field name="Weight" type="IntegerStatObjectFieldDefinition" value="20" />
+        <field name="InventoryTab" type="EnumerationStatObjectFieldDefinition" value="4" enumeration_type_name="InventoryTabs" />
+        <field name="ObjectCategory" type="StringStatObjectFieldDefinition" value="IngredientMid" />
+        <field name="Priority" type="IntegerStatObjectFieldDefinition" value="1" />
+        <field name="MinLevel" type="IntegerStatObjectFieldDefinition" value="8" />
+      </fields>
+    </stat_object>
+    <stat_object is_substat="false">
+      <fields>
+        <field name="Name" type="NameStatObjectFieldDefinition" value="GRN_Ingredient_Fuse_A" />
+        <field name="Using" type="BaseClassStatObjectFieldDefinition" value="_Generics" />
+        <field name="RootTemplate" type="RootTemplateStatObjectFieldDefinition" value="dd3915fd-29c6-4f0b-8d92-49207d7bba3d" />
+        <field name="Act part" type="EnumerationStatObjectFieldDefinition" value="1" enumeration_type_name="ActPart" />
+        <field name="Value" type="IntegerStatObjectFieldDefinition" value="3" />
+        <field name="Weight" type="IntegerStatObjectFieldDefinition" value="10" />
+        <field name="InventoryTab" type="EnumerationStatObjectFieldDefinition" value="4" enumeration_type_name="InventoryTabs" />
+        <field name="ObjectCategory" type="StringStatObjectFieldDefinition" value="IngredientEarly" />
+        <field name="Priority" type="IntegerStatObjectFieldDefinition" value="1" />
+        <field name="MinLevel" type="IntegerStatObjectFieldDefinition" value="1" />
+      </fields>
+    </stat_object>
+  </stat_objects>
+</stats>

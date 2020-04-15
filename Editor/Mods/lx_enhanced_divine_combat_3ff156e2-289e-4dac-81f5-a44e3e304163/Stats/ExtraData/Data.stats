@@ -1,0 +1,323 @@
+<?xml version="1.0" encoding="utf-8"?>
+<stats stat_object_definition_id="43178832-7920-4a69-8b7e-bcebc518c388">
+  <stat_objects>
+    <stat_object is_substat="false">
+      <fields>
+        <field name="Name" type="NameStatObjectFieldDefinition" value="ArmorToVitalityRatio" />
+        <field name="Value" type="FloatStatObjectFieldDefinition" value="0.4" />
+      </fields>
+    </stat_object>
+    <stat_object is_substat="false">
+      <fields>
+        <field name="Name" type="NameStatObjectFieldDefinition" value="VitalityToDamageRatio" />
+        <field name="Value" type="FloatStatObjectFieldDefinition" value="7.5" />
+      </fields>
+    </stat_object>
+    <stat_object is_substat="false">
+      <fields>
+        <field name="Name" type="NameStatObjectFieldDefinition" value="UnstableRadius" />
+        <field name="Value" type="FloatStatObjectFieldDefinition" value="6" />
+      </fields>
+    </stat_object>
+    <stat_object is_substat="false">
+      <fields>
+        <field name="Name" type="NameStatObjectFieldDefinition" value="VitalityBoostFromAttribute" />
+        <field name="Value" type="FloatStatObjectFieldDefinition" value="0.12" />
+      </fields>
+    </stat_object>
+    <stat_object is_substat="false">
+      <fields>
+        <field name="Name" type="NameStatObjectFieldDefinition" value="AttributeLevelGrowth" />
+        <field name="Value" type="FloatStatObjectFieldDefinition" value="2" />
+      </fields>
+    </stat_object>
+    <stat_object is_substat="false">
+      <fields>
+        <field name="Name" type="NameStatObjectFieldDefinition" value="AttributeBaseValue" />
+        <field name="Value" type="FloatStatObjectFieldDefinition" value="10" />
+      </fields>
+    </stat_object>
+    <stat_object is_substat="false">
+      <fields>
+        <field name="Name" type="NameStatObjectFieldDefinition" value="AttributeBoostGrowth" />
+        <field name="Value" type="FloatStatObjectFieldDefinition" value="0.75" />
+      </fields>
+    </stat_object>
+    <stat_object is_substat="false">
+      <fields>
+        <field name="Name" type="NameStatObjectFieldDefinition" value="AttributeGrowthDamp" />
+        <field name="Value" type="FloatStatObjectFieldDefinition" value="0.7" />
+      </fields>
+    </stat_object>
+    <stat_object is_substat="false">
+      <fields>
+        <field name="Name" type="NameStatObjectFieldDefinition" value="AttributeSoftCap" />
+        <field name="Value" type="FloatStatObjectFieldDefinition" value="40" />
+      </fields>
+    </stat_object>
+    <stat_object is_substat="false">
+      <fields>
+        <field name="Name" type="NameStatObjectFieldDefinition" value="ExpectedConGrowthForArmorCalculation" />
+        <field name="Value" type="FloatStatObjectFieldDefinition" value="1" />
+      </fields>
+    </stat_object>
+    <stat_object is_substat="false">
+      <fields>
+        <field name="Name" type="NameStatObjectFieldDefinition" value="DamageBoostFromAttribute" />
+        <field name="Value" type="FloatStatObjectFieldDefinition" value="0" />
+      </fields>
+    </stat_object>
+    <stat_object is_substat="false">
+      <fields>
+        <field name="Name" type="NameStatObjectFieldDefinition" value="MonsterDamageBoostPerLevel" />
+        <field name="Value" type="FloatStatObjectFieldDefinition" value="0.03" />
+      </fields>
+    </stat_object>
+    <stat_object is_substat="false">
+      <fields>
+        <field name="Name" type="NameStatObjectFieldDefinition" value="CharacterBaseMemoryCapacity" />
+        <field name="Value" type="FloatStatObjectFieldDefinition" value="5" />
+      </fields>
+    </stat_object>
+    <stat_object is_substat="false">
+      <fields>
+        <field name="Name" type="NameStatObjectFieldDefinition" value="CharacterBaseMemoryCapacityGrowth" />
+        <field name="Value" type="FloatStatObjectFieldDefinition" value="0.25" />
+      </fields>
+    </stat_object>
+    <stat_object is_substat="false">
+      <fields>
+        <field name="Name" type="NameStatObjectFieldDefinition" value="CombatAbilityReflectionBonus" />
+        <field name="Value" type="FloatStatObjectFieldDefinition" value="8" />
+      </fields>
+    </stat_object>
+    <stat_object is_substat="false">
+      <fields>
+        <field name="Name" type="NameStatObjectFieldDefinition" value="CombatAbilityDodgingBonus" />
+        <field name="Value" type="FloatStatObjectFieldDefinition" value="3" />
+      </fields>
+    </stat_object>
+    <stat_object is_substat="false">
+      <fields>
+        <field name="Name" type="NameStatObjectFieldDefinition" value="CombatAbilityAccuracyBonus" />
+        <field name="Value" type="FloatStatObjectFieldDefinition" value="5" />
+      </fields>
+    </stat_object>
+    <stat_object is_substat="false">
+      <fields>
+        <field name="Name" type="NameStatObjectFieldDefinition" value="CombatAbilityCritMultiplierBonus" />
+        <field name="Value" type="FloatStatObjectFieldDefinition" value="5" />
+      </fields>
+    </stat_object>
+    <stat_object is_substat="false">
+      <fields>
+        <field name="Name" type="NameStatObjectFieldDefinition" value="CombatAbilityCritBonus" />
+        <field name="Value" type="FloatStatObjectFieldDefinition" value="1" />
+      </fields>
+    </stat_object>
+    <stat_object is_substat="false">
+      <fields>
+        <field name="Name" type="NameStatObjectFieldDefinition" value="CombatAbilityDamageBonus" />
+        <field name="Value" type="FloatStatObjectFieldDefinition" value="7" />
+      </fields>
+    </stat_object>
+    <stat_object is_substat="false">
+      <fields>
+        <field name="Name" type="NameStatObjectFieldDefinition" value="CombatAbilityCap" />
+        <field name="Value" type="FloatStatObjectFieldDefinition" value="10" />
+      </fields>
+    </stat_object>
+    <stat_object is_substat="false">
+      <fields>
+        <field name="Name" type="NameStatObjectFieldDefinition" value="CombatAbilityNpcGrowth" />
+        <field name="Value" type="FloatStatObjectFieldDefinition" value="0.1" />
+      </fields>
+    </stat_object>
+    <stat_object is_substat="false">
+      <fields>
+        <field name="Name" type="NameStatObjectFieldDefinition" value="CombatAbilityLevelGrowth" />
+        <field name="Value" type="FloatStatObjectFieldDefinition" value="1" />
+      </fields>
+    </stat_object>
+    <stat_object is_substat="false">
+      <fields>
+        <field name="Name" type="NameStatObjectFieldDefinition" value="LeadershipRange" />
+        <field name="Value" type="FloatStatObjectFieldDefinition" value="16" />
+      </fields>
+    </stat_object>
+    <stat_object is_substat="false">
+      <fields>
+        <field name="Name" type="NameStatObjectFieldDefinition" value="LeadershipDodgingBonus" />
+        <field name="Value" type="FloatStatObjectFieldDefinition" value="2" />
+      </fields>
+    </stat_object>
+    <stat_object is_substat="false">
+      <fields>
+        <field name="Name" type="NameStatObjectFieldDefinition" value="LeadershipAllResBonus" />
+        <field name="Value" type="FloatStatObjectFieldDefinition" value="3" />
+      </fields>
+    </stat_object>
+    <stat_object is_substat="false">
+      <fields>
+        <field name="Name" type="NameStatObjectFieldDefinition" value="SkillAbilityVitalityRestoredPerPoint" />
+        <field name="Value" type="FloatStatObjectFieldDefinition" value="5" />
+      </fields>
+    </stat_object>
+    <stat_object is_substat="false">
+      <fields>
+        <field name="Name" type="NameStatObjectFieldDefinition" value="SkillAbilityLifeStealPerPoint" />
+        <field name="Value" type="FloatStatObjectFieldDefinition" value="10" />
+      </fields>
+    </stat_object>
+    <stat_object is_substat="false">
+      <fields>
+        <field name="Name" type="NameStatObjectFieldDefinition" value="SkillAbilitySulfuricDamageBoostPerPoint" />
+        <field name="Value" type="FloatStatObjectFieldDefinition" value="5" />
+      </fields>
+    </stat_object>
+    <stat_object is_substat="false">
+      <fields>
+        <field name="Name" type="NameStatObjectFieldDefinition" value="SkillAbilityPhysicalDamageBoostPerPoint" />
+        <field name="Value" type="FloatStatObjectFieldDefinition" value="5" />
+      </fields>
+    </stat_object>
+    <stat_object is_substat="false">
+      <fields>
+        <field name="Name" type="NameStatObjectFieldDefinition" value="SkillAbilityWaterDamageBoostPerPoint" />
+        <field name="Value" type="FloatStatObjectFieldDefinition" value="5" />
+      </fields>
+    </stat_object>
+    <stat_object is_substat="false">
+      <fields>
+        <field name="Name" type="NameStatObjectFieldDefinition" value="SkillAbilityAirDamageBoostPerPoint" />
+        <field name="Value" type="FloatStatObjectFieldDefinition" value="5" />
+      </fields>
+    </stat_object>
+    <stat_object is_substat="false">
+      <fields>
+        <field name="Name" type="NameStatObjectFieldDefinition" value="SkillAbilityPoisonAndEarthDamageBoostPerPoint" />
+        <field name="Value" type="FloatStatObjectFieldDefinition" value="5" />
+      </fields>
+    </stat_object>
+    <stat_object is_substat="false">
+      <fields>
+        <field name="Name" type="NameStatObjectFieldDefinition" value="SkillAbilityFireDamageBoostPerPoint" />
+        <field name="Value" type="FloatStatObjectFieldDefinition" value="5" />
+      </fields>
+    </stat_object>
+    <stat_object is_substat="false">
+      <fields>
+        <field name="Name" type="NameStatObjectFieldDefinition" value="SkillAbilityHighGroundBonusPerPoint" />
+        <field name="Value" type="FloatStatObjectFieldDefinition" value="5" />
+      </fields>
+    </stat_object>
+    <stat_object is_substat="false">
+      <fields>
+        <field name="Name" type="NameStatObjectFieldDefinition" value="SkillAbilityArmorRestoredPerPoint" />
+        <field name="Value" type="FloatStatObjectFieldDefinition" value="8" />
+      </fields>
+    </stat_object>
+    <stat_object is_substat="false">
+      <fields>
+        <field name="Name" type="NameStatObjectFieldDefinition" value="TalentAttributePointsBonus" />
+        <field name="Value" type="FloatStatObjectFieldDefinition" value="0" />
+      </fields>
+    </stat_object>
+    <stat_object is_substat="false">
+      <fields>
+        <field name="Name" type="NameStatObjectFieldDefinition" value="TalentMemoryBonus" />
+        <field name="Value" type="FloatStatObjectFieldDefinition" value="0" />
+      </fields>
+    </stat_object>
+    <stat_object is_substat="false">
+      <fields>
+        <field name="Name" type="NameStatObjectFieldDefinition" value="TalentCivilAbilityPointsBonus" />
+        <field name="Value" type="FloatStatObjectFieldDefinition" value="0" />
+      </fields>
+    </stat_object>
+    <stat_object is_substat="false">
+      <fields>
+        <field name="Name" type="NameStatObjectFieldDefinition" value="TalentCombatAbilityPointsBonus" />
+        <field name="Value" type="FloatStatObjectFieldDefinition" value="0" />
+      </fields>
+    </stat_object>
+    <stat_object is_substat="false">
+      <fields>
+        <field name="Name" type="NameStatObjectFieldDefinition" value="SoftLevelCap" />
+        <field name="Value" type="FloatStatObjectFieldDefinition" value="30" />
+      </fields>
+    </stat_object>
+    <stat_object is_substat="false">
+      <fields>
+        <field name="Name" type="NameStatObjectFieldDefinition" value="LevelCap" />
+        <field name="Value" type="FloatStatObjectFieldDefinition" value="30" />
+      </fields>
+    </stat_object>
+    <stat_object is_substat="false">
+      <fields>
+        <field name="Name" type="NameStatObjectFieldDefinition" value="TalentSneakingAPCost" />
+        <field name="Value" type="FloatStatObjectFieldDefinition" value="2" />
+      </fields>
+    </stat_object>
+    <stat_object is_substat="false">
+      <fields>
+        <field name="Name" type="NameStatObjectFieldDefinition" value="TalentViolentMagicCriticalChancePercent" />
+        <field name="Value" type="FloatStatObjectFieldDefinition" value="110" />
+      </fields>
+    </stat_object>
+    <stat_object is_substat="false">
+      <fields>
+        <field name="Name" type="NameStatObjectFieldDefinition" value="DodgingBoostFromAttribute" />
+        <field name="Value" type="FloatStatObjectFieldDefinition" value="0.01" />
+      </fields>
+    </stat_object>
+    <stat_object is_substat="false">
+      <fields>
+        <field name="Name" type="NameStatObjectFieldDefinition" value="Flanked penalty" />
+        <field name="Value" type="FloatStatObjectFieldDefinition" value="20" />
+      </fields>
+    </stat_object>
+    <stat_object is_substat="false">
+      <fields>
+        <field name="Name" type="NameStatObjectFieldDefinition" value="TalentPerfectionistAccuracyBonus" />
+        <field name="Value" type="FloatStatObjectFieldDefinition" value="0" />
+      </fields>
+    </stat_object>
+    <stat_object is_substat="false">
+      <fields>
+        <field name="Name" type="NameStatObjectFieldDefinition" value="TalentPerfectionistCriticalChanceBonus" />
+        <field name="Value" type="FloatStatObjectFieldDefinition" value="0" />
+      </fields>
+    </stat_object>
+    <stat_object is_substat="false">
+      <fields>
+        <field name="Name" type="NameStatObjectFieldDefinition" value="End Of Combat SightRange Multiplier" />
+        <field name="Value" type="FloatStatObjectFieldDefinition" value="2.5" />
+      </fields>
+    </stat_object>
+    <stat_object is_substat="false">
+      <fields>
+        <field name="Name" type="NameStatObjectFieldDefinition" value="CriticalBonusFromWits" />
+        <field name="Value" type="FloatStatObjectFieldDefinition" value="2" />
+      </fields>
+    </stat_object>
+    <stat_object is_substat="false">
+      <fields>
+        <field name="Name" type="NameStatObjectFieldDefinition" value="AbilityVitalityBonusMax" />
+        <field name="Value" type="FloatStatObjectFieldDefinition" value="4" />
+      </fields>
+    </stat_object>
+    <stat_object is_substat="false">
+      <fields>
+        <field name="Name" type="NameStatObjectFieldDefinition" value="AbilityVitalityBonusBase" />
+        <field name="Value" type="FloatStatObjectFieldDefinition" value="4" />
+      </fields>
+    </stat_object>
+    <stat_object is_substat="false">
+      <fields>
+        <field name="Name" type="NameStatObjectFieldDefinition" value="AbilityVitalityBonusPerPoint" />
+        <field name="Value" type="FloatStatObjectFieldDefinition" value="1" />
+      </fields>
+    </stat_object>
+  </stat_objects>
+</stats>
