@@ -1,7 +1,7 @@
-Project Divine Game Master for Divinity: Original Sin 2 - Definitive Edition
+Project Divine Game Master Overhaul
 =======
-
-# Features:
+Project Divine Game Master is a overhaul designed to provide an experience closest to the vanilla one, reworking some features while preserving the core gameplay.
+Discord server : https://discord.gg/4QbbMj
 
 # Releases
 * [Steam Workshop](https://steamcommunity.com/sharedfiles/filedetails/?id=2060844495) 
