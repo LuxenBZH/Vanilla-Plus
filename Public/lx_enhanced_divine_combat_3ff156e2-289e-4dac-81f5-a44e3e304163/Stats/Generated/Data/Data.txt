@@ -98,9 +98,3 @@ key "End Of Combat SightRange Multiplier","2.5"
 
 key "CriticalBonusFromWits","2"
 
-key "AbilityVitalityBonusMax","4"
-
-key "AbilityVitalityBonusBase","4"
-
-key "AbilityVitalityBonusPerPoint","1"
-

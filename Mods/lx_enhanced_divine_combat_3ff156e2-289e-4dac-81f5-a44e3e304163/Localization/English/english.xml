@@ -12,7 +12,7 @@
 	<content contentuid="hbde985cfgb1c4g4bb6g9a61gbec72c9b4ed6" comment="Mnemonic description">[1] double the points you invested in Memory.</content>
 	<content contentuid="hc453e399ge1f5g41f1gaeabgcdd4de833c63" comment="Demon or IceKing">A character with [1] has an extra 30% [3], but takes a [4]% penalty to [5]. Additionally, the maximum [3] is raised by [6]. Demon grants 20% additional damage on Burning and Necrofire you deal. Ice King increases Water damages you deal by 20%.</content>
 	<content contentuid="hcb8f9837gdf0fg4a01ga7d6g5ed522b74189" comment="Escapist description">[1] allows you to flee combat even when enemies are right next to you. Also makes you immune to Crippled, Entangled and Web.</content>
-	<content contentuid="he94327f7g293dg488eg9d25gcb4f7ae7be24" comment="HotHead description">While you are at 75% or more Vitality, [1] grants you an extra [2]% critical chance and [3]% more Chance to hit! Chance to hit is better than Accuracy since it provide a flat bonus.</content>
+	<content contentuid="he94327f7g293dg488eg9d25gcb4f7ae7be24" comment="HotHead description">While you are at 75% or more Vitality, [1] grants you an extra 10% critical chance and 10% more Chance to hit! Chance to hit is better than Accuracy since it provide a flat bonus.</content>
 	<content contentuid="hf3cd8067g36c0g4b48ga4dfg361f33579b43" comment="Ambidextrous description">[1] reduces the cost of using grenades and scrolls by [2] AP when your offhand is free. Also provide 2 free equipment switch per turn.</content>
 	<content contentuid="hf4632a8fg42a7g4d53gbe26gd203f28e3d5e" comment="Shadow damages ?">Shadow</content>
 	<content contentuid="hfb8eec35g3339g4762g8382g712e74a2ac0b" comment="Slingshot description">[1] adds an extra [2]m range to your grenade throws. Also increase their damages by 30%</content>
@@ -25,4 +25,7 @@
 	<content contentuid="h90812fdfg4f53g49afg8a97g42aefdeb508c" comment="Savage Sortilege description">[1] gives all magical skills a critical chance equal to your critical chance score. Also multiply your Critical Chance by 110%.</content>
 	<content contentuid="h1bae56a9ga45fg431fg80bfg2afbef03c1d2" comment="Perseverance description">[1] restores Magic Armour after you recover from [2] or [3], and restores Physical Armour after [4] or [5]. You also regain 2% of your maximum Vitality per point.</content>
 	<content contentuid="h9df517d1gf64bg499dgb23fg462fd1f061bc" comment="Critical chance description">How much chance you have to strike a critical attack when attacking with a weapon or when using a skill that is weapon-based. If you backstab, each percent in Critical Chance provide you a bonus of 2% damage.</content>
+	<content contentuid="hb924258ag2cf7g4c11gaf4eg8b7de303c197" comment="Attributes dynamic bonus"> </content>
+	<content contentuid="h278d3a4fg4dceg4362g9b35g9c3685c93268" comment="Damage tooltip">The Damage you inflict when successfully hitting an enemy or an item. NOTE: With Project DGM, this tooltip doesn't take into account attribute bonuses and Dual Wielding offhand bonus ! Sorry !</content>
+	<content contentuid="h8256bf13gb4cag4662gaafegb5724b210c92" comment="Leadership description">[1] grants Dodging and Resistance bonuses to all allies in a 16m radius.</content>
 </contentList>

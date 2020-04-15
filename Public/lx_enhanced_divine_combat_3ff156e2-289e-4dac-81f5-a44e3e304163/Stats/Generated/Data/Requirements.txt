@@ -1,0 +1,6 @@
+requirement "ExtraStatPoints",""
+
+requirement "ExtraSkillPoints",""
+
+requirement "NoAttackOfOpportunity","RogueLore 1"
+

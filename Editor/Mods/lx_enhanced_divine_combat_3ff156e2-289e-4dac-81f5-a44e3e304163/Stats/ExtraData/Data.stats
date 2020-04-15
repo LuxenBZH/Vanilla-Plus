@@ -301,23 +301,5 @@
         <field name="Value" type="FloatStatObjectFieldDefinition" value="2" />
       </fields>
     </stat_object>
-    <stat_object is_substat="false">
-      <fields>
-        <field name="Name" type="NameStatObjectFieldDefinition" value="AbilityVitalityBonusMax" />
-        <field name="Value" type="FloatStatObjectFieldDefinition" value="4" />
-      </fields>
-    </stat_object>
-    <stat_object is_substat="false">
-      <fields>
-        <field name="Name" type="NameStatObjectFieldDefinition" value="AbilityVitalityBonusBase" />
-        <field name="Value" type="FloatStatObjectFieldDefinition" value="4" />
-      </fields>
-    </stat_object>
-    <stat_object is_substat="false">
-      <fields>
-        <field name="Name" type="NameStatObjectFieldDefinition" value="AbilityVitalityBonusPerPoint" />
-        <field name="Value" type="FloatStatObjectFieldDefinition" value="1" />
-      </fields>
-    </stat_object>
   </stat_objects>
 </stats>
