@@ -1,5 +1,6 @@
 ---- Potions ----
 function CharacterUsePoisonedPotion(character, potion)
+	-- Because fuck this, this is going to be hardcoded.
 	local potionTemplate = GetTemplate(potion)
 	local potionDmg = 0
 	if potionTemplate == "CON_Potion_Poison_A_8122de3c-a331-44a4-b51a-6767a778776f" then potionDmg = 0.35

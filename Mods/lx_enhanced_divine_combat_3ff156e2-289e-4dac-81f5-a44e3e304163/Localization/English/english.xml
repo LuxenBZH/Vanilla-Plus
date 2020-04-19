@@ -30,4 +30,6 @@
     <content contentuid="hb924258ag2cf7g4c11gaf4eg8b7de303c197" comment="Attributes dynamic bonus"> </content>
     <content contentuid="h278d3a4fg4dceg4362g9b35g9c3685c93268" comment="Damage tooltip">The damage you inflict when successfully hitting an enemy or object. This number does not account for attribute bonuses.</content>
     <content contentuid="h8256bf13gb4cag4662gaafegb5724b210c92" comment="Leadership description">[1] grants Dodging and Resistance bonuses to all allies in a 16m radius.</content>
+	<content contentuid="h71b09f9fg285fg4532gab16g1c7640864141" comment="Tooltip bonus level">Damage is based on your level and receives the additional bonus from Intelligence.</content>
+	<content contentuid="ha4cfd852g52f1g4079g8919gd392ac8ade1a" comment="Tooltip bonus weapon">Damage is based on your basic attack and receives the additional bonus from both Strength and Intelligence.</content>
 </contentList>

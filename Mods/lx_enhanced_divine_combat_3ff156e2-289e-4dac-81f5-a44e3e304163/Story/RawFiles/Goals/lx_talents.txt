@@ -127,7 +127,7 @@ NRD_SkillGetCooldown(_Char, _Skill, _Cooldown)
 THEN
 NRD_SkillSetCooldown(_Char, _Skill, 0.0);
 DB_LX_AllSkilledUp(_Char, _Skill, _Cooldown);
-TimerLaunch("LX_AllSkilledUp_Decrease_Cooldown", 250);
+TimerLaunch("LX_AllSkilledUp_Decrease_Cooldown", 300);
 
 
 IF
