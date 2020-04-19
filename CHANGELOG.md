@@ -10,3 +10,10 @@ Project Divine Game Master Changelog
 * Removed level requirements for All Skilled Up and Duelist (Bigger and better)
 * Changed requirement for Duck Duck Goose
 * Changed Firebrand requirements
+
+# 0.8.4.6
+* Fixed additional various localization strings.
+* Changed Vacuum Touch : increased damage.
+* Changed Venom Aura : decreased memory requirement, nullified SP cost but increased AP cost.
+* Changed Ricochet : increased effective zone at a cost of a slight damage decrease.
+* Changed Reactive Armour : increased damage.
