@@ -49,6 +49,13 @@ CharacterHasTalent(_Char, "Stench", 1)
 THEN
 NRD_StatusPreventApply(_Char, _Handle, 1);
 
+IF
+NRD_OnStatusAttempt((CHARACTERGUID)_Char, "INFECTIOUS_DISEASED", _Handle, _)
+AND
+CharacterHasTalent(_Char, "Stench", 1)
+THEN
+NRD_StatusPreventApply(_Char, _Handle, 1);
+
 //// Pet Pal summon debuff
 IF
 CharacterStatusApplied((CHARACTERGUID)_Summon, "SUMMONING_ABILITY", _)
