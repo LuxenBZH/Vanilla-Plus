@@ -19,8 +19,8 @@ function DamageControl(target, handle, instigator)
 	-- print("Hit with weapon: "..fromWeapon)
 	local fromReflection = NRD_StatusGetInt(target, handle, "Reflection")
 	-- print("Hit from reflection: "..fromReflection)
-	local hitType = NRD_StatusGetInt(target, handle, "DoT") -- 7 is a DoT
-	-- print("HitType: "..hitType)
+	local hitType = NRD_StatusGetInt(target, handle, "DoT")
+	--print("HitType: "..hitType)
 	local sourceType = NRD_StatusGetInt(target, handle, "DamageSourceType")
 	local skillID = NRD_StatusGetString(target, handle, "SkillId")
 	local backstab = NRD_StatusGetInt(target, handle, "Backstab")
@@ -41,6 +41,7 @@ function DamageControl(target, handle, instigator)
 	
 	if isBlocked == 1 then return end
 	if sourceType == 1 or sourceType == 2 or sourceType == 3 then return end
+	if skillID == "" and sourceType == 0 then return end
 	
 	-- Dodge mechanic override
 	if isMissed == 1 or isDodged == 1 then
@@ -57,35 +58,35 @@ function DamageControl(target, handle, instigator)
 	local strength = CharacterGetAttribute(instigator, "Strength") - 10
 	local finesse = CharacterGetAttribute(instigator, "Finesse") - 10
 	local intelligence = CharacterGetAttribute(instigator, "Intelligence") - 10
-	local damageBonus = strength*3+finesse*3+intelligence*3 -- /!\ Remember that 1=1% in this variable
+	local damageBonus = strength*Ext.ExtraData.DGM_StrengthGlobalBonus+finesse*Ext.ExtraData.DGM_FinesseGlobalBonus+intelligence*Ext.ExtraData.DGM_IntelligenceGlobalBonus -- /!\ Remember that 1=1% in this variable
 	local globalMultiplier = 1.0
 	
 	if backstab == 1 then
 		local criticalHit = NRD_CharacterGetComputedStat(instigator, "CriticalChance", 0)
-		damageBonus = damageBonus + criticalHit * 2
+		damageBonus = damageBonus + criticalHit * Ext.ExtraData.DGM_BackstabCritChanceBonus
 
 	end
 	
 	-- Get damage type bonus
 	if fromWeapon == 1 then 
-		damageBonus = damageBonus + strength*3
+		damageBonus = damageBonus + strength*Ext.ExtraData.DGM_StrengthWeaponBonus
 		-- print("Bonus: Weapon")
 		-- Check distance penalty if it's a distance weapon
 		if weaponTypes[1] == "Bow" or weaponTypes[1] == "Crossbow" or weaponTypes[1] == "Rifle" or weaponTypes[1] == "Wand" then
 			local distance = GetDistanceTo(target, instigator)
-			Ext.Print("[LXDGM_DamageControl.DamageControl] Distance :",distance)
+			--Ext.Print("[LXDGM_DamageControl.DamageControl] Distance :",distance)
 			if distance <= 2.0 and CharacterHasTalent(instigator, "RangerLoreArrowRecover") == 0 then
-				globalMultiplier = 0.65
+				globalMultiplier = globalMultiplier - (Ext.ExtraData.DGM_RangedCQBPenalty/100)
 			end
 		end
-		if fromOffhand == 7 then
+		if sourceType == 7 then
 			local dualWielding = CharacterGetAbility(instigator, "DualWielding")
-			damageBonus = damageBonus + dualWielding*10
+			damageBonus = damageBonus + dualWielding*Ext.ExtraData.DGM_DualWieldingOffhandBonus
 		end
 		
 	end
 	if hitType == 1 then
-		damageBonus = strength*5 
+		damageBonus = strength*Ext.ExtraData.DGM_StrengthDoTBonus
 		-- print("Bonus: DoT") 
 		-- Demon bonus for burning/necrofire
 		local hasDemon = CharacterHasTalent(instigator, "Demon")
@@ -93,28 +94,28 @@ function DamageControl(target, handle, instigator)
 			local statusID = NRD_StatusGetString(target, handle, "StatusId")
 			if statusID == "BURNING" or statusID == "NECROFIRE" then
 				-- print("Bonus: Demon")
-				damageBonus = damageBonus + 20
+				damageBonus = damageBonus + Ext.ExtraData.DGM_DemonStatusesBonus
 			end
 		end
 	end
 	if skillID ~= "" then 
-		damageBonus = damageBonus + intelligence*3 
+		damageBonus = damageBonus + intelligence*Ext.ExtraData.DGM_IntelligenceSkillBonus
 		-- print("Bonus: skill")
 		-- Apply bonus from wand and staves
 		if weaponTypes[1] == "Wand" then
 			if weaponTypes[2] == "Wand" then
-				globalMultiplier = globalMultiplier + 0.05
+				globalMultiplier = globalMultiplier + Ext.ExtraData.DGM_WandSkillMultiplier/100
 			else
-				globalMultiplier = globalMultiplier + 0.025
+				globalMultiplier = globalMultiplier + Ext.ExtraData.DGM_WandSkillMultiplier/100*2
 			end
 		elseif weaponTypes[1] == "Staff" then
-			globalMultiplier = globalMultiplier + 0.1
+			globalMultiplier = globalMultiplier + Ext.ExtraData.DGM_StaffSkillMultiplier/100
 		end
 		-- Apply Slingshot bonus if it's a grenade
 		local isGrenade = string.find(skillID, "Grenade")
 		local hasSlingshot = CharacterHasTalent(instigator, "WarriorLoreGrenadeRange")
 		if isGrenade ~= nil and hasSlingshot == 1 then
-			damageBonus = damageBonus + 30
+			damageBonus = damageBonus + Ext.ExtraData.DGM_SlingshotBonus
 		end
 	end
 	
@@ -136,7 +137,7 @@ function ChangeDamage(damages, multiplier, value, instigator)
 	for dmgType,amount in pairs(damages) do
 		-- Ice king water damage bonus
 		if dmgType == "Water" and CharacterHasTalent(instigator, "IceKing") == 1 then
-			multiplier = multiplier + 0.2
+			multiplier = multiplier + Ext.ExtraData.DGM_IceKingDamageBonus/100
 			-- print("Bonus: IceKing")
 		end
 		amount = amount * multiplier

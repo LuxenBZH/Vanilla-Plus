@@ -52,7 +52,9 @@ local function GetSkillDamageRange(character, skill)
             end
         end
 		
-		local globalMult = 1 + (character.Strength-10) * 0.06 + (character.Finesse-10) * 0.03 + (character.Intelligence-10) * 0.06
+		local globalMult = 1 + (character.Strength-10) * (Ext.ExtraData.DGM_StrengthGlobalBonus*0.01 + Ext.ExtraData.DGM_StrengthWeaponBonus*0.01) +
+		(character.Finesse-10) * (Ext.ExtraData.DGM_FinesseGlobalBonus*0.01) +
+		(character.Intelligence-10) * (Ext.ExtraData.DGM_IntelligenceGlobalBonus*0.01 + Ext.ExtraData.DGM_IntelligenceSkillBonus*0.01)
         for damageType, range in pairs(mainDamageRange) do
             local min = Ext.Round(range[1] * damageMultiplier * globalMult)
             local max = Ext.Round(range[2] * damageMultiplier * globalMult)
@@ -72,7 +74,7 @@ local function GetSkillDamageRange(character, skill)
             mainDamageRange = {}
             mainDamageRange[damageType] = {min, max}
         end
-		Ext.Print("Use Weapon")
+		--Ext.Print("Use Weapon")
         return mainDamageRange
     else
         local damageType = skill.DamageType
@@ -93,7 +95,9 @@ local function GetSkillDamageRange(character, skill)
             attrDamageScale = 1.0
         end
 
-		local globalMult = 1 + (character.Strength-10) * 0.03 + (character.Finesse-10) * 0.03 + (character.Intelligence-10) * 0.06
+		local globalMult = 1 + (character.Strength-10) * (Ext.ExtraData.DGM_StrengthGlobalBonus*0.01) +
+		(character.Finesse-10) * (Ext.ExtraData.DGM_FinesseGlobalBonus*0.01) +
+		(character.Intelligence-10) * (Ext.ExtraData.DGM_IntelligenceGlobalBonus*0.01 + Ext.ExtraData.DGM_IntelligenceSkillBonus*0.01)
         local baseDamage = Game.Math.CalculateBaseDamage(skill.Damage, character, 0, level) * attrDamageScale * damageMultiplier * globalMult
         local damageRange = skill['Damage Range'] * baseDamage * 0.005
 
@@ -143,13 +147,13 @@ end
 local function StatusGetDescriptionParam(status, statusSource, character, par)
 	if par == "Damage" then
 		local dmgStat = Ext.GetStat(status.DamageStats)
-		local globalMult = 1 + (statusSource.Strength-10) * 0.05 --From the overhaul
+		local globalMult = 1 + (statusSource.Strength-10) * (Ext.ExtraData.DGM_StrengthDoTBonus*0.01) --From the overhaul
 		if dmgStat.Damage == 1 then
-			dmg = GetAverageLevelDamage(character.Level)
+			dmg = Game.Math.GetAverageLevelDamage(character.Level)
 		elseif dmgStat.Damage == 0 then
-			dmg = GetLevelScaledDamage(character.Level)
+			dmg = Game.Math.GetLevelScaledDamage(character.Level)
 		end
-		Ext.Print("AverageLevelDamage "..GetAverageLevelDamage(character.Level))
+		--Ext.Print("AverageLevelDamage "..Game.Math.GetAverageLevelDamage(character.Level))
 		dmg = dmg*(dmgStat.DamageFromBase/100)
 		dmgRange = dmg*(dmgStat["Damage Range"])*0.005
 		Ext.Print(dmg, dmgRange, globalMult)
@@ -165,12 +169,14 @@ end
 
 Ext.RegisterListener("StatusGetDescriptionParam", StatusGetDescriptionParam)
 
-local function SkillGetDescriptionParam(skill, character, par)
-	Ext.Print(skill, character.Name, par)
+local function SkillGetDescriptionParam(skill, character, isFromItem, par)
+	--Ext.Print(skill, character.Name, par)
 	if par == "Damage" or par == "Weapon" then
 		local dmg = GetSkillDamageRange(character, skill)
 		local result = ""
 		local once = false
+			
+		
 		for dmgType, damages in pairs(dmg) do
 			--Ext.Print(dmgType, damages[1], damages[2])
 			local minDmg = math.floor(damages[1])

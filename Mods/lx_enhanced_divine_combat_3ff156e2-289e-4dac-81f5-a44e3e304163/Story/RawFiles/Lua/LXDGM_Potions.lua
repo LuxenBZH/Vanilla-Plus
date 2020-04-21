@@ -14,10 +14,14 @@ function CharacterUsePoisonedPotion(character, potion)
 	SetStoryEvent(character, "LX_Get_Max_HP")
 	local charMaxHP = GetVarFloat(character, "LX_Max_HP")
 	potionDmg = charMaxHP * potionDmg
+	charRes = NRD_CharacterGetComputedStat(character, "PoisonResistance", 0)/100
+	potionDmg = potionDmg * (1-charRes)
 	hitHandle = NRD_HitPrepare(character, character)
 	NRD_HitAddDamage(hitHandle, "Poison", potionDmg)
 	NRD_HitSetInt(hitHandle, "DamagedVitality", 1)
 	NRD_HitSetString(hitHandle, "DeathType", "Acid")
-	--NRD_HitSetInt(hitHandle, "Hit", 1)
+	NRD_HitSetInt(hitHandle, "Surface", 1)
+	--NRD_HitSetInt(hitHandle, "HitType", 4)
+	NRD_HitSetInt(hitHandle, "Hit", 1)
 	NRD_HitQryExecute(hitHandle)
 end

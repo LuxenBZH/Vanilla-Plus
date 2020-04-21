@@ -696,5 +696,42 @@
         <field name="CycleConditions" type="StringStatObjectFieldDefinition" value="Enemy;!Dead" />
       </fields>
     </stat_object>
+    <stat_object is_substat="false">
+      <fields>
+        <field name="Name" type="NameStatObjectFieldDefinition" value="CorpseExplosion" />
+        <field name="ForGameMaster" type="EnumerationStatObjectFieldDefinition" value="1" enumeration_type_name="YesNo" />
+        <field name="Ability" type="EnumerationStatObjectFieldDefinition" value="5" enumeration_type_name="SkillAbility" />
+        <field name="ActionPoints" type="IntegerStatObjectFieldDefinition" value="1" />
+        <field name="Cooldown" type="IntegerStatObjectFieldDefinition" value="6" />
+        <field name="SkillProperties" type="StringStatObjectFieldDefinition" value="TARGET:EXPLODE,100,1,Projectile_CorpseExplosion_Explosion" />
+        <field name="TargetRadius" type="IntegerStatObjectFieldDefinition" value="13" />
+        <field name="AreaRadius" type="IntegerStatObjectFieldDefinition" value="4" />
+        <field name="AddWeaponRange" type="EnumerationStatObjectFieldDefinition" value="0" enumeration_type_name="YesNo" />
+        <field name="MemorizationRequirements" type="StringStatObjectFieldDefinition" value="FireSpecialist 1; Necromancy 1" />
+        <field name="CanTargetCharacters" type="EnumerationStatObjectFieldDefinition" value="1" enumeration_type_name="YesNo" />
+        <field name="CanTargetItems" type="EnumerationStatObjectFieldDefinition" value="0" enumeration_type_name="YesNo" />
+        <field name="CanTargetTerrain" type="EnumerationStatObjectFieldDefinition" value="0" enumeration_type_name="YesNo" />
+        <field name="Memory Cost" type="IntegerStatObjectFieldDefinition" value="1" />
+        <field name="Magic Cost" type="IntegerStatObjectFieldDefinition" value="0" />
+        <field name="TargetConditions" type="StringStatObjectFieldDefinition" value="Dead;CanExplode" />
+        <field name="UseCharacterStats" type="EnumerationStatObjectFieldDefinition" value="0" enumeration_type_name="YesNo" />
+        <field name="UseWeaponDamage" type="EnumerationStatObjectFieldDefinition" value="0" enumeration_type_name="YesNo" />
+        <field name="UseWeaponProperties" type="EnumerationStatObjectFieldDefinition" value="0" enumeration_type_name="YesNo" />
+        <field name="Icon" type="StringStatObjectFieldDefinition" value="Skill_Skillcrafting_Fire_CorpseExplosion" />
+        <field name="DisplayName" type="TranslatedStringStatObjectFieldDefinition" value="|Corpse Explosion|" />
+        <field name="Description" type="TranslatedStringStatObjectFieldDefinition" value="|Target corpse or a character with Zombie explodes.|" />
+        <field name="FXScale" type="IntegerStatObjectFieldDefinition" value="100" />
+        <field name="PrepareAnimationInit" type="StringStatObjectFieldDefinition" value="skill_prepare_voodoo_01_start" />
+        <field name="PrepareAnimationLoop" type="StringStatObjectFieldDefinition" value="skill_prepare_voodoo_01_loop" />
+        <field name="PrepareEffect" type="StringStatObjectFieldDefinition" value="RS3_FX_Skills_Fire_Prepare_Voodoo_Root_02,KeepRot;RS3_FX_Skills_Voodoo_Prepare_Voodoo_Blood_Hand_01:Dummy_R_HandFX,Dummy_L_HandFX" />
+        <field name="CastAnimation" type="StringStatObjectFieldDefinition" value="skill_cast_target_voodoo_01_cast" />
+        <field name="CastSelfAnimation" type="StringStatObjectFieldDefinition" value="skill_cast_target_voodoo_01_cast" />
+        <field name="CastTextEvent" type="StringStatObjectFieldDefinition" value="cast" />
+        <field name="CastEffect" type="StringStatObjectFieldDefinition" value="RS3_FX_Skills_Fire_Cast_Target_Voodoo_Root_01,KeepRot;RS3_FX_Skills_Voodoo_Cast_Target_Voodoo_Blood_Hand_01:Dummy_R_HandFX,Dummy_L_HandFX;RS3_FX_Skills_Voodoo_Cast_Target_Voodoo_Blood_Hand_01_Texkey:Dummy_L_HandFX:cast" />
+        <field name="TargetEffect" type="StringStatObjectFieldDefinition" value="RS3_FX_Skills_Fire_Impact_CorpseExplosion_01:root:cast" />
+        <field name="TargetGroundEffect" type="StringStatObjectFieldDefinition" value="RS3_FX_Skills_Fire_Impact_CorpseExplosion_01:root:cast" />
+        <field name="PositionEffect" type="StringStatObjectFieldDefinition" value="RS3_FX_Skills_Fire_Impact_CorpseExplosion_01:root:cast" />
+      </fields>
+    </stat_object>
   </stat_objects>
 </stats>

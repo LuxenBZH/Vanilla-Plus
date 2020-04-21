@@ -17,3 +17,13 @@ Project Divine Game Master Changelog
 * Changed Venom Aura : decreased memory requirement, nullified SP cost but increased AP cost.
 * Changed Ricochet : increased effective zone at a cost of a slight damage decrease.
 * Changed Reactive Armour : increased damage.
+
+# 0.8.5.10
+* Changed Corpse explosion : decreased damage and increased cooldown
+* Changed Firebrand : increased damage
+* Fixed the poisoned potions inflicting damage to undeads
+* Fixed skill tooltip damages 
+* Fixed various localization strings (credits to Frasdoge)
+* Decreased backstab Critical Chance to Damage rate to 1 instead of 2
+* Decreased global damage bonus of attributes from 3 to 2
+* Refactored code to make values easily modifiable from ExtraData

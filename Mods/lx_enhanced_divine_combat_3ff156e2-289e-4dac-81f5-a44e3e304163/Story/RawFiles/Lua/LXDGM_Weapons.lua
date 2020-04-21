@@ -83,9 +83,9 @@ end
 function ApplyOverhaulWeaponAbilityBonuses(character)
 	---- Abilities
 	local wpnAbilityBonuses = {}
-	wpnAbilityBonuses["SingleHanded"] = {ArmorBoost=6, MagicArmorBoost=6}
-	wpnAbilityBonuses["TwoHanded"] = {ChanceToHitBoost=2}
-	wpnAbilityBonuses["Ranged"] = {RangeBoost=50}
+	wpnAbilityBonuses["SingleHanded"] = {ArmorBoost=Ext.ExtraData.DGM_SingleHandedArmorBonus, MagicArmorBoost=Ext.ExtraData.DGM_SingleHandedArmorBonus}
+	wpnAbilityBonuses["TwoHanded"] = {ChanceToHitBoost=Ext.ExtraData.DGM_TwoHandedCTHBonus}
+	wpnAbilityBonuses["Ranged"] = {RangeBoost=Ext.ExtraData.DGM_RangedRangeBonus}
 	
 	local wpnAbility = CheckCurrentWeaponAbility(character)
 	local previousWpnAbility = GetVarString(character, "LX_Previous_Weapon_Ability")

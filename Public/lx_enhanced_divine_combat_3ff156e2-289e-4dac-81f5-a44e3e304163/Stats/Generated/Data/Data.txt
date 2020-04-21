@@ -4,7 +4,7 @@ key "VitalityToDamageRatio","7.5"
 
 key "UnstableRadius","6"
 
-key "VitalityBoostFromAttribute","0.12"
+key "VitalityBoostFromAttribute","0.1"
 
 key "AttributeLevelGrowth","2"
 
@@ -36,7 +36,7 @@ key "CombatAbilityCritMultiplierBonus","5"
 
 key "CombatAbilityCritBonus","1"
 
-key "CombatAbilityDamageBonus","7"
+key "CombatAbilityDamageBonus","5"
 
 key "CombatAbilityCap","10"
 
@@ -97,4 +97,50 @@ key "TalentPerfectionistCriticalChanceBonus","0"
 key "End Of Combat SightRange Multiplier","2.5"
 
 key "CriticalBonusFromWits","2"
+
+key "DGM_StrengthGlobalBonus","2"
+
+key "DGM_StrengthWeaponBonus","3"
+
+key "DGM_StrengthDoTBonus","5"
+
+key "DGM_FinesseGlobalBonus","2"
+
+key "DGM_FinesseMovementBonus","15"
+
+key "DGM_IntelligenceGlobalBonus","2"
+
+key "DGM_IntelligenceSkillBonus","3"
+
+key "DGM_IntelligenceAccuracyBonus","2"
+
+key "DGM_DamageThroughArmor","50"
+
+key "DGM_DamageThroughArmorDepleted","25"
+
+key "DGM_RangedCQBPenalty","35"
+
+key "DGM_SingleHandedArmorBonus","6"
+
+key "DGM_SingleHandedResistanceBonus","2"
+
+key "DGM_RangedRangeBonus","50"
+
+key "DGM_DualWieldingOffhandBonus","10"
+
+key "DGM_TwoHandedCTHBonus","2"
+
+key "DGM_BackstabCritChanceBonus","1"
+
+key "DGM_HotheadApplicationThreshold","74"
+
+key "DGM_SlingshotBonus","30"
+
+key "DGM_IceKingDamageBonus","20"
+
+key "DGM_DemonStatusesBonus","20"
+
+key "DGM_StaffSkillMultiplier","10"
+
+key "DGM_WandSkillMultiplier","2.5"
 

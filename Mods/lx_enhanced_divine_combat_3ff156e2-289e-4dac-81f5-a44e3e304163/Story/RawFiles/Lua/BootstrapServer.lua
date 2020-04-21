@@ -98,9 +98,9 @@ function ApplyOverhaulAttributeBonuses(character)
 
 	---- Attribute Bonus
 	-- Movement Bonus
-	ApplyBonusOnce(character, "Finesse", "Movement", 15, false)
+	ApplyBonusOnce(character, "Finesse", "Movement", Ext.ExtraData.DGM_FinesseMovementBonus, false)
 	-- Accuracy bonus
-	ApplyBonusOnce(character, "Intelligence", "Accuracy", 2, false)
+	ApplyBonusOnce(character, "Intelligence", "Accuracy", Ext.ExtraData.DGM_IntelligenceAccuracyBonus, false)
 	-- Memory Bonus for Mnemonic
 	if CharacterHasTalent(character, "Memory") == 1 then 
 		ApplyBonusOnce(character, "Memory", "Memory", 1, true) 

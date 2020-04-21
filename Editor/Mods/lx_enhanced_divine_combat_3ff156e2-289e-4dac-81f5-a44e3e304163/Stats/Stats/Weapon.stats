@@ -543,5 +543,15 @@
         <field name="Charges" type="IntegerStatObjectFieldDefinition" value="0" />
       </fields>
     </stat_object>
+    <stat_object is_substat="false">
+      <fields>
+        <field name="Name" type="NameStatObjectFieldDefinition" value="Status_FireBrand" />
+        <field name="ModifierType" type="EnumerationStatObjectFieldDefinition" value="0" enumeration_type_name="ModifierType" />
+        <field name="Damage Type" type="EnumerationStatObjectFieldDefinition" value="6" enumeration_type_name="Damage Type" />
+        <field name="Damage" type="IntegerStatObjectFieldDefinition" value="1" />
+        <field name="Damage Range" type="IntegerStatObjectFieldDefinition" value="5" />
+        <field name="DamageFromBase" type="IntegerStatObjectFieldDefinition" value="30" />
+      </fields>
+    </stat_object>
   </stat_objects>
 </stats>

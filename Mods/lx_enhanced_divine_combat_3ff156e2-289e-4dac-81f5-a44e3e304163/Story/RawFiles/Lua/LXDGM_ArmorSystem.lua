@@ -2,7 +2,7 @@
 function CalculatePassingDamage(character, amount, dmgType)
 	if amount == nil then amount = 0 end
 	local dmgThrough = 0
-	local passingMod = 0.5
+	local passingMod = Ext.ExtraData.DGM_DamageThroughArmor/100
 	local passingModMult = 1
 	local pArmor = NRD_CharacterGetStatInt(character, "CurrentArmor")
 	local mArmor = NRD_CharacterGetStatInt(character, "CurrentMagicArmor")
@@ -11,7 +11,7 @@ function CalculatePassingDamage(character, amount, dmgType)
 	
 	-- Calculate passing modifier
 	if pArmor == 0 or mArmor == 0 then
-		passingMod = passingMod + 0.25
+		passingMod = passingMod + Ext.ExtraData.DGM_DamageThroughArmorDepleted/100
 	end
 	
 	if dmgType == "Physical" then

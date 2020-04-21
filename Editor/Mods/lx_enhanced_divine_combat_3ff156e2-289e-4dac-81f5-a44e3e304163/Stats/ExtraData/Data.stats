@@ -22,7 +22,7 @@
     <stat_object is_substat="false">
       <fields>
         <field name="Name" type="NameStatObjectFieldDefinition" value="VitalityBoostFromAttribute" />
-        <field name="Value" type="FloatStatObjectFieldDefinition" value="0.12" />
+        <field name="Value" type="FloatStatObjectFieldDefinition" value="0.1" />
       </fields>
     </stat_object>
     <stat_object is_substat="false">
@@ -118,7 +118,7 @@
     <stat_object is_substat="false">
       <fields>
         <field name="Name" type="NameStatObjectFieldDefinition" value="CombatAbilityDamageBonus" />
-        <field name="Value" type="FloatStatObjectFieldDefinition" value="7" />
+        <field name="Value" type="FloatStatObjectFieldDefinition" value="5" />
       </fields>
     </stat_object>
     <stat_object is_substat="false">
@@ -299,6 +299,148 @@
       <fields>
         <field name="Name" type="NameStatObjectFieldDefinition" value="CriticalBonusFromWits" />
         <field name="Value" type="FloatStatObjectFieldDefinition" value="2" />
+      </fields>
+    </stat_object>
+    <stat_object is_substat="false">
+      <fields>
+        <field name="Name" type="NameStatObjectFieldDefinition" value="DGM_StrengthGlobalBonus" />
+        <field name="Value" type="FloatStatObjectFieldDefinition" value="2" />
+        <field name="Comment" type="CommentStatObjectFieldDefinition" value="In percentage" />
+      </fields>
+    </stat_object>
+    <stat_object is_substat="false">
+      <fields>
+        <field name="Name" type="NameStatObjectFieldDefinition" value="DGM_StrengthWeaponBonus" />
+        <field name="Value" type="FloatStatObjectFieldDefinition" value="3" />
+      </fields>
+    </stat_object>
+    <stat_object is_substat="false">
+      <fields>
+        <field name="Name" type="NameStatObjectFieldDefinition" value="DGM_StrengthDoTBonus" />
+        <field name="Value" type="FloatStatObjectFieldDefinition" value="5" />
+      </fields>
+    </stat_object>
+    <stat_object is_substat="false">
+      <fields>
+        <field name="Name" type="NameStatObjectFieldDefinition" value="DGM_FinesseGlobalBonus" />
+        <field name="Value" type="FloatStatObjectFieldDefinition" value="2" />
+      </fields>
+    </stat_object>
+    <stat_object is_substat="false">
+      <fields>
+        <field name="Name" type="NameStatObjectFieldDefinition" value="DGM_FinesseMovementBonus" />
+        <field name="Value" type="FloatStatObjectFieldDefinition" value="15" />
+        <field name="Comment" type="CommentStatObjectFieldDefinition" value="In centimeter" />
+      </fields>
+    </stat_object>
+    <stat_object is_substat="false">
+      <fields>
+        <field name="Name" type="NameStatObjectFieldDefinition" value="DGM_IntelligenceGlobalBonus" />
+        <field name="Value" type="FloatStatObjectFieldDefinition" value="2" />
+      </fields>
+    </stat_object>
+    <stat_object is_substat="false">
+      <fields>
+        <field name="Name" type="NameStatObjectFieldDefinition" value="DGM_IntelligenceSkillBonus" />
+        <field name="Value" type="FloatStatObjectFieldDefinition" value="3" />
+      </fields>
+    </stat_object>
+    <stat_object is_substat="false">
+      <fields>
+        <field name="Name" type="NameStatObjectFieldDefinition" value="DGM_IntelligenceAccuracyBonus" />
+        <field name="Value" type="FloatStatObjectFieldDefinition" value="2" />
+      </fields>
+    </stat_object>
+    <stat_object is_substat="false">
+      <fields>
+        <field name="Name" type="NameStatObjectFieldDefinition" value="DGM_DamageThroughArmor" />
+        <field name="Value" type="FloatStatObjectFieldDefinition" value="50" />
+      </fields>
+    </stat_object>
+    <stat_object is_substat="false">
+      <fields>
+        <field name="Name" type="NameStatObjectFieldDefinition" value="DGM_DamageThroughArmorDepleted" />
+        <field name="Value" type="FloatStatObjectFieldDefinition" value="25" />
+        <field name="Comment" type="CommentStatObjectFieldDefinition" value="Added to DGM_DamageThroughArmor after one type of armor is depleted" />
+      </fields>
+    </stat_object>
+    <stat_object is_substat="false">
+      <fields>
+        <field name="Name" type="NameStatObjectFieldDefinition" value="DGM_RangedCQBPenalty" />
+        <field name="Value" type="FloatStatObjectFieldDefinition" value="35" />
+      </fields>
+    </stat_object>
+    <stat_object is_substat="false">
+      <fields>
+        <field name="Name" type="NameStatObjectFieldDefinition" value="DGM_SingleHandedArmorBonus" />
+        <field name="Value" type="FloatStatObjectFieldDefinition" value="6" />
+      </fields>
+    </stat_object>
+    <stat_object is_substat="false">
+      <fields>
+        <field name="Name" type="NameStatObjectFieldDefinition" value="DGM_SingleHandedResistanceBonus" />
+        <field name="Value" type="FloatStatObjectFieldDefinition" value="2" />
+      </fields>
+    </stat_object>
+    <stat_object is_substat="false">
+      <fields>
+        <field name="Name" type="NameStatObjectFieldDefinition" value="DGM_RangedRangeBonus" />
+        <field name="Value" type="FloatStatObjectFieldDefinition" value="50" />
+        <field name="Comment" type="CommentStatObjectFieldDefinition" value="In centimeter" />
+      </fields>
+    </stat_object>
+    <stat_object is_substat="false">
+      <fields>
+        <field name="Name" type="NameStatObjectFieldDefinition" value="DGM_DualWieldingOffhandBonus" />
+        <field name="Value" type="FloatStatObjectFieldDefinition" value="10" />
+      </fields>
+    </stat_object>
+    <stat_object is_substat="false">
+      <fields>
+        <field name="Name" type="NameStatObjectFieldDefinition" value="DGM_TwoHandedCTHBonus" />
+        <field name="Value" type="FloatStatObjectFieldDefinition" value="2" />
+      </fields>
+    </stat_object>
+    <stat_object is_substat="false">
+      <fields>
+        <field name="Name" type="NameStatObjectFieldDefinition" value="DGM_BackstabCritChanceBonus" />
+        <field name="Value" type="FloatStatObjectFieldDefinition" value="1" />
+      </fields>
+    </stat_object>
+    <stat_object is_substat="false">
+      <fields>
+        <field name="Name" type="NameStatObjectFieldDefinition" value="DGM_HotheadApplicationThreshold" />
+        <field name="Value" type="FloatStatObjectFieldDefinition" value="74" />
+      </fields>
+    </stat_object>
+    <stat_object is_substat="false">
+      <fields>
+        <field name="Name" type="NameStatObjectFieldDefinition" value="DGM_SlingshotBonus" />
+        <field name="Value" type="FloatStatObjectFieldDefinition" value="30" />
+      </fields>
+    </stat_object>
+    <stat_object is_substat="false">
+      <fields>
+        <field name="Name" type="NameStatObjectFieldDefinition" value="DGM_IceKingDamageBonus" />
+        <field name="Value" type="FloatStatObjectFieldDefinition" value="20" />
+      </fields>
+    </stat_object>
+    <stat_object is_substat="false">
+      <fields>
+        <field name="Name" type="NameStatObjectFieldDefinition" value="DGM_DemonStatusesBonus" />
+        <field name="Value" type="FloatStatObjectFieldDefinition" value="20" />
+      </fields>
+    </stat_object>
+    <stat_object is_substat="false">
+      <fields>
+        <field name="Name" type="NameStatObjectFieldDefinition" value="DGM_StaffSkillMultiplier" />
+        <field name="Value" type="FloatStatObjectFieldDefinition" value="10" />
+      </fields>
+    </stat_object>
+    <stat_object is_substat="false">
+      <fields>
+        <field name="Name" type="NameStatObjectFieldDefinition" value="DGM_WandSkillMultiplier" />
+        <field name="Value" type="FloatStatObjectFieldDefinition" value="2.5" />
       </fields>
     </stat_object>
   </stat_objects>

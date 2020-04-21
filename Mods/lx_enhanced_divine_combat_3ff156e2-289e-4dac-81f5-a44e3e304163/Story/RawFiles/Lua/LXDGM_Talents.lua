@@ -115,8 +115,8 @@ end
 
 function CheckHothead(character)
 	local HPperc = Ext.Round(NRD_CharacterGetStatInt(character, "CurrentVitality") / NRD_CharacterGetStatInt(character, "MaxVitality") * 100)
-	Ext.Print(HPperc)
-	if HPperc > 74.0 then ApplyStatus(character, "LX_HOTHEAD", -1.0, 1) end
+	--Ext.Print(HPperc)
+	if HPperc > Ext.ExtraData.DGM_HotheadApplicationThreshold then ApplyStatus(character, "LX_HOTHEAD", -1.0, 1) end
 end
 
 function ManageAllSkilledUp(character, skill, cooldown)
