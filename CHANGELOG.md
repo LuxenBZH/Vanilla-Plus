@@ -27,3 +27,21 @@ Project Divine Game Master Changelog
 * Decreased backstab Critical Chance to Damage rate to 1 instead of 2
 * Decreased global damage bonus of attributes from 3 to 2
 * Refactored code to make values easily modifiable from ExtraData
+
+# 0.8.6.12
+* Removed remnant testing code removing Demon and providing a talent point when using Flesh Sacrifice (no more cheese with elfs, Ego and Mhono :>)
+* Made important changes concerning damage curve over levels. Armor ratio reduced to 0.33 from 0.4, VitalityToDamageRatio reduced to 7 from 7.5 and VitalityToDamageRatioGrowth reduced to 0.7 from 0.2. This change should ensure a constant damage ratio across levels.
+* Decreased Constitution bonus on Vitality to 7% from 10% (back to original)
+* Fixed damage not going through armor for surfaces and under certain conditions
+* Fixed custom bonus for weapon abilities
+* Fixed an issue where the console would display an error message on characters that doesn't belong to the normal gameplay
+* Fixed an error where hovering Boucing Shield with the mouse and any skill using something less than BaseLevelDamage and AverageLevelDamage would display an error in the console
+* Fixed skills using fixed damage values (anything else than BaseLevelDamage and AverageLevelDamage) would be boosted by attributes
+* Changed Wind-up toy requirements and reduced AP cost
+* Increased Mass Corpse Explosion cooldown
+* Reduced SingleHanded of incarnate normal and champion by 3
+* Reduced totems corresponding elemental school by 2
+* All Skilled Up no longer apply on skills that have 1 turn cooldown
+* Increased Corrosive Spray cooldown
+* Reversed cooldown on Corpse Explosion
+

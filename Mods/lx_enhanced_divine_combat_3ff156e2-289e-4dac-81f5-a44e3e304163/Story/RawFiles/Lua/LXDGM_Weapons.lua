@@ -5,6 +5,7 @@ function InitCharacterAbilities(character)
 		"TwoHanded"
 	}
 	for i,abi in pairs(abilitiesStr) do
+		if CharacterGetAbility(character, abi) == nil then return end
 		SetVarInteger(character, "LX_Check_"..abi, CharacterGetAbility(character, abi))
 		SetVarInteger(character, "LX_Check_Base_"..abi, CharacterGetBaseAbility(character, abi))
 		if abi == "SingleHanded" then
@@ -33,6 +34,7 @@ end
 ---- Weapon Ability check
 function CheckCurrentWeaponAbility(character)
 	-- Throw this function at character init and every time that a character change its equipment. Use for see if 
+	if CharacterGetAbility(character, "SingleHanded") == nil then return end --Check for characters without stats
 	local charStats = Ext.GetCharacter(character).Stats
 	local mainWeapon = charStats.MainWeapon
 	local mainWeaponType = "None"
@@ -81,6 +83,7 @@ function ChangedWeaponAbility(character, new, previous)
 end
 
 function ApplyOverhaulWeaponAbilityBonuses(character)
+	if CharacterGetAbility(character, "SingleHanded") == nil then return end --Check for characters without stats
 	---- Abilities
 	local wpnAbilityBonuses = {}
 	wpnAbilityBonuses["SingleHanded"] = {ArmorBoost=Ext.ExtraData.DGM_SingleHandedArmorBonus, MagicArmorBoost=Ext.ExtraData.DGM_SingleHandedArmorBonus}
@@ -103,7 +106,7 @@ function ApplyOverhaulWeaponAbilityBonuses(character)
 	if wpnAbility ~= "None" and wpnAbility ~= "DualWielding" then
 		for k,v in pairs(wpnAbilityBonuses[wpnAbility]) do
 			n=n+1
-			print(k.." "..v)
+			--print(k.." "..v)
 			bonuses[n]=k
 			multipliers[n]=v
 		end

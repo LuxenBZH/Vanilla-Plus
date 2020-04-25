@@ -49,7 +49,7 @@ NOT _Char == NULL_00000000-0000-0000-0000-000000000000
 AND
 LX_EXT_CheckStatChange(_Char)
 THEN 
-LX_EXT_ApplyAttributeBonuses(_Char);
+LX_EXT_ApplyOverhaulBonuses(_Char);
 
 //Weapon check for ability bonuses
 IF

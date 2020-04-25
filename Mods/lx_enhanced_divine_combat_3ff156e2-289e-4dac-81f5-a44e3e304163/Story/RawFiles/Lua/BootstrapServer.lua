@@ -15,8 +15,12 @@ function InitCharacterStatCheck(character)
 		"Memory"
 	}
 	for i,attr in pairs(attributesStr) do
-		SetVarInteger(character, "LX_Check_"..attr, CharacterGetAttribute(character, attr))
-		SetVarInteger(character, "LX_Check_Base_"..attr, CharacterGetBaseAttribute(character, attr) - NRD_CharacterGetPermanentBoostInt(character, attr))
+		local attribute = CharacterGetAttribute(character, attr)
+		if attribute == nil then return end
+		local baseAttribute = CharacterGetBaseAttribute(character, attr) - NRD_CharacterGetPermanentBoostInt(character, attr)
+		--Ext.Print(character, "Stat init failed !")
+		SetVarInteger(character, "LX_Check_"..attr, attribute)
+		SetVarInteger(character, "LX_Check_Base_"..attr, baseAttribute)
 		if attr == "Intelligence" then
 			SetVarInteger(character, "LX_Changed_Intelligence", CharacterGetAttribute(character, attr)-10)
 		end
@@ -94,7 +98,7 @@ end
 
 function ApplyOverhaulAttributeBonuses(character)
 	---- This function should be called after a change check
-	print("Character :"..character)
+	--print("Character :"..character)
 
 	---- Attribute Bonus
 	-- Movement Bonus

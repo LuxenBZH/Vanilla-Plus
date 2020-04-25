@@ -24,11 +24,13 @@ function DamageControl(target, handle, instigator)
 	local sourceType = NRD_StatusGetInt(target, handle, "DamageSourceType")
 	local skillID = NRD_StatusGetString(target, handle, "SkillId")
 	local backstab = NRD_StatusGetInt(target, handle, "Backstab")
+	local fixedValue = 0
 	-- print("SkillID: "..skillID)
 	if NRD_StatusGetInt(target, handle, "HitReason") == 0 then
 		fromWeapon = 1
 	elseif skillID ~= "" then
 		fromWeapon = NRD_StatGetInt(string.gsub(skillID, "%_%-1", ""), "UseWeaponDamage")
+		fixedValue = NRD_StatGetInt(string.gsub(skillID, "%_%-1", ""), "Damage")
 	end
 	
 	local weaponTypes = GetWeaponsType(instigator)
@@ -40,8 +42,9 @@ function DamageControl(target, handle, instigator)
 	end
 	
 	if isBlocked == 1 then return end
-	if sourceType == 1 or sourceType == 2 or sourceType == 3 then return end
-	if skillID == "" and sourceType == 0 then return end
+	if sourceType == 1 or sourceType == 2 or sourceType == 3 then InitiatePassingDamage(target, damages); return end
+	if skillID == "" and sourceType == 0 then InitiatePassingDamage(target, damages); return end
+	if fixedValue ~= 0 and fixedValue ~= 1 and fixedValue ~= 2 then InitiatePassingDamage(target, damages); return end
 	
 	-- Dodge mechanic override
 	if isMissed == 1 or isDodged == 1 then
@@ -125,6 +128,10 @@ function DamageControl(target, handle, instigator)
 	SetWalkItOff(target, handle)
 	
 	-- Armor passing damages
+	InitiatePassingDamage(target, damages)
+end
+
+function InitiatePassingDamage(target, damages)
 	for dmgType,amount  in pairs(damages) do
 		if amount ~= 0 then
 			local piercing = CalculatePassingDamage(target, amount, dmgType)

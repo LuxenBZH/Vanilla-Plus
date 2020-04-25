@@ -57,5 +57,6 @@ end
 
 function ApplyPassingDamage(character, amount)
 	local currentVitality = NRD_CharacterGetStatInt(character, "CurrentVitality")
+	if currentVitality == nil then return end
 	NRD_CharacterSetStatInt(character, "CurrentVitality", currentVitality - amount)
 end

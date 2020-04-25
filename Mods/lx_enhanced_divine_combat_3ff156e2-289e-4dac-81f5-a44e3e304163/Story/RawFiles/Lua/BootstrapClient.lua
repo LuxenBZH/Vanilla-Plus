@@ -172,10 +172,10 @@ Ext.RegisterListener("StatusGetDescriptionParam", StatusGetDescriptionParam)
 local function SkillGetDescriptionParam(skill, character, isFromItem, par)
 	--Ext.Print(skill, character.Name, par)
 	if par == "Damage" or par == "Weapon" then
+		if skill.Damage ~= "BaseLevelDamage" and skill.Damage ~= "AverageLevelDamage" then return nil end
 		local dmg = GetSkillDamageRange(character, skill)
 		local result = ""
 		local once = false
-			
 		
 		for dmgType, damages in pairs(dmg) do
 			--Ext.Print(dmgType, damages[1], damages[2])

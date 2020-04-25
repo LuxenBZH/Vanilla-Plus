@@ -107,12 +107,6 @@ ApplyStatus(_Char, "LX_HOTHEAD", -1.0, 1);
 // LX_EXT_WalkItOffReplacement(_Char, _Handle);
 
 IF
-CharacterUsedSkill(_Char, "Shout_FleshSacrifice", _, _)
-THEN
-CharacterRemoveTalent(_Char, "Demon");
-CharacterAddTalentPoint(_Char, 1);
-
-IF
 ObjectTurnStarted(_Object)
 AND
 ObjectIsCharacter(_Object, 1)

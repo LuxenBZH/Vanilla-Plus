@@ -121,7 +121,7 @@ end
 
 function ManageAllSkilledUp(character, skill, cooldown)
 	local hasUsedSkill = GetVarInteger(character, "LX_AllSkilledUp_Counter")
-	if hasUsedSkill == 0 then
+	if hasUsedSkill == 0 and cooldown > 6.0 then
 		NRD_SkillSetCooldown(character, skill, (cooldown-6.0))
 		SetVarInteger(character, "LX_AllSkilledUp_Counter", 1)
 	end
