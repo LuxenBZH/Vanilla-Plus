@@ -1,8 +1,10 @@
-key "ArmorToVitalityRatio","0.33"
+key "ArmorToVitalityRatio","0.45"
 
-key "VitalityToDamageRatio","7"
+key "ExpectedConGrowthForArmorCalculation","1"
 
-key "VitalityToDamageRatioGrowth","0.07"
+key "VitalityToDamageRatio","6.5"
+
+key "VitalityToDamageRatioGrowth","0.23"
 
 key "UnstableRadius","6"
 
@@ -17,8 +19,6 @@ key "AttributeBoostGrowth","0.75"
 key "AttributeGrowthDamp","0.7"
 
 key "AttributeSoftCap","40"
-
-key "ExpectedConGrowthForArmorCalculation","1"
 
 key "DamageBoostFromAttribute","0"
 
@@ -145,4 +145,6 @@ key "DGM_DemonStatusesBonus","20"
 key "DGM_StaffSkillMultiplier","10"
 
 key "DGM_WandSkillMultiplier","2.5"
+
+key "New_Stat_0","1"
 

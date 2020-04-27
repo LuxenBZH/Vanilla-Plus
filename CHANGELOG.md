@@ -45,3 +45,5 @@ Project Divine Game Master Changelog
 * Increased Corrosive Spray cooldown
 * Reversed cooldown on Corpse Explosion
 
+# 0.8.7.13
+* Reworked damage scaling. Armor ratio set to 0.45 from 0.33, VitalityToDamageRatio reduced to 6 from 7, VitalityToDamageRatioGrowth increased from 0.07 to 0.023. Damages should now be fair at all level.

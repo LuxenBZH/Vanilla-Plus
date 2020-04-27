@@ -4,19 +4,25 @@
     <stat_object is_substat="false">
       <fields>
         <field name="Name" type="NameStatObjectFieldDefinition" value="ArmorToVitalityRatio" />
-        <field name="Value" type="FloatStatObjectFieldDefinition" value="0.33" />
+        <field name="Value" type="FloatStatObjectFieldDefinition" value="0.45" />
+      </fields>
+    </stat_object>
+    <stat_object is_substat="false">
+      <fields>
+        <field name="Name" type="NameStatObjectFieldDefinition" value="ExpectedConGrowthForArmorCalculation" />
+        <field name="Value" type="FloatStatObjectFieldDefinition" value="1" />
       </fields>
     </stat_object>
     <stat_object is_substat="false">
       <fields>
         <field name="Name" type="NameStatObjectFieldDefinition" value="VitalityToDamageRatio" />
-        <field name="Value" type="FloatStatObjectFieldDefinition" value="7" />
+        <field name="Value" type="FloatStatObjectFieldDefinition" value="6.5" />
       </fields>
     </stat_object>
     <stat_object is_substat="false">
       <fields>
         <field name="Name" type="NameStatObjectFieldDefinition" value="VitalityToDamageRatioGrowth" />
-        <field name="Value" type="FloatStatObjectFieldDefinition" value="0.07" />
+        <field name="Value" type="FloatStatObjectFieldDefinition" value="0.23" />
       </fields>
     </stat_object>
     <stat_object is_substat="false">
@@ -59,12 +65,6 @@
       <fields>
         <field name="Name" type="NameStatObjectFieldDefinition" value="AttributeSoftCap" />
         <field name="Value" type="FloatStatObjectFieldDefinition" value="40" />
-      </fields>
-    </stat_object>
-    <stat_object is_substat="false">
-      <fields>
-        <field name="Name" type="NameStatObjectFieldDefinition" value="ExpectedConGrowthForArmorCalculation" />
-        <field name="Value" type="FloatStatObjectFieldDefinition" value="1" />
       </fields>
     </stat_object>
     <stat_object is_substat="false">
@@ -447,6 +447,12 @@
       <fields>
         <field name="Name" type="NameStatObjectFieldDefinition" value="DGM_WandSkillMultiplier" />
         <field name="Value" type="FloatStatObjectFieldDefinition" value="2.5" />
+      </fields>
+    </stat_object>
+    <stat_object is_substat="false">
+      <fields>
+        <field name="Name" type="NameStatObjectFieldDefinition" value="New_Stat_0" />
+        <field name="Value" type="FloatStatObjectFieldDefinition" value="1" />
       </fields>
     </stat_object>
   </stat_objects>
