@@ -171,7 +171,6 @@ end
 
 function DodgeControl(target, instigator, weapon)
 	if weapon == nil then weapon = "" end
-	Ext.Print("[LXDGM_DamageControl.DodgeControl] Weapon used: "..weapon.." fetched: "..CharacterGetEquippedWeapon(instigator))
 	local refunded = GetVarInteger(instigator, "LX_Miss_Refunded")
 	if CharacterGetEquippedWeapon(instigator) == weapon then 
 		if refunded == 1 then 
@@ -184,7 +183,6 @@ function DodgeControl(target, instigator, weapon)
 		TriggerDodgeFatigue(target, instigator)	
 	else
 		local hasMissedMain = GetVarInteger(instigator, "LX_Miss_Main")
-		Ext.Print("[LXDGM_DamageControl.DodgeControl] Has Missed Main :",hasMissedMain)
 		if hasMissedMain ~= 1 then
 			TriggerDodgeFatigue(target, instigator)
 			if refunded == 1 then 
@@ -195,45 +193,37 @@ function DodgeControl(target, instigator, weapon)
 			end
 		end
 	end
-
-	--local dmgMult = 0
-	-- if dodgeCounter == nil then dodgeCounter = 0 end
-	-- if dodgeCounter == 0 then dmgMult = 0.1 end
-	-- if dodgeCounter == 1 then dmgMult = 0.2 end
-	-- if dodgeCounter > 1 then dmgMult = 0.35 end
-	
-	-- local newHit = NRD_HitPrepare(target, instigator)
-	-- for dmgType, amount in pairs(damages) do
-		-- NRD_HitAddDamage(newHit, dmgType, amount*dmgMult)
-	-- end
-	-- NRD_HitSetInt(newHit, "NoHitRoll", 1)
-	-- NRD_HitSetInt(newHit, "CriticalRoll", critical)
-	-- local newHitStatus = NRD_HitQryExecute(newHit)
 	return
 end
 
 function TriggerDodgeFatigue(target, instigator)
+	if CharacterIsInCombat(target) == 0 then return end
 	local accuracy = NRD_CharacterGetComputedStat(instigator, "Accuracy", 0)
 	local baseAccuracy = NRD_CharacterGetComputedStat(instigator, "Accuracy", 1)
 	local dodgeCounter = GetVarInteger(target, "LX_Dodge_Counter")
 	local dodge = NRD_CharacterGetComputedStat(target, "Dodge", 0)
 	--local isHarmed = HasHarmfulAccuracyStatus(instigator)
 	if dodgeCounter == nil then dodgeCounter = 0 end
-	Ext.Print("[LXDGM_DamageControl.DodgeControl] "..accuracy.." "..baseAccuracy)
-	Ext.Print("[LXDGM_DamageControl.DodgeControl] Dodge counter : "..dodgeCounter)
-	dodgeCounter = dodgeCounter + 1
-	if accuracy >= 90 and accuracy >= baseAccuracy then	
-		if dodgeCounter == 2 then ApplyStatus(target, "LX_DODGE_FATIGUE1", 6.0, 1) end
-		if dodgeCounter == 3 then ApplyStatus(target, "LX_DODGE_FATIGUE2", 6.0, 1) end
-		if dodgeCounter == 4 then ApplyStatus(target, "LX_DODGE_FATIGUE3", 6.0, 1) end
-		
+	-- Ext.Print("[LXDGM_DamageControl.DodgeControl] "..accuracy.." "..baseAccuracy)
+	-- Ext.Print("[LXDGM_DamageControl.DodgeControl] Dodge counter : "..dodgeCounter)
+	if HasActiveStatus(target, "UNCANNY_EVASION") == 0 then
+		dodgeCounter = dodgeCounter + 1
+	end
+	if accuracy >= 90 and accuracy >= baseAccuracy then
 		SetVarInteger(target, "LX_Dodge_Counter", dodgeCounter)
+		if CharacterHasTalent(target, "DualWieldingDodging") == 1 then dodgeCounter = dodgeCounter - 1 end
+		if dodgeCounter == 1 then ApplyStatus(target, "LX_DODGE_FATIGUE1", 6.0, 1) end
+		if dodgeCounter == 2 then ApplyStatus(target, "LX_DODGE_FATIGUE2", 6.0, 1) end
+		if dodgeCounter == 3 then ApplyStatus(target, "LX_DODGE_FATIGUE3", 6.0, 1) end
+		if dodgeCounter == 4 then ApplyStatus(target, "LX_DODGE_FATIGUE4", 6.0, 1) end
+		
+		
 	end
 end
 
 function ManagePerseverance(character, perseverance)
-	Ext.Print(perseverance)
+	-- Ext.Print(perseverance)
 	local charHP = NRD_CharacterGetStatInt(character, "MaxVitality")
-	NRD_CharacterSetStatInt(character, "CurrentVitality", NRD_CharacterGetStatInt(character, "CurrentVitality")+(perseverance*0.02*charHP))
+	NRD_CharacterSetStatInt(character, "CurrentVitality", NRD_CharacterGetStatInt(character, "CurrentVitality")+(perseverance*Ext.ExtraData.DGM_PerseveranceVitalityRecovery*0.01*charHP))
 end
 

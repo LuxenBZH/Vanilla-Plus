@@ -7,43 +7,43 @@ KBSECTION
 IF
 CharacterStatusRemoved(_Char, "KNOCKED_DOWN", _)
 THEN
-ApplyStatus(_Char, "LX_MOMENTUM", 6.0, 1);
+ApplyStatus(_Char, "LX_MOMENTUM", 12.0, 1);
 
 IF
 CharacterStatusRemoved(_Char, "CHICKEN", _)
 THEN
-ApplyStatus(_Char, "LX_MOMENTUM", 6.0, 1);
+ApplyStatus(_Char, "LX_MOMENTUM", 12.0, 1);
 
 //Ligering proc
 IF
 CharacterStatusRemoved(_Char, "STUNNED", _)
 THEN
-ApplyStatus(_Char, "LX_LINGERING", 6.0, 1);
+ApplyStatus(_Char, "LX_LINGERING", 12.0, 1);
 
 IF
 CharacterStatusRemoved(_Char, "FROZEN", _)
 THEN
-ApplyStatus(_Char, "LX_LINGERING", 6.0, 1);
+ApplyStatus(_Char, "LX_LINGERING", 12.0, 1);
 
 IF
 CharacterStatusRemoved(_Char, "PETRIFIED", _)
 THEN
-ApplyStatus(_Char, "LX_LINGERING", 6.0, 1);
+ApplyStatus(_Char, "LX_LINGERING", 12.0, 1);
 
 IF
 CharacterStatusRemoved(_Char, "MADNESS", _)
 THEN
-ApplyStatus(_Char, "LX_LINGERING", 6.0, 1);
+ApplyStatus(_Char, "LX_LINGERING", 12.0, 1);
 
 IF
 CharacterStatusRemoved(_Char, "FEAR", _)
 THEN
-ApplyStatus(_Char, "LX_LINGERING", 6.0, 1);
+ApplyStatus(_Char, "LX_LINGERING", 12.0, 1);
 
 IF
 CharacterStatusRemoved(_Char, "CHARM", _)
 THEN
-ApplyStatus(_Char, "LX_LINGERING", 6.0, 1);
+ApplyStatus(_Char, "LX_LINGERING", 12.0, 1);
 
 
 //Physical

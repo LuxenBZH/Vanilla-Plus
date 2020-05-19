@@ -25,3 +25,20 @@ function CharacterUsePoisonedPotion(character, potion)
 	NRD_HitSetInt(hitHandle, "Hit", 1)
 	NRD_HitQryExecute(hitHandle)
 end
+
+function ManagePotionFatigue(character, potion)
+	local item = Ext.GetItem(potion)
+	if NRD_StatGetType(item.StatsId) ~= "Potion" then return end
+	local isConsumable = NRD_StatGetInt(item.StatsId, "IsConsumable")
+	local isFood = NRD_StatGetInt(item.StatsId, "IsFood")
+	
+	-- A potion is hopefully consumable, but not food
+	if isConsumable == 1 and isFood == 0 then
+		local fatigue = GetVarInteger(character, "DGM_PotionFatigue")
+		if fatigue == nil then fatigue = 0 end
+		if fatigue == 1 then ApplyStatus(character, "LX_POTIONWARNING", 6.0, 1) end
+		if fatigue > 1 then ApplyStatus(character, "LX_POTIONFATIGUE", 6.0, 1) end
+		fatigue = fatigue + 1
+		SetVarInteger(character, "DGM_PotionFatigue", fatigue)
+	end
+end

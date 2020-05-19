@@ -1,4 +1,65 @@
-Ext.Require("NRD_SkillMath.lua")
+--Ext.Require("NRD_SkillMath.lua")
+Ext.Require("LXDGM_StatsPatching.lua")
+Ext.Require("LXDGM_Helpers.lua")
+--Ext.AddPathOverride("Public\\Game\\GUI\\enemyHealthBar.swf", "Public\\lx_enhanced_divine_combat_3ff156e2-289e-4dac-81f5-a44e3e304163\\Game\\GUI\\characterSheet.swf")
+
+local DamageSourceCalcTable = {
+	BaseLevelWeaponDamage = function(attacker, target, level)
+		return Ext.Round(Game.Math.GetLevelScaledWeaponDamage(level))
+	end,
+    BaseLevelDamage = function (attacker, target, level)
+        return Ext.Round(Game.Math.GetLevelScaledDamage(level))
+    end,
+    AverageLevelDamge = function (attacker, target, level)
+        return Ext.Round(Game.Math.GetAverageLevelDamage(level))
+    end,
+    MonsterWeaponDamage = function (attacker, target, level)
+        return Ext.Round(Game.Math.GetLevelScaledMonsterWeaponDamage(level))
+    end,
+    SourceMaximumVitality = function (attacker, target, level)
+        return attacker.MaxVitality
+    end,
+    SourceMaximumPhysicalArmor = function (attacker, target, level)
+        return attacker.MaxArmor
+    end,
+    SourceMaximumMagicArmor = function (attacker, target, level)
+        return attacker.MaxMagicArmor
+    end,
+    SourceCurrentVitality = function (attacker, target, level)
+        return attacker.CurrentVitality
+    end,
+    SourceCurrentPhysicalArmor = function (attacker, target, level)
+        return attacker.CurrentArmor
+    end,
+    SourceCurrentMagicArmor = function (attacker, target, level)
+        return attacker.CurrentMagicArmor
+    end,
+    SourceShieldPhysicalArmor = function (attacker, target, level)
+        return Ext.Round(Game.Math.GetShieldPhysicalArmor(attacker))
+    end,
+    TargetMaximumVitality = function (attacker, target, level)
+        return target.MaxVitality
+    end,
+    TargetMaximumPhysicalArmor = function (attacker, target, level)
+        return target.MaxArmor
+    end,
+    TargetMaximumMagicArmor = function (attacker, target, level)
+        return target.MaxMagicArmor
+    end,
+    TargetCurrentVitality = function (attacker, target, level)
+        return target.CurrentVitality
+    end,
+    TargetCurrentPhysicalArmor = function (attacker, target, level)
+        return target.CurrentArmor
+    end,
+    TargetCurrentMagicArmor = function (attacker, target, level)
+        return target.CurrentMagicArmor
+    end
+}
+
+local function CalculateBaseDamage(skillDamageType, attacker, target, level)
+    return DamageSourceCalcTable[skillDamageType](attacker, target, level)
+end
 
 local function CalculateWeaponDamageRange(character, weapon)
     local damages, damageBoost = Game.Math.ComputeBaseWeaponDamage(weapon)
@@ -16,7 +77,8 @@ local function CalculateWeaponDamageRange(character, weapon)
     local ranges = {}
     for damageType, damage in pairs(damages) do
         local min = damage.Min * boost * abilityBoosts
-        local max = damage.Max * boost * abilityBoosts
+		local max = damage.Max * boost * abilityBoosts
+		Ext.Print(min, max)
 
         if min > max then
             max = min
@@ -29,14 +91,16 @@ local function CalculateWeaponDamageRange(character, weapon)
 end
 
 local function GetSkillDamageRange(character, skill)
+	local desc = skill.StatsDescriptionParams
+	--Ext.Print(skill.DamageMultiplier)
     local damageMultiplier = skill['Damage Multiplier'] * 0.01
 
-    if skill.UseWeaponDamage == "Yes" then
-        local mainWeapon = character.MainWeapon
+	if skill.UseWeaponDamage == "Yes" then
+		local mainWeapon = character.MainWeapon
         local mainDamageRange = CalculateWeaponDamageRange(character, mainWeapon)
-        local offHandWeapon = character.OffHandWeapon
+		local offHandWeapon = character.OffHandWeapon
 
-        if offHandWeapon ~= nil and IsRangedWeapon(mainWeapon) == IsRangedWeapon(offHandWeapon) then
+        if offHandWeapon ~= nil and Game.Math.IsRangedWeapon(mainWeapon) == Game.Math.IsRangedWeapon(offHandWeapon) then
             local offHandDamageRange = CalculateWeaponDamageRange(character, offHandWeapon)
 
             local dualWieldPenalty = Ext.ExtraData.DualWieldingDamagePenalty
@@ -76,7 +140,23 @@ local function GetSkillDamageRange(character, skill)
         end
 		--Ext.Print("Use Weapon")
         return mainDamageRange
-    else
+	else
+		local skillDamageType = skill.Damage
+		local desc = skill.StatsDescriptionParams
+		if desc:find("Weapon:") ~= nil then
+			local damageConvert = {
+				"BaseLevelWeaponDamage",
+				"AverageLevelDamge",
+				"MonsterWeaponDamage"
+			}
+			local weaponStat = desc:gsub("^[A-z]*:", ""):gsub(":.*", "")
+			local weaponDamage = Ext.StatGetAttribute(weaponStat, "Damage")
+			if weaponDamage > 2 then return end
+			skillDamageType = damageConvert[tonumber(weaponDamage)+1]
+			skill.DamageType = Ext.StatGetAttribute(weaponStat, "Damage Type")
+			damageMultiplier = Ext.StatGetAttribute(weaponStat, "DamageFromBase")*0.01
+			skill["Damage Range"] = Ext.StatGetAttribute(weaponStat, "Damage Range")
+		end
         local damageType = skill.DamageType
         if damageMultiplier <= 0 then
             return {}
@@ -86,31 +166,40 @@ local function GetSkillDamageRange(character, skill)
         if (level < 0 or skill.OverrideSkillLevel == "Yes") and skill.Level > 0 then
             level = skill.Level
         end
-
-        local skillDamageType = skill.Damage
+        
         local attrDamageScale
         if skillDamageType == "BaseLevelDamage" or skillDamageType == "AverageLevelDamge" then
             attrDamageScale = Game.Math.GetSkillAttributeDamageScale(skill, character)
         else
             attrDamageScale = 1.0
         end
-
-		local globalMult = 1 + (character.Strength-10) * (Ext.ExtraData.DGM_StrengthGlobalBonus*0.01) +
+		Ext.Print("Damage:", skillDamageType)
+		
+		local globalMult = 1.0
+		
+		if skill.StatsDescriptionParams:find("Weapon:") ~= nil then
+			local weaponStat = skill.StatsDescriptionParams:gsub("^[A-z]*:", ""):gsub(":.*", "")
+			globalMult = 1 + (character.Strength-10) * (Ext.ExtraData.DGM_StrengthGlobalBonus*0.01 + Ext.ExtraData.DGM_StrengthWeaponBonus*0.01) +
+		(character.Finesse-10) * (Ext.ExtraData.DGM_FinesseGlobalBonus*0.01) +
+		(character.Intelligence-10) * (Ext.ExtraData.DGM_IntelligenceGlobalBonus*0.01)
+		else
+			globalMult = 1 + (character.Strength-10) * (Ext.ExtraData.DGM_StrengthGlobalBonus*0.01) +
 		(character.Finesse-10) * (Ext.ExtraData.DGM_FinesseGlobalBonus*0.01) +
 		(character.Intelligence-10) * (Ext.ExtraData.DGM_IntelligenceGlobalBonus*0.01 + Ext.ExtraData.DGM_IntelligenceSkillBonus*0.01)
-        local baseDamage = Game.Math.CalculateBaseDamage(skill.Damage, character, 0, level) * attrDamageScale * damageMultiplier * globalMult
+		end
+		Ext.Print("Global mult", globalMult, skillDamageType)
+		
+        local baseDamage = CalculateBaseDamage(skillDamageType, character, 0, level) * attrDamageScale * damageMultiplier * globalMult
         local damageRange = skill['Damage Range'] * baseDamage * 0.005
 
         local damageType = skill.DamageType
         local damageTypeBoost = 1.0 + Game.Math.GetDamageBoostByType(character, damageType)
         local damageBoost = 1.0 + (character.DamageBoost / 100.0)
-		Ext.Print("Base Damage:",Game.Math.GetAverageLevelDamage(character.Level), damageTypeBoost, Game.Math.GetLevelScaledDamage(character.Level))
         local damageRanges = {}
         damageRanges[damageType] = {
             math.ceil(math.ceil(Ext.Round(baseDamage - damageRange) * damageBoost) * damageTypeBoost),
             math.ceil(math.ceil(Ext.Round(baseDamage + damageRange) * damageBoost) * damageTypeBoost)
         }
-		Ext.Print("No weapon damage")
         return damageRanges
     end
 end
@@ -136,32 +225,27 @@ local function getDamageColor(dmgType)
 	return "'#A8A8A8'"
 end
 
-local function truncate1(floatNb)
-	local rounded = math.floor(floatNb)
-	Ext.Print(floatNb, rounded)
-	local multiplied = math.floor((floatNb - rounded) * 10)/10
-	Ext.Print(multiplied)
-	return rounded+multiplied
-end
-
 local function StatusGetDescriptionParam(status, statusSource, character, par)
+	Ext.Print(par)
 	if par == "Damage" then
 		local dmgStat = Ext.GetStat(status.DamageStats)
 		local globalMult = 1 + (statusSource.Strength-10) * (Ext.ExtraData.DGM_StrengthDoTBonus*0.01) --From the overhaul
 		if dmgStat.Damage == 1 then
 			dmg = Game.Math.GetAverageLevelDamage(character.Level)
-		elseif dmgStat.Damage == 0 then
+		elseif dmgStat.Damage == 0 and dmgStat.BonusWeapon == nil then
 			dmg = Game.Math.GetLevelScaledDamage(character.Level)
+		else
+			dmg = Game.Math.GetLevelScaledWeaponDamage(character.Level)
 		end
 		--Ext.Print("AverageLevelDamage "..Game.Math.GetAverageLevelDamage(character.Level))
 		dmg = dmg*(dmgStat.DamageFromBase/100)
 		dmgRange = dmg*(dmgStat["Damage Range"])*0.005
-		Ext.Print(dmg, dmgRange, globalMult)
+		--Ext.Print(dmg, dmgRange, globalMult)
 		local minDmg = math.floor(Ext.Round(dmg - dmgRange * globalMult))
 		local maxDmg = math.floor(Ext.Round(dmg + dmgRange * globalMult))
 		if maxDmg <= minDmg then maxDmg = maxDmg+1 end
 		local color = getDamageColor(dmgStat["Damage Type"])
-		Ext.Print(minDmg, maxDmg)
+		--Ext.Print(minDmg, maxDmg)
 		return "<font color="..color..">"..tostring(minDmg).."-"..tostring(maxDmg).." "..dmgStat["Damage Type"].." damage".."</font>"
 	end
 	return nil
@@ -170,15 +254,24 @@ end
 Ext.RegisterListener("StatusGetDescriptionParam", StatusGetDescriptionParam)
 
 local function SkillGetDescriptionParam(skill, character, isFromItem, par)
-	--Ext.Print(skill, character.Name, par)
-	if par == "Damage" or par == "Weapon" then
-		if skill.Damage ~= "BaseLevelDamage" and skill.Damage ~= "AverageLevelDamage" then return nil end
+	--Ext.Print(skill.Damage, skill.DamageMultiplier)
+	-- Ext.Print("BaseLevelDamage:",Game.Math.GetLevelScaledDamage(character.Level))
+	-- Ext.Print("AverageLevelDamage:",Game.Math.GetAverageLevelDamage(character.Level))
+	-- Ext.Print("LevelScaledMonsterWeaponDamage:", Game.Math.GetLevelScaledMonsterWeaponDamage(character.Level))
+	-- Ext.Print("LevelScaledWeaponDamage:", Game.Math.GetLevelScaledWeaponDamage(character.Level))
+	local pass = false
+	local desc = skill.StatsDescriptionParams
+	if desc:find("Weapon:") ~= nil then
+		pass = true
+	end
+	if par == "Damage" or pass then
+		if skill.Damage ~= "BaseLevelDamage" and skill.Damage ~= "AverageLevelDamge" then return nil end
 		local dmg = GetSkillDamageRange(character, skill)
 		local result = ""
 		local once = false
 		
 		for dmgType, damages in pairs(dmg) do
-			--Ext.Print(dmgType, damages[1], damages[2])
+			Ext.Print(dmgType, damages[1], damages[2])
 			local minDmg = math.floor(damages[1])
 			local maxDmg = math.floor(damages[2])
 			local color = getDamageColor(dmgType)
@@ -190,23 +283,6 @@ local function SkillGetDescriptionParam(skill, character, isFromItem, par)
 			end
 			return result
 		end
-		-- if skill.UseWeaponDamage == "No" then
-			-- local globalMult = 1 + (character.Strength-10) * 0.03 + (character.Finesse-10) * 0.03 + (character.Intelligence-10) * 0.06
-			-- local dmg = CalculateBaseDamage(skill.Damage, character, nil, character.Level)
-			-- local dmg = dmg*(skill["Damage Multiplier"]/100)
-			-- local dmgRange = dmg*(skill["Damage Range"])*0.005
-			-- local minDmg = math.floor(Ext.Round((dmg - dmgRange)*globalMult))
-			-- local maxDmg = math.floor(Ext.Round((dmg + dmgRange)*globalMult))
-			-- if maxDmg <= minDmg then maxDmg = maxDmg+1 end
-			-- local color = getDamageColor(skill.DamageType)
-			-- Ext.Print(minDmg, maxDmg)
-		-- else
-			-- local globalMult = 1 + (character.Strength-10) * 0.06 + (character.Finesse-10) * 0.03 + (character.Intelligence-10) * 0.06
-			-- dmg = ComputeBaseWeaponDamage(character.MainWeapon)
-			-- local result = ""
-			-- local once = false
-			
-			-- Ext.Print(result)
 	end
 	return nil
 end
@@ -214,3 +290,180 @@ end
 Ext.RegisterListener("SkillGetDescriptionParam", SkillGetDescriptionParam)
 
 
+local function changeDamageValue(ui, call, state)
+    --local ui = Ext.GetBuiltinUI("Public/Game/GUI/characterSheet.swf")
+    if ui ~= nil then
+        if ui:GetValue("secStat_array", "string", 2) == nil then return end
+        local strength = ui:GetValue("primStat_array", "string", 2):gsub('<font color="#00547F">', ""):gsub("</font>", "")
+        strength = tonumber(strength) - Ext.ExtraData.AttributeBaseValue
+        local finesse = ui:GetValue("primStat_array", "string", 6):gsub('<font color="#00547F">', ""):gsub("</font>", "")
+        finesse = tonumber(finesse)  - Ext.ExtraData.AttributeBaseValue
+        local intelligence = ui:GetValue("primStat_array", "string", 10):gsub('<font color="#00547F">', ""):gsub("</font>", "")
+        intelligence = tonumber(intelligence) - Ext.ExtraData.AttributeBaseValue
+        local damage = ui:GetValue("secStat_array", "string", 24)
+        local minDamage = damage:gsub(" - .*", "")
+        local maxDamage = damage:gsub(".* - ", "")
+        local globalMult = 100 + strength * Ext.ExtraData.DGM_StrengthGlobalBonus + strength * Ext.ExtraData.DGM_StrengthWeaponBonus +
+        finesse * Ext.ExtraData.DGM_FinesseGlobalBonus +
+        intelligence * Ext.ExtraData.DGM_IntelligenceGlobalBonus
+        minDamage = math.floor(tonumber(minDamage) * globalMult * 0.01)
+        maxDamage = math.floor(tonumber(maxDamage) * globalMult * 0.01)
+        Ext.Print(minDamage, maxDamage)
+        ui:SetValue("secStat_array", minDamage.." - "..maxDamage, 24)
+    end
+end
+
+local function tooltipReplace(stat, char)
+    local tooltipArray = {}
+    if char == nil then return end
+    local attrBonus = CharGetDGMAttributeBonus(char)
+    local stats = char.Stats
+    if stat == "Strength" then
+        tooltipArray[7] = "+"
+            ..attrBonus["str"].." points = +"
+            ..attrBonus["strGlobal"].."% on all damages, +"
+            ..attrBonus["strWeapon"].."% more for weapon-based attacks and +"
+            ..attrBonus["strDot"].."% more damage dealt by statuses doing damages."
+    end
+    if stat == "Finesse" then
+        tooltipArray[5] = "+"
+            ..attrBonus["fin"].." points = +"
+            ..attrBonus["finGlobal"].."% on all damages."
+    end
+    if stat == "Intelligence" then
+        tooltipArray[5] = "+"
+            ..attrBonus["int"].." points = +"
+            ..attrBonus["intGlobal"].."% on all damages, +"
+            ..attrBonus["intSkill"].."% more damages from skills and +"
+            ..attrBonus["intAcc"].."% Accuracy bonus."
+    end
+    if stat == "Dual-Wielding" then
+        if stats.DualWielding > 0 then
+            tooltipArray[6] = "Level "
+                ..stats.DualWielding..": +"
+                ..math.floor((Ext.ExtraData.CombatAbilityDamageBonus * stats.DualWielding)).."% Damage, +"
+                ..math.floor((Ext.ExtraData.CombatAbilityDodgingBonus * stats.DualWielding)).."% Dodging and increase Offhand damage by "
+                ..math.floor((Ext.ExtraData.DGM_DualWieldingOffhandBonus * stats.DualWielding)).."%."
+        end
+        tooltipArray[7] = "Next Level "
+            ..math.floor((stats.DualWielding+1))..": +"
+            ..math.floor((Ext.ExtraData.CombatAbilityDamageBonus * (stats.DualWielding+1))).."% Damage, +"
+            ..math.floor((Ext.ExtraData.CombatAbilityDodgingBonus * (stats.DualWielding+1))).."% Dodging and increase Offhand damage by "
+            ..math.floor((Ext.ExtraData.DGM_DualWieldingOffhandBonus * (stats.DualWielding+1))).."%."
+    end
+    if stat == "Ranged" then
+        if stats.Ranged > 0 then
+            tooltipArray[6] = "Level "
+                ..stats.Ranged..": +"
+                ..math.floor((Ext.ExtraData.CombatAbilityDamageBonus * stats.Ranged)).."% Damage, +"
+                ..math.floor((Ext.ExtraData.CombatAbilityCritBonus * stats.Ranged)).."% Critical Chance and increase Range by "
+                ..(Ext.ExtraData.DGM_RangedRangeBonus * stats.Ranged * 0.01).."m."
+        end
+        tooltipArray[7] = "Level "
+            ..(stats.Ranged+1)..": +"
+            ..math.floor((Ext.ExtraData.CombatAbilityDamageBonus * (stats.Ranged+1))).."% Damage, +"
+            ..math.floor((Ext.ExtraData.CombatAbilityCritBonus * (stats.Ranged+1))).."% Critical Chance and increase Range by "
+            ..(Ext.ExtraData.DGM_RangedRangeBonus * (stats.Ranged+1) * 0.01).."m."
+    end
+    if stat == "Single-Handed" then
+        if stats.SingleHanded > 0 then
+            tooltipArray[6] = "Level "..stats.SingleHanded..": +"
+                ..math.floor(Ext.ExtraData.CombatAbilityDamageBonus * stats.SingleHanded).."% Damage, +"
+                ..math.floor(Ext.ExtraData.CombatAbilityAccuracyBonus * stats.SingleHanded).."% Accuracy, +"
+                ..math.floor(Ext.ExtraData.DGM_SingleHandedArmorBonus * stats.SingleHanded).."% Armors and +"
+                ..math.floor(Ext.ExtraData.DGM_SingleHandedResistanceBonus * stats.SingleHanded).."% to Elemental Resistances."
+        end
+        tooltipArray[7] = "Next Level "..stats.SingleHanded..": +"
+            ..math.floor(Ext.ExtraData.CombatAbilityDamageBonus * (stats.SingleHanded+1)).."% Damage, +"
+            ..math.floor(Ext.ExtraData.CombatAbilityAccuracyBonus * (stats.SingleHanded+1)).."% Accuracy, +"
+            ..math.floor(Ext.ExtraData.DGM_SingleHandedArmorBonus * (stats.SingleHanded+1)).."% Armors and +"
+            ..math.floor(Ext.ExtraData.DGM_SingleHandedResistanceBonus * (stats.SingleHanded+1)).."% to Elemental Resistances."
+    end
+    if stat == "Two-Handed" then
+        if stats.TwoHanded > 0 then
+            tooltipArray[6] = "Level "..stats.TwoHanded..": +"
+                ..math.floor(Ext.ExtraData.CombatAbilityDamageBonus * stats.TwoHanded).."% Damage, +"
+                ..math.floor(Ext.ExtraData.CombatAbilityCritMultiplierBonus * stats.TwoHanded).."% Critical Multiplier and +"
+                ..math.floor(Ext.ExtraData.DGM_TwoHandedCTHBonus * stats.TwoHanded).."% Chance to Hit."
+        end
+        tooltipArray[7] = "Next Level "..stats.TwoHanded..": +"
+            ..math.floor(Ext.ExtraData.CombatAbilityDamageBonus * (stats.TwoHanded+1)).."% Damage, +"
+            ..math.floor(Ext.ExtraData.CombatAbilityCritMultiplierBonus * (stats.TwoHanded+1)).."% Critical Multiplier and +"
+            ..math.floor(Ext.ExtraData.DGM_TwoHandedCTHBonus * (stats.TwoHanded+1)).."% Chance to Hit."
+    end
+    if stat == "Perseverance" then
+        if stats.Perseverance > 0 then
+            tooltipArray[6] = "Level "..stats.Perseverance..": +"
+                ..math.floor(Ext.ExtraData.AbilityPerseveranceArmorPerPoint * stats.Perseverance).."% Armour restored after a hard Crowd Control effect recovery and +"
+                ..math.floor(Ext.ExtraData.DGM_PerseveranceVitalityRecovery * stats.Perseverance).."% Vitality restored per turn."
+        end
+        tooltipArray[7] = "Next Level "..stats.Perseverance..": +"
+            ..math.floor(Ext.ExtraData.AbilityPerseveranceArmorPerPoint * (stats.Perseverance+1)).."% Armour restored after a hard Crowd Control effect recovery and +"
+            ..math.floor(Ext.ExtraData.DGM_PerseveranceVitalityRecovery * (stats.Perseverance+1)).."% Vitality restored per turn."
+    end      
+    return tooltipArray
+end
+
+
+local function onTooltip(ui, ...)
+    -- Thanks a lot LaughingLeader and Norb
+    local sheet = Ext.GetBuiltinUI("Public/Game/GUI/characterSheet.swf")
+    local charHandle = sheet:GetValue("charHandle", "number")
+    local char = Ext.GetCharacter(Ext.DoubleToHandle(charHandle))
+    if char == nil then return end
+    local arrayValueSet = ui:GetValue("tooltip_array", "number", 0)
+    local totalNil = 0
+    if arrayValueSet ~= nil then
+        local customTooltips = tooltipReplace(ui:GetValue("tooltip_array", "string", 1), char)
+        if customTooltips ~= nil then
+            for i, tt in pairs(customTooltips) do
+                ui:SetValue("tooltip_array", tt, i)
+            end
+        end
+        if ui:GetValue("tooltip_array", "string", 1) == "Damage" then
+            local damageText = ui:GetValue("tooltip_array", "string", 7)
+            local minDamage = damageText:gsub("^.* ", ""):gsub("-[1-9]*", "")
+            local maxDamage = damageText:gsub("^.*-", "")
+            local attrBonus = CharGetDGMAttributeBonus(char)
+            minDamage = math.floor(tonumber(minDamage) * (100+attrBonus["strGlobal"]+attrBonus["strWeapon"]+attrBonus["finGlobal"]+attrBonus["intGlobal"])/100)
+            maxDamage = math.floor(tonumber(maxDamage) * (100+attrBonus["strGlobal"]+attrBonus["strWeapon"]+attrBonus["finGlobal"]+attrBonus["intGlobal"])/100)
+            ui:SetValue("tooltip_array", "Total damage: "..minDamage.."-"..maxDamage, 7)
+        end
+        for i=0,999,1 do
+            local val = ui:GetValue("tooltip_array", "number", i)
+            if val == nil then val = ui:GetValue("tooltip_array", "string", i) end
+            if val == nil then val = ui:GetValue("tooltip_array", "boolean", i) end
+            if val == nil then
+            --     print(i, val)
+            -- else
+                totalNil = totalNil + 1
+                if totalNil > 20 then
+                    break
+                end
+            end
+        end
+    end
+end
+
+local function SetupUI()
+    local charSheet = Ext.GetBuiltinUI("Public/Game/GUI/characterSheet.swf")
+    local tooltips = Ext.GetBuiltinUI("Public/Game/GUI/tooltip.swf")
+    --if charSheet ~= nil and tooltips ~= nil then
+        Ext.RegisterUIInvokeListener(charSheet, "updateArraySystem", changeDamageValue)
+        Ext.RegisterUIInvokeListener(tooltips, "addFormattedTooltip", onTooltip)
+        --Ext.Print("Registered call")
+    --else
+    --    Ext.PrintError("Failed to get 'Public/Game/GUI/characterSheet.swf' for some reason.")
+    --end
+end
+
+Ext.RegisterListener("SessionLoaded", SetupUI)
+
+-- For V46 release
+-- local function OnDamageStatTooltip(character, stat, tooltip)
+--     local element = tooltip:GetElement("StatsTotalDamage")
+--     Ext.Print(element.Label)
+--     local damageText = element.Label
+-- end
+
+-- Game.Tooltip.RegisterListener("Stat", "Damage", OnDamageStatTooltip)

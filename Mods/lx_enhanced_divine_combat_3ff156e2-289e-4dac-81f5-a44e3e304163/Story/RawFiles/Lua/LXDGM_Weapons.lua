@@ -86,7 +86,15 @@ function ApplyOverhaulWeaponAbilityBonuses(character)
 	if CharacterGetAbility(character, "SingleHanded") == nil then return end --Check for characters without stats
 	---- Abilities
 	local wpnAbilityBonuses = {}
-	wpnAbilityBonuses["SingleHanded"] = {ArmorBoost=Ext.ExtraData.DGM_SingleHandedArmorBonus, MagicArmorBoost=Ext.ExtraData.DGM_SingleHandedArmorBonus}
+	wpnAbilityBonuses["SingleHanded"] = {
+		ArmorBoost=Ext.ExtraData.DGM_SingleHandedArmorBonus,
+		MagicArmorBoost=Ext.ExtraData.DGM_SingleHandedArmorBonus,
+		FireResistance=Ext.ExtraData.DGM_SingleHandedResistanceBonus,
+		EarthResistance=Ext.ExtraData.DGM_SingleHandedResistanceBonus,
+		PoisonResistance=Ext.ExtraData.DGM_SingleHandedResistanceBonus,
+		WaterResistance=Ext.ExtraData.DGM_SingleHandedResistanceBonus,
+		AirResistance=Ext.ExtraData.DGM_SingleHandedResistanceBonus
+		}
 	wpnAbilityBonuses["TwoHanded"] = {ChanceToHitBoost=Ext.ExtraData.DGM_TwoHandedCTHBonus}
 	wpnAbilityBonuses["Ranged"] = {RangeBoost=Ext.ExtraData.DGM_RangedRangeBonus}
 	

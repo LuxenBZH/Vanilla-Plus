@@ -1,5 +1,6 @@
 {
-    "RequiredExtensionVersion": 42,
+    "RequiredExtensionVersion": 45,
+	"ModTable": "PDGM",
     "FeatureFlags": [
         "OsirisExtensions",
         "Lua",

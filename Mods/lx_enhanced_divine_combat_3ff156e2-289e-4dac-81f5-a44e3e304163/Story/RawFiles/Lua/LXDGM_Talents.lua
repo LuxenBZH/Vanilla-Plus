@@ -60,7 +60,7 @@ function CheckAllTalents(character)
 	}
 	for i,talent in pairs(boostedTalents) do
 		local hasTalent = CharacterHasTalent(character, talent)
-		print("[LXDGM_Talents.CheckAllTalents] Character has talent:",talent,hasTalent)
+		--print("[LXDGM_Talents.CheckAllTalents] Character has talent:",talent,hasTalent)
 		if hasTalent == 1 then CheckBoostTalents(character, talent, 1) end
 	end
 	if CharacterHasTalent(character, "ExtraStatPoints") == 1 then CheckDuelist(character) end
@@ -98,7 +98,7 @@ end
 
 function WalkItOffReplacement(character)
 	local hasStatus = 0
-	local wioStates = {"LX_WALKITOFF", "LX_WALKITOFF_2", "LX_WALKITOFF_3", "LX_WALKITOFF_4", "LX_WALKITOFF_5"}
+	local wioStates = {"LX_WALKITOFF", "LX_WALKITOFF_2", "LX_WALKITOFF_3"}
 	local reapply = false
 	for i,stage in pairs(wioStates) do
 		if reapply == true then
@@ -125,4 +125,19 @@ function ManageAllSkilledUp(character, skill, cooldown)
 		NRD_SkillSetCooldown(character, skill, (cooldown-6.0))
 		SetVarInteger(character, "LX_AllSkilledUp_Counter", 1)
 	end
+end
+
+function ManagePetPal(character, summon)
+	local summons = Osi.DB_DGM_Available_Summons:Get(character, nil);
+	if summons[1] ~= nil and summons[2] ~= nil then
+		ApplyStatus(summons[1][2], "LX_PETPAL", -1.0, 1)
+		ApplyStatus(summons[2][2], "LX_PETPAL", -1.0, 1)
+	end
+end
+
+function RestorePetPalPower(character, summon)
+	-- Call this function on DB remove of the second summon
+	local summons = Osi.DB_DGM_Available_Summons:Get(character, nil)
+	if summons[1] == nil then return end
+	RemoveStatus(summons[1][2], "LX_PETPAL")
 end

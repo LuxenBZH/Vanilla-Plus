@@ -170,7 +170,7 @@
     <stat_object is_substat="false">
       <fields>
         <field name="Name" type="NameStatObjectFieldDefinition" value="LX_DODGE_FATIGUE2" />
-        <field name="DisplayName" type="TranslatedStringStatObjectFieldDefinition" value="Dodge Fatigue" />
+        <field name="DisplayName" type="TranslatedStringStatObjectFieldDefinition" value="Dodge Fatigue (2)" />
         <field name="Description" type="TranslatedStringStatObjectFieldDefinition" value="This character dodges become less effective." />
         <field name="Icon" type="StringStatObjectFieldDefinition" value="Skill_Rogue_Trip" />
         <field name="StatsId" type="StringStatObjectFieldDefinition" value="Stats_LX_DodgeFatigue2" />
@@ -180,10 +180,20 @@
     <stat_object is_substat="false">
       <fields>
         <field name="Name" type="NameStatObjectFieldDefinition" value="LX_DODGE_FATIGUE3" />
-        <field name="DisplayName" type="TranslatedStringStatObjectFieldDefinition" value="Dodge Fatigue" />
+        <field name="DisplayName" type="TranslatedStringStatObjectFieldDefinition" value="Dodge Fatigue (3)" />
         <field name="Description" type="TranslatedStringStatObjectFieldDefinition" value="This character dodges become less effective." />
         <field name="Icon" type="StringStatObjectFieldDefinition" value="Skill_Rogue_Trip" />
         <field name="StatsId" type="StringStatObjectFieldDefinition" value="Stats_LX_DodgeFatigue3" />
+        <field name="StackId" type="StringStatObjectFieldDefinition" value="Stack_LX_DodgeFatigue" />
+      </fields>
+    </stat_object>
+    <stat_object is_substat="false">
+      <fields>
+        <field name="Name" type="NameStatObjectFieldDefinition" value="LX_DODGE_FATIGUE4" />
+        <field name="DisplayName" type="TranslatedStringStatObjectFieldDefinition" value="Dodge Fatigue (4)" />
+        <field name="Description" type="TranslatedStringStatObjectFieldDefinition" value="This character dodges become less effective." />
+        <field name="Icon" type="StringStatObjectFieldDefinition" value="Skill_Rogue_Trip" />
+        <field name="StatsId" type="StringStatObjectFieldDefinition" value="Stats_LX_DodgeFatigue4" />
         <field name="StackId" type="StringStatObjectFieldDefinition" value="Stack_LX_DodgeFatigue" />
       </fields>
     </stat_object>
@@ -254,6 +264,100 @@
         <field name="StatusEffect" type="StringStatObjectFieldDefinition" value="RS3_FX_GP_Status_Regenerating_01" />
         <field name="StatsId" type="StringStatObjectFieldDefinition" value="Stats_Healing_Elixir" />
         <field name="StackId" type="StringStatObjectFieldDefinition" value="Stack_HealingElixir" />
+      </fields>
+    </stat_object>
+    <stat_object is_substat="false">
+      <fields>
+        <field name="Name" type="NameStatObjectFieldDefinition" value="ARROWHEAD_FIRE" />
+        <field name="ForGameMaster" type="EnumerationStatObjectFieldDefinition" value="0" enumeration_type_name="YesNo" />
+        <field name="InitiateCombat" type="EnumerationStatObjectFieldDefinition" value="0" enumeration_type_name="YesNo" />
+        <field name="DisplayName" type="TranslatedStringStatObjectFieldDefinition" value="Burning Weapons" />
+        <field name="Icon" type="StringStatObjectFieldDefinition" value="statcons_Arrowhead_Fire" />
+        <field name="FormatColor" type="EnumerationStatObjectFieldDefinition" value="8" enumeration_type_name="FormatStringColor" />
+        <field name="StatsId" type="StringStatObjectFieldDefinition" value="Stats_Arrowhead_Fire" />
+        <field name="StackId" type="StringStatObjectFieldDefinition" value="Stack_ElementalArrowhead" />
+      </fields>
+    </stat_object>
+    <stat_object is_substat="false">
+      <fields>
+        <field name="Name" type="NameStatObjectFieldDefinition" value="ARROWHEAD_WATER" />
+        <field name="ForGameMaster" type="EnumerationStatObjectFieldDefinition" value="0" enumeration_type_name="YesNo" />
+        <field name="InitiateCombat" type="EnumerationStatObjectFieldDefinition" value="0" enumeration_type_name="YesNo" />
+        <field name="DisplayName" type="TranslatedStringStatObjectFieldDefinition" value="Water Weapons" />
+        <field name="Icon" type="StringStatObjectFieldDefinition" value="statcons_Arrowhead_Water" />
+        <field name="FormatColor" type="EnumerationStatObjectFieldDefinition" value="8" enumeration_type_name="FormatStringColor" />
+        <field name="StatsId" type="StringStatObjectFieldDefinition" value="Stats_Arrowhead_Water" />
+        <field name="StackId" type="StringStatObjectFieldDefinition" value="Stack_ElementalArrowhead" />
+      </fields>
+    </stat_object>
+    <stat_object is_substat="false">
+      <fields>
+        <field name="Name" type="NameStatObjectFieldDefinition" value="ARROWHEAD_POISON" />
+        <field name="ForGameMaster" type="EnumerationStatObjectFieldDefinition" value="0" enumeration_type_name="YesNo" />
+        <field name="InitiateCombat" type="EnumerationStatObjectFieldDefinition" value="0" enumeration_type_name="YesNo" />
+        <field name="DisplayName" type="TranslatedStringStatObjectFieldDefinition" value="Poison Weapons" />
+        <field name="Icon" type="StringStatObjectFieldDefinition" value="statcons_Arrowhead_Poison" />
+        <field name="FormatColor" type="EnumerationStatObjectFieldDefinition" value="8" enumeration_type_name="FormatStringColor" />
+        <field name="StatsId" type="StringStatObjectFieldDefinition" value="Stats_Arrowhead_Poison" />
+        <field name="StackId" type="StringStatObjectFieldDefinition" value="Stack_ElementalArrowhead" />
+      </fields>
+    </stat_object>
+    <stat_object is_substat="false">
+      <fields>
+        <field name="Name" type="NameStatObjectFieldDefinition" value="ARROWHEAD_ELECTRIC" />
+        <field name="ForGameMaster" type="EnumerationStatObjectFieldDefinition" value="0" enumeration_type_name="YesNo" />
+        <field name="InitiateCombat" type="EnumerationStatObjectFieldDefinition" value="0" enumeration_type_name="YesNo" />
+        <field name="DisplayName" type="TranslatedStringStatObjectFieldDefinition" value="Electric Weapons" />
+        <field name="Icon" type="StringStatObjectFieldDefinition" value="statcons_Arrowhead_Electric" />
+        <field name="FormatColor" type="EnumerationStatObjectFieldDefinition" value="8" enumeration_type_name="FormatStringColor" />
+        <field name="StatsId" type="StringStatObjectFieldDefinition" value="Stats_Arrowhead_Electric" />
+        <field name="StackId" type="StringStatObjectFieldDefinition" value="Stack_ElementalArrowhead" />
+      </fields>
+    </stat_object>
+    <stat_object is_substat="false">
+      <fields>
+        <field name="Name" type="NameStatObjectFieldDefinition" value="ARROWHEAD_BLOOD" />
+        <field name="ForGameMaster" type="EnumerationStatObjectFieldDefinition" value="0" enumeration_type_name="YesNo" />
+        <field name="InitiateCombat" type="EnumerationStatObjectFieldDefinition" value="0" enumeration_type_name="YesNo" />
+        <field name="DisplayName" type="TranslatedStringStatObjectFieldDefinition" value="Bloody Weapons" />
+        <field name="Icon" type="StringStatObjectFieldDefinition" value="statcons_Arrowhead_Blood" />
+        <field name="FormatColor" type="EnumerationStatObjectFieldDefinition" value="8" enumeration_type_name="FormatStringColor" />
+        <field name="StatusEffect" type="StringStatObjectFieldDefinition" value="RS3_FX_Items_Weapons_DamageType_Blood_Overlay_01" />
+        <field name="StatsId" type="StringStatObjectFieldDefinition" value="Stats_Arrowhead_Blood" />
+        <field name="StackId" type="StringStatObjectFieldDefinition" value="Stack_ElementalArrowhead" />
+      </fields>
+    </stat_object>
+    <stat_object is_substat="false">
+      <fields>
+        <field name="Name" type="NameStatObjectFieldDefinition" value="ARROWHEAD_OIL" />
+        <field name="ForGameMaster" type="EnumerationStatObjectFieldDefinition" value="0" enumeration_type_name="YesNo" />
+        <field name="InitiateCombat" type="EnumerationStatObjectFieldDefinition" value="0" enumeration_type_name="YesNo" />
+        <field name="DisplayName" type="TranslatedStringStatObjectFieldDefinition" value="Oily Weapons" />
+        <field name="Icon" type="StringStatObjectFieldDefinition" value="statcons_Arrowhead_Oil" />
+        <field name="FormatColor" type="EnumerationStatObjectFieldDefinition" value="8" enumeration_type_name="FormatStringColor" />
+        <field name="StatsId" type="StringStatObjectFieldDefinition" value="Stats_Arrowhead_Oil" />
+        <field name="StackId" type="StringStatObjectFieldDefinition" value="Stack_ElementalArrowhead" />
+      </fields>
+    </stat_object>
+    <stat_object is_substat="false">
+      <fields>
+        <field name="Name" type="NameStatObjectFieldDefinition" value="LX_POTIONWARNING" />
+        <field name="DisplayName" type="TranslatedStringStatObjectFieldDefinition" value="Potion Dizziness" />
+        <field name="Description" type="TranslatedStringStatObjectFieldDefinition" value="This character drank a lot of potions. One more potion and it's an overdose !" />
+        <field name="Icon" type="StringStatObjectFieldDefinition" value="statIcons_HealingElixir" />
+        <field name="FormatColor" type="EnumerationStatObjectFieldDefinition" value="0" enumeration_type_name="FormatStringColor" />
+        <field name="StackId" type="StringStatObjectFieldDefinition" value="Stack_PotionDizziness" />
+      </fields>
+    </stat_object>
+    <stat_object is_substat="false">
+      <fields>
+        <field name="Name" type="NameStatObjectFieldDefinition" value="LX_POTIONFATIGUE" />
+        <field name="DisplayName" type="TranslatedStringStatObjectFieldDefinition" value="Potion Poisoning" />
+        <field name="Description" type="TranslatedStringStatObjectFieldDefinition" value="This character drank too much potions and could not handle the side effects." />
+        <field name="Icon" type="StringStatObjectFieldDefinition" value="statIcons_HealingElixir" />
+        <field name="FormatColor" type="EnumerationStatObjectFieldDefinition" value="4" enumeration_type_name="FormatStringColor" />
+        <field name="StatsId" type="StringStatObjectFieldDefinition" value="Stats_LX_PotionFatigue" />
+        <field name="StackId" type="StringStatObjectFieldDefinition" value="Stack_PotionDizziness" />
       </fields>
     </stat_object>
   </stat_objects>

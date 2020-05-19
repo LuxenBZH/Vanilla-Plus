@@ -63,8 +63,21 @@ AND
 CharacterGetOwner(_Summon, _Summoner)
 AND
 CharacterHasTalent(_Summoner, "AnimalEmpathy", 1)
+AND
+NRD_CharacterGetInt(_Summon, "Totem", (INTEGER)_IsTotem)
+AND
+_IsTotem == 0
 THEN
-ApplyStatus(_Summon, "LX_PETPAL", -1.0, 1);
+DB_DGM_Available_Summons(_Summoner, _Summon);
+LX_EXT_ManagePetPal(_Summoner, _Summon);
+
+IF
+CharacterDied(_Summon)
+AND
+DB_DGM_Available_Summons(_Summoner, _Summon)
+THEN
+NOT DB_DGM_Available_Summons(_Summoner, _Summon);
+LX_EXT_RestorePetPalPower(_Summoner, _Summon);
 
 //// Duelist check
 IF

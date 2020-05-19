@@ -545,5 +545,38 @@
         <field name="CanTargetItems" type="EnumerationStatObjectFieldDefinition" value="1" enumeration_type_name="YesNo" />
       </fields>
     </stat_object>
+    <stat_object is_substat="false">
+      <fields>
+        <field name="Name" type="NameStatObjectFieldDefinition" value="GuardianAngel" />
+        <field name="ForGameMaster" type="EnumerationStatObjectFieldDefinition" value="1" enumeration_type_name="YesNo" />
+        <field name="Ability" type="EnumerationStatObjectFieldDefinition" value="1" enumeration_type_name="SkillAbility" />
+        <field name="Tier" type="EnumerationStatObjectFieldDefinition" value="2" enumeration_type_name="SkillTier" />
+        <field name="ActionPoints" type="IntegerStatObjectFieldDefinition" value="2" />
+        <field name="Cooldown" type="IntegerStatObjectFieldDefinition" value="5" />
+        <field name="SkillProperties" type="StringStatObjectFieldDefinition" value="GUARDIAN_ANGEL_AURA,100,2;" />
+        <field name="AreaRadius" type="IntegerStatObjectFieldDefinition" value="4" />
+        <field name="AddWeaponRange" type="EnumerationStatObjectFieldDefinition" value="0" enumeration_type_name="YesNo" />
+        <field name="TargetConditions" type="StringStatObjectFieldDefinition" value="Self" />
+        <field name="UseCharacterStats" type="EnumerationStatObjectFieldDefinition" value="0" enumeration_type_name="YesNo" />
+        <field name="UseWeaponDamage" type="EnumerationStatObjectFieldDefinition" value="0" enumeration_type_name="YesNo" />
+        <field name="UseWeaponProperties" type="EnumerationStatObjectFieldDefinition" value="0" enumeration_type_name="YesNo" />
+        <field name="Autocast" type="EnumerationStatObjectFieldDefinition" value="0" enumeration_type_name="YesNo" />
+        <field name="MemorizationRequirements" type="StringStatObjectFieldDefinition" value="WarriorLore 2" />
+        <field name="Icon" type="StringStatObjectFieldDefinition" value="Skill_Warrior_GuardianAngel" />
+        <field name="DisplayName" type="TranslatedStringStatObjectFieldDefinition" value="|Guardian Angel|" />
+        <field name="Description" type="TranslatedStringStatObjectFieldDefinition" value="|Allies in melee range redirect [1]% of recieved damage to you.|" />
+        <field name="StatsDescriptionParams" type="StringStatObjectFieldDefinition" value="StatusData:GUARDIAN_ANGEL:DamagePercentage" />
+        <field name="PrepareAnimationInit" type="StringStatObjectFieldDefinition" value="skill_prepare_shout_01_start" />
+        <field name="PrepareAnimationLoop" type="StringStatObjectFieldDefinition" value="skill_prepare_shout_01_loop" />
+        <field name="PrepareEffect" type="StringStatObjectFieldDefinition" value="RS3_FX_Skills_Divine_Prepare_Shout_Root_03,KeepRot:Dummy_Root" />
+        <field name="CastAnimation" type="StringStatObjectFieldDefinition" value="skill_cast_shout_01_cast" />
+        <field name="CastTextEvent" type="StringStatObjectFieldDefinition" value="cast" />
+        <field name="CastEffect" type="StringStatObjectFieldDefinition" value="RS3_FX_Skills_Divine_Cast_Shout_GuardianAngel_Root_01:Dummy_Root:cast" />
+        <field name="Memory Cost" type="IntegerStatObjectFieldDefinition" value="1" />
+        <field name="Magic Cost" type="IntegerStatObjectFieldDefinition" value="0" />
+        <field name="CanTargetCharacters" type="EnumerationStatObjectFieldDefinition" value="1" enumeration_type_name="YesNo" />
+        <field name="CanTargetItems" type="EnumerationStatObjectFieldDefinition" value="0" enumeration_type_name="YesNo" />
+      </fields>
+    </stat_object>
   </stat_objects>
 </stats>

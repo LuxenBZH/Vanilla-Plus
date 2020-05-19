@@ -296,6 +296,7 @@ function ComputeBaseWeaponDamage(weapon)
     local baseDmgFromBase = baseStat.DamageFromBase * 0.01
     local baseMinDamage = baseStat.MinDamage
     local baseMaxDamage = baseStat.MaxDamage
+    Ext.Print("Base:",baseDmgFromBase, "Min:", baseMinDamage, "Max:", baseMaxDamage)
     local damageBoost = 0
 
     for i, stat in pairs(stats) do

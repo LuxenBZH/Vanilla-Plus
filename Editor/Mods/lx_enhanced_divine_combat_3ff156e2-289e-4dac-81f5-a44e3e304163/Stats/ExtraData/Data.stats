@@ -4,7 +4,7 @@
     <stat_object is_substat="false">
       <fields>
         <field name="Name" type="NameStatObjectFieldDefinition" value="ArmorToVitalityRatio" />
-        <field name="Value" type="FloatStatObjectFieldDefinition" value="0.45" />
+        <field name="Value" type="FloatStatObjectFieldDefinition" value="0.4" />
       </fields>
     </stat_object>
     <stat_object is_substat="false">
@@ -16,13 +16,13 @@
     <stat_object is_substat="false">
       <fields>
         <field name="Name" type="NameStatObjectFieldDefinition" value="VitalityToDamageRatio" />
-        <field name="Value" type="FloatStatObjectFieldDefinition" value="6.5" />
+        <field name="Value" type="FloatStatObjectFieldDefinition" value="7" />
       </fields>
     </stat_object>
     <stat_object is_substat="false">
       <fields>
         <field name="Name" type="NameStatObjectFieldDefinition" value="VitalityToDamageRatioGrowth" />
-        <field name="Value" type="FloatStatObjectFieldDefinition" value="0.23" />
+        <field name="Value" type="FloatStatObjectFieldDefinition" value="0.28" />
       </fields>
     </stat_object>
     <stat_object is_substat="false">
@@ -34,7 +34,7 @@
     <stat_object is_substat="false">
       <fields>
         <field name="Name" type="NameStatObjectFieldDefinition" value="VitalityBoostFromAttribute" />
-        <field name="Value" type="FloatStatObjectFieldDefinition" value="0.07" />
+        <field name="Value" type="FloatStatObjectFieldDefinition" value="0.09" />
       </fields>
     </stat_object>
     <stat_object is_substat="false">
@@ -297,12 +297,6 @@
     </stat_object>
     <stat_object is_substat="false">
       <fields>
-        <field name="Name" type="NameStatObjectFieldDefinition" value="End Of Combat SightRange Multiplier" />
-        <field name="Value" type="FloatStatObjectFieldDefinition" value="2.5" />
-      </fields>
-    </stat_object>
-    <stat_object is_substat="false">
-      <fields>
         <field name="Name" type="NameStatObjectFieldDefinition" value="CriticalBonusFromWits" />
         <field name="Value" type="FloatStatObjectFieldDefinition" value="2" />
       </fields>
@@ -451,8 +445,8 @@
     </stat_object>
     <stat_object is_substat="false">
       <fields>
-        <field name="Name" type="NameStatObjectFieldDefinition" value="New_Stat_0" />
-        <field name="Value" type="FloatStatObjectFieldDefinition" value="1" />
+        <field name="Name" type="NameStatObjectFieldDefinition" value="DGM_PerseveranceVitalityRecovery" />
+        <field name="Value" type="FloatStatObjectFieldDefinition" value="2" />
       </fields>
     </stat_object>
   </stat_objects>

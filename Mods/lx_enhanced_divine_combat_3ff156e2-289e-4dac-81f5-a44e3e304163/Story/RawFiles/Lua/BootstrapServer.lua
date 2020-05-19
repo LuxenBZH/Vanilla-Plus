@@ -5,7 +5,7 @@ Ext.Require("LXDGM_CCSystem.lua")
 Ext.Require("LXDGM_Potions.lua")
 Ext.Require("LXDGM_Talents.lua")
 Ext.Require("LXDGM_Weapons.lua")
-
+Ext.Require("LXDGM_StatsPatching.lua")
 
 ---- General Functions ----
 function InitCharacterStatCheck(character)
@@ -33,6 +33,7 @@ function InitCharacterStatCheck(character)
 	end
 	InitCharacterAbilities(character)
 	SetVarInteger(character, "LX_Is_Init", 1)
+	CheckAllTalents(character)
 	ApplyOverhaulAttributeBonuses(character)
 end
 
@@ -144,6 +145,26 @@ function ApplyOverhaulBonusesCheck(character)
 	ApplyOverhaulBonuses(character)
 end
 
+-- UI functions
+function SendClientID(uuid, id)
+	Ext.PostMessageToClient(uuid, "PDGM_ClientID", tostring(id))
+end
+
+local function RequestClientID(call,id,callbackID)
+    local clientID = tonumber(id)
+    if clientID ~= nil then
+        local character = GetCurrentCharacter(clientID)
+        if character ~= nil then
+            if CharacterIsPlayer(character) == 1 then
+				SendClientID(character, clientID)
+                return true
+            end
+        end
+    end
+end
+
+Ext.RegisterNetListener("PDGM_RequestClientID", RequestClientID)
+
 
 ---- Create calls and queries
 Ext.NewCall(InitCharacterStatCheck, "LX_EXT_InitCharacterStatCheck", "(CHARACTERGUID)_Character");
@@ -167,7 +188,11 @@ Ext.NewCall(BlockMagicalCCs, "LX_EXT_CheckMagicalCC", "(GUIDSTRING)_Character, (
 
 -- Items Control
 Ext.NewCall(CharacterUsePoisonedPotion, "LX_EXT_PoisonedPotionManagement", "(GUIDSTRING)_Character, (ITEMGUID)_Potion");
+Ext.NewCall(ManagePotionFatigue, "LX_EXT_ManagePotionFatigue", "(CHARACTERGUID)_Character, (ITEMGUID)_Item");
 
 -- Talents
 Ext.NewCall(ManageAllSkilledUp, "LX_EXT_ManageAllSkilledUp", "(CHARACTERGUID)_Character, (STRING)_Skill, (REAL)_Cooldown");
+Ext.NewCall(ManagePetPal, "LX_EXT_ManagePetPal", "(CHARACTERGUID)_Character, (CHARACTERGUID)_Summon");
+Ext.NewCall(RestorePetPalPower, "LX_EXT_RestorePetPalPower", "(CHARACTERGUID)_Character, (CHARACTERGUID)_Summon");
+
 
