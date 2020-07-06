@@ -31,8 +31,8 @@
         <field name="Act" type="EnumerationStatObjectFieldDefinition" value="0" enumeration_type_name="Act" />
         <field name="Act part" type="EnumerationStatObjectFieldDefinition" value="0" enumeration_type_name="ActPart" />
         <field name="Flags" type="EnumerationListStatObjectFieldDefinition" value="48;38;8" enumeration_type_name="AttributeFlags" />
-        <field name="RangeBoost" type="IntegerStatObjectFieldDefinition" value="2" />
         <field name="APMaximum" type="IntegerStatObjectFieldDefinition" value="1" />
+        <field name="AccuracyBoost" type="IntegerStatObjectFieldDefinition" value="15" />
       </fields>
     </stat_object>
     <stat_object is_substat="false">
@@ -205,11 +205,11 @@
         <field name="Act part" type="EnumerationStatObjectFieldDefinition" value="13" enumeration_type_name="ActPart" />
         <field name="StackId" type="StringStatObjectFieldDefinition" value="Healing" />
         <field name="ComboCategory" type="StringStatObjectFieldDefinition" value="PotionHealing" />
-        <field name="Value" type="IntegerStatObjectFieldDefinition" value="250" />
+        <field name="Value" type="IntegerStatObjectFieldDefinition" value="100" />
         <field name="MinAmount" type="IntegerStatObjectFieldDefinition" value="1" />
         <field name="MaxAmount" type="IntegerStatObjectFieldDefinition" value="1" />
         <field name="Priority" type="IntegerStatObjectFieldDefinition" value="1" />
-        <field name="VitalityPercentage" type="IntegerStatObjectFieldDefinition" value="100" />
+        <field name="VitalityPercentage" type="IntegerStatObjectFieldDefinition" value="50" />
         <field name="ObjectCategory" type="StringStatObjectFieldDefinition" value="HealingPotion" />
         <field name="MinLevel" type="IntegerStatObjectFieldDefinition" value="13" />
       </fields>
@@ -221,12 +221,13 @@
         <field name="Act part" type="EnumerationStatObjectFieldDefinition" value="16" enumeration_type_name="ActPart" />
         <field name="StackId" type="StringStatObjectFieldDefinition" value="Healing" />
         <field name="ComboCategory" type="StringStatObjectFieldDefinition" value="PotionHealing" />
-        <field name="Value" type="IntegerStatObjectFieldDefinition" value="400" />
+        <field name="Value" type="IntegerStatObjectFieldDefinition" value="200" />
         <field name="MinAmount" type="IntegerStatObjectFieldDefinition" value="1" />
         <field name="MaxAmount" type="IntegerStatObjectFieldDefinition" value="1" />
         <field name="Priority" type="IntegerStatObjectFieldDefinition" value="1" />
-        <field name="VitalityPercentage" type="IntegerStatObjectFieldDefinition" value="100" />
+        <field name="VitalityPercentage" type="IntegerStatObjectFieldDefinition" value="60" />
         <field name="ObjectCategory" type="StringStatObjectFieldDefinition" value="HealingPotion" />
+        <field name="RootTemplate" type="RootTemplateStatObjectFieldDefinition" value="654ca67d-d60a-415d-b1d6-8727faa9e7d5" />
       </fields>
     </stat_object>
     <stat_object is_substat="false">
@@ -237,12 +238,12 @@
         <field name="Act part" type="EnumerationStatObjectFieldDefinition" value="9" enumeration_type_name="ActPart" />
         <field name="StackId" type="StringStatObjectFieldDefinition" value="Healing" />
         <field name="ComboCategory" type="StringStatObjectFieldDefinition" value="PotionHealing" />
-        <field name="Value" type="IntegerStatObjectFieldDefinition" value="100" />
+        <field name="Value" type="IntegerStatObjectFieldDefinition" value="50" />
         <field name="ObjectCategory" type="StringStatObjectFieldDefinition" value="HealingPotion" />
         <field name="MinAmount" type="IntegerStatObjectFieldDefinition" value="1" />
         <field name="MaxAmount" type="IntegerStatObjectFieldDefinition" value="1" />
         <field name="Priority" type="IntegerStatObjectFieldDefinition" value="1" />
-        <field name="VitalityPercentage" type="IntegerStatObjectFieldDefinition" value="75" />
+        <field name="VitalityPercentage" type="IntegerStatObjectFieldDefinition" value="40" />
         <field name="MinLevel" type="IntegerStatObjectFieldDefinition" value="9" />
         <field name="MaxLevel" type="IntegerStatObjectFieldDefinition" value="12" />
       </fields>
@@ -255,12 +256,12 @@
         <field name="Act part" type="EnumerationStatObjectFieldDefinition" value="1" enumeration_type_name="ActPart" />
         <field name="StackId" type="StringStatObjectFieldDefinition" value="Healing" />
         <field name="ComboCategory" type="StringStatObjectFieldDefinition" value="PotionHealing" />
-        <field name="Value" type="IntegerStatObjectFieldDefinition" value="15" />
+        <field name="Value" type="IntegerStatObjectFieldDefinition" value="10" />
         <field name="ObjectCategory" type="StringStatObjectFieldDefinition" value="HealingPotion" />
         <field name="MinAmount" type="IntegerStatObjectFieldDefinition" value="1" />
         <field name="MaxAmount" type="IntegerStatObjectFieldDefinition" value="1" />
         <field name="Priority" type="IntegerStatObjectFieldDefinition" value="1" />
-        <field name="VitalityPercentage" type="IntegerStatObjectFieldDefinition" value="35" />
+        <field name="VitalityPercentage" type="IntegerStatObjectFieldDefinition" value="20" />
         <field name="MinLevel" type="IntegerStatObjectFieldDefinition" value="5" />
         <field name="MaxLevel" type="IntegerStatObjectFieldDefinition" value="8" />
       </fields>
@@ -273,12 +274,12 @@
         <field name="Act part" type="EnumerationStatObjectFieldDefinition" value="5" enumeration_type_name="ActPart" />
         <field name="StackId" type="StringStatObjectFieldDefinition" value="Healing" />
         <field name="ComboCategory" type="StringStatObjectFieldDefinition" value="PotionHealing" />
-        <field name="Value" type="IntegerStatObjectFieldDefinition" value="30" />
+        <field name="Value" type="IntegerStatObjectFieldDefinition" value="20" />
         <field name="ObjectCategory" type="StringStatObjectFieldDefinition" value="HealingPotion" />
         <field name="MinAmount" type="IntegerStatObjectFieldDefinition" value="1" />
         <field name="MaxAmount" type="IntegerStatObjectFieldDefinition" value="1" />
         <field name="Priority" type="IntegerStatObjectFieldDefinition" value="1" />
-        <field name="VitalityPercentage" type="IntegerStatObjectFieldDefinition" value="55" />
+        <field name="VitalityPercentage" type="IntegerStatObjectFieldDefinition" value="30" />
         <field name="MinLevel" type="IntegerStatObjectFieldDefinition" value="1" />
         <field name="MaxLevel" type="IntegerStatObjectFieldDefinition" value="4" />
       </fields>
@@ -645,7 +646,7 @@
         <field name="AirResistance" type="IntegerStatObjectFieldDefinition" value="-15" />
         <field name="PoisonResistance" type="IntegerStatObjectFieldDefinition" value="-15" />
         <field name="Initiative" type="IntegerStatObjectFieldDefinition" value="-1" />
-        <field name="AccuracyBoost" type="IntegerStatObjectFieldDefinition" value="-25" />
+        <field name="AccuracyBoost" type="IntegerStatObjectFieldDefinition" value="-15" />
         <field name="APCostBoost" type="IntegerStatObjectFieldDefinition" value="0" />
         <field name="Duration" type="IntegerStatObjectFieldDefinition" value="1" />
         <field name="APStart" type="IntegerStatObjectFieldDefinition" value="-1" />
@@ -661,7 +662,7 @@
         <field name="AirResistance" type="IntegerStatObjectFieldDefinition" value="-30" />
         <field name="PoisonResistance" type="IntegerStatObjectFieldDefinition" value="-30" />
         <field name="Initiative" type="IntegerStatObjectFieldDefinition" value="-2" />
-        <field name="AccuracyBoost" type="IntegerStatObjectFieldDefinition" value="-50" />
+        <field name="AccuracyBoost" type="IntegerStatObjectFieldDefinition" value="-30" />
         <field name="APCostBoost" type="IntegerStatObjectFieldDefinition" value="0" />
         <field name="Duration" type="IntegerStatObjectFieldDefinition" value="1" />
         <field name="APMaximum" type="IntegerStatObjectFieldDefinition" value="-1" />
@@ -678,7 +679,7 @@
         <field name="AirResistance" type="IntegerStatObjectFieldDefinition" value="-45" />
         <field name="PoisonResistance" type="IntegerStatObjectFieldDefinition" value="-45" />
         <field name="Initiative" type="IntegerStatObjectFieldDefinition" value="-3" />
-        <field name="AccuracyBoost" type="IntegerStatObjectFieldDefinition" value="-75" />
+        <field name="AccuracyBoost" type="IntegerStatObjectFieldDefinition" value="-45" />
         <field name="APCostBoost" type="IntegerStatObjectFieldDefinition" value="0" />
         <field name="Duration" type="IntegerStatObjectFieldDefinition" value="1" />
         <field name="APMaximum" type="IntegerStatObjectFieldDefinition" value="-2" />
@@ -758,8 +759,8 @@
     <stat_object is_substat="false">
       <fields>
         <field name="Name" type="NameStatObjectFieldDefinition" value="Stats_LX_Hothead" />
-        <field name="ChanceToHitBoost" type="IntegerStatObjectFieldDefinition" value="10" />
         <field name="CriticalChance" type="IntegerStatObjectFieldDefinition" value="10" />
+        <field name="AccuracyBoost" type="IntegerStatObjectFieldDefinition" value="10" />
       </fields>
     </stat_object>
     <stat_object is_substat="false">
@@ -3246,10 +3247,117 @@
     </stat_object>
     <stat_object is_substat="false">
       <fields>
-        <field name="Name" type="NameStatObjectFieldDefinition" value="Stats_LX_PotionFatigue" />
+        <field name="Name" type="NameStatObjectFieldDefinition" value="Stats_LX_PotionFatigue2" />
         <field name="APStart" type="IntegerStatObjectFieldDefinition" value="-3" />
         <field name="APRecovery" type="IntegerStatObjectFieldDefinition" value="-3" />
         <field name="ActionPoints" type="IntegerStatObjectFieldDefinition" value="-10" />
+      </fields>
+    </stat_object>
+    <stat_object is_substat="false">
+      <fields>
+        <field name="Name" type="NameStatObjectFieldDefinition" value="Stats_LX_PotionFatigue1" />
+        <field name="APStart" type="IntegerStatObjectFieldDefinition" value="-1" />
+        <field name="APRecovery" type="IntegerStatObjectFieldDefinition" value="-1" />
+      </fields>
+    </stat_object>
+    <stat_object is_substat="false">
+      <fields>
+        <field name="Name" type="NameStatObjectFieldDefinition" value="Stats_Drunk" />
+        <field name="Act" type="EnumerationStatObjectFieldDefinition" value="0" enumeration_type_name="Act" />
+        <field name="Act part" type="EnumerationStatObjectFieldDefinition" value="0" enumeration_type_name="ActPart" />
+        <field name="Intelligence" type="EnumerationStatObjectFieldDefinition" value="51" enumeration_type_name="Penalty PreciseQualifier" />
+        <field name="Luck" type="IntegerStatObjectFieldDefinition" value="2" />
+        <field name="Initiative" type="IntegerStatObjectFieldDefinition" value="-5" />
+        <field name="AccuracyBoost" type="IntegerStatObjectFieldDefinition" value="-10" />
+        <field name="DodgeBoost" type="IntegerStatObjectFieldDefinition" value="10" />
+        <field name="Duration" type="IntegerStatObjectFieldDefinition" value="2" />
+        <field name="StatusIcon" type="StringStatObjectFieldDefinition" value="statIcons_Drunk" />
+      </fields>
+    </stat_object>
+    <stat_object is_substat="false">
+      <fields>
+        <field name="Name" type="NameStatObjectFieldDefinition" value="Stats_Suffocating" />
+        <field name="Act" type="EnumerationStatObjectFieldDefinition" value="0" enumeration_type_name="Act" />
+        <field name="Act part" type="EnumerationStatObjectFieldDefinition" value="0" enumeration_type_name="ActPart" />
+        <field name="Duration" type="IntegerStatObjectFieldDefinition" value="2" />
+        <field name="StatusIcon" type="StringStatObjectFieldDefinition" value="statIcons_Suffocating" />
+        <field name="AccuracyBoost" type="IntegerStatObjectFieldDefinition" value="-15" />
+      </fields>
+    </stat_object>
+    <stat_object is_substat="false">
+      <fields>
+        <field name="Name" type="NameStatObjectFieldDefinition" value="Stats_Acid" />
+        <field name="Act" type="EnumerationStatObjectFieldDefinition" value="0" enumeration_type_name="Act" />
+        <field name="Act part" type="EnumerationStatObjectFieldDefinition" value="0" enumeration_type_name="ActPart" />
+        <field name="Duration" type="IntegerStatObjectFieldDefinition" value="2" />
+        <field name="StatusIcon" type="StringStatObjectFieldDefinition" value="statIcons_Acid" />
+        <field name="PiercingResistance" type="IntegerStatObjectFieldDefinition" value="-15" />
+        <field name="PhysicalResistance" type="IntegerStatObjectFieldDefinition" value="-15" />
+      </fields>
+    </stat_object>
+    <stat_object is_substat="false">
+      <fields>
+        <field name="Name" type="NameStatObjectFieldDefinition" value="Stats_WindWalker" />
+        <field name="Act" type="EnumerationStatObjectFieldDefinition" value="0" enumeration_type_name="Act" />
+        <field name="Act part" type="EnumerationStatObjectFieldDefinition" value="0" enumeration_type_name="ActPart" />
+        <field name="AirResistance" type="IntegerStatObjectFieldDefinition" value="40" />
+        <field name="Duration" type="IntegerStatObjectFieldDefinition" value="2" />
+        <field name="StatusEffect" type="StringStatObjectFieldDefinition" value="RS3_FX_GP_Status_Windwalker_01:Dummy_BodyFX" />
+        <field name="StatusIcon" type="StringStatObjectFieldDefinition" value="statIcons_WindWalker" />
+        <field name="DodgeBoost" type="IntegerStatObjectFieldDefinition" value="20" />
+      </fields>
+    </stat_object>
+    <stat_object is_substat="false">
+      <fields>
+        <field name="Name" type="NameStatObjectFieldDefinition" value="Stats_Deflecting" />
+        <field name="Act" type="EnumerationStatObjectFieldDefinition" value="0" enumeration_type_name="Act" />
+        <field name="Act part" type="EnumerationStatObjectFieldDefinition" value="0" enumeration_type_name="ActPart" />
+        <field name="Armor" type="IntegerStatObjectFieldDefinition" value="40" />
+        <field name="Flags" type="EnumerationListStatObjectFieldDefinition" value="47" enumeration_type_name="AttributeFlags" />
+        <field name="MovementSpeedBoost" type="IntegerStatObjectFieldDefinition" value="-20" />
+      </fields>
+    </stat_object>
+    <stat_object is_substat="false">
+      <fields>
+        <field name="Name" type="NameStatObjectFieldDefinition" value="Stats_Frozen" />
+        <field name="Act" type="EnumerationStatObjectFieldDefinition" value="0" enumeration_type_name="Act" />
+        <field name="Act part" type="EnumerationStatObjectFieldDefinition" value="0" enumeration_type_name="ActPart" />
+        <field name="FireResistance" type="IntegerStatObjectFieldDefinition" value="10" />
+        <field name="WaterResistance" type="IntegerStatObjectFieldDefinition" value="-20" />
+        <field name="DodgeBoost" type="IntegerStatObjectFieldDefinition" value="-100" />
+        <field name="Duration" type="IntegerStatObjectFieldDefinition" value="1" />
+        <field name="Flags" type="EnumerationListStatObjectFieldDefinition" value="6;35;36;4;12;20;3;52" enumeration_type_name="AttributeFlags" />
+        <field name="StatusIcon" type="StringStatObjectFieldDefinition" value="statIcons_Frozen" />
+      </fields>
+    </stat_object>
+    <stat_object is_substat="false">
+      <fields>
+        <field name="Name" type="NameStatObjectFieldDefinition" value="Stats_Enraged" />
+        <field name="Act" type="EnumerationStatObjectFieldDefinition" value="0" enumeration_type_name="Act" />
+        <field name="Act part" type="EnumerationStatObjectFieldDefinition" value="0" enumeration_type_name="ActPart" />
+        <field name="CriticalChance" type="IntegerStatObjectFieldDefinition" value="100" />
+        <field name="Duration" type="IntegerStatObjectFieldDefinition" value="2" />
+        <field name="StatusIcon" type="StringStatObjectFieldDefinition" value="statIcons_Raged" />
+        <field name="DodgeBoost" type="IntegerStatObjectFieldDefinition" value="-100" />
+        <field name="ArmorBoost" type="IntegerStatObjectFieldDefinition" value="-20" />
+        <field name="MagicArmorBoost" type="IntegerStatObjectFieldDefinition" value="-20" />
+      </fields>
+    </stat_object>
+    <stat_object is_substat="false">
+      <fields>
+        <field name="Name" type="NameStatObjectFieldDefinition" value="Stats_CrossbowPenalty" />
+        <field name="MovementSpeedBoost" type="IntegerStatObjectFieldDefinition" value="-50" />
+      </fields>
+    </stat_object>
+    <stat_object is_substat="false">
+      <fields>
+        <field name="Name" type="NameStatObjectFieldDefinition" value="Stats_LastRites" />
+        <field name="Act" type="EnumerationStatObjectFieldDefinition" value="0" enumeration_type_name="Act" />
+        <field name="Act part" type="EnumerationStatObjectFieldDefinition" value="0" enumeration_type_name="ActPart" />
+        <field name="Damage Multiplier" type="IntegerStatObjectFieldDefinition" value="0" />
+        <field name="Damage Range" type="IntegerStatObjectFieldDefinition" value="0" />
+        <field name="DamageType" type="EnumerationStatObjectFieldDefinition" value="2" enumeration_type_name="Damage Type" />
+        <field name="VitalityPercentage" type="IntegerStatObjectFieldDefinition" value="-50" />
       </fields>
     </stat_object>
   </stat_objects>

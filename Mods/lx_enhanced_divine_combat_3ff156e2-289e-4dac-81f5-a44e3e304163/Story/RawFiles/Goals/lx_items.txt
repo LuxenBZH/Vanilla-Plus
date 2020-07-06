@@ -27,6 +27,17 @@ ObjectIsCharacter(_Object, 1)
 THEN
 SetVarInteger(_Object, "DGM_PotionFatigue", 0);
 
+//Weapons movement reduction
+// IF
+// CharacterStatusApplied(_Char, "LX_CROSSBOWPENALTY", _Cause)
+// THEN
+// LX_EXT_ManageWeaponSpeed(_Char, "LX_CROSSBOWPENALTY", 1);
+
+// IF
+// CharacterStatusRemoved(_Char, "LX_CROSSBOWPENALTY", _)
+// THEN
+// LX_EXT_ManageWeaponSpeed(_Char, "LX_CROSSBOWPENALTY", 0);
+
 EXITSECTION
 
 ENDEXITSECTION

@@ -68,7 +68,7 @@ end
 
 function CheckDuelist(character)
 	local mainHand = Ext.GetCharacter(character).Stats.MainWeapon
-	Ext.Print("[LXDGM_Talents.CheckDuelist] Main hand :",mainHand)
+	--Ext.Print("[LXDGM_Talents.CheckDuelist] Main hand :",mainHand)
 	local offhand = Ext.GetCharacter(character).Stats.OffHandWeapon
 	local shield = CharacterGetEquippedShield(character)
 	if offhand ~= nil or (mainHand ~= nil and mainHand.IsTwoHanded) or mainHand.WeaponType == "None" or shield ~= nil then
@@ -106,7 +106,7 @@ function WalkItOffReplacement(character)
 			return 
 		end
 		hasStatus = HasActiveStatus(character, stage)
-		Ext.Print("Has ",stage, ": ", hasStatus)
+		--Ext.Print("Has ",stage, ": ", hasStatus)
 		if hasStatus == 1 then reapply = true end
 		if stage == "LX_WALKITOFF_5" then return end
 	end

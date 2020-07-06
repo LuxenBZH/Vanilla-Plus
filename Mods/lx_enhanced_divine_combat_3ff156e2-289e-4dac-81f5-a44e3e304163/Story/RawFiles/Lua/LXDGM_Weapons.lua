@@ -95,7 +95,7 @@ function ApplyOverhaulWeaponAbilityBonuses(character)
 		WaterResistance=Ext.ExtraData.DGM_SingleHandedResistanceBonus,
 		AirResistance=Ext.ExtraData.DGM_SingleHandedResistanceBonus
 		}
-	wpnAbilityBonuses["TwoHanded"] = {ChanceToHitBoost=Ext.ExtraData.DGM_TwoHandedCTHBonus}
+	wpnAbilityBonuses["TwoHanded"] = {Accuracy=Ext.ExtraData.DGM_TwoHandedCTHBonus}
 	wpnAbilityBonuses["Ranged"] = {RangeBoost=Ext.ExtraData.DGM_RangedRangeBonus}
 	
 	local wpnAbility = CheckCurrentWeaponAbility(character)
@@ -174,3 +174,19 @@ function GetWeaponsType(character)
 	if offHand ~= nil then offHandType = offHand.WeaponType end
 	return {mainWeaponType, offHandType}
 end
+
+function ManageWeaponSpeedPenalty(character, status, enabled)
+	local char = Ext.GetCharacter(character)
+	Ext.Print(char.WalkSpeedOverride, char.RunSpeedOverride, char.RootTemplate.WalkSpeed, char.RootTemplate.RunSpeed)
+	if status == "LX_CROSSBOWPENALTY" and enabled == 1 then
+		char.WalkSpeed = 4
+		char.RunSpeed = 7.5
+	end
+	if enabled == 0 then
+		Ext.Print(char.WalkSpeedOverride, char.RunSpeedOverride, char.RootTemplate.WalkSpeed, char.RootTemplate.RunSpeed)
+		char.WalkSpeed = 2
+		char.RunSpeed= 3.75
+	end
+end
+
+Ext.NewCall(ManageWeaponSpeedPenalty, "LX_EXT_ManageWeaponSpeed", "(CHARACTERGUID)_Character, (STRING)_Status, (INTEGER)_Enabled")

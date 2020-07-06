@@ -18,6 +18,7 @@ function CalculatePassingDamage(character, amount, dmgType)
 		if HasActiveStatus(character, "FORTIFIED") == 1 then passingModMult = passingModMult - 0.5 end
 		if HasActiveStatus(character, "MEND_MENTAL") == 1 then passingModMult = passingModMult - 0.25 end
 		if HasActiveStatus(character, "STEEL_SKIN") == 1 then passingModMult = passingModMult - 0.25 end
+		if HasActiveStatus(character, "LX_SHIELDSUP") == 1 then passingModMult = passingModMult - 0.5 end
 		passingMod = passingMod * passingModMult
 		if pArmor > 0 then
 			if pArmor > amount then
@@ -34,13 +35,13 @@ function CalculatePassingDamage(character, amount, dmgType)
 		"Air",
 		"Earth",
 		"Poison",
-		"Water",
-		"Shadow"
+		"Water"
 	}
 	for i, mDmg in pairs(magicTypes) do
 		if dmgType == mDmg then
 			if HasActiveStatus(character, "MAGIC_SHELL") == 1 then passingModMult = passingModMult - 0.5 end
 			if HasActiveStatus(character, "FROST_AURA") == 1 then passingModMult = passingModMult - 0.25 end
+			if HasActiveStatus(character, "LX_SHIELDSUP") == 1 then passingModMult = passingModMult - 0.5 end
 			passingMod = passingMod * passingModMult
 			if mArmor > 0 then
 				if mArmor > amount then

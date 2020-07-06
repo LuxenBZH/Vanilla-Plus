@@ -73,7 +73,7 @@ Balance
 * Added Potion Fatigue : when you drink a 3rd potion in the same turn, you loose all your remaining APs and get a -3AP recovery penalty for the next turn.
 * Reduced Healing Elixir HP regain from 20% to 10%.
 * Parry Master now let you delay the Dodge fatigue by one dodge per turn.
-* Changed damage and armor scaling : VitalityToDamageRatio ratio increased from 6.5 to 7, VitalityToDamageRatioGrowth increased from 0.22 to 0.28, ArmortoVitalityRatio reduced from 0.45 to 0.40
+* Changed damage and armor scaling : VitalityToDamageRatio increased from 6.5 to 7, VitalityToDamageRatioGrowth increased from 0.22 to 0.28, ArmortoVitalityRatio reduced from 0.45 to 0.40
 * Constitution now increase HP by 9% instead of 7%.
 
 Quality of Life
@@ -84,3 +84,61 @@ Quality of Life
 * Changed Savage Sortilege description that was incorrect
 * Changed Strength description that was incorrect (it increase weapon-based attacks, not Physical damages)
 
+# 0.10.10.17 (Griff)
+Fixes
+* Changed Overpower SP cost to 2, was never meant to be 1
+* Changed Challenge AP cost to 1, was never meant to stay at 0
+* The incarnate melee hit should now have correct damage
+* Increased scale of Living Wall to make it block vision properly on even ground
+* Momentum and Lingering are now available to the Game Master to apply (useful for boss combats)
+* Attribute scaling no longer apply on Unstable.
+* Perseverance armor recovery is fixed.
+
+Balance
+* Constitution now provide 10% Vitality instead of 9%
+* Potion fatigue now have an additionnal step that begin at the second potion drink on the same turn (-1 AP Recovery for the next turn)
+* Potion restoration scaling is now different (20/30/40/50/60) and Giant healing potion is also back. Prices have been reduced accordingly
+* Knockdown arrows cost now 3 AP.
+* Hit chance formula have been replaced (now it's hitChance = attacker.Accuracy - target.Dodge). Accuracy isn't multiplicative with dodge, which mean that at high dodge Accuracy will still have an influence.
+* In accordance with hit chance formula change, Intelligence now gives +1 Accuracy per point instead of +2.
+* Two Handed now provide +1 Accuracy instead of +2 Chance to Hit
+* Confused penalty on accuracy is now -15 instead of -25 per stage.
+* Breathing Bubble no longer provide +2m Range, but provide +15 Accuracy instead.
+* Erratic Wisp now provide 20% Dodge.
+* Suffocating now reduce Accuracy by 15.
+* Drunk now reduce Accuracy by 10 instead of 5 and increase Dodge by 10 instead of 5.
+* Acid now reduce Physical and Piercing resistances by 15%.
+* Deflecting barrier now reduce movement by 20%.
+* Sparks damage multiplier is now 80 instead of 100, but they scale with attributes.
+* Finesse give an additional 1% for all damages, for a total of +3% for all damages.
+* Daggers base damage reduced from 55 to 52.
+* Bows damage range reduced from 20 to 15 and base damage reduced from 90 to 85.
+* Tornado AP cost reduced to from 2 to 1, its cooldown from 5 to 4 and its memorization requirement from Aerotheurge 3 to Aerotheurge 2.
+* Totems of the Necromancer SP cost reduced from 3 to 2 and Memory cost from 3 to 2
+* Enrage now reduce Dodging by 100% and both maximum Physical and Magic Armor by 20%
+* Movement bonus from items are reduced by half.
+* Last Rites now deals 50% of the maximum Vitality of the caster.
+* Warfare physical damage bonus is reduced to 3 from 5 (less blind Warfare pumping)
+* Perseverance Vitality regeneration isn't done per turn anymore but each time the character recover from a hard CC. Perseverance now also apply when Staggered and Confused statuses are removed, though the effect is halved.
+* Ranged range bonus reduce to 0.3m instead of 0.5m
+* Apportation requirement set to 1 Aero instead of 2
+* Shields Up now reduce damage going through armor for 1 turn.
+* Reduced Vaporize cooldown from 4 to 2 and increased radius from 2 meters to 4 meters.
+* Reduced Turn To Oil cooldown from 4 to 2
+
+Quality of Life
+* Staves and ranged weapon now display their particularities when hovering the mouse on it
+* Added information on some skills description lacking it.
+* Damage tooltip should display the bonus from attributes and the reduction of the offhand penalty from Dual Wielding
+
+Miscelleanous
+* Removed some console debug prints
+
+# 0.10.11.18 hotfix (Griff potato)
+Fixes
+* Fixed an issue with skill tooltip display
+* Fixed an issue with Damage tooltip display
+* Added damage tooltip support for active defense skills (Flaming tongue, Demonic tutelage, ...)
+
+Balance
+* Terrify now apply Fear for 1 turn instead of 2 turns

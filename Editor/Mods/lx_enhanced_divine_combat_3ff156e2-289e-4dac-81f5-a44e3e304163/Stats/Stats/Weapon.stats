@@ -127,7 +127,7 @@
         <field name="Damage Type" type="EnumerationStatObjectFieldDefinition" value="1" enumeration_type_name="Damage Type" />
         <field name="Damage" type="IntegerStatObjectFieldDefinition" value="0" />
         <field name="Damage Range" type="IntegerStatObjectFieldDefinition" value="5" />
-        <field name="DamageFromBase" type="IntegerStatObjectFieldDefinition" value="55" />
+        <field name="DamageFromBase" type="IntegerStatObjectFieldDefinition" value="52" />
         <field name="CriticalDamage" type="IntegerStatObjectFieldDefinition" value="160" />
         <field name="CriticalChance" type="IntegerStatObjectFieldDefinition" value="0" />
         <field name="WeaponRange" type="IntegerStatObjectFieldDefinition" value="80" />
@@ -285,8 +285,8 @@
         <field name="AttackAPCost" type="IntegerStatObjectFieldDefinition" value="2" />
         <field name="Damage Type" type="EnumerationStatObjectFieldDefinition" value="1" enumeration_type_name="Damage Type" />
         <field name="Damage" type="IntegerStatObjectFieldDefinition" value="0" />
-        <field name="Damage Range" type="IntegerStatObjectFieldDefinition" value="20" />
-        <field name="DamageFromBase" type="IntegerStatObjectFieldDefinition" value="90" />
+        <field name="Damage Range" type="IntegerStatObjectFieldDefinition" value="15" />
+        <field name="DamageFromBase" type="IntegerStatObjectFieldDefinition" value="85" />
         <field name="CriticalDamage" type="IntegerStatObjectFieldDefinition" value="150" />
         <field name="CriticalChance" type="IntegerStatObjectFieldDefinition" value="0" />
         <field name="WeaponRange" type="IntegerStatObjectFieldDefinition" value="1200" />
@@ -551,6 +551,21 @@
         <field name="Damage" type="IntegerStatObjectFieldDefinition" value="0" />
         <field name="Damage Range" type="IntegerStatObjectFieldDefinition" value="5" />
         <field name="DamageFromBase" type="IntegerStatObjectFieldDefinition" value="20" />
+      </fields>
+    </stat_object>
+    <stat_object is_substat="false">
+      <fields>
+        <field name="Name" type="NameStatObjectFieldDefinition" value="_Summon_Incarnate" />
+        <field name="Using" type="BaseClassStatObjectFieldDefinition" value="_NpcDaggers" />
+        <field name="ItemGroup" type="StringStatObjectFieldDefinition" value="EMPTY" />
+        <field name="Act part" type="EnumerationStatObjectFieldDefinition" value="0" enumeration_type_name="ActPart" />
+        <field name="IsTwoHanded" type="EnumerationStatObjectFieldDefinition" value="0" enumeration_type_name="YesNo" />
+        <field name="Damage Range" type="IntegerStatObjectFieldDefinition" value="10" />
+        <field name="DamageFromBase" type="IntegerStatObjectFieldDefinition" value="50" />
+        <field name="WeaponType" type="EnumerationStatObjectFieldDefinition" value="0" enumeration_type_name="WeaponType" />
+        <field name="Flags" type="EnumerationListStatObjectFieldDefinition" value="30" enumeration_type_name="AttributeFlags" />
+        <field name="InventoryTab" type="EnumerationStatObjectFieldDefinition" value="7" enumeration_type_name="InventoryTabs" />
+        <field name="Requirements" type="StringStatObjectFieldDefinition" value="Strength 0" />
       </fields>
     </stat_object>
   </stat_objects>

@@ -8,7 +8,7 @@ local function AddDamageToDescription()
 		Target_MassSabotage = "Damage",
 		Projectile_LaunchExplosiveTrap = "Skill:Projectile_TrapLaunched:Damage",
 		Projectile_DeployMassTraps = "Skill:Projectile_TrapLaunched:Damage",
-		Shout_FlamingTongues = "Skill:Projectile_Status_FlamingTongue:Damage",
+		Shout_FlamingTongues = "Skill:Projectile_Status_FlamingTongues:Damage",
 		Shout_IceBreaker = "Weapon:DamageSurface_FrostExplosion:DamageFromBase"
 	}
 	for skill,description in pairs(skillList) do
@@ -30,7 +30,6 @@ local function AdaptWeaponEnhancingSkills()
 			if weaponDamage == "AverageLevelDamge" or weaponDamage == 1 then
 				Ext.StatSetAttribute(bonusWeapon, "Damage", 0)
 				Ext.StatSetAttribute(bonusWeapon, "DamageFromBase", Ext.Round(weaponMultiplier*1.5))
-				Ext.Print(bonusWeapon, Ext.StatGetAttribute(bonusWeapon, "DamageFromBase"))
 			end
 		end
 	end
@@ -43,13 +42,28 @@ local function AddAdditionalDescription()
 		Shout_MendMetal = "Reduce damage going through Physical armor by 25%",
 		Shout_SteelSkin = "Reduce damage going through Physical armor by 33%",
 		Target_FrostyShell = "Reduce damage going through Magic armor by 50%",
-		Shout_FrostAura = "Reduce damage going through Magic armor by 25%"
+		Shout_FrostAura = "Reduce damage going through Magic armor by 25%",
+		Shout_RecoverArmour = "Reduce damage going through Physical and Magic armor by 50%"
 	}
 	for skill,desc in pairs(descriptions) do
 		Ext.StatAddCustomDescription(skill, "SkillProperties", desc)
 	end
 end
 
+local function ReduceEquipmentMovementBonus()
+	for i,name in pairs(Ext.GetStatEntries("Armor")) do
+		local boostArmor = Ext.StatGetAttribute(name, "Movement")
+		if boostArmor ~= '' then
+			Ext.StatSetAttribute(name, "Movement", math.floor(boostArmor/2))
+		end
+	end
+end
+
+
 Ext.RegisterListener("StatsLoaded", AddDamageToDescription)
+
 Ext.RegisterListener("StatsLoaded", AdaptWeaponEnhancingSkills)
+
 Ext.RegisterListener("StatsLoaded", AddAdditionalDescription)
+
+Ext.RegisterListener("StatsLoaded", ReduceEquipmentMovementBonus)

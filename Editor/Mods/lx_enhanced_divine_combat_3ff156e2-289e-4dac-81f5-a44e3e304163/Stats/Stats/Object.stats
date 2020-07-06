@@ -381,5 +381,19 @@
         <field name="MinLevel" type="IntegerStatObjectFieldDefinition" value="1" />
       </fields>
     </stat_object>
+    <stat_object is_substat="false">
+      <fields>
+        <field name="Name" type="NameStatObjectFieldDefinition" value="WPN_Arrow_KO_A" />
+        <field name="Using" type="BaseClassStatObjectFieldDefinition" value="_Arrows" />
+        <field name="RootTemplate" type="RootTemplateStatObjectFieldDefinition" value="ee6e9c18-bb6c-4562-abd9-e0a66b3f609f" />
+        <field name="Act part" type="EnumerationStatObjectFieldDefinition" value="1" enumeration_type_name="ActPart" />
+        <field name="Value" type="IntegerStatObjectFieldDefinition" value="90" />
+        <field name="Weight" type="IntegerStatObjectFieldDefinition" value="50" />
+        <field name="ObjectCategory" type="StringStatObjectFieldDefinition" value="ArrowStarter" />
+        <field name="Priority" type="IntegerStatObjectFieldDefinition" value="2" />
+        <field name="MinLevel" type="IntegerStatObjectFieldDefinition" value="1" />
+        <field name="UseAPCost" type="IntegerStatObjectFieldDefinition" value="3" />
+      </fields>
+    </stat_object>
   </stat_objects>
 </stats>

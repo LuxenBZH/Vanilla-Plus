@@ -221,9 +221,24 @@ function TriggerDodgeFatigue(target, instigator)
 	end
 end
 
-function ManagePerseverance(character, perseverance)
+function ManagePerseverance(character, perseverance, type)
 	-- Ext.Print(perseverance)
 	local charHP = NRD_CharacterGetStatInt(character, "MaxVitality")
 	NRD_CharacterSetStatInt(character, "CurrentVitality", NRD_CharacterGetStatInt(character, "CurrentVitality")+(perseverance*Ext.ExtraData.DGM_PerseveranceVitalityRecovery*0.01*charHP))
+	if type == "Magic" then
+		local charMA = NRD_CharacterGetStatInt(character, "MaxMagicArmor")
+		NRD_CharacterSetStatInt(character, "CurrentMagicArmor", NRD_CharacterGetStatInt(character, "CurrentMagicArmor")+(perseverance*Ext.ExtraData.SkillAbilityArmorRestoredPerPoint*0.01*charMA))
+	elseif type == "Physical" then
+		local charPA = NRD_CharacterGetStatInt(character, "MaxArmor")
+		NRD_CharacterSetStatInt(character, "CurrentArmor", NRD_CharacterGetStatInt(character, "CurrentArmor")+(perseverance*Ext.ExtraData.SkillAbilityArmorRestoredPerPoint*0.01*charPA))
+	end
 end
 
+local function DGM_HitChanceFormula(attacker, target)
+    local hitChance = attacker.Accuracy - target.Dodge
+    -- Make sure that we return a value in the range (0% .. 100%)
+    hitChance = math.max(math.min(hitChance, 100), 0)
+    return hitChance
+end
+
+Ext.RegisterListener("GetHitChance", DGM_HitChanceFormula)

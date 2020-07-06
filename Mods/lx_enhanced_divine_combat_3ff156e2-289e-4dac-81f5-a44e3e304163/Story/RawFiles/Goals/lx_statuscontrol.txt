@@ -104,14 +104,14 @@ CharacterStatusApplied(_Char, "POST_MAGIC_CONTROL", _)
 AND
 CharacterGetAbility(_Char, "Perseverance", _Pers)
 THEN
-LX_EXT_ManagePerseverance(_Char, _Pers);
+LX_EXT_ManagePerseverance(_Char, _Pers, "Magic");
 
 IF
 CharacterStatusApplied(_Char, "POST_PHYS_CONTROL", _)
 AND
 CharacterGetAbility(_Char, "Perseverance", _Pers)
 THEN
-LX_EXT_ManagePerseverance(_Char, _Pers);
+LX_EXT_ManagePerseverance(_Char, _Pers, "Physical");
 
 EXITSECTION
 

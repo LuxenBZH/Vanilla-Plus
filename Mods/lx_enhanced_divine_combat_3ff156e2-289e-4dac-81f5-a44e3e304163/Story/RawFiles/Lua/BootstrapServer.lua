@@ -60,9 +60,9 @@ function CheckStatChange(character)
 			local stored = GetVarInteger(character, "LX_Check_"..attr)
 			local storedBase = GetVarInteger(character, "LX_Check_Base_"..attr)
 			if stat ~= stored then
-				print(attr.." changed from "..stored.." to "..stat)
+				--print(attr.." changed from "..stored.." to "..stat)
 				changed = true
-				print("Stat change for "..character)
+				--print("Stat change for "..character)
 				SetVarInteger(character, "LX_Check_Base_"..attr, baseStat)
 				SetVarInteger(character, "LX_Changed_Base_"..attr, baseStat - storedBase)
 				SetVarInteger(character, "LX_Check_"..attr, stat)
@@ -180,7 +180,7 @@ Ext.NewCall(ApplyOverhaulBonusesCheck, "LX_EXT_ApplyOverhaulBonusesCheck", "(CHA
 
 -- DamageControl
 Ext.NewCall(DamageControl, "LX_EXT_DamageControl", "(GUIDSTRING)_Target, (INTEGER64)_HitHandle, (GUIDSTRING)_Instigator");
-Ext.NewCall(ManagePerseverance, "LX_EXT_ManagePerseverance", "(GUIDSTRING)_Target, (INTEGER)_Perseverance");
+Ext.NewCall(ManagePerseverance, "LX_EXT_ManagePerseverance", "(GUIDSTRING)_Target, (INTEGER)_Perseverance, (STRING)_Type");
 
 -- Status Control
 Ext.NewCall(BlockPhysicalCCs, "LX_EXT_CheckPhysicalCC", "(GUIDSTRING)_Character, (STRING)_Status, (INTEGER64)_Handle");
