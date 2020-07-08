@@ -142,3 +142,10 @@ Fixes
 
 Balance
 * Terrify now apply Fear for 1 turn instead of 2 turns
+
+# 0.11.12.19 (Atusa)
+Fixes
+* Fixed multi elemental damage tooltips
+
+WIP
+*

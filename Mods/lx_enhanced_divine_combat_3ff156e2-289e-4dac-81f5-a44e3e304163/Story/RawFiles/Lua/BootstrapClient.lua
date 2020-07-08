@@ -288,7 +288,6 @@ local function SkillGetDescriptionParam(skill, character, isFromItem, par)
 		local once = false
 		
 		for dmgType, damages in pairs(dmg) do
-			--Ext.Print(dmgType, damages[1], damages[2])
 			local minDmg = math.floor(damages[1])
 			local maxDmg = math.floor(damages[2])
 			local color = getDamageColor(dmgType)
@@ -298,8 +297,8 @@ local function SkillGetDescriptionParam(skill, character, isFromItem, par)
 			else
 				result = result.." + ".."<font color="..color..">"..tostring(minDmg).."-"..tostring(maxDmg).." "..dmgType.." damage".."</font>"
 			end
-			return result
-		end
+        end
+        return result
 	end
 	return nil
 end
