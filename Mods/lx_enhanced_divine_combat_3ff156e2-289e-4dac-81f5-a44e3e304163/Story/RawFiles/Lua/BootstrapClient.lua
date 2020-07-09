@@ -58,16 +58,10 @@ local DamageSourceCalcTable = {
     end
 }
 
----@param skillDamageType string
----@param attacker StatCharacter
----@param target StatCharacter
----@param level integer
 local function CalculateBaseDamage(skillDamageType, attacker, target, level)
     return DamageSourceCalcTable[skillDamageType](attacker, target, level)
 end
 
----@param character StatCharacter
----@param weapon StatEntryWeapon
 local function CalculateWeaponDamageRange(character, weapon)
     local damages, damageBoost = Game.Math.ComputeBaseWeaponDamage(weapon)
 
@@ -97,11 +91,9 @@ local function CalculateWeaponDamageRange(character, weapon)
     return ranges
 end
 
----@param character StatCharacter
----@param skill StatEntrySkillData
 local function GetSkillDamageRange(character, skill)
     local desc = skill.StatsDescriptionParams
-
+    
 	--Ext.Print(skill.DamageMultiplier)
     local damageMultiplier = skill['Damage Multiplier'] * 0.01
     if desc:find("Skill:") ~= nil then
@@ -232,7 +224,7 @@ local function GetSkillDamageRange(character, skill)
     end
 end
 
----@param dmgType string
+
 local function getDamageColor(dmgType)
 	local colorCode = ""
 	local types = {}
@@ -253,12 +245,7 @@ local function getDamageColor(dmgType)
 	return "'#A8A8A8'"
 end
 
----@param status EsvStatus
----@param statusSource EsvGameObject
----@param character StatCharacter
----@param par string
 local function StatusGetDescriptionParam(status, statusSource, character, par)
-    
     if par == "Damage" then
 		local dmgStat = Ext.GetStat(status.DamageStats)
 		local globalMult = 1 + (statusSource.Strength-10) * (Ext.ExtraData.DGM_StrengthDoTBonus*0.01) --From the overhaul
@@ -283,27 +270,12 @@ local function StatusGetDescriptionParam(status, statusSource, character, par)
 	return nil
 end
 
--- Odinblade compatibility
-Game.Math.GetSkillDamageRange = GetSkillDamageRange
-
-local SkillGetDescriptionParamForbidden = {"Projectile_OdinHUN_HuntersTrap", "Target_ElementalArrowheads", "Projectile_OdinHUN_TheHunt"}
-
----@param skill StatEntrySkillData
----@param character StatCharacter
----@param isFromItem boolean
----@param par string
 local function SkillGetDescriptionParam(skill, character, isFromItem, par)
 	--Ext.Print(skill.Damage, skill.DamageMultiplier)
 	-- Ext.Print("BaseLevelDamage:",Game.Math.GetLevelScaledDamage(character.Level))
 	-- Ext.Print("AverageLevelDamage:",Game.Math.GetAverageLevelDamage(character.Level))
 	-- Ext.Print("LevelScaledMonsterWeaponDamage:", Game.Math.GetLevelScaledMonsterWeaponDamage(character.Level))
     -- Ext.Print("LevelScaledWeaponDamage:", Game.Math.GetLevelScaledWeaponDamage(character.Level))
-    for _, name in pairs(SkillGetDescriptionParamForbidden) do
-        if name == skill.Name then
-            return nil
-        end
-    end
-
 	local pass = false
 	local desc = skill.StatsDescriptionParams
 	if desc:find("Weapon:") ~= nil or desc:find("Skill:") then
@@ -331,6 +303,7 @@ local function SkillGetDescriptionParam(skill, character, isFromItem, par)
 	return nil
 end
 
+
 local DamageTypes = {
     None = 0,
     Physical = 1,
@@ -346,181 +319,181 @@ local DamageTypes = {
     Shadow = 11
 }
 
+-- local function SkillDamageTooltip(character, skill, damage)
+--     Ext.Print(skill.Damage)
+--     local dmg = GetSkillDamageRange(character, skill)
+--     local newDamage = damage["Damage Type"]
+-- end
+
 ------ UI Values
 
----@param ui UIObject
----@param call string
----@param state any
 local function changeDamageValue(ui, call, state)
-
-    if ui:GetValue("secStat_array", "string", 2) == nil then return end
-    
-    local strength = ui:GetValue("primStat_array", "string", 2):gsub('<font color="#00547F">', ""):gsub("</font>", "")
-    strength = tonumber(strength) - Ext.ExtraData.AttributeBaseValue
-    local finesse = ui:GetValue("primStat_array", "string", 6):gsub('<font color="#00547F">', ""):gsub("</font>", "")
-    finesse = tonumber(finesse)  - Ext.ExtraData.AttributeBaseValue
-    local intelligence = ui:GetValue("primStat_array", "string", 10):gsub('<font color="#00547F">', ""):gsub("</font>", "")
-    intelligence = tonumber(intelligence) - Ext.ExtraData.AttributeBaseValue
-    
-    local damage = ui:GetValue("secStat_array", "string", 24)
-    Ext.Print(damage)
-    
-    local minDamage = damage:gsub(" - .*", "")
-    local maxDamage = damage:gsub(".* - ", "")
-    local globalMult = 100 + strength * Ext.ExtraData.DGM_StrengthGlobalBonus + strength * Ext.ExtraData.DGM_StrengthWeaponBonus +
-        finesse * Ext.ExtraData.DGM_FinesseGlobalBonus + intelligence * Ext.ExtraData.DGM_IntelligenceGlobalBonus
-
-    minDamage = math.floor(tonumber(minDamage) * globalMult * 0.01)
-    maxDamage = math.floor(tonumber(maxDamage) * globalMult * 0.01)
-
-    ui:SetValue("secStat_array", minDamage.." - "..maxDamage, 24)
+    --local ui = Ext.GetBuiltinUI("Public/Game/GUI/characterSheet.swf")
+    if ui ~= nil then
+        if ui:GetValue("secStat_array", "string", 2) == nil then return end
+        local strength = ui:GetValue("primStat_array", "string", 2):gsub('<font color="#00547F">', ""):gsub("</font>", "")
+        strength = tonumber(strength) - Ext.ExtraData.AttributeBaseValue
+        local finesse = ui:GetValue("primStat_array", "string", 6):gsub('<font color="#00547F">', ""):gsub("</font>", "")
+        finesse = tonumber(finesse)  - Ext.ExtraData.AttributeBaseValue
+        local intelligence = ui:GetValue("primStat_array", "string", 10):gsub('<font color="#00547F">', ""):gsub("</font>", "")
+        intelligence = tonumber(intelligence) - Ext.ExtraData.AttributeBaseValue
+        local damage = ui:GetValue("secStat_array", "string", 24)
+        local minDamage = damage:gsub(" - .*", "")
+        local maxDamage = damage:gsub(".* - ", "")
+        local globalMult = 100 + strength * Ext.ExtraData.DGM_StrengthGlobalBonus + strength * Ext.ExtraData.DGM_StrengthWeaponBonus +
+        finesse * Ext.ExtraData.DGM_FinesseGlobalBonus +
+        intelligence * Ext.ExtraData.DGM_IntelligenceGlobalBonus
+        minDamage = math.floor(tonumber(minDamage) * globalMult * 0.01)
+        maxDamage = math.floor(tonumber(maxDamage) * globalMult * 0.01)
+        --Ext.Print(minDamage, maxDamage)
+        ui:SetValue("secStat_array", minDamage.." - "..maxDamage, 24)
+    end
 end
 
-local dynamicTooltips = {
-    ["Strength"] = "he1708d1eg243dg4b72g8f48gddb9bc8d62ff",
-    ["Finesse"] = "h2e87e6cfg0183g4968g8ec1g325614c7d9fa",
-    ["Intelligence"] = "h58e777ddgd569g4c0dg8f58gece56cce053d",
-    ["Damage"] = "h7fec5db8g58d3g4abbgab7ag03e19b542bef",
-    ["Dual-Wielding"] = {current = "hc5d5552bg6b33g44c1gbb0cg8d55a101f081", new = "h2baa6ed9gdca0g4731gb999g098d9c2d90b0"},
-    ["Ranged"] = {current = "he86bfd28ge123g42a4g8c0cg2f9bcd7d9e05", new = "hffc37ae5g6651g4a60ga1c1g49d233cb1ca2"},
-    ["Single-Handed"] = {current = "h70707bb2g5a48g4571g9a68ged2fe5a030ea", new = "h2afdc1f0g4650g4ea9gafb7gb0c042367766"},
-    ["Two-Handed"] = {current = "h6e9ec88dgcbb7g426bgb1d9g69df0240825a", new = "hda7ee9a4g5bbeg4c62g96b7ge31b21e094f3"},
-    ["Perseverance"] = {current = "h5d0c3ad0g3d9dg4cf1g92b7g20d6d7d26344", new = "h443a51dcgbd6fg46c2g8988gbfe93a3123a5"}
-}
-
----@param str string
-local function SubstituteString(str, ...)
-    local args = {...}
-    local result = str
-    for k, v in pairs(args) do
-        result = result:gsub("%["..tostring(k).."%]", v)
-    end
-    return result
-end
-
----@param character EsvCharacter
----@param skill string
----@param tooltip TooltipData
-local function OnStatTooltip(character, stat, tooltip)
-
-    -- Ext.Print(Ext.JsonStringify(tooltip))
-    
-    local stat = tooltip:GetElement("StatName").Label
-    local statsPointValue = tooltip:GetElement("StatsPointValue")
-
-    local attrBonus = CharGetDGMAttributeBonus(character, 0)
-
-    local str = nil
-    if dynamicTooltips[stat] then
-        str = Ext.GetTranslatedString(dynamicTooltips[stat], "Handle Error!")
-    end
-
+local function tooltipReplace(stat, char)
+    local tooltipArray = {}
+    if char == nil then return end
+    local attrBonus = CharGetDGMAttributeBonus(char)
+    local stats = char.Stats
     if stat == "Strength" then
-        str = SubstituteString(str, attrBonus["str"], attrBonus["strGlobal"], attrBonus["strWeapon"], attrBonus["strDot"])
-        statsPointValue.Label = str
-    elseif stat == "Finesse" then
-        str = SubstituteString(str, attrBonus["fin"], attrBonus["finGlobal"], attrBonus["finDodge"], attrBonus["finMovement"])
-        statsPointValue.Label = str
-    elseif stat == "Intelligence" then
-        str = SubstituteString(str, attrBonus["int"], attrBonus["intGlobal"], attrBonus["intSkill"], attrBonus["intAcc"])
-        statsPointValue.Label = str
-    elseif stat == "Damage" then
-        local damageText = tooltip:GetElement("StatsTotalDamage")
-        local minDamage = damageText.Label:gsub("^.* ", ""):gsub("-[1-9]*", "")
-        local maxDamage = damageText.Label:gsub("^.*-", "")
-        
-        minDamage = math.floor(tonumber(minDamage) * (100+attrBonus["strGlobal"]+attrBonus["strWeapon"]+attrBonus["finGlobal"]+attrBonus["intGlobal"])/100)
-        maxDamage = math.floor(tonumber(maxDamage) * (100+attrBonus["strGlobal"]+attrBonus["strWeapon"]+attrBonus["finGlobal"]+attrBonus["intGlobal"])/100)
-        
-        str = SubstituteString(str, minDamage, maxDamage)
-        damageText.Label = str
+        tooltipArray[7] = "+"
+            ..attrBonus["str"].." points = +"
+            ..attrBonus["strGlobal"].."% on all damages, +"
+            ..attrBonus["strWeapon"].."% more for weapon-based attacks and +"
+            ..attrBonus["strDot"].."% more damage dealt by statuses doing damages."
     end
-
-    -- Ext.Print(Ext.JsonStringify(tooltip))
+    if stat == "Finesse" then
+        tooltipArray[5] = "+"
+            ..attrBonus["fin"].." points = +"
+            ..attrBonus["finGlobal"].."% on all damages."
+    end
+    if stat == "Intelligence" then
+        tooltipArray[5] = "+"
+            ..attrBonus["int"].." points = +"
+            ..attrBonus["intGlobal"].."% on all damages, +"
+            ..attrBonus["intSkill"].."% more damages from skills and +"
+            ..attrBonus["intAcc"].."% Accuracy bonus."
+    end
+    if stat == "Dual-Wielding" then
+        if stats.DualWielding > 0 then
+            tooltipArray[6] = "Level "
+                ..stats.DualWielding..": +"
+                ..math.floor((Ext.ExtraData.CombatAbilityDamageBonus * stats.DualWielding)).."% Damage, +"
+                ..math.floor((Ext.ExtraData.CombatAbilityDodgingBonus * stats.DualWielding)).."% Dodging and increase Offhand damage by "
+                ..math.floor((Ext.ExtraData.DGM_DualWieldingOffhandBonus * stats.DualWielding)).."%."
+        end
+        tooltipArray[7] = "Next Level "
+            ..math.floor((stats.DualWielding+1))..": +"
+            ..math.floor((Ext.ExtraData.CombatAbilityDamageBonus * (stats.DualWielding+1))).."% Damage, +"
+            ..math.floor((Ext.ExtraData.CombatAbilityDodgingBonus * (stats.DualWielding+1))).."% Dodging and increase Offhand damage by "
+            ..math.floor((Ext.ExtraData.DGM_DualWieldingOffhandBonus * (stats.DualWielding+1))).."%."
+    end
+    if stat == "Ranged" then
+        if stats.Ranged > 0 then
+            tooltipArray[6] = "Level "
+                ..stats.Ranged..": +"
+                ..math.floor((Ext.ExtraData.CombatAbilityDamageBonus * stats.Ranged)).."% Damage, +"
+                ..math.floor((Ext.ExtraData.CombatAbilityCritBonus * stats.Ranged)).."% Critical Chance and increase Range by "
+                ..(Ext.ExtraData.DGM_RangedRangeBonus * stats.Ranged * 0.01).."m."
+        end
+        tooltipArray[7] = "Level "
+            ..(stats.Ranged+1)..": +"
+            ..math.floor((Ext.ExtraData.CombatAbilityDamageBonus * (stats.Ranged+1))).."% Damage, +"
+            ..math.floor((Ext.ExtraData.CombatAbilityCritBonus * (stats.Ranged+1))).."% Critical Chance and increase Range by "
+            ..(Ext.ExtraData.DGM_RangedRangeBonus * (stats.Ranged+1) * 0.01).."m."
+    end
+    if stat == "Single-Handed" then
+        if stats.SingleHanded > 0 then
+            tooltipArray[6] = "Level "..stats.SingleHanded..": +"
+                ..math.floor(Ext.ExtraData.CombatAbilityDamageBonus * stats.SingleHanded).."% Damage, +"
+                ..math.floor(Ext.ExtraData.CombatAbilityAccuracyBonus * stats.SingleHanded).."% Accuracy, +"
+                ..math.floor(Ext.ExtraData.DGM_SingleHandedArmorBonus * stats.SingleHanded).."% Armors and +"
+                ..math.floor(Ext.ExtraData.DGM_SingleHandedResistanceBonus * stats.SingleHanded).."% to Elemental Resistances."
+        end
+        tooltipArray[7] = "Next Level "..stats.SingleHanded..": +"
+            ..math.floor(Ext.ExtraData.CombatAbilityDamageBonus * (stats.SingleHanded+1)).."% Damage, +"
+            ..math.floor(Ext.ExtraData.CombatAbilityAccuracyBonus * (stats.SingleHanded+1)).."% Accuracy, +"
+            ..math.floor(Ext.ExtraData.DGM_SingleHandedArmorBonus * (stats.SingleHanded+1)).."% Armors and +"
+            ..math.floor(Ext.ExtraData.DGM_SingleHandedResistanceBonus * (stats.SingleHanded+1)).."% to Elemental Resistances."
+    end
+    if stat == "Two-Handed" then
+        if stats.TwoHanded > 0 then
+            tooltipArray[6] = "Level "..stats.TwoHanded..": +"
+                ..math.floor(Ext.ExtraData.CombatAbilityDamageBonus * stats.TwoHanded).."% Damage, +"
+                ..math.floor(Ext.ExtraData.CombatAbilityCritMultiplierBonus * stats.TwoHanded).."% Critical Multiplier and +"
+                ..math.floor(Ext.ExtraData.DGM_TwoHandedCTHBonus * stats.TwoHanded).."% Accuracy."
+        end
+        tooltipArray[7] = "Next Level "..stats.TwoHanded..": +"
+            ..math.floor(Ext.ExtraData.CombatAbilityDamageBonus * (stats.TwoHanded+1)).."% Damage, +"
+            ..math.floor(Ext.ExtraData.CombatAbilityCritMultiplierBonus * (stats.TwoHanded+1)).."% Critical Multiplier and +"
+            ..math.floor(Ext.ExtraData.DGM_TwoHandedCTHBonus * (stats.TwoHanded+1)).."% Accuracy."
+    end
+    if stat == "Perseverance" then
+        if stats.Perseverance > 0 then
+            tooltipArray[6] = "Level "..stats.Perseverance..": +"
+                ..math.floor(Ext.ExtraData.AbilityPerseveranceArmorPerPoint * stats.Perseverance).."% Armour restored after a hard Crowd Control effect recovery and +"
+                ..math.floor(Ext.ExtraData.DGM_PerseveranceVitalityRecovery * stats.Perseverance).."% Vitality restored after a hard Crowd Control effect recovery."
+        end
+        tooltipArray[7] = "Next Level "..stats.Perseverance..": +"
+            ..math.floor(Ext.ExtraData.AbilityPerseveranceArmorPerPoint * (stats.Perseverance+1)).."% Armour restored after a hard Crowd Control effect recovery and +"
+            ..math.floor(Ext.ExtraData.DGM_PerseveranceVitalityRecovery * (stats.Perseverance+1)).."% Vitality restored after a hard Crowd Control effect recovery."
+    end      
+    return tooltipArray
 end
 
----@param character EsvCharacter
----@param stat string
----@param tooltip TooltipData
-local function OnAbilityTooltip(character, stat, tooltip)
-    
-    local stat = tooltip:GetElement("StatName").Label
-    local abilityDescription = tooltip:GetElement("AbilityDescription")
-    local attrBonus = CharGetDGMAttributeBonus(character, 0)
-    local attrBonusNew = CharGetDGMAttributeBonus(character, 1)
-    local stats = character.Stats
 
-    local str = ""
-
-    if stat == "Dual-Wielding" then
-
-        if stats.DualWielding > 0 then
-            str = Ext.GetTranslatedString(dynamicTooltips[stat].current, "Handle Error!")
-            str = SubstituteString(str, stats.DualWielding, attrBonus["dual"], attrBonus["dualDodge"], attrBonus["dualOff"])
-            abilityDescription.CurrentLevelEffect = str
+local function onTooltip(ui, ...)
+    -- Thanks a lot LaughingLeader and Norbyte
+    local sheet = Ext.GetBuiltinUI("Public/Game/GUI/characterSheet.swf")
+    local charHandle = sheet:GetValue("charHandle", "number")
+    local char = Ext.GetCharacter(Ext.DoubleToHandle(charHandle))
+    if char == nil then return end
+    local arrayValueSet = ui:GetValue("tooltip_array", "number", 0)
+    local totalNil = 0
+    if arrayValueSet ~= nil then
+        local customTooltips = tooltipReplace(ui:GetValue("tooltip_array", "string", 1), char)
+        if customTooltips ~= nil then
+            for i, tt in pairs(customTooltips) do
+                ui:SetValue("tooltip_array", tt, i)
+            end
         end
-        
-        str = Ext.GetTranslatedString(dynamicTooltips[stat].new, "Handle Error!")
-        str = SubstituteString(str, stats.DualWielding+1, attrBonusNew["dual"], attrBonusNew["dualDodge"], attrBonusNew["dualOff"])
-        abilityDescription.NextLevelEffect = str
-        
-    elseif stat == "Ranged" then
-        if stats.Ranged > 0 then
-            str = Ext.GetTranslatedString(dynamicTooltips[stat].current, "Handle Error!")
-            str = SubstituteString(str, stats.Ranged, attrBonus["ranged"], attrBonus["rangedCrit"], attrBonus["rangedRange"])
-            abilityDescription.CurrentLevelEffect = str
+        if ui:GetValue("tooltip_array", "string", 1) == "Damage" then
+            local damageText = ui:GetValue("tooltip_array", "string", 7)
+            local minDamage = damageText:gsub("^.* ", ""):gsub("-[1-9]*", "")
+            local maxDamage = damageText:gsub("^.*-", "")
+            local attrBonus = CharGetDGMAttributeBonus(char)
+            minDamage = math.floor(tonumber(minDamage) * (100+attrBonus["strGlobal"]+attrBonus["strWeapon"]+attrBonus["finGlobal"]+attrBonus["intGlobal"])/100)
+            maxDamage = math.floor(tonumber(maxDamage) * (100+attrBonus["strGlobal"]+attrBonus["strWeapon"]+attrBonus["finGlobal"]+attrBonus["intGlobal"])/100)
+            ui:SetValue("tooltip_array", "Total damage: "..minDamage.."-"..maxDamage, 7)
         end
-        
-        str = Ext.GetTranslatedString(dynamicTooltips[stat].new, "Handle Error!")
-        str = SubstituteString(str, stats.Ranged+1, attrBonusNew["ranged"], attrBonusNew["rangedCrit"], attrBonusNew["rangedRange"])
-        abilityDescription.NextLevelEffect = str
-
-    elseif stat == "Single-Handed" then
-        if stats.SingleHanded > 0 then
-            str = Ext.GetTranslatedString(dynamicTooltips[stat].current, "Handle Error!")
-            str = SubstituteString(str, stats.SingleHanded, attrBonus["single"], attrBonus["singleAcc"], attrBonus["singleArm"], attrBonus["singleEle"])
-            abilityDescription.CurrentLevelEffect = str
+        for i=0,999,1 do
+            local val = ui:GetValue("tooltip_array", "number", i)
+            if val == nil then val = ui:GetValue("tooltip_array", "string", i) end
+            if val == nil then val = ui:GetValue("tooltip_array", "boolean", i) end
+            if val == nil then
+            --     print(i, val)
+            -- else
+                totalNil = totalNil + 1
+                if totalNil > 20 then
+                    break
+                end
+            end
         end
-        
-        str = Ext.GetTranslatedString(dynamicTooltips[stat].new, "Handle Error!")
-        str = SubstituteString(str, stats.SingleHanded+1, attrBonusNew["single"], attrBonusNew["singleAcc"], attrBonusNew["singleArm"], attrBonusNew["singleEle"])
-        abilityDescription.NextLevelEffect = str
-        
-    elseif stat == "Two-Handed" then
-        if stats.TwoHanded > 0 then
-            str = Ext.GetTranslatedString(dynamicTooltips[stat].current, "Handle Error!")
-            str = SubstituteString(str, stats.TwoHanded, attrBonus["two"], attrBonus["twoCrit"], attrBonus["twoAcc"])
-            abilityDescription.CurrentLevelEffect = str
-        end
-        
-        str = Ext.GetTranslatedString(dynamicTooltips[stat].new, "Handle Error!")
-        str = SubstituteString(str, stats.TwoHanded+1, attrBonusNew["two"], attrBonusNew["twoCrit"], attrBonusNew["twoAcc"])
-        abilityDescription.NextLevelEffect = str
-
-    elseif stat == "Perseverance" then
-        if stats.Perseverance > 0 then
-            str = Ext.GetTranslatedString(dynamicTooltips[stat].current, "Handle Error!")
-            str = SubstituteString(str, stats.Perseverance, attrBonus["persArm"], attrBonus["persVit"])
-            abilityDescription.CurrentLevelEffect = str
-        end
-        
-        str = Ext.GetTranslatedString(dynamicTooltips[stat].new, "Handle Error!")
-        str = SubstituteString(str, stats.Perseverance+1, attrBonusNew["persArm"], attrBonusNew["persVit"])
-        abilityDescription.NextLevelEffect = str
-
     end
-
-    -- Ext.Print(Ext.JsonStringify(tooltip))
 end
 
 local function DGM_SetupUI()
     local charSheet = Ext.GetBuiltinUI("Public/Game/GUI/characterSheet.swf")
-    
-    Ext.RegisterUIInvokeListener(charSheet, "updateArraySystem", changeDamageValue)
-    Game.Tooltip.RegisterListener("Stat", nil, OnStatTooltip)
-    Game.Tooltip.RegisterListener("Ability", nil, OnAbilityTooltip)
-
+    local tooltips = Ext.GetBuiltinUI("Public/Game/GUI/tooltip.swf")
+    --if charSheet ~= nil and tooltips ~= nil then
+        Ext.RegisterUIInvokeListener(charSheet, "updateArraySystem", changeDamageValue)
+        Ext.RegisterUIInvokeListener(tooltips, "addFormattedTooltip", onTooltip)
+        --Ext.Print("Registered call")
+    --else
+    --    Ext.PrintError("Failed to get 'Public/Game/GUI/characterSheet.swf' for some reason.")
+    --end
 end
+
 
 Ext.RegisterListener("SessionLoaded", DGM_SetupUI)
 --Ext.Print("Registering SessionLoaded for SetupUI")
@@ -530,3 +503,12 @@ Ext.RegisterListener("SkillGetDescriptionParam", SkillGetDescriptionParam)
 
 Ext.RegisterListener("StatusGetDescriptionParam", StatusGetDescriptionParam)
 --Ext.Print("Registering StatusGetDescriptionParam")
+
+-- For V46 release
+-- local function OnDamageStatTooltip(character, stat, tooltip)
+--     local element = tooltip:GetElement("StatsTotalDamage")
+--     Ext.Print(element.Label)
+--     local damageText = element.Label
+-- end
+
+-- Game.Tooltip.RegisterListener("Stat", "Damage", OnDamageStatTooltip)

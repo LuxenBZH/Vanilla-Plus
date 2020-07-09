@@ -7,8 +7,8 @@
     <content contentuid="h6d76eb15gdb1ag4ebeg8001g58173516a923" comment="Walk It Off description">Walk It Off reduces all status durations by 1 turn, including positive statuses. Does not affect statuses with a duration of 1 turn. Also increases all resistances by 10% each time you are hit by a character, up to a maximum of 50%, until the next turn.</content>
     <content contentuid="h75391bafg8744g4441g9b1egf52f182f96fc" comment="Finesse description">Increases all damage by 3% per point. Dodge is increased by 1% and movement by 0.15m per AP per point.</content>
     <content contentuid="h81ca938fg5ef4g452agb093g1294e2f0718b" comment="Leech description">Leech heals you when standing in blood. Also increases Lifesteal by 25%.</content>
-    <content contentuid="h878c02c0gc629g470dg955cg80dc2a125cb2" comment="Stench description">Stench decreases everyone&apos;s attitude towards you by [2], but melee opponents find you less attractive in combat. Increases your Poison resistance by 30% and makes you immune to Diseased and Infected.</content>
-    <content contentuid="h8ddc8dd4ge8feg4420ga6dag0d87ce8ec743" comment="Duck Duck Goose description">[1] lets you evade attacks of opportunity. Increases your Dodge by 5% and Movement by 1m per AP.</content>
+	<content contentuid="h878c02c0gc629g470dg955cg80dc2a125cb2" comment="Stench description">Stench decreases everyone&apos;s attitude towards you by [2], but melee opponents find you less attractive in combat. Increases your Poison resistance by 30% and makes you immune to Diseased and Infected.</content>
+	<content contentuid="h8ddc8dd4ge8feg4420ga6dag0d87ce8ec743" comment="Duck Duck Goose description">[1] lets you evade attacks of opportunity. Increases your Dodge by 5% and Movement by 1m per AP.</content>
     <content contentuid="hbde985cfgb1c4g4bb6g9a61gbec72c9b4ed6" comment="Mnemonic description">Mnenomic doubles all points invested in Memory.</content>
     <content contentuid="hc453e399ge1f5g41f1gaeabgcdd4de833c63" comment="Demon or IceKing">A character with [1] has an extra 30% [3], but takes a [4]% penalty to [5]. Additionally, the maximum [3] is raised by [6]. Demon grants 20% additional damage on all Burning and Necrofire statuses you apply to enemies. Ice King increases all Water damage you deal by 20%.</content>
     <content contentuid="hcb8f9837gdf0fg4a01ga7d6g5ed522b74189" comment="Escapist description">[1] allows you to flee combat even when enemies are close by. Provides immunity to Crippled, Entangled and Enwebbbed.</content>
@@ -26,45 +26,31 @@
     <content contentuid="hf3893f8fg20c5g4078ga83cgef8783082103" comment="All Skilled up description">The first skill used during your turn has its cooldown reduced by 1 turn.</content>
     <content contentuid="h1bae56a9ga45fg431fg80bfg2afbef03c1d2" comment="Perseverance description">Perseverance restores Magic Armour on recovering from Frozen or Stunned, and restores Physical Armour on recovering from Knocked Down or Petrified. Additionally, 2% of maximum Vitality is restored per point.</content>
     <content contentuid="h9df517d1gf64bg499dgb23fg462fd1f061bc" comment="Critical chance description">Your chance to Critically Strike when attacking with a weapon or when using a weapon-based skill. If you Backstab, your Critical Chance is converted to additional damage in a ratio of 1% Critical Chance to 1% damage.</content>
-    <content contentuid="hb924258ag2cf7g4c11gaf4eg8b7de303c197" comment="Attributes dynamic bonus"></content>
+    <content contentuid="hb924258ag2cf7g4c11gaf4eg8b7de303c197" comment="Attributes dynamic bonus"> </content>
     <content contentuid="h278d3a4fg4dceg4362g9b35g9c3685c93268" comment="Damage tooltip">The damage you inflict when successfully hitting an enemy or object.</content>
     <content contentuid="h8256bf13gb4cag4662gaafegb5724b210c92" comment="Leadership description">[1] grants Dodging and Resistance bonuses to all allies in a 16m radius.</content>
     <content contentuid="h71b09f9fg285fg4532gab16g1c7640864141" comment="Tooltip bonus level">Damage is based on your level and receives an additional bonus from Intelligence.</content>
     <content contentuid="ha4cfd852g52f1g4079g8919gd392ac8ade1a" comment="Tooltip bonus weapon">Damage is based on your basic attack and receives an additional bonus from both Strength and Intelligence.</content>
-    <content contentuid="h3240460dgd250g435bg9ebegc1682089c5ed" comment="Corpse Explosion description">Explode target corpse, dealing [1] in the area.</content>
-    <content contentuid="h1a6bf0edg47eeg4ee8gaa86g5a608e5dda7b" comment="Mass Corpse Explosion description">Explode all corpses around you, dealing [1] in the area.</content>
-    <content contentuid="h0fe63523g3caeg4e46g8152geabd390080af" comment="Sparkstriker description">Receive Sparkstriker status. This causes your melee attacks to create a Spark projectile that bounces off the initial target to hit the closest enemy, dealing [1].</content>
-    <content contentuid="hbd5f39f8g78e1g42c8g95b6g1917a8c65816" comment="Master of Sparks description">Target character and surrounding allies receive Sparkmaster status that make melee attacks firing sparks that can fork twice at nearby enemies. Each spark hit deals [1].</content>
-    <content contentuid="h004cd16fgf0e9g4216g9a3cg2dc6e16fe78a" comment="Sabotage description">Deals [1] to the target character and set Atrophy. If target character is carrying grenades or arrows, a random one explodes in their inventory.</content>
-    <content contentuid="hfc25a87dg9103g4602g872dg8ecb8965fc0a" comment="Mass Sabotage description">Explode two random grenades or arrows in the inventories of every enemy, dealing [1] and set Atrophy in a target circle.</content>
-    <content contentuid="h5e26d4e3g63d5g4415gbe5ag4bc3e42bb995" comment="Throw Explosive Trap description">Throw an explosive trap at target location. Trap takes 1 turn to activate. When active, the trap will explode when a character approaches it, dealing [1].</content>
-    <content contentuid="hcf74a6efg1ab6g45ecgaa12g147f528975ee" comment="Deploy Mass Trap description">Throw [1] explosive traps at target locations. Each trap takes a turn to activate. When active, trap will explode when a character approaches it, dealing [2].</content>
-    <content contentuid="h9e97f6cdg7b63g4603g9f25g7a515742c55d" comment="Flaming Tongues description">Flaming Tongues protect you, immediately attacking approaching enemies and deals them [1].</content>
-    <content contentuid="hbce8b81ag1259g4a30g99f9g1f99e9b74583" comment="Elemental Arrowhead display name">Elemental Weapons</content>
-    <content contentuid="h4542353bg043cg4964ga401g7a80dd267e5b" comment="Elemental Arrowhead description">Target a surface in melee radius. Elemental damage matching that surface is added to your weapon attacks and weapon-based skills.</content>
-    <content contentuid="h9055594bg16a7g48b8g81ffg25bbbf89963b" comment="Ice Breaker description">Sets off a chain reaction that causes ice areas to explode into water puddles, dealing [1] and setting Chilled.</content>
-    <content contentuid="h944c3db5gc792g4cdcg923cg9471f4cb0969" comment="Water Arrows status">Water Weapons</content>
-    <content contentuid="hbf9f6f92g699ag47b3gb967g5bfa164a0612" comment="Bloody Arrows status">Bloody Weapons</content>
-    <content contentuid="h4be1f455g2614g43e1gbe42g7636850e7749" comment="Burning Arrows status">Burning Weapons</content>
-    <content contentuid="h606e89bdgce80g4bcag99f3g914af3e4baae" comment="Poison Arrows status">Poison Weapons</content>
-    <content contentuid="hc385872cge252g4da0gbc7agf774df831f28" comment="Electric Arrows status">Electric Weapons</content>
-    <content contentuid="h6138efe4ge000g4a7dga5e8g479f54f1234a" comment="Oily Arrows status">Oily Weapons</content>
-    <content contentuid="h00f565c4g6178g424fgb031g41a2c12bf85d" comment="Parry Master description">[1] gives you [2]% Dodging while dual wielding. Once per turn, the first dodge do not trigger Dodge Fatigue.</content>
-    <content contentuid="he3980bf8gf554g4dd8g823cgf2ccb71036a6" comment="Dual Wielding penalty">Offhand penalty: [1]%</content>
-    <content contentuid="h5d124a78g6932g4f5egb844gf9569ec4d2ba" comment="Demonic tutelage description">Your inner demon actively watches over you. When an enemy approaches in melee range, they will be pummelled by a demonic fist dealing [1].</content>
-    <content contentuid="h60ef5d4ag817dg4564g9c6eg9bc2339a55d5" comment="Terrify description">Destroy [1] on target enemy. They are Terrified for 1 turn.</content>
-    <content contentuid="he1708d1eg243dg4b72g8f48gddb9bc8d62ff" comment="Strength dynamic tooltip">+[1] point(s) = +[2]% to all Damage, +[3]% more for weapon-based attacks and +[4]% more damage dealt by statuses.</content>
-    <content contentuid="h2e87e6cfg0183g4968g8ec1g325614c7d9fa" comment="Finesse dynamic tooltip">+[1] point(s) = +[2]% on all Damage, +[3]% Dodge and [4]m of movement per AP.</content>
-    <content contentuid="h58e777ddgd569g4c0dg8f58gece56cce053d" comment="Intelligence dynamic tooltip">+[1] point(s) = +[2]% to all Damage, +[3]% more for skills and +[4]% Accuracy.</content>
-    <content contentuid="h7fec5db8g58d3g4abbgab7ag03e19b542bef" comment="Damage dynamic tooltip">Total damage: [1]-[2]</content>
-    <content contentuid="hc5d5552bg6b33g44c1gbb0cg8d55a101f081" comment="Dual Wielding dynamic tooltip current">Level [1]: +[2]% Damage, +[3]% Dodging and increase Offhand damage by [4]%.</content>
-    <content contentuid="h2baa6ed9gdca0g4731gb999g098d9c2d90b0" comment="Dual Wielding dynamic tooltip new">Next Level [1]: +[2]% Damage, +[3]% Dodging and increase Offhand damage by [4]%.</content>
-    <content contentuid="he86bfd28ge123g42a4g8c0cg2f9bcd7d9e05" comment="Ranged dynamic tooltip current">Level [1]: +[2]% Damage, +[3]% Critical Chance and increase Range by [4]m.</content>
-    <content contentuid="hffc37ae5g6651g4a60ga1c1g49d233cb1ca2" comment="Ranged dynamic tooltip new">Next Level [1]: +[2]% Damage, +[3]% Critical Chance and increase Range by [4]m.</content>
-    <content contentuid="h70707bb2g5a48g4571g9a68ged2fe5a030ea" comment="Single handed dynamic tooltip current">Level [1]: +[2]% Damage, +[3]% accuracy, +[4]% armours and +[5]% to Elemental Resistances.</content>
-    <content contentuid="h2afdc1f0g4650g4ea9gafb7gb0c042367766" comment="Single handed dynamic tooltip current new">Next Level [1]: +[2]% Damage, +[3]% accuracy, +[4]% armours and +[5]% to Elemental Resistances.</content>
-    <content contentuid="h6e9ec88dgcbb7g426bgb1d9g69df0240825a" comment="Two handed dynamic tooltip current">Level [1]: +[2]% Damage, +[3]% Critical Multiplier and [4]% Accuracy.</content>
-    <content contentuid="hda7ee9a4g5bbeg4c62g96b7ge31b21e094f3" comment="Two handed dynamic tooltip new">Next Level [1]: +[2]% Damage, +[3]% Critical Multiplier and [4]% Accuracy.</content>
-    <content contentuid="h5d0c3ad0g3d9dg4cf1g92b7g20d6d7d26344" comment="Perseverance dyanmic tooltip current">Level [1]: +[2]% Armour and +[3]% Vitality restored after a hard Crowd Control effect recovery.</content>
-    <content contentuid="h443a51dcgbd6fg46c2g8988gbfe93a3123a5" comment="Perseverance dyanmic tooltip new">Next Level [1]: +[2]% Armour and +[3]% Vitality restored after a hard Crowd Control effect recovery.</content>
+	<content contentuid="h3240460dgd250g435bg9ebegc1682089c5ed" comment="Corpse Explosion description">Explode target corpse, dealing [1] in the area.</content>
+	<content contentuid="h1a6bf0edg47eeg4ee8gaa86g5a608e5dda7b" comment="Mass Corpse Explosion description">Explode all corpses around you, dealing [1] in the area.</content>
+	<content contentuid="h0fe63523g3caeg4e46g8152geabd390080af" comment="Sparkstriker description">Receive Sparkstriker status. This causes your melee attacks to create a Spark projectile that bounces off the initial target to hit the closest enemy, dealing [1].</content>
+	<content contentuid="hbd5f39f8g78e1g42c8g95b6g1917a8c65816" comment="Master of Sparks description">Target character and surrounding allies receive Sparkmaster status that make melee attacks firing sparks that can fork twice at nearby enemies. Each spark hit deals [1].</content>
+	<content contentuid="h004cd16fgf0e9g4216g9a3cg2dc6e16fe78a" comment="Sabotage description">Deals [1] to the target character and set Atrophy. If target character is carrying grenades or arrows, a random one explodes in their inventory.</content>
+	<content contentuid="hfc25a87dg9103g4602g872dg8ecb8965fc0a" comment="Mass Sabotage description">Explode two random grenades or arrows in the inventories of every enemy, dealing [1] and set Atrophy in a target circle.</content>
+	<content contentuid="h5e26d4e3g63d5g4415gbe5ag4bc3e42bb995" comment="Throw Explosive Trap description">Throw an explosive trap at target location. Trap takes 1 turn to activate. When active, the trap will explode when a character approaches it, dealing [1].</content>
+	<content contentuid="hcf74a6efg1ab6g45ecgaa12g147f528975ee" comment="Deploy Mass Trap description">Throw [1] explosive traps at target locations. Each trap takes a turn to activate. When active, trap will explode when a character approaches it, dealing [2].</content>
+	<content contentuid="h9e97f6cdg7b63g4603g9f25g7a515742c55d" comment="Flaming Tongues description">Flaming Tongues protect you, immediately attacking approaching enemies and deals them [1].</content>
+	<content contentuid="hbce8b81ag1259g4a30g99f9g1f99e9b74583" comment="Elemental Arrowhead display name">Elemental Weapons</content>
+	<content contentuid="h4542353bg043cg4964ga401g7a80dd267e5b" comment="Elemental Arrowhead description">Target a surface in melee radius. Elemental damage matching that surface is added to your weapon attacks and weapon-based skills.</content>
+	<content contentuid="h9055594bg16a7g48b8g81ffg25bbbf89963b" comment="Ice Breaker description">Sets off a chain reaction that causes ice areas to explode into water puddles, dealing [1] and setting Chilled.</content>
+	<content contentuid="h944c3db5gc792g4cdcg923cg9471f4cb0969" comment="Water Arrows status">Water Weapons</content>
+	<content contentuid="hbf9f6f92g699ag47b3gb967g5bfa164a0612" comment="Bloody Arrows status">Bloody Weapons</content>
+	<content contentuid="h4be1f455g2614g43e1gbe42g7636850e7749" comment="Burning Arrows status">Burning Weapons</content>
+	<content contentuid="h606e89bdgce80g4bcag99f3g914af3e4baae" comment="Poison Arrows status">Poison Weapons</content>
+	<content contentuid="hc385872cge252g4da0gbc7agf774df831f28" comment="Electric Arrows status">Electric Weapons</content>
+	<content contentuid="h6138efe4ge000g4a7dga5e8g479f54f1234a" comment="Oily Arrows status">Oily Weapons</content>
+	<content contentuid="h00f565c4g6178g424fgb031g41a2c12bf85d" comment="Parry Master description">[1] gives you [2]% Dodging while dual wielding. Once per turn, the first dodge do not trigger Dodge Fatigue.</content>
+	<content contentuid="he3980bf8gf554g4dd8g823cgf2ccb71036a6" comment="Dual Wielding penalty">Offhand penalty: [1]%</content>
+	<content contentuid="h5d124a78g6932g4f5egb844gf9569ec4d2ba" comment="Demonic tutelage description">Your inner demon actively watches over you. When an enemy approaches in melee range, they will be pummelled by a demonic fist dealing [1].</content>
+	<content contentuid="h60ef5d4ag817dg4564g9c6eg9bc2339a55d5" comment="Terrify description">Destroy [1] on target enemy. They are Terrified for 1 turn.</content>
 </contentList>

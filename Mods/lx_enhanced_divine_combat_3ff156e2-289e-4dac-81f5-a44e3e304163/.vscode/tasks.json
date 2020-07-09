@@ -1,0 +1,23 @@
+{
+	"version": "2.0.0",
+	"tasks": [
+		{
+			"type": "divinity.task.compiler",
+			"gameDataPath": "d:\\Jeux\\SteamLibrary\\steamapps\\common\\Divinity Original Sin 2\\DefEd\\Data",
+			"output": "d:\\Jeux\\SteamLibrary\\steamapps\\common\\Divinity Original Sin 2\\DefEd\\Data\\Mods\\lx_enhanced_divine_combat_3ff156e2-289e-4dac-81f5-a44e3e304163\\Story\\story.div.osi",
+			"mod": [
+				"Shared",
+				"Character_Creation_Pack",
+				"Shared_DOS",
+				"lx_enhanced_divine_combat_3ff156e2-289e-4dac-81f5-a44e3e304163"
+			],
+			"game": "dos2de",
+			"debugInfo": "d:\\Jeux\\SteamLibrary\\steamapps\\common\\Divinity Original Sin 2\\DefEd\\Data\\Mods\\lx_enhanced_divine_combat_3ff156e2-289e-4dac-81f5-a44e3e304163\\Story\\story.debugInfo",
+			"problemMatcher": [
+				"$divinity.problemMatcher"
+			],
+			"group": "build",
+			"label": "Divine Game Master: Compile"
+		}
+	]
+}
