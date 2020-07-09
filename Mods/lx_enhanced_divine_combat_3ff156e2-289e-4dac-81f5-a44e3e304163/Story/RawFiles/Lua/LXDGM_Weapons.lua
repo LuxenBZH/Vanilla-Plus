@@ -1,4 +1,3 @@
----@param character EsvCharacter
 function InitCharacterAbilities(character)
 	local abilitiesStr = {
 		"SingleHanded",
@@ -27,14 +26,12 @@ function InitCharacterAbilities(character)
 	SetVarString(character, "LX_Previous_Weapon_Ability", wpnAbility)
 end
 
----@param character EsvCharacter
 function InitCharacter(character)
 	InitCharacterStatCheck(character)
 	InitCharacterAbilities(character)
 end
 
 ---- Weapon Ability check
----@param character EsvCharacter
 function CheckCurrentWeaponAbility(character)
 	-- Throw this function at character init and every time that a character change its equipment. Use for see if 
 	if CharacterGetAbility(character, "SingleHanded") == nil then return end --Check for characters without stats
@@ -69,9 +66,6 @@ function CheckCurrentWeaponAbility(character)
 	return "SingleHanded"
 end
 
----@param character EsvCharacter
----@param new string
----@param previous string
 function ChangedWeaponAbility(character, new, previous)
 	if previous ~= new then
 		local newAbility = GetVarInteger(character, "LX_Check_"..new)
@@ -88,7 +82,6 @@ function ChangedWeaponAbility(character, new, previous)
 	end
 end
 
----@param character EsvCharacter
 function ApplyOverhaulWeaponAbilityBonuses(character)
 	if CharacterGetAbility(character, "SingleHanded") == nil then return end --Check for characters without stats
 	---- Abilities
@@ -171,7 +164,6 @@ function ApplyOverhaulWeaponAbilityBonuses(character)
 	SetVarString(character, "LX_Previous_Weapon_Ability", wpnAbility)
 end
 
----@param character EsvCharacter
 function GetWeaponsType(character)
 	local charStats = Ext.GetCharacter(character).Stats
 	local mainWeapon = charStats.MainWeapon
@@ -183,7 +175,6 @@ function GetWeaponsType(character)
 	return {mainWeaponType, offHandType}
 end
 
----@param character EsvCharacter
 function ManageWeaponSpeedPenalty(character, status, enabled)
 	local char = Ext.GetCharacter(character)
 	Ext.Print(char.WalkSpeedOverride, char.RunSpeedOverride, char.RootTemplate.WalkSpeed, char.RootTemplate.RunSpeed)

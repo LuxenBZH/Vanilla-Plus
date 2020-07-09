@@ -1,7 +1,4 @@
----@param item StatItem
----@param tooltip TooltipData
 local function WeaponTooltips(item, tooltip)
-    
 	if item.ItemType ~= "Weapon" then return end
 	local equipment = {
 		Type = "ItemRequirement",
@@ -22,9 +19,6 @@ local function WeaponTooltips(item, tooltip)
 	end
 end
 
----@param character EsvCharacter
----@param skill any
----@param tooltip TooltipData
 local function SkillAttributeTooltipBonus(character, skill, tooltip)
     local stats = character.Stats
     local generalBonus = math.floor((stats.Strength-Ext.ExtraData.AttributeBaseValue) * Ext.ExtraData.DGM_StrengthGlobalBonus +
@@ -63,6 +57,7 @@ local function SkillAttributeTooltipBonus(character, skill, tooltip)
         end
     end
 end
+
 
 local function DGM_Init()
     Game.Tooltip.RegisterListener("Item", nil, WeaponTooltips)

@@ -646,6 +646,7 @@ local StatBase = {}
 
 
 --- @class StatCharacter : StatBase
+-- Properties from PropertyMap
 --- @field public Level integer
 --- @field public Name string
 --- @field public AIFlags integer
@@ -675,6 +676,8 @@ local StatBase = {}
 --- @field public MaxSummons integer
 --- @field public BaseMaxSummons integer
 --- @field public MaxMpOverride integer
+
+-- StatCharacterFlags
 --- @field public IsPlayer boolean
 --- @field public InParty boolean
 --- @field public IsSneaking boolean
@@ -682,14 +685,20 @@ local StatBase = {}
 --- @field public Blind boolean
 --- @field public DrinkedPotion boolean
 --- @field public EquipmentValidated boolean
+
+-- Properties from CDivinityStats_Character::GetStat
 --- @field public PhysicalResistance integer
 --- @field public PiercingResistance integer
 --- @field public CorrosiveResistance integer
 --- @field public MagicResistance integer
+
+-- Base properties from CDivinityStats_Character::GetStat
 --- @field public BasePhysicalResistance integer
 --- @field public BasePiercingResistance integer
 --- @field public BaseCorrosiveResistance integer
 --- @field public BaseMagicResistance integer
+
+-- Properties from CharacterStatsGetters::GetStat
 --- @field public MaxMp integer
 --- @field public APStart integer
 --- @field public APRecovery integer
@@ -716,6 +725,8 @@ local StatBase = {}
 --- @field public Initiative integer
 --- @field public BlockChance integer
 --- @field public ChanceToHitBoost integer
+
+-- Base properties from CharacterStatsGetters::GetStat
 --- @field public BaseMaxMp integer
 --- @field public BaseAPStart integer
 --- @field public BaseAPRecovery integer
@@ -742,6 +753,8 @@ local StatBase = {}
 --- @field public BaseInitiative integer
 --- @field public BaseBlockChance integer
 --- @field public BaseChanceToHitBoost integer
+
+-- Properties from CharacterFetchStat
 --- @field public DynamicStats StatCharacterDynamic[]
 --- @field public MainWeapon StatItem
 --- @field public OffHandWeapon StatItem
@@ -829,6 +842,7 @@ local StatItemDynamic = {}
 
 
 --- @class StatItem : StatBase
+-- Properties from property map
 --- @field public Level integer
 --- @field public Name integer
 --- @field public InstanceId integer
@@ -848,7 +862,11 @@ local StatItemDynamic = {}
 --- @field public ItemTypeReal string
 --- @field public MaxCharges integer
 --- @field public Charges integer
+
+-- Properties from ItemFetchStat
 --- @field public DynamicStats StatItemDynamic[]
+
+-- Indirect properties from StatEntryWeapon/Armor/Shield
 --- @field public Using string
 --- @field public Damage integer
 --- @field public Act string See Act enumeration
@@ -959,6 +977,7 @@ local EclGameObject = {}
 --- @field public RootTemplate ItemTemplate
 --- @field public Stats StatItem
 --- @field public Handle integer
+---
 --- @field public WorldPos number[]
 --- @field public CurrentLevel string
 --- @field public Scale number
@@ -1002,6 +1021,7 @@ local EclItem = {
 --- @field public PlayerCustomData PlayerCustomData
 --- @field public Stats StatCharacter
 --- @field public Handle integer
+---
 --- @field public WorldPos number[]
 --- @field public CurrentLevel string
 --- @field public Scale number
@@ -1036,6 +1056,8 @@ local EclCharacter = {
     --- @param scale number 
     SetScale = function (self, scale) end
 }
+
+
 
 
 --- @class EsvGameObject
@@ -1124,6 +1146,7 @@ local PlayerCustomData = {
 --- @field public RootTemplate CharacterTemplate
 --- @field public PlayerCustomData PlayerCustomData
 --- @field public Stats StatCharacter
+---
 --- @field public NetID integer
 --- @field public MyGuid string
 --- @field public WorldPos number[]
@@ -1163,6 +1186,8 @@ local PlayerCustomData = {
 --- @field public CorpseLootable boolean
 --- @field public CustomBloodSurface string
 --- @field public PreviousLevel string
+
+-- CharacterFlags 0
 --- @field public IsPlayer boolean
 --- @field public Multiplayer boolean
 --- @field public InParty boolean
@@ -1185,12 +1210,16 @@ local PlayerCustomData = {
 --- @field public Totem boolean
 --- @field public NoRotate boolean
 --- @field public IsHuge boolean
+
+-- CharacterFlags 2
 --- @field public Global boolean
 --- @field public HasOsirisDialog boolean
 --- @field public HasDefaultDialog boolean
 --- @field public TreasureGeneratedForTrader boolean
 --- @field public Trader boolean
 --- @field public Resurrected boolean
+
+-- CharacterFlags 3
 --- @field public IsPet boolean
 --- @field public IsSpectating boolean
 --- @field public NoReptuationEffects boolean
