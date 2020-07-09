@@ -286,7 +286,7 @@ end
 -- Odinblade compatibility
 Game.Math.GetSkillDamageRange = GetSkillDamageRange
 
-local SkillGetDescriptionParamForbidden = {"Projectile_OdinHUN_HuntersTrap", "Target_ElementalArrowheads"}
+local SkillGetDescriptionParamForbidden = {"Projectile_OdinHUN_HuntersTrap", "Target_ElementalArrowheads", "Projectile_OdinHUN_TheHunt"}
 
 ---@param skill StatEntrySkillData
 ---@param character StatCharacter
