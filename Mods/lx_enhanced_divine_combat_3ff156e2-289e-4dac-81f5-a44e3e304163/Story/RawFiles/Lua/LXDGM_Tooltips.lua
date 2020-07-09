@@ -1,5 +1,5 @@
 ---@param item StatItem
----@param tooltip UIObject
+---@param tooltip TooltipData
 local function WeaponTooltips(item, tooltip)
     
 	if item.ItemType ~= "Weapon" then return end
@@ -24,7 +24,7 @@ end
 
 ---@param character EsvCharacter
 ---@param skill any
----@param tooltip UIObject
+---@param tooltip TooltipData
 local function SkillAttributeTooltipBonus(character, skill, tooltip)
     local stats = character.Stats
     local generalBonus = math.floor((stats.Strength-Ext.ExtraData.AttributeBaseValue) * Ext.ExtraData.DGM_StrengthGlobalBonus +
