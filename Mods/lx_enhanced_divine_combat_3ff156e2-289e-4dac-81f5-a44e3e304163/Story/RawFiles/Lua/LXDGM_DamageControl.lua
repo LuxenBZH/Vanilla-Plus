@@ -1,3 +1,6 @@
+---@param target EsvCharacter
+---@param handle number
+---@param instigator EsvCharacter
 function DamageControl(target, handle, instigator)
 	--[[
 		Main damage control : damages are teared down to the original formula and apply custom
@@ -131,6 +134,8 @@ function DamageControl(target, handle, instigator)
 	InitiatePassingDamage(target, damages)
 end
 
+---@param target EsvCharacter
+---@param damages table
 function InitiatePassingDamage(target, damages)
 	for dmgType,amount  in pairs(damages) do
 		if amount ~= 0 then
@@ -140,6 +145,10 @@ function InitiatePassingDamage(target, damages)
 	end
 end
 
+---@param damages table
+---@param multiplier number
+---@param value number
+---@param instigator EsvCharacter
 function ChangeDamage(damages, multiplier, value, instigator)
 	for dmgType,amount in pairs(damages) do
 		-- Ice king water damage bonus
@@ -155,6 +164,9 @@ function ChangeDamage(damages, multiplier, value, instigator)
 	return damages
 end
 
+---@param newDamages table
+---@param handle number
+---@param target EsvCharacter
 function ReplaceDamages(newDamages, handle, target)
 	NRD_HitStatusClearAllDamage(target, handle)
 	for dmgType,amount in pairs(newDamages) do
@@ -162,6 +174,7 @@ function ReplaceDamages(newDamages, handle, target)
 	end
 end
 
+---@param character EsvCharacter
 function HasHarmfulAccuracyStatus(character)
 	NRD_IterateCharacterStatuses(character, "LX_Iterate_Statuses_Accuracy")
 	local isHarmed = GetVarInteger(character, "LX_Accuracy_Harmed")
@@ -169,6 +182,9 @@ function HasHarmfulAccuracyStatus(character)
 	return false
 end
 
+---@param target EsvCharacter
+---@param instigator EsvCharacter
+---@param weapon string
 function DodgeControl(target, instigator, weapon)
 	if weapon == nil then weapon = "" end
 	local refunded = GetVarInteger(instigator, "LX_Miss_Refunded")
@@ -196,6 +212,8 @@ function DodgeControl(target, instigator, weapon)
 	return
 end
 
+---@param target EsvCharacter
+---@param instigator EsvCharacter
 function TriggerDodgeFatigue(target, instigator)
 	if CharacterIsInCombat(target) == 0 then return end
 	local accuracy = NRD_CharacterGetComputedStat(instigator, "Accuracy", 0)
@@ -221,6 +239,9 @@ function TriggerDodgeFatigue(target, instigator)
 	end
 end
 
+---@param character EsvCharacter
+---@param perseverance number
+---@param type string
 function ManagePerseverance(character, perseverance, type)
 	-- Ext.Print(perseverance)
 	local charHP = NRD_CharacterGetStatInt(character, "MaxVitality")
@@ -234,6 +255,8 @@ function ManagePerseverance(character, perseverance, type)
 	end
 end
 
+---@param attacker EsvCharacter
+---@param target EsvCharacter
 local function DGM_HitChanceFormula(attacker, target)
     local hitChance = attacker.Accuracy - target.Dodge
     -- Make sure that we return a value in the range (0% .. 100%)

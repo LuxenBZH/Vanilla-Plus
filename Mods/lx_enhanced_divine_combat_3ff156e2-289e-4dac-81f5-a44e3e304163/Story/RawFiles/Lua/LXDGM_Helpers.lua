@@ -16,6 +16,7 @@ function DamageTypeEnum()
 	return enum
 end
 
+---@param char EsvCharacter
 function CharGetDGMAttributeBonus(char)
 	if char == nil then return end
 	local stats = char.Stats

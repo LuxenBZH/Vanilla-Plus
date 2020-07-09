@@ -58,10 +58,16 @@ local DamageSourceCalcTable = {
     end
 }
 
+---@param skillDamageType string
+---@param attacker StatCharacter
+---@param target StatCharacter
+---@param level integer
 local function CalculateBaseDamage(skillDamageType, attacker, target, level)
     return DamageSourceCalcTable[skillDamageType](attacker, target, level)
 end
 
+---@param character StatCharacter
+---@param weapon StatEntryWeapon
 local function CalculateWeaponDamageRange(character, weapon)
     local damages, damageBoost = Game.Math.ComputeBaseWeaponDamage(weapon)
 
@@ -91,9 +97,11 @@ local function CalculateWeaponDamageRange(character, weapon)
     return ranges
 end
 
+---@param character StatCharacter
+---@param skill StatEntrySkillData
 local function GetSkillDamageRange(character, skill)
     local desc = skill.StatsDescriptionParams
-    
+
 	--Ext.Print(skill.DamageMultiplier)
     local damageMultiplier = skill['Damage Multiplier'] * 0.01
     if desc:find("Skill:") ~= nil then
@@ -224,7 +232,7 @@ local function GetSkillDamageRange(character, skill)
     end
 end
 
-
+---@param dmgType string
 local function getDamageColor(dmgType)
 	local colorCode = ""
 	local types = {}
@@ -245,7 +253,12 @@ local function getDamageColor(dmgType)
 	return "'#A8A8A8'"
 end
 
+---@param status EsvStatus
+---@param statusSource EsvGameObject
+---@param character StatCharacter
+---@param par string
 local function StatusGetDescriptionParam(status, statusSource, character, par)
+    
     if par == "Damage" then
 		local dmgStat = Ext.GetStat(status.DamageStats)
 		local globalMult = 1 + (statusSource.Strength-10) * (Ext.ExtraData.DGM_StrengthDoTBonus*0.01) --From the overhaul
@@ -270,6 +283,10 @@ local function StatusGetDescriptionParam(status, statusSource, character, par)
 	return nil
 end
 
+---@param skill StatEntrySkillData
+---@param character StatCharacter
+---@param isFromItem boolean
+---@param par string
 local function SkillGetDescriptionParam(skill, character, isFromItem, par)
 	--Ext.Print(skill.Damage, skill.DamageMultiplier)
 	-- Ext.Print("BaseLevelDamage:",Game.Math.GetLevelScaledDamage(character.Level))
@@ -303,7 +320,6 @@ local function SkillGetDescriptionParam(skill, character, isFromItem, par)
 	return nil
 end
 
-
 local DamageTypes = {
     None = 0,
     Physical = 1,
@@ -327,6 +343,9 @@ local DamageTypes = {
 
 ------ UI Values
 
+---@param ui UIObject
+---@param call string
+---@param state any
 local function changeDamageValue(ui, call, state)
     --local ui = Ext.GetBuiltinUI("Public/Game/GUI/characterSheet.swf")
     if ui ~= nil then
@@ -350,6 +369,8 @@ local function changeDamageValue(ui, call, state)
     end
 end
 
+---@param stat string
+---@param char EsvCharacter
 local function tooltipReplace(stat, char)
     local tooltipArray = {}
     if char == nil then return end
@@ -441,7 +462,7 @@ local function tooltipReplace(stat, char)
     return tooltipArray
 end
 
-
+---@param ui UIObject
 local function onTooltip(ui, ...)
     -- Thanks a lot LaughingLeader and Norbyte
     local sheet = Ext.GetBuiltinUI("Public/Game/GUI/characterSheet.swf")
