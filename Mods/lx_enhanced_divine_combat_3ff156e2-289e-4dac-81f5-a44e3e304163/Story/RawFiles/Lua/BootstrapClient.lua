@@ -283,6 +283,11 @@ local function StatusGetDescriptionParam(status, statusSource, character, par)
 	return nil
 end
 
+-- Odinblade compatibility
+Game.Math.GetSkillDamageRange = GetSkillDamageRange
+
+local SkillGetDescriptionParamForbidden = {"Projectile_OdinHUN_HuntersTrap", "Target_ElementalArrowheads"}
+
 ---@param skill StatEntrySkillData
 ---@param character StatCharacter
 ---@param isFromItem boolean
@@ -293,6 +298,12 @@ local function SkillGetDescriptionParam(skill, character, isFromItem, par)
 	-- Ext.Print("AverageLevelDamage:",Game.Math.GetAverageLevelDamage(character.Level))
 	-- Ext.Print("LevelScaledMonsterWeaponDamage:", Game.Math.GetLevelScaledMonsterWeaponDamage(character.Level))
     -- Ext.Print("LevelScaledWeaponDamage:", Game.Math.GetLevelScaledWeaponDamage(character.Level))
+    for _, name in pairs(SkillGetDescriptionParamForbidden) do
+        if name == skill.Name then
+            return nil
+        end
+    end
+
 	local pass = false
 	local desc = skill.StatsDescriptionParams
 	if desc:find("Weapon:") ~= nil or desc:find("Skill:") then
@@ -407,7 +418,7 @@ local function OnStatTooltip(character, stat, tooltip)
         damageText.Label =  "Total damage: "..minDamage.."-"..maxDamage
     end
 
-    -- Ext.Print(Ext.JsonStringify(tooltip))
+    Ext.Print(Ext.JsonStringify(tooltip))
 end
 
 ---@param character EsvCharacter
@@ -485,12 +496,12 @@ local function OnAbilityTooltip(character, stat, tooltip)
             ..math.floor(Ext.ExtraData.DGM_PerseveranceVitalityRecovery * (stats.Perseverance+1)).."% Vitality restored after a hard Crowd Control effect recovery."
     end
 
-    -- Ext.Print(Ext.JsonStringify(tooltip))
+    Ext.Print(Ext.JsonStringify(tooltip))
 end
 
 local function DGM_SetupUI()
     local charSheet = Ext.GetBuiltinUI("Public/Game/GUI/characterSheet.swf")
-
+    
     Ext.RegisterUIInvokeListener(charSheet, "updateArraySystem", changeDamageValue)
     Game.Tooltip.RegisterListener("Stat", nil, OnStatTooltip)
     Game.Tooltip.RegisterListener("Ability", nil, OnAbilityTooltip)
