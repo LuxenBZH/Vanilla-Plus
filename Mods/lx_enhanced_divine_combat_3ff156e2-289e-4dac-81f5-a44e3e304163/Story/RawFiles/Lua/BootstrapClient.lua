@@ -376,6 +376,28 @@ local function changeDamageValue(ui, call, state)
     ui:SetValue("secStat_array", minDamage.." - "..maxDamage, 24)
 end
 
+local dynamicTooltips = {
+    ["Strength"] = "he1708d1eg243dg4b72g8f48gddb9bc8d62ff",
+    ["Finesse"] = "h2e87e6cfg0183g4968g8ec1g325614c7d9fa",
+    ["Intelligence"] = "h58e777ddgd569g4c0dg8f58gece56cce053d",
+    ["Damage"] = "h7fec5db8g58d3g4abbgab7ag03e19b542bef",
+    ["Dual-Wielding"] = {current = "hc5d5552bg6b33g44c1gbb0cg8d55a101f081", new = "h2baa6ed9gdca0g4731gb999g098d9c2d90b0"},
+    ["Ranged"] = {current = "he86bfd28ge123g42a4g8c0cg2f9bcd7d9e05", new = "hffc37ae5g6651g4a60ga1c1g49d233cb1ca2"},
+    ["Single-Handed"] = {current = "h70707bb2g5a48g4571g9a68ged2fe5a030ea", new = "h2afdc1f0g4650g4ea9gafb7gb0c042367766"},
+    ["Two-Handed"] = {current = "h6e9ec88dgcbb7g426bgb1d9g69df0240825a", new = "hda7ee9a4g5bbeg4c62g96b7ge31b21e094f3"},
+    ["Perseverance"] = {current = "h5d0c3ad0g3d9dg4cf1g92b7g20d6d7d26344", new = "h443a51dcgbd6fg46c2g8988gbfe93a3123a5"}
+}
+
+---@param str string
+local function SubstituteString(str, ...)
+    local args = {...}
+    local result = str
+    for k, v in pairs(args) do
+        result = result:gsub("%["..tostring(k).."%]", v)
+    end
+    return result
+end
+
 ---@param character EsvCharacter
 ---@param skill string
 ---@param tooltip TooltipData
@@ -386,28 +408,23 @@ local function OnStatTooltip(character, stat, tooltip)
     local stat = tooltip:GetElement("StatName").Label
     local statsPointValue = tooltip:GetElement("StatsPointValue")
 
-    local attrBonus = CharGetDGMAttributeBonus(character)
+    local attrBonus = CharGetDGMAttributeBonus(character, 0)
+
+    local str = nil
+    if dynamicTooltips[stat] then
+        str = Ext.GetTranslatedString(dynamicTooltips[stat], "Handle Error!")
+    end
 
     if stat == "Strength" then
-        statsPointValue.Label = "+"
-            ..attrBonus["str"].." points = +"
-            ..attrBonus["strGlobal"].."% on all damages, +"
-            ..attrBonus["strWeapon"].."% more for weapon-based attacks and +"
-            ..attrBonus["strDot"].."% more damage dealt by statuses doing damages."
-    end
-    if stat == "Finesse" then
-        statsPointValue.Label = "+"
-            ..attrBonus["fin"].." points = +"
-            ..attrBonus["finGlobal"].."% on all damages."
-    end
-    if stat == "Intelligence" then
-        statsPointValue.Label = "+"
-            ..attrBonus["int"].." points = +"
-            ..attrBonus["intGlobal"].."% on all damages, +"
-            ..attrBonus["intSkill"].."% more damages from skills and +"
-            ..attrBonus["intAcc"].."% Accuracy bonus."
-    end
-    if stat == "Damage" then
+        str = SubstituteString(str, attrBonus["str"], attrBonus["strGlobal"], attrBonus["strWeapon"], attrBonus["strDot"])
+        statsPointValue.Label = str
+    elseif stat == "Finesse" then
+        str = SubstituteString(str, attrBonus["fin"], attrBonus["finGlobal"], attrBonus["finDodge"], attrBonus["finMovement"])
+        statsPointValue.Label = str
+    elseif stat == "Intelligence" then
+        str = SubstituteString(str, attrBonus["int"], attrBonus["intGlobal"], attrBonus["intSkill"], attrBonus["intAcc"])
+        statsPointValue.Label = str
+    elseif stat == "Damage" then
         local damageText = tooltip:GetElement("StatsTotalDamage")
         local minDamage = damageText.Label:gsub("^.* ", ""):gsub("-[1-9]*", "")
         local maxDamage = damageText.Label:gsub("^.*-", "")
@@ -415,10 +432,11 @@ local function OnStatTooltip(character, stat, tooltip)
         minDamage = math.floor(tonumber(minDamage) * (100+attrBonus["strGlobal"]+attrBonus["strWeapon"]+attrBonus["finGlobal"]+attrBonus["intGlobal"])/100)
         maxDamage = math.floor(tonumber(maxDamage) * (100+attrBonus["strGlobal"]+attrBonus["strWeapon"]+attrBonus["finGlobal"]+attrBonus["intGlobal"])/100)
         
-        damageText.Label =  "Total damage: "..minDamage.."-"..maxDamage
+        str = SubstituteString(str, minDamage, maxDamage)
+        damageText.Label = str
     end
 
-    Ext.Print(Ext.JsonStringify(tooltip))
+    -- Ext.Print(Ext.JsonStringify(tooltip))
 end
 
 ---@param character EsvCharacter
@@ -428,75 +446,71 @@ local function OnAbilityTooltip(character, stat, tooltip)
     
     local stat = tooltip:GetElement("StatName").Label
     local abilityDescription = tooltip:GetElement("AbilityDescription")
-    local attrBonus = CharGetDGMAttributeBonus(character)
+    local attrBonus = CharGetDGMAttributeBonus(character, 0)
+    local attrBonusNew = CharGetDGMAttributeBonus(character, 1)
     local stats = character.Stats
 
+    local str = ""
+
     if stat == "Dual-Wielding" then
+
         if stats.DualWielding > 0 then
-            abilityDescription.CurrentLevelEffect = "Level "
-                ..stats.DualWielding..": +"
-                ..math.floor((Ext.ExtraData.CombatAbilityDamageBonus * stats.DualWielding)).."% Damage, +"
-                ..math.floor((Ext.ExtraData.CombatAbilityDodgingBonus * stats.DualWielding)).."% Dodging and increase Offhand damage by "
-                ..math.floor((Ext.ExtraData.DGM_DualWieldingOffhandBonus * stats.DualWielding)).."%."
+            str = Ext.GetTranslatedString(dynamicTooltips[stat].current, "Handle Error!")
+            str = SubstituteString(str, stats.DualWielding, attrBonus["dual"], attrBonus["dualDodge"], attrBonus["dualOff"])
+            abilityDescription.CurrentLevelEffect = str
         end
-        abilityDescription.NextLevelEffect = "Next Level "
-            ..math.floor((stats.DualWielding+1))..": +"
-            ..math.floor((Ext.ExtraData.CombatAbilityDamageBonus * (stats.DualWielding+1))).."% Damage, +"
-            ..math.floor((Ext.ExtraData.CombatAbilityDodgingBonus * (stats.DualWielding+1))).."% Dodging and increase Offhand damage by "
-            ..math.floor((Ext.ExtraData.DGM_DualWieldingOffhandBonus * (stats.DualWielding+1))).."%."
-    end
-    if stat == "Ranged" then
+        
+        str = Ext.GetTranslatedString(dynamicTooltips[stat].new, "Handle Error!")
+        str = SubstituteString(str, stats.DualWielding+1, attrBonusNew["dual"], attrBonusNew["dualDodge"], attrBonusNew["dualOff"])
+        abilityDescription.NextLevelEffect = str
+        
+    elseif stat == "Ranged" then
         if stats.Ranged > 0 then
-            abilityDescription.CurrentLevelEffect = "Level "
-                ..stats.Ranged..": +"
-                ..math.floor((Ext.ExtraData.CombatAbilityDamageBonus * stats.Ranged)).."% Damage, +"
-                ..math.floor((Ext.ExtraData.CombatAbilityCritBonus * stats.Ranged)).."% Critical Chance and increase Range by "
-                ..(Ext.ExtraData.DGM_RangedRangeBonus * stats.Ranged * 0.01).."m."
+            str = Ext.GetTranslatedString(dynamicTooltips[stat].current, "Handle Error!")
+            str = SubstituteString(str, stats.Ranged, attrBonus["ranged"], attrBonus["rangedCrit"], attrBonus["rangedRange"])
+            abilityDescription.CurrentLevelEffect = str
         end
-        abilityDescription.NextLevelEffect = "Level "
-            ..(stats.Ranged+1)..": +"
-            ..math.floor((Ext.ExtraData.CombatAbilityDamageBonus * (stats.Ranged+1))).."% Damage, +"
-            ..math.floor((Ext.ExtraData.CombatAbilityCritBonus * (stats.Ranged+1))).."% Critical Chance and increase Range by "
-            ..(Ext.ExtraData.DGM_RangedRangeBonus * (stats.Ranged+1) * 0.01).."m."
-    end
-    if stat == "Single-Handed" then
+        
+        str = Ext.GetTranslatedString(dynamicTooltips[stat].new, "Handle Error!")
+        str = SubstituteString(str, stats.Ranged+1, attrBonusNew["ranged"], attrBonusNew["rangedCrit"], attrBonusNew["rangedRange"])
+        abilityDescription.NextLevelEffect = str
+
+    elseif stat == "Single-Handed" then
         if stats.SingleHanded > 0 then
-            abilityDescription.CurrentLevelEffect = "Level "..stats.SingleHanded..": +"
-                ..math.floor(Ext.ExtraData.CombatAbilityDamageBonus * stats.SingleHanded).."% Damage, +"
-                ..math.floor(Ext.ExtraData.CombatAbilityAccuracyBonus * stats.SingleHanded).."% Accuracy, +"
-                ..math.floor(Ext.ExtraData.DGM_SingleHandedArmorBonus * stats.SingleHanded).."% Armors and +"
-                ..math.floor(Ext.ExtraData.DGM_SingleHandedResistanceBonus * stats.SingleHanded).."% to Elemental Resistances."
+            str = Ext.GetTranslatedString(dynamicTooltips[stat].current, "Handle Error!")
+            str = SubstituteString(str, stats.SingleHanded, attrBonus["single"], attrBonus["singleAcc"], attrBonus["singleArm"], attrBonus["singleEle"])
+            abilityDescription.CurrentLevelEffect = str
         end
-        abilityDescription.NextLevelEffect = "Next Level "..(stats.SingleHanded+1)..": +"
-            ..math.floor(Ext.ExtraData.CombatAbilityDamageBonus * (stats.SingleHanded+1)).."% Damage, +"
-            ..math.floor(Ext.ExtraData.CombatAbilityAccuracyBonus * (stats.SingleHanded+1)).."% Accuracy, +"
-            ..math.floor(Ext.ExtraData.DGM_SingleHandedArmorBonus * (stats.SingleHanded+1)).."% Armors and +"
-            ..math.floor(Ext.ExtraData.DGM_SingleHandedResistanceBonus * (stats.SingleHanded+1)).."% to Elemental Resistances."
-    end
-    if stat == "Two-Handed" then
+        
+        str = Ext.GetTranslatedString(dynamicTooltips[stat].new, "Handle Error!")
+        str = SubstituteString(str, stats.SingleHanded+1, attrBonusNew["single"], attrBonusNew["singleAcc"], attrBonusNew["singleArm"], attrBonusNew["singleEle"])
+        abilityDescription.NextLevelEffect = str
+        
+    elseif stat == "Two-Handed" then
         if stats.TwoHanded > 0 then
-            abilityDescription.CurrentLevelEffect = "Level "..stats.TwoHanded..": +"
-                ..math.floor(Ext.ExtraData.CombatAbilityDamageBonus * stats.TwoHanded).."% Damage, +"
-                ..math.floor(Ext.ExtraData.CombatAbilityCritMultiplierBonus * stats.TwoHanded).."% Critical Multiplier and +"
-                ..math.floor(Ext.ExtraData.DGM_TwoHandedCTHBonus * stats.TwoHanded).."% Accuracy."
+            str = Ext.GetTranslatedString(dynamicTooltips[stat].current, "Handle Error!")
+            str = SubstituteString(str, stats.TwoHanded, attrBonus["two"], attrBonus["twoCrit"], attrBonus["twoAcc"])
+            abilityDescription.CurrentLevelEffect = str
         end
-        abilityDescription.NextLevelEffect = "Next Level "..(stats.TwoHanded+1)..": +"
-            ..math.floor(Ext.ExtraData.CombatAbilityDamageBonus * (stats.TwoHanded+1)).."% Damage, +"
-            ..math.floor(Ext.ExtraData.CombatAbilityCritMultiplierBonus * (stats.TwoHanded+1)).."% Critical Multiplier and +"
-            ..math.floor(Ext.ExtraData.DGM_TwoHandedCTHBonus * (stats.TwoHanded+1)).."% Accuracy."
-    end
-    if stat == "Perseverance" then
+        
+        str = Ext.GetTranslatedString(dynamicTooltips[stat].new, "Handle Error!")
+        str = SubstituteString(str, stats.TwoHanded+1, attrBonusNew["two"], attrBonusNew["twoCrit"], attrBonusNew["twoAcc"])
+        abilityDescription.NextLevelEffect = str
+
+    elseif stat == "Perseverance" then
         if stats.Perseverance > 0 then
-            abilityDescription.CurrentLevelEffect = "Level "..stats.Perseverance..": +"
-                ..math.floor(Ext.ExtraData.AbilityPerseveranceArmorPerPoint * stats.Perseverance).."% Armour restored after a hard Crowd Control effect recovery and +"
-                ..math.floor(Ext.ExtraData.DGM_PerseveranceVitalityRecovery * stats.Perseverance).."% Vitality restored after a hard Crowd Control effect recovery."
+            str = Ext.GetTranslatedString(dynamicTooltips[stat].current, "Handle Error!")
+            str = SubstituteString(str, stats.Perseverance, attrBonus["persArm"], attrBonus["persVit"])
+            abilityDescription.CurrentLevelEffect = str
         end
-        abilityDescription.NextLevelEffect = "Next Level "..(stats.Perseverance+1)..": +"
-            ..math.floor(Ext.ExtraData.AbilityPerseveranceArmorPerPoint * (stats.Perseverance+1)).."% Armour restored after a hard Crowd Control effect recovery and +"
-            ..math.floor(Ext.ExtraData.DGM_PerseveranceVitalityRecovery * (stats.Perseverance+1)).."% Vitality restored after a hard Crowd Control effect recovery."
+        
+        str = Ext.GetTranslatedString(dynamicTooltips[stat].new, "Handle Error!")
+        str = SubstituteString(str, stats.Perseverance+1, attrBonusNew["persArm"], attrBonusNew["persVit"])
+        abilityDescription.NextLevelEffect = str
+
     end
 
-    Ext.Print(Ext.JsonStringify(tooltip))
+    -- Ext.Print(Ext.JsonStringify(tooltip))
 end
 
 local function DGM_SetupUI()
