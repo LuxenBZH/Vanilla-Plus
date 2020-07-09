@@ -1,4 +1,7 @@
 ---- Hard CCs rework ----
+---@param character EsvCharacter
+---@param status string
+---@param handle number
 function BlockPhysicalCCs(character, status, handle)
 	local lifetime = NRD_StatusGetInt(character, handle, "LifeTime")
 	local source = NRD_StatusGetInt(character, handle, "DamageSourceType") -- If 5 it's from an aura
@@ -17,6 +20,9 @@ function BlockPhysicalCCs(character, status, handle)
 	end
 end
 
+---@param character EsvCharacter
+---@param status string
+---@param handle number
 function BlockMagicalCCs(character, status, handle)
 	local lifetime = NRD_StatusGetInt(character, handle, "LifeTime")
 	local source = NRD_StatusGetInt(character, handle, "DamageSourceType") -- If 5 it's from an aura
@@ -39,7 +45,12 @@ function BlockMagicalCCs(character, status, handle)
 	end
 end
 
-
+---@param character EsvCharacter
+---@param status string
+---@param duration number
+---@param force boolean
+---@param enterChance number
+---@param baseHandle number
 function RollStatusApplication(character, status, duration, force, enterChance, baseHandle)
 	local roll = math.random(1, 100)
 	Ext.Print("[LXDGM_CCSystem.RollStatusApplication] Status",status,"has enter chance",enterChance,"roll:",roll)

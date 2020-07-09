@@ -1,4 +1,7 @@
 ---- Talents ----
+---@param character EsvCharacter
+---@param talent string
+---@param unlocked boolean
 function CheckBoostTalents(character, talent, unlocked)
 	Ext.Print("Talent ",talent," changed :",unlocked)
 	if unlocked == 1 then
@@ -33,6 +36,8 @@ function CheckBoostTalents(character, talent, unlocked)
 	end
 end
 
+---@param character EsvCharacter
+---@param unlocked boolean
 function ManageMemory(character, unlocked)
 	if unlocked then
 		InitCharacterStatCheck(character)
@@ -48,6 +53,7 @@ function ManageMemory(character, unlocked)
 	end
 end
 
+---@param character EsvCharacter
 function CheckAllTalents(character)
 	local boostedTalents = {
 		"Demon",
@@ -66,6 +72,7 @@ function CheckAllTalents(character)
 	if CharacterHasTalent(character, "ExtraStatPoints") == 1 then CheckDuelist(character) end
 end
 
+---@param character EsvCharacter
 function CheckDuelist(character)
 	local mainHand = Ext.GetCharacter(character).Stats.MainWeapon
 	--Ext.Print("[LXDGM_Talents.CheckDuelist] Main hand :",mainHand)
@@ -78,6 +85,9 @@ function CheckDuelist(character)
 	end
 end
 
+---@param character EsvCharacter
+---@param status string
+---@param unlocked boolean
 function BoostFromTalentInt(character, status, unlocked)
 	if unlocked then
 		ApplyStatus(character, status, -1.0, 1)
@@ -86,6 +96,8 @@ function BoostFromTalentInt(character, status, unlocked)
 	end
 end
 
+---@param target EsvCharacter
+---@param handle string
 function SetWalkItOff(target, handle)
 	-- Call this function during damage control to potentially apply Walk It Off bonus
 	local hasTalent = CharacterHasTalent(target, "WalkItOff")
@@ -96,6 +108,7 @@ function SetWalkItOff(target, handle)
 	end
 end
 
+---@param character EsvCharacter
 function WalkItOffReplacement(character)
 	local hasStatus = 0
 	local wioStates = {"LX_WALKITOFF", "LX_WALKITOFF_2", "LX_WALKITOFF_3"}
@@ -113,12 +126,16 @@ function WalkItOffReplacement(character)
 	ApplyStatus(character, "LX_WALKITOFF", 6.0)
 end
 
+---@param character EsvCharacter
 function CheckHothead(character)
 	local HPperc = Ext.Round(NRD_CharacterGetStatInt(character, "CurrentVitality") / NRD_CharacterGetStatInt(character, "MaxVitality") * 100)
 	--Ext.Print(HPperc)
 	if HPperc > Ext.ExtraData.DGM_HotheadApplicationThreshold then ApplyStatus(character, "LX_HOTHEAD", -1.0, 1) end
 end
 
+---@param character EsvCharacter
+---@param skill string
+---@param cooldown number
 function ManageAllSkilledUp(character, skill, cooldown)
 	local hasUsedSkill = GetVarInteger(character, "LX_AllSkilledUp_Counter")
 	if hasUsedSkill == 0 and cooldown > 6.0 then
@@ -127,6 +144,8 @@ function ManageAllSkilledUp(character, skill, cooldown)
 	end
 end
 
+---@param character EsvCharacter
+---@param summon any
 function ManagePetPal(character, summon)
 	local summons = Osi.DB_DGM_Available_Summons:Get(character, nil);
 	if summons[1] ~= nil and summons[2] ~= nil then
@@ -135,6 +154,8 @@ function ManagePetPal(character, summon)
 	end
 end
 
+---@param character EsvCharacter
+---@param summon any
 function RestorePetPalPower(character, summon)
 	-- Call this function on DB remove of the second summon
 	local summons = Osi.DB_DGM_Available_Summons:Get(character, nil)

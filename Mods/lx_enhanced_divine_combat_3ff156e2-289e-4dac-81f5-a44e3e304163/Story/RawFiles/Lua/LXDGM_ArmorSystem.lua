@@ -1,4 +1,7 @@
 ---- Armor system modification ---
+---@param character EsvCharacter
+---@param amount number
+---@param dmgType string
 function CalculatePassingDamage(character, amount, dmgType)
 	if amount == nil then amount = 0 end
 	local dmgThrough = 0
@@ -56,6 +59,8 @@ function CalculatePassingDamage(character, amount, dmgType)
 	return math.ceil(dmgThrough)
 end
 
+---@param character EsvCharacter
+---@param amount number
 function ApplyPassingDamage(character, amount)
 	local currentVitality = NRD_CharacterGetStatInt(character, "CurrentVitality")
 	if currentVitality == nil then return end
