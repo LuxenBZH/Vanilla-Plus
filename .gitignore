@@ -1,0 +1,7 @@
+.vscode/
+
+/Mods/lx_enhanced_divine_combat_3ff156e2-289e-4dac-81f5-a44e3e304163/Story/*
+!/Mods/lx_enhanced_divine_combat_3ff156e2-289e-4dac-81f5-a44e3e304163/Story/story_orphanqueries*
+!/Mods/lx_enhanced_divine_combat_3ff156e2-289e-4dac-81f5-a44e3e304163/Story/RawFiles
+
+SourceControlGenerator.json
