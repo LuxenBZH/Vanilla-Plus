@@ -8,6 +8,7 @@ Ext.Require("LXDGM_Weapons.lua")
 Ext.Require("LXDGM_StatsPatching.lua")
 
 ---- General Functions ----
+---@param character EsvCharacter
 function InitCharacterStatCheck(character)
 	local attributesStr = {
 		"Finesse",
@@ -37,6 +38,7 @@ function InitCharacterStatCheck(character)
 	ApplyOverhaulAttributeBonuses(character)
 end
 
+---@param character EsvCharacter
 function CheckStatChange(character)
 	--[[ This function is called periodically, and return true if something has changed.
 	Changed stats can be queried using LX_Changed_Base_Stat or LX_Changed_Stat with GetVarInteger.
@@ -97,6 +99,7 @@ function CheckStatChange(character)
 	return changed
 end
 
+---@param character EsvCharacter
 function ApplyOverhaulAttributeBonuses(character)
 	---- This function should be called after a change check
 	--print("Character :"..character)
@@ -112,6 +115,11 @@ function ApplyOverhaulAttributeBonuses(character)
 	end
 end
 
+---@param character EsvCharacter
+---@param attribute string
+---@param stat string
+---@param multiplier number
+---@param base bool
 function ApplyBonus(character, attribute, stat, multiplier, base)
 	local currentBonus = NRD_CharacterGetPermanentBoostInt(character, stat)
 	local change = "LX_Changed_"
@@ -122,6 +130,11 @@ function ApplyBonus(character, attribute, stat, multiplier, base)
 	CharacterAddAttribute(character, "Dummy", 0)
 end
 
+---@param character EsvCharacter
+---@param attribute string
+---@param stat string
+---@param multiplier number
+---@param base bool
 function ApplyBonusOnce(character, attribute, stat, multiplier, base)
 	ApplyBonus(character, attribute, stat, multiplier, base)
 	local change = "LX_Changed_"
@@ -129,12 +142,13 @@ function ApplyBonusOnce(character, attribute, stat, multiplier, base)
 	SetVarInteger(character, change..attribute, 0)
 end
 
-
+---@param character EsvCharacter
 function ApplyOverhaulBonuses(character)
 	ApplyOverhaulAttributeBonuses(character)
 	ApplyOverhaulWeaponAbilityBonuses(character)
 end
 
+---@param character EsvCharacter
 function ApplyOverhaulBonusesCheck(character)
 	local isInit = GetVarInteger(character, "LX_Is_Init")
 	if isInit == 0 or isInit == nil then
@@ -146,6 +160,8 @@ function ApplyOverhaulBonusesCheck(character)
 end
 
 -- UI functions
+---@param uuid string
+---@param id string
 function SendClientID(uuid, id)
 	Ext.PostMessageToClient(uuid, "PDGM_ClientID", tostring(id))
 end
