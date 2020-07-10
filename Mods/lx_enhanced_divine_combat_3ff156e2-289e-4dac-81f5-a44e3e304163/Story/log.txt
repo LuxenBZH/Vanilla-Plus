@@ -1,0 +1,6 @@
+
+
+### Compile("D:/Jeux/SteamLibrary/steamapps/common/Divinity Original Sin 2/DefEd/Data/Mods/lx_enhanced_divine_combat_3ff156e2-289e-4dac-81f5-a44e3e304163\Story/story.div","r+")
+DeleteAllData
+
+0 error(s), 0 warning(s). Compilation ended.
