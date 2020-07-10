@@ -646,6 +646,7 @@ local StatBase = {}
 
 
 --- @class StatCharacter : StatBase
+-- Properties from PropertyMap
 --- @field public Level integer
 --- @field public Name string
 --- @field public AIFlags integer
@@ -675,6 +676,8 @@ local StatBase = {}
 --- @field public MaxSummons integer
 --- @field public BaseMaxSummons integer
 --- @field public MaxMpOverride integer
+
+-- StatCharacterFlags
 --- @field public IsPlayer boolean
 --- @field public InParty boolean
 --- @field public IsSneaking boolean
@@ -682,14 +685,20 @@ local StatBase = {}
 --- @field public Blind boolean
 --- @field public DrinkedPotion boolean
 --- @field public EquipmentValidated boolean
+
+-- Properties from CDivinityStats_Character::GetStat
 --- @field public PhysicalResistance integer
 --- @field public PiercingResistance integer
 --- @field public CorrosiveResistance integer
 --- @field public MagicResistance integer
+
+-- Base properties from CDivinityStats_Character::GetStat
 --- @field public BasePhysicalResistance integer
 --- @field public BasePiercingResistance integer
 --- @field public BaseCorrosiveResistance integer
 --- @field public BaseMagicResistance integer
+
+-- Properties from CharacterStatsGetters::GetStat
 --- @field public MaxMp integer
 --- @field public APStart integer
 --- @field public APRecovery integer
@@ -716,6 +725,8 @@ local StatBase = {}
 --- @field public Initiative integer
 --- @field public BlockChance integer
 --- @field public ChanceToHitBoost integer
+
+-- Base properties from CharacterStatsGetters::GetStat
 --- @field public BaseMaxMp integer
 --- @field public BaseAPStart integer
 --- @field public BaseAPRecovery integer
@@ -742,6 +753,8 @@ local StatBase = {}
 --- @field public BaseInitiative integer
 --- @field public BaseBlockChance integer
 --- @field public BaseChanceToHitBoost integer
+
+-- Properties from CharacterFetchStat
 --- @field public DynamicStats StatCharacterDynamic[]
 --- @field public MainWeapon StatItem
 --- @field public OffHandWeapon StatItem
@@ -829,6 +842,7 @@ local StatItemDynamic = {}
 
 
 --- @class StatItem : StatBase
+-- Properties from property map
 --- @field public Level integer
 --- @field public Name integer
 --- @field public InstanceId integer
@@ -848,7 +862,11 @@ local StatItemDynamic = {}
 --- @field public ItemTypeReal string
 --- @field public MaxCharges integer
 --- @field public Charges integer
+
+-- Properties from ItemFetchStat
 --- @field public DynamicStats StatItemDynamic[]
+
+-- Indirect properties from StatEntryWeapon/Armor/Shield
 --- @field public Using string
 --- @field public Damage integer
 --- @field public Act string See Act enumeration
@@ -959,6 +977,7 @@ local EclGameObject = {}
 --- @field public RootTemplate ItemTemplate
 --- @field public Stats StatItem
 --- @field public Handle integer
+---
 --- @field public WorldPos number[]
 --- @field public CurrentLevel string
 --- @field public Scale number
@@ -971,6 +990,10 @@ local EclGameObject = {}
 --- @field public BaseWeightOverwrite integer
 --- @field public ItemColorOverride integer
 local EclItem = {
+    --- Returns all delta mods on the item
+    --- @param self EclItem
+    --- @return string[]
+    GetDeltaMods = function (self) end,
     --- Returns whether the item has the specified tag
     --- @param self EclItem
     --- @param tag string
@@ -1002,6 +1025,7 @@ local EclItem = {
 --- @field public PlayerCustomData PlayerCustomData
 --- @field public Stats StatCharacter
 --- @field public Handle integer
+---
 --- @field public WorldPos number[]
 --- @field public CurrentLevel string
 --- @field public Scale number
@@ -1036,6 +1060,8 @@ local EclCharacter = {
     --- @param scale number 
     SetScale = function (self, scale) end
 }
+
+
 
 
 --- @class EsvGameObject
@@ -1073,6 +1099,22 @@ local EsvGameObject = {}
 --- @field public ForceSynch boolean
 --- @field public Stats StatItem
 local EsvItem = {
+    --- Returns all delta mods on the item
+    --- @param self EsvItem
+    --- @return string[]
+    GetDeltaMods = function (self) end,
+    --- Returns all boosts that were added during treasure generation
+    --- @param self EsvItem
+    --- @return string[]
+    GetGeneratedBoosts = function (self) end,
+    --- Returns the GUID of all items within the inventory of the item
+    --- @param self EsvItem
+    --- @return string[]
+    GetInventoryItems = function (self) end,
+    --- Returns the GUID of all characters within the specified radius
+    --- @param self EsvItem
+    --- @return string[]
+    GetNearbyCharacters = function (self, radius) end,
     --- Returns whether the item has the specified tag
     --- @param self EsvItem
     --- @param tag string
@@ -1120,10 +1162,22 @@ local EsvItem = {
 local PlayerCustomData = {
 }
 
+
+--- @class EsvSkillInfo
+--- @field public ActiveCooldown number
+--- @field public IsActivated boolean
+--- @field public IsLearned boolean
+--- @field public ZeroMemory boolean
+--- @field public OncePerCombat boolean
+--- @field public NumCharges number
+local EsvSkillInfo = {}
+
+
 --- @class EsvCharacter : EsvGameObject
 --- @field public RootTemplate CharacterTemplate
 --- @field public PlayerCustomData PlayerCustomData
 --- @field public Stats StatCharacter
+---
 --- @field public NetID integer
 --- @field public MyGuid string
 --- @field public WorldPos number[]
@@ -1163,6 +1217,8 @@ local PlayerCustomData = {
 --- @field public CorpseLootable boolean
 --- @field public CustomBloodSurface string
 --- @field public PreviousLevel string
+
+-- CharacterFlags 0
 --- @field public IsPlayer boolean
 --- @field public Multiplayer boolean
 --- @field public InParty boolean
@@ -1185,12 +1241,16 @@ local PlayerCustomData = {
 --- @field public Totem boolean
 --- @field public NoRotate boolean
 --- @field public IsHuge boolean
+
+-- CharacterFlags 2
 --- @field public Global boolean
 --- @field public HasOsirisDialog boolean
 --- @field public HasDefaultDialog boolean
 --- @field public TreasureGeneratedForTrader boolean
 --- @field public Trader boolean
 --- @field public Resurrected boolean
+
+-- CharacterFlags 3
 --- @field public IsPet boolean
 --- @field public IsSpectating boolean
 --- @field public NoReptuationEffects boolean
@@ -1203,6 +1263,19 @@ local EsvCharacter = {
     --- @param self EsvCharacter
     --- @return string[]
     GetInventoryItems = function (self) end,
+    --- Returns detailed information about the specified skill
+    --- @param self EsvCharacter
+    --- @param skillId string
+    --- @return EsvSkillInfo
+    GetSkillInfo = function (self, skillId) end,
+    --- Returns the name of all skills available to the character
+    --- @param self EsvCharacter
+    --- @return string[]
+    GetSkills = function (self) end,
+    --- Returns the GUID of all characters within the specified radius
+    --- @param self EsvCharacter
+    --- @return string[]
+    GetNearbyCharacters = function (self, radius) end,
     --- Returns whether the character has the specified tag
     --- @param self EsvCharacter
     --- @param tag string
@@ -2674,6 +2747,14 @@ Ext = {
     --- @param callback function Lua function to run when the event fires
     RegisterListener = function (event, callback) end,
 
+    --- Registers a function that is called when certain Osiris functions are called.
+    --- Supports events, built-in queries, DBs, PROCs, QRYs (user queries).
+    --- @param name string Osiris function/database name
+    --- @param arity number Number of columns for DBs or the number of parameters (both IN and OUT) for functions
+    --- @param event string Event type ('before' - triggered before Osiris call; 'after' - after Osiris call; 'beforeDelete'/'afterDelete' - before/after delete from DB)
+    --- @param handler function Lua function to run when the event fires
+    RegisterOsirisListener = function (name, arity, event, handler) end,
+
     --- Registers a new call in Osiris
     --- @param func function Function to register
     --- @param funcName string Name of call to register
@@ -2815,6 +2896,34 @@ Ext = {
     --- @return number|nil
     EnumLabelToIndex = function (enum, label) end,
 
+    --- Returns the GUID of all characters on the specified level. 
+    --- Uses the current level if no level name was specified.
+    --- @param level string|nil Optional level name
+    --- @return string[]
+    GetAllCharacters = function (level) end,
+
+    --- Returns the GUID of all characters within a radius around the specified point.
+    --- @param x number
+    --- @param y number
+    --- @param z number
+    --- @param distance number
+    --- @return string[]
+    GetCharactersAroundPosition = function (x, y, z, distance) end,
+
+    --- Returns the GUID of all items on the specified level. 
+    --- Uses the current level if no level name was specified.
+    --- @param level string|nil Optional level name
+    --- @return string[]
+    GetAllItems = function (level) end,
+
+    --- Returns the GUID of all items within a radius around the specified point.
+    --- @param x number
+    --- @param y number
+    --- @param z number
+    --- @param distance number
+    --- @return string[]
+    GetItemsAroundPosition = function (x, y, z, distance) end,
+
     --- Returns the property proxy of the specified character
     --- @param id string|integer Character GUID or handle or NetID
     --- @return EsvCharacter
@@ -2861,7 +2970,8 @@ Ext = {
     Round = function (n) end,
 
     --- Generate Lua IDE helpers for the currently loaded module
-    GenerateIdeHelpers = function () end,
+    --- @param builtin boolean|nil Only export built-in functions and names exported by Lua?
+    GenerateIdeHelpers = function (builtin) end,
 
     --- Returns whether the code is executing in a client context
     --- @return boolean
