@@ -1,4 +1,6 @@
 ---- Potions ----
+---@param character EsvCharacter
+---@param potion string
 function CharacterUsePoisonedPotion(character, potion)
 	-- Because fuck this, this is going to be hardcoded.
 	local potionTemplate = GetTemplate(potion)
@@ -26,6 +28,8 @@ function CharacterUsePoisonedPotion(character, potion)
 	NRD_HitQryExecute(hitHandle)
 end
 
+---@param character EsvCharacter
+---@param potion string
 function ManagePotionFatigue(character, potion)
 	local item = Ext.GetItem(potion)
 	if NRD_StatGetType(item.StatsId) ~= "Potion" then return end
