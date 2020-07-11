@@ -148,3 +148,5 @@ key "DGM_PerseveranceVitalityRecovery","2"
 
 key "AbilityPerseveranceArmorPerPoint","8"
 
+key "DGM_RangedCQBPenaltyRange","2"
+

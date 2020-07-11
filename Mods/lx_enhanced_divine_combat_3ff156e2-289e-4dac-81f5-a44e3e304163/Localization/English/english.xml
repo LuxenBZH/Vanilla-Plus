@@ -67,4 +67,11 @@
     <content contentuid="hda7ee9a4g5bbeg4c62g96b7ge31b21e094f3" comment="Two handed dynamic tooltip new">Next Level [1]: +[2]% Damage, +[3]% Critical Multiplier and [4]% Accuracy.</content>
     <content contentuid="h5d0c3ad0g3d9dg4cf1g92b7g20d6d7d26344" comment="Perseverance dyanmic tooltip current">Level [1]: +[2]% Armour and +[3]% Vitality restored after a hard Crowd Control effect recovery.</content>
     <content contentuid="h443a51dcgbd6fg46c2g8988gbfe93a3123a5" comment="Perseverance dyanmic tooltip new">Next Level [1]: +[2]% Armour and +[3]% Vitality restored after a hard Crowd Control effect recovery.</content>
+    <content contentuid="h1e5caa33g4d5dg4f42g91edg9f546d42f56b" comment="Staff dynamic tooltip">Increases all Skill damage by [1]%.</content>
+    <content contentuid="h314ee256g43cdg4864ga519gd23e909ec63e" comment="Wand dynamic tooltip">Increase all Skill damage by [1]% (stackable when dual-wielding)</content>
+    <content contentuid="h3e8d0f43g5060g48d8g95cag541abe3a7c08" comment="Ranged weapons dynamic tooltip">Receive a [1]% Damage penalty if the target is closer than [2] meters</content>
+    <content contentuid="hdf2a4bd0g134eg4107g9a8agd93d6d22fd68" comment="Attribute general bonus dynamic tooltip">From Attributes : [1]%</content>
+    <content contentuid="ha418e064g2d69g4407gadc2gf2f590f0e895" comment="Strength weapond damage dynamic tooltip">From Strength weapon bonus : [1]%</content>
+    <content contentuid="hf338b2c0gd158g49b4ga2ceg15a7099a4b7b" comment="Intelligence skill damage dynamic tooltip">Skills gets a bonus of +[1]% from Intelligence</content>
+    <content contentuid="h092684e6gbf69g4372g99f8g4743516b0efe" comment="Dual wielding penalty dynamic tooltip">Offhand penalty: [1]% (penalty reduced by [2]% from Dual-Wielding)</content>
 </contentList>
