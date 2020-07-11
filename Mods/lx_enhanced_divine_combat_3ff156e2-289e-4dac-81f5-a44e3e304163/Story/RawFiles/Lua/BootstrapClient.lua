@@ -148,10 +148,10 @@ local function GetSkillDamageRange(character, skill)
 		(character.Finesse-10) * (Ext.ExtraData.DGM_FinesseGlobalBonus*0.01) +
 		(character.Intelligence-10) * (Ext.ExtraData.DGM_IntelligenceGlobalBonus*0.01 + Ext.ExtraData.DGM_IntelligenceSkillBonus*0.01)
         for damageType, range in pairs(mainDamageRange) do
-            local min = Ext.Round(range[1] * damageMultiplier * globalMult)
-            local max = Ext.Round(range[2] * damageMultiplier * globalMult)
-            range[1] = min + math.ceil(min * Game.Math.GetDamageBoostByType(character, damageType) * amplifierMult)
-            range[2] = max + math.ceil(max * Game.Math.GetDamageBoostByType(character, damageType) * amplifierMult)
+            local min = Ext.Round(range[1] * damageMultiplier * globalMult * amplifierMult)
+            local max = Ext.Round(range[2] * damageMultiplier * globalMult * amplifierMult + (globalMult *amplifierMult))
+            range[1] = min + math.ceil(min * Game.Math.GetDamageBoostByType(character, damageType))
+            range[2] = max + math.ceil(max * Game.Math.GetDamageBoostByType(character, damageType))
         end
 
         local damageType = skill.DamageType
@@ -226,7 +226,7 @@ local function GetSkillDamageRange(character, skill)
         local damageRanges = {}
         damageRanges[damageType] = {
             math.ceil(math.ceil(Ext.Round(baseDamage - damageRange) * damageBoost) * damageTypeBoost * amplifierMult),
-            math.ceil(math.ceil(Ext.Round(baseDamage + damageRange) * damageBoost) * damageTypeBoost * amplifierMult)
+            math.ceil(math.ceil(Ext.Round(baseDamage + damageRange) * damageBoost) * damageTypeBoost * amplifierMult + (globalMult * amplifierMult))
         }
         return damageRanges
     end
@@ -363,7 +363,6 @@ local function changeDamageValue(ui, call, state)
     intelligence = tonumber(intelligence) - Ext.ExtraData.AttributeBaseValue
     
     local damage = ui:GetValue("secStat_array", "string", 24)
-    Ext.Print(damage)
     
     local minDamage = damage:gsub(" - .*", "")
     local maxDamage = damage:gsub(".* - ", "")
