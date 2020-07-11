@@ -23,9 +23,9 @@ function DamageControl(target, handle, instigator)
 	local fromReflection = NRD_StatusGetInt(target, handle, "Reflection")
 	-- print("Hit from reflection: "..fromReflection)
 	local hitType = NRD_StatusGetInt(target, handle, "DoT")
-	-- print("HitType: "..hitType)
+	--print("HitType: "..hitType)
 	local sourceType = NRD_StatusGetInt(target, handle, "DamageSourceType")
-	local skillID = NRD_StatusGetString(target, handle, "SkillId"):gsub("_%-?%d+$", "")
+	local skillID = NRD_StatusGetString(target, handle, "SkillId")
 	local backstab = NRD_StatusGetInt(target, handle, "Backstab")
 	local fixedValue = 0
 	-- print("SkillID: "..skillID)
@@ -126,13 +126,7 @@ function DamageControl(target, handle, instigator)
 	end
 	
 	-- Apply damage changes and side effects
-	local randomMultiplier = 1.0
-	if skillID ~= "" then
-		local damageRange = Ext.StatGetAttribute(skillID, "Damage Range") or 0.0
-		randomMultiplier = 1.0 + (Ext.Random(0, damageRange) - damageRange/2) * 0.01
-	end
-	damages = ChangeDamage(damages, (damageBonus/100+1)*globalMultiplier*randomMultiplier, 0, instigator)
-	
+	damages = ChangeDamage(damages, (damageBonus/100+1)*globalMultiplier, 0, instigator)
 	ReplaceDamages(damages, handle, target)
 	SetWalkItOff(target, handle)
 	
@@ -164,7 +158,6 @@ function ChangeDamage(damages, multiplier, value, instigator)
 		end
 		amount = amount * multiplier
 		amount = amount + value
-		amount = Ext.Round(amount)
 		if amount ~= 0 then print("Changed "..dmgType.." to "..amount.." (Multiplier = "..multiplier..")") end
 		damages[dmgType] = amount
 	end
@@ -271,9 +264,4 @@ local function DGM_HitChanceFormula(attacker, target)
     return hitChance
 end
 
-local function GetSkillDamage(skill, attacker, isFromItem, stealthed, attackerPos, targetPos, level, noRandomization)
-    return Game.Math.GetSkillDamage(skill, attacker, isFromItem, stealthed, attackerPos, targetPos, level, true)
-end
-
 Ext.RegisterListener("GetHitChance", DGM_HitChanceFormula)
-Ext.RegisterListener("GetSkillDamage", GetSkillDamage)
