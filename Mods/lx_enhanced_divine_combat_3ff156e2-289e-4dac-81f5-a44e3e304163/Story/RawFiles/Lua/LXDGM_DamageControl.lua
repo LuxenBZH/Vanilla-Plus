@@ -156,6 +156,8 @@ function ChangeDamage(damages, multiplier, value, instigator)
 			multiplier = multiplier + Ext.ExtraData.DGM_IceKingDamageBonus/100
 			-- print("Bonus: IceKing")
 		end
+		local rangeFix = math.random()
+		if amount > 0 then amount = amount + rangeFix end
 		amount = amount * multiplier
 		amount = amount + value
 		if amount ~= 0 then print("Changed "..dmgType.." to "..amount.." (Multiplier = "..multiplier..")") end
@@ -265,3 +267,49 @@ local function DGM_HitChanceFormula(attacker, target)
 end
 
 Ext.RegisterListener("GetHitChance", DGM_HitChanceFormula)
+
+--- @param character StatCharacter
+--- @param weapon StatItem
+function CalculateWeaponDamageRange(character, weapon)
+    local damages, damageBoost = ComputeBaseWeaponDamage(weapon)
+
+    local abilityBoosts = character.DamageBoost 
+        + ComputeWeaponCombatAbilityBoost(character, weapon)
+        + ComputeWeaponRequirementScaledDamage(character, weapon)
+    abilityBoosts = math.max(abilityBoosts + 100.0, 0.0) / 100.0
+
+    local boost = 1.0 + damageBoost * 0.01
+    if character.IsSneaking then
+        boost = boost + Ext.ExtraData['Sneak Damage Multiplier']
+    end
+
+    local ranges = {}
+    for damageType, damage in pairs(damages) do
+        local min = damage.Min * boost * abilityBoosts
+        local max = damage.Max * boost * abilityBoosts
+
+        if min > max then
+            max = min
+        end
+
+        ranges[damageType] = {min, max}
+    end
+
+    return ranges
+end
+
+local function GetDamageMultipliers(skill, stealthed, attackerPos, targetPos)
+    local stealthDamageMultiplier = 1.0
+    if stealthed then
+        stealthDamageMultiplier = Ext.ExtraData.Stealth
+    end
+
+    local targetDistance = math.sqrt((attackerPos[1] - targetPos[1])^2 + (attackerPos[3] - targetPos[3])^2)
+    local distanceDamageMultiplier = 1.0
+    if targetDistance > 1.0 then
+        distanceDamageMultiplier = Ext.Round(targetDistance) * skill['Distance Damage Multiplier'] * 0.01 + 1
+    end
+
+    local damageMultiplier = skill['Damage Multiplier'] * 0.01
+    return stealthDamageMultiplier * distanceDamageMultiplier * damageMultiplier
+end
