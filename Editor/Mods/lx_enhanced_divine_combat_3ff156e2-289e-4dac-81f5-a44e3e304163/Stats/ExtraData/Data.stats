@@ -455,5 +455,12 @@
         <field name="Value" type="FloatStatObjectFieldDefinition" value="8" />
       </fields>
     </stat_object>
+    <stat_object is_substat="false">
+      <fields>
+        <field name="Name" type="NameStatObjectFieldDefinition" value="DGM_RangedCQBPenaltyRange" />
+        <field name="Value" type="FloatStatObjectFieldDefinition" value="2" />
+        <field name="Comment" type="CommentStatObjectFieldDefinition" value="In meters, the range at which being closer causes the penalty" />
+      </fields>
+    </stat_object>
   </stat_objects>
 </stats>
