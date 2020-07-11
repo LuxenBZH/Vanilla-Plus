@@ -1,12 +1,12 @@
----@param target EsvCharacter
+---@param target EsvCharacter|EsvItem
 ---@param handle number
----@param instigator EsvCharacter
+---@param instigator EsvCharacter|EsvItem
 function DamageControl(target, handle, instigator)
 	--[[
 		Main damage control : damages are teared down to the original formula and apply custom
 		bonuses from the overhaul
 	]]--
-	if ObjectIsCharacter(instigator) == 0 then return end
+	if ObjectIsCharacter(instigator) == 0 or ObjectIsCharacter(target) == 0 then return end
 	-- Get hit properties
 	local damages = {}
 	local types = DamageTypeEnum()
@@ -61,9 +61,9 @@ function DamageControl(target, handle, instigator)
 	end
 		
 	-- Get instigator bonuses
-	local strength = CharacterGetAttribute(instigator, "Strength") - 10
-	local finesse = CharacterGetAttribute(instigator, "Finesse") - 10
-	local intelligence = CharacterGetAttribute(instigator, "Intelligence") - 10
+	local strength = CharacterGetAttribute(instigator, "Strength") - Ext.ExtraData.AttributeBaseValue
+	local finesse = CharacterGetAttribute(instigator, "Finesse") - Ext.ExtraData.AttributeBaseValue
+	local intelligence = CharacterGetAttribute(instigator, "Intelligence") - Ext.ExtraData.AttributeBaseValue
 	local damageBonus = strength*Ext.ExtraData.DGM_StrengthGlobalBonus+finesse*Ext.ExtraData.DGM_FinesseGlobalBonus+intelligence*Ext.ExtraData.DGM_IntelligenceGlobalBonus -- /!\ Remember that 1=1% in this variable
 	local globalMultiplier = 1.0
 	
