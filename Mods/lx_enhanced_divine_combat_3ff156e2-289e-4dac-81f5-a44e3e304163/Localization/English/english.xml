@@ -75,10 +75,10 @@
     <content contentuid="hf338b2c0gd158g49b4ga2ceg15a7099a4b7b" comment="Intelligence skill damage dynamic tooltip">Skills gets a bonus of +[1]% from Intelligence</content>
     <content contentuid="h092684e6gbf69g4372g99f8g4743516b0efe" comment="Dual wielding penalty dynamic tooltip">Offhand penalty: [1]% (penalty reduced by [2]% from Dual-Wielding)</content>
     <content contentuid="h456b2bf0gf693g41e8gb01cg42e3548814a2" comment="Target_EvasiveManeuver">Prevent Dodge Fatigue when active.</content>
-    <content contentuid="hdc60c039gac18g416cgb2a0g3d58fc54afcc" comment="Target_Fortify">Reduce damage going through Physical armor by [1]%</content>
-    <content contentuid="h50e9548eg61f2g4aedg8a3eg570a7ffee6d3" comment="Shout_MendMetal">"Reduce damage going through Physical armor by [1]%"</content>
-    <content contentuid="he47a8a79g2f04g410bgbf00gd6b2a84ba9a5" comment="Shout_SteelSkin">Reduce damage going through Physical armor by [1]%</content>
-    <content contentuid="hf2f2ceb4g7be9g453fgb093ga8d7c563f782" comment="Target_FrostyShell">Reduce damage going through Magic armor by [1]%</content>
-    <content contentuid="h2ce13614gab6cg4878gb781gcb3186a8ead9" comment="Shout_FrostAura">Reduce damage going through Magic armor by [1]%</content>
-    <content contentuid="hf7a19975gea84g44a3g8fffg5b4f063b88b4" comment="Shout_RecoverArmour">Reduce damage going through Physical and Magic armor by [1]%</content>
+    <content contentuid="hdc60c039gac18g416cgb2a0g3d58fc54afcc" comment="Target_Fortify">Reduce damage going through Physical Armour by [1]%</content>
+    <content contentuid="h50e9548eg61f2g4aedg8a3eg570a7ffee6d3" comment="Shout_MendMetal">"Reduce damage going through Physical Armour by [1]%"</content>
+    <content contentuid="he47a8a79g2f04g410bgbf00gd6b2a84ba9a5" comment="Shout_SteelSkin">Reduce damage going through Physical Armour by [1]%</content>
+    <content contentuid="hf2f2ceb4g7be9g453fgb093ga8d7c563f782" comment="Target_FrostyShell">Reduce damage going through Magic Armour by [1]%</content>
+    <content contentuid="h2ce13614gab6cg4878gb781gcb3186a8ead9" comment="Shout_FrostAura">Reduce damage going through Magic Armour by [1]%</content>
+    <content contentuid="hf7a19975gea84g44a3g8fffg5b4f063b88b4" comment="Shout_RecoverArmour">Reduce damage going through Physical and Magic Armour by [1]%</content>
 </contentList>
