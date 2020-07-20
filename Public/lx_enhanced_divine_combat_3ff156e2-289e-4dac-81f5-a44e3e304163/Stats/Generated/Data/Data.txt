@@ -150,3 +150,15 @@ key "AbilityPerseveranceArmorPerPoint","8"
 
 key "DGM_RangedCQBPenaltyRange","2"
 
+key "DGM_FortifiedPassingPhysicalReduction","0.5"
+
+key "DGM_MendMetalPassingPhysicalReduction","0.25"
+
+key "DGM_SteelSkinPassingPhysicalReduction","0.33"
+
+key "DGM_MagicShellPassingMagicReduction","0.5"
+
+key "DGM_FrostAuraPassingMagicReduction","0.25"
+
+key "DGM_ShieldsUpPassingReduction","0.5"
+

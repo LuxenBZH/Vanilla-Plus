@@ -37,15 +37,17 @@ end
 
 local function AddAdditionalDescription()
 	local descriptions = {
-		Target_EvasiveManeuver = "Prevent Dodge Fatigue when active.",
-		Target_Fortify = "Reduce damage going through Physical armor by 50%",
-		Shout_MendMetal = "Reduce damage going through Physical armor by 25%",
-		Shout_SteelSkin = "Reduce damage going through Physical armor by 33%",
-		Target_FrostyShell = "Reduce damage going through Magic armor by 50%",
-		Shout_FrostAura = "Reduce damage going through Magic armor by 25%",
-		Shout_RecoverArmour = "Reduce damage going through Physical and Magic armor by 50%"
+		["Target_EvasiveManeuver"] = {},
+		["Target_Fortify"]         = {Ext.ExtraData.DGM_FortifiedPassingPhysicalReduction*100},
+		["Shout_MendMetal"]        = {Ext.ExtraData.DGM_MendMetalPassingPhysicalReduction*100},
+		["Shout_SteelSkin"]        = {Ext.ExtraData.DGM_SteelSkinPassingPhysicalReduction*100},
+		["Target_FrostyShell"]     = {Ext.ExtraData.DGM_MagicShellPassingMagicReduction*100},
+		["Shout_FrostAura"]        = {Ext.ExtraData.DGM_FrostAuraPassingMagicReduction*100},
+		["Shout_RecoverArmour"]    = {Ext.ExtraData.DGM_ShieldsUpPassingReduction*100}
 	}
-	for skill,desc in pairs(descriptions) do
+
+	for skill, params in pairs(descriptions) do
+		local desc = GetDynamicTranslationString(skill, table.unpack(params))
 		Ext.StatAddCustomDescription(skill, "SkillProperties", desc)
 	end
 end

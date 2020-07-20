@@ -18,10 +18,10 @@ function CalculatePassingDamage(character, amount, dmgType)
 	end
 	
 	if dmgType == "Physical" then
-		if HasActiveStatus(character, "FORTIFIED") == 1 then passingModMult = passingModMult - 0.5 end
-		if HasActiveStatus(character, "MEND_MENTAL") == 1 then passingModMult = passingModMult - 0.25 end
-		if HasActiveStatus(character, "STEEL_SKIN") == 1 then passingModMult = passingModMult - 0.25 end
-		if HasActiveStatus(character, "LX_SHIELDSUP") == 1 then passingModMult = passingModMult - 0.5 end
+		if HasActiveStatus(character, "FORTIFIED") == 1 then passingModMult = passingModMult - Ext.ExtraData.DGM_FortifiedPassingPhysicalReduction end
+		if HasActiveStatus(character, "MEND_MENTAL") == 1 then passingModMult = passingModMult - Ext.ExtraData.DGM_MendMetalPassingPhysicalReduction end
+		if HasActiveStatus(character, "STEEL_SKIN") == 1 then passingModMult = passingModMult - Ext.ExtraData.DGM_SteelSkinPassingPhysicalReduction end
+		if HasActiveStatus(character, "LX_SHIELDSUP") == 1 then passingModMult = passingModMult - Ext.ExtraData.DGM_ShieldsUpPassingReduction end
 		passingMod = passingMod * passingModMult
 		if pArmor > 0 then
 			if pArmor > amount then
@@ -42,9 +42,9 @@ function CalculatePassingDamage(character, amount, dmgType)
 	}
 	for i, mDmg in pairs(magicTypes) do
 		if dmgType == mDmg then
-			if HasActiveStatus(character, "MAGIC_SHELL") == 1 then passingModMult = passingModMult - 0.5 end
-			if HasActiveStatus(character, "FROST_AURA") == 1 then passingModMult = passingModMult - 0.25 end
-			if HasActiveStatus(character, "LX_SHIELDSUP") == 1 then passingModMult = passingModMult - 0.5 end
+			if HasActiveStatus(character, "MAGIC_SHELL") == 1 then passingModMult = passingModMult - Ext.ExtraData.DGM_MagicShellPassingMagicReduction end
+			if HasActiveStatus(character, "FROST_AURA") == 1 then passingModMult = passingModMult - Ext.ExtraData.DGM_FrostAuraPassingMagicReduction end
+			if HasActiveStatus(character, "LX_SHIELDSUP") == 1 then passingModMult = passingModMult - Ext.ExtraData.DGM_ShieldsUpPassingReduction end
 			passingMod = passingMod * passingModMult
 			if mArmor > 0 then
 				if mArmor > amount then

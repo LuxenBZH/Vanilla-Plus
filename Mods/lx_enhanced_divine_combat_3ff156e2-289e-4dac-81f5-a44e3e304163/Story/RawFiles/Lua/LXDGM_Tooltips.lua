@@ -1,25 +1,32 @@
-local dynamicTooltips       = {
-    ["Strength"]            = "he1708d1eg243dg4b72g8f48gddb9bc8d62ff",
-    ["Finesse"]             = "h2e87e6cfg0183g4968g8ec1g325614c7d9fa",
-    ["Intelligence"]        = "h58e777ddgd569g4c0dg8f58gece56cce053d",
-    ["Damage"]              = "h7fec5db8g58d3g4abbgab7ag03e19b542bef",
-    ["WpnStaff"]            = "h1e5caa33g4d5dg4f42g91edg9f546d42f56b",
-    ["WpnWand"]             = "h314ee256g43cdg4864ga519gd23e909ec63e",
-    ["WpnRanged"]           = "h3e8d0f43g5060g48d8g95cag541abe3a7c08",
-    ["Dual-Wielding"]       = "hc5d5552bg6b33g44c1gbb0cg8d55a101f081",
-    ["Dual-Wielding_Next"]  = "h2baa6ed9gdca0g4731gb999g098d9c2d90b0",
-    ["Ranged"]              = "he86bfd28ge123g42a4g8c0cg2f9bcd7d9e05", 
-    ["Ranged_Next"]         = "hffc37ae5g6651g4a60ga1c1g49d233cb1ca2",
-    ["Single-Handed"]       = "h70707bb2g5a48g4571g9a68ged2fe5a030ea", 
-    ["Single-Handed_Next"]  = "h2afdc1f0g4650g4ea9gafb7gb0c042367766",
-    ["Two-Handed"]          = "h6e9ec88dgcbb7g426bgb1d9g69df0240825a", 
-    ["Two-Handed_Next"]     = "hda7ee9a4g5bbeg4c62g96b7ge31b21e094f3",
-    ["Perseverance"]        = "h5d0c3ad0g3d9dg4cf1g92b7g20d6d7d26344", 
-    ["Perseverance_Next"]   = "h443a51dcgbd6fg46c2g8988gbfe93a3123a5",
-    ["AttrGenBonus"]        = "hdf2a4bd0g134eg4107g9a8agd93d6d22fd68",
-    ["StrWpnBonus"]         = "ha418e064g2d69g4407gadc2gf2f590f0e895",
-    ["IntSkillBonus"]       = "hf338b2c0gd158g49b4ga2ceg15a7099a4b7b",
-    ["DualWieldingPenalty"] = "h092684e6gbf69g4372g99f8g4743516b0efe"
+local dynamicTooltips = {
+    ["Strength"]                = "he1708d1eg243dg4b72g8f48gddb9bc8d62ff",
+    ["Finesse"]                 = "h2e87e6cfg0183g4968g8ec1g325614c7d9fa",
+    ["Intelligence"]            = "h58e777ddgd569g4c0dg8f58gece56cce053d",
+    ["Damage"]                  = "h7fec5db8g58d3g4abbgab7ag03e19b542bef",
+    ["WpnStaff"]                = "h1e5caa33g4d5dg4f42g91edg9f546d42f56b",
+    ["WpnWand"]                 = "h314ee256g43cdg4864ga519gd23e909ec63e",
+    ["WpnRanged"]               = "h3e8d0f43g5060g48d8g95cag541abe3a7c08",
+    ["Dual-Wielding"]           = "hc5d5552bg6b33g44c1gbb0cg8d55a101f081",
+    ["Dual-Wielding_Next"]      = "h2baa6ed9gdca0g4731gb999g098d9c2d90b0",
+    ["Ranged"]                  = "he86bfd28ge123g42a4g8c0cg2f9bcd7d9e05", 
+    ["Ranged_Next"]             = "hffc37ae5g6651g4a60ga1c1g49d233cb1ca2",
+    ["Single-Handed"]           = "h70707bb2g5a48g4571g9a68ged2fe5a030ea", 
+    ["Single-Handed_Next"]      = "h2afdc1f0g4650g4ea9gafb7gb0c042367766",
+    ["Two-Handed"]              = "h6e9ec88dgcbb7g426bgb1d9g69df0240825a", 
+    ["Two-Handed_Next"]         = "hda7ee9a4g5bbeg4c62g96b7ge31b21e094f3",
+    ["Perseverance"]            = "h5d0c3ad0g3d9dg4cf1g92b7g20d6d7d26344", 
+    ["Perseverance_Next"]       = "h443a51dcgbd6fg46c2g8988gbfe93a3123a5",
+    ["AttrGenBonus"]            = "hdf2a4bd0g134eg4107g9a8agd93d6d22fd68",
+    ["StrWpnBonus"]             = "ha418e064g2d69g4407gadc2gf2f590f0e895",
+    ["IntSkillBonus"]           = "hf338b2c0gd158g49b4ga2ceg15a7099a4b7b",
+    ["DualWieldingPenalty"]     = "h092684e6gbf69g4372g99f8g4743516b0efe",
+    ["Target_EvasiveManeuver"]  = "h456b2bf0gf693g41e8gb01cg42e3548814a2",
+    ["Target_Fortify"]          = "hdc60c039gac18g416cgb2a0g3d58fc54afcc",
+    ["Shout_MendMetal"]         = "h50e9548eg61f2g4aedg8a3eg570a7ffee6d3",
+    ["Shout_SteelSkin"]         = "he47a8a79g2f04g410bgbf00gd6b2a84ba9a5",
+    ["Target_FrostyShell"]      = "hf2f2ceb4g7be9g453fgb093ga8d7c563f782",
+    ["Shout_FrostAura"]         = "h2ce13614gab6cg4878gb781gcb3186a8ead9",
+    ["Shout_RecoverArmour"]     = "hf7a19975gea84g44a3g8fffg5b4f063b88b4",
 }
 
 ---@param str string
@@ -35,7 +42,7 @@ local function SubstituteString(str, ...)
 end
 
 ---@param dynamicKey string
-local function GetDynamicTranslationString(dynamicKey, ...)
+function GetDynamicTranslationString(dynamicKey, ...)
     local args = {...}
     
     local handle = dynamicTooltips[dynamicKey]
