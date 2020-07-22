@@ -2,7 +2,7 @@ key "ArmorToVitalityRatio","0.4"
 
 key "ExpectedConGrowthForArmorCalculation","1"
 
-key "VitalityToDamageRatio","5"
+key "VitalityToDamageRatio","6.5"
 
 key "VitalityToDamageRatioGrowth","0.2"
 
@@ -161,4 +161,26 @@ key "DGM_MagicShellPassingMagicReduction","0.5"
 key "DGM_FrostAuraPassingMagicReduction","0.25"
 
 key "DGM_ShieldsUpPassingReduction","0.5"
+
+key "FirstVitalityLeapLevel","9"
+
+key "FirstVitalityLeapGrowth","1.15"
+
+key "SecondVitalityLeapLevel","13"
+
+key "SecondVitalityLeapGrowth","1.15"
+
+key "ThirdVitalityLeapLevel","16"
+
+key "ThirdVitalityLeapGrowth","1.15"
+
+key "FourthVitalityLeapLevel","18"
+
+key "FourthVitalityLeapGrowth","1.15"
+
+key "VitalityLinearGrowth","0"
+
+key "VitalityExponentialGrowth","1.15"
+
+key "VitalityStartingAmount","100"
 

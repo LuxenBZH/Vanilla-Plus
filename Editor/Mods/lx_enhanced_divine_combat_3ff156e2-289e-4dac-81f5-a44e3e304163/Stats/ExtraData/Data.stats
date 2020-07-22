@@ -16,7 +16,7 @@
     <stat_object is_substat="false">
       <fields>
         <field name="Name" type="NameStatObjectFieldDefinition" value="VitalityToDamageRatio" />
-        <field name="Value" type="FloatStatObjectFieldDefinition" value="5" />
+        <field name="Value" type="FloatStatObjectFieldDefinition" value="6.5" />
       </fields>
     </stat_object>
     <stat_object is_substat="false">
@@ -497,6 +497,72 @@
       <fields>
         <field name="Name" type="NameStatObjectFieldDefinition" value="DGM_ShieldsUpPassingReduction" />
         <field name="Value" type="FloatStatObjectFieldDefinition" value="0.5" />
+      </fields>
+    </stat_object>
+    <stat_object is_substat="false">
+      <fields>
+        <field name="Name" type="NameStatObjectFieldDefinition" value="FirstVitalityLeapLevel" />
+        <field name="Value" type="FloatStatObjectFieldDefinition" value="9" />
+      </fields>
+    </stat_object>
+    <stat_object is_substat="false">
+      <fields>
+        <field name="Name" type="NameStatObjectFieldDefinition" value="FirstVitalityLeapGrowth" />
+        <field name="Value" type="FloatStatObjectFieldDefinition" value="1.15" />
+      </fields>
+    </stat_object>
+    <stat_object is_substat="false">
+      <fields>
+        <field name="Name" type="NameStatObjectFieldDefinition" value="SecondVitalityLeapLevel" />
+        <field name="Value" type="FloatStatObjectFieldDefinition" value="13" />
+      </fields>
+    </stat_object>
+    <stat_object is_substat="false">
+      <fields>
+        <field name="Name" type="NameStatObjectFieldDefinition" value="SecondVitalityLeapGrowth" />
+        <field name="Value" type="FloatStatObjectFieldDefinition" value="1.15" />
+      </fields>
+    </stat_object>
+    <stat_object is_substat="false">
+      <fields>
+        <field name="Name" type="NameStatObjectFieldDefinition" value="ThirdVitalityLeapLevel" />
+        <field name="Value" type="FloatStatObjectFieldDefinition" value="16" />
+      </fields>
+    </stat_object>
+    <stat_object is_substat="false">
+      <fields>
+        <field name="Name" type="NameStatObjectFieldDefinition" value="ThirdVitalityLeapGrowth" />
+        <field name="Value" type="FloatStatObjectFieldDefinition" value="1.15" />
+      </fields>
+    </stat_object>
+    <stat_object is_substat="false">
+      <fields>
+        <field name="Name" type="NameStatObjectFieldDefinition" value="FourthVitalityLeapLevel" />
+        <field name="Value" type="FloatStatObjectFieldDefinition" value="18" />
+      </fields>
+    </stat_object>
+    <stat_object is_substat="false">
+      <fields>
+        <field name="Name" type="NameStatObjectFieldDefinition" value="FourthVitalityLeapGrowth" />
+        <field name="Value" type="FloatStatObjectFieldDefinition" value="1.15" />
+      </fields>
+    </stat_object>
+    <stat_object is_substat="false">
+      <fields>
+        <field name="Name" type="NameStatObjectFieldDefinition" value="VitalityLinearGrowth" />
+        <field name="Value" type="FloatStatObjectFieldDefinition" value="0" />
+      </fields>
+    </stat_object>
+    <stat_object is_substat="false">
+      <fields>
+        <field name="Name" type="NameStatObjectFieldDefinition" value="VitalityExponentialGrowth" />
+        <field name="Value" type="FloatStatObjectFieldDefinition" value="1.15" />
+      </fields>
+    </stat_object>
+    <stat_object is_substat="false">
+      <fields>
+        <field name="Name" type="NameStatObjectFieldDefinition" value="VitalityStartingAmount" />
+        <field name="Value" type="FloatStatObjectFieldDefinition" value="100" />
       </fields>
     </stat_object>
   </stat_objects>
