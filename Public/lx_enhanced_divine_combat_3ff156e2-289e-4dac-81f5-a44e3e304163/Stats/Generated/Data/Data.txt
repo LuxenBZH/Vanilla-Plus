@@ -2,7 +2,7 @@ key "ArmorToVitalityRatio","0.4"
 
 key "ExpectedConGrowthForArmorCalculation","1"
 
-key "VitalityToDamageRatio","5"
+key "VitalityToDamageRatio","6.5"
 
 key "VitalityToDamageRatioGrowth","0.2"
 
@@ -80,10 +80,6 @@ key "TalentCivilAbilityPointsBonus","0"
 
 key "TalentCombatAbilityPointsBonus","0"
 
-key "SoftLevelCap","30"
-
-key "LevelCap","30"
-
 key "TalentSneakingAPCost","2"
 
 key "TalentViolentMagicCriticalChancePercent","110"
@@ -100,19 +96,23 @@ key "CriticalBonusFromWits","2"
 
 key "DGM_StrengthGlobalBonus","2"
 
-key "DGM_StrengthWeaponBonus","3"
+key "DGM_StrengthResistanceIgnore","2"
 
-key "DGM_StrengthDoTBonus","5"
+key "DGM_StrengthWeaponBonus","3"
 
 key "DGM_FinesseGlobalBonus","3"
 
-key "DGM_FinesseMovementBonus","15"
+key "DGM_FinesseMovementBonus","20"
+
+key "DGM_FinesseCritChance","1"
 
 key "DGM_IntelligenceGlobalBonus","2"
 
 key "DGM_IntelligenceSkillBonus","3"
 
 key "DGM_IntelligenceAccuracyBonus","1"
+
+key "DGM_WitsDotBonus","10"
 
 key "DGM_DamageThroughArmor","50"
 
@@ -130,7 +130,7 @@ key "DGM_DualWieldingOffhandBonus","10"
 
 key "DGM_TwoHandedCTHBonus","1"
 
-key "DGM_BackstabCritChanceBonus","1"
+key "DGM_BackstabCritChanceBonus","0.5"
 
 key "DGM_HotheadApplicationThreshold","74"
 
@@ -147,4 +147,28 @@ key "DGM_WandSkillMultiplier","2.5"
 key "DGM_PerseveranceVitalityRecovery","2"
 
 key "AbilityPerseveranceArmorPerPoint","8"
+
+key "FirstVitalityLeapLevel","9"
+
+key "FirstVitalityLeapGrowth","1.15"
+
+key "SecondVitalityLeapLevel","13"
+
+key "SecondVitalityLeapGrowth","1.15"
+
+key "ThirdVitalityLeapLevel","16"
+
+key "ThirdVitalityLeapGrowth","1.15"
+
+key "FourthVitalityLeapLevel","18"
+
+key "FourthVitalityLeapGrowth","1.15"
+
+key "VitalityExponentialGrowth","1.15"
+
+key "VitalityStartingAmount","100"
+
+key "VitalityLinearGrowth","0"
+
+key "SkillAbilityMovementSpeedPerPoint","10"
 

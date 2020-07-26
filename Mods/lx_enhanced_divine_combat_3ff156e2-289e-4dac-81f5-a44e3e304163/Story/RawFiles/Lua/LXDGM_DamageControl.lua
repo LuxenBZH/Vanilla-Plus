@@ -61,16 +61,16 @@ function DamageControl(target, handle, instigator)
 	end
 		
 	-- Get instigator bonuses
-	local strength = CharacterGetAttribute(instigator, "Strength") - 10
-	local finesse = CharacterGetAttribute(instigator, "Finesse") - 10
-	local intelligence = CharacterGetAttribute(instigator, "Intelligence") - 10
+	local strength = CharacterGetAttribute(instigator, "Strength") - Ext.ExtraData.AttributeBaseValue
+	local finesse = CharacterGetAttribute(instigator, "Finesse") - Ext.ExtraData.AttributeBaseValue
+	local intelligence = CharacterGetAttribute(instigator, "Intelligence") - Ext.ExtraData.AttributeBaseValue
+	local wits = CharacterGetAttribute(instigator, "Wits") - Ext.ExtraData.AttributeBaseValue
 	local damageBonus = strength*Ext.ExtraData.DGM_StrengthGlobalBonus+finesse*Ext.ExtraData.DGM_FinesseGlobalBonus+intelligence*Ext.ExtraData.DGM_IntelligenceGlobalBonus -- /!\ Remember that 1=1% in this variable
 	local globalMultiplier = 1.0
 	
 	if backstab == 1 then
 		local criticalHit = NRD_CharacterGetComputedStat(instigator, "CriticalChance", 0)
 		damageBonus = damageBonus + criticalHit * Ext.ExtraData.DGM_BackstabCritChanceBonus
-
 	end
 	
 	-- Get damage type bonus
@@ -92,7 +92,7 @@ function DamageControl(target, handle, instigator)
 		
 	end
 	if hitType == 1 then
-		damageBonus = strength*Ext.ExtraData.DGM_StrengthDoTBonus
+		damageBonus = wits*Ext.ExtraData.DGM_WitsDoTBonus
 		-- print("Bonus: DoT") 
 		-- Demon bonus for burning/necrofire
 		local hasDemon = CharacterHasTalent(instigator, "Demon")
@@ -260,13 +260,31 @@ end
 ---@param attacker EsvCharacter
 ---@param target EsvCharacter
 local function DGM_HitChanceFormula(attacker, target)
-    local hitChance = attacker.Accuracy - target.Dodge
+	local hitChance = attacker.Accuracy - target.Dodge + attacker.ChanceToHitBoost
     -- Make sure that we return a value in the range (0% .. 100%)
-    hitChance = math.max(math.min(hitChance, 100), 0)
+	hitChance = math.max(math.min(hitChance, 100), 0)
     return hitChance
 end
 
 Ext.RegisterListener("GetHitChance", DGM_HitChanceFormula)
+
+--- @param attacker StatCharacter
+--- @param target StatCharacter
+function DGM_CalculateHitChance(target, attacker)
+    if attacker.TALENT_Haymaker then
+        return 100
+	end
+	
+    local accuracy = attacker.Accuracy
+	local dodge = target.Dodge
+
+	local chanceToHit1 = accuracy - dodge
+	Ext.Print(accuracy, dodge, chanceToHit1)
+	chanceToHit1 = math.max(0, math.min(100, chanceToHit1))
+    return chanceToHit1 + attacker.ChanceToHitBoost
+end
+
+Game.Math.CalculateHitChance = DGM_CalculateHitChance
 
 --- @param character StatCharacter
 --- @param weapon StatItem
@@ -313,3 +331,31 @@ local function GetDamageMultipliers(skill, stealthed, attackerPos, targetPos)
     local damageMultiplier = skill['Damage Multiplier'] * 0.01
     return stealthDamageMultiplier * distanceDamageMultiplier * damageMultiplier
 end
+
+--- @param character StatCharacter
+--- @param damageList DamageList
+--- @param attacker StatCharacter
+function ApplyHitResistances(character, damageList, attacker)
+    for i,damage in pairs(damageList:ToTable()) do
+		local resistance = Game.Math.GetResistance(character, damage.DamageType)
+		if resistance > 0 and resistance < 100 then
+			resistance = resistance - (attacker.Strength - Ext.ExtraData.AttributeBaseValue) * Ext.ExtraData.DGM_StrengthResistanceIgnore
+		end
+		if resistance < 0 then resistance = 0 end
+        damageList:Add(damage.DamageType, math.floor(damage.Amount * -resistance / 100.0))
+    end
+end
+
+--- @param character StatCharacter
+--- @param attacker StatCharacter
+--- @param damageList DamageList
+function ApplyDamageCharacterBonuses(character, attacker, damageList)
+    damageList:AggregateSameTypeDamages()
+    ApplyHitResistances(character, damageList, attacker)
+
+    Game.Math.ApplyDamageSkillAbilityBonuses(damageList, attacker)
+end
+
+Game.Math.ApplyDamageCharacterBonuses = ApplyDamageCharacterBonuses
+Game.Math.ApplyHitResistances = ApplyHitResistances
+Ext.RegisterListener("ComputeCharacterHit", Game.Math.ComputeCharacterHit)

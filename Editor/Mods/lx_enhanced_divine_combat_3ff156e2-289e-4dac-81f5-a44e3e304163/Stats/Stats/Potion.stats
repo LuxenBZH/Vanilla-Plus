@@ -3360,5 +3360,10 @@
         <field name="VitalityPercentage" type="IntegerStatObjectFieldDefinition" value="-50" />
       </fields>
     </stat_object>
+    <stat_object is_substat="false">
+      <fields>
+        <field name="Name" type="NameStatObjectFieldDefinition" value="DGM_Potion_Base" />
+      </fields>
+    </stat_object>
   </stat_objects>
 </stats>

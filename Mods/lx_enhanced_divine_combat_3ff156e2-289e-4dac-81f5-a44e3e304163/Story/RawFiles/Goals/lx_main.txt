@@ -17,7 +17,7 @@ TimerFinished("LX_Character_Loop_Check")
 AND
 DB_IsPlayer(_Char)
 THEN
-CharacterLaunchIteratorAroundObject(_Char, 30.0, "LX_Character_Check");
+CharacterLaunchIteratorAroundObject(_Char, 50.0, "LX_Character_Check");
 TimerLaunch("LX_Character_Loop_Check", 5000);
 
 IF
@@ -49,18 +49,22 @@ NOT _Char == NULL_00000000-0000-0000-0000-000000000000
 AND
 LX_EXT_CheckStatChange(_Char)
 THEN 
+LX_EXT_SyncAttributeBonuses(_Char);
+LX_EXT_SyncAbilityBonuses(_Char);
 LX_EXT_ApplyOverhaulBonuses(_Char);
 
 //Weapon check for ability bonuses
 IF
 ItemEquipped(_, _Char)
 THEN
-LX_EXT_ApplyOverhaulBonusesCheck(_Char);
+DB_DGM_AttributeSync(_Char);
+TimerLaunch("DGM_SyncAttributesTimer", 50);
 
 IF
 ItemUnEquipped(_, _Char)
 THEN
-LX_EXT_ApplyOverhaulBonusesCheck(_Char);
+DB_DGM_AttributeSync(_Char);
+TimerLaunch("DGM_SyncAttributesTimer", 50);
 
 //Create weapons
 IF
@@ -69,6 +73,28 @@ AND
 DB_IsPlayer(_Char)
 THEN
 GenerateTreasure(LOOT_Pouch_A_000_66db1925-fcc2-4ff3-a5c6-76f9f9c0d543, "ST_WeaponNormal", 10, _Char);
+
+//Attribute sync
+IF
+StoryEvent((CHARACTERGUID)_Char, "DGM_SyncAttributeBonuses")
+THEN
+DB_DGM_AttributeSync(_Char);
+TimerLaunch("DGM_SyncAttributesTimer", 50);
+
+IF
+TimerFinished("DGM_SyncAttributesTimer")
+AND
+DB_DGM_AttributeSync(_Char)
+THEN
+LX_EXT_SyncAttributeBonuses(_Char);
+LX_EXT_SyncAbilityBonuses(_Char);
+NOT DB_DGM_AttributeSync(_Char);
+
+IF
+CharacterResurrected(_Char)
+THEN
+LX_EXT_SyncAttributeBonuses(_Char);
+LX_EXT_SyncAbilityBonuses(_Char);
 
 EXITSECTION
 

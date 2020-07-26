@@ -395,3 +395,9 @@ data "DescriptionRef" "The amount of damage going through armors is reduced by h
 data "Icon" "Skill_Shield"
 data "StackId" "Stack_ShieldsUp"
 
+new entry "DGM_BASE"
+type "StatusData"
+data "StatusType" "CONSUME"
+data "ForGameMaster" "No"
+data "StackPriority" "1"
+

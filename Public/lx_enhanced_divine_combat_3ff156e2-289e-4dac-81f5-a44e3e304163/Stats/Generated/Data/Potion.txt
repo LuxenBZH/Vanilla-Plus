@@ -2913,3 +2913,6 @@ data "Damage Multiplier" "0"
 data "Damage Range" "0"
 data "DamageType" "Piercing"
 
+new entry "DGM_Potion_Base"
+type "Potion"
+

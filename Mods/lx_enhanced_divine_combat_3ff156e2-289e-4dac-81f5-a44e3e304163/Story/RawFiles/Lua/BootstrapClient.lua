@@ -261,7 +261,7 @@ local function StatusGetDescriptionParam(status, statusSource, character, par)
     
     if par == "Damage" then
 		local dmgStat = Ext.GetStat(status.DamageStats)
-		local globalMult = 1 + (statusSource.Strength-10) * (Ext.ExtraData.DGM_StrengthDoTBonus*0.01) --From the overhaul
+		local globalMult = 1 + (statusSource.Wits-Ext.ExtraData.AttributeBaseValue) * (Ext.ExtraData.DGM_WitsDoTBonus*0.01) --From the overhaul
 		if dmgStat.Damage == 1 then
 			dmg = Game.Math.GetAverageLevelDamage(character.Level)
 		elseif dmgStat.Damage == 0 and dmgStat.BonusWeapon == nil then
@@ -375,9 +375,22 @@ local function changeDamageValue(ui, call, state)
     ui:SetValue("secStat_array", minDamage.." - "..maxDamage, 24)
 end
 
+---@param ui UIObject
+---@param call string
+---@param state any
+local function sheetButtonPressed(ui, call, state)
+    local char = Ext.GetCharacter(Ext.DoubleToHandle(ui:GetValue("charHandle", "number")))
+    Ext.PostMessageToServer("DGM_UpdateCharacter", tostring(char.NetID))
+end
+
 local function DGM_SetupUI()
     local charSheet = Ext.GetBuiltinUI("Public/Game/GUI/characterSheet.swf")
     Ext.RegisterUIInvokeListener(charSheet, "updateArraySystem", changeDamageValue)
+    -- Overhaul bonus refresh on buttons click
+    Ext.RegisterUICall(charSheet, "minusStat", sheetButtonPressed)
+    Ext.RegisterUICall(charSheet, "plusStat", sheetButtonPressed)
+    Ext.RegisterUICall(charSheet, "minLevel", sheetButtonPressed)
+    Ext.RegisterUICall(charSheet, "plusLevel", sheetButtonPressed)
 end
 
 Ext.RegisterListener("SessionLoaded", DGM_SetupUI)
@@ -388,3 +401,14 @@ Ext.RegisterListener("SkillGetDescriptionParam", SkillGetDescriptionParam)
 
 Ext.RegisterListener("StatusGetDescriptionParam", StatusGetDescriptionParam)
 --Ext.Print("Registering StatusGetDescriptionParam")
+
+---@param attacker EsvCharacter
+---@param target EsvCharacter
+local function DGM_HitChanceFormula(attacker, target)
+	local hitChance = attacker.Accuracy - target.Dodge + attacker.ChanceToHitBoost
+    -- Make sure that we return a value in the range (0% .. 100%)
+	hitChance = math.max(math.min(hitChance, 100), 0)
+    return hitChance
+end
+
+Ext.RegisterListener("GetHitChance", DGM_HitChanceFormula)

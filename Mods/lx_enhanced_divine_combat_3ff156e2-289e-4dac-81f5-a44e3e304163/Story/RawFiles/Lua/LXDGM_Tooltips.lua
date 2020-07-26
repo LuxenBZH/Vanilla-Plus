@@ -68,6 +68,7 @@ local dynamicTooltips = {
     ["Strength"] = "he1708d1eg243dg4b72g8f48gddb9bc8d62ff",
     ["Finesse"] = "h2e87e6cfg0183g4968g8ec1g325614c7d9fa",
     ["Intelligence"] = "h58e777ddgd569g4c0dg8f58gece56cce053d",
+    ["Wits"] = "ha422c4f4ge2bbg4cbcgbbf3g505c7ce673d1",
     ["Damage"] = "h7fec5db8g58d3g4abbgab7ag03e19b542bef",
     ["Dual-Wielding"] = {current = "hc5d5552bg6b33g44c1gbb0cg8d55a101f081", new = "h2baa6ed9gdca0g4731gb999g098d9c2d90b0"},
     ["Ranged"] = {current = "he86bfd28ge123g42a4g8c0cg2f9bcd7d9e05", new = "hffc37ae5g6651g4a60ga1c1g49d233cb1ca2"},
@@ -104,13 +105,16 @@ local function OnStatTooltip(character, stat, tooltip)
     end
 
     if stat == "Strength" then
-        str = SubstituteString(str, attrBonus["str"], attrBonus["strGlobal"], attrBonus["strWeapon"], attrBonus["strDot"])
+        str = SubstituteString(str, attrBonus["str"], attrBonus["strGlobal"], attrBonus["strWeapon"], attrBonus["strRes"])
         statsPointValue.Label = str
     elseif stat == "Finesse" then
-        str = SubstituteString(str, attrBonus["fin"], attrBonus["finGlobal"], attrBonus["finDodge"], attrBonus["finMovement"])
+        str = SubstituteString(str, attrBonus["fin"], attrBonus["finGlobal"], attrBonus["finDodge"], attrBonus["finMovement"], attrBonus["finCrit"])
         statsPointValue.Label = str
     elseif stat == "Intelligence" then
         str = SubstituteString(str, attrBonus["int"], attrBonus["intGlobal"], attrBonus["intSkill"], attrBonus["intAcc"])
+        statsPointValue.Label = str
+    elseif stat == "Wits" then
+        str = SubstituteString(str, attrBonus["wits"], attrBonus["witsCrit"], attrBonus["witsIni"], attrBonus["witsDot"])
         statsPointValue.Label = str
     elseif stat == "Damage" then
         local damageText = tooltip:GetElement("StatsTotalDamage")

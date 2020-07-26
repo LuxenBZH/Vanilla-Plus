@@ -6,6 +6,7 @@ Ext.Require("LXDGM_Potions.lua")
 Ext.Require("LXDGM_Talents.lua")
 Ext.Require("LXDGM_Weapons.lua")
 Ext.Require("LXDGM_StatsPatching.lua")
+Ext.Require("LXDGM_AttributeBonuses.lua")
 
 ---- General Functions ----
 ---@param character EsvCharacter
@@ -62,9 +63,9 @@ function CheckStatChange(character)
 			local stored = GetVarInteger(character, "LX_Check_"..attr)
 			local storedBase = GetVarInteger(character, "LX_Check_Base_"..attr)
 			if stat ~= stored then
-				--print(attr.." changed from "..stored.." to "..stat)
+				Ext.Print(attr.." changed from "..stored.." to "..stat)
 				changed = true
-				--print("Stat change for "..character)
+				Ext.Print("Stat change for "..character)
 				SetVarInteger(character, "LX_Check_Base_"..attr, baseStat)
 				SetVarInteger(character, "LX_Changed_Base_"..attr, baseStat - storedBase)
 				SetVarInteger(character, "LX_Check_"..attr, stat)
@@ -106,9 +107,10 @@ function ApplyOverhaulAttributeBonuses(character)
 
 	---- Attribute Bonus
 	-- Movement Bonus
-	ApplyBonusOnce(character, "Finesse", "Movement", Ext.ExtraData.DGM_FinesseMovementBonus, false)
-	-- Accuracy bonus
-	ApplyBonusOnce(character, "Intelligence", "Accuracy", Ext.ExtraData.DGM_IntelligenceAccuracyBonus, false)
+	-- ApplyBonusOnce(character, "Finesse", "Movement", Ext.ExtraData.DGM_FinesseMovementBonus, false)
+	-- ApplyBonusOnce(character, "Finesse", "CriticalChance", Ext.ExtraData.DGM_FinesseCritChance, false)
+	-- -- Accuracy bonus
+	-- ApplyBonusOnce(character, "Intelligence", "Accuracy", Ext.ExtraData.DGM_IntelligenceAccuracyBonus, false)
 	-- Memory Bonus for Mnemonic
 	if CharacterHasTalent(character, "Memory") == 1 then 
 		ApplyBonusOnce(character, "Memory", "Memory", 1, true) 
@@ -145,7 +147,7 @@ end
 ---@param character EsvCharacter
 function ApplyOverhaulBonuses(character)
 	ApplyOverhaulAttributeBonuses(character)
-	ApplyOverhaulWeaponAbilityBonuses(character)
+	--ApplyOverhaulWeaponAbilityBonuses(character)
 end
 
 ---@param character EsvCharacter
@@ -180,6 +182,13 @@ local function RequestClientID(call,id,callbackID)
 end
 
 Ext.RegisterNetListener("PDGM_RequestClientID", RequestClientID)
+
+local function CheckStatChangeNetID(message, netID)
+	local char = Ext.GetCharacter(tonumber(netID))
+	SetStoryEvent(char.MyGuid, "DGM_SyncAttributeBonuses")
+end
+
+Ext.RegisterNetListener("DGM_UpdateCharacter", CheckStatChangeNetID)
 
 
 ---- Create calls and queries
