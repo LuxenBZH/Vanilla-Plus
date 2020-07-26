@@ -106,7 +106,7 @@
     <stat_object is_substat="false">
       <fields>
         <field name="Name" type="NameStatObjectFieldDefinition" value="CombatAbilityAccuracyBonus" />
-        <field name="Value" type="FloatStatObjectFieldDefinition" value="5" />
+        <field name="Value" type="FloatStatObjectFieldDefinition" value="2" />
       </fields>
     </stat_object>
     <stat_object is_substat="false">

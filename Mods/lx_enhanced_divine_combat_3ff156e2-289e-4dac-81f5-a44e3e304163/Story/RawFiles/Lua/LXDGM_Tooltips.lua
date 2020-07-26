@@ -1,7 +1,7 @@
 ---@param item StatItem
 ---@param tooltip TooltipData
 local function WeaponTooltips(item, tooltip)
-    
+    if tooltip == nil then return end
 	if item.ItemType ~= "Weapon" then return end
 	local equipment = {
 		Type = "ItemRequirement",
@@ -205,11 +205,62 @@ local function OnAbilityTooltip(character, stat, tooltip)
     -- Ext.Print(Ext.JsonStringify(tooltip))
 end
 
+local tooltipFix = {
+    Finesse = "h3b3ad9d6g754fg44a0g953dg4f87d4ac96fe",
+    Intelligence = "h33d41553g12cag401eg8c71g640d3d654054",
+    SingleHanded = "ha74334b1gd56bg49c2g8738g44da4decd00a",
+    TwoHanded = "h3fb5cd5ag9ec8g4746g8f9cg03100b26bd3a"
+}
+
+-- Tooltip here is the fix for not being able to put a translation key on generated statuses for custom bonuses
+---@param character EsvCharacter
+---@param skill any
+---@param tooltip TooltipData
+local function FixCustomBonusesTranslationKeyBonus(character, stat, tooltip)
+    local boosts = tooltip:GetElements("StatsPercentageBoost")
+    if #boosts == 0 then 
+        boosts = tooltip:GetElements("StatsTalentsBoost")
+        if #boosts == nil then return end
+    end
+    for i,boost in pairs(boosts) do
+        if string.find(boost.Label, "DGM_Potion_.*_[0-9]+:") ~= nil then
+            local str = boost.Label:gsub("DGM_Potion_", "")
+            str = str:gsub("_[0-9]*", "")
+            local stat = str:gsub("^%a* ", "")
+            stat = stat:gsub(":.*$", "")
+            local final = Ext.GetTranslatedString(tooltipFix[stat], stat)
+            str = str:gsub(" .*:", " "..final..":")
+            boost.Label = str
+        end
+    end
+end
+
+local function FixCustomBonusesTranslationKeyMalus(character, stat, tooltip)
+    local boosts = tooltip:GetElements("StatsPercentageMalus")
+    if #boosts == 0 then 
+        boosts = tooltip:GetElements("StatsTalentsMalus")
+        if #boosts == nil then return end
+    end
+    for i,boost in pairs(boosts) do
+        if string.find(boost.Label, "DGM_Potion_.*_-[0-9]+:") ~= nil then
+            local str = boost.Label:gsub("DGM_Potion_", "")
+            str = str:gsub("_%-[0-9]+", "")
+            local stat = str:gsub("^%a* ", "")
+            stat = stat:gsub(":.*$", "")
+            local final = Ext.GetTranslatedString(tooltipFix[stat], stat)
+            str = str:gsub(" .*:", " "..final..":")
+            boost.Label = str
+        end
+    end
+end
+
 local function DGM_Init()
     Game.Tooltip.RegisterListener("Item", nil, WeaponTooltips)
     Game.Tooltip.RegisterListener("Stat", "Damage", SkillAttributeTooltipBonus)
     Game.Tooltip.RegisterListener("Stat", nil, OnStatTooltip)
     Game.Tooltip.RegisterListener("Ability", nil, OnAbilityTooltip)
+    Game.Tooltip.RegisterListener("Stat", nil, FixCustomBonusesTranslationKeyBonus)
+    Game.Tooltip.RegisterListener("Stat", nil, FixCustomBonusesTranslationKeyMalus)
 end
 
 Ext.RegisterListener("SessionLoaded", DGM_Init)

@@ -40,13 +40,14 @@ local customAbilityBonuses = {
     },
     TwoHanded = {AccuracyBoost=Ext.ExtraData.DGM_TwoHandedCTHBonus},
     Ranged = {RangeBoost=Ext.ExtraData.DGM_RangedRangeBonus},
-    DualWielding = {}
+    DualWielding = {},
+    None = {}
 }
 
 --- @param character StatCharacter
 --- @param weapon StatItem
 function GetWeaponAbility(character, weapon)
-    if weapon == nil then
+    if weapon == nil or weapon.WeaponType == "None" then
         return nil
     end
 
@@ -70,18 +71,27 @@ end
 function SyncAbilitiesBonuses(char)
     char = Ext.GetCharacter(char)
     local ability = GetWeaponAbility(char.Stats, char.Stats.MainWeapon)
+    if ability == nil then
+        if NRD_StatExists("DGM_NoWeapon") then
+            ApplyStatus(char.MyGuid, "DGM_NoWeapon", -1, 1)
+        else
+            local newStatus = Ext.CreateStat("DGM_NoWeapon", "StatusData", "DGM_BASE")
+            newStatus["StackId"] = "DGM_WeaponAbility"
+            newStatus["StackPriority"] = 1
+            Ext.SyncStat(newStatus.Name, false)
+        end
+        return
+    end
     local charAbi = math.floor(char.Stats[ability])
     local statusName = "DGM_"..ability.."_"..charAbi
     Ext.Print(ability, charAbi, statusName)
     if NRD_StatExists(statusName) then
         ApplyStatus(char.MyGuid, statusName, -1, 1)
     else
-        Ext.Print("Stat doesn't exists")
         local bonuses = customAbilityBonuses[ability]
         local newPotion = Ext.CreateStat("DGM_Potion_"..ability.."_"..charAbi, "Potion", "DGM_Potion_Base")
         for bonus,value in pairs(bonuses) do
             newPotion[bonus] = charAbi * value
-            Ext.Print(bonus, value, charAbi)
         end
         Ext.SyncStat(newPotion.Name, false)
         local newStatus = Ext.CreateStat("DGM_"..ability.."_"..charAbi, "StatusData", "DGM_BASE")
@@ -94,5 +104,3 @@ function SyncAbilitiesBonuses(char)
 end
 
 Ext.NewCall(SyncAbilitiesBonuses, "LX_EXT_SyncAbilityBonuses", "(CHARACTERGUID)_Character")
-
-

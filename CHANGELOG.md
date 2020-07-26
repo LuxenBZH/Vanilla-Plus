@@ -158,4 +158,5 @@ Balance
 * Strength does not increase DoT anymore, but ignore 1% of enemy Resistance per point (if it's under 100)
 * Wits now improve DoT by 10% per point
 * Backstab Critical Chance convertion rate is reduced from 1% CC = 1% Damage to 1% CC = 0.5% Damage
+* Single Handed ability Accuracy bonus is reduced from 5 to 2 according to the new chance to hit formula
 

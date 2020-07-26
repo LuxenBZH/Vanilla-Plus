@@ -6,7 +6,7 @@ Ext.Require("LXDGM_Potions.lua")
 Ext.Require("LXDGM_Talents.lua")
 Ext.Require("LXDGM_Weapons.lua")
 Ext.Require("LXDGM_StatsPatching.lua")
-Ext.Require("LXDGM_AttributeBonuses.lua")
+Ext.Require("LXDGM_CustomBonuses.lua")
 
 ---- General Functions ----
 ---@param character EsvCharacter

@@ -32,7 +32,7 @@ key "CombatAbilityReflectionBonus","8"
 
 key "CombatAbilityDodgingBonus","3"
 
-key "CombatAbilityAccuracyBonus","5"
+key "CombatAbilityAccuracyBonus","2"
 
 key "CombatAbilityCritMultiplierBonus","5"
 

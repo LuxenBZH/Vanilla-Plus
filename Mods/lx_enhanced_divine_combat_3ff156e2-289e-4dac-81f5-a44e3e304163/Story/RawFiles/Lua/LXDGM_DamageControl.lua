@@ -279,7 +279,6 @@ function DGM_CalculateHitChance(target, attacker)
 	local dodge = target.Dodge
 
 	local chanceToHit1 = accuracy - dodge
-	Ext.Print(accuracy, dodge, chanceToHit1)
 	chanceToHit1 = math.max(0, math.min(100, chanceToHit1))
     return chanceToHit1 + attacker.ChanceToHitBoost
 end
