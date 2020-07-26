@@ -84,7 +84,6 @@ function SyncAbilitiesBonuses(char)
     end
     local charAbi = math.floor(char.Stats[ability])
     local statusName = "DGM_"..ability.."_"..charAbi
-    Ext.Print(ability, charAbi, statusName)
     if NRD_StatExists(statusName) then
         ApplyStatus(char.MyGuid, statusName, -1, 1)
     else
