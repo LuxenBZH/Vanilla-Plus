@@ -81,7 +81,7 @@ function DamageControl(target, handle, instigator)
 		if weaponTypes[1] == "Bow" or weaponTypes[1] == "Crossbow" or weaponTypes[1] == "Rifle" or weaponTypes[1] == "Wand" then
 			local distance = GetDistanceTo(target, instigator)
 			--Ext.Print("[LXDGM_DamageControl.DamageControl] Distance :",distance)
-			if distance <= 2.0 and CharacterHasTalent(instigator, "RangerLoreArrowRecover") == 0 then
+			if distance <= Ext.ExtraData.DGM_RangedCQBPenaltyRange and CharacterHasTalent(instigator, "RangerLoreArrowRecover") == 0 then
 				globalMultiplier = globalMultiplier - (Ext.ExtraData.DGM_RangedCQBPenalty/100)
 			end
 		end

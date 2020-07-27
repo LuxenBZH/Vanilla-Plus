@@ -457,6 +457,50 @@
     </stat_object>
     <stat_object is_substat="false">
       <fields>
+        <field name="Name" type="NameStatObjectFieldDefinition" value="DGM_RangedCQBPenaltyRange" />
+        <field name="Value" type="FloatStatObjectFieldDefinition" value="2" />
+        <field name="Comment" type="CommentStatObjectFieldDefinition" value="In meters, the range at which being closer causes the penalty" />
+      </fields>
+    </stat_object>
+    <stat_object is_substat="false">
+      <fields>
+        <field name="Name" type="NameStatObjectFieldDefinition" value="DGM_FortifiedPassingPhysicalReduction" />
+        <field name="Value" type="FloatStatObjectFieldDefinition" value="0.5" />
+        <field name="Comment" type="CommentStatObjectFieldDefinition" value="Reduces pass through damage against Physical Armour" />
+      </fields>
+    </stat_object>
+    <stat_object is_substat="false">
+      <fields>
+        <field name="Name" type="NameStatObjectFieldDefinition" value="DGM_MendMetalPassingPhysicalReduction" />
+        <field name="Value" type="FloatStatObjectFieldDefinition" value="0.25" />
+      </fields>
+    </stat_object>
+    <stat_object is_substat="false">
+      <fields>
+        <field name="Name" type="NameStatObjectFieldDefinition" value="DGM_SteelSkinPassingPhysicalReduction" />
+        <field name="Value" type="FloatStatObjectFieldDefinition" value="0.33" />
+      </fields>
+    </stat_object>
+    <stat_object is_substat="false">
+      <fields>
+        <field name="Name" type="NameStatObjectFieldDefinition" value="DGM_MagicShellPassingMagicReduction" />
+        <field name="Value" type="FloatStatObjectFieldDefinition" value="0.5" />
+      </fields>
+    </stat_object>
+    <stat_object is_substat="false">
+      <fields>
+        <field name="Name" type="NameStatObjectFieldDefinition" value="DGM_FrostAuraPassingMagicReduction" />
+        <field name="Value" type="FloatStatObjectFieldDefinition" value="0.25" />
+      </fields>
+    </stat_object>
+    <stat_object is_substat="false">
+      <fields>
+        <field name="Name" type="NameStatObjectFieldDefinition" value="DGM_ShieldsUpPassingReduction" />
+        <field name="Value" type="FloatStatObjectFieldDefinition" value="0.5" />
+      </fields>
+    </stat_object>
+    <stat_object is_substat="false">
+      <fields>
         <field name="Name" type="NameStatObjectFieldDefinition" value="FirstVitalityLeapLevel" />
         <field name="Value" type="FloatStatObjectFieldDefinition" value="9" />
       </fields>

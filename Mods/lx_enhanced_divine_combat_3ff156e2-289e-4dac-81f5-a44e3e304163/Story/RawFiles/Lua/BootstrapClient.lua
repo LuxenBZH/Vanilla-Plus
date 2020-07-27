@@ -258,26 +258,24 @@ end
 ---@param character StatCharacter
 ---@param par string
 local function StatusGetDescriptionParam(status, statusSource, character, par)
-    
     if par == "Damage" then
-		local dmgStat = Ext.GetStat(status.DamageStats)
-		local globalMult = 1 + (statusSource.Wits-Ext.ExtraData.AttributeBaseValue) * (Ext.ExtraData.DGM_WitsDoTBonus*0.01) --From the overhaul
+        local dmgStat = Ext.GetStat(status.DamageStats)
+        if statusSource == nil then return end
+        local globalMult = 1 + (statusSource.Wits-Ext.ExtraData.AttributeBaseValue) * (Ext.ExtraData.DGM_WitsDoTBonus*0.01) --From the overhaul
+        local dmg = 0
 		if dmgStat.Damage == 1 then
-			dmg = Game.Math.GetAverageLevelDamage(character.Level)
+			dmg = Game.Math.GetAverageLevelDamage(statusSource.Level)
 		elseif dmgStat.Damage == 0 and dmgStat.BonusWeapon == nil then
-			dmg = Game.Math.GetLevelScaledDamage(character.Level)
+			dmg = Game.Math.GetLevelScaledDamage(statusSource.Level)
 		else
-			dmg = Game.Math.GetLevelScaledWeaponDamage(character.Level)
+			dmg = Game.Math.GetLevelScaledWeaponDamage(statusSource.Level)
 		end
-		--Ext.Print("AverageLevelDamage "..Game.Math.GetAverageLevelDamage(character.Level))
-		dmg = dmg*(dmgStat.DamageFromBase/100)
-		dmgRange = dmg*(dmgStat["Damage Range"])*0.005
-		--Ext.Print(dmg, dmgRange, globalMult)
-		local minDmg = math.floor(Ext.Round(dmg - dmgRange * globalMult))
-		local maxDmg = math.floor(Ext.Round(dmg + dmgRange * globalMult))
-		if maxDmg <= minDmg then maxDmg = maxDmg+1 end
+        dmg = dmg*(dmgStat.DamageFromBase/100)
+		local dmgRange = dmg*(dmgStat["Damage Range"])*0.005
+		local minDmg = math.floor(Ext.Round(dmg - dmgRange)* globalMult)
+        local maxDmg = math.ceil(Ext.Round(dmg + dmgRange)* globalMult)
+        if maxDmg <= minDmg then maxDmg = maxDmg+1 end
 		local color = getDamageColor(dmgStat["Damage Type"])
-		--Ext.Print(minDmg, maxDmg)
 		return "<font color="..color..">"..tostring(minDmg).."-"..tostring(maxDmg).." "..dmgStat["Damage Type"].." damage".."</font>"
 	end
 	return nil
