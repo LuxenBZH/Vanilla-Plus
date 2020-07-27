@@ -140,10 +140,10 @@ local function OnStatTooltip(character, stat, tooltip)
     local attrBonus = CharGetDGMAttributeBonus(character, 0)
 
     if stat == "Strength" then
-        statsPointValue.Label = GetDynamicTranslationString(stat, attrBonus["str"], attrBonus["strGlobal"], attrBonus["strWeapon"], attrBonus["strDot"])
+        statsPointValue.Label = GetDynamicTranslationString(stat, attrBonus["str"], attrBonus["strGlobal"], attrBonus["strWeapon"], attrBonus["strRes"])
 
     elseif stat == "Finesse" then
-        statsPointValue.Label = GetDynamicTranslationString(stat, attrBonus["fin"], attrBonus["finGlobal"], attrBonus["finDodge"], attrBonus["finMovement"])
+        statsPointValue.Label = GetDynamicTranslationString(stat, attrBonus["fin"], attrBonus["finGlobal"], attrBonus["finDodge"], attrBonus["finMovement"], attrBonus["finCrit"])
 
     elseif stat == "Intelligence" then
         statsPointValue.Label = GetDynamicTranslationString(stat, attrBonus["int"], attrBonus["intGlobal"], attrBonus["intSkill"], attrBonus["intAcc"])

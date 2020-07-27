@@ -299,7 +299,7 @@
     <stat_object is_substat="false">
       <fields>
         <field name="Name" type="NameStatObjectFieldDefinition" value="DGM_StrengthResistanceIgnore" />
-        <field name="Value" type="FloatStatObjectFieldDefinition" value="2" />
+        <field name="Value" type="FloatStatObjectFieldDefinition" value="1" />
       </fields>
     </stat_object>
     <stat_object is_substat="false">

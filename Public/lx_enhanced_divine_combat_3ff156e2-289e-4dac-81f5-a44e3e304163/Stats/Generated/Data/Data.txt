@@ -96,7 +96,7 @@ key "CriticalBonusFromWits","2"
 
 key "DGM_StrengthGlobalBonus","2"
 
-key "DGM_StrengthResistanceIgnore","2"
+key "DGM_StrengthResistanceIgnore","1"
 
 key "DGM_StrengthWeaponBonus","3"
 
