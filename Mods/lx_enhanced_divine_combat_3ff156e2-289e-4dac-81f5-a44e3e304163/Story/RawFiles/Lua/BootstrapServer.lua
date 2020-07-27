@@ -190,6 +190,27 @@ end
 
 Ext.RegisterNetListener("DGM_UpdateCharacter", CheckStatChangeNetID)
 
+local function CleanBoosts(char)
+	print("Clearing boosts...")
+	TimerLaunch("DGM_GriffToAtusaFix", 50)
+end
+
+local function DGM_consoleCmd(cmd, ...)
+	local params = {...}
+	for i=1,10,1 do
+		local par = params[i]
+		if par == nil then break end
+		if type(par) == "string" then
+			par = par:gsub("&", " ")
+			par = par:gsub("\\ ", "&")
+			params[i] = par
+		end
+	end
+    if cmd == "DGM_CleanPermaBoosts" then CleanBoosts() end
+end
+
+Ext.RegisterConsoleCommand("DGM_CleanPermaBoosts", DGM_consoleCmd)
+
 
 ---- Create calls and queries
 Ext.NewCall(InitCharacterStatCheck, "LX_EXT_InitCharacterStatCheck", "(CHARACTERGUID)_Character");

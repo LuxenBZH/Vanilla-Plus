@@ -96,6 +96,18 @@ THEN
 LX_EXT_SyncAttributeBonuses(_Char);
 LX_EXT_SyncAbilityBonuses(_Char);
 
+IF
+TimerFinished("DGM_GriffToAtusaFix")
+THEN
+CharacterLaunchOsirisOnlyIterator("DGM_GriffToAtusaFixIterator");
+
+IF
+StoryEvent((CHARACTERGUID)_Char, "DGM_GriffToAtusaFixIterator")
+THEN
+NRD_CharacterSetPermanentBoostInt(_Char, "Movement", 0);
+NRD_CharacterSetPermanentBoostInt(_Char, "Accuracy", 0);
+CharacterAddAttribute(_Char, "Dummy", 0);
+
 EXITSECTION
 
 ENDEXITSECTION
