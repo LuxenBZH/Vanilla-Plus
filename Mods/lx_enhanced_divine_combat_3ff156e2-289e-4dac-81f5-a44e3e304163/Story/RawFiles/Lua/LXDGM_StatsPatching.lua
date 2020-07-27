@@ -9,7 +9,8 @@ local function AddDamageToDescription()
 		Projectile_LaunchExplosiveTrap = "Skill:Projectile_TrapLaunched:Damage",
 		Projectile_DeployMassTraps = "Skill:Projectile_TrapLaunched:Damage",
 		Shout_FlamingTongues = "Skill:Projectile_Status_FlamingTongues:Damage",
-		Shout_IceBreaker = "Weapon:DamageSurface_FrostExplosion:DamageFromBase"
+		Shout_IceBreaker = "Weapon:DamageSurface_FrostExplosion:DamageFromBase",
+		Target_WindWalker = "Potion:Stats_WindWalker:DodgeBoost;Potion:Stats_WindWalker:AirResistance"
 	}
 	for skill,description in pairs(skillList) do
 		local statDesc = Ext.StatGetAttribute(skill, "StatsDescriptionParams")

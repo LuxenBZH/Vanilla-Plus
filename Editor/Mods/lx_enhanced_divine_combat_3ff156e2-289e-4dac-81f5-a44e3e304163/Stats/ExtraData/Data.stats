@@ -106,7 +106,7 @@
     <stat_object is_substat="false">
       <fields>
         <field name="Name" type="NameStatObjectFieldDefinition" value="CombatAbilityAccuracyBonus" />
-        <field name="Value" type="FloatStatObjectFieldDefinition" value="5" />
+        <field name="Value" type="FloatStatObjectFieldDefinition" value="2" />
       </fields>
     </stat_object>
     <stat_object is_substat="false">
@@ -249,18 +249,6 @@
     </stat_object>
     <stat_object is_substat="false">
       <fields>
-        <field name="Name" type="NameStatObjectFieldDefinition" value="SoftLevelCap" />
-        <field name="Value" type="FloatStatObjectFieldDefinition" value="30" />
-      </fields>
-    </stat_object>
-    <stat_object is_substat="false">
-      <fields>
-        <field name="Name" type="NameStatObjectFieldDefinition" value="LevelCap" />
-        <field name="Value" type="FloatStatObjectFieldDefinition" value="30" />
-      </fields>
-    </stat_object>
-    <stat_object is_substat="false">
-      <fields>
         <field name="Name" type="NameStatObjectFieldDefinition" value="TalentSneakingAPCost" />
         <field name="Value" type="FloatStatObjectFieldDefinition" value="2" />
       </fields>
@@ -310,14 +298,14 @@
     </stat_object>
     <stat_object is_substat="false">
       <fields>
-        <field name="Name" type="NameStatObjectFieldDefinition" value="DGM_StrengthWeaponBonus" />
-        <field name="Value" type="FloatStatObjectFieldDefinition" value="3" />
+        <field name="Name" type="NameStatObjectFieldDefinition" value="DGM_StrengthResistanceIgnore" />
+        <field name="Value" type="FloatStatObjectFieldDefinition" value="2" />
       </fields>
     </stat_object>
     <stat_object is_substat="false">
       <fields>
-        <field name="Name" type="NameStatObjectFieldDefinition" value="DGM_StrengthDoTBonus" />
-        <field name="Value" type="FloatStatObjectFieldDefinition" value="5" />
+        <field name="Name" type="NameStatObjectFieldDefinition" value="DGM_StrengthWeaponBonus" />
+        <field name="Value" type="FloatStatObjectFieldDefinition" value="3" />
       </fields>
     </stat_object>
     <stat_object is_substat="false">
@@ -329,8 +317,14 @@
     <stat_object is_substat="false">
       <fields>
         <field name="Name" type="NameStatObjectFieldDefinition" value="DGM_FinesseMovementBonus" />
-        <field name="Value" type="FloatStatObjectFieldDefinition" value="15" />
+        <field name="Value" type="FloatStatObjectFieldDefinition" value="20" />
         <field name="Comment" type="CommentStatObjectFieldDefinition" value="In centimeter" />
+      </fields>
+    </stat_object>
+    <stat_object is_substat="false">
+      <fields>
+        <field name="Name" type="NameStatObjectFieldDefinition" value="DGM_FinesseCritChance" />
+        <field name="Value" type="FloatStatObjectFieldDefinition" value="1" />
       </fields>
     </stat_object>
     <stat_object is_substat="false">
@@ -349,6 +343,12 @@
       <fields>
         <field name="Name" type="NameStatObjectFieldDefinition" value="DGM_IntelligenceAccuracyBonus" />
         <field name="Value" type="FloatStatObjectFieldDefinition" value="1" />
+      </fields>
+    </stat_object>
+    <stat_object is_substat="false">
+      <fields>
+        <field name="Name" type="NameStatObjectFieldDefinition" value="DGM_WitsDotBonus" />
+        <field name="Value" type="FloatStatObjectFieldDefinition" value="10" />
       </fields>
     </stat_object>
     <stat_object is_substat="false">
@@ -404,7 +404,7 @@
     <stat_object is_substat="false">
       <fields>
         <field name="Name" type="NameStatObjectFieldDefinition" value="DGM_BackstabCritChanceBonus" />
-        <field name="Value" type="FloatStatObjectFieldDefinition" value="1" />
+        <field name="Value" type="FloatStatObjectFieldDefinition" value="0.5" />
       </fields>
     </stat_object>
     <stat_object is_substat="false">
@@ -549,12 +549,6 @@
     </stat_object>
     <stat_object is_substat="false">
       <fields>
-        <field name="Name" type="NameStatObjectFieldDefinition" value="VitalityLinearGrowth" />
-        <field name="Value" type="FloatStatObjectFieldDefinition" value="0" />
-      </fields>
-    </stat_object>
-    <stat_object is_substat="false">
-      <fields>
         <field name="Name" type="NameStatObjectFieldDefinition" value="VitalityExponentialGrowth" />
         <field name="Value" type="FloatStatObjectFieldDefinition" value="1.15" />
       </fields>
@@ -563,6 +557,18 @@
       <fields>
         <field name="Name" type="NameStatObjectFieldDefinition" value="VitalityStartingAmount" />
         <field name="Value" type="FloatStatObjectFieldDefinition" value="100" />
+      </fields>
+    </stat_object>
+    <stat_object is_substat="false">
+      <fields>
+        <field name="Name" type="NameStatObjectFieldDefinition" value="VitalityLinearGrowth" />
+        <field name="Value" type="FloatStatObjectFieldDefinition" value="0" />
+      </fields>
+    </stat_object>
+    <stat_object is_substat="false">
+      <fields>
+        <field name="Name" type="NameStatObjectFieldDefinition" value="SkillAbilityMovementSpeedPerPoint" />
+        <field name="Value" type="FloatStatObjectFieldDefinition" value="10" />
       </fields>
     </stat_object>
   </stat_objects>

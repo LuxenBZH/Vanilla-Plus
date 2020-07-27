@@ -2,6 +2,7 @@ local dynamicTooltips = {
     ["Strength"]                = "he1708d1eg243dg4b72g8f48gddb9bc8d62ff",
     ["Finesse"]                 = "h2e87e6cfg0183g4968g8ec1g325614c7d9fa",
     ["Intelligence"]            = "h58e777ddgd569g4c0dg8f58gece56cce053d",
+    ["Wits"]                    = "ha422c4f4ge2bbg4cbcgbbf3g505c7ce673d1",
     ["Damage"]                  = "h7fec5db8g58d3g4abbgab7ag03e19b542bef",
     ["WpnStaff"]                = "h1e5caa33g4d5dg4f42g91edg9f546d42f56b",
     ["WpnWand"]                 = "h314ee256g43cdg4864ga519gd23e909ec63e",
@@ -55,7 +56,7 @@ end
 ---@param item StatItem
 ---@param tooltip TooltipData
 local function WeaponTooltips(item, tooltip)
-    
+    if tooltip == nil then return end
 	if item.ItemType ~= "Weapon" then return end
 	local equipment = {
 		Type = "ItemRequirement",
@@ -147,6 +148,9 @@ local function OnStatTooltip(character, stat, tooltip)
     elseif stat == "Intelligence" then
         statsPointValue.Label = GetDynamicTranslationString(stat, attrBonus["int"], attrBonus["intGlobal"], attrBonus["intSkill"], attrBonus["intAcc"])
 
+    elseif stat == "Wits" then
+        statsPointValue.Label = GetDynamicTranslationString(stat, attrBonus["wits"], attrBonus["witsCrit"], attrBonus["witsIni"], attrBonus["witsDot"])
+        
     elseif stat == "Damage" then
         local damageText = tooltip:GetElement("StatsTotalDamage")
         local minDamage = damageText.Label:gsub("^.* ", ""):gsub("-[1-9]*", "")
@@ -210,11 +214,62 @@ local function OnAbilityTooltip(character, stat, tooltip)
     end
 end
 
+local tooltipFix = {
+    Finesse = "h3b3ad9d6g754fg44a0g953dg4f87d4ac96fe",
+    Intelligence = "h33d41553g12cag401eg8c71g640d3d654054",
+    SingleHanded = "ha74334b1gd56bg49c2g8738g44da4decd00a",
+    TwoHanded = "h3fb5cd5ag9ec8g4746g8f9cg03100b26bd3a"
+}
+
+-- Tooltip here is the fix for not being able to put a translation key on generated statuses for custom bonuses
+---@param character EsvCharacter
+---@param skill any
+---@param tooltip TooltipData
+local function FixCustomBonusesTranslationKeyBonus(character, stat, tooltip)
+    local boosts = tooltip:GetElements("StatsPercentageBoost")
+    if #boosts == 0 then 
+        boosts = tooltip:GetElements("StatsTalentsBoost")
+        if #boosts == nil then return end
+    end
+    for i,boost in pairs(boosts) do
+        if string.find(boost.Label, "DGM_Potion_.*_[0-9]+:") ~= nil then
+            local str = boost.Label:gsub("DGM_Potion_", "")
+            str = str:gsub("_[0-9]*", "")
+            local stat = str:gsub("^%a* ", "")
+            stat = stat:gsub(":.*$", "")
+            local final = Ext.GetTranslatedString(tooltipFix[stat], stat)
+            str = str:gsub(" .*:", " "..final..":")
+            boost.Label = str
+        end
+    end
+end
+
+local function FixCustomBonusesTranslationKeyMalus(character, stat, tooltip)
+    local boosts = tooltip:GetElements("StatsPercentageMalus")
+    if #boosts == 0 then 
+        boosts = tooltip:GetElements("StatsTalentsMalus")
+        if #boosts == nil then return end
+    end
+    for i,boost in pairs(boosts) do
+        if string.find(boost.Label, "DGM_Potion_.*_-[0-9]+:") ~= nil then
+            local str = boost.Label:gsub("DGM_Potion_", "")
+            str = str:gsub("_%-[0-9]+", "")
+            local stat = str:gsub("^%a* ", "")
+            stat = stat:gsub(":.*$", "")
+            local final = Ext.GetTranslatedString(tooltipFix[stat], stat)
+            str = str:gsub(" .*:", " "..final..":")
+            boost.Label = str
+        end
+    end
+end
+
 local function DGM_Init()
     Game.Tooltip.RegisterListener("Item", nil, WeaponTooltips)
     Game.Tooltip.RegisterListener("Stat", "Damage", SkillAttributeTooltipBonus)
     Game.Tooltip.RegisterListener("Stat", nil, OnStatTooltip)
     Game.Tooltip.RegisterListener("Ability", nil, OnAbilityTooltip)
+    Game.Tooltip.RegisterListener("Stat", nil, FixCustomBonusesTranslationKeyBonus)
+    Game.Tooltip.RegisterListener("Stat", nil, FixCustomBonusesTranslationKeyMalus)
 end
 
 Ext.RegisterListener("SessionLoaded", DGM_Init)

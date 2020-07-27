@@ -146,6 +146,17 @@ Balance
 # 0.11.12.19 (Atusa)
 Fixes
 * Fixed multi elemental damage tooltips
+* Fixed status tooltips
+* The custom bonuses provided by attributes (Movement, CC for Finesse and Accuracy for Intelligence, also various custom bonus for weapon abilities) are now provided by statuses generated on the fly instead of changing the permaboosts of the character. This has a great incidence in GM mode where PDGM used to share the same boost pool with the GM and could make it really confusing for the GM to manage.
 
-WIP
-*
+Balance
+* Reduced global damage scaling by 15% to follow the hit armor reduction from vanilla
+* Changed the Vitality scaling to provide a constant growth and a higher number start for more reliable low percentage bonuses. The gap between levels is lower, from a median of 22% to 15%, which makes the early game much more fair and gives more granularity for the GM concerning levels.
+* Scoundrel Movement bonus reduced from 0.3m to 0.1m
+* Finesse Movement bonus increased from 0.15m to 0.2m
+* Finesse now provide 1% Critical Chance per point
+* Strength does not increase DoT anymore, but ignore 1% of enemy Resistance per point (if it's under 100)
+* Wits now improve DoT by 10% per point
+* Backstab Critical Chance convertion rate is reduced from 1% CC = 1% Damage to 1% CC = 0.5% Damage
+* Single Handed ability Accuracy bonus is reduced from 5 to 2 according to the new chance to hit formula
+
