@@ -11,6 +11,8 @@
         <field name="Movement" type="IntegerStatObjectFieldDefinition" value="150" />
         <field name="Duration" type="IntegerStatObjectFieldDefinition" value="2" />
         <field name="StatusIcon" type="StringStatObjectFieldDefinition" value="statIcons_ImprovedInitiative" />
+        <field name="AirResistance" type="IntegerStatObjectFieldDefinition" value="15" />
+        <field name="DodgeBoost" type="IntegerStatObjectFieldDefinition" value="10" />
       </fields>
     </stat_object>
     <stat_object is_substat="false">
@@ -742,12 +744,6 @@
         <field name="Name" type="NameStatObjectFieldDefinition" value="Stats_LX_DDGoose" />
         <field name="Movement" type="IntegerStatObjectFieldDefinition" value="100" />
         <field name="DodgeBoost" type="IntegerStatObjectFieldDefinition" value="5" />
-      </fields>
-    </stat_object>
-    <stat_object is_substat="false">
-      <fields>
-        <field name="Name" type="NameStatObjectFieldDefinition" value="Stats_LX_MorningPerson" />
-        <field name="APStart" type="IntegerStatObjectFieldDefinition" value="99" />
       </fields>
     </stat_object>
     <stat_object is_substat="false">
@@ -3363,6 +3359,283 @@
     <stat_object is_substat="false">
       <fields>
         <field name="Name" type="NameStatObjectFieldDefinition" value="DGM_Potion_Base" />
+      </fields>
+    </stat_object>
+    <stat_object is_substat="false">
+      <fields>
+        <field name="Name" type="NameStatObjectFieldDefinition" value="Potion" />
+        <field name="Act" type="EnumerationStatObjectFieldDefinition" value="0" enumeration_type_name="Act" />
+        <field name="Weight" type="IntegerStatObjectFieldDefinition" value="250" />
+        <field name="Value" type="IntegerStatObjectFieldDefinition" value="20" />
+        <field name="UseAPCost" type="IntegerStatObjectFieldDefinition" value="1" />
+        <field name="InventoryTab" type="EnumerationStatObjectFieldDefinition" value="2" enumeration_type_name="InventoryTabs" />
+        <field name="IsConsumable" type="EnumerationStatObjectFieldDefinition" value="1" enumeration_type_name="YesNo" />
+      </fields>
+    </stat_object>
+    <stat_object is_substat="false">
+      <fields>
+        <field name="Name" type="NameStatObjectFieldDefinition" value="POTION_Medium_Strength_Potion" />
+        <field name="Using" type="BaseClassStatObjectFieldDefinition" value="Potion" />
+        <field name="RootTemplate" type="RootTemplateStatObjectFieldDefinition" value="8b6da3d0-0364-4238-98bd-2d0d6ddd5403" />
+        <field name="Act part" type="EnumerationStatObjectFieldDefinition" value="5" enumeration_type_name="ActPart" />
+        <field name="StackId" type="StringStatObjectFieldDefinition" value="Strength" />
+        <field name="Value" type="IntegerStatObjectFieldDefinition" value="95" />
+        <field name="Strength" type="EnumerationStatObjectFieldDefinition" value="161" enumeration_type_name="Penalty PreciseQualifier" />
+        <field name="Duration" type="IntegerStatObjectFieldDefinition" value="3" />
+        <field name="ObjectCategory" type="StringStatObjectFieldDefinition" value="StatPotionEarly" />
+        <field name="MinAmount" type="IntegerStatObjectFieldDefinition" value="1" />
+        <field name="MaxAmount" type="IntegerStatObjectFieldDefinition" value="1" />
+        <field name="Priority" type="IntegerStatObjectFieldDefinition" value="5" />
+        <field name="MinLevel" type="IntegerStatObjectFieldDefinition" value="5" />
+      </fields>
+    </stat_object>
+    <stat_object is_substat="false">
+      <fields>
+        <field name="Name" type="NameStatObjectFieldDefinition" value="POTION_Minor_Strength_Potion" />
+        <field name="Using" type="BaseClassStatObjectFieldDefinition" value="Potion" />
+        <field name="RootTemplate" type="RootTemplateStatObjectFieldDefinition" value="f2c90b87-74ef-4fc1-a3be-3ad2502cc5b0" />
+        <field name="Act part" type="EnumerationStatObjectFieldDefinition" value="2" enumeration_type_name="ActPart" />
+        <field name="StackId" type="StringStatObjectFieldDefinition" value="Strength" />
+        <field name="Value" type="IntegerStatObjectFieldDefinition" value="65" />
+        <field name="Strength" type="EnumerationStatObjectFieldDefinition" value="161" enumeration_type_name="Penalty PreciseQualifier" />
+        <field name="Duration" type="IntegerStatObjectFieldDefinition" value="3" />
+      </fields>
+    </stat_object>
+    <stat_object is_substat="false">
+      <fields>
+        <field name="Name" type="NameStatObjectFieldDefinition" value="POTION_Large_Strength_Potion" />
+        <field name="Using" type="BaseClassStatObjectFieldDefinition" value="Potion" />
+        <field name="RootTemplate" type="RootTemplateStatObjectFieldDefinition" value="483c45ac-f660-4367-b593-c4d0200c4f9e" />
+        <field name="Act part" type="EnumerationStatObjectFieldDefinition" value="16" enumeration_type_name="ActPart" />
+        <field name="StackId" type="StringStatObjectFieldDefinition" value="Strength" />
+        <field name="Value" type="IntegerStatObjectFieldDefinition" value="300" />
+        <field name="Strength" type="EnumerationStatObjectFieldDefinition" value="191" enumeration_type_name="Penalty PreciseQualifier" />
+        <field name="Duration" type="IntegerStatObjectFieldDefinition" value="3" />
+        <field name="ObjectCategory" type="StringStatObjectFieldDefinition" value="StatPotionLate" />
+        <field name="MinAmount" type="IntegerStatObjectFieldDefinition" value="1" />
+        <field name="MaxAmount" type="IntegerStatObjectFieldDefinition" value="1" />
+        <field name="Priority" type="IntegerStatObjectFieldDefinition" value="1" />
+        <field name="MinLevel" type="IntegerStatObjectFieldDefinition" value="16" />
+      </fields>
+    </stat_object>
+    <stat_object is_substat="false">
+      <fields>
+        <field name="Name" type="NameStatObjectFieldDefinition" value="POTION_Minor_Dexterity_Potion" />
+        <field name="Using" type="BaseClassStatObjectFieldDefinition" value="Potion" />
+        <field name="RootTemplate" type="RootTemplateStatObjectFieldDefinition" value="c44679c1-f38e-4e3c-9ab1-dea95321893e" />
+        <field name="Act part" type="EnumerationStatObjectFieldDefinition" value="2" enumeration_type_name="ActPart" />
+        <field name="StackId" type="StringStatObjectFieldDefinition" value="Dexterity" />
+        <field name="Value" type="IntegerStatObjectFieldDefinition" value="65" />
+        <field name="Finesse" type="EnumerationStatObjectFieldDefinition" value="161" enumeration_type_name="Penalty PreciseQualifier" />
+        <field name="Duration" type="IntegerStatObjectFieldDefinition" value="3" />
+      </fields>
+    </stat_object>
+    <stat_object is_substat="false">
+      <fields>
+        <field name="Name" type="NameStatObjectFieldDefinition" value="POTION_Medium_Dexterity_Potion" />
+        <field name="Using" type="BaseClassStatObjectFieldDefinition" value="Potion" />
+        <field name="RootTemplate" type="RootTemplateStatObjectFieldDefinition" value="fccbfc38-f138-452e-ab7a-138ad9a09334" />
+        <field name="Act part" type="EnumerationStatObjectFieldDefinition" value="5" enumeration_type_name="ActPart" />
+        <field name="StackId" type="StringStatObjectFieldDefinition" value="Dexterity" />
+        <field name="Value" type="IntegerStatObjectFieldDefinition" value="95" />
+        <field name="Finesse" type="EnumerationStatObjectFieldDefinition" value="161" enumeration_type_name="Penalty PreciseQualifier" />
+        <field name="Duration" type="IntegerStatObjectFieldDefinition" value="3" />
+        <field name="ObjectCategory" type="StringStatObjectFieldDefinition" value="StatPotionEarly" />
+        <field name="MinAmount" type="IntegerStatObjectFieldDefinition" value="1" />
+        <field name="MaxAmount" type="IntegerStatObjectFieldDefinition" value="1" />
+        <field name="Priority" type="IntegerStatObjectFieldDefinition" value="5" />
+        <field name="MinLevel" type="IntegerStatObjectFieldDefinition" value="5" />
+      </fields>
+    </stat_object>
+    <stat_object is_substat="false">
+      <fields>
+        <field name="Name" type="NameStatObjectFieldDefinition" value="POTION_Large_Dexterity_Potion" />
+        <field name="Using" type="BaseClassStatObjectFieldDefinition" value="Potion" />
+        <field name="RootTemplate" type="RootTemplateStatObjectFieldDefinition" value="a5aff2c5-bc7a-4ed6-876b-0fa46ea3f762" />
+        <field name="Act part" type="EnumerationStatObjectFieldDefinition" value="16" enumeration_type_name="ActPart" />
+        <field name="StackId" type="StringStatObjectFieldDefinition" value="Dexterity" />
+        <field name="Value" type="IntegerStatObjectFieldDefinition" value="300" />
+        <field name="Finesse" type="EnumerationStatObjectFieldDefinition" value="191" enumeration_type_name="Penalty PreciseQualifier" />
+        <field name="Duration" type="IntegerStatObjectFieldDefinition" value="3" />
+        <field name="ObjectCategory" type="StringStatObjectFieldDefinition" value="StatPotionLate" />
+        <field name="MinAmount" type="IntegerStatObjectFieldDefinition" value="1" />
+        <field name="MaxAmount" type="IntegerStatObjectFieldDefinition" value="1" />
+        <field name="Priority" type="IntegerStatObjectFieldDefinition" value="1" />
+        <field name="MinLevel" type="IntegerStatObjectFieldDefinition" value="16" />
+      </fields>
+    </stat_object>
+    <stat_object is_substat="false">
+      <fields>
+        <field name="Name" type="NameStatObjectFieldDefinition" value="POTION_Minor_Speed_Potion" />
+        <field name="Using" type="BaseClassStatObjectFieldDefinition" value="Potion" />
+        <field name="RootTemplate" type="RootTemplateStatObjectFieldDefinition" value="63492aef-2a47-4e21-a8db-18bfd2a1f132" />
+        <field name="Act part" type="EnumerationStatObjectFieldDefinition" value="2" enumeration_type_name="ActPart" />
+        <field name="StackId" type="StringStatObjectFieldDefinition" value="Speed" />
+        <field name="Value" type="IntegerStatObjectFieldDefinition" value="65" />
+        <field name="Memory" type="EnumerationStatObjectFieldDefinition" value="161" enumeration_type_name="Penalty PreciseQualifier" />
+        <field name="Duration" type="IntegerStatObjectFieldDefinition" value="3" />
+      </fields>
+    </stat_object>
+    <stat_object is_substat="false">
+      <fields>
+        <field name="Name" type="NameStatObjectFieldDefinition" value="POTION_Medium_Speed_Potion" />
+        <field name="Using" type="BaseClassStatObjectFieldDefinition" value="Potion" />
+        <field name="RootTemplate" type="RootTemplateStatObjectFieldDefinition" value="44820d4d-9122-4f65-9f07-0e2093b76bd9" />
+        <field name="Act part" type="EnumerationStatObjectFieldDefinition" value="5" enumeration_type_name="ActPart" />
+        <field name="StackId" type="StringStatObjectFieldDefinition" value="Speed" />
+        <field name="Value" type="IntegerStatObjectFieldDefinition" value="95" />
+        <field name="Memory" type="EnumerationStatObjectFieldDefinition" value="161" enumeration_type_name="Penalty PreciseQualifier" />
+        <field name="Duration" type="IntegerStatObjectFieldDefinition" value="3" />
+      </fields>
+    </stat_object>
+    <stat_object is_substat="false">
+      <fields>
+        <field name="Name" type="NameStatObjectFieldDefinition" value="POTION_Large_Speed_Potion" />
+        <field name="Using" type="BaseClassStatObjectFieldDefinition" value="Potion" />
+        <field name="RootTemplate" type="RootTemplateStatObjectFieldDefinition" value="d5164582-23cb-47b7-a63c-0e434b4ac210" />
+        <field name="Act part" type="EnumerationStatObjectFieldDefinition" value="16" enumeration_type_name="ActPart" />
+        <field name="StackId" type="StringStatObjectFieldDefinition" value="Speed" />
+        <field name="Value" type="IntegerStatObjectFieldDefinition" value="300" />
+        <field name="Memory" type="EnumerationStatObjectFieldDefinition" value="191" enumeration_type_name="Penalty PreciseQualifier" />
+        <field name="Duration" type="IntegerStatObjectFieldDefinition" value="3" />
+      </fields>
+    </stat_object>
+    <stat_object is_substat="false">
+      <fields>
+        <field name="Name" type="NameStatObjectFieldDefinition" value="POTION_Minor_Intelligence_Potion" />
+        <field name="Using" type="BaseClassStatObjectFieldDefinition" value="Potion" />
+        <field name="RootTemplate" type="RootTemplateStatObjectFieldDefinition" value="9779d922-16ae-460e-beca-1c16efd93c3e" />
+        <field name="Act part" type="EnumerationStatObjectFieldDefinition" value="2" enumeration_type_name="ActPart" />
+        <field name="StackId" type="StringStatObjectFieldDefinition" value="Intelligence" />
+        <field name="Value" type="IntegerStatObjectFieldDefinition" value="65" />
+        <field name="Intelligence" type="EnumerationStatObjectFieldDefinition" value="161" enumeration_type_name="Penalty PreciseQualifier" />
+        <field name="Duration" type="IntegerStatObjectFieldDefinition" value="3" />
+      </fields>
+    </stat_object>
+    <stat_object is_substat="false">
+      <fields>
+        <field name="Name" type="NameStatObjectFieldDefinition" value="POTION_Medium_Intelligence_Potion" />
+        <field name="Using" type="BaseClassStatObjectFieldDefinition" value="Potion" />
+        <field name="RootTemplate" type="RootTemplateStatObjectFieldDefinition" value="b61868ea-7deb-42f9-9e34-ded87e1bf649" />
+        <field name="Act part" type="EnumerationStatObjectFieldDefinition" value="5" enumeration_type_name="ActPart" />
+        <field name="StackId" type="StringStatObjectFieldDefinition" value="Intelligence" />
+        <field name="Value" type="IntegerStatObjectFieldDefinition" value="95" />
+        <field name="Intelligence" type="EnumerationStatObjectFieldDefinition" value="161" enumeration_type_name="Penalty PreciseQualifier" />
+        <field name="Duration" type="IntegerStatObjectFieldDefinition" value="3" />
+        <field name="ObjectCategory" type="StringStatObjectFieldDefinition" value="StatPotionEarly" />
+        <field name="MinAmount" type="IntegerStatObjectFieldDefinition" value="1" />
+        <field name="MaxAmount" type="IntegerStatObjectFieldDefinition" value="1" />
+        <field name="Priority" type="IntegerStatObjectFieldDefinition" value="5" />
+        <field name="MinLevel" type="IntegerStatObjectFieldDefinition" value="5" />
+      </fields>
+    </stat_object>
+    <stat_object is_substat="false">
+      <fields>
+        <field name="Name" type="NameStatObjectFieldDefinition" value="POTION_Large_Intelligence_Potion" />
+        <field name="Using" type="BaseClassStatObjectFieldDefinition" value="Potion" />
+        <field name="RootTemplate" type="RootTemplateStatObjectFieldDefinition" value="89708a8e-50ff-4ba1-b047-a828d5cde0c4" />
+        <field name="Act part" type="EnumerationStatObjectFieldDefinition" value="16" enumeration_type_name="ActPart" />
+        <field name="StackId" type="StringStatObjectFieldDefinition" value="Intelligence" />
+        <field name="Value" type="IntegerStatObjectFieldDefinition" value="300" />
+        <field name="Intelligence" type="EnumerationStatObjectFieldDefinition" value="191" enumeration_type_name="Penalty PreciseQualifier" />
+        <field name="Duration" type="IntegerStatObjectFieldDefinition" value="3" />
+        <field name="ObjectCategory" type="StringStatObjectFieldDefinition" value="StatPotionLate" />
+        <field name="MinAmount" type="IntegerStatObjectFieldDefinition" value="1" />
+        <field name="MaxAmount" type="IntegerStatObjectFieldDefinition" value="1" />
+        <field name="Priority" type="IntegerStatObjectFieldDefinition" value="1" />
+        <field name="MinLevel" type="IntegerStatObjectFieldDefinition" value="16" />
+      </fields>
+    </stat_object>
+    <stat_object is_substat="false">
+      <fields>
+        <field name="Name" type="NameStatObjectFieldDefinition" value="POTION_Minor_Constitution_Potion" />
+        <field name="Using" type="BaseClassStatObjectFieldDefinition" value="Potion" />
+        <field name="RootTemplate" type="RootTemplateStatObjectFieldDefinition" value="b8e56305-a850-4562-a1c8-12e20e2ac703" />
+        <field name="Act part" type="EnumerationStatObjectFieldDefinition" value="2" enumeration_type_name="ActPart" />
+        <field name="StackId" type="StringStatObjectFieldDefinition" value="Constitution" />
+        <field name="Value" type="IntegerStatObjectFieldDefinition" value="65" />
+        <field name="Constitution" type="EnumerationStatObjectFieldDefinition" value="161" enumeration_type_name="Penalty PreciseQualifier" />
+        <field name="Duration" type="IntegerStatObjectFieldDefinition" value="3" />
+      </fields>
+    </stat_object>
+    <stat_object is_substat="false">
+      <fields>
+        <field name="Name" type="NameStatObjectFieldDefinition" value="POTION_Medium_Constitution_Potion" />
+        <field name="Using" type="BaseClassStatObjectFieldDefinition" value="Potion" />
+        <field name="RootTemplate" type="RootTemplateStatObjectFieldDefinition" value="350b8a76-1ddb-45ea-9400-dab656b24ad9" />
+        <field name="Act part" type="EnumerationStatObjectFieldDefinition" value="5" enumeration_type_name="ActPart" />
+        <field name="StackId" type="StringStatObjectFieldDefinition" value="Constitution" />
+        <field name="Value" type="IntegerStatObjectFieldDefinition" value="95" />
+        <field name="Constitution" type="EnumerationStatObjectFieldDefinition" value="161" enumeration_type_name="Penalty PreciseQualifier" />
+        <field name="Duration" type="IntegerStatObjectFieldDefinition" value="3" />
+        <field name="ObjectCategory" type="StringStatObjectFieldDefinition" value="StatPotionEarly" />
+        <field name="MinAmount" type="IntegerStatObjectFieldDefinition" value="1" />
+        <field name="MaxAmount" type="IntegerStatObjectFieldDefinition" value="1" />
+        <field name="Priority" type="IntegerStatObjectFieldDefinition" value="5" />
+        <field name="MinLevel" type="IntegerStatObjectFieldDefinition" value="5" />
+      </fields>
+    </stat_object>
+    <stat_object is_substat="false">
+      <fields>
+        <field name="Name" type="NameStatObjectFieldDefinition" value="POTION_Large_Constitution_Potion" />
+        <field name="Using" type="BaseClassStatObjectFieldDefinition" value="Potion" />
+        <field name="RootTemplate" type="RootTemplateStatObjectFieldDefinition" value="6e60688e-5f25-4498-b984-926c85333dd1" />
+        <field name="Act part" type="EnumerationStatObjectFieldDefinition" value="16" enumeration_type_name="ActPart" />
+        <field name="StackId" type="StringStatObjectFieldDefinition" value="Constitution" />
+        <field name="Value" type="IntegerStatObjectFieldDefinition" value="300" />
+        <field name="Constitution" type="EnumerationStatObjectFieldDefinition" value="191" enumeration_type_name="Penalty PreciseQualifier" />
+        <field name="Duration" type="IntegerStatObjectFieldDefinition" value="3" />
+        <field name="ObjectCategory" type="StringStatObjectFieldDefinition" value="StatPotionLate" />
+        <field name="MinAmount" type="IntegerStatObjectFieldDefinition" value="1" />
+        <field name="MaxAmount" type="IntegerStatObjectFieldDefinition" value="1" />
+        <field name="Priority" type="IntegerStatObjectFieldDefinition" value="1" />
+        <field name="MinLevel" type="IntegerStatObjectFieldDefinition" value="16" />
+      </fields>
+    </stat_object>
+    <stat_object is_substat="false">
+      <fields>
+        <field name="Name" type="NameStatObjectFieldDefinition" value="POTION_Minor_Perception_Potion" />
+        <field name="Using" type="BaseClassStatObjectFieldDefinition" value="Potion" />
+        <field name="RootTemplate" type="RootTemplateStatObjectFieldDefinition" value="ceec2f91-a8bb-474b-8824-4dc2413644ff" />
+        <field name="Act part" type="EnumerationStatObjectFieldDefinition" value="2" enumeration_type_name="ActPart" />
+        <field name="StackId" type="StringStatObjectFieldDefinition" value="Perception" />
+        <field name="Value" type="IntegerStatObjectFieldDefinition" value="65" />
+        <field name="Wits" type="EnumerationStatObjectFieldDefinition" value="161" enumeration_type_name="Penalty PreciseQualifier" />
+        <field name="Duration" type="IntegerStatObjectFieldDefinition" value="3" />
+      </fields>
+    </stat_object>
+    <stat_object is_substat="false">
+      <fields>
+        <field name="Name" type="NameStatObjectFieldDefinition" value="POTION_Medium_Perception_Potion" />
+        <field name="Using" type="BaseClassStatObjectFieldDefinition" value="Potion" />
+        <field name="RootTemplate" type="RootTemplateStatObjectFieldDefinition" value="4d8476f2-40a0-4e8f-83b5-1541d747e5be" />
+        <field name="Act part" type="EnumerationStatObjectFieldDefinition" value="5" enumeration_type_name="ActPart" />
+        <field name="StackId" type="StringStatObjectFieldDefinition" value="Perception" />
+        <field name="Value" type="IntegerStatObjectFieldDefinition" value="95" />
+        <field name="Wits" type="EnumerationStatObjectFieldDefinition" value="161" enumeration_type_name="Penalty PreciseQualifier" />
+        <field name="Duration" type="IntegerStatObjectFieldDefinition" value="3" />
+        <field name="ObjectCategory" type="StringStatObjectFieldDefinition" value="StatPotionEarly" />
+        <field name="MinAmount" type="IntegerStatObjectFieldDefinition" value="1" />
+        <field name="MaxAmount" type="IntegerStatObjectFieldDefinition" value="1" />
+        <field name="Priority" type="IntegerStatObjectFieldDefinition" value="5" />
+        <field name="MinLevel" type="IntegerStatObjectFieldDefinition" value="5" />
+      </fields>
+    </stat_object>
+    <stat_object is_substat="false">
+      <fields>
+        <field name="Name" type="NameStatObjectFieldDefinition" value="POTION_Large_Perception_Potion" />
+        <field name="Using" type="BaseClassStatObjectFieldDefinition" value="Potion" />
+        <field name="RootTemplate" type="RootTemplateStatObjectFieldDefinition" value="cbc19c6e-424c-4569-8dd7-a314eb3531c3" />
+        <field name="Act part" type="EnumerationStatObjectFieldDefinition" value="16" enumeration_type_name="ActPart" />
+        <field name="StackId" type="StringStatObjectFieldDefinition" value="Perception" />
+        <field name="Value" type="IntegerStatObjectFieldDefinition" value="300" />
+        <field name="Wits" type="EnumerationStatObjectFieldDefinition" value="191" enumeration_type_name="Penalty PreciseQualifier" />
+        <field name="Duration" type="IntegerStatObjectFieldDefinition" value="3" />
+        <field name="ObjectCategory" type="StringStatObjectFieldDefinition" value="StatPotionLate" />
+        <field name="MinAmount" type="IntegerStatObjectFieldDefinition" value="1" />
+        <field name="MaxAmount" type="IntegerStatObjectFieldDefinition" value="1" />
+        <field name="Priority" type="IntegerStatObjectFieldDefinition" value="1" />
+        <field name="MinLevel" type="IntegerStatObjectFieldDefinition" value="16" />
       </fields>
     </stat_object>
   </stat_objects>

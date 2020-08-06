@@ -227,12 +227,6 @@ data "StatusType" "CONSUME"
 data "StatsId" "Stats_LX_Leech"
 data "StackId" "Stack_LX_Leech"
 
-new entry "LX_MORNINGPERSON"
-type "StatusData"
-data "StatusType" "CONSUME"
-data "StatsId" "Stats_LX_MorningPerson"
-data "StackId" "Stack_LX_MorningPerson"
-
 new entry "LX_STENCH"
 type "StatusData"
 data "StatusType" "CONSUME"

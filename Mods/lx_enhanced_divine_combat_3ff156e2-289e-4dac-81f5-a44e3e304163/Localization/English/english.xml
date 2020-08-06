@@ -6,7 +6,7 @@
     <content contentuid="h6b67efcagf943g43a1g959eg36f9ecc42e7e" comment="Intelligence description">Increases all damage by 2% per point. Damage dealt by skills is further increased by 3% and Accuracy by 1% per point.</content>
 	<content contentuid="h6d2cd8aeg4e09g4003ga57cg3fea3a0f5502" comment="Wits description">Wits affect your Critical Chance, Initiative, increase damages dealt by damaging statuses and your ability to detect traps and find hidden treasures.</content>
     <content contentuid="h6d76eb15gdb1ag4ebeg8001g58173516a923" comment="Walk It Off description">Walk It Off reduces all status durations by 1 turn, including positive statuses. Does not affect statuses with a duration of 1 turn. Also increases all resistances by 10% each time you are hit by a character, up to a maximum of 50%, until the next turn.</content>
-    <content contentuid="h75391bafg8744g4441g9b1egf52f182f96fc" comment="Finesse description">Increases all damage by 3% per point. Dodge is increased by 1% and movement by 0.15m per AP per point.</content>
+    <content contentuid="h75391bafg8744g4441g9b1egf52f182f96fc" comment="Finesse description">Increases all damage by 3% per point. Dodge is increased by 1%, Critical Chance by 1% and Movement by 0.2m per AP per point.</content>
     <content contentuid="h81ca938fg5ef4g452agb093g1294e2f0718b" comment="Leech description">Leech heals you when standing in blood. Also increases Lifesteal by 25%.</content>
     <content contentuid="h878c02c0gc629g470dg955cg80dc2a125cb2" comment="Stench description">Stench decreases everyone&apos;s attitude towards you by [2], but melee opponents find you less attractive in combat. Increases your Poison resistance by 30% and makes you immune to Diseased and Infected.</content>
     <content contentuid="h8ddc8dd4ge8feg4420ga6dag0d87ce8ec743" comment="Duck Duck Goose description">[1] lets you evade attacks of opportunity. Increases your Dodge by 5% and Movement by 1m per AP.</content>
@@ -14,7 +14,7 @@
     <content contentuid="hc453e399ge1f5g41f1gaeabgcdd4de833c63" comment="Demon or IceKing">A character with [1] has an extra 30% [3], but takes a [4]% penalty to [5]. Additionally, the maximum [3] is raised by [6]. Demon grants 20% additional damage on all Burning and Necrofire statuses you apply to enemies. Ice King increases all Water damage you deal by 20%.</content>
     <content contentuid="hcb8f9837gdf0fg4a01ga7d6g5ed522b74189" comment="Escapist description">[1] allows you to flee combat even when enemies are close by. Provides immunity to Crippled, Entangled and Enwebbbed.</content>
     <content contentuid="he94327f7g293dg488eg9d25gcb4f7ae7be24" comment="HotHead description">While above 75% Vitality, Hothead provides 10% Critical Chance and 10% Accuracy.</content>
-    <content contentuid="hf3cd8067g36c0g4b48ga4dfg361f33579b43" comment="Ambidextrous description">Ambidextrous reduces the cost of using grenades and scrolls by 1 AP when your off-hand is free. Provides 2 free equipment switches per turn.</content>
+    <content contentuid="hf3cd8067g36c0g4b48ga4dfg361f33579b43" comment="Ambidextrous description">Ambidextrous reduces the cost of using grenades and scrolls by 1 AP when your off-hand is free. Refund the AP cost for 2 equipment switches per turn.</content>
     <content contentuid="hf4632a8fg42a7g4d53gbe26gd203f28e3d5e" comment="Shadow damages ?">Shadow</content>
     <content contentuid="hfb8eec35g3339g4762g8382g712e74a2ac0b" comment="Slingshot description">[1] adds an extra [2]m range to your grenade throws and increase their damage by 30%.</content>
     <content contentuid="hfc8981a1g8f84g49c8ga8b4g17564a836c45" comment="Duelist description">Duelist increases AP Start and Recovery by 1, and Max AP by 1, if you are wielding a Single-Handed weapon with a free off-hand.</content>
@@ -24,14 +24,14 @@
     <content contentuid="h54f2ea13g97dbg4b86g9d13geeb81186faca" comment="Ranged description">[1] increases damage and Critical Chance when using bows and crossbows. Also increases the range by 0.5m per point when wielding a bow, crossbow or wand(s).</content>
     <content contentuid="h751cb9fcgcc15g485fg80dag96d013bb5fff" comment="Single-handed description">Single-Handed increases damage and Accuracy when using a single-handed weapon (dagger, sword, axe, mace or wand) with a shield or empty off-hand. Increases armours by 6% and resistances by 2% per point.</content>
     <content contentuid="h206ce4abg4f84g4b2dg934aga0d96a602f2c" comment="Two-handed descripiton">Two-Handed increases damage and Critical Multiplier when using two-handed melee weapons (swords, axe, mace, spear or staff). Also grants 2% Accuracy per point.</content>
-    <content contentuid="hf3893f8fg20c5g4078ga83cgef8783082103" comment="All Skilled up description">The first skill used during your turn has its cooldown reduced by 1 turn.</content>
-    <content contentuid="h1bae56a9ga45fg431fg80bfg2afbef03c1d2" comment="Perseverance description">Perseverance restores Magic Armour on recovering from Frozen or Stunned, and restores Physical Armour on recovering from Knocked Down or Petrified. Additionally, 2% of maximum Vitality is restored per point.</content>
+    <content contentuid="hf3893f8fg20c5g4078ga83cgef8783082103" comment="All Skilled up description">The first skill having more than 1 turn cooldown used during your turn has its cooldown reduced by 1 turn.</content>
+    <content contentuid="h1bae56a9ga45fg431fg80bfg2afbef03c1d2" comment="Perseverance description">Perseverance restores Magic Armour on recovering from Frozen or Stunned, and restores Physical Armour on recovering from Knocked Down or Petrified. Additionally, 2% of maximum Vitality is restored per point. When recovering from a Staggered or Confused status, Perseverance also triggers but its effect is halved.</content>
     <content contentuid="h9df517d1gf64bg499dgb23fg462fd1f061bc" comment="Critical chance description">Your chance to Critically Strike when attacking with a weapon or when using a weapon-based skill. If you Backstab, your Critical Chance is converted to additional damage in a ratio of 2% Critical Chance to 1% damage.</content>
     <content contentuid="hb924258ag2cf7g4c11gaf4eg8b7de303c197" comment="Attributes dynamic bonus"></content>
     <content contentuid="h278d3a4fg4dceg4362g9b35g9c3685c93268" comment="Damage tooltip">The damage you inflict when successfully hitting an enemy or object.</content>
     <content contentuid="h8256bf13gb4cag4662gaafegb5724b210c92" comment="Leadership description">[1] grants Dodging and Resistance bonuses to all allies in a 16m radius.</content>
-    <content contentuid="h71b09f9fg285fg4532gab16g1c7640864141" comment="Tooltip bonus level">Damage is based on your level and receives an additional bonus from Intelligence.</content>
-    <content contentuid="ha4cfd852g52f1g4079g8919gd392ac8ade1a" comment="Tooltip bonus weapon">Damage is based on your basic attack and receives an additional bonus from both Strength and Intelligence.</content>
+    <content contentuid="h71b09f9fg285fg4532gab16g1c7640864141" comment="Tooltip bonus level">Damage is based on your level and trigger the additional skill bonus from Intelligence.</content>
+    <content contentuid="ha4cfd852g52f1g4079g8919gd392ac8ade1a" comment="Tooltip bonus weapon">Damage is based on your basic attack and trigger the additional bonus from both Strength and Intelligence.</content>
     <content contentuid="h3240460dgd250g435bg9ebegc1682089c5ed" comment="Corpse Explosion description">Explode target corpse, dealing [1] in the area.</content>
     <content contentuid="h1a6bf0edg47eeg4ee8gaa86g5a608e5dda7b" comment="Mass Corpse Explosion description">Explode all corpses around you, dealing [1] in the area.</content>
     <content contentuid="h0fe63523g3caeg4e46g8152geabd390080af" comment="Sparkstriker description">Receive Sparkstriker status. This causes your melee attacks to create a Spark projectile that bounces off the initial target to hit the closest enemy, dealing [1].</content>
@@ -44,6 +44,8 @@
     <content contentuid="hbce8b81ag1259g4a30g99f9g1f99e9b74583" comment="Elemental Arrowhead display name">Elemental Weapons</content>
     <content contentuid="h4542353bg043cg4964ga401g7a80dd267e5b" comment="Elemental Arrowhead description">Target a surface in melee radius. Elemental damage matching that surface is added to your weapon attacks and weapon-based skills.</content>
     <content contentuid="h9055594bg16a7g48b8g81ffg25bbbf89963b" comment="Ice Breaker description">Sets off a chain reaction that causes ice areas to explode into water puddles, dealing [1] and setting Chilled.</content>
+	<content contentuid="h22a39843gf968g4212g851dg6e121235fa85" comment="Bless description">Bless target character or surface. Prevent Diseased, Decaying, Petrified, Stunned, increase Dodge by [1]%, Accuracy by [2]% and elemental resistances by [3].</content>
+	<content contentuid="h7184b190ge934g49d4g9b5cg67ff537bd723" comment="Dimensional Bolt description">Shoot a volatile bolt that deals [1], and then creates a corresponding surface. Chaos trigger a random type of damage.</content>
     <content contentuid="h944c3db5gc792g4cdcg923cg9471f4cb0969" comment="Water Arrows status">Water Weapons</content>
     <content contentuid="hbf9f6f92g699ag47b3gb967g5bfa164a0612" comment="Bloody Arrows status">Bloody Weapons</content>
     <content contentuid="h4be1f455g2614g43e1gbe42g7636850e7749" comment="Burning Arrows status">Burning Weapons</content>
@@ -84,6 +86,7 @@
     <content contentuid="hf2f2ceb4g7be9g453fgb093ga8d7c563f782" comment="Target_FrostyShell">Reduce damage going through Magic Armour by [1]%</content>
     <content contentuid="h2ce13614gab6cg4878gb781gcb3186a8ead9" comment="Shout_FrostAura">Reduce damage going through Magic Armour by [1]%</content>
     <content contentuid="hf7a19975gea84g44a3g8fffg5b4f063b88b4" comment="Shout_RecoverArmour">Reduce damage going through Physical and Magic Armour by [1]%</content>
+	<content contentuid="hddb00621g65ddg46acg89d2gfcf3efd8cd78" comment="Tentacle Lash additonal description">Also triggers the Strength weapon bonus.</content>
     <content contentuid="hc9386e15gf8f2g46efg9ab1g7dc5f3910ae8">Gain 1 Action Point immediately and at the start of the next 2 turns at the cost of [1] Constitution. Any Action Points over your maximum are lost.</content>
 	<content contentuid="h45221235g7b29g4bdegb758gebf6e378573b">A very, very large potion that restores your vitality. It makes a soft, tinkling sound when you shake it.</content>
 	<content contentuid="ha556dc68g617dg45c0g8307g392dcb022e7c">Explosive Mine</content>

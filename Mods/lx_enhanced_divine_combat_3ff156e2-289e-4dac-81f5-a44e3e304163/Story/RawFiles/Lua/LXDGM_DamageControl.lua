@@ -51,12 +51,13 @@ function DamageControl(target, handle, instigator)
 	
 	-- Dodge mechanic override
 	if isMissed == 1 or isDodged == 1 then
-		local weaponHandle = NRD_StatusGetString(target, handle, "WeaponHandle")
-		local mainWeapon = CharacterGetEquippedWeapon(instigator)
-		DodgeControl(target, instigator, weaponHandle)
-		if mainWeapon ~= weaponHandle then
-			SetVarInteger(instigator, "LX_Miss_Main", 0)
-		end
+		-- local weaponHandle = NRD_StatusGetString(target, handle, "WeaponHandle")
+		-- local mainWeapon = CharacterGetEquippedWeapon(instigator)
+		-- DodgeControl(target, instigator, weaponHandle)
+		-- if mainWeapon ~= weaponHandle then
+		-- 	SetVarInteger(instigator, "LX_Miss_Main", 0)
+		-- end
+		TriggerDodgeFatigue(target, instigator)
 		return
 	end
 		
@@ -74,7 +75,7 @@ function DamageControl(target, handle, instigator)
 	end
 	
 	-- Get damage type bonus
-	if fromWeapon == 1 then 
+	if fromWeapon == 1 or skillID == "Target_TentacleLash_-1" then 
 		damageBonus = damageBonus + strength*Ext.ExtraData.DGM_StrengthWeaponBonus
 		-- print("Bonus: Weapon")
 		-- Check distance penalty if it's a distance weapon
@@ -92,7 +93,7 @@ function DamageControl(target, handle, instigator)
 		
 	end
 	if hitType == 1 then
-		damageBonus = wits*Ext.ExtraData.DGM_WitsDoTBonus
+		damageBonus = wits*Ext.ExtraData.DGM_WitsDotBonus
 		-- print("Bonus: DoT") 
 		-- Demon bonus for burning/necrofire
 		local hasDemon = CharacterHasTalent(instigator, "Demon")
@@ -126,6 +127,7 @@ function DamageControl(target, handle, instigator)
 	end
 	
 	-- Apply damage changes and side effects
+	if skillID == "Projectile_Talent_Unstable" then globalMultiplier = 1 end
 	damages = ChangeDamage(damages, (damageBonus/100+1)*globalMultiplier, 0, instigator)
 	ReplaceDamages(damages, handle, target)
 	SetWalkItOff(target, handle)
@@ -226,7 +228,7 @@ function TriggerDodgeFatigue(target, instigator)
 	if dodgeCounter == nil then dodgeCounter = 0 end
 	-- Ext.Print("[LXDGM_DamageControl.DodgeControl] "..accuracy.." "..baseAccuracy)
 	-- Ext.Print("[LXDGM_DamageControl.DodgeControl] Dodge counter : "..dodgeCounter)
-	if HasActiveStatus(target, "UNCANNY_EVASION") == 0 then
+	if HasActiveStatus(target, "EVADING") == 0 then
 		dodgeCounter = dodgeCounter + 1
 	end
 	if accuracy >= 90 and accuracy >= baseAccuracy then
@@ -236,8 +238,6 @@ function TriggerDodgeFatigue(target, instigator)
 		if dodgeCounter == 2 then ApplyStatus(target, "LX_DODGE_FATIGUE2", 6.0, 1) end
 		if dodgeCounter == 3 then ApplyStatus(target, "LX_DODGE_FATIGUE3", 6.0, 1) end
 		if dodgeCounter == 4 then ApplyStatus(target, "LX_DODGE_FATIGUE4", 6.0, 1) end
-		
-		
 	end
 end
 
@@ -254,6 +254,12 @@ function ManagePerseverance(character, perseverance, type)
 	elseif type == "Physical" then
 		local charPA = NRD_CharacterGetStatInt(character, "MaxArmor")
 		NRD_CharacterSetStatInt(character, "CurrentArmor", NRD_CharacterGetStatInt(character, "CurrentArmor")+(perseverance*Ext.ExtraData.SkillAbilityArmorRestoredPerPoint*0.01*charPA))
+	elseif type == "Demi-Physic" then
+		local charPA = NRD_CharacterGetStatInt(character, "MaxArmor")
+		NRD_CharacterSetStatInt(character, "CurrentArmor", NRD_CharacterGetStatInt(character, "CurrentArmor")+(perseverance*Ext.ExtraData.SkillAbilityArmorRestoredPerPoint*0.005*charPA))
+	elseif type == "Demi-Magic" then
+			local charMA = NRD_CharacterGetStatInt(character, "MaxMagicArmor")
+			NRD_CharacterSetStatInt(character, "CurrentMagicArmor", NRD_CharacterGetStatInt(character, "CurrentMagicArmor")+(perseverance*Ext.ExtraData.SkillAbilityArmorRestoredPerPoint*0.005*charMA))
 	end
 end
 
@@ -270,7 +276,7 @@ Ext.RegisterListener("GetHitChance", DGM_HitChanceFormula)
 
 --- @param attacker StatCharacter
 --- @param target StatCharacter
-function DGM_CalculateHitChance(target, attacker)
+function DGM_CalculateHitChance(attacker, target)
     if attacker.TALENT_Haymaker then
         return 100
 	end
@@ -335,10 +341,12 @@ end
 --- @param damageList DamageList
 --- @param attacker StatCharacter
 function ApplyHitResistances(character, damageList, attacker)
-    for i,damage in pairs(damageList:ToTable()) do
+	local strength = Ext.ExtraData.AttributeBaseValue
+	if attacker ~= nil then strength = attacker.Strength end
+	for i,damage in pairs(damageList:ToTable()) do
 		local resistance = Game.Math.GetResistance(character, damage.DamageType)
 		if resistance > 0 and resistance < 100 then
-			resistance = resistance - (attacker.Strength - Ext.ExtraData.AttributeBaseValue) * Ext.ExtraData.DGM_StrengthResistanceIgnore
+			resistance = resistance - (strength - Ext.ExtraData.AttributeBaseValue) * Ext.ExtraData.DGM_StrengthResistanceIgnore
 		end
 		if resistance < 0 then resistance = 0 end
         damageList:Add(damage.DamageType, math.floor(damage.Amount * -resistance / 100.0))

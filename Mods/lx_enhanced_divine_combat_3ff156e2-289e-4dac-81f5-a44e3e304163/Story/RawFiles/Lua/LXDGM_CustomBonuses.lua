@@ -5,7 +5,9 @@ local customBonuses = {
 
 --- @param character EsvCharacter
 function SyncAttributeBonuses(char)
+    if ObjectExists(char) == 0 then return end
     char = Ext.GetCharacter(char)
+    if char == nil then return end
     for attribute, bonuses in pairs(customBonuses) do
         local charAttr = math.floor(char.Stats[attribute] - Ext.ExtraData.AttributeBaseValue)
         local statusName = "DGM_"..attribute.."_"..charAttr
@@ -69,7 +71,9 @@ function GetWeaponAbility(character, weapon)
 end
 
 function SyncAbilitiesBonuses(char)
+    if ObjectExists(char) == 0 then return end
     char = Ext.GetCharacter(char)
+    if char == nil then return end
     local ability = GetWeaponAbility(char.Stats, char.Stats.MainWeapon)
     if ability == nil then
         if NRD_StatExists("DGM_NoWeapon") then

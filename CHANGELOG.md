@@ -160,3 +160,31 @@ Balance
 * Backstab Critical Chance convertion rate is reduced from 1% CC = 1% Damage to 1% CC = 0.5% Damage
 * Single Handed ability Accuracy bonus is reduced from 5 to 2 according to the new chance to hit formula
 
+# 0.11.13.20 (Verdas)
+Fixes
+* Fixed an issue where traps would not apply damage through armors
+* Fixed an issue with Wits not increasing DoT damages
+* Fixed an issue where statuses have 1% chance to not apply even though they have 100% chance to apply
+* Fixed Uncanny Evasion not preventing Dodge Fatigue
+* Fixed the issue with Mnemonics not removing the Memory bonus when entering the Magic mirror, which was giving infinite amount of Memory
+* Fixed the Charmed status not giving Lingering after expiration
+* Removed spamming warnings in the console when loading a GM maps and when dealing with summons during battle
+* Fixed Favourable Wind not giving the same bonuses on the caster than the aura effect
+* Fixed vanilla bug where Sucker Punch cooldown reset when equipping-unequipping weapons
+* Fixed Ambidextrous not refunding AP when equipping items
+* Fixed All Skilled Up reducing cooldown of skills having a 1 turn cooldown whereas it should not
+* Morning Person custom effect should be more reliabe now
+
+Balances
+* Restored vanilla base memory slots growth (1 every two levels) and reduced base memory slots from 5 to 4 (vanilla is 3)
+* Removed the AP refund feature on consecutive dodging. It is not relevant anymore with the recent changes for Dodge.
+* Grenades base weight reduced from 1000g to 350g
+* Vitality restored bonus from Hydrosophist increased from 5% to 8%
+* Sabotage cooldown increased from 1 to 3 turns
+* Minor attribute potion base attribute value increased from 1 to 3
+* Tentacle Lash now scale with Strength too
+
+New Features
+* You can now mix attribute potions with the same type of potion to obtain greater attribute potions, and not just by using augmentor. You can now also use all kind of augmentors for obtaining medium sized, and ultimate augmentor for large sized potions.
+* Perseverance now also triggers when a Staggered or Confused effect expires, but its effect is halved.
+

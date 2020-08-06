@@ -205,7 +205,7 @@ local function GetSkillDamageRange(character, skill)
 		
 		local globalMult = 1.0
 		
-		if skill.StatsDescriptionParams:find("Weapon:") ~= nil then
+		if skill.StatsDescriptionParams:find("Weapon:") ~= nil  or skill.Name == "Target_TentacleLash" then
 			local weaponStat = skill.StatsDescriptionParams:gsub("^[A-z]*:", ""):gsub(":.*", "")
 			globalMult = 1 + (character.Strength-10) * (Ext.ExtraData.DGM_StrengthGlobalBonus*0.01 + Ext.ExtraData.DGM_StrengthWeaponBonus*0.01) +
 		(character.Finesse-10) * (Ext.ExtraData.DGM_FinesseGlobalBonus*0.01) +
@@ -261,7 +261,7 @@ local function StatusGetDescriptionParam(status, statusSource, character, par)
     if par == "Damage" then
         local dmgStat = Ext.GetStat(status.DamageStats)
         if statusSource == nil then return end
-        local globalMult = 1 + (statusSource.Wits-Ext.ExtraData.AttributeBaseValue) * (Ext.ExtraData.DGM_WitsDoTBonus*0.01) --From the overhaul
+        local globalMult = 1 + (statusSource.Wits-Ext.ExtraData.AttributeBaseValue) * (Ext.ExtraData.DGM_WitsDotBonus*0.01) --From the overhaul
         local dmg = 0
 		if dmgStat.Damage == 1 then
 			dmg = Game.Math.GetAverageLevelDamage(statusSource.Level)

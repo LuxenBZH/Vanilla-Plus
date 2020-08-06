@@ -82,13 +82,13 @@
     <stat_object is_substat="false">
       <fields>
         <field name="Name" type="NameStatObjectFieldDefinition" value="CharacterBaseMemoryCapacity" />
-        <field name="Value" type="FloatStatObjectFieldDefinition" value="5" />
+        <field name="Value" type="FloatStatObjectFieldDefinition" value="4" />
       </fields>
     </stat_object>
     <stat_object is_substat="false">
       <fields>
         <field name="Name" type="NameStatObjectFieldDefinition" value="CharacterBaseMemoryCapacityGrowth" />
-        <field name="Value" type="FloatStatObjectFieldDefinition" value="0.25" />
+        <field name="Value" type="FloatStatObjectFieldDefinition" value="0.5" />
       </fields>
     </stat_object>
     <stat_object is_substat="false">
@@ -166,7 +166,7 @@
     <stat_object is_substat="false">
       <fields>
         <field name="Name" type="NameStatObjectFieldDefinition" value="SkillAbilityVitalityRestoredPerPoint" />
-        <field name="Value" type="FloatStatObjectFieldDefinition" value="5" />
+        <field name="Value" type="FloatStatObjectFieldDefinition" value="8" />
       </fields>
     </stat_object>
     <stat_object is_substat="false">

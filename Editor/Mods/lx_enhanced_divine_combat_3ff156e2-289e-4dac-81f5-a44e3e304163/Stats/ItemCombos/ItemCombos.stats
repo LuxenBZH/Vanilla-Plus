@@ -233,7 +233,49 @@
         <field name="Object 1" type="StringStatObjectFieldDefinition" value="POTION_Minor_Strength_Potion" />
         <field name="Transform 1" type="EnumerationStatObjectFieldDefinition" value="2" enumeration_type_name="IngredientTransformType" />
         <field name="Type 2" type="EnumerationStatObjectFieldDefinition" value="1" enumeration_type_name="IngredientType" />
-        <field name="Object 2" type="StringStatObjectFieldDefinition" value="CON_Herb_Augmentor" />
+        <field name="Object 2" type="StringStatObjectFieldDefinition" value="CON_Herb_Augmentor_A" />
+        <field name="Transform 2" type="EnumerationStatObjectFieldDefinition" value="1" enumeration_type_name="IngredientTransformType" />
+        <field name="Result 1" type="StringStatObjectFieldDefinition" value="POTION_Medium_Strength_Potion" />
+        <field name="PreviewStatsID" type="StringStatObjectFieldDefinition" value="POTION_Medium_Strength_Potion" />
+      </fields>
+    </stat_object>
+    <stat_object is_substat="false">
+      <fields>
+        <field name="Name" type="NameStatObjectFieldDefinition" value="POTION_Minor_Strength_Potion_CON_Herb_Augmentor_Step2_A" />
+        <field name="RecipeCategory" type="EnumerationStatObjectFieldDefinition" value="2" enumeration_type_name="RecipeCategory" />
+        <field name="Type 1" type="EnumerationStatObjectFieldDefinition" value="1" enumeration_type_name="IngredientType" />
+        <field name="Object 1" type="StringStatObjectFieldDefinition" value="POTION_Minor_Strength_Potion" />
+        <field name="Transform 1" type="EnumerationStatObjectFieldDefinition" value="2" enumeration_type_name="IngredientTransformType" />
+        <field name="Type 2" type="EnumerationStatObjectFieldDefinition" value="1" enumeration_type_name="IngredientType" />
+        <field name="Object 2" type="StringStatObjectFieldDefinition" value="CON_Herb_Augmentor_Step2_A" />
+        <field name="Transform 2" type="EnumerationStatObjectFieldDefinition" value="1" enumeration_type_name="IngredientTransformType" />
+        <field name="Result 1" type="StringStatObjectFieldDefinition" value="POTION_Medium_Strength_Potion" />
+        <field name="PreviewStatsID" type="StringStatObjectFieldDefinition" value="POTION_Medium_Strength_Potion" />
+      </fields>
+    </stat_object>
+    <stat_object is_substat="false">
+      <fields>
+        <field name="Name" type="NameStatObjectFieldDefinition" value="POTION_Minor_Strength_Potion_CON_Herb_Augmentor_Step3_A" />
+        <field name="RecipeCategory" type="EnumerationStatObjectFieldDefinition" value="2" enumeration_type_name="RecipeCategory" />
+        <field name="Type 1" type="EnumerationStatObjectFieldDefinition" value="1" enumeration_type_name="IngredientType" />
+        <field name="Object 1" type="StringStatObjectFieldDefinition" value="POTION_Minor_Strength_Potion" />
+        <field name="Transform 1" type="EnumerationStatObjectFieldDefinition" value="2" enumeration_type_name="IngredientTransformType" />
+        <field name="Type 2" type="EnumerationStatObjectFieldDefinition" value="1" enumeration_type_name="IngredientType" />
+        <field name="Object 2" type="StringStatObjectFieldDefinition" value="CON_Herb_Augmentor_Step3_A" />
+        <field name="Transform 2" type="EnumerationStatObjectFieldDefinition" value="1" enumeration_type_name="IngredientTransformType" />
+        <field name="Result 1" type="StringStatObjectFieldDefinition" value="POTION_Medium_Strength_Potion" />
+        <field name="PreviewStatsID" type="StringStatObjectFieldDefinition" value="POTION_Medium_Strength_Potion" />
+      </fields>
+    </stat_object>
+    <stat_object is_substat="false">
+      <fields>
+        <field name="Name" type="NameStatObjectFieldDefinition" value="POTION_Minor_Strength_Potion_POTION_Minor_Strength_Potion" />
+        <field name="RecipeCategory" type="EnumerationStatObjectFieldDefinition" value="2" enumeration_type_name="RecipeCategory" />
+        <field name="Type 1" type="EnumerationStatObjectFieldDefinition" value="1" enumeration_type_name="IngredientType" />
+        <field name="Object 1" type="StringStatObjectFieldDefinition" value="POTION_Minor_Strength_Potion" />
+        <field name="Transform 1" type="EnumerationStatObjectFieldDefinition" value="2" enumeration_type_name="IngredientTransformType" />
+        <field name="Type 2" type="EnumerationStatObjectFieldDefinition" value="1" enumeration_type_name="IngredientType" />
+        <field name="Object 2" type="StringStatObjectFieldDefinition" value="POTION_Minor_Strength_Potion" />
         <field name="Transform 2" type="EnumerationStatObjectFieldDefinition" value="1" enumeration_type_name="IngredientTransformType" />
         <field name="Result 1" type="StringStatObjectFieldDefinition" value="POTION_Medium_Strength_Potion" />
         <field name="PreviewStatsID" type="StringStatObjectFieldDefinition" value="POTION_Medium_Strength_Potion" />
@@ -255,13 +297,83 @@
     </stat_object>
     <stat_object is_substat="false">
       <fields>
+        <field name="Name" type="NameStatObjectFieldDefinition" value="POTION_Medium_Strength_Potion_CON_Herb_Augmentor_Step3_A" />
+        <field name="RecipeCategory" type="EnumerationStatObjectFieldDefinition" value="2" enumeration_type_name="RecipeCategory" />
+        <field name="Type 1" type="EnumerationStatObjectFieldDefinition" value="1" enumeration_type_name="IngredientType" />
+        <field name="Object 1" type="StringStatObjectFieldDefinition" value="POTION_Medium_Strength_Potion" />
+        <field name="Transform 1" type="EnumerationStatObjectFieldDefinition" value="2" enumeration_type_name="IngredientTransformType" />
+        <field name="Type 2" type="EnumerationStatObjectFieldDefinition" value="1" enumeration_type_name="IngredientType" />
+        <field name="Object 2" type="StringStatObjectFieldDefinition" value="CON_Herb_Augmentor_Step3_A" />
+        <field name="Transform 2" type="EnumerationStatObjectFieldDefinition" value="1" enumeration_type_name="IngredientTransformType" />
+        <field name="Result 1" type="StringStatObjectFieldDefinition" value="POTION_Large_Strength_Potion" />
+        <field name="PreviewStatsID" type="StringStatObjectFieldDefinition" value="POTION_Large_Strength_Potion" />
+      </fields>
+    </stat_object>
+    <stat_object is_substat="false">
+      <fields>
+        <field name="Name" type="NameStatObjectFieldDefinition" value="POTION_Medium_Strength_Potion_POTION_Medium_Strength_Potion" />
+        <field name="RecipeCategory" type="EnumerationStatObjectFieldDefinition" value="2" enumeration_type_name="RecipeCategory" />
+        <field name="Type 1" type="EnumerationStatObjectFieldDefinition" value="1" enumeration_type_name="IngredientType" />
+        <field name="Object 1" type="StringStatObjectFieldDefinition" value="POTION_Medium_Strength_Potion" />
+        <field name="Transform 1" type="EnumerationStatObjectFieldDefinition" value="2" enumeration_type_name="IngredientTransformType" />
+        <field name="Type 2" type="EnumerationStatObjectFieldDefinition" value="1" enumeration_type_name="IngredientType" />
+        <field name="Object 2" type="StringStatObjectFieldDefinition" value="POTION_Medium_Strength_Potion" />
+        <field name="Transform 2" type="EnumerationStatObjectFieldDefinition" value="1" enumeration_type_name="IngredientTransformType" />
+        <field name="Result 1" type="StringStatObjectFieldDefinition" value="POTION_Large_Strength_Potion" />
+        <field name="PreviewStatsID" type="StringStatObjectFieldDefinition" value="POTION_Large_Strength_Potion" />
+      </fields>
+    </stat_object>
+    <stat_object is_substat="false">
+      <fields>
         <field name="Name" type="NameStatObjectFieldDefinition" value="POTION_Minor_Dexterity_Potion_CON_Herb_Augmentor_A" />
         <field name="RecipeCategory" type="EnumerationStatObjectFieldDefinition" value="2" enumeration_type_name="RecipeCategory" />
         <field name="Type 1" type="EnumerationStatObjectFieldDefinition" value="1" enumeration_type_name="IngredientType" />
         <field name="Object 1" type="StringStatObjectFieldDefinition" value="POTION_Minor_Dexterity_Potion" />
         <field name="Transform 1" type="EnumerationStatObjectFieldDefinition" value="2" enumeration_type_name="IngredientTransformType" />
         <field name="Type 2" type="EnumerationStatObjectFieldDefinition" value="1" enumeration_type_name="IngredientType" />
-        <field name="Object 2" type="StringStatObjectFieldDefinition" value="CON_Herb_Augmentor" />
+        <field name="Object 2" type="StringStatObjectFieldDefinition" value="CON_Herb_Augmentor_A" />
+        <field name="Transform 2" type="EnumerationStatObjectFieldDefinition" value="1" enumeration_type_name="IngredientTransformType" />
+        <field name="Result 1" type="StringStatObjectFieldDefinition" value="POTION_Medium_Dexterity_Potion" />
+        <field name="PreviewStatsID" type="StringStatObjectFieldDefinition" value="POTION_Medium_Dexterity_Potion" />
+      </fields>
+    </stat_object>
+    <stat_object is_substat="false">
+      <fields>
+        <field name="Name" type="NameStatObjectFieldDefinition" value="POTION_Minor_Dexterity_Potion_CON_Herb_Augmentor_Step2_A" />
+        <field name="RecipeCategory" type="EnumerationStatObjectFieldDefinition" value="2" enumeration_type_name="RecipeCategory" />
+        <field name="Type 1" type="EnumerationStatObjectFieldDefinition" value="1" enumeration_type_name="IngredientType" />
+        <field name="Object 1" type="StringStatObjectFieldDefinition" value="POTION_Minor_Dexterity_Potion" />
+        <field name="Transform 1" type="EnumerationStatObjectFieldDefinition" value="2" enumeration_type_name="IngredientTransformType" />
+        <field name="Type 2" type="EnumerationStatObjectFieldDefinition" value="1" enumeration_type_name="IngredientType" />
+        <field name="Object 2" type="StringStatObjectFieldDefinition" value="CON_Herb_Augmentor_Step2_A" />
+        <field name="Transform 2" type="EnumerationStatObjectFieldDefinition" value="1" enumeration_type_name="IngredientTransformType" />
+        <field name="Result 1" type="StringStatObjectFieldDefinition" value="POTION_Medium_Dexterity_Potion" />
+        <field name="PreviewStatsID" type="StringStatObjectFieldDefinition" value="POTION_Medium_Dexterity_Potion" />
+      </fields>
+    </stat_object>
+    <stat_object is_substat="false">
+      <fields>
+        <field name="Name" type="NameStatObjectFieldDefinition" value="POTION_Minor_Dexterity_Potion_CON_Herb_Augmentor_Step3_A" />
+        <field name="RecipeCategory" type="EnumerationStatObjectFieldDefinition" value="2" enumeration_type_name="RecipeCategory" />
+        <field name="Type 1" type="EnumerationStatObjectFieldDefinition" value="1" enumeration_type_name="IngredientType" />
+        <field name="Object 1" type="StringStatObjectFieldDefinition" value="POTION_Minor_Dexterity_Potion" />
+        <field name="Transform 1" type="EnumerationStatObjectFieldDefinition" value="2" enumeration_type_name="IngredientTransformType" />
+        <field name="Type 2" type="EnumerationStatObjectFieldDefinition" value="1" enumeration_type_name="IngredientType" />
+        <field name="Object 2" type="StringStatObjectFieldDefinition" value="CON_Herb_Augmentor_Step3_A" />
+        <field name="Transform 2" type="EnumerationStatObjectFieldDefinition" value="1" enumeration_type_name="IngredientTransformType" />
+        <field name="Result 1" type="StringStatObjectFieldDefinition" value="POTION_Medium_Dexterity_Potion" />
+        <field name="PreviewStatsID" type="StringStatObjectFieldDefinition" value="POTION_Medium_Dexterity_Potion" />
+      </fields>
+    </stat_object>
+    <stat_object is_substat="false">
+      <fields>
+        <field name="Name" type="NameStatObjectFieldDefinition" value="POTION_Minor_Dexterity_Potion_POTION_Minor_Dexterity_Potion" />
+        <field name="RecipeCategory" type="EnumerationStatObjectFieldDefinition" value="2" enumeration_type_name="RecipeCategory" />
+        <field name="Type 1" type="EnumerationStatObjectFieldDefinition" value="1" enumeration_type_name="IngredientType" />
+        <field name="Object 1" type="StringStatObjectFieldDefinition" value="POTION_Minor_Dexterity_Potion" />
+        <field name="Transform 1" type="EnumerationStatObjectFieldDefinition" value="2" enumeration_type_name="IngredientTransformType" />
+        <field name="Type 2" type="EnumerationStatObjectFieldDefinition" value="1" enumeration_type_name="IngredientType" />
+        <field name="Object 2" type="StringStatObjectFieldDefinition" value="POTION_Minor_Dexterity_Potion" />
         <field name="Transform 2" type="EnumerationStatObjectFieldDefinition" value="1" enumeration_type_name="IngredientTransformType" />
         <field name="Result 1" type="StringStatObjectFieldDefinition" value="POTION_Medium_Dexterity_Potion" />
         <field name="PreviewStatsID" type="StringStatObjectFieldDefinition" value="POTION_Medium_Dexterity_Potion" />
@@ -283,13 +395,83 @@
     </stat_object>
     <stat_object is_substat="false">
       <fields>
+        <field name="Name" type="NameStatObjectFieldDefinition" value="POTION_Medium_Dexterity_Potion_CON_Herb_Augmentor_Step3_A" />
+        <field name="RecipeCategory" type="EnumerationStatObjectFieldDefinition" value="2" enumeration_type_name="RecipeCategory" />
+        <field name="Type 1" type="EnumerationStatObjectFieldDefinition" value="1" enumeration_type_name="IngredientType" />
+        <field name="Object 1" type="StringStatObjectFieldDefinition" value="POTION_Medium_Dexterity_Potion" />
+        <field name="Transform 1" type="EnumerationStatObjectFieldDefinition" value="2" enumeration_type_name="IngredientTransformType" />
+        <field name="Type 2" type="EnumerationStatObjectFieldDefinition" value="1" enumeration_type_name="IngredientType" />
+        <field name="Object 2" type="StringStatObjectFieldDefinition" value="CON_Herb_Augmentor_Step3_A" />
+        <field name="Transform 2" type="EnumerationStatObjectFieldDefinition" value="1" enumeration_type_name="IngredientTransformType" />
+        <field name="Result 1" type="StringStatObjectFieldDefinition" value="POTION_Large_Dexterity_Potion" />
+        <field name="PreviewStatsID" type="StringStatObjectFieldDefinition" value="POTION_Large_Dexterity_Potion" />
+      </fields>
+    </stat_object>
+    <stat_object is_substat="false">
+      <fields>
+        <field name="Name" type="NameStatObjectFieldDefinition" value="POTION_Medium_Dexterity_Potion_POTION_Medium_Dexterity_Potion" />
+        <field name="RecipeCategory" type="EnumerationStatObjectFieldDefinition" value="2" enumeration_type_name="RecipeCategory" />
+        <field name="Type 1" type="EnumerationStatObjectFieldDefinition" value="1" enumeration_type_name="IngredientType" />
+        <field name="Object 1" type="StringStatObjectFieldDefinition" value="POTION_Medium_Dexterity_Potion" />
+        <field name="Transform 1" type="EnumerationStatObjectFieldDefinition" value="2" enumeration_type_name="IngredientTransformType" />
+        <field name="Type 2" type="EnumerationStatObjectFieldDefinition" value="1" enumeration_type_name="IngredientType" />
+        <field name="Object 2" type="StringStatObjectFieldDefinition" value="POTION_Medium_Dexterity_Potion" />
+        <field name="Transform 2" type="EnumerationStatObjectFieldDefinition" value="1" enumeration_type_name="IngredientTransformType" />
+        <field name="Result 1" type="StringStatObjectFieldDefinition" value="POTION_Large_Dexterity_Potion" />
+        <field name="PreviewStatsID" type="StringStatObjectFieldDefinition" value="POTION_Large_Dexterity_Potion" />
+      </fields>
+    </stat_object>
+    <stat_object is_substat="false">
+      <fields>
         <field name="Name" type="NameStatObjectFieldDefinition" value="POTION_Minor_Intelligence_Potion_CON_Herb_Augmentor_A" />
         <field name="RecipeCategory" type="EnumerationStatObjectFieldDefinition" value="2" enumeration_type_name="RecipeCategory" />
         <field name="Type 1" type="EnumerationStatObjectFieldDefinition" value="1" enumeration_type_name="IngredientType" />
         <field name="Object 1" type="StringStatObjectFieldDefinition" value="POTION_Minor_Intelligence_Potion" />
         <field name="Transform 1" type="EnumerationStatObjectFieldDefinition" value="2" enumeration_type_name="IngredientTransformType" />
         <field name="Type 2" type="EnumerationStatObjectFieldDefinition" value="1" enumeration_type_name="IngredientType" />
-        <field name="Object 2" type="StringStatObjectFieldDefinition" value="CON_Herb_Augmentor" />
+        <field name="Object 2" type="StringStatObjectFieldDefinition" value="CON_Herb_Augmentor_A" />
+        <field name="Transform 2" type="EnumerationStatObjectFieldDefinition" value="1" enumeration_type_name="IngredientTransformType" />
+        <field name="Result 1" type="StringStatObjectFieldDefinition" value="POTION_Medium_Intelligence_Potion" />
+        <field name="PreviewStatsID" type="StringStatObjectFieldDefinition" value="POTION_Medium_Intelligence_Potion" />
+      </fields>
+    </stat_object>
+    <stat_object is_substat="false">
+      <fields>
+        <field name="Name" type="NameStatObjectFieldDefinition" value="POTION_Minor_Intelligence_Potion_CON_Herb_Augmentor_Step2_A" />
+        <field name="RecipeCategory" type="EnumerationStatObjectFieldDefinition" value="2" enumeration_type_name="RecipeCategory" />
+        <field name="Type 1" type="EnumerationStatObjectFieldDefinition" value="1" enumeration_type_name="IngredientType" />
+        <field name="Object 1" type="StringStatObjectFieldDefinition" value="POTION_Minor_Intelligence_Potion" />
+        <field name="Transform 1" type="EnumerationStatObjectFieldDefinition" value="2" enumeration_type_name="IngredientTransformType" />
+        <field name="Type 2" type="EnumerationStatObjectFieldDefinition" value="1" enumeration_type_name="IngredientType" />
+        <field name="Object 2" type="StringStatObjectFieldDefinition" value="CON_Herb_Augmentor_Step2_A" />
+        <field name="Transform 2" type="EnumerationStatObjectFieldDefinition" value="1" enumeration_type_name="IngredientTransformType" />
+        <field name="Result 1" type="StringStatObjectFieldDefinition" value="POTION_Medium_Intelligence_Potion" />
+        <field name="PreviewStatsID" type="StringStatObjectFieldDefinition" value="POTION_Medium_Intelligence_Potion" />
+      </fields>
+    </stat_object>
+    <stat_object is_substat="false">
+      <fields>
+        <field name="Name" type="NameStatObjectFieldDefinition" value="POTION_Minor_Intelligence_Potion_CON_Herb_Augmentor_Step3_A" />
+        <field name="RecipeCategory" type="EnumerationStatObjectFieldDefinition" value="2" enumeration_type_name="RecipeCategory" />
+        <field name="Type 1" type="EnumerationStatObjectFieldDefinition" value="1" enumeration_type_name="IngredientType" />
+        <field name="Object 1" type="StringStatObjectFieldDefinition" value="POTION_Minor_Intelligence_Potion" />
+        <field name="Transform 1" type="EnumerationStatObjectFieldDefinition" value="2" enumeration_type_name="IngredientTransformType" />
+        <field name="Type 2" type="EnumerationStatObjectFieldDefinition" value="1" enumeration_type_name="IngredientType" />
+        <field name="Object 2" type="StringStatObjectFieldDefinition" value="CON_Herb_Augmentor_Step3_A" />
+        <field name="Transform 2" type="EnumerationStatObjectFieldDefinition" value="1" enumeration_type_name="IngredientTransformType" />
+        <field name="Result 1" type="StringStatObjectFieldDefinition" value="POTION_Medium_Intelligence_Potion" />
+        <field name="PreviewStatsID" type="StringStatObjectFieldDefinition" value="POTION_Medium_Intelligence_Potion" />
+      </fields>
+    </stat_object>
+    <stat_object is_substat="false">
+      <fields>
+        <field name="Name" type="NameStatObjectFieldDefinition" value="POTION_Minor_Intelligence_Potion_POTION_Minor_Intelligence_Potion" />
+        <field name="RecipeCategory" type="EnumerationStatObjectFieldDefinition" value="2" enumeration_type_name="RecipeCategory" />
+        <field name="Type 1" type="EnumerationStatObjectFieldDefinition" value="1" enumeration_type_name="IngredientType" />
+        <field name="Object 1" type="StringStatObjectFieldDefinition" value="POTION_Minor_Intelligence_Potion" />
+        <field name="Transform 1" type="EnumerationStatObjectFieldDefinition" value="2" enumeration_type_name="IngredientTransformType" />
+        <field name="Type 2" type="EnumerationStatObjectFieldDefinition" value="1" enumeration_type_name="IngredientType" />
+        <field name="Object 2" type="StringStatObjectFieldDefinition" value="POTION_Minor_Intelligence_Potion" />
         <field name="Transform 2" type="EnumerationStatObjectFieldDefinition" value="1" enumeration_type_name="IngredientTransformType" />
         <field name="Result 1" type="StringStatObjectFieldDefinition" value="POTION_Medium_Intelligence_Potion" />
         <field name="PreviewStatsID" type="StringStatObjectFieldDefinition" value="POTION_Medium_Intelligence_Potion" />
@@ -311,13 +493,83 @@
     </stat_object>
     <stat_object is_substat="false">
       <fields>
+        <field name="Name" type="NameStatObjectFieldDefinition" value="POTION_Medium_Intelligence_Potion_CON_Herb_Augmentor_Step3_A" />
+        <field name="RecipeCategory" type="EnumerationStatObjectFieldDefinition" value="2" enumeration_type_name="RecipeCategory" />
+        <field name="Type 1" type="EnumerationStatObjectFieldDefinition" value="1" enumeration_type_name="IngredientType" />
+        <field name="Object 1" type="StringStatObjectFieldDefinition" value="POTION_Medium_Intelligence_Potion" />
+        <field name="Transform 1" type="EnumerationStatObjectFieldDefinition" value="2" enumeration_type_name="IngredientTransformType" />
+        <field name="Type 2" type="EnumerationStatObjectFieldDefinition" value="1" enumeration_type_name="IngredientType" />
+        <field name="Object 2" type="StringStatObjectFieldDefinition" value="CON_Herb_Augmentor_Step3_A" />
+        <field name="Transform 2" type="EnumerationStatObjectFieldDefinition" value="1" enumeration_type_name="IngredientTransformType" />
+        <field name="Result 1" type="StringStatObjectFieldDefinition" value="POTION_Large_Intelligence_Potion" />
+        <field name="PreviewStatsID" type="StringStatObjectFieldDefinition" value="POTION_Large_Intelligence_Potion" />
+      </fields>
+    </stat_object>
+    <stat_object is_substat="false">
+      <fields>
+        <field name="Name" type="NameStatObjectFieldDefinition" value="POTION_Medium_Intelligence_Potion_POTION_Medium_Intelligence_Potion" />
+        <field name="RecipeCategory" type="EnumerationStatObjectFieldDefinition" value="2" enumeration_type_name="RecipeCategory" />
+        <field name="Type 1" type="EnumerationStatObjectFieldDefinition" value="1" enumeration_type_name="IngredientType" />
+        <field name="Object 1" type="StringStatObjectFieldDefinition" value="POTION_Medium_Intelligence_Potion" />
+        <field name="Transform 1" type="EnumerationStatObjectFieldDefinition" value="2" enumeration_type_name="IngredientTransformType" />
+        <field name="Type 2" type="EnumerationStatObjectFieldDefinition" value="1" enumeration_type_name="IngredientType" />
+        <field name="Object 2" type="StringStatObjectFieldDefinition" value="POTION_Medium_Intelligence_Potion" />
+        <field name="Transform 2" type="EnumerationStatObjectFieldDefinition" value="1" enumeration_type_name="IngredientTransformType" />
+        <field name="Result 1" type="StringStatObjectFieldDefinition" value="POTION_Large_Intelligence_Potion" />
+        <field name="PreviewStatsID" type="StringStatObjectFieldDefinition" value="POTION_Large_Intelligence_Potion" />
+      </fields>
+    </stat_object>
+    <stat_object is_substat="false">
+      <fields>
         <field name="Name" type="NameStatObjectFieldDefinition" value="POTION_Minor_Constitution_Potion_CON_Herb_Augmentor_A" />
         <field name="RecipeCategory" type="EnumerationStatObjectFieldDefinition" value="2" enumeration_type_name="RecipeCategory" />
         <field name="Type 1" type="EnumerationStatObjectFieldDefinition" value="1" enumeration_type_name="IngredientType" />
         <field name="Object 1" type="StringStatObjectFieldDefinition" value="POTION_Minor_Constitution_Potion" />
         <field name="Transform 1" type="EnumerationStatObjectFieldDefinition" value="2" enumeration_type_name="IngredientTransformType" />
         <field name="Type 2" type="EnumerationStatObjectFieldDefinition" value="1" enumeration_type_name="IngredientType" />
-        <field name="Object 2" type="StringStatObjectFieldDefinition" value="CON_Herb_Augmentor" />
+        <field name="Object 2" type="StringStatObjectFieldDefinition" value="CON_Herb_Augmentor_A" />
+        <field name="Transform 2" type="EnumerationStatObjectFieldDefinition" value="1" enumeration_type_name="IngredientTransformType" />
+        <field name="Result 1" type="StringStatObjectFieldDefinition" value="POTION_Medium_Constitution_Potion" />
+        <field name="PreviewStatsID" type="StringStatObjectFieldDefinition" value="POTION_Medium_Constitution_Potion" />
+      </fields>
+    </stat_object>
+    <stat_object is_substat="false">
+      <fields>
+        <field name="Name" type="NameStatObjectFieldDefinition" value="POTION_Minor_Constitution_Potion_CON_Herb_Augmentor_Step2_A" />
+        <field name="RecipeCategory" type="EnumerationStatObjectFieldDefinition" value="2" enumeration_type_name="RecipeCategory" />
+        <field name="Type 1" type="EnumerationStatObjectFieldDefinition" value="1" enumeration_type_name="IngredientType" />
+        <field name="Object 1" type="StringStatObjectFieldDefinition" value="POTION_Minor_Constitution_Potion" />
+        <field name="Transform 1" type="EnumerationStatObjectFieldDefinition" value="2" enumeration_type_name="IngredientTransformType" />
+        <field name="Type 2" type="EnumerationStatObjectFieldDefinition" value="1" enumeration_type_name="IngredientType" />
+        <field name="Object 2" type="StringStatObjectFieldDefinition" value="CON_Herb_Augmentor_Step2_A" />
+        <field name="Transform 2" type="EnumerationStatObjectFieldDefinition" value="1" enumeration_type_name="IngredientTransformType" />
+        <field name="Result 1" type="StringStatObjectFieldDefinition" value="POTION_Medium_Constitution_Potion" />
+        <field name="PreviewStatsID" type="StringStatObjectFieldDefinition" value="POTION_Medium_Constitution_Potion" />
+      </fields>
+    </stat_object>
+    <stat_object is_substat="false">
+      <fields>
+        <field name="Name" type="NameStatObjectFieldDefinition" value="POTION_Minor_Constitution_Potion_CON_Herb_Augmentor_Step3_A" />
+        <field name="RecipeCategory" type="EnumerationStatObjectFieldDefinition" value="2" enumeration_type_name="RecipeCategory" />
+        <field name="Type 1" type="EnumerationStatObjectFieldDefinition" value="1" enumeration_type_name="IngredientType" />
+        <field name="Object 1" type="StringStatObjectFieldDefinition" value="POTION_Minor_Constitution_Potion" />
+        <field name="Transform 1" type="EnumerationStatObjectFieldDefinition" value="2" enumeration_type_name="IngredientTransformType" />
+        <field name="Type 2" type="EnumerationStatObjectFieldDefinition" value="1" enumeration_type_name="IngredientType" />
+        <field name="Object 2" type="StringStatObjectFieldDefinition" value="CON_Herb_Augmentor_Step3_A" />
+        <field name="Transform 2" type="EnumerationStatObjectFieldDefinition" value="1" enumeration_type_name="IngredientTransformType" />
+        <field name="Result 1" type="StringStatObjectFieldDefinition" value="POTION_Medium_Constitution_Potion" />
+        <field name="PreviewStatsID" type="StringStatObjectFieldDefinition" value="POTION_Medium_Constitution_Potion" />
+      </fields>
+    </stat_object>
+    <stat_object is_substat="false">
+      <fields>
+        <field name="Name" type="NameStatObjectFieldDefinition" value="POTION_Minor_Constitution_Potion_POTION_Minor_Constitution_Potion" />
+        <field name="RecipeCategory" type="EnumerationStatObjectFieldDefinition" value="2" enumeration_type_name="RecipeCategory" />
+        <field name="Type 1" type="EnumerationStatObjectFieldDefinition" value="1" enumeration_type_name="IngredientType" />
+        <field name="Object 1" type="StringStatObjectFieldDefinition" value="POTION_Minor_Constitution_Potion" />
+        <field name="Transform 1" type="EnumerationStatObjectFieldDefinition" value="2" enumeration_type_name="IngredientTransformType" />
+        <field name="Type 2" type="EnumerationStatObjectFieldDefinition" value="1" enumeration_type_name="IngredientType" />
+        <field name="Object 2" type="StringStatObjectFieldDefinition" value="POTION_Minor_Constitution_Potion" />
         <field name="Transform 2" type="EnumerationStatObjectFieldDefinition" value="1" enumeration_type_name="IngredientTransformType" />
         <field name="Result 1" type="StringStatObjectFieldDefinition" value="POTION_Medium_Constitution_Potion" />
         <field name="PreviewStatsID" type="StringStatObjectFieldDefinition" value="POTION_Medium_Constitution_Potion" />
@@ -339,13 +591,83 @@
     </stat_object>
     <stat_object is_substat="false">
       <fields>
+        <field name="Name" type="NameStatObjectFieldDefinition" value="POTION_Medium_Constitution_Potion_CON_Herb_Augmentor_Step3_A" />
+        <field name="RecipeCategory" type="EnumerationStatObjectFieldDefinition" value="2" enumeration_type_name="RecipeCategory" />
+        <field name="Type 1" type="EnumerationStatObjectFieldDefinition" value="1" enumeration_type_name="IngredientType" />
+        <field name="Object 1" type="StringStatObjectFieldDefinition" value="POTION_Medium_Constitution_Potion" />
+        <field name="Transform 1" type="EnumerationStatObjectFieldDefinition" value="2" enumeration_type_name="IngredientTransformType" />
+        <field name="Type 2" type="EnumerationStatObjectFieldDefinition" value="1" enumeration_type_name="IngredientType" />
+        <field name="Object 2" type="StringStatObjectFieldDefinition" value="CON_Herb_Augmentor_Step3_A" />
+        <field name="Transform 2" type="EnumerationStatObjectFieldDefinition" value="1" enumeration_type_name="IngredientTransformType" />
+        <field name="Result 1" type="StringStatObjectFieldDefinition" value="POTION_Large_Constitution_Potion" />
+        <field name="PreviewStatsID" type="StringStatObjectFieldDefinition" value="POTION_Large_Constitution_Potion" />
+      </fields>
+    </stat_object>
+    <stat_object is_substat="false">
+      <fields>
+        <field name="Name" type="NameStatObjectFieldDefinition" value="POTION_Medium_Constitution_Potion_POTION_Medium_Constitution_Potion" />
+        <field name="RecipeCategory" type="EnumerationStatObjectFieldDefinition" value="2" enumeration_type_name="RecipeCategory" />
+        <field name="Type 1" type="EnumerationStatObjectFieldDefinition" value="1" enumeration_type_name="IngredientType" />
+        <field name="Object 1" type="StringStatObjectFieldDefinition" value="POTION_Medium_Constitution_Potion" />
+        <field name="Transform 1" type="EnumerationStatObjectFieldDefinition" value="2" enumeration_type_name="IngredientTransformType" />
+        <field name="Type 2" type="EnumerationStatObjectFieldDefinition" value="1" enumeration_type_name="IngredientType" />
+        <field name="Object 2" type="StringStatObjectFieldDefinition" value="POTION_Medium_Constitution_Potion" />
+        <field name="Transform 2" type="EnumerationStatObjectFieldDefinition" value="1" enumeration_type_name="IngredientTransformType" />
+        <field name="Result 1" type="StringStatObjectFieldDefinition" value="POTION_Large_Constitution_Potion" />
+        <field name="PreviewStatsID" type="StringStatObjectFieldDefinition" value="POTION_Large_Constitution_Potion" />
+      </fields>
+    </stat_object>
+    <stat_object is_substat="false">
+      <fields>
         <field name="Name" type="NameStatObjectFieldDefinition" value="POTION_Minor_Perception_Potion_CON_Herb_Augmentor_A" />
         <field name="RecipeCategory" type="EnumerationStatObjectFieldDefinition" value="2" enumeration_type_name="RecipeCategory" />
         <field name="Type 1" type="EnumerationStatObjectFieldDefinition" value="1" enumeration_type_name="IngredientType" />
         <field name="Object 1" type="StringStatObjectFieldDefinition" value="POTION_Minor_Perception_Potion" />
         <field name="Transform 1" type="EnumerationStatObjectFieldDefinition" value="2" enumeration_type_name="IngredientTransformType" />
         <field name="Type 2" type="EnumerationStatObjectFieldDefinition" value="1" enumeration_type_name="IngredientType" />
-        <field name="Object 2" type="StringStatObjectFieldDefinition" value="CON_Herb_Augmentor" />
+        <field name="Object 2" type="StringStatObjectFieldDefinition" value="CON_Herb_Augmentor_A" />
+        <field name="Transform 2" type="EnumerationStatObjectFieldDefinition" value="1" enumeration_type_name="IngredientTransformType" />
+        <field name="Result 1" type="StringStatObjectFieldDefinition" value="POTION_Medium_Perception_Potion" />
+        <field name="PreviewStatsID" type="StringStatObjectFieldDefinition" value="POTION_Medium_Perception_Potion" />
+      </fields>
+    </stat_object>
+    <stat_object is_substat="false">
+      <fields>
+        <field name="Name" type="NameStatObjectFieldDefinition" value="POTION_Minor_Perception_Potion_CON_Herb_Augmentor_Step2_A" />
+        <field name="RecipeCategory" type="EnumerationStatObjectFieldDefinition" value="2" enumeration_type_name="RecipeCategory" />
+        <field name="Type 1" type="EnumerationStatObjectFieldDefinition" value="1" enumeration_type_name="IngredientType" />
+        <field name="Object 1" type="StringStatObjectFieldDefinition" value="POTION_Minor_Perception_Potion" />
+        <field name="Transform 1" type="EnumerationStatObjectFieldDefinition" value="2" enumeration_type_name="IngredientTransformType" />
+        <field name="Type 2" type="EnumerationStatObjectFieldDefinition" value="1" enumeration_type_name="IngredientType" />
+        <field name="Object 2" type="StringStatObjectFieldDefinition" value="CON_Herb_Augmentor_Step2_A" />
+        <field name="Transform 2" type="EnumerationStatObjectFieldDefinition" value="1" enumeration_type_name="IngredientTransformType" />
+        <field name="Result 1" type="StringStatObjectFieldDefinition" value="POTION_Medium_Perception_Potion" />
+        <field name="PreviewStatsID" type="StringStatObjectFieldDefinition" value="POTION_Medium_Perception_Potion" />
+      </fields>
+    </stat_object>
+    <stat_object is_substat="false">
+      <fields>
+        <field name="Name" type="NameStatObjectFieldDefinition" value="POTION_Minor_Perception_Potion_CON_Herb_Augmentor_Step3_A" />
+        <field name="RecipeCategory" type="EnumerationStatObjectFieldDefinition" value="2" enumeration_type_name="RecipeCategory" />
+        <field name="Type 1" type="EnumerationStatObjectFieldDefinition" value="1" enumeration_type_name="IngredientType" />
+        <field name="Object 1" type="StringStatObjectFieldDefinition" value="POTION_Minor_Perception_Potion" />
+        <field name="Transform 1" type="EnumerationStatObjectFieldDefinition" value="2" enumeration_type_name="IngredientTransformType" />
+        <field name="Type 2" type="EnumerationStatObjectFieldDefinition" value="1" enumeration_type_name="IngredientType" />
+        <field name="Object 2" type="StringStatObjectFieldDefinition" value="CON_Herb_Augmentor_Step3_A" />
+        <field name="Transform 2" type="EnumerationStatObjectFieldDefinition" value="1" enumeration_type_name="IngredientTransformType" />
+        <field name="Result 1" type="StringStatObjectFieldDefinition" value="POTION_Medium_Perception_Potion" />
+        <field name="PreviewStatsID" type="StringStatObjectFieldDefinition" value="POTION_Medium_Perception_Potion" />
+      </fields>
+    </stat_object>
+    <stat_object is_substat="false">
+      <fields>
+        <field name="Name" type="NameStatObjectFieldDefinition" value="POTION_Minor_Perception_Potion_POTION_Minor_Perception_Potion" />
+        <field name="RecipeCategory" type="EnumerationStatObjectFieldDefinition" value="2" enumeration_type_name="RecipeCategory" />
+        <field name="Type 1" type="EnumerationStatObjectFieldDefinition" value="1" enumeration_type_name="IngredientType" />
+        <field name="Object 1" type="StringStatObjectFieldDefinition" value="POTION_Minor_Perception_Potion" />
+        <field name="Transform 1" type="EnumerationStatObjectFieldDefinition" value="2" enumeration_type_name="IngredientTransformType" />
+        <field name="Type 2" type="EnumerationStatObjectFieldDefinition" value="1" enumeration_type_name="IngredientType" />
+        <field name="Object 2" type="StringStatObjectFieldDefinition" value="POTION_Minor_Perception_Potion" />
         <field name="Transform 2" type="EnumerationStatObjectFieldDefinition" value="1" enumeration_type_name="IngredientTransformType" />
         <field name="Result 1" type="StringStatObjectFieldDefinition" value="POTION_Medium_Perception_Potion" />
         <field name="PreviewStatsID" type="StringStatObjectFieldDefinition" value="POTION_Medium_Perception_Potion" />
@@ -363,6 +685,34 @@
         <field name="Transform 2" type="EnumerationStatObjectFieldDefinition" value="1" enumeration_type_name="IngredientTransformType" />
         <field name="Result 1" type="StringStatObjectFieldDefinition" value="POTION_Large_Perception_Potion" />
         <field name="PreviewStatsID" type="StringStatObjectFieldDefinition" value="POTION_Large_Perception_Potion" />
+      </fields>
+    </stat_object>
+    <stat_object is_substat="false">
+      <fields>
+        <field name="Name" type="NameStatObjectFieldDefinition" value="POTION_Medium_Perception_Potion_CON_Herb_Augmentor_Step3_A" />
+        <field name="RecipeCategory" type="EnumerationStatObjectFieldDefinition" value="2" enumeration_type_name="RecipeCategory" />
+        <field name="Type 1" type="EnumerationStatObjectFieldDefinition" value="1" enumeration_type_name="IngredientType" />
+        <field name="Object 1" type="StringStatObjectFieldDefinition" value="POTION_Medium_Perception_Potion" />
+        <field name="Transform 1" type="EnumerationStatObjectFieldDefinition" value="2" enumeration_type_name="IngredientTransformType" />
+        <field name="Type 2" type="EnumerationStatObjectFieldDefinition" value="1" enumeration_type_name="IngredientType" />
+        <field name="Object 2" type="StringStatObjectFieldDefinition" value="CON_Herb_Augmentor_Step3_A" />
+        <field name="Transform 2" type="EnumerationStatObjectFieldDefinition" value="1" enumeration_type_name="IngredientTransformType" />
+        <field name="Result 1" type="StringStatObjectFieldDefinition" value="POTION_Large_Perception_Potion" />
+        <field name="PreviewStatsID" type="StringStatObjectFieldDefinition" value="POTION_Large_Perception_Potion" />
+      </fields>
+    </stat_object>
+    <stat_object is_substat="false">
+      <fields>
+        <field name="Name" type="NameStatObjectFieldDefinition" value="POTION_Medium_Perception_Potion_POTION_Medium_Perception_Potion" />
+        <field name="RecipeCategory" type="EnumerationStatObjectFieldDefinition" value="2" enumeration_type_name="RecipeCategory" />
+        <field name="Type 1" type="EnumerationStatObjectFieldDefinition" value="1" enumeration_type_name="IngredientType" />
+        <field name="Object 1" type="StringStatObjectFieldDefinition" value="POTION_Medium_Perception_Potion" />
+        <field name="Transform 1" type="EnumerationStatObjectFieldDefinition" value="2" enumeration_type_name="IngredientTransformType" />
+        <field name="Type 2" type="EnumerationStatObjectFieldDefinition" value="1" enumeration_type_name="IngredientType" />
+        <field name="Object 2" type="StringStatObjectFieldDefinition" value="POTION_Medium_Perception_Potion" />
+        <field name="Transform 2" type="EnumerationStatObjectFieldDefinition" value="1" enumeration_type_name="IngredientTransformType" />
+        <field name="Result 1" type="StringStatObjectFieldDefinition" value="POTION_Large_Perception_Potion" />
+        <field name="PreviewStatsID" type="StringStatObjectFieldDefinition" value="POTION_Medium_Perception_Potion" />
       </fields>
     </stat_object>
     <stat_object is_substat="false">

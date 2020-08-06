@@ -11,6 +11,7 @@ Ext.Require("LXDGM_CustomBonuses.lua")
 ---- General Functions ----
 ---@param character EsvCharacter
 function InitCharacterStatCheck(character)
+	if ObjectExists(character) == 0 then return end
 	local attributesStr = {
 		"Finesse",
 		"Intelligence",
@@ -41,6 +42,8 @@ end
 
 ---@param character EsvCharacter
 function CheckStatChange(character)
+	if character == nil then return end
+	if ObjectExists(character) == 0 then return end
 	--[[ This function is called periodically, and return true if something has changed.
 	Changed stats can be queried using LX_Changed_Base_Stat or LX_Changed_Stat with GetVarInteger.
 	--]]

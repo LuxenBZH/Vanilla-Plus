@@ -222,13 +222,6 @@
     </stat_object>
     <stat_object is_substat="false">
       <fields>
-        <field name="Name" type="NameStatObjectFieldDefinition" value="LX_MORNINGPERSON" />
-        <field name="StatsId" type="StringStatObjectFieldDefinition" value="Stats_LX_MorningPerson" />
-        <field name="StackId" type="StringStatObjectFieldDefinition" value="Stack_LX_MorningPerson" />
-      </fields>
-    </stat_object>
-    <stat_object is_substat="false">
-      <fields>
         <field name="Name" type="NameStatObjectFieldDefinition" value="LX_STENCH" />
         <field name="StatsId" type="StringStatObjectFieldDefinition" value="Stats_LX_Stench" />
         <field name="StackId" type="StringStatObjectFieldDefinition" value="Stack_LX_Stench" />
