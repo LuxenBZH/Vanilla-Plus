@@ -1,8 +1,6 @@
---Ext.Require("NRD_SkillMath.lua")
 Ext.Require("LXDGM_StatsPatching.lua")
 Ext.Require("LXDGM_Helpers.lua")
 Ext.Require("LXDGM_Tooltips.lua")
---Ext.AddPathOverride("Public\\Game\\GUI\\enemyHealthBar.swf", "Public\\lx_enhanced_divine_combat_3ff156e2-289e-4dac-81f5-a44e3e304163\\Game\\GUI\\characterSheet.swf")
 
 local DamageSourceCalcTable = {
 	BaseLevelWeaponDamage = function(attacker, target, level)
@@ -68,34 +66,34 @@ end
 
 ---@param character StatCharacter
 ---@param weapon StatEntryWeapon
-local function CalculateWeaponDamageRange(character, weapon)
-    local damages, damageBoost = Game.Math.ComputeBaseWeaponDamage(weapon)
+-- local function CalculateWeaponDamageRange(character, weapon)
+--     local damages, damageBoost = Game.Math.ComputeBaseWeaponDamage(weapon)
 
-    local abilityBoosts = character.DamageBoost 
-        + Game.Math.ComputeWeaponCombatAbilityBoost(character, weapon)
-        + Game.Math.ComputeWeaponRequirementScaledDamage(character, weapon)
-    abilityBoosts = math.max(abilityBoosts + 100.0, 0.0) / 100.0
+--     local abilityBoosts = character.DamageBoost 
+--         + Game.Math.ComputeWeaponCombatAbilityBoost(character, weapon)
+--         + Game.Math.ComputeWeaponRequirementScaledDamage(character, weapon)
+--     abilityBoosts = math.max(abilityBoosts + 100.0, 0.0) / 100.0
 
-    local boost = 1.0 + damageBoost * 0.01
-    -- if character.NotSneaking then
-        -- boost = boost + Ext.ExtraData['Sneak Damage Multiplier']
-    -- end
+--     local boost = 1.0 + damageBoost * 0.01
+--     -- if character.NotSneaking then
+--         -- boost = boost + Ext.ExtraData['Sneak Damage Multiplier']
+--     -- end
 
-    local ranges = {}
-    for damageType, damage in pairs(damages) do
-        local min = damage.Min * boost * abilityBoosts
-		local max = damage.Max * boost * abilityBoosts
-		--Ext.Print(min, max)
+--     local ranges = {}
+--     for damageType, damage in pairs(damages) do
+--         local min = damage.Min * boost * abilityBoosts
+-- 		local max = damage.Max * boost * abilityBoosts
+-- 		--Ext.Print(min, max)
 
-        if min > max then
-            max = min
-        end
+--         if min > max then
+--             max = min
+--         end
 
-        ranges[damageType] = {min, max}
-    end
+--         ranges[damageType] = {min, max}
+--     end
 
-    return ranges
-end
+--     return ranges
+-- end
 
 ---@param character StatCharacter
 ---@param skill StatEntrySkillData
@@ -125,19 +123,20 @@ local function GetSkillDamageRange(character, skill)
 
 	if skill.UseWeaponDamage == "Yes" then
 		local mainWeapon = character.MainWeapon
-        local mainDamageRange = CalculateWeaponDamageRange(character, mainWeapon)
-		local offHandWeapon = character.OffHandWeapon
+        local mainDamageRange = Game.Math.CalculateWeaponScaledDamageRanges(character, mainWeapon)
+		local offHandWeapon = offHandWeapon or character.OffHandWeapon
 
         if offHandWeapon ~= nil and Game.Math.IsRangedWeapon(mainWeapon) == Game.Math.IsRangedWeapon(offHandWeapon) then
-            local offHandDamageRange = CalculateWeaponDamageRange(character, offHandWeapon)
+            local offHandDamageRange = Game.Math.CalculateWeaponScaledDamageRanges(character, offHandWeapon)
 
             local dualWieldPenalty = Ext.ExtraData.DualWieldingDamagePenalty
             for damageType, range in pairs(offHandDamageRange) do
-                local min = range[1] * dualWieldPenalty
-                local max = range[2] * dualWieldPenalty
+                local min = math.ceil(range.Min * dualWieldPenalty)
+                local max = math.ceil(range.Max * dualWieldPenalty)
+                local range = mainDamageRange[damageType]
                 if mainDamageRange[damageType] ~= nil then
-                    mainDamageRange[damageType][1] = mainDamageRange[damageType][1] + min
-                    mainDamageRange[damageType][2] = mainDamageRange[damageType][2] + max
+                    range.Min = range.Min + min
+                    range.Max = range.Max + max
                 else
                     mainDamageRange[damageType] = {min, max}
                 end
@@ -148,18 +147,18 @@ local function GetSkillDamageRange(character, skill)
 		(character.Finesse-10) * (Ext.ExtraData.DGM_FinesseGlobalBonus*0.01) +
 		(character.Intelligence-10) * (Ext.ExtraData.DGM_IntelligenceGlobalBonus*0.01 + Ext.ExtraData.DGM_IntelligenceSkillBonus*0.01)
         for damageType, range in pairs(mainDamageRange) do
-            local min = Ext.Round(range[1] * damageMultiplier * globalMult * amplifierMult)
-            local max = Ext.Round(range[2] * damageMultiplier * globalMult * amplifierMult + (globalMult *amplifierMult))
-            range[1] = min + math.ceil(min * Game.Math.GetDamageBoostByType(character, damageType))
-            range[2] = max + math.ceil(max * Game.Math.GetDamageBoostByType(character, damageType))
+            local min = Ext.Round(range.Min * damageMultiplier * globalMult * amplifierMult)
+            local max = Ext.Round(range.Max * damageMultiplier * globalMult * amplifierMult + (globalMult *amplifierMult))
+            range.Min = min + math.ceil(min * Game.Math.GetDamageBoostByType(character, damageType))
+            range.Max = max + math.ceil(max * Game.Math.GetDamageBoostByType(character, damageType))
         end
 
         local damageType = skill.DamageType
         if damageType ~= "None" and damageType ~= "Sentinel" then
             local min, max = 0, 0
             for damageType, range in pairs(mainDamageRange) do
-                min = min + range[1]
-                max = max + range[2]
+                min = min + range.Min
+                max = max + range.Max
 				
             end
 
@@ -196,7 +195,7 @@ local function GetSkillDamageRange(character, skill)
         end
         
         local attrDamageScale
-        if skillDamageType == "BaseLevelDamage" or skillDamageType == "AverageLevelDamge" then
+        if skillDamageType == "BaseLevelDamage" or skillDamageType == "AverageLevelDamge" or skillDamageType == "MonsterWeaponDamage" then
             attrDamageScale = Game.Math.GetSkillAttributeDamageScale(skill, character)
         else
             attrDamageScale = 1.0
@@ -205,7 +204,8 @@ local function GetSkillDamageRange(character, skill)
 		
 		local globalMult = 1.0
 		
-		if skill.StatsDescriptionParams:find("Weapon:") ~= nil  or skill.Name == "Target_TentacleLash" then
+        if skill.StatsDescriptionParams:find("Weapon:") ~= nil  or skill.Name == "Target_TentacleLash" then
+            Ext.Print("Strength scaling")
 			local weaponStat = skill.StatsDescriptionParams:gsub("^[A-z]*:", ""):gsub(":.*", "")
 			globalMult = 1 + (character.Strength-10) * (Ext.ExtraData.DGM_StrengthGlobalBonus*0.01 + Ext.ExtraData.DGM_StrengthWeaponBonus*0.01) +
 		(character.Finesse-10) * (Ext.ExtraData.DGM_FinesseGlobalBonus*0.01) +
@@ -225,8 +225,8 @@ local function GetSkillDamageRange(character, skill)
         local damageBoost = 1.0 + (character.DamageBoost / 100.0)
         local damageRanges = {}
         damageRanges[damageType] = {
-            math.ceil(math.ceil(Ext.Round(baseDamage - damageRange) * damageBoost) * damageTypeBoost * amplifierMult),
-            math.ceil(math.ceil(Ext.Round(baseDamage + damageRange) * damageBoost) * damageTypeBoost * amplifierMult + (globalMult * amplifierMult))
+            Min = math.ceil(math.ceil(Ext.Round(baseDamage - damageRange) * damageBoost) * damageTypeBoost * amplifierMult),
+            Max = math.ceil(math.ceil(Ext.Round(baseDamage + damageRange) * damageBoost) * damageTypeBoost * amplifierMult + (globalMult * amplifierMult))
         }
         return damageRanges
     end
@@ -313,9 +313,9 @@ local function SkillGetDescriptionParam(skill, character, isFromItem, par)
 		local result = ""
 		local once = false
 		
-		for dmgType, damages in pairs(dmg) do
-			local minDmg = math.floor(damages[1])
-			local maxDmg = math.floor(damages[2])
+        for dmgType, damages in pairs(dmg) do
+			local minDmg = math.floor(damages.Min)
+			local maxDmg = math.floor(damages.Max)
 			local color = getDamageColor(dmgType)
 			if not once then
 				result = result.."<font color="..color..">"..tostring(minDmg).."-"..tostring(maxDmg).." "..dmgType.." damage".."</font>"
@@ -392,13 +392,8 @@ local function DGM_SetupUI()
 end
 
 Ext.RegisterListener("SessionLoaded", DGM_SetupUI)
---Ext.Print("Registering SessionLoaded for SetupUI")
-
 Ext.RegisterListener("SkillGetDescriptionParam", SkillGetDescriptionParam)
---Ext.Print("Registering SkillGetDescripitonParam")
-
 Ext.RegisterListener("StatusGetDescriptionParam", StatusGetDescriptionParam)
---Ext.Print("Registering StatusGetDescriptionParam")
 
 ---@param attacker EsvCharacter
 ---@param target EsvCharacter

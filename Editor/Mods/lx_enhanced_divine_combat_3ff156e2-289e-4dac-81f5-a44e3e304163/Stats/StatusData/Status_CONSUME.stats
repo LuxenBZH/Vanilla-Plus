@@ -390,5 +390,33 @@
         <field name="StackPriority" type="IntegerStatObjectFieldDefinition" value="1" />
       </fields>
     </stat_object>
+    <stat_object is_substat="false">
+      <fields>
+        <field name="Name" type="NameStatObjectFieldDefinition" value="LX_FOOD_REGENERATION" />
+        <field name="DisplayName" type="TranslatedStringStatObjectFieldDefinition" value="Well fed" />
+        <field name="Description" type="TranslatedStringStatObjectFieldDefinition" value="Regenerate 1% Vitality per turn during combat." />
+        <field name="DescriptionParams" type="StringStatObjectFieldDefinition" value="Status:LX_FOOD_REGEN1:HealAmount" />
+        <field name="Icon" type="StringStatObjectFieldDefinition" value="Talent_FiveStarDiner" />
+        <field name="ImmuneFlag" type="EnumerationStatObjectFieldDefinition" value="39" enumeration_type_name="AttributeFlag" />
+        <field name="StackId" type="StringStatObjectFieldDefinition" value="Stack_Food_Regeneration" />
+      </fields>
+    </stat_object>
+    <stat_object is_substat="false">
+      <fields>
+        <field name="Name" type="NameStatObjectFieldDefinition" value="LX_FOOD_REGENERATION2" />
+        <field name="DisplayName" type="TranslatedStringStatObjectFieldDefinition" value="Well fed" />
+        <field name="Description" type="TranslatedStringStatObjectFieldDefinition" value="Regenerate 2% Vitality per turn during combat." />
+        <field name="Icon" type="StringStatObjectFieldDefinition" value="Talent_FiveStarDiner" />
+        <field name="ImmuneFlag" type="EnumerationStatObjectFieldDefinition" value="39" enumeration_type_name="AttributeFlag" />
+        <field name="StackId" type="StringStatObjectFieldDefinition" value="Stack_Food_Regeneration" />
+        <field name="DescriptionParams" type="StringStatObjectFieldDefinition" value="Status:LX_FOOD_REGEN2:HealAmount" />
+      </fields>
+    </stat_object>
+    <stat_object is_substat="false">
+      <fields>
+        <field name="Name" type="NameStatObjectFieldDefinition" value="LX_FOOD_CLEAN" />
+        <field name="DisplayName" type="TranslatedStringStatObjectFieldDefinition" value="Purge" />
+      </fields>
+    </stat_object>
   </stat_objects>
 </stats>

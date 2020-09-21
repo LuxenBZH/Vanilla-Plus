@@ -1,4 +1,4 @@
-key "ArmorToVitalityRatio","0.4"
+key "ArmorToVitalityRatio","0.45"
 
 key "ExpectedConGrowthForArmorCalculation","1"
 

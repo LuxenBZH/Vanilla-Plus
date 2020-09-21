@@ -133,3 +133,17 @@ data "HealStat" "PhysicalArmor"
 data "HealType" "Percentage"
 data "HealValue" "50"
 
+new entry "LX_FOOD_REGEN1"
+type "StatusData"
+data "StatusType" "HEAL"
+data "HealStat" "Vitality"
+data "HealType" "Percentage"
+data "HealValue" "1"
+
+new entry "LX_FOOD_REGEN2"
+type "StatusData"
+data "StatusType" "HEAL"
+data "HealStat" "Vitality"
+data "HealType" "Percentage"
+data "HealValue" "2"
+

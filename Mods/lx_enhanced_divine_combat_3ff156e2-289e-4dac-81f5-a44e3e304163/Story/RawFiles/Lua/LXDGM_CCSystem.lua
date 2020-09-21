@@ -33,7 +33,8 @@ function BlockMagicalCCs(character, status, handle)
 		"PETRIFIED",
 		"MADNESS",
 		"FEAR",
-		"CHARMED"
+		"CHARMED",
+		"SLEEPING"
 	}
 	for i,block in pairs(blockedStatuses) do
 		if status == block then

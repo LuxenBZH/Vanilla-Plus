@@ -7,7 +7,6 @@ KBSECTION
 IF
 GameStarted(_, _)
 THEN
-NRD_LuaReset(1);
 TimerLaunch("LX_Player_Loop_Check", 1000);
 TimerLaunch("LX_Character_Loop_Check", 5000);
 
@@ -171,6 +170,27 @@ AND
 DB_Fix_SPunch(_Char, _Cooldown)
 THEN
 NOT DB_Fix_SPunch(_Char, _Cooldown);
+
+IF
+NRD_StatusIteratorEvent("LX_Iterate_Statuses_Accuracy", (CHARACTERGUID)_Character, (STRING)_StatusId, (INTEGER64)_StatusHandle)
+AND
+NRD_StatAttributeExists((STRING)_StatusId, "DodgeBoost")
+AND
+NRD_StatGetInt(_StatusId, "DodgeBoost", (INTEGER)_Dodge)
+AND
+_Dodge < 0
+THEN
+SetVarInteger(_Character, "LX_Accuracy_Harmed", 1);
+
+IF
+NRD_OnStatusAttempt(_,_,_,_)
+THEN
+DB_NOOP(1);
+
+IF
+ObjectTurnStarted(_)
+THEN
+DB_NOOP(1);
 
 
 

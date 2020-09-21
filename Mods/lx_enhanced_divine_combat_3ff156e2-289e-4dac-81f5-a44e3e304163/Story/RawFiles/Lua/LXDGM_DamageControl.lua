@@ -41,7 +41,7 @@ function DamageControl(target, handle, instigator)
 	-- Get hit damages
 	for i,dmgType in pairs(types) do
 		damages[dmgType] = NRD_HitStatusGetDamage(target, handle, dmgType)
-		if damages[dmgType] ~= 0 then print("Damage "..dmgType..": "..damages[dmgType]) end
+		if damages[dmgType] ~= 0 then Ext.Print("Damage "..dmgType..": "..damages[dmgType]) end
 	end
 	
 	if isBlocked == 1 then return end
@@ -162,7 +162,7 @@ function ChangeDamage(damages, multiplier, value, instigator)
 		if amount > 0 then amount = amount + rangeFix end
 		amount = amount * multiplier
 		amount = amount + value
-		if amount ~= 0 then print("Changed "..dmgType.." to "..amount.." (Multiplier = "..multiplier..")") end
+		if amount ~= 0 then Ext.Print("Changed "..dmgType.." to "..amount.." (Multiplier = "..multiplier..")") end
 		damages[dmgType] = amount
 	end
 	return damages
@@ -366,3 +366,18 @@ end
 Game.Math.ApplyDamageCharacterBonuses = ApplyDamageCharacterBonuses
 Game.Math.ApplyHitResistances = ApplyHitResistances
 Ext.RegisterListener("ComputeCharacterHit", Game.Math.ComputeCharacterHit)
+
+
+---- Total lx_damage script conversion
+local function SetDodgeCounter(object)
+	SetVarInteger(object, "LX_Dodge_Counter", 0)
+end
+
+Ext.RegisterOsirisListener("ObjectTurnStarted", 1, "before", SetDodgeCounter)
+
+local function HitCatch(target, status, handle, instigator)
+	if status ~= "HIT" then return end
+	DamageControl(target, handle, instigator)
+end
+
+Ext.RegisterOsirisListener("NRD_OnStatusAttempt", 4, "before", HitCatch)

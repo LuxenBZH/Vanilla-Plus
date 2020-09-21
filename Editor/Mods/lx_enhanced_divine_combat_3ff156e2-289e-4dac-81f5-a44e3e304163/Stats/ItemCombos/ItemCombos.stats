@@ -279,6 +279,9 @@
         <field name="Transform 2" type="EnumerationStatObjectFieldDefinition" value="1" enumeration_type_name="IngredientTransformType" />
         <field name="Result 1" type="StringStatObjectFieldDefinition" value="POTION_Medium_Strength_Potion" />
         <field name="PreviewStatsID" type="StringStatObjectFieldDefinition" value="POTION_Medium_Strength_Potion" />
+        <field name="Type 3" type="EnumerationStatObjectFieldDefinition" value="1" enumeration_type_name="IngredientType" />
+        <field name="Object 3" type="StringStatObjectFieldDefinition" value="POTION_Minor_Strength_Potion" />
+        <field name="Transform 3" type="EnumerationStatObjectFieldDefinition" value="1" enumeration_type_name="IngredientTransformType" />
       </fields>
     </stat_object>
     <stat_object is_substat="false">
@@ -321,6 +324,9 @@
         <field name="Transform 2" type="EnumerationStatObjectFieldDefinition" value="1" enumeration_type_name="IngredientTransformType" />
         <field name="Result 1" type="StringStatObjectFieldDefinition" value="POTION_Large_Strength_Potion" />
         <field name="PreviewStatsID" type="StringStatObjectFieldDefinition" value="POTION_Large_Strength_Potion" />
+        <field name="Type 3" type="EnumerationStatObjectFieldDefinition" value="1" enumeration_type_name="IngredientType" />
+        <field name="Object 3" type="StringStatObjectFieldDefinition" value="POTION_Medium_Strength_Potion" />
+        <field name="Transform 3" type="EnumerationStatObjectFieldDefinition" value="1" enumeration_type_name="IngredientTransformType" />
       </fields>
     </stat_object>
     <stat_object is_substat="false">
@@ -377,6 +383,9 @@
         <field name="Transform 2" type="EnumerationStatObjectFieldDefinition" value="1" enumeration_type_name="IngredientTransformType" />
         <field name="Result 1" type="StringStatObjectFieldDefinition" value="POTION_Medium_Dexterity_Potion" />
         <field name="PreviewStatsID" type="StringStatObjectFieldDefinition" value="POTION_Medium_Dexterity_Potion" />
+        <field name="Type 3" type="EnumerationStatObjectFieldDefinition" value="1" enumeration_type_name="IngredientType" />
+        <field name="Object 3" type="StringStatObjectFieldDefinition" value="POTION_Minor_Dexterity_Potion" />
+        <field name="Transform 3" type="EnumerationStatObjectFieldDefinition" value="1" enumeration_type_name="IngredientTransformType" />
       </fields>
     </stat_object>
     <stat_object is_substat="false">
@@ -419,6 +428,9 @@
         <field name="Transform 2" type="EnumerationStatObjectFieldDefinition" value="1" enumeration_type_name="IngredientTransformType" />
         <field name="Result 1" type="StringStatObjectFieldDefinition" value="POTION_Large_Dexterity_Potion" />
         <field name="PreviewStatsID" type="StringStatObjectFieldDefinition" value="POTION_Large_Dexterity_Potion" />
+        <field name="Type 3" type="EnumerationStatObjectFieldDefinition" value="1" enumeration_type_name="IngredientType" />
+        <field name="Object 3" type="StringStatObjectFieldDefinition" value="POTION_Medium_Dexterity_Potion" />
+        <field name="Transform 3" type="EnumerationStatObjectFieldDefinition" value="1" enumeration_type_name="IngredientTransformType" />
       </fields>
     </stat_object>
     <stat_object is_substat="false">
@@ -475,6 +487,9 @@
         <field name="Transform 2" type="EnumerationStatObjectFieldDefinition" value="1" enumeration_type_name="IngredientTransformType" />
         <field name="Result 1" type="StringStatObjectFieldDefinition" value="POTION_Medium_Intelligence_Potion" />
         <field name="PreviewStatsID" type="StringStatObjectFieldDefinition" value="POTION_Medium_Intelligence_Potion" />
+        <field name="Type 3" type="EnumerationStatObjectFieldDefinition" value="1" enumeration_type_name="IngredientType" />
+        <field name="Object 3" type="StringStatObjectFieldDefinition" value="POTION_Minor_Intelligence_Potion" />
+        <field name="Transform 3" type="EnumerationStatObjectFieldDefinition" value="1" enumeration_type_name="IngredientTransformType" />
       </fields>
     </stat_object>
     <stat_object is_substat="false">
@@ -517,6 +532,9 @@
         <field name="Transform 2" type="EnumerationStatObjectFieldDefinition" value="1" enumeration_type_name="IngredientTransformType" />
         <field name="Result 1" type="StringStatObjectFieldDefinition" value="POTION_Large_Intelligence_Potion" />
         <field name="PreviewStatsID" type="StringStatObjectFieldDefinition" value="POTION_Large_Intelligence_Potion" />
+        <field name="Type 3" type="EnumerationStatObjectFieldDefinition" value="1" enumeration_type_name="IngredientType" />
+        <field name="Object 3" type="StringStatObjectFieldDefinition" value="POTION_Medium_Intelligence_Potion" />
+        <field name="Transform 3" type="EnumerationStatObjectFieldDefinition" value="1" enumeration_type_name="IngredientTransformType" />
       </fields>
     </stat_object>
     <stat_object is_substat="false">
@@ -573,6 +591,9 @@
         <field name="Transform 2" type="EnumerationStatObjectFieldDefinition" value="1" enumeration_type_name="IngredientTransformType" />
         <field name="Result 1" type="StringStatObjectFieldDefinition" value="POTION_Medium_Constitution_Potion" />
         <field name="PreviewStatsID" type="StringStatObjectFieldDefinition" value="POTION_Medium_Constitution_Potion" />
+        <field name="Type 3" type="EnumerationStatObjectFieldDefinition" value="1" enumeration_type_name="IngredientType" />
+        <field name="Object 3" type="StringStatObjectFieldDefinition" value="POTION_Minor_Constitution_Potion" />
+        <field name="Transform 3" type="EnumerationStatObjectFieldDefinition" value="1" enumeration_type_name="IngredientTransformType" />
       </fields>
     </stat_object>
     <stat_object is_substat="false">
@@ -615,6 +636,9 @@
         <field name="Transform 2" type="EnumerationStatObjectFieldDefinition" value="1" enumeration_type_name="IngredientTransformType" />
         <field name="Result 1" type="StringStatObjectFieldDefinition" value="POTION_Large_Constitution_Potion" />
         <field name="PreviewStatsID" type="StringStatObjectFieldDefinition" value="POTION_Large_Constitution_Potion" />
+        <field name="Type 3" type="EnumerationStatObjectFieldDefinition" value="1" enumeration_type_name="IngredientType" />
+        <field name="Object 3" type="StringStatObjectFieldDefinition" value="POTION_Medium_Constitution_Potion" />
+        <field name="Transform 3" type="EnumerationStatObjectFieldDefinition" value="1" enumeration_type_name="IngredientTransformType" />
       </fields>
     </stat_object>
     <stat_object is_substat="false">
@@ -671,6 +695,9 @@
         <field name="Transform 2" type="EnumerationStatObjectFieldDefinition" value="1" enumeration_type_name="IngredientTransformType" />
         <field name="Result 1" type="StringStatObjectFieldDefinition" value="POTION_Medium_Perception_Potion" />
         <field name="PreviewStatsID" type="StringStatObjectFieldDefinition" value="POTION_Medium_Perception_Potion" />
+        <field name="Type 3" type="EnumerationStatObjectFieldDefinition" value="1" enumeration_type_name="IngredientType" />
+        <field name="Object 3" type="StringStatObjectFieldDefinition" value="POTION_Minor_Perception_Potion" />
+        <field name="Transform 3" type="EnumerationStatObjectFieldDefinition" value="1" enumeration_type_name="IngredientTransformType" />
       </fields>
     </stat_object>
     <stat_object is_substat="false">
@@ -713,6 +740,9 @@
         <field name="Transform 2" type="EnumerationStatObjectFieldDefinition" value="1" enumeration_type_name="IngredientTransformType" />
         <field name="Result 1" type="StringStatObjectFieldDefinition" value="POTION_Large_Perception_Potion" />
         <field name="PreviewStatsID" type="StringStatObjectFieldDefinition" value="POTION_Medium_Perception_Potion" />
+        <field name="Type 3" type="EnumerationStatObjectFieldDefinition" value="1" enumeration_type_name="IngredientType" />
+        <field name="Object 3" type="StringStatObjectFieldDefinition" value="POTION_Medium_Perception_Potion" />
+        <field name="Transform 3" type="EnumerationStatObjectFieldDefinition" value="1" enumeration_type_name="IngredientTransformType" />
       </fields>
     </stat_object>
     <stat_object is_substat="false">

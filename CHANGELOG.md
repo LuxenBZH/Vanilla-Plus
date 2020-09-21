@@ -188,3 +188,45 @@ New Features
 * You can now mix attribute potions with the same type of potion to obtain greater attribute potions, and not just by using augmentor. You can now also use all kind of augmentors for obtaining medium sized, and ultimate augmentor for large sized potions.
 * Perseverance now also triggers when a Staggered or Confused effect expires, but its effect is halved.
 
+# 0.11.14.22 (Septa)
+Fixes
+* Un-fixed the fix for Perseverance since it has been fixed in the base game (finally!)
+* Jump skills have their cooldown correctly increased as planned
+* Fixed issues with damage ranges on tooltip with the v51 of the extender
+
+Balance
+* Confused now reduce AP recovery by 1 on all stages, and reduce max AP by 2/3/4
+* Staggered now reduce Movement Speed by 25/50/75 and does not reduce Initiative anymore
+* Arcane Stitch AP cost reduced to 2 from 3
+* Sleeping now trigger Lingering when expering and do apply Confused when Lingering is on
+
+Modules
+* Introducing modules. Modules are part of the mod you can enable and disable at will. By default, all modules derivating too much from vanilla will be deactivated. In the long run, you'll be able to activate and deactivate full parts of PDGM to customize your experience.
+* Introducing the first Module: Real Jumps. You can convert jump skills to a Projectile equivalent, which mean jumping isn't a teleport but a real jump, in the same manner than Fly
+* Introducing console commands to enable and disable modules
+
+# 0.11.16.24 (Kniles)
+Fixes
+* Removed the Cloak and Dagger projectile impact in the Real Jump modules
+
+Balance
+* Food bonuses have been changed, and now scale with level. See the google sheet for the changes.
+* Attribute potions now provide +3/+6/+9
+* Attribute potions now need 3 units to make a greater one through crafting
+* Memory potions (GM mode only) now last 100 turns
+* Crossbows base damage reduced from 110 to 105
+* Crossbows range reduced from 1400 to 1300 (return to vanilla)
+* Staffs base damage increased from 95 to 105
+* Wands base damage increased from 63 to 67
+* Armor to vitality ratio increased from 0.4 to 0.45 (Base armor +12.5%)
+* Normalized the price of damaging attributes potion ingredients to 80
+* Increased the price of Puffball from 5 to 30
+* Minor resistance potions now provide 25% resistance instead of 15%
+* Resist all potions now provide 15%/30%/60% resistance to elements instead of 15%/50%/75%
+
+# 0.11.17.25 (Knile's chastity)
+Fixes
+* Fixed cup and bottle of water not clearing food poisoning
+
+Balance
+* Food regeneration now restore vitality only during combat to avoid repetitive and unnecessary permanent healing effects
