@@ -7,7 +7,6 @@ KBSECTION
 IF
 GameStarted(_, _)
 THEN
-NRD_LuaReset(1);
 TimerLaunch("LX_Player_Loop_Check", 1000);
 TimerLaunch("LX_Character_Loop_Check", 5000);
 
@@ -107,6 +106,93 @@ THEN
 NRD_CharacterSetPermanentBoostInt(_Char, "Movement", 0);
 NRD_CharacterSetPermanentBoostInt(_Char, "Accuracy", 0);
 CharacterAddAttribute(_Char, "Dummy", 0);
+
+//Sucker Punch fix
+IF
+CharacterUsedSkill(_Char, "Target_SingleHandedAttack", _, _)
+AND
+CharacterIsInCombat(_Char, 1)
+AND
+NRD_StatGetInt("Target_SingleHandedAttack", "Cooldown", (INTEGER)_Cooldown)
+THEN
+DB_Fix_SPunch(_Char, _Cooldown);
+
+IF
+ObjectTurnStarted((CHARACTERGUID)_Char)
+AND
+DB_Fix_SPunch(_Char, _Cooldown)
+AND
+_Cooldown > 0
+AND
+IntegerSubtract(_Cooldown, 1, _Final)
+THEN
+NOT DB_Fix_SPunch(_Char, _Cooldown);
+DB_Fix_SPunch(_Char, _Final);
+
+IF
+ObjectTurnStarted((CHARACTERGUID)_Char)
+AND
+DB_Fix_SPunch(_Char, _Cooldown)
+AND
+_Cooldown == 0
+THEN
+NOT DB_Fix_SPunch(_Char, _Cooldown);
+
+IF
+ItemEquipped(_, _Char)
+AND
+CharacterHasSkill(_Char, "Target_SingleHandedAttack", 1)
+AND
+DB_Fix_SPunch(_Char, _Cooldown)
+AND
+Real(_Cooldown, _RCooldown)
+THEN
+NRD_SkillSetCooldown(_Char, "Target_SingleHandedAttack", _RCooldown);
+
+IF
+ItemUnequipped(_, _Char)
+AND
+CharacterHasSkill(_Char, "Target_SingleHandedAttack", 1)
+AND
+DB_Fix_SPunch(_Char, _Cooldown)
+AND
+Real(_Cooldown, _RCooldown)
+AND
+RealProduct(_RCooldown, 6.0, _Final)
+AND
+NRD_RealToString(_Final, _SCooldown)
+THEN
+NRD_SkillSetCooldown(_Char, "Target_SingleHandedAttack", _Final);
+
+IF
+ObjectLeftCombat((CHARACTERGUID)_Char, _)
+AND
+DB_Fix_SPunch(_Char, _Cooldown)
+THEN
+NOT DB_Fix_SPunch(_Char, _Cooldown);
+
+IF
+NRD_StatusIteratorEvent("LX_Iterate_Statuses_Accuracy", (CHARACTERGUID)_Character, (STRING)_StatusId, (INTEGER64)_StatusHandle)
+AND
+NRD_StatAttributeExists((STRING)_StatusId, "DodgeBoost")
+AND
+NRD_StatGetInt(_StatusId, "DodgeBoost", (INTEGER)_Dodge)
+AND
+_Dodge < 0
+THEN
+SetVarInteger(_Character, "LX_Accuracy_Harmed", 1);
+
+IF
+NRD_OnStatusAttempt(_,_,_,_)
+THEN
+DB_NOOP(1);
+
+IF
+ObjectTurnStarted(_)
+THEN
+DB_NOOP(1);
+
+
 
 EXITSECTION
 

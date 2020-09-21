@@ -147,5 +147,21 @@
         <field name="HealValue" type="IntegerStatObjectFieldDefinition" value="50" />
       </fields>
     </stat_object>
+    <stat_object is_substat="false">
+      <fields>
+        <field name="Name" type="NameStatObjectFieldDefinition" value="LX_FOOD_REGEN1" />
+        <field name="HealStat" type="EnumerationStatObjectFieldDefinition" value="1" enumeration_type_name="StatusHealType" />
+        <field name="HealType" type="EnumerationStatObjectFieldDefinition" value="1" enumeration_type_name="HealValueType" />
+        <field name="HealValue" type="IntegerStatObjectFieldDefinition" value="1" />
+      </fields>
+    </stat_object>
+    <stat_object is_substat="false">
+      <fields>
+        <field name="Name" type="NameStatObjectFieldDefinition" value="LX_FOOD_REGEN2" />
+        <field name="HealStat" type="EnumerationStatObjectFieldDefinition" value="1" enumeration_type_name="StatusHealType" />
+        <field name="HealType" type="EnumerationStatObjectFieldDefinition" value="1" enumeration_type_name="HealValueType" />
+        <field name="HealValue" type="IntegerStatObjectFieldDefinition" value="2" />
+      </fields>
+    </stat_object>
   </stat_objects>
 </stats>

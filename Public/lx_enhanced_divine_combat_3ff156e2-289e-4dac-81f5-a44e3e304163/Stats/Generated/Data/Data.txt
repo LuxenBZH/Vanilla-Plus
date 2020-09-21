@@ -1,4 +1,4 @@
-key "ArmorToVitalityRatio","0.4"
+key "ArmorToVitalityRatio","0.45"
 
 key "ExpectedConGrowthForArmorCalculation","1"
 
@@ -24,9 +24,9 @@ key "DamageBoostFromAttribute","0"
 
 key "MonsterDamageBoostPerLevel","0.03"
 
-key "CharacterBaseMemoryCapacity","5"
+key "CharacterBaseMemoryCapacity","4"
 
-key "CharacterBaseMemoryCapacityGrowth","0.25"
+key "CharacterBaseMemoryCapacityGrowth","0.5"
 
 key "CombatAbilityReflectionBonus","8"
 
@@ -52,7 +52,7 @@ key "LeadershipDodgingBonus","2"
 
 key "LeadershipAllResBonus","3"
 
-key "SkillAbilityVitalityRestoredPerPoint","5"
+key "SkillAbilityVitalityRestoredPerPoint","8"
 
 key "SkillAbilityLifeStealPerPoint","10"
 
@@ -96,7 +96,7 @@ key "CriticalBonusFromWits","2"
 
 key "DGM_StrengthGlobalBonus","2"
 
-key "DGM_StrengthResistanceIgnore","2"
+key "DGM_StrengthResistanceIgnore","1"
 
 key "DGM_StrengthWeaponBonus","3"
 

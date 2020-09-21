@@ -137,7 +137,9 @@ GetVarInteger(_Char, "LX_AllSkilledUp_Counter", _Used)
 AND
 _Used == 0
 AND
-NRD_SkillGetCooldown(_Char, _Skill, _Cooldown)
+NRD_SkillGetCooldown(_Char, _Skill, (REAL)_Cooldown)
+AND
+_Cooldown > 6.0
 THEN
 NRD_SkillSetCooldown(_Char, _Skill, 0.0);
 DB_LX_AllSkilledUp(_Char, _Skill, _Cooldown);
@@ -151,6 +153,57 @@ DB_LX_AllSkilledUp(_Char, _Skill, _Cooldown)
 THEN
 LX_EXT_ManageAllSkilledUp(_Char, _Skill, _Cooldown);
 NOT DB_LX_AllSkilledUp(_Char, _Skill, _Cooldown);
+
+IF
+CharacterSelectedInCharCreation( (CHARACTERGUID)_Char, (INTEGER)_UserID)
+THEN
+NRD_Debuglog("CC started");
+NRD_CharacterSetPermanentBoostInt(_Char, "Memory", 0);
+CharacterAddAttribute(_Char, "Dummy", 0);
+
+// Ambidextrous refund
+IF
+ObjectTurnStarted((CHARACTERGUID)_Char)
+AND
+CharacterHasTalent(_Char, "Ambidextrous", 1)
+THEN
+SetVarInteger(_Char, "DGM_AmbidextrousCount", 2);
+
+IF
+ItemEquipped(_Item, _Char)
+AND
+CharacterIsInCombat(_Char, 1)
+AND
+CharacterHasTalent(_Char, "Ambidextrous", 1)
+AND
+GetVarInteger(_Char, "DGM_AmbidextrousCount", _Count)
+AND
+_Count > 0
+AND
+IntegerSubtract(_Count, 1, _NewCount)
+THEN
+SetVarInteger(_Char, "DGM_AmbidextrousCount", _NewCount);
+CharacterAddActionPoints(_Char, 1);
+
+// Morning Person Max AP start fight
+IF
+ObjectEnteredCombat((CHARACTERGUID)_Char, _)
+AND
+CharacterHasTalent(_Char, "ResurrectToFullHealth", 1)
+THEN
+SetVarInteger(_Char, "DGM_FirstRound", 1);
+
+IF
+ObjectTurnStarted((CHARACTERGUID)_Char)
+AND
+CharacterHasTalent(_Char, "ResurrectToFullHealth", 1)
+AND
+GetVarInteger(_Char, "DGM_FirstRound", _FirstRound)
+AND
+_FirstRound == 1
+THEN
+CharacterAddActionPoints(_Char, 99);
+SetVarInteger(_Char, "DGM_FirstRound", 0);
 
 EXITSECTION
 

@@ -2,11 +2,11 @@
     <content contentuid="h278b2bccg1afcg4314gbfcbgb10105ebc12b" comment="Morning Person description">When resurrected, you resurrect to full health. You begin combat with maximum AP.</content>
     <content contentuid="h42b4c1e3g7c07g400dg8924g2807a024e6bb" comment="Pet Pal description">Pet Pal enables you to talk to animals. Also increases your maximum number of summons by 1, but reduces their damage and Vitality by 50%.</content>
     <content contentuid="h6a4d6da0g29cfg44ecg8913g5a0a76cf1bbd" comment="Arrow Recovery description">Arrow Recovery provides a 33% chance to recover a special arrow after shooting it, and removes the close-quarters damage penalty of ranged weapons.</content>
-    <content contentuid="h18f97d5bg9a79g4917g809dgb0ac7a5ec302" comment="Strength description">Increases all damage by 2% per point. Damage dealt with weapons are further increased by 3% and damaging statuses by 5% per point. Allows you to lift and carry heavier items.</content>
+    <content contentuid="h18f97d5bg9a79g4917g809dgb0ac7a5ec302" comment="Strength description">Increases all damage by 2% per point. Damage dealt with weapons are further increased by 3% and ignore 1% of enemy resistance per point if it's under 100%. Allows you to lift and carry heavier items.</content>
     <content contentuid="h6b67efcagf943g43a1g959eg36f9ecc42e7e" comment="Intelligence description">Increases all damage by 2% per point. Damage dealt by skills is further increased by 3% and Accuracy by 1% per point.</content>
 	<content contentuid="h6d2cd8aeg4e09g4003ga57cg3fea3a0f5502" comment="Wits description">Wits affect your Critical Chance, Initiative, increase damages dealt by damaging statuses and your ability to detect traps and find hidden treasures.</content>
     <content contentuid="h6d76eb15gdb1ag4ebeg8001g58173516a923" comment="Walk It Off description">Walk It Off reduces all status durations by 1 turn, including positive statuses. Does not affect statuses with a duration of 1 turn. Also increases all resistances by 10% each time you are hit by a character, up to a maximum of 50%, until the next turn.</content>
-    <content contentuid="h75391bafg8744g4441g9b1egf52f182f96fc" comment="Finesse description">Increases all damage by 3% per point. Dodge is increased by 1% and movement by 0.15m per AP per point.</content>
+    <content contentuid="h75391bafg8744g4441g9b1egf52f182f96fc" comment="Finesse description">Increases all damage by 3% per point. Dodge is increased by 1%, Critical Chance by 1% and Movement by 0.2m per AP per point.</content>
     <content contentuid="h81ca938fg5ef4g452agb093g1294e2f0718b" comment="Leech description">Leech heals you when standing in blood. Also increases Lifesteal by 25%.</content>
     <content contentuid="h878c02c0gc629g470dg955cg80dc2a125cb2" comment="Stench description">Stench decreases everyone&apos;s attitude towards you by [2], but melee opponents find you less attractive in combat. Increases your Poison resistance by 30% and makes you immune to Diseased and Infected.</content>
     <content contentuid="h8ddc8dd4ge8feg4420ga6dag0d87ce8ec743" comment="Duck Duck Goose description">[1] lets you evade attacks of opportunity. Increases your Dodge by 5% and Movement by 1m per AP.</content>
@@ -14,7 +14,7 @@
     <content contentuid="hc453e399ge1f5g41f1gaeabgcdd4de833c63" comment="Demon or IceKing">A character with [1] has an extra 30% [3], but takes a [4]% penalty to [5]. Additionally, the maximum [3] is raised by [6]. Demon grants 20% additional damage on all Burning and Necrofire statuses you apply to enemies. Ice King increases all Water damage you deal by 20%.</content>
     <content contentuid="hcb8f9837gdf0fg4a01ga7d6g5ed522b74189" comment="Escapist description">[1] allows you to flee combat even when enemies are close by. Provides immunity to Crippled, Entangled and Enwebbbed.</content>
     <content contentuid="he94327f7g293dg488eg9d25gcb4f7ae7be24" comment="HotHead description">While above 75% Vitality, Hothead provides 10% Critical Chance and 10% Accuracy.</content>
-    <content contentuid="hf3cd8067g36c0g4b48ga4dfg361f33579b43" comment="Ambidextrous description">Ambidextrous reduces the cost of using grenades and scrolls by 1 AP when your off-hand is free. Provides 2 free equipment switches per turn.</content>
+    <content contentuid="hf3cd8067g36c0g4b48ga4dfg361f33579b43" comment="Ambidextrous description">Ambidextrous reduces the cost of using grenades and scrolls by 1 AP when your off-hand is free. Refund the AP cost for 2 equipment switches per turn.</content>
     <content contentuid="hf4632a8fg42a7g4d53gbe26gd203f28e3d5e" comment="Shadow damages ?">Shadow</content>
     <content contentuid="hfb8eec35g3339g4762g8382g712e74a2ac0b" comment="Slingshot description">[1] adds an extra [2]m range to your grenade throws and increase their damage by 30%.</content>
     <content contentuid="hfc8981a1g8f84g49c8ga8b4g17564a836c45" comment="Duelist description">Duelist increases AP Start and Recovery by 1, and Max AP by 1, if you are wielding a Single-Handed weapon with a free off-hand.</content>
@@ -24,14 +24,14 @@
     <content contentuid="h54f2ea13g97dbg4b86g9d13geeb81186faca" comment="Ranged description">[1] increases damage and Critical Chance when using bows and crossbows. Also increases the range by 0.5m per point when wielding a bow, crossbow or wand(s).</content>
     <content contentuid="h751cb9fcgcc15g485fg80dag96d013bb5fff" comment="Single-handed description">Single-Handed increases damage and Accuracy when using a single-handed weapon (dagger, sword, axe, mace or wand) with a shield or empty off-hand. Increases armours by 6% and resistances by 2% per point.</content>
     <content contentuid="h206ce4abg4f84g4b2dg934aga0d96a602f2c" comment="Two-handed descripiton">Two-Handed increases damage and Critical Multiplier when using two-handed melee weapons (swords, axe, mace, spear or staff). Also grants 2% Accuracy per point.</content>
-    <content contentuid="hf3893f8fg20c5g4078ga83cgef8783082103" comment="All Skilled up description">The first skill used during your turn has its cooldown reduced by 1 turn.</content>
-    <content contentuid="h1bae56a9ga45fg431fg80bfg2afbef03c1d2" comment="Perseverance description">Perseverance restores Magic Armour on recovering from Frozen or Stunned, and restores Physical Armour on recovering from Knocked Down or Petrified. Additionally, 2% of maximum Vitality is restored per point.</content>
+    <content contentuid="hf3893f8fg20c5g4078ga83cgef8783082103" comment="All Skilled up description">The first skill having more than 1 turn cooldown used during your turn has its cooldown reduced by 1 turn.</content>
+    <content contentuid="h1bae56a9ga45fg431fg80bfg2afbef03c1d2" comment="Perseverance description">Perseverance restores Magic Armour on recovering from Frozen or Stunned, and restores Physical Armour on recovering from Knocked Down or Petrified. Additionally, 2% of maximum Vitality is restored per point. When recovering from a Staggered or Confused status, Perseverance also triggers but its effect is halved.</content>
     <content contentuid="h9df517d1gf64bg499dgb23fg462fd1f061bc" comment="Critical chance description">Your chance to Critically Strike when attacking with a weapon or when using a weapon-based skill. If you Backstab, your Critical Chance is converted to additional damage in a ratio of 2% Critical Chance to 1% damage.</content>
     <content contentuid="hb924258ag2cf7g4c11gaf4eg8b7de303c197" comment="Attributes dynamic bonus"></content>
     <content contentuid="h278d3a4fg4dceg4362g9b35g9c3685c93268" comment="Damage tooltip">The damage you inflict when successfully hitting an enemy or object.</content>
     <content contentuid="h8256bf13gb4cag4662gaafegb5724b210c92" comment="Leadership description">[1] grants Dodging and Resistance bonuses to all allies in a 16m radius.</content>
-    <content contentuid="h71b09f9fg285fg4532gab16g1c7640864141" comment="Tooltip bonus level">Damage is based on your level and receives an additional bonus from Intelligence.</content>
-    <content contentuid="ha4cfd852g52f1g4079g8919gd392ac8ade1a" comment="Tooltip bonus weapon">Damage is based on your basic attack and receives an additional bonus from both Strength and Intelligence.</content>
+    <content contentuid="h71b09f9fg285fg4532gab16g1c7640864141" comment="Tooltip bonus level">Damage is based on your level and trigger the additional skill bonus from Intelligence.</content>
+    <content contentuid="ha4cfd852g52f1g4079g8919gd392ac8ade1a" comment="Tooltip bonus weapon">Damage is based on your basic attack and trigger the additional bonus from both Strength and Intelligence.</content>
     <content contentuid="h3240460dgd250g435bg9ebegc1682089c5ed" comment="Corpse Explosion description">Explode target corpse, dealing [1] in the area.</content>
     <content contentuid="h1a6bf0edg47eeg4ee8gaa86g5a608e5dda7b" comment="Mass Corpse Explosion description">Explode all corpses around you, dealing [1] in the area.</content>
     <content contentuid="h0fe63523g3caeg4e46g8152geabd390080af" comment="Sparkstriker description">Receive Sparkstriker status. This causes your melee attacks to create a Spark projectile that bounces off the initial target to hit the closest enemy, dealing [1].</content>
@@ -44,17 +44,19 @@
     <content contentuid="hbce8b81ag1259g4a30g99f9g1f99e9b74583" comment="Elemental Arrowhead display name">Elemental Weapons</content>
     <content contentuid="h4542353bg043cg4964ga401g7a80dd267e5b" comment="Elemental Arrowhead description">Target a surface in melee radius. Elemental damage matching that surface is added to your weapon attacks and weapon-based skills.</content>
     <content contentuid="h9055594bg16a7g48b8g81ffg25bbbf89963b" comment="Ice Breaker description">Sets off a chain reaction that causes ice areas to explode into water puddles, dealing [1] and setting Chilled.</content>
+	<content contentuid="h22a39843gf968g4212g851dg6e121235fa85" comment="Bless description">Bless target character or surface. Prevent Diseased, Decaying, Petrified, Stunned, increase Dodge by [1]%, Accuracy by [2]% and elemental resistances by [3].</content>
+	<content contentuid="h7184b190ge934g49d4g9b5cg67ff537bd723" comment="Dimensional Bolt description">Shoot a volatile bolt that deals [1], and then creates a corresponding surface. Chaos trigger a random type of damage.</content>
     <content contentuid="h944c3db5gc792g4cdcg923cg9471f4cb0969" comment="Water Arrows status">Water Weapons</content>
     <content contentuid="hbf9f6f92g699ag47b3gb967g5bfa164a0612" comment="Bloody Arrows status">Bloody Weapons</content>
     <content contentuid="h4be1f455g2614g43e1gbe42g7636850e7749" comment="Burning Arrows status">Burning Weapons</content>
     <content contentuid="h606e89bdgce80g4bcag99f3g914af3e4baae" comment="Poison Arrows status">Poison Weapons</content>
     <content contentuid="hc385872cge252g4da0gbc7agf774df831f28" comment="Electric Arrows status">Electric Weapons</content>
     <content contentuid="h6138efe4ge000g4a7dga5e8g479f54f1234a" comment="Oily Arrows status">Oily Weapons</content>
-    <content contentuid="h00f565c4g6178g424fgb031g41a2c12bf85d" comment="Parry Master description">[1] gives you [2]% Dodging while dual wielding. Once per turn, the first dodge do not trigger Dodge Fatigue.</content>
+    <content contentuid="h00f565c4g6178g424fgb031g41a2c12bf85d" comment="Parry Master description">[1] gives you [2]% Dodging while dual wielding. Once per turn, the first dodge does not trigger Dodge Fatigue.</content>
     <content contentuid="he3980bf8gf554g4dd8g823cgf2ccb71036a6" comment="Dual Wielding penalty">Offhand penalty: [1]%</content>
     <content contentuid="h5d124a78g6932g4f5egb844gf9569ec4d2ba" comment="Demonic tutelage description">Your inner demon actively watches over you. When an enemy approaches in melee range, they will be pummelled by a demonic fist dealing [1].</content>
     <content contentuid="h60ef5d4ag817dg4564g9c6eg9bc2339a55d5" comment="Terrify description">Destroy [1] on target enemy. They are Terrified for 1 turn.</content>
-	<content contentuid="ha742cf9eg80e6g4b43g8106ga4b83bd5e241" comment="Erratic Wisp description">Cause target character to teleport in a random direction each time they are attacked. Increases Dodge by [1]% and Air Resistance by [1]%.</content>
+	<content contentuid="ha742cf9eg80e6g4b43g8106ga4b83bd5e241" comment="Erratic Wisp description">Cause target character to teleport in a random direction each time they are attacked. Increases Dodge by [1]% and Air Resistance by [2]%.</content>
     <content contentuid="he1708d1eg243dg4b72g8f48gddb9bc8d62ff" comment="Strength dynamic tooltip">+[1] point(s) = +[2]% to all Damage, +[3]% more for weapon-based attacks and +[4]% Resistance ignored per point.</content>
     <content contentuid="h2e87e6cfg0183g4968g8ec1g325614c7d9fa" comment="Finesse dynamic tooltip">+[1] point(s) = +[2]% to all Damage, +[3]% Dodge, +[4]m of movement per AP and +[5]% Critical Chance.</content>
     <content contentuid="h58e777ddgd569g4c0dg8f58gece56cce053d" comment="Intelligence dynamic tooltip">+[1] point(s) = +[2]% to all Damage, +[3]% more for skills and +[4]% Accuracy.</content>
@@ -84,4 +86,53 @@
     <content contentuid="hf2f2ceb4g7be9g453fgb093ga8d7c563f782" comment="Target_FrostyShell">Reduce damage going through Magic Armour by [1]%</content>
     <content contentuid="h2ce13614gab6cg4878gb781gcb3186a8ead9" comment="Shout_FrostAura">Reduce damage going through Magic Armour by [1]%</content>
     <content contentuid="hf7a19975gea84g44a3g8fffg5b4f063b88b4" comment="Shout_RecoverArmour">Reduce damage going through Physical and Magic Armour by [1]%</content>
+	<content contentuid="hddb00621g65ddg46acg89d2gfcf3efd8cd78" comment="Tentacle Lash additonal description">Also triggers the Strength weapon bonus.</content>
+    <content contentuid="hc9386e15gf8f2g46efg9ab1g7dc5f3910ae8">Gain 1 Action Point immediately and at the start of the next 2 turns at the cost of [1] Constitution. Any Action Points over your maximum are lost.</content>
+	<content contentuid="h45221235g7b29g4bdegb758gebf6e378573b">A very, very large potion that restores your vitality. It makes a soft, tinkling sound when you shake it.</content>
+	<content contentuid="ha556dc68g617dg45c0g8307g392dcb022e7c">Explosive Mine</content>
+	<content contentuid="hc32234efg6d48g461egb2b3g9a0b823b170c">Undeployed Explosive Mine</content>
+	<content contentuid="h2d8c06a1g7681g4611gb4daga6bf87a278cf" comment="LOOT_Rune_Flame_Medium_LOOT_Rune_Frame_Power_1">Extract rune from frame</content>
+	<content contentuid="h4641ef2eg741ag408bg95adg2fe65094c8b6" comment="LX_CONFUSED_Description">This character has been magically affected during recovery.</content>
+	<content contentuid="h8521db9fgfb9ag40c7g8767g7465226e3a00" comment="LX_CONFUSED_DisplayName">Confused</content>
+	<content contentuid="h7579318fg2a13g4185g856bgad8960145220" comment="LX_CONFUSED2_DisplayName">Confused (2)</content>
+	<content contentuid="h5ad5ffbeg192cg47b3gbebag87252e71f246" comment="LX_CONFUSED3_DisplayName">Confused (3)</content>
+	<content contentuid="he8ede611g2306g4bacga3aag78eccdf928fb" comment="LX_DODGE_FATIGUE_Description">This character&apos;s dodging has become less effective.</content>
+	<content contentuid="hd9f92f34g0daag4393g887cg1be725ab19ab" comment="LX_DODGE_FATIGUE1_DisplayName">Dodge Fatigue</content>
+	<content contentuid="h0cf4ee90g8298g491eg9c31g396810cbce3b" comment="LX_DODGE_FATIGUE2_DisplayName">Dodge Fatigue (2)</content>
+	<content contentuid="hbef625c0g5d09g42f2g9065gf9099a39e11e" comment="LX_DODGE_FATIGUE3_DisplayName">Dodge Fatigue (3)</content>
+	<content contentuid="h2ea5f141g4d43g49b8g8d6agd365b90a0d6d" comment="LX_DODGE_FATIGUE4_DisplayName">Dodge Fatigue (4)</content>
+	<content contentuid="h06098edfg8629g4f30gb6d4g45057f6622ce" comment="LX_FOOD_POISONED_Description">Deals [1] damage each turn.</content>
+	<content contentuid="h512982bbgf22bg4604gb41bg6503586ee1ab" comment="LX_FOOD_POISONED_DisplayName">Food Poisoning</content>
+	<content contentuid="h32fcbbfbgec6bg4af4g894ag49fd997307fe" comment="LX_LINGERING_Description">Any attempt to apply Stunned, Petrified, Frozen, Madness, Terrified or Charm will apply Confused instead.</content>
+	<content contentuid="h56b32bffgc406g478fgade1g89f0b5970c7e" comment="LX_LINGERING_DisplayName">Lingering</content>
+	<content contentuid="h2ceb4cffgfaf3g42b2g95c8g4fad6567f70d" comment="LX_MOMENTUM_Description">Any attempt to apply Knocked Down or Chicken Form will apply Staggered instead.</content>
+	<content contentuid="h8ee2dfe5g6483g4b7ag9e1ag966f0023ca0d" comment="LX_MOMENTUM_DisplayName">Momentum</content>
+	<content contentuid="h76856ed3gf1cdg4c63g887fgb4c1fd40952b" comment="LX_PETPAL_Description">This summon is weaker.</content>
+	<content contentuid="hc492782dg5cc0g4679g85ddgdd1ea07f86a7" comment="LX_PETPAL_DisplayName">Weaker Summon</content>
+	<content contentuid="h6268c71cge671g4168g8827g653a7ace2925" comment="LX_POTIONFATIGUE1_Description">This character drank too many potions and is experiencing side effects.</content>
+	<content contentuid="h9dffbeb7g85b6g4275g8c58g8b0de33c8583" comment="LX_POTIONFATIGUE2_Description">This character drank too many potions and could not handle the side effects.</content>
+	<content contentuid="h6c5806e8g7bccg4ecdg959eg254d17edbd71" comment="LX_POTIONWARNING_Description">This character has drunk a lot of potions. One more potion and they will overdose!</content>
+	<content contentuid="h50224e4fga2f5g4f39gab94g1da35edbe7fb" comment="LX_POTIONWARNING_DisplayName">Potion Dizziness</content>
+	<content contentuid="h9e8b6e5bgd7b4g4444g8853g5eb8910285a4" comment="LX_SHIELDSUP_Description">The amount of damage going through Physical and Magic Armour is reduced by half.</content>
+	<content contentuid="h90b71bebg36a1g4a44g83d7ga6386ad59124" comment="LX_SHIELDSUP_DisplayName">Shields Up</content>
+	<content contentuid="hd281d94fg1f41g4af0ga8c2g69747893e1f2" comment="LX_STAGGERED_Description">This character has staggered during their recovery.</content>
+	<content contentuid="hd2fd14e5gaf70g4acagb99bg491d9c3c5ce2" comment="LX_STAGGERED_DisplayName">Staggered</content>
+	<content contentuid="h600f8b60g94fbg439bg963eg56599207438f" comment="LX_STAGGERED2_DisplayName">Staggered (2)</content>
+	<content contentuid="h5e23317dgf4ecg409bg9a6cg6d5be3ae8867" comment="LX_STAGGERED3_DisplayName">Staggered (3)</content>
+	<content contentuid="ha2bd4aa9gae5dg4bb0gb6ddg25a682c5a68b" comment="Stats_LX_DDGoose">Duck Duck Goose</content>
+	<content contentuid="h3d077707gcc2cg4b6eg808agda8c3a0384a8" comment="Stats_LX_Demon">Demon (Bonus)</content>
+	<content contentuid="hb1fc6d8bg6bf6g4a3bg83f7g94177ced086a" comment="Stats_LX_Duelist">Duelist</content>
+	<content contentuid="hb4d441e2g0d7cg45f5g8917g5fa55696a431" comment="Stats_LX_Hothead">Hothead</content>
+	<content contentuid="h43401d61ga5dfg4282ga423gc4a5b78ff7ac" comment="Stats_LX_Leech">Leech</content>
+	<content contentuid="h055c33d3ge1f1g431eg8fd0gebd6da7eb962" comment="Stats_LX_MorningPerson">Morning Person</content>
+	<content contentuid="he9aa2d6dge162g4078gb831g0894e01a72e5" comment="Stats_LX_PetPal">Pet Pal (Summon)</content>
+	<content contentuid="hf130b10ag0b9ag4c68g8c17g54d30b86fe2b" comment="Stats_LX_PetPalSummoner">Pet Pal (Summoner)</content>
+	<content contentuid="h0dd878f8g8f63g4c9ag86b2g2488d2a86c79" comment="Stats_LX_PotionFatigue1">Potion Poisoning</content>
+    <content contentuid="h08adfff4gbd75g4ee9g8070gf928d43a6302" comment="Stats_LX_Stench">Stench</content>
+	<content contentuid="h1691be7ega39bg4ed0ga3b5ge1370acac668" comment="LX_WALKITOFF_DisplayName">Walk It Off</content>
+	<content contentuid="h41b54dbagf949g40aagb148gd7c0b42eedfe" comment="Stats_LX_WalkItOff">Walk It Off</content>
+	<content contentuid="h0f9a9124g20a8g430egaaaege3de06266056" comment="Stats_LX_WalkItOff_2">Walk It Off (2)</content>
+	<content contentuid="h169eda41gad02g4143g997eg29c0cee15c14" comment="Stats_LX_WalkItOff_3">Walk It Off (3)</content>
+	<content contentuid="hfe5567d9g5f27g4729g8774g36bce3393b4d" comment="Stats_LX_WalkItOff_4">Walk It Off (4)</content>
+	<content contentuid="h3c306881g0106g4b61g931eg1e837bca6149" comment="Stats_LX_WalkItOff_5">Walk It Off (5)</content>
 </contentList>

@@ -25,8 +25,6 @@ function CheckBoostTalents(character, talent, unlocked)
 		BoostFromTalentInt(character, "LX_STENCH", unlocked)
 	elseif talent == "AnimalEmpathy" then
 		BoostFromTalentInt(character, "LX_PETPALSUMMONER", unlocked)
-	elseif talent == "ResurrectToFullHealth" then
-		BoostFromTalentInt(character, "LX_MORNINGPERSON", unlocked)
 	elseif talent == "NoAttackOfOpportunity" then
 		BoostFromTalentInt(character, "LX_DDGOOSE", unlocked)
 	elseif talent == "Memory" then
@@ -43,8 +41,8 @@ function ManageMemory(character, unlocked)
 		InitCharacterStatCheck(character)
 	else
 		local memBonus = NRD_CharacterGetPermanentBoostInt(character, "Memory")
-		local mem = CharacterGetBaseAttribute(character, "Memory") - 10 - memBonus
-		if memBonus == mem then
+		local mem = math.floor(CharacterGetBaseAttribute(character, "Memory") - Ext.ExtraData.AttributeBaseValue)
+		if memBonus-mem < 0 then
 			NRD_CharacterSetPermanentBoostInt(character, "Memory", 0)
 		else
 			NRD_CharacterSetPermanentBoostInt(character, "Memory", memBonus - mem)
@@ -61,7 +59,6 @@ function CheckAllTalents(character)
 		"Leech",
 		"Stench",
 		"AnimalEmpathy",
-		"ResurrectToFullHealth",
 		"NoAttackOfOpportunity"
 	}
 	for i,talent in pairs(boostedTalents) do

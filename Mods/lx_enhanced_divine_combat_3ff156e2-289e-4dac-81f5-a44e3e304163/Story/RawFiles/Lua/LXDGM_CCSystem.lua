@@ -33,7 +33,8 @@ function BlockMagicalCCs(character, status, handle)
 		"PETRIFIED",
 		"MADNESS",
 		"FEAR",
-		"CHARM"
+		"CHARMED",
+		"SLEEPING"
 	}
 	for i,block in pairs(blockedStatuses) do
 		if status == block then
@@ -54,7 +55,7 @@ end
 function RollStatusApplication(character, status, duration, force, enterChance, baseHandle)
 	local roll = math.random(1, 100)
 	Ext.Print("[LXDGM_CCSystem.RollStatusApplication] Status",status,"has enter chance",enterChance,"roll:",roll)
-	if roll < enterChance then 
+	if roll <= enterChance then 
 		ApplyStatus(character, status, duration, force)
 	else 
 		NRD_StatusPreventApply(character, baseHandle, 1) 

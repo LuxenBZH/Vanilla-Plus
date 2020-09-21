@@ -10,7 +10,6 @@ local function AddDamageToDescription()
 		Projectile_DeployMassTraps = "Skill:Projectile_TrapLaunched:Damage",
 		Shout_FlamingTongues = "Skill:Projectile_Status_FlamingTongues:Damage",
 		Shout_IceBreaker = "Weapon:DamageSurface_FrostExplosion:DamageFromBase",
-		Target_WindWalker = "Potion:Stats_WindWalker:DodgeBoost;Potion:Stats_WindWalker:AirResistance"
 	}
 	for skill,description in pairs(skillList) do
 		local statDesc = Ext.StatGetAttribute(skill, "StatsDescriptionParams")
@@ -19,6 +18,7 @@ local function AddDamageToDescription()
 		else
 			Ext.StatSetAttribute(skill, "StatsDescriptionParams", description)
 		end
+		--Ext.SyncStat(skill, false)
 	end
 end
 
@@ -31,6 +31,7 @@ local function AdaptWeaponEnhancingSkills()
 			if weaponDamage == "AverageLevelDamge" or weaponDamage == 1 then
 				Ext.StatSetAttribute(bonusWeapon, "Damage", 0)
 				Ext.StatSetAttribute(bonusWeapon, "DamageFromBase", Ext.Round(weaponMultiplier*1.5))
+				--Ext.SyncStat(bonusWeapon, false)
 			end
 		end
 	end
@@ -39,16 +40,18 @@ end
 local function AddAdditionalDescription()
 	local descriptions = {
 		["Target_EvasiveManeuver"] = {},
-		["Target_Fortify"]         = {Ext.ExtraData.DGM_FortifiedPassingPhysicalReduction*100},
-		["Shout_MendMetal"]        = {Ext.ExtraData.DGM_MendMetalPassingPhysicalReduction*100},
-		["Shout_SteelSkin"]        = {Ext.ExtraData.DGM_SteelSkinPassingPhysicalReduction*100},
-		["Target_FrostyShell"]     = {Ext.ExtraData.DGM_MagicShellPassingMagicReduction*100},
-		["Shout_FrostAura"]        = {Ext.ExtraData.DGM_FrostAuraPassingMagicReduction*100},
-		["Shout_RecoverArmour"]    = {Ext.ExtraData.DGM_ShieldsUpPassingReduction*100}
+		["Target_Fortify"]         = {math.floor(Ext.ExtraData.DGM_FortifiedPassingPhysicalReduction*100)},
+		["Shout_MendMetal"]        = {math.floor(Ext.ExtraData.DGM_MendMetalPassingPhysicalReduction*100)},
+		["Shout_SteelSkin"]        = {math.floor(Ext.ExtraData.DGM_SteelSkinPassingPhysicalReduction*100)},
+		["Target_FrostyShell"]     = {math.floor(Ext.ExtraData.DGM_MagicShellPassingMagicReduction*100)},
+		["Shout_FrostAura"]        = {math.floor(Ext.ExtraData.DGM_FrostAuraPassingMagicReduction*100)},
+		["Shout_RecoverArmour"]    = {math.floor(Ext.ExtraData.DGM_ShieldsUpPassingReduction*100)},
+		["Target_TentacleLash"]	   = {}
 	}
 
 	for skill, params in pairs(descriptions) do
 		local desc = GetDynamicTranslationString(skill, table.unpack(params))
+		if desc == nil then desc = params end
 		Ext.StatAddCustomDescription(skill, "SkillProperties", desc)
 	end
 end
@@ -62,11 +65,19 @@ local function ReduceEquipmentMovementBonus()
 	end
 end
 
+local function ReplaceDescriptionParams()
+	local skills = {
+		Target_Bless = "Potion:Stats_Blessed:DodgeBoost;Potion:Stats_Blessed:AccuracyBoost;Potion:Stats_Blessed:FireResistance"
+	}
+	for skill,description in pairs(skills) do
+		Ext.StatSetAttribute(skill, "StatsDescriptionParams", description)
+		Ext.Print(bonusWeapon)
+		--Ext.SyncStat(skill, false)
+	end
+end
 
 Ext.RegisterListener("StatsLoaded", AddDamageToDescription)
-
 Ext.RegisterListener("StatsLoaded", AdaptWeaponEnhancingSkills)
-
 Ext.RegisterListener("StatsLoaded", AddAdditionalDescription)
-
 Ext.RegisterListener("StatsLoaded", ReduceEquipmentMovementBonus)
+Ext.RegisterListener("StatsLoaded", ReplaceDescriptionParams)

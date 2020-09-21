@@ -6,53 +6,78 @@ Osi = {}
 --- @class DamageItem
 --- @field public DamageType string
 --- @field public Amount integer
-local DamageItem = {
-}
+local DamageItem = {}
 
 --- @class DamageList
-local DamageList = {
-    --- Returns the amount of damage with the specified type
-    --- @param self DamageList
-    --- @param damageType string DamageType enumeration
-    --- @return integer
-    GetByType = function (self, damageType) end,
+local DamageList = {}
+
+--- Returns the amount of damage with the specified type
+--- @param self DamageList
+--- @param damageType string DamageType enumeration
+--- @return integer
+function DamageList.GetByType (self, damageType) end
     
-    --- Add damage
-    --- @param self DamageList
-    --- @param damageType string DamageType enumeration
-    --- @param amount integer
-    Add = function (self, damageType, amount) end,
+--- Add damage
+--- @param self DamageList
+--- @param damageType string DamageType enumeration
+--- @param amount integer
+function DamageList.Add (self, damageType, amount) end
     
-    --- Clear damage list.
-    --- If damageType is specified it only removes damage items with the specified type.
-    --- @param self DamageList
-    --- @param damageType string|nil DamageType enumeration
-    Clear = function (self, damageType) end,
+--- Clear damage list.
+--- If damageType is specified it only removes damage items with the specified type.
+--- @param self DamageList
+--- @param damageType string|nil DamageType enumeration
+function DamageList.Clear (self, damageType) end
     
-    --- Multiply every damage item with the specified value
-    --- @param self DamageList
-    --- @param multiplier number
-    Multiply = function (self, multiplier) end,
+--- Multiply every damage item with the specified value
+--- @param self DamageList
+--- @param multiplier number
+function DamageList.Multiply (self, multiplier) end
     
-    --- Merge another DamageList into this list
-    --- @param self DamageList
-    --- @param list DamageList List to merge
-    Merge = function (self, list) end,
+--- Merge another DamageList into this list
+--- @param self DamageList
+--- @param list DamageList List to merge
+function DamageList.Merge (self, list) end
     
-    --- Converts all damages to the specified type
-    --- @param self DamageList
-    --- @param damageType string DamageType enumeration
-    ConvertDamageType = function (self, damageType) end,
+--- Converts all damages to the specified type
+--- @param self DamageList
+--- @param damageType string DamageType enumeration
+function DamageList.ConvertDamageType (self, damageType) end
     
-    --- Aggregate all damage items with the same type
-    --- @param self DamageList
-    AggregateSameTypeDamages = function (self) end,
+--- Aggregate all damage items with the same type
+--- @param self DamageList
+function DamageList.AggregateSameTypeDamages (self) end
     
-    --- Returns all damage items as a table
-    --- @param self DamageList
-    --- @return DamageItem[]
-    ToTable = function (self) end,
-}
+--- Returns all damage items as a table
+--- @param self DamageList
+--- @return DamageItem[]
+function DamageList.ToTable (self) end
+
+
+--- @class AiGrid
+local AiGrid = {}
+
+--- Scans the vicinity of the specified points for surfaces that match the specified flags.
+--- Returns true if a surface was found, false otherwise.
+--- @param self AiGrid
+--- @param x number X coordinate of point to search
+--- @param z number Z coordinate of point to search
+--- @param radius number Radius to search
+--- @param flags string[] AI flags to look for
+--- @param bias number Height bias
+--- @return boolean
+function AiGrid.SearchForCell (self, x, z, radius, flags, bias) end
+    
+
+--- @class CombatComponentTemplate
+--- @field public Alignment string
+--- @field public CanFight boolean
+--- @field public CanJoinFight boolean
+--- @field public CombatGroupID string
+--- @field public IsBoss boolean
+--- @field public IsInspector boolean
+--- @field public StartCombatRange number
+local CombatComponentTemplate = {}
 
 
 --- @class EoCGameObjectTemplate
@@ -90,6 +115,7 @@ local EoCGameObjectTemplate = {}
 
 
 --- @class CharacterTemplate : EoCGameObjectTemplate
+--- @field public CombatTemplate CombatComponentTemplate
 --- @field public Icon string
 --- @field public Stats string
 --- @field public SkillSet string
@@ -145,6 +171,7 @@ local CharacterTemplate = {}
 
 
 --- @class ItemTemplate : EoCGameObjectTemplate
+--- @field public CombatTemplate CombatComponentTemplate
 --- @field public Icon string
 --- @field public CanBePickedUp boolean
 --- @field public CanBeMoved boolean
@@ -174,7 +201,7 @@ local CharacterTemplate = {}
 --- @field public UseRemotely boolean
 --- @field public IsBlocker boolean
 --- @field public IsPointerBlocker boolean
---- @field public UnknownDisplayName boolean
+--- @field public ItemDisplayName boolean
 --- @field public Tooltip number
 --- @field public Stats string
 --- @field public OnUseDescription string
@@ -197,7 +224,7 @@ local CharacterTemplate = {}
 --- @field public SoundAttachBone string
 --- @field public SoundAttenuation number
 --- @field public Description string
---- @field public UnknownDescription string
+--- @field public ItemDescription string
 --- @field public Speaker string
 --- @field public AltSpeaker string
 --- @field public SpeakerGroup string
@@ -255,8 +282,8 @@ local ProjectileTemplate = {}
 --- @field public StatusHandle integer
 --- @field public TargetHandle integer Handle of game object this status was applied to
 --- @field public StatusSourceHandle integer Handle of game object that caused this status
-
--- StatusFlags0
+---
+--- StatusFlags0
 --- @field public KeepAlive boolean
 --- @field public IsOnSourceSurface boolean
 --- @field public IsFromItem boolean
@@ -264,12 +291,12 @@ local ProjectileTemplate = {}
 --- @field public IsLifeTimeSet boolean
 --- @field public InitiateCombat boolean
 --- @field public Influence boolean
--- StatusFlags1
+--- StatusFlags1
 --- @field public BringIntoCombat boolean
 --- @field public IsHostileAct boolean
 --- @field public IsInvulnerable boolean
 --- @field public IsResistingDeath boolean
--- StatusFlags2
+--- StatusFlags2
 --- @field public ForceStatus boolean
 --- @field public ForceFailStatus boolean
 --- @field public RequestDelete boolean
@@ -295,7 +322,7 @@ local EsvStatusHIT = {
 }
 
 --- @class EsvStatusCONSUME : EsvStatus
--- TODO - Skills, Items, ResetCooldownsSet, StatsIDs?
+--- TODO - Skills, Items, ResetCooldownsSet, StatsIDs?
 --- @field public ResetAllCooldowns boolean
 --- @field public ResetOncePerCombat boolean
 --- @field public ScaleWithVitality boolean
@@ -341,7 +368,7 @@ local EsvStatusHEAL = {
 
 
 --- @class StatCharacterDynamic
--- Properties from PropertyMap
+--- Properties from PropertyMap
 --- @field public SummonLifelinkModifier integer
 --- @field public Strength integer
 --- @field public Memory integer
@@ -406,8 +433,8 @@ local StatCharacterDynamic = {
 
 --- @class StatBase
 --- "Fake" base class to avoid declaring attribute flags/talents/abilities twice
-
--- StatAttributeFlags
+---
+--- StatAttributeFlags
 --- @field public FreezeImmunity boolean
 --- @field public BurnImmunity boolean
 --- @field public StunImmunity boolean
@@ -469,8 +496,8 @@ local StatCharacterDynamic = {
 --- @field public MagicalSulfur boolean
 --- @field public ThrownImmunity boolean
 --- @field public InvisibilityImmunity boolean
-
--- Talents (prefix TALENT_)
+---
+--- Talents (prefix TALENT_)
 --- @field public TALENT_None boolean
 --- @field public TALENT_ItemMovement boolean
 --- @field public TALENT_ItemCreation boolean
@@ -600,8 +627,8 @@ local StatCharacterDynamic = {
 --- @field public TALENT_MasterThief boolean
 --- @field public TALENT_GreedyVessel boolean
 --- @field public TALENT_MagicCycles boolean
-
--- Abilities
+---
+--- Abilities
 --- @field public WarriorLore integer
 --- @field public RangerLore integer
 --- @field public RogueLore integer
@@ -646,7 +673,7 @@ local StatBase = {}
 
 
 --- @class StatCharacter : StatBase
--- Properties from PropertyMap
+--- Properties from PropertyMap
 --- @field public Level integer
 --- @field public Name string
 --- @field public AIFlags integer
@@ -676,8 +703,8 @@ local StatBase = {}
 --- @field public MaxSummons integer
 --- @field public BaseMaxSummons integer
 --- @field public MaxMpOverride integer
-
--- StatCharacterFlags
+---
+--- StatCharacterFlags
 --- @field public IsPlayer boolean
 --- @field public InParty boolean
 --- @field public IsSneaking boolean
@@ -685,20 +712,20 @@ local StatBase = {}
 --- @field public Blind boolean
 --- @field public DrinkedPotion boolean
 --- @field public EquipmentValidated boolean
-
--- Properties from CDivinityStats_Character::GetStat
+---
+--- Properties from CDivinityStats_Character::GetStat
 --- @field public PhysicalResistance integer
 --- @field public PiercingResistance integer
 --- @field public CorrosiveResistance integer
 --- @field public MagicResistance integer
-
--- Base properties from CDivinityStats_Character::GetStat
+---
+--- Base properties from CDivinityStats_Character::GetStat
 --- @field public BasePhysicalResistance integer
 --- @field public BasePiercingResistance integer
 --- @field public BaseCorrosiveResistance integer
 --- @field public BaseMagicResistance integer
-
--- Properties from CharacterStatsGetters::GetStat
+---
+--- Properties from CharacterStatsGetters::GetStat
 --- @field public MaxMp integer
 --- @field public APStart integer
 --- @field public APRecovery integer
@@ -725,8 +752,8 @@ local StatBase = {}
 --- @field public Initiative integer
 --- @field public BlockChance integer
 --- @field public ChanceToHitBoost integer
-
--- Base properties from CharacterStatsGetters::GetStat
+---
+--- Base properties from CharacterStatsGetters::GetStat
 --- @field public BaseMaxMp integer
 --- @field public BaseAPStart integer
 --- @field public BaseAPRecovery integer
@@ -753,8 +780,8 @@ local StatBase = {}
 --- @field public BaseInitiative integer
 --- @field public BaseBlockChance integer
 --- @field public BaseChanceToHitBoost integer
-
--- Properties from CharacterFetchStat
+---
+--- Properties from CharacterFetchStat
 --- @field public DynamicStats StatCharacterDynamic[]
 --- @field public MainWeapon StatItem
 --- @field public OffHandWeapon StatItem
@@ -836,18 +863,87 @@ local StatCharacter = {
 --- @field public MagicArmorValue integer Shield/Armor only!
 --- @field public MagicArmorBoost integer Shield/Armor only!
 --- @field public Blocking integer Shield only!
--- TODO - add attribute flags object support
--- TODO - AbilityModifiers, Talents, Reflection
+--- TODO - add attribute flags object support
+--- TODO - AbilityModifiers, Talents, Reflection
 local StatItemDynamic = {}
 
 
+--- @class StatProperty
+--- @field Context string[] Target|Self|AoE|SelfOnHit|SelfOnEquip
+--- @field Type string Custom|Status|SurfaceChange|GameAction|OsirisTask|Sabotage|Summon|Force
+--- @field Condition string|nil
+local StatProperty = {}
+
+--- @class StatPropertyCustom : StatProperty
+--- @field Type string Custom
+--- @field Action string
+local StatPropertyStatus = {}
+
+--- @class StatPropertyStatus : StatProperty
+--- @field Type string Status
+--- @field Action string Status name
+--- @field StatusChance number
+--- @field Duration number
+--- @field StatsId string
+--- @field Arg4 integer
+--- @field Arg5 integer
+--- @field SurfaceBoost boolean
+--- @field SurfaceBoosts string[] Labels from "Surface Type" enumeration
+local StatPropertyStatus = {}
+
+--- @class StatPropertySurfaceChange : StatProperty
+--- @field Type string SurfaceChange
+--- @field Action string Label from "Surface Change" enumeration
+--- @field SurfaceChance number
+--- @field Lifetime number
+--- @field StatusChance number
+--- @field Radius number
+local StatPropertySurfaceChange = {}
+
+--- @class StatPropertySabotage : StatProperty
+--- @field Type string Sabotage
+--- @field Amount integer
+local StatPropertySabotage = {}
+
+--- @class StatPropertySummon : StatProperty
+--- @field Type string Summon
+--- @field Template string
+--- @field Duration number
+--- @field IsTotem boolean
+--- @field Skill string
+local StatPropertySummon = {}
+
+--- @class StatPropertyForce : StatProperty
+--- @field Type string Force
+--- @field Distance integer
+local StatPropertyForce = {}
+
+--- @class StatPropertyGameAction : StatProperty
+--- @field Type string GameAction
+--- @field Action string Label from "Game Action" enumeration
+--- @field Arg1 number
+--- @field Arg2 number
+--- @field Arg3 string
+--- @field Arg4 number
+--- @field Arg5 number
+--- @field StatusHealType string Label from "StatusHealType" enumeration
+local StatPropertyGameAction = {}
+
+--- @class StatPropertyOsirisTask : StatProperty
+--- @field Type string OsirisTask
+--- @field Action string Label from "Osiris Task" enumeration
+--- @field Chance number
+--- @field VitalityOnRevive integer
+local StatPropertyOsirisTask = {}
+
+
 --- @class StatItem : StatBase
--- Properties from property map
+--- Properties from property map
 --- @field public Level integer
---- @field public Name integer
+--- @field public Name string
 --- @field public InstanceId integer
 --- @field public ItemType string See EquipmentStatsType enumeration
---- @field public ItemSlot integer
+--- @field public ItemSlot string See ItemSlot enumeration
 --- @field public WeaponType string See WeaponType enumeration
 --- @field public AnimType integer TODO maybe an enum?
 --- @field public WeaponRange integer
@@ -862,11 +958,11 @@ local StatItemDynamic = {}
 --- @field public ItemTypeReal string
 --- @field public MaxCharges integer
 --- @field public Charges integer
-
--- Properties from ItemFetchStat
+---
+--- Properties from ItemFetchStat
 --- @field public DynamicStats StatItemDynamic[]
-
--- Indirect properties from StatEntryWeapon/Armor/Shield
+---
+--- Indirect properties from StatEntryWeapon/Armor/Shield
 --- @field public Using string
 --- @field public Damage integer
 --- @field public Act string See Act enumeration
@@ -968,8 +1064,8 @@ local StatItem = {}
 --- @class EclGameObject
 --- @field public NetID integer
 --- @field public MyGuid string
--- TODO - Add more properties via virtual getters?
--- (IsGlobal, GetComponentType, GetFlags, GetTags, T/R/S, Velocity, Height, Level?)
+--- TODO - Add more properties via virtual getters?
+--- (IsGlobal, GetComponentType, GetFlags, GetTags, T/R/S, Velocity, Height, Level?)
 local EclGameObject = {}
 
 
@@ -989,35 +1085,57 @@ local EclGameObject = {}
 --- @field public GoldValueOverride integer
 --- @field public BaseWeightOverwrite integer
 --- @field public ItemColorOverride integer
-local EclItem = {
-    --- Returns all delta mods on the item
-    --- @param self EclItem
-    --- @return string[]
-    GetDeltaMods = function (self) end,
-    --- Returns whether the item has the specified tag
-    --- @param self EclItem
-    --- @param tag string
-    --- @return boolean
-    HasTag = function (self, tag) end,
-    --- Returns all tags on the item
-    --- @param self EclItem
-    --- @return string[]
-    GetTags = function (self) end,
-    --- Returns the first status with the specified status ID, if one exists.
-    --- @param self EclItem
-    --- @param statusId string Status ID
-    --- @return EclStatus|nil
-    GetStatus = function (self, statusId) end,
-    --- Returns the first status with the specified engine status type, if one exists.
-    --- @param self EclItem
-    --- @param type string Status type
-    --- @return EclStatus|nil
-    GetStatusByType = function (self, type) end,
-    --- Returns all statuses on the item
-    --- @param self EclItem
-    --- @return string[]
-    GetStatuses = function (self) end
-}
+--- @field public DisplayName string
+local EclItem = {}
+
+--- Returns all delta mods on the item
+--- @param self EclItem
+--- @return string[]
+function EclItem.GetDeltaMods (self) end
+
+--- Returns the GUID of all items within the inventory of the item
+--- @param self EclItem
+--- @return string[]
+function EclItem.GetInventoryItems (self) end
+
+--- Returns the GUID of character that currently owns the item; nil if the item is not in a character inventory
+--- @param self EclItem
+--- @return string|nil
+function EclItem.GetOwnerCharacter (self) end
+
+--- Returns whether the item has the specified tag
+--- @param self EclItem
+--- @param tag string
+--- @return boolean
+function EclItem.HasTag (self, tag) end
+
+--- Returns all tags on the item
+--- @param self EclItem
+--- @return string[]
+function EclItem.GetTags (self) end
+
+--- Returns the first status with the specified status ID, if one exists.
+--- @param self EclItem
+--- @param statusId string Status ID
+--- @return EclStatus|nil
+function EclItem.GetStatus (self, statusId) end
+
+--- Returns the first status with the specified engine status type, if one exists.
+--- @param self EclItem
+--- @param type string Status type
+--- @return EclStatus|nil
+function EclItem.GetStatusByType (self, type) end
+
+--- Returns all statuses on the item
+--- @param self EclItem
+--- @return string[]
+function EclItem.GetStatuses (self) end
+
+--- Returns all statuses on the item
+--- @param self EsvItem
+--- @return EsvStatus[]
+function EclItem.GetStatusObjects (self) end
+
 
 
 --- @class EclCharacter : EclGameObject
@@ -1031,48 +1149,76 @@ local EclItem = {
 --- @field public Scale number
 --- @field public AnimationOverride string
 --- @field public UserID integer
-local EclCharacter = {
-    --- Returns whether the character has the specified tag
-    --- @param self EclCharacter
-    --- @param tag string
-    --- @return boolean
-    HasTag = function (self, tag) end,
-    --- Returns all tags on the character
-    --- @param self EclCharacter
-    --- @return string[]
-    GetTags = function (self) end,
-    --- Returns the first status with the specified status ID, if one exists.
-    --- @param self EclCharacter
-    --- @param statusId string Status ID
-    --- @return EclStatus|nil
-    GetStatus = function (self, statusId) end,
-    --- Returns the first status with the specified engine status type, if one exists.
-    --- @param self EclCharacter
-    --- @param type string Status type
-    --- @return EclStatus|nil
-    GetStatusByType = function (self, type) end,
-    --- Returns all statuses on the character
-    --- @param self EclCharacter
-    --- @return string[]
-    GetStatuses = function (self) end,
-    --- Update model scale of the character.
-    --- @param self EclCharacter
-    --- @param scale number 
-    SetScale = function (self, scale) end
-}
+--- @field public DisplayName string
+--- @field public StoryDisplayName string
+--- @field public OriginalDisplayName string
+--- @field public WalkSpeedOverride number
+--- @field public RunSpeedOverride number
+--- @field public Archetype string
+--- @field public CorpseLootable boolean
+local EclCharacter = {}
 
+--- Returns the GUID of all items within the inventory of the character
+--- @param self EclCharacter
+--- @return string[]
+function EclCharacter.GetInventoryItems (self) end
+
+--- Returns the item equipped in the specified slot
+--- @param self EclCharacter
+--- @param slot string See ItemSlot enumeration
+--- @return EclItem|nil
+function EclCharacter.GetItemBySlot (self, slot) end
+
+--- Returns whether the character has the specified tag
+--- @param self EclCharacter
+--- @param tag string
+--- @return boolean
+function EclCharacter.HasTag (self, tag) end
+
+--- Returns all tags on the character
+--- @param self EclCharacter
+--- @return string[]
+function EclCharacter.GetTags (self) end
+
+--- Returns the first status with the specified status ID, if one exists.
+--- @param self EclCharacter
+--- @param statusId string Status ID
+--- @return EclStatus|nil
+function EclCharacter.GetStatus (self, statusId) end
+
+--- Returns the first status with the specified engine status type, if one exists.
+--- @param self EclCharacter
+--- @param type string Status type
+--- @return EclStatus|nil
+function EclCharacter.GetStatusByType (self, type) end
+
+--- Returns all statuses on the character
+--- @param self EclCharacter
+--- @return string[]
+function EclCharacter.GetStatuses (self) end
+
+--- Returns all statuses on the character
+--- @param self EclCharacter
+--- @return EclStatus[]
+function EclCharacter.GetStatusObjects (self) end
+
+--- Update model scale of the character.
+--- @param self EclCharacter
+--- @param scale number 
+function EclCharacter.SetScale (self, scale) end
 
 
 
 --- @class EsvGameObject
 --- @field public NetID integer
 --- @field public MyGuid string
--- TODO - Add more properties via virtual getters?
--- (IsGlobal, GetComponentType, GetFlags, GetTags, T/R/S, Velocity, Height, Level?)
+--- TODO - Add more properties via virtual getters?
+--- (IsGlobal, GetComponentType, GetFlags, GetTags, T/R/S, Velocity, Height, Level?)
 local EsvGameObject = {}
 
 
 --- @class EsvItem : EsvGameObject
+--- @field public Handle integer
 --- @field public RootTemplate ItemTemplate
 --- @field public WorldPos number[]
 --- @field public CurrentLevel string
@@ -1097,48 +1243,104 @@ local EsvGameObject = {}
 --- @field public TreasureLevel integer
 --- @field public LevelOverride integer
 --- @field public ForceSynch boolean
+--- @field public DisplayName string
+--- From ItemFlags
+--- @field public Activated boolean
+--- @field public OffStage boolean
+--- @field public CanBePickedUp boolean
+--- @field public CanBeMoved boolean
+--- @field public WalkOn boolean
+--- @field public WalkThrough boolean
+--- @field public NoCover boolean
+--- @field public CanShootThrough boolean
+--- @field public CanUse boolean
+--- @field public InteractionDisabled boolean
+--- @field public Destroyed boolean
+--- @field public LoadedTemplate boolean
+--- @field public IsDoor boolean
+--- @field public StoryItem boolean
+--- @field public Summon boolean
+--- @field public FreezeGravity boolean
+--- @field public ForceSync boolean
+--- @field public IsLadder boolean
+--- @field public PositionChanged boolean
+--- @field public Totem boolean
+--- @field public Destroy boolean
+--- @field public GMFolding boolean
+--- @field public Sticky boolean
+--- @field public DoorFlag boolean
+--- @field public Floating boolean
+--- @field public IsSurfaceBlocker boolean
+--- @field public IsSurfaceCloudBlocker boolean
+--- @field public SourceContainer boolean
+--- @field public Frozen boolean
+--- @field public TeleportOnUse boolean
+--- @field public PinnedContainer boolean
+--- From ItemFlags2
+--- @field public UnsoldGenerated boolean
+--- @field public IsKey boolean
+--- @field public Global boolean
+--- @field public CanConsume boolean
+--- @field public TreasureGenerated boolean
+--- @field public UnEquipLocked boolean
+--- @field public UseRemotely boolean
+--- 
 --- @field public Stats StatItem
-local EsvItem = {
-    --- Returns all delta mods on the item
-    --- @param self EsvItem
-    --- @return string[]
-    GetDeltaMods = function (self) end,
-    --- Returns all boosts that were added during treasure generation
-    --- @param self EsvItem
-    --- @return string[]
-    GetGeneratedBoosts = function (self) end,
-    --- Returns the GUID of all items within the inventory of the item
-    --- @param self EsvItem
-    --- @return string[]
-    GetInventoryItems = function (self) end,
-    --- Returns the GUID of all characters within the specified radius
-    --- @param self EsvItem
-    --- @return string[]
-    GetNearbyCharacters = function (self, radius) end,
-    --- Returns whether the item has the specified tag
-    --- @param self EsvItem
-    --- @param tag string
-    --- @return boolean
-    HasTag = function (self, tag) end,
-    --- Returns all tags on the item
-    --- @param self EsvItem
-    --- @return string[]
-    GetTags = function (self) end,
-    --- Returns the first status with the specified status ID, if one exists.
-    --- @param self EsvItem
-    --- @param statusId string Status ID
-    --- @return EsvStatus|nil
-    GetStatus = function (self, statusId) end,
-    --- Returns the first status with the specified engine status type, if one exists.
-    --- @param self EsvItem
-    --- @param type string Status type
-    --- @return EsvStatus|nil
-    GetStatusByType = function (self, type) end,
-    --- Returns all statuses on the item
-    --- @param self EsvItem
-    --- @return string[]
-    GetStatuses = function (self) end
-}
+local EsvItem = {}
+
+--- Returns all delta mods on the item
+--- @param self EsvItem
+--- @return string[]
+function EsvItem.GetDeltaMods (self) end
+
+--- Returns all boosts that were added during treasure generation
+--- @param self EsvItem
+--- @return string[]
+function EsvItem.GetGeneratedBoosts (self) end
+
+--- Returns the GUID of all items within the inventory of the item
+--- @param self EsvItem
+--- @return string[]
+function EsvItem.GetInventoryItems (self) end
+
+--- Returns the GUID of all characters within the specified radius
+--- @param self EsvItem
+--- @return string[]
+function EsvItem.GetNearbyCharacters (self, radius) end
+
+--- Returns whether the item has the specified tag
+--- @param self EsvItem
+--- @param tag string
+--- @return boolean
+function EsvItem.HasTag (self, tag) end
+
+--- Returns all tags on the item
+--- @param self EsvItem
+--- @return string[]
+function EsvItem.GetTags (self) end
+
+--- Returns the first status with the specified status ID, if one exists.
+--- @param self EsvItem
+--- @param statusId string Status ID
+--- @return EsvStatus|nil
+function EsvItem.GetStatus (self, statusId) end
+
+--- Returns the first status with the specified engine status type, if one exists.
+--- @param self EsvItem
+--- @param type string Status type
+--- @return EsvStatus|nil
+function EsvItem.GetStatusByType (self, type) end
+
+--- Returns all statuses on the item
+--- @param self EsvItem
+--- @return string[]
+function EsvItem.GetStatuses (self) end
+
+--- Returns all statuses on the character
+--- @param self EclItem
+--- @return EsvStatus[]
+function EsvItem.GetStatusObjects (self) end
+
 
 
 --- @class PlayerCustomData
@@ -1177,6 +1379,8 @@ local EsvSkillInfo = {}
 --- @field public RootTemplate CharacterTemplate
 --- @field public PlayerCustomData PlayerCustomData
 --- @field public Stats StatCharacter
+--- @field public DisplayName string
+--- @field public Handle integer
 ---
 --- @field public NetID integer
 --- @field public MyGuid string
@@ -1217,12 +1421,13 @@ local EsvSkillInfo = {}
 --- @field public CorpseLootable boolean
 --- @field public CustomBloodSurface string
 --- @field public PreviousLevel string
-
--- CharacterFlags 0
+---
+--- CharacterFlags 0
 --- @field public IsPlayer boolean
 --- @field public Multiplayer boolean
 --- @field public InParty boolean
 --- @field public HostControl boolean
+--- @field public Activated boolean
 --- @field public OffStage boolean
 --- @field public Dead boolean
 --- @field public HasOwner boolean
@@ -1234,6 +1439,7 @@ local EsvSkillInfo = {}
 --- @field public CharacterCreationFinished boolean
 --- @field public Floating boolean
 --- @field public SpotSneakers boolean
+--- @field public Temporary boolean
 --- @field public WalkThrough boolean
 --- @field public CoverAmount boolean
 --- @field public CanShootThrough boolean
@@ -1241,16 +1447,19 @@ local EsvSkillInfo = {}
 --- @field public Totem boolean
 --- @field public NoRotate boolean
 --- @field public IsHuge boolean
-
--- CharacterFlags 2
+--- @field public MadePlayer boolean
+--- @field public LevelTransitionPending boolean
+--- @field public RegisteredForAutomatedDialog boolean
+---
+--- CharacterFlags 2
 --- @field public Global boolean
 --- @field public HasOsirisDialog boolean
 --- @field public HasDefaultDialog boolean
 --- @field public TreasureGeneratedForTrader boolean
 --- @field public Trader boolean
 --- @field public Resurrected boolean
-
--- CharacterFlags 3
+---
+--- CharacterFlags 3
 --- @field public IsPet boolean
 --- @field public IsSpectating boolean
 --- @field public NoReptuationEffects boolean
@@ -1258,57 +1467,94 @@ local EsvSkillInfo = {}
 --- @field public HasRunSpeedOverride boolean
 --- @field public IsGameMaster boolean
 --- @field public IsPossessed boolean
-local EsvCharacter = {
-    --- Returns the GUID of all items in the characters inventory
-    --- @param self EsvCharacter
-    --- @return string[]
-    GetInventoryItems = function (self) end,
-    --- Returns detailed information about the specified skill
-    --- @param self EsvCharacter
-    --- @param skillId string
-    --- @return EsvSkillInfo
-    GetSkillInfo = function (self, skillId) end,
-    --- Returns the name of all skills available to the character
-    --- @param self EsvCharacter
-    --- @return string[]
-    GetSkills = function (self) end,
-    --- Returns the GUID of all characters within the specified radius
-    --- @param self EsvCharacter
-    --- @return string[]
-    GetNearbyCharacters = function (self, radius) end,
-    --- Returns whether the character has the specified tag
-    --- @param self EsvCharacter
-    --- @param tag string
-    --- @return boolean
-    HasTag = function (self, tag) end,
-    --- Returns all tags on the character
-    --- @param self EsvCharacter
-    --- @return string[]
-    GetTags = function (self) end,
-    --- Returns the first status with the specified status ID, if one exists.
-    --- @param self EsvCharacter
-    --- @param statusId string Status ID
-    --- @return EsvStatus|nil
-    GetStatus = function (self, statusId) end,
-    --- Returns the first status with the specified engine status type, if one exists.
-    --- @param self EsvCharacter
-    --- @param type string Status type
-    --- @return EsvStatus|nil
-    GetStatusByType = function (self, type) end,
-    --- Returns all statuses on the character
-    --- @param self EsvCharacter
-    --- @return string[]
-    GetStatuses = function (self) end,
-    --- Update model scale of the character.
-    --- NOTE: This change must be manually synchronized to the client!
-    --- @param self EsvCharacter
-    --- @param scale number 
-    SetScale = function (self, scale) end
-}
+--- @field public ManuallyLeveled boolean
+local EsvCharacter = {}
+
+--- Returns the GUID of all items in the characters inventory
+--- @param self EsvCharacter
+--- @return string[]
+function EsvCharacter.GetInventoryItems (self) end
+
+--- Returns detailed information about the specified skill
+--- @param self EsvCharacter
+--- @param skillId string
+--- @return EsvSkillInfo
+function EsvCharacter.GetSkillInfo (self, skillId) end
+
+--- Returns the name of all skills available to the character
+--- @param self EsvCharacter
+--- @return string[]
+function EsvCharacter.GetSkills (self) end
+
+--- Returns the GUID of all characters within the specified radius
+--- @param self EsvCharacter
+--- @return string[]
+function EsvCharacter.GetNearbyCharacters (self, radius) end
+
+--- Returns whether the character has the specified tag
+--- @param self EsvCharacter
+--- @param tag string
+--- @return boolean
+function EsvCharacter.HasTag (self, tag) end
+
+--- Returns all tags on the character
+--- @param self EsvCharacter
+--- @return string[]
+function EsvCharacter.GetTags (self) end
+
+--- Returns the first status with the specified status ID, if one exists.
+--- @param self EsvCharacter
+--- @param statusId string Status ID
+--- @return EsvStatus|nil
+function EsvCharacter.GetStatus (self, statusId) end
+
+--- Returns the first status with the specified engine status type, if one exists.
+--- @param self EsvCharacter
+--- @param type string Status type
+--- @return EsvStatus|nil
+function EsvCharacter.GetStatusByType (self, type) end
+
+--- Returns all statuses on the character
+--- @param self EsvCharacter
+--- @return string[]
+function EsvCharacter.GetStatuses (self) end
+
+--- Returns all statuses on the character
+--- @param self EsvCharacter
+--- @return EsvStatus[]
+function EsvCharacter.GetStatusObjects (self) end
+
+--- Update model scale of the character.
+--- NOTE: This change must be manually synchronized to the client!
+--- @param self EsvCharacter
+--- @param scale number 
+function EsvCharacter.SetScale (self, scale) end
+
+
+
+--- @class EsvShootProjectileRequest
+--- @field public SkillId string
+--- @field public Caster integer
+--- @field public Source integer
+--- @field public Target integer
+--- @field public StartPosition number[]
+--- @field public EndPosition number[]
+--- @field public Random integer
+--- @field public CasterLevel integer
+--- @field public IsTrap boolean
+--- @field public UnknownFlag1 boolean
+--- @field public CleanseStatuses string
+--- @field public StatusClearChance integer
+--- @field public IsFromItem boolean
+--- @field public IsStealthed boolean
+--- @field public IgnoreObjects boolean
+--- TODO - DamageList, HitObject
+local EsvShootProjectileRequest = {}
 
 
 --- @class EsvProjectile : EsvGameObject
 --- @field public RootTemplate ProjectileTemplate
+--- @field public Handle integer
 --- @field public NetID integer
 --- @field public MyGuid string
 --- @field public CasterHandle integer
@@ -1351,6 +1597,134 @@ local EsvCharacter = {
 --- @field public CurrentLevel string
 local EsvProjectile = {}
 
+
+--- @class EsvSurfaceAction
+--- @field public MyHandle integer
+local EsvSurfaceAction = {}
+
+
+--- @class EsvCreateSurfaceActionBase : EsvSurfaceAction
+--- @field public OwnerHandle integer
+--- @field public Duration number
+--- @field public StatusChance number
+--- @field public Position number[]
+--- @field public SurfaceType string
+local EsvCreateSurfaceActionBase = {}
+
+
+--- @class EsvCreateSurfaceAction : EsvCreateSurfaceActionBase
+--- @field public Radius number
+--- @field public ExcludeRadius number
+--- @field public MaxHeight number
+--- @field public IgnoreIrreplacableSurfaces boolean
+--- @field public CheckExistingSurfaces boolean
+--- @field public SurfaceCollisionFlags integer
+--- @field public SurfaceCollisionNotOnFlags integer
+--- @field public Timer number
+--- @field public GrowTimer number
+--- @field public GrowStep integer
+--- @field public SurfaceLayer integer
+local EsvCreateSurfaceAction = {}
+
+
+--- @class EsvChangeSurfaceOnPathAction : EsvCreateSurfaceActionBase
+--- @field public FollowObject integer
+--- @field public Radius number
+--- @field public IgnoreIrreplacableSurfaces boolean
+--- @field public CheckExistingSurfaces boolean
+--- @field public SurfaceCollisionFlags integer
+--- @field public SurfaceCollisionNotOnFlags integer
+--- @field public IgnoreOwnerCells boolean
+local EsvChangeSurfaceOnPathAction = {}
+
+
+--- @class EsvCreatePuddleAction : EsvCreateSurfaceActionBase
+--- @field public SurfaceCells integer
+--- @field public Step integer
+--- @field public GrowSpeed number
+--- @field public IgnoreIrreplacableSurfaces boolean
+--- @field public GrowTimer number
+local EsvCreatePuddleAction = {}
+
+
+--- @class EsvExtinguishFireAction : EsvCreateSurfaceActionBase
+--- @field public Position number[]
+--- @field public Radius number
+--- @field public Percentage number
+--- @field public GrowTimer number
+--- @field public Step number
+local EsvExtinguishFireAction = {}
+
+
+--- @class EsvRectangleSurfaceAction : EsvCreateSurfaceActionBase
+--- @field public DamageList DamageList
+--- @field public Target number[]
+--- @field public SurfaceArea number
+--- @field public Width number
+--- @field public Length number
+--- @field public GrowTimer number
+--- @field public MaxHeight number
+--- @field public GrowStep integer
+--- @field public AiFlags integer
+--- @field public DeathType string
+--- @field public LineCheckBlock integer
+local EsvRectangleSurfaceAction = {}
+
+
+--- @class EsvPolygonSurfaceAction : EsvCreateSurfaceActionBase
+--- @field public DamageList DamageList
+--- @field public Vertices number[][]
+--- @field public PositionX number
+--- @field public PositionZ number
+--- @field public GrowTimer number
+--- @field public GrowStep integer
+local EsvPolygonSurfaceAction = {}
+
+
+--- @class EsvSwapSurfaceAction : EsvCreateSurfaceActionBase
+--- @field public Radius number
+--- @field public ExcludeRadius number
+--- @field public MaxHeight number
+--- @field public Target number[]
+--- @field public IgnoreIrreplacableSurfaces boolean
+--- @field public CheckExistingSurfaces boolean
+--- @field public SurfaceCollisionFlags integer
+--- @field public SurfaceCollisionNotOnFlags integer
+--- @field public LineCheckBlock integer
+--- @field public GrowTimer number
+--- @field public GrowStep integer
+local EsvSwapSurfaceAction = {}
+
+
+--- @class EsvZoneAction : EsvCreateSurfaceActionBase
+--- @field public SkillId string
+--- @field public DamageList DamageList
+--- @field public Target number[]
+--- @field public Shape integer
+--- @field public Radius number
+--- @field public AngleOrBase number
+--- @field public BackStart number
+--- @field public FrontOffset number
+--- @field public MaxHeight number
+--- @field public GrowTimer number
+--- @field public GrowStep integer
+--- @field public GrowStep AiFlags
+--- @field public DeathType string
+local EsvZoneAction = {}
+
+
+--- @class EsvTransformSurfaceAction : EsvCreateSurfaceActionBase
+--- @field public SurfaceTransformAction string
+--- @field public OriginSurface string
+--- @field public SurfaceLayer integer
+--- @field public GrowCellPerSecond number
+--- @field public OwnerHandle2 integer
+--- @field public Position number[]
+--- @field public SurfaceLifetime number
+--- @field public SurfaceStatusChance number
+local EsvTransformSurfaceAction = {}
+
+
 --- @class ModInfo
 --- @field public UUID string
 --- @field public Name string
@@ -1381,6 +1755,96 @@ local DeltaModBoost = {}
 --- @field public Frequency integer
 --- @field public Boosts DeltaModBoost[]
 local DeltaMod = {}
+
+
+--- @class ItemComboIngredients
+--- @field public Object string
+--- @field public IngredientType string See IngredientType enumeration
+--- @field public Transform string See IngredientTransformType enumeration
+--- @field public ItemRarity string See ItemDataRarity enumeration (ValueLists.txt only!)
+local ItemComboIngredients = {}
+
+--- @class ItemComboResultElement
+--- @field public Result string
+--- @field public Boost string
+--- @field public ResultAmount number
+local ItemComboResultElement = {}
+
+--- @class ItemComboResult
+--- @field public Requirement string See Ability enum
+--- @field public ReqLevel number
+--- @field public PreviewStatsId string
+--- @field public PreviewIcon string
+--- @field public PreviewTooltip string
+--- @field public Name string
+--- @field public Results ItemComboResultElement[]
+local ItemComboResult = {}
+
+--- @class ItemCombo
+--- @field public Name string
+--- @field public RecipeCategory string See RecipeCategory enum
+--- @field public CraftingStation string See CraftingStationType enum
+--- @field public Ingredients ItemComboIngredients[]
+--- @field public Results ItemComboResult[]
+local ItemCombo = {}
+
+--- @class ItemComboPreviewData
+--- @field public Name string
+--- @field public Type string
+--- @field public StatsId string
+--- @field public Tooltip string
+--- @field public Icon string
+local ItemComboPreviewData = {}
+
+--- @class ItemComboPropertyElement
+--- @field public ObjectId string
+--- @field public IngredientType string See IngredientType enumeration
+--- @field public Result string
+local ItemComboPropertyElement = {}
+
+--- @class ItemComboProperty
+--- @field public Name string
+--- @field public PreviewIcon string
+--- @field public PreviewTooltip string
+--- @field public Entries ItemComboPropertyElement[]
+local ItemComboProperty = {}
+
+
+--- @class ItemNameGroupLink
+--- @field public NameGroup string
+--- @field public NoneCoolSuffix number
+--- @field public ItemName string
+local ItemNameGroupLink = {}
+
+--- @class ItemRootGroup
+--- @field public MinLevel number
+--- @field public MaxLevel number
+--- @field public RootGroup string
+--- @field public NameGroupLinks ItemNameGroupLink[]
+local ItemRootGroup = {}
+
+--- @class ItemLevelGroup
+--- @field public MinLevel number
+--- @field public MaxLevel number
+--- @field public Name string
+--- @field public RootGroups ItemRootGroup[]
+local ItemLevelGroup = {}
+
+--- @class ItemGroup
+--- @field public Name string
+--- @field public LevelGroups ItemLevelGroup[]
+local ItemGroup = {}
+
+--- @class ItemNameGroupName
+--- @field public Name string
+--- @field public Name2 string
+local ItemNameGroupName = {}
+
+--- @class ItemNameGroup
+--- @field public Name string
+--- @field public Names ItemNameGroupName[]
+--- @field public NamesCool ItemNameGroupName[]
+local ItemNameGroup = {}
 
 
 --- @class StatRequirement
@@ -2371,122 +2835,165 @@ local EsvCombatTeam = {}
 --- @field public CombatId integer A number identifying the combat instance
 --- @field public LevelName string Level where the combat is taking place
 --- @field public IsActive boolean
-local EsvCombat = {
-    --- Retrieves the turn order of the current round.
-    --- @param self EsvCombat
-    --- @return EsvCombatTeam[]
-    GetCurrentTurnOrder = function (self) end,
+local EsvCombat = {}
+
+--- Retrieves the turn order of the current round.
+--- @param self EsvCombat
+--- @return EsvCombatTeam[]
+function EsvCombat.GetCurrentTurnOrder (self) end
     
-    --- Retrieves the turn order of the next round.
-    --- @param self EsvCombat
-    --- @return EsvCombatTeam[]
-    GetNextTurnOrder = function (self) end,
+--- Retrieves the turn order of the next round.
+--- @param self EsvCombat
+--- @return EsvCombatTeam[]
+function EsvCombat.GetNextTurnOrder (self) end
+
+--- Updates the turn order of the current round. 
+--- The turnOrder argument should be a reordered version of the table returned by GetCurrentTurnOrder().
+--- Notes:
+---  It is possible to remove or add characters to the current turn by adding/removing their Team object from the table.
+---  It is possible to add a character to the current turn more than once, the character will only appear once in the UI however.
+---  The character whose turn is currently active (the very first item) should not be removed or reordered. 
+---    This only applies for GetCurrentTurnOrder, the first item can be freely reordered in GetNextTurnOrder.
+---  Changed performed using this function are synchronized to the client at the end of the current server tick.
+--- @param self EsvCombat
+--- @param turnOrder EsvCombatTeam[]
+function EsvCombat.UpdateCurrentTurnOrder (self, turnOrder) end
     
-    --- Updates the turn order of the current round. 
-    --- The turnOrder argument should be a reordered version of the table returned by GetCurrentTurnOrder().
-    --- Notes:
-    ---  It is possible to remove or add characters to the current turn by adding/removing their Team object from the table.
-    ---  It is possible to add a character to the current turn more than once, the character will only appear once in the UI however.
-    ---  The character whose turn is currently active (the very first item) should not be removed or reordered. 
-    ---    This only applies for GetCurrentTurnOrder, the first item can be freely reordered in GetNextTurnOrder.
-    ---  Changed performed using this function are synchronized to the client at the end of the current server tick.
-    --- @param self EsvCombat
-    --- @param turnOrder EsvCombatTeam[]
-    UpdateCurrentTurnOrder = function (self, turnOrder) end,
+--- Updates the turn order of the next round. 
+--- The turnOrder argument should be a reordered version of the table returned by GetNextTurnOrder().
+--- Notes:
+---  It is possible to remove or add characters to the next turn by adding/removing their Team object from the table.
+---  It is possible to add a character to the next turn more than once, the character will only appear once in the UI however.
+---  Changed performed using this function are synchronized to the client at the end of the current server tick.
+--- @param self EsvCombat
+--- @param turnOrder EsvCombatTeam[]
+function EsvCombat.UpdateNextTurnOrder (self, turnOrder) end
     
-    --- Updates the turn order of the next round. 
-    --- The turnOrder argument should be a reordered version of the table returned by GetNextTurnOrder().
-    --- Notes:
-    ---  It is possible to remove or add characters to the next turn by adding/removing their Team object from the table.
-    ---  It is possible to add a character to the next turn more than once, the character will only appear once in the UI however.
-    ---  Changed performed using this function are synchronized to the client at the end of the current server tick.
-    --- @param self EsvCombat
-    --- @param turnOrder EsvCombatTeam[]
-    UpdateNextTurnOrder = function (self, turnOrder) end,
-    
-    --- Retrieves all participants of the combat
-    --- @param self EsvCombat
-    --- @return EsvCombatTeam[]
-    GetAllTeams = function (self) end
-}
+--- Retrieves all participants of the combat
+--- @param self EsvCombat
+--- @return EsvCombatTeam[]
+function EsvCombat.GetAllTeams (self) end
+
+
+--- @class FlashObject
+--- Represents an object in Flash.
+--- Implements the __index and __newindex metamethods using string keys (i.e. allows table-like behavior):
+--- obj.field = 123 -- Can assign values to any object property
+--- Ext.Print(obj.field) -- Can read any object property
+---
+--- Field values are returned using the appropriate Lua type;
+--- Flash Boolean/Number/String = Lua boolean/number/string
+--- Flash Object = Lua engine class FlashObject
+--- Flash array = Lua engine class FlashArray
+--- Flash function = Lua engine class FlashFunction
+local FlashObject = {}
+
+
+--- @class FlashArray
+--- Represents an array in Flash.
+--- Implements the __index, __newindex and __len metamethods using integer keys (i.e. allows table-like behavior):
+--- arr[2] = 123 -- Can assign values to any array index
+--- Ext.Print(arr[2]) -- Can read any array index
+--- Ext.Print(#arr) -- Can query length of array
+local FlashArray = {}
+
+
+--- @class FlashFunction
+--- Represents a function or method in Flash.
+--- Implements the __call metamethod (i.e. can be called).
+--- The passed arguments are forwarded to the Flash method and the return value of the Flash method is returned.
+local FlashFunction = {}
+
 
 --- @class UIObject
-local UIObject = {
-    --- @param self UIObject
-    --- @param x integer
-    --- @param y integer
-    SetPosition = function (self, x, y) end,
-    
-    --- @param self UIObject
-    --- @param width integer
-    --- @param height integer
-    Resize = function (self, width, height) end,
-    
-    --- @param self UIObject
-    Show = function (self) end,
-    
-    --- @param self UIObject
-    Hide = function (self) end,
-    
-    --- Calls a method on the main timeline object of the UI element. 
-    --- The first argument (func) is the name of the ActionScript function to call; 
-    --- all subsequent arguments are passed to the ActionScript function as parameters. 
-    --- Only string, number and boolean arguments are supported.
-    --- @param self UIObject
-    --- @param method string Method to call
-    --- @vararg any
-    Invoke = function (self, method, ...) end,
-    
-    --- Simulates an ExternalInterface.call(...) call from Flash, 
-    --- i.e. it calls an UI handler function in the game engine. 
-    --- The first argument (func) is the name of the UI function to call; 
-    --- all subsequent arguments are passed to the engine as parameters. 
-    --- Only string, number and boolean arguments are supported.
-    --- @param self UIObject
-    --- @param func string ExternalInterface function to call
-    --- @vararg any
-    ExternalInterfaceCall = function (self, func, ...) end,
-    
-    --- @param self UIObject
-    --- @param frame integer
-    GotoFrame = function (self, frame) end,
-    
-    --- Updates the specified public property of the main timeline object.
-    --- @param self UIObject
-    --- @param property string Property path to set
-    --- @param value number|boolean|string Value
-    --- @param arrayIndex integer|nil Pass integer to set property[arrayIndex]
-    SetValue = function (self, property, value, arrayIndex) end,
-    
-    --- Retrieves the specified public property of the main timeline object. 
-    --- "type" contains the type of value to retrieve and must be string, number or boolean.
-    --- @param self UIObject
-    --- @param property string Property path to set
-    --- @param type "'number'" | "'boolean'" | "'string'" | nil
-    --- @param arrayIndex integer|nil Pass integer to set property[arrayIndex]
-    --- @return number|boolean|string
-    GetValue = function (self, property, type, arrayIndex) end,
-    
-    --- Returns the engine UI type ID of the UI element
-    --- @param self UIObject
-    --- @return integer
-    GetTypeId = function (self) end,
-    
-    --- @param self UIObject
-    --- @return integer
-    GetHandle = function (self) end,
-    
-    --- Returns the handle of the player that this UI element is assigned to.
-    --- (Only certain elements have a player assigned, like character sheet, inventory, etc.)
-    --- @param self UIObject
-    --- @return integer|nil
-    GetPlayerHandle = function (self) end,
-    
-    --- @param self UIObject
-    Destroy = function (self) end,
-}
+local UIObject = {}
 
---- @alias ExtEngineEvent "'SessionLoading'" | "'SessionLoaded'" | "'ModuleLoading'" | "'ModuleLoadStarted'" | "'ModuleResume'" | "'GameStateChanged'" | "'SkillGetDescriptionParam'" | "'StatusGetDescriptionParam'" | "'GetSkillDamage'" | "'ComputeCharacterHit'" | "'CalculateTurnOrder'" | "'GetHitChance'" | "'StatusGetEnterChance'" | '"StatusHitEnter"' | "'BeforeCharacterApplyDamage'" | "'UIInvoke'" | "'UICall'"
+--- @param self UIObject
+--- @param x integer
+--- @param y integer
+function UIObject.SetPosition (self, x, y) end
+    
+--- @param self UIObject
+--- @param width integer
+--- @param height integer
+function UIObject.Resize (self, width, height) end
+    
+--- @param self UIObject
+function UIObject.Show (self) end
+    
+--- @param self UIObject
+function UIObject.Hide (self) end
+    
+--- Calls a method on the main timeline object of the UI element. 
+--- The first argument (func) is the name of the ActionScript function to call; 
+--- all subsequent arguments are passed to the ActionScript function as parameters. 
+--- Only string, number and boolean arguments are supported.
+--- @param self UIObject
+--- @param method string Method to call
+--- @vararg any
+function UIObject.Invoke (self, method, ...) end
+    
+--- Simulates an ExternalInterface.call(...) call from Flash, 
+--- i.e. it calls an UI handler function in the game engine. 
+--- The first argument (func) is the name of the UI function to call; 
+--- all subsequent arguments are passed to the engine as parameters. 
+--- Only string, number and boolean arguments are supported.
+--- @param self UIObject
+--- @param func string ExternalInterface function to call
+--- @vararg any
+function UIObject.ExternalInterfaceCall (self, func, ...) end
+    
+--- @param self UIObject
+--- @param frame integer
+function UIObject.GotoFrame (self, frame) end
+    
+--- Updates the specified public property of the main timeline object.
+--- @param self UIObject
+--- @param property string Property path to set
+--- @param value number|boolean|string Value
+--- @param arrayIndex integer|nil Pass integer to set property[arrayIndex]
+function UIObject.SetValue (self, property, value, arrayIndex) end
+    
+--- Retrieves the specified public property of the main timeline object. 
+--- "type" contains the type of value to retrieve and must be string, number or boolean.
+--- @param self UIObject
+--- @param property string Property path to set
+--- @param type "'number'" | "'boolean'" | "'string'" | nil
+--- @param arrayIndex integer|nil Pass integer to set property[arrayIndex]
+--- @return number|boolean|string
+function UIObject.GetValue (self, property, type, arrayIndex) end
+    
+--- Returns the root (MainTimeline) Flash object
+--- @param self UIObject
+--- @return FlashObject
+function UIObject.GetRoot (self) end
+    
+--- Returns the engine UI type ID of the UI element
+--- @param self UIObject
+--- @return integer
+function UIObject.GetTypeId (self) end
+    
+--- @param self UIObject
+--- @return integer
+function UIObject.GetHandle (self) end
+    
+--- Returns the handle of the player that this UI element is assigned to.
+--- (Only certain elements have a player assigned, like character sheet, inventory, etc.)
+--- @param self UIObject
+--- @return integer|nil
+function UIObject.GetPlayerHandle (self) end
+    
+--- @param self UIObject
+function UIObject.Destroy (self) end
+
+
+--- @class SurfaceInteractionSet
+--- @field public TransformType string Surface transform to apply (Bless, Curse, Ignite, ...)
+--- @field public ActionableSurfaces string[][] Surface types that this transform applies to
+local SurfaceInteractionSet = {}
+
+
+--- @alias ExtEngineEvent "'SessionLoading'" | "'SessionLoaded'" | "'ModuleLoading'" | "'ModuleLoadStarted'" | "'ModuleResume'" | "'GameStateChanged'" | "'SkillGetDescriptionParam'" | "'StatusGetDescriptionParam'" | "'GetSkillDamage'" | "'GetSkillAPCost'" | "'ComputeCharacterHit'" | "'CalculateTurnOrder'" | "'GetHitChance'" | "'StatusGetEnterChance'" | '"StatusHitEnter"' | "'BeforeCharacterApplyDamage'" | "'UIInvoke'" | "'UICall'" | "'BeforeShootProjectile'" | "'ShootProjectile'" | "'ProjectileHit'" | "'GroundHit'"
 
 --- @alias ExtGameStateChangedCallback fun(fromState: string, toState: string)
 --- @alias ExtComputeCharacterHitCallback fun(target: StatCharacter, attacker: StatCharacter, weapon: StatItem, damageList: DamageList, hitType: string, noHitRoll: boolean, forceReduceDurability: boolean, hit: HitRequest, alwaysBackstab: boolean, highGroundFlag: string, criticalRoll: string): HitRequest
@@ -2496,8 +3003,13 @@ local UIObject = {
 --- @alias ExtStatusGetEnterChanceCallback fun(status: EsvStatus, isEnterCheck: boolean): number
 --- @alias ExtSkillGetDescriptionParamCallback fun(skill: StatEntrySkillData, character: StatCharacter, isFromItem: boolean, ...): string
 --- @alias ExtStatusGetDescriptionParamCallback fun(status: EsvStatus, statusSource: EsvGameObject, character: StatCharacter, ...): string
+--- @alias ExtGetSkillAPCostCallback fun(skill: StatEntrySkillData, character: StatCharacter, grid: AiGrid, position: number[]|nil, range: number|nil): number, boolean
 --- @alias ExtBeforeCharacterApplyDamageCallback fun(target: EsvCharacter, attacker: StatCharacter|StatItem, hit: HitRequest, causeType: string, impactDirection: number[], context: HitContext): HitRequest
 --- @alias ExtStatusHitEnterCallback fun(status: EsvStatus, context: HitContext)
+--- @alias ExtBeforeShootProjectileCallback fun(projectile: EsvShootProjectileRequest)
+--- @alias ExtShootProjectileCallback fun(projectile: EsvProjectile)
+--- @alias ExtProjectileHitCallback fun(projectile: EsvProjectile, hitObject: EsvGameObject|nil, position: number[])
+--- @alias ExtGroundHitCallback fun(caster: EsvGameObject, position: number[], damageList: DamageList)
 
 --- @class Ext
 Ext = {
@@ -2727,409 +3239,527 @@ Ext = {
         TalentHumanCriticalMultiplier = 10,
         TalentHumanCriticalChance = 5,
         TalentSneakingAPCost = 1
-    },
-
-    --- Returns the version number of the Osiris Extender
-    --- @return integer
-    Version = function () end,
-
-    --- Returns the version number of the game
-    --- @return string
-    GameVersion = function () end,
-
-    --- Loads the specified Lua file
-    --- @param modGuid string GUID of the module containing the Lua file
-    --- @param fileName string Path of Lua file, relative to Mods/<Mod>/Story/RawFiles/Lua
-    Require = function (modGuid, fileName) end,
-
-    --- Registers a function to call when an extender event is thrown
-    --- @param event ExtEngineEvent Event to listen for
-    --- @param callback function Lua function to run when the event fires
-    RegisterListener = function (event, callback) end,
-
-    --- Registers a function that is called when certain Osiris functions are called.
-    --- Supports events, built-in queries, DBs, PROCs, QRYs (user queries).
-    --- @param name string Osiris function/database name
-    --- @param arity number Number of columns for DBs or the number of parameters (both IN and OUT) for functions
-    --- @param event string Event type ('before' - triggered before Osiris call; 'after' - after Osiris call; 'beforeDelete'/'afterDelete' - before/after delete from DB)
-    --- @param handler function Lua function to run when the event fires
-    RegisterOsirisListener = function (name, arity, event, handler) end,
-
-    --- Registers a new call in Osiris
-    --- @param func function Function to register
-    --- @param funcName string Name of call to register
-    --- @param arguments string Call argument list
-    NewCall = function (func, funcName, arguments) end,
-
-    --- Registers a new query in Osiris
-    --- @param func function Function to register
-    --- @param funcName string Name of query to register
-    --- @param arguments string Query argument list
-    NewQuery = function (func, funcName, arguments) end,
-
-    --- Registers a new event in Osiris
-    --- @param funcName string Name of event to register
-    --- @param arguments string Event argument list
-    NewEvent = function (funcName, arguments) end,
-
-    --- Print to console window and editor messages pane
-    Print = function (...) end,
-
-    --- Print warning to console window and editor messages pane
-    PrintWarning = function (...) end,
-
-    --- Print error to console window and editor messages pane
-    PrintError = function (...) end,
-
-    --- Parse a JSON document into a Lua object
-    --- @param json string JSON string to parse
-    --- @return any
-    JsonParse = function (json) end,
-
-    --- Converts a Lua value into a JSON document
-    --- @param val any Value to serialize
-    --- @return string JSON document
-    JsonStringify = function (val) end,
-
-    --- Returns whether the specified mod is loaded
-    --- @param modGuid string GUID of the module
-    --- @return boolean
-    IsModLoaded = function (modGuid) end,
-
-    --- Returns the list of loaded modules in load order
-    --- @return string[]
-    GetModLoadOrder = function () end,
-
-    --- Returns detailed information about the specified (loaded) module
-    --- @param modGuid string GUID of the module
-    --- @return ModInfo
-    GetModInfo = function (modGuid) end,
-
-    --- Returns the list of loaded stat entries
-    --- @param type string|nil Type of stat entry to fetch (StatusData, SkillData, ...)
-    --- @return string[]
-    GetStatEntries = function (type) end,
-
-    --- Returns the list of stat entries that were loaded before the specified mod
-    --- @param modGuid string Mod GUID to check
-    --- @param type string|nil Type of stat entry to fetch (StatusData, SkillData, ...)
-    --- @return string[]
-    GetStatEntriesLoadedBefore = function (modId, type) end,
-
-    --- Returns all skills from the specified skill set
-    --- @param name string Name of skill set entry
-    --- @return string[]
-    GetSkillSet = function (name) end,
-
-    --- Returns all equipment from the specified equipment set
-    --- @param name string Name of equipment set entry
-    --- @return string[]
-    GetEquipmentSet = function (name) end,
-
-    --- Returns an attribute of the specified stat entry
-    --- @param stat string Stat entry name
-    --- @param attribute string Stat attribute name
-    --- @return any
-    StatGetAttribute = function (stat, attribute) end,
-
-    --- Updates an attribute of the specified stat entry
-    --- @param stat string Stat entry name
-    --- @param attribute string Stat attribute name
-    --- @param value any New stat value
-    StatSetAttribute = function (stat, attribute, value) end,
-
-    --- Adds a property description to the specified stat entry
-    --- @param stat string Stat entry name
-    --- @param attribute string Property list attribute name
-    --- @param description any Description to add
-    StatAddCustomDescription = function (stat, attribute, description) end,
-
-    --- Returns the specified DeltaMod or nil on failure
-    --- @param name string Name of delta mod
-    --- @return DeltaMod
-    GetDeltaMod = function (name) end,
-
-    --- Updates all properties of the specified DeltaMod.
-    --- The function expects a table in the same format as the one returned by GetDeltaMod.
-    --- @param deltaMod DeltaMod Name of delta mod
-    UpdateDeltaMod = function (deltaMod) end,
-
-    --- Replaces level scaling formula for the specified stat
-    --- @param statType string Stat entry type
-    --- @param attribute string Stat attribute name
-    --- @param func function Replacement scaling function
-    StatSetLevelScaling = function (statType, attribute, func) end,
-
-    --- Returns the property proxy of the specified stats entry
-    --- Returns level scaled values if the level parameter is not nil.
-    --- @param stat string Stat entry name
-    --- @param level integer|nil Level scaling level
-    --- @return StatEntryArmor|StatEntryCharacter|StatEntryObject|StatEntryPotion|StatEntryShield|StatEntrySkillData|StatEntryStatusData|StatEntryWeapon
-    GetStat = function (stat, level) end,
-
-    --- Creates a new stats entry on the server
-    --- @param name string Stat entry name
-    --- @param type string Stat entry type (i.e. SkillData, StatusData, etc.)
-    --- @param template string|nil When not nil, all properties are copied from the specified stats entry
-    --- @return StatEntryArmor|StatEntryCharacter|StatEntryObject|StatEntryPotion|StatEntryShield|StatEntrySkillData|StatEntryStatusData|StatEntryWeapon
-    CreateStat = function (name, type, template) end,
-
-    --- Synchronizes all modifications of the specified stat to all clients
-    --- @param name string Stat entry name
-    --- @param persist boolean|nil Persist stats entry to savegame?
-    SyncStat = function (name, persist) end,
-
-    --- Toggles whether the specified stats entry should be persisted to savegames
-    --- @param name string Stat entry name
-    --- @param persist boolean Persist stats entry to savegame?
-    StatSetPersistence = function (name, persist) end,
-
-    --- Returns the textual label assigned to the specified enumeration value
-    --- @param enum string Engine enumeration name
-    --- @param index number Value index to look up
-    --- @return string|nil
-    EnumIndexToLabel = function (enum, index) end,
-
-    --- Returns the numeric index assigned to the specified enumeration label
-    --- @param enum string Engine enumeration name
-    --- @param label string Value name to look for
-    --- @return number|nil
-    EnumLabelToIndex = function (enum, label) end,
-
-    --- Returns the GUID of all characters on the specified level. 
-    --- Uses the current level if no level name was specified.
-    --- @param level string|nil Optional level name
-    --- @return string[]
-    GetAllCharacters = function (level) end,
-
-    --- Returns the GUID of all characters within a radius around the specified point.
-    --- @param x number
-    --- @param y number
-    --- @param z number
-    --- @param distance number
-    --- @return string[]
-    GetCharactersAroundPosition = function (x, y, z, distance) end,
-
-    --- Returns the GUID of all items on the specified level. 
-    --- Uses the current level if no level name was specified.
-    --- @param level string|nil Optional level name
-    --- @return string[]
-    GetAllItems = function (level) end,
-
-    --- Returns the GUID of all items within a radius around the specified point.
-    --- @param x number
-    --- @param y number
-    --- @param z number
-    --- @param distance number
-    --- @return string[]
-    GetItemsAroundPosition = function (x, y, z, distance) end,
-
-    --- Returns the property proxy of the specified character
-    --- @param id string|integer Character GUID or handle or NetID
-    --- @return EsvCharacter
-    GetCharacter = function (id) end,
-
-    --- Returns the property proxy of the specified item
-    --- @param id string|integer Item GUID or handle or NetID
-    --- @return EsvItem
-    GetItem = function (id) end,
-
-    --- Returns the property proxy of the specified item
-    --- @param handle integer Game object handle
-    --- @return EsvGameObject
-    GetGameObject = function (handle) end,
-
-    --- Returns the property proxy of the specified status
-    --- @param characterGuid string Character GUID or handle
-    --- @param handle integer Status handle or NetID
-    --- @return EsvStatus
-    GetStatus = function (characterGuid, handle) end,
-
-    --- Returns the specified turn-based combat
-    --- @param combatId integer Combat ID
-    --- @return EsvCombat
-    GetCombat = function (combatId) end,
-
-    --- Creates a new damage list object
-    --- @return DamageList
-    NewDamageList = function () end,
-
-    --- Returns whether Osiris is currently accessible or not.
-    --- @return boolean
-    OsirisIsCallable = function () end,
-
-    --- Returns a random number; equivalent to Lua random
-    --- @param low integer
-    --- @param up integer
-    --- @return integer|number
-    Random = function (low, up) end,
-
-    --- Rounds the specified number
-    --- @param n number
-    --- @return number
-    Round = function (n) end,
-
-    --- Generate Lua IDE helpers for the currently loaded module
-    --- @param builtin boolean|nil Only export built-in functions and names exported by Lua?
-    GenerateIdeHelpers = function (builtin) end,
-
-    --- Returns whether the code is executing in a client context
-    --- @return boolean
-    IsClient = function () end,
-
-    --- Returns whether the code is executing in a server context
-    --- @return boolean
-    IsServer = function () end,
-
-    --- Returns whether the Developer Mode switch is enabled
-    --- @return boolean
-    IsDeveloperMode = function () end,
-
-    --- Broadcast a message to all peers
-    --- @param channel string Channel that will receive the message
-    --- @param payload string Message payload
-    --- @param excludeCharacter string|nil Optional peer to exclude from broadcast
-    BroadcastMessage = function (channel, payload, excludeCharacter) end,
-
-    --- Sends a message to the specified peer
-    --- @param characterGuid string Peer that will receive the message
-    --- @param channel string Channel that will receive the message
-    --- @param payload string Message payload
-    PostMessageToClient = function (characterGuid, channel, payload) end,
-
-    --- Sends a message to the server
-    --- @param channel string Channel that will receive the message
-    --- @param payload string Message payload
-    PostMessageToServer = function (channel, payload) end,
-
-    --- Registers a listener that is called when a network message is received on the specified channel
-    --- @param channel string Network channel name
-    --- @param handler function Lua handler
-    RegisterNetListener = function (channel, handler) end,
-
-    --- Registers a new dialog voice line for the specified speaker.
-    --- @param speakerGuid string Original path
-    --- @param textKey string Translated string key of text line
-    --- @param path string Path to audio .WEM
-    --- @param length number Length of audio in seconds
-    AddVoiceMetaData = function (speakerGuid, textKey, path, length) end,
-
-    --- @param handle string Translated string handle
-    --- @param fallback string Fallback string if the specified handle is not found
-    --- @return string Translated string
-    GetTranslatedString = function (handle, fallback) end,
-
-    --- @param key string Translated string key
-    --- @return string,string Translated string and handle
-    GetTranslatedStringFromKey = function (key) end,
-
-    --- Redirects all file accesses to the specified path to another file.
-    --- @param path string Original path
-    --- @param newPath string New (redirected) path
-    AddPathOverride = function (path, newPath) end,
-
-    --- Constructs a new Flash UI element
-    --- @param name string User-defined unique name that identifies the UI element
-    --- @param path string Path of the SWF file relative to the data directory
-    --- @param layer integer Stack order of the UI element
-    --- @return UIObject|nil
-    CreateUI = function (name, path, layer) end,
-
-    --- Retrieves an UI element with the specified name
-    --- @param name string User-defined unique name that identifies the UI element
-    --- @return UIObject|nil
-    GetUI = function (name) end,
-
-    --- Retrieves a built-in UI element at the specified path.
-    --- If no such element exists, the function returns nil.
-    --- @param path string UI SWF path relative to Data\
-    --- @return UIObject|nil
-    GetBuiltinUI = function (path) end,
-
-    --- Retrieves an engine UI element with the specified engine type ID.
-    --- If no such element exists, the function returns nil.
-    --- @param typeId number Engine UI element type ID
-    --- @return UIObject|nil
-    GetUIByType = function (typeId) end,
-
-    --- Destroys the specified UI element
-    --- @param name string User-defined unique name that identifies the UI element
-    DestroyUI = function (name) end,
-
-    --- Registers a listener that is called when the specified function is called from Flash
-    --- @param object UIObject UI object returned from Ext.CreateUI, Ext.GetUI or Ext.GetBuiltinUI
-    --- @param name string ExternalInterface function name
-    --- @param handler function Lua handler
-    RegisterUICall = function (object, name, handler) end,
-
-    --- Registers a listener that is called when the specified function is called from Flash.
-    --- The event is triggered for every UI element with the specified type ID.
-    --- @param typeId number Engine UI element type ID
-    --- @param name string ExternalInterface function name
-    --- @param handler function Lua handler
-    RegisterUITypeCall = function (typeId, name, handler) end,
-
-    --- Registers a listener that is called when the specified function is called from Flash.
-    --- The event is triggered regardless of which UI element it was called on.
-    --- (Function call capture must be enabled for every element type that needs to monitored!)
-    --- @param name string ExternalInterface function name
-    --- @param handler function Lua handler
-    RegisterUINameCall = function (name, handler) end,
-
-    --- Registers a listener that is called when the specified method is called on the main timeline of the Flash object
-    --- @param object UIObject UI object returned from Ext.CreateUI, Ext.GetUI or Ext.GetBuiltinUI
-    --- @param method string Flash method name
-    --- @param handler function Lua handler
-    RegisterUIInvokeListener = function (object, name, handler) end,
-
-    --- Registers a listener that is called when the specified method is called on the main timeline of the Flash object
-    --- The event is triggered for every UI element with the specified type ID.
-    --- @param typeId number Engine UI element type ID
-    --- @param method string Flash method name
-    --- @param handler function Lua handler
-    RegisterUITypeInvokeListener = function (typeId, name, handler) end,
-
-    --- Registers a listener that is called when the specified method is called on the main timeline of the Flash object
-    --- The event is triggered regardless of which UI element it was called on.
-    --- @param method string Flash method name
-    --- @param handler function Lua handler
-    RegisterUINameInvokeListener = function (name, handler) end,
-
-    --- Registers a listener that is called when a console command is entered in the dev console
-    --- @param cmd string Console command
-    --- @param handler function Lua handler
-    RegisterConsoleCommand = function (cmd, handler) end,
-
-    --- Write data to an external (persistent) file
-    --- @param path string File path relative to Documents\Larian Studios\Divinity Original Sin 2 Definitive Edition\Osiris Data
-    --- @param contents string File contents to write
-    SaveFile = function (path, contents) end,
-
-    --- Read data from an external (persistent) file
-    --- @param path string File path relative to Documents\Larian Studios\Divinity Original Sin 2 Definitive Edition\Osiris Data
-    --- @return string File contents
-    LoadFile = function (path) end,
-
-    --- Returns a monotonic value representing the current time in milliseconds.
-    --- Useful for performance measurements / measuring real world time.
-    --- (Note: This value is not synchronized between peers and different clients may report different time values!)
-    --- @return number Time
-    MonotonicTime = function () end,
-
-    -- Returns whether the player has a compatible Script Extender version installed
-    --- @param playerGuid string GUID of player character
-    --- @return boolean
-    PlayerHasExtender = function (playerGuid) end,
-
-    -- Handle to double conversion hack for use in Flash external interface calls
-    -- (Some of the builtin functions treat handles as double values)
-    --- @param handle number Integer handle to cast
-    --- @return number Double handle
-    HandleToDouble = function (handle) end,
-
-    -- Double to handle conversion hack for use in Flash external interface calls
-    -- (Some of the builtin functions treat handles as double values)
-    --- @param handle number Double handle to cast
-    --- @return number Integer handle
-    DoubleToHandle = function (handle) end
+    }
 }
+
+--- Returns the version number of the Osiris Extender
+--- @return integer
+function Ext.Version () end
+
+--- Returns the version number of the game
+--- @return string
+function Ext.GameVersion () end
+
+--- Loads the specified Lua file
+--- @param modGuid string GUID of the module containing the Lua file
+--- @param fileName string Path of Lua file, relative to Mods/<Mod>/Story/RawFiles/Lua
+function Ext.Require (modGuid, fileName) end
+
+--- Registers a function to call when an extender event is thrown
+--- @param event ExtEngineEvent Event to listen for
+--- @param callback function Lua function to run when the event fires
+function Ext.RegisterListener (event, callback) end
+
+--- Registers a function that is called when certain Osiris functions are called.
+--- Supports events, built-in queries, DBs, PROCs, QRYs (user queries).
+--- @param name string Osiris function/database name
+--- @param arity number Number of columns for DBs or the number of parameters (both IN and OUT) for functions
+--- @param event string Event type ('before' - triggered before Osiris call; 'after' - after Osiris call; 'beforeDelete'/'afterDelete' - before/after delete from DB)
+--- @param handler function Lua function to run when the event fires
+function Ext.RegisterOsirisListener (name, arity, event, handler) end
+
+--- Registers a new call in Osiris
+--- @param func function Function to register
+--- @param funcName string Name of call to register
+--- @param arguments string Call argument list
+function Ext.NewCall (func, funcName, arguments) end
+
+--- Registers a new query in Osiris
+--- @param func function Function to register
+--- @param funcName string Name of query to register
+--- @param arguments string Query argument list
+function Ext.NewQuery (func, funcName, arguments) end
+
+--- Registers a new event in Osiris
+--- @param funcName string Name of event to register
+--- @param arguments string Event argument list
+function Ext.NewEvent (funcName, arguments) end
+
+--- Print to console window and editor messages pane
+function Ext.Print (...) end
+
+--- Print warning to console window and editor messages pane
+function Ext.PrintWarning (...) end
+
+--- Print error to console window and editor messages pane
+function Ext.PrintError (...) end
+
+--- Parse a JSON document into a Lua object
+--- @param json string JSON string to parse
+--- @return any
+function Ext.JsonParse (json) end
+
+--- Converts a Lua value into a JSON document
+--- @param val any Value to serialize
+--- @return string JSON document
+function Ext.JsonStringify (val) end
+
+--- Returns whether the specified mod is loaded
+--- @param modGuid string GUID of the module
+--- @return boolean
+function Ext.IsModLoaded (modGuid) end
+
+--- Returns the list of loaded modules in load order
+--- @return string[]
+function Ext.GetModLoadOrder () end
+
+--- Returns detailed information about the specified (loaded) module
+--- @param modGuid string GUID of the module
+--- @return ModInfo
+function Ext.GetModInfo (modGuid) end
+
+--- Returns the list of loaded stat entries
+--- @param type string|nil Type of stat entry to fetch (StatusData, SkillData, ...)
+--- @return string[]
+function Ext.GetStatEntries (type) end
+
+--- Returns the list of stat entries that were loaded before the specified mod
+--- @param modGuid string Mod GUID to check
+--- @param type string|nil Type of stat entry to fetch (StatusData, SkillData, ...)
+--- @return string[]
+function Ext.GetStatEntriesLoadedBefore (modId, type) end
+
+--- Returns all skills from the specified skill set
+--- @param name string Name of skill set entry
+--- @return StatSkillSet|nil
+function Ext.GetSkillSet (name) end
+
+--- Updates all properties of the specified skill set.
+--- The function expects a table in the same format as the one returned by GetSkillSet.
+--- @param skillSet StatSkillSet
+function Ext.UpdateSkillSet (skillSet) end
+
+--- Returns all equipment from the specified equipment set
+--- @param name string Name of equipment set entry
+--- @return StatEquipmentSet|nil
+function Ext.GetEquipmentSet (name) end
+
+--- Updates all properties of the specified equipment set.
+--- The function expects a table in the same format as the one returned by GetEquipmentSet.
+--- @param equipmentSet StatEquipmentSet
+function Ext.UpdateEquipmentSet (equipmentSet) end
+
+--- Returns an attribute of the specified stat entry
+--- @param stat string Stat entry name
+--- @param attribute string Stat attribute name
+--- @return any
+function Ext.StatGetAttribute (stat, attribute) end
+
+--- Updates an attribute of the specified stat entry
+--- @param stat string Stat entry name
+--- @param attribute string Stat attribute name
+--- @param value any New stat value
+function Ext.StatSetAttribute (stat, attribute, value) end
+
+--- Adds a property description to the specified stat entry
+--- @param stat string Stat entry name
+--- @param attribute string Property list attribute name
+--- @param description any Description to add
+function Ext.StatAddCustomDescription (stat, attribute, description) end
+
+--- Returns the specified DeltaMod or nil on failure
+--- @param name string Name of delta mod
+--- @param modifierType string Modifier type (Armor/Weapon)
+--- @return DeltaMod
+function Ext.GetDeltaMod (name, modifierType) end
+
+--- Updates all properties of the specified DeltaMod.
+--- The function expects a table in the same format as the one returned by GetDeltaMod.
+--- @param deltaMod DeltaMod Name of delta mod
+function Ext.UpdateDeltaMod (deltaMod) end
+
+--- Returns the specified crafting item combination or nil on failure
+--- @param name string Name of item combo
+--- @return ItemCombo|nil
+function Ext.GetItemCombo (name) end
+
+--- Updates all properties of the specified item combination.
+--- The function expects a table in the same format as the one returned by GetItemCombo.
+--- @param itemCombo ItemCombo
+function Ext.UpdateItemCombo (itemCombo) end
+
+--- Returns the specified crafting preview data or nil on failure
+--- @param name string Name of item combo preview data
+--- @return ItemComboPreviewData|nil
+function Ext.GetItemComboPreviewData (name) end
+
+--- Updates all properties of the specified item combo preview.
+--- The function expects a table in the same format as the one returned by GetItemComboPreviewData.
+--- @param previewData ItemComboPreviewData
+function Ext.UpdateItemComboPreviewData (previewData) end
+
+--- Returns the specified crafting property or nil on failure
+--- @param name string Name of item combo property
+--- @return ItemComboProperty|nil
+function Ext.GetItemComboProperty (name) end
+
+--- Updates all properties of the specified item combo property.
+--- The function expects a table in the same format as the one returned by GetItemComboProperty.
+--- @param itemComboProperty ItemComboProperty
+function Ext.UpdateItemComboProperty (itemComboProperty) end
+
+--- Returns the specified treasure table or nil on failure
+--- @param name string Name of treasure table
+--- @return StatTreasureTable|nil
+function Ext.GetTreasureTable (name) end
+
+--- Updates all properties of the specified treasure table.
+--- The function expects a table in the same format as the one returned by GetTreasureTable.
+--- @param treasureTable StatTreasureTable
+function Ext.UpdateTreasureTable (treasureTable) end
+
+--- Returns the specified treasure category or nil on failure
+--- @param name string Name of treasure category
+--- @return StatTreasureCategory|nil
+function Ext.GetTreasureCategory (name) end
+
+--- Updates all properties of the specified treasure category.
+--- The function expects a table in the same format as the one returned by GetTreasureCategory.
+--- @param name string Name of treasure category
+--- @param treasureCategory StatTreasureCategory
+function Ext.UpdateTreasureCategory (name, treasureCategory) end
+
+--- Returns the specified item progression item group or nil on failure
+--- @param name string Name of item group
+--- @return ItemGroup|nil
+function Ext.GetItemGroup (name) end
+
+--- Returns the specified item progression name group or nil on failure
+--- @param name string Name of name group
+--- @return ItemNameGroup|nil
+function Ext.GetNameGroup (name) end
+
+--- Replaces level scaling formula for the specified stat
+--- @param statType string Stat entry type
+--- @param attribute string Stat attribute name
+--- @param func function Replacement scaling function
+function Ext.StatSetLevelScaling (statType, attribute, func) end
+
+--- Returns the property proxy of the specified stats entry
+--- Returns level scaled values if the level parameter is not nil.
+--- @param stat string Stat entry name
+--- @param level integer|nil Level scaling level
+--- @return StatEntryArmor|StatEntryCharacter|StatEntryObject|StatEntryPotion|StatEntryShield|StatEntrySkillData|StatEntryStatusData|StatEntryWeapon
+function Ext.GetStat (stat, level) end
+
+--- Creates a new stats entry on the server
+--- @param name string Stat entry name
+--- @param type string Stat entry type (i.e. SkillData, StatusData, etc.)
+--- @param template string|nil When not nil, all properties are copied from the specified stats entry
+--- @return StatEntryArmor|StatEntryCharacter|StatEntryObject|StatEntryPotion|StatEntryShield|StatEntrySkillData|StatEntryStatusData|StatEntryWeapon
+function Ext.CreateStat (name, type, template) end
+
+--- Synchronizes all modifications of the specified stat to all clients
+--- @param name string Stat entry name
+--- @param persist boolean|nil Persist stats entry to savegame?
+function Ext.SyncStat (name, persist) end
+
+--- Toggles whether the specified stats entry should be persisted to savegames
+--- @param name string Stat entry name
+--- @param persist boolean Persist stats entry to savegame?
+function Ext.StatSetPersistence (name, persist) end
+
+--- Returns the textual label assigned to the specified enumeration value
+--- @param enum string Engine enumeration name
+--- @param index number Value index to look up
+--- @return string|nil
+function Ext.EnumIndexToLabel (enum, index) end
+
+--- Returns the numeric index assigned to the specified enumeration label
+--- @param enum string Engine enumeration name
+--- @param label string Value name to look for
+--- @return number|nil
+function Ext.EnumLabelToIndex (enum, label) end
+
+--- Returns the transformation rules that are applied when two neighbouring surfaces interact.
+--- @return SurfaceInteractionSet[][]
+function Ext.GetSurfaceTransformRules () end
+
+--- Updates the transformation rules that are applied when two neighbouring surfaces interact.
+--- @param rules SurfaceInteractionSet[][] New rules to apply
+function Ext.UpdateSurfaceTransformRules (rules) end
+
+--- Prepares a new surface action for execution
+--- @param type string Surface action type
+--- @return EsvSurfaceAction
+function Ext.CreateSurfaceAction (type) end
+
+--- Executes a surface action
+--- @param action EsvSurfaceAction Action to execute
+function Ext.ExecuteSurfaceAction (action) end
+
+--- CAncels a surface action
+--- @param actionHandle integer Action to cancel
+function Ext.CancelSurfaceAction (actionHandle) end
+
+--- Returns the GUID of all characters on the specified level. 
+--- Uses the current level if no level name was specified.
+--- @param level string|nil Optional level name
+--- @return string[]
+function Ext.GetAllCharacters (level) end
+
+--- Returns the GUID of all characters within a radius around the specified point.
+--- @param x number
+--- @param y number
+--- @param z number
+--- @param distance number
+--- @return string[]
+function Ext.GetCharactersAroundPosition (x, y, z, distance) end
+
+--- Returns the GUID of all items on the specified level. 
+--- Uses the current level if no level name was specified.
+--- @param level string|nil Optional level name
+--- @return string[]
+function Ext.GetAllItems (level) end
+
+--- Returns the GUID of all items within a radius around the specified point.
+--- @param x number
+--- @param y number
+--- @param z number
+--- @param distance number
+--- @return string[]
+function Ext.GetItemsAroundPosition (x, y, z, distance) end
+
+--- Returns the property proxy of the specified character
+--- @param id string|integer Character GUID or handle or NetID
+--- @return EsvCharacter|EclCharacter
+function Ext.GetCharacter (id) end
+
+--- Returns the property proxy of the specified item
+--- @param id string|integer Item GUID or handle or NetID
+--- @return EsvItem|EclCharacter
+function Ext.GetItem (id) end
+
+--- Returns the property proxy of the specified item
+--- @param handle integer Game object handle
+--- @return EsvGameObject|EclGameObject
+function Ext.GetGameObject (handle) end
+
+--- Returns the property proxy of the specified status
+--- @param characterGuid string Character GUID or handle
+--- @param handle integer Status handle or NetID
+--- @return EsvStatus
+function Ext.GetStatus (characterGuid, handle) end
+
+--- Returns the specified turn-based combat
+--- @param combatId integer Combat ID
+--- @return EsvCombat
+function Ext.GetCombat (combatId) end
+
+--- Creates a new damage list object
+--- @return DamageList
+function Ext.NewDamageList () end
+
+--- Returns whether Osiris is currently accessible or not.
+--- @return boolean
+function Ext.OsirisIsCallable () end
+
+--- Returns a random number; equivalent to Lua random
+--- @param low integer
+--- @param up integer
+--- @return integer|number
+function Ext.Random (low, up) end
+
+--- Rounds the specified number
+--- @param n number
+--- @return number
+function Ext.Round (n) end
+
+--- Generate Lua IDE helpers for the currently loaded module
+--- @param builtin boolean|nil Only export built-in functions and names exported by Lua?
+function Ext.GenerateIdeHelpers (builtin) end
+
+--- Returns whether the code is executing in a client context
+--- @return boolean
+function Ext.IsClient () end
+
+--- Returns whether the code is executing in a server context
+--- @return boolean
+function Ext.IsServer () end
+
+--- Returns whether the Developer Mode switch is enabled
+--- @return boolean
+function Ext.IsDeveloperMode () end
+
+--- Returns the current client/server game state machine state.
+--- @return string
+function Ext.GetGameState () end
+
+--- Broadcast a message to all peers
+--- @param channel string Channel that will receive the message
+--- @param payload string Message payload
+--- @param excludeCharacter string|nil Optional peer to exclude from broadcast
+function Ext.BroadcastMessage (channel, payload, excludeCharacter) end
+
+--- Sends a message to the peer that controls the specified character
+--- @param characterGuid string Character that will receive the message
+--- @param channel string Channel that will receive the message
+--- @param payload string Message payload
+function Ext.PostMessageToClient (characterGuid, channel, payload) end
+
+--- Sends a message to the specified peer
+--- @param userId number User that will receive the message
+--- @param channel string Channel that will receive the message
+--- @param payload string Message payload
+function Ext.PostMessageToUser (userId, channel, payload) end
+
+--- Sends a message to the server
+--- @param channel string Channel that will receive the message
+--- @param payload string Message payload
+function Ext.PostMessageToServer (channel, payload) end
+
+--- Registers a listener that is called when a network message is received on the specified channel
+--- @param channel string Network channel name
+--- @param handler function Lua handler
+function Ext.RegisterNetListener (channel, handler) end
+
+--- Registers a new dialog voice line for the specified speaker.
+--- @param speakerGuid string Original path
+--- @param textKey string Translated string key of text line
+--- @param path string Path to audio .WEM
+--- @param length number Length of audio in seconds
+function Ext.AddVoiceMetaData (speakerGuid, textKey, path, length) end
+
+--- @param handle string Translated string handle
+--- @param fallback string Fallback string if the specified handle is not found
+--- @return string Translated string
+function Ext.GetTranslatedString (handle, fallback) end
+
+--- @param key string Translated string key
+--- @return string,string Translated string and handle
+function Ext.GetTranslatedStringFromKey (key) end
+
+--- @param key string Translated string key
+--- @param handle string Translated string handle
+--- @return bool
+function Ext.CreateTranslatedStringKey (key, handle) end
+
+--- @param handle string Translated string handle
+--- @param text string Display text
+--- @return bool
+function Ext.CreateTranslatedStringHandle (handle, text) end
+
+--- @param key string Translated string key
+--- @param text string Display text
+--- @return string|nil Created string handle
+function Ext.CreateTranslatedString (key, text) end
+
+--- Redirects all file accesses to the specified path to another file.
+--- @param path string Original path
+--- @param newPath string New (redirected) path
+function Ext.AddPathOverride (path, newPath) end
+
+--- Constructs a new Flash UI element
+--- @param name string User-defined unique name that identifies the UI element
+--- @param path string Path of the SWF file relative to the data directory
+--- @param layer integer Stack order of the UI element
+--- @return UIObject|nil
+function Ext.CreateUI (name, path, layer) end
+
+--- Retrieves an UI element with the specified name
+--- @param name string User-defined unique name that identifies the UI element
+--- @return UIObject|nil
+function Ext.GetUI (name) end
+
+--- Retrieves a built-in UI element at the specified path.
+--- If no such element exists, the function returns nil.
+--- @param path string UI SWF path relative to Data\
+--- @return UIObject|nil
+function Ext.GetBuiltinUI (path) end
+
+--- Retrieves an engine UI element with the specified engine type ID.
+--- If no such element exists, the function returns nil.
+--- @param typeId number Engine UI element type ID
+--- @return UIObject|nil
+function Ext.GetUIByType (typeId) end
+
+--- Destroys the specified UI element
+--- @param name string User-defined unique name that identifies the UI element
+function Ext.DestroyUI (name) end
+
+--- Registers a listener that is called when the specified function is called from Flash
+--- @param object UIObject UI object returned from Ext.CreateUI, Ext.GetUI or Ext.GetBuiltinUI
+--- @param name string ExternalInterface function name
+--- @param handler function Lua handler
+function Ext.RegisterUICall (object, name, handler) end
+
+--- Registers a listener that is called when the specified function is called from Flash.
+--- The event is triggered for every UI element with the specified type ID.
+--- @param typeId number Engine UI element type ID
+--- @param name string ExternalInterface function name
+--- @param handler function Lua handler
+function Ext.RegisterUITypeCall (typeId, name, handler) end
+
+--- Registers a listener that is called when the specified function is called from Flash.
+--- The event is triggered regardless of which UI element it was called on.
+--- (Function call capture must be enabled for every element type that needs to monitored!)
+--- @param name string ExternalInterface function name
+--- @param handler function Lua handler
+function Ext.RegisterUINameCall (name, handler) end
+
+--- Registers a listener that is called when the specified method is called on the main timeline of the Flash object
+--- @param object UIObject UI object returned from Ext.CreateUI, Ext.GetUI or Ext.GetBuiltinUI
+--- @param method string Flash method name
+--- @param handler function Lua handler
+function Ext.RegisterUIInvokeListener (object, name, handler) end
+
+--- Registers a listener that is called when the specified method is called on the main timeline of the Flash object
+--- The event is triggered for every UI element with the specified type ID.
+--- @param typeId number Engine UI element type ID
+--- @param method string Flash method name
+--- @param handler function Lua handler
+function Ext.RegisterUITypeInvokeListener (typeId, name, handler) end
+
+--- Registers a listener that is called when the specified method is called on the main timeline of the Flash object
+--- The event is triggered regardless of which UI element it was called on.
+--- @param method string Flash method name
+--- @param handler function Lua handler
+function Ext.RegisterUINameInvokeListener (name, handler) end
+
+--- Registers a listener that is called when a console command is entered in the dev console
+--- @param cmd string Console command
+--- @param handler function Lua handler
+function Ext.RegisterConsoleCommand (cmd, handler) end
+
+--- Write data to an external (persistent) file
+--- @param path string File path relative to Documents\Larian Studios\Divinity Original Sin 2 Definitive Edition\Osiris Data
+--- @param contents string File contents to write
+function Ext.SaveFile (path, contents) end
+
+--- Read data from an external (persistent) file
+--- @param path string File path relative to Documents\Larian Studios\Divinity Original Sin 2 Definitive Edition\Osiris Data
+--- @return string File contents
+function Ext.LoadFile (path) end
+
+--- Returns a monotonic value representing the current time in milliseconds.
+--- Useful for performance measurements / measuring real world time.
+--- (Note: This value is not synchronized between peers and different clients may report different time values!)
+--- @return number Time
+function Ext.MonotonicTime () end
+
+--- Returns whether the player has a compatible Script Extender version installed
+--- @param playerGuid string GUID of player character
+--- @return boolean
+function Ext.PlayerHasExtender (playerGuid) end
+
+--- Handle to double conversion hack for use in Flash external interface calls
+--- (Some of the builtin functions treat handles as double values)
+--- @param handle number Integer handle to cast
+--- @return number Double handle
+function Ext.HandleToDouble (handle) end
+
+--- Double to handle conversion hack for use in Flash external interface calls
+--- (Some of the builtin functions treat handles as double values)
+--- @param handle number Double handle to cast
+--- @return number Integer handle
+function Ext.DoubleToHandle (handle) end

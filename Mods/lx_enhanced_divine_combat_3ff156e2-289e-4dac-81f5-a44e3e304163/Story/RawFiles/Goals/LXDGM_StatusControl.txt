@@ -14,7 +14,7 @@ CharacterStatusRemoved(_Char, "CHICKEN", _)
 THEN
 ApplyStatus(_Char, "LX_MOMENTUM", 12.0, 1);
 
-//Ligering proc
+//Lingering proc
 IF
 CharacterStatusRemoved(_Char, "STUNNED", _)
 THEN
@@ -41,7 +41,12 @@ THEN
 ApplyStatus(_Char, "LX_LINGERING", 12.0, 1);
 
 IF
-CharacterStatusRemoved(_Char, "CHARM", _)
+CharacterStatusRemoved(_Char, "CHARMED", _)
+THEN
+ApplyStatus(_Char, "LX_LINGERING", 12.0, 1);
+
+IF
+CharacterStatusRemoved(_Char, "SLEEPING", _)
 THEN
 ApplyStatus(_Char, "LX_LINGERING", 12.0, 1);
 
@@ -97,21 +102,82 @@ HasActiveStatus(_Target, "LX_LINGERING", 1)
 THEN
 LX_EXT_CheckMagicalCC(_Target, "MADNESS", _Handle);
 
+IF
+NRD_OnStatusAttempt(_Target, "CHARMED", _Handle, _Instigator)
+AND
+HasActiveStatus(_Target, "LX_LINGERING", 1)
+THEN
+LX_EXT_CheckMagicalCC(_Target, "CHARMED", _Handle);
+
+IF
+NRD_OnStatusAttempt(_Target, "SLEEPING", _Handle, _Instigator)
+AND
+HasActiveStatus(_Target, "LX_LINGERING", 1)
+THEN
+LX_EXT_CheckMagicalCC(_Target, "SLEEPING", _Handle);
+
 
 //Perseverance HP rejuveration
-IF
-CharacterStatusApplied(_Char, "POST_MAGIC_CONTROL", _)
-AND
-CharacterGetAbility(_Char, "Perseverance", _Pers)
-THEN
-LX_EXT_ManagePerseverance(_Char, _Pers, "Magic");
+// IF
+// CharacterStatusApplied(_Char, "POST_MAGIC_CONTROL", _)
+// AND
+// CharacterGetAbility(_Char, "Perseverance", _Pers)
+// THEN
+// LX_EXT_ManagePerseverance(_Char, _Pers, "Magic");
+
+// IF
+// CharacterStatusApplied(_Char, "POST_PHYS_CONTROL", _)
+// AND
+// CharacterGetAbility(_Char, "Perseverance", _Pers)
+// THEN
+// LX_EXT_ManagePerseverance(_Char, _Pers, "Physical");
 
 IF
-CharacterStatusApplied(_Char, "POST_PHYS_CONTROL", _)
+CharacterStatusRemoved(_Char, "LX_STAGGERED", _)
 AND
 CharacterGetAbility(_Char, "Perseverance", _Pers)
 THEN
-LX_EXT_ManagePerseverance(_Char, _Pers, "Physical");
+LX_EXT_ManagePerseverance(_Char, _Pers, "Demi-Physic");
+
+IF
+CharacterStatusRemoved(_Char, "LX_STAGGERED2", _)
+AND
+CharacterGetAbility(_Char, "Perseverance", _Pers)
+THEN
+LX_EXT_ManagePerseverance(_Char, _Pers, "Demi-Physic");
+
+IF
+CharacterStatusRemoved(_Char, "LX_STAGGERED3", _)
+AND
+CharacterGetAbility(_Char, "Perseverance", _Pers)
+THEN
+LX_EXT_ManagePerseverance(_Char, _Pers, "Demi-Physic");
+
+IF
+CharacterStatusRemoved(_Char, "LX_CONFUSED", _)
+AND
+CharacterGetAbility(_Char, "Perseverance", _Pers)
+THEN
+LX_EXT_ManagePerseverance(_Char, _Pers, "Demi-Magic");
+
+IF
+CharacterStatusRemoved(_Char, "LX_CONFUSED2", _)
+AND
+CharacterGetAbility(_Char, "Perseverance", _Pers)
+THEN
+LX_EXT_ManagePerseverance(_Char, _Pers, "Demi-Magic");
+
+IF
+CharacterStatusRemoved(_Char, "LX_CONFUSED3", _)
+AND
+CharacterGetAbility(_Char, "Perseverance", _Pers)
+THEN
+LX_EXT_ManagePerseverance(_Char, _Pers, "Demi-Magic");
+
+IF
+CharacterLearnedSkill(_,_)
+THEN
+DB_NOOP(1);
 
 EXITSECTION
 

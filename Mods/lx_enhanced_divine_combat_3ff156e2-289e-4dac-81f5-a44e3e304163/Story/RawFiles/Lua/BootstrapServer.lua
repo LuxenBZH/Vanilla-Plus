@@ -7,10 +7,13 @@ Ext.Require("LXDGM_Talents.lua")
 Ext.Require("LXDGM_Weapons.lua")
 Ext.Require("LXDGM_StatsPatching.lua")
 Ext.Require("LXDGM_CustomBonuses.lua")
+Ext.Require("LXDGM_Modules.lua")
+Ext.Require("LXDGM_Consumables.lua")
 
 ---- General Functions ----
 ---@param character EsvCharacter
 function InitCharacterStatCheck(character)
+	if ObjectExists(character) == 0 then return end
 	local attributesStr = {
 		"Finesse",
 		"Intelligence",
@@ -41,6 +44,8 @@ end
 
 ---@param character EsvCharacter
 function CheckStatChange(character)
+	if character == nil then return end
+	if ObjectExists(character) == 0 then return end
 	--[[ This function is called periodically, and return true if something has changed.
 	Changed stats can be queried using LX_Changed_Base_Stat or LX_Changed_Stat with GetVarInteger.
 	--]]
@@ -63,9 +68,9 @@ function CheckStatChange(character)
 			local stored = GetVarInteger(character, "LX_Check_"..attr)
 			local storedBase = GetVarInteger(character, "LX_Check_Base_"..attr)
 			if stat ~= stored then
-				Ext.Print(attr.." changed from "..stored.." to "..stat)
+				--Ext.Print(attr.." changed from "..stored.." to "..stat)
 				changed = true
-				Ext.Print("Stat change for "..character)
+				--Ext.Print("Stat change for "..character)
 				SetVarInteger(character, "LX_Check_Base_"..attr, baseStat)
 				SetVarInteger(character, "LX_Changed_Base_"..attr, baseStat - storedBase)
 				SetVarInteger(character, "LX_Check_"..attr, stat)
@@ -206,7 +211,7 @@ local function DGM_consoleCmd(cmd, ...)
 			params[i] = par
 		end
 	end
-    if cmd == "DGM_CleanPermaBoosts" then CleanBoosts() end
+	if cmd == "DGM_CleanPermaBoosts" then CleanBoosts() end
 end
 
 Ext.RegisterConsoleCommand("DGM_CleanPermaBoosts", DGM_consoleCmd)

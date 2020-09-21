@@ -28,6 +28,7 @@ local dynamicTooltips = {
     ["Target_FrostyShell"]      = "hf2f2ceb4g7be9g453fgb093ga8d7c563f782",
     ["Shout_FrostAura"]         = "h2ce13614gab6cg4878gb781gcb3186a8ead9",
     ["Shout_RecoverArmour"]     = "hf7a19975gea84g44a3g8fffg5b4f063b88b4",
+    ["Target_TentacleLash"]     = "hddb00621g65ddg46acg89d2gfcf3efd8cd78"
 }
 
 ---@param str string
@@ -47,6 +48,7 @@ function GetDynamicTranslationString(dynamicKey, ...)
     local args = {...}
     
     local handle = dynamicTooltips[dynamicKey]
+    if handle == nil then return nil end
 
     local str = Ext.GetTranslatedString(handle, "Handle Error!")
     str = SubstituteString(str, table.unpack(args))
@@ -140,10 +142,10 @@ local function OnStatTooltip(character, stat, tooltip)
     local attrBonus = CharGetDGMAttributeBonus(character, 0)
 
     if stat == "Strength" then
-        statsPointValue.Label = GetDynamicTranslationString(stat, attrBonus["str"], attrBonus["strGlobal"], attrBonus["strWeapon"], attrBonus["strDot"])
+        statsPointValue.Label = GetDynamicTranslationString(stat, attrBonus["str"], attrBonus["strGlobal"], attrBonus["strWeapon"], attrBonus["strRes"])
 
     elseif stat == "Finesse" then
-        statsPointValue.Label = GetDynamicTranslationString(stat, attrBonus["fin"], attrBonus["finGlobal"], attrBonus["finDodge"], attrBonus["finMovement"])
+        statsPointValue.Label = GetDynamicTranslationString(stat, attrBonus["fin"], attrBonus["finGlobal"], attrBonus["finDodge"], attrBonus["finMovement"], attrBonus["finCrit"])
 
     elseif stat == "Intelligence" then
         statsPointValue.Label = GetDynamicTranslationString(stat, attrBonus["int"], attrBonus["intGlobal"], attrBonus["intSkill"], attrBonus["intAcc"])

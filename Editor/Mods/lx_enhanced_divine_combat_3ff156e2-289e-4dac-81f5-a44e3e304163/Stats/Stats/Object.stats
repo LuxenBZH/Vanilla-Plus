@@ -395,5 +395,18 @@
         <field name="UseAPCost" type="IntegerStatObjectFieldDefinition" value="3" />
       </fields>
     </stat_object>
+    <stat_object is_substat="false">
+      <fields>
+        <field name="Name" type="NameStatObjectFieldDefinition" value="_Grenades" />
+        <field name="ModifierType" type="EnumerationStatObjectFieldDefinition" value="0" enumeration_type_name="ModifierType" />
+        <field name="Act" type="EnumerationStatObjectFieldDefinition" value="0" enumeration_type_name="Act" />
+        <field name="Act part" type="EnumerationStatObjectFieldDefinition" value="10" enumeration_type_name="ActPart" />
+        <field name="UseAPCost" type="IntegerStatObjectFieldDefinition" value="2" />
+        <field name="Value" type="IntegerStatObjectFieldDefinition" value="120" />
+        <field name="Weight" type="IntegerStatObjectFieldDefinition" value="350" />
+        <field name="Flags" type="EnumerationListStatObjectFieldDefinition" value="12;36;4" enumeration_type_name="AttributeFlags" />
+        <field name="InventoryTab" type="EnumerationStatObjectFieldDefinition" value="3" enumeration_type_name="InventoryTabs" />
+      </fields>
+    </stat_object>
   </stat_objects>
 </stats>
