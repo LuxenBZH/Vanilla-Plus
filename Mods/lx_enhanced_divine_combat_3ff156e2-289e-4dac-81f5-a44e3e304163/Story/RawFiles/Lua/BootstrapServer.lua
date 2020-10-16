@@ -9,6 +9,7 @@ Ext.Require("LXDGM_StatsPatching.lua")
 Ext.Require("LXDGM_CustomBonuses.lua")
 Ext.Require("LXDGM_Modules.lua")
 Ext.Require("LXDGM_Consumables.lua")
+Ext.Require("LXDGM_FallDamage.lua")
 
 ---- General Functions ----
 ---@param character EsvCharacter

@@ -28,7 +28,8 @@ local dynamicTooltips = {
     ["Target_FrostyShell"]      = "hf2f2ceb4g7be9g453fgb093ga8d7c563f782",
     ["Shout_FrostAura"]         = "h2ce13614gab6cg4878gb781gcb3186a8ead9",
     ["Shout_RecoverArmour"]     = "hf7a19975gea84g44a3g8fffg5b4f063b88b4",
-    ["Target_TentacleLash"]     = "hddb00621g65ddg46acg89d2gfcf3efd8cd78"
+    ["Target_TentacleLash"]     = "hddb00621g65ddg46acg89d2gfcf3efd8cd78",
+    ["WpnCrossbow"]             = "h846daabdg90beg4ac9gb930g02e96dcdbd8d"
 }
 
 ---@param str string
@@ -84,6 +85,15 @@ local function WeaponTooltips(item, tooltip)
         }
         equipment["Label"] = GetDynamicTranslationString("WpnRanged", Ext.ExtraData.DGM_RangedCQBPenalty, Ext.ExtraData.DGM_RangedCQBPenaltyRange)
         equipment["RequirementMet"] = false
+        tooltip:AppendElementAfter(equipment, "ExtraProperties")
+    end
+
+    if item.WeaponType == "Crossbow" then
+        local equipment = {
+            Type = "ItemRequirement",
+            Label = GetDynamicTranslationString("WpnCrossbow", -1*Ext.ExtraData.DGM_CrossbowBasePenalty/100+(-1*Ext.ExtraData.DGM_CrossbowLevelGrowthPenalty/100*item.Level)),
+            RequirementMet = false
+        }
         tooltip:AppendElementAfter(equipment, "ExtraProperties")
     end
 end
@@ -220,7 +230,8 @@ local tooltipFix = {
     Finesse = "h3b3ad9d6g754fg44a0g953dg4f87d4ac96fe",
     Intelligence = "h33d41553g12cag401eg8c71g640d3d654054",
     SingleHanded = "ha74334b1gd56bg49c2g8738g44da4decd00a",
-    TwoHanded = "h3fb5cd5ag9ec8g4746g8f9cg03100b26bd3a"
+    TwoHanded = "h3fb5cd5ag9ec8g4746g8f9cg03100b26bd3a",
+    CrossbowSlow = "h52ee27b1g46a7g4a0dg95b3gf519d1072d3b"
 }
 
 -- Tooltip here is the fix for not being able to put a translation key on generated statuses for custom bonuses
@@ -256,6 +267,7 @@ local function FixCustomBonusesTranslationKeyMalus(character, stat, tooltip)
         if string.find(boost.Label, "DGM_Potion_.*_-[0-9]+:") ~= nil then
             local str = boost.Label:gsub("DGM_Potion_", "")
             str = str:gsub("_%-[0-9]+", "")
+            str = str:gsub("_[0-9]*", "")
             local stat = str:gsub("^%a* ", "")
             stat = stat:gsub(":.*$", "")
             local final = Ext.GetTranslatedString(tooltipFix[stat], stat)

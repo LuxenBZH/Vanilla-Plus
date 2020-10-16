@@ -83,3 +83,12 @@ function CharGetDGMAttributeBonus(char, next)
 	}
 	return bonus
 end
+
+function FlushArray(array)
+	local temp
+	for i=#array, 2, -1 do
+		temp = array[i-1]
+		if i == #array then temp = array[i] end
+		array[i-1] = temp
+	end
+end
