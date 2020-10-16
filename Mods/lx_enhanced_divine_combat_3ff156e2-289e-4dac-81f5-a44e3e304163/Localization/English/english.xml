@@ -12,7 +12,7 @@
     <content contentuid="h8ddc8dd4ge8feg4420ga6dag0d87ce8ec743" comment="Duck Duck Goose description">[1] lets you evade attacks of opportunity. Increases your Dodge by 5% and Movement by 1m per AP.</content>
     <content contentuid="hbde985cfgb1c4g4bb6g9a61gbec72c9b4ed6" comment="Mnemonic description">Mnenomic doubles all points invested in Memory.</content>
     <content contentuid="hc453e399ge1f5g41f1gaeabgcdd4de833c63" comment="Demon or IceKing">A character with [1] has an extra 30% [3], but takes a [4]% penalty to [5]. Additionally, the maximum [3] is raised by [6]. Demon grants 20% additional damage on all Burning and Necrofire statuses you apply to enemies. Ice King increases all Water damage you deal by 20%.</content>
-    <content contentuid="hcb8f9837gdf0fg4a01ga7d6g5ed522b74189" comment="Escapist description">[1] allows you to flee combat even when enemies are close by. Provides immunity to Crippled, Entangled and Enwebbbed.</content>
+    <content contentuid="hcb8f9837gdf0fg4a01ga7d6g5ed522b74189" comment="Escapist description">[1] allows you to flee combat even when enemies are close by. Provides immunity to Crippled, Entangled and Enwebbed.</content>
     <content contentuid="he94327f7g293dg488eg9d25gcb4f7ae7be24" comment="HotHead description">While above 75% Vitality, Hothead provides 10% Critical Chance and 10% Accuracy.</content>
     <content contentuid="hf3cd8067g36c0g4b48ga4dfg361f33579b43" comment="Ambidextrous description">Ambidextrous reduces the cost of using grenades and scrolls by 1 AP when your off-hand is free. Refund the AP cost for 2 equipment switches per turn.</content>
     <content contentuid="hf4632a8fg42a7g4d53gbe26gd203f28e3d5e" comment="Shadow damages ?">Shadow</content>
@@ -135,4 +135,6 @@
 	<content contentuid="h169eda41gad02g4143g997eg29c0cee15c14" comment="Stats_LX_WalkItOff_3">Walk It Off (3)</content>
 	<content contentuid="hfe5567d9g5f27g4729g8774g36bce3393b4d" comment="Stats_LX_WalkItOff_4">Walk It Off (4)</content>
 	<content contentuid="h3c306881g0106g4b61g931eg1e837bca6149" comment="Stats_LX_WalkItOff_5">Walk It Off (5)</content>
+	<content contentuid="h846daabdg90beg4ac9gb930g02e96dcdbd8d" comment="Crossbow Slow">Reduce Movement by [1]m</content>
+	<content contentuid="h619fc68ag94ccg4c8ag9442g4ad02630ad64" comment="Medusa Head aura">Slow enemies in [1] range.</content>
 </contentList>

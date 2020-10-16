@@ -192,7 +192,10 @@ ObjectTurnStarted(_)
 THEN
 DB_NOOP(1);
 
-
+IF
+CharacterUsedSkillAtPosition(_,_,_,_,_,_,_)
+THEN
+DB_NOOP(1);
 
 EXITSECTION
 

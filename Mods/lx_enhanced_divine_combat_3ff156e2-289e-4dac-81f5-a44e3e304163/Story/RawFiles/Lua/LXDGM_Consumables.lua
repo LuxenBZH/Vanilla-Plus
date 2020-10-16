@@ -1,7 +1,8 @@
 local function FoodRegeneration(object)
     if HasActiveStatus(object, "LX_FOOD_REGENERATION") == 1 then
         ApplyStatus(object, "LX_FOOD_REGEN1", 0.0)
-    elseif HasActiveStatus(object, "LX_FOOD_REGENERATION2") == 1 then
+    end
+    if HasActiveStatus(object, "LX_FOOD_REGENERATION2") == 1 then
         ApplyStatus(object, "LX_FOOD_REGEN2", 0.0)
     end
 end

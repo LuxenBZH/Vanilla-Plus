@@ -387,7 +387,6 @@
       <fields>
         <field name="Name" type="NameStatObjectFieldDefinition" value="DGM_BASE" />
         <field name="ForGameMaster" type="EnumerationStatObjectFieldDefinition" value="0" enumeration_type_name="YesNo" />
-        <field name="StackPriority" type="IntegerStatObjectFieldDefinition" value="1" />
       </fields>
     </stat_object>
     <stat_object is_substat="false">
@@ -403,19 +402,49 @@
     </stat_object>
     <stat_object is_substat="false">
       <fields>
+        <field name="Name" type="NameStatObjectFieldDefinition" value="LX_FOOD_CLEAN" />
+        <field name="DisplayName" type="TranslatedStringStatObjectFieldDefinition" value="Purge" />
+      </fields>
+    </stat_object>
+    <stat_object is_substat="false">
+      <fields>
         <field name="Name" type="NameStatObjectFieldDefinition" value="LX_FOOD_REGENERATION2" />
         <field name="DisplayName" type="TranslatedStringStatObjectFieldDefinition" value="Well fed" />
         <field name="Description" type="TranslatedStringStatObjectFieldDefinition" value="Regenerate 2% Vitality per turn during combat." />
         <field name="Icon" type="StringStatObjectFieldDefinition" value="Talent_FiveStarDiner" />
         <field name="ImmuneFlag" type="EnumerationStatObjectFieldDefinition" value="39" enumeration_type_name="AttributeFlag" />
-        <field name="StackId" type="StringStatObjectFieldDefinition" value="Stack_Food_Regeneration" />
+        <field name="StackId" type="StringStatObjectFieldDefinition" value="Stack_Food_Regeneration_2" />
         <field name="DescriptionParams" type="StringStatObjectFieldDefinition" value="Status:LX_FOOD_REGEN2:HealAmount" />
       </fields>
     </stat_object>
     <stat_object is_substat="false">
       <fields>
-        <field name="Name" type="NameStatObjectFieldDefinition" value="LX_FOOD_CLEAN" />
-        <field name="DisplayName" type="TranslatedStringStatObjectFieldDefinition" value="Purge" />
+        <field name="Name" type="NameStatObjectFieldDefinition" value="LX_CROSSBOWINIT" />
+      </fields>
+    </stat_object>
+    <stat_object is_substat="false">
+      <fields>
+        <field name="Name" type="NameStatObjectFieldDefinition" value="LX_CROSSBOWCLEAR" />
+        <field name="StackId" type="StringStatObjectFieldDefinition" value="DGM_CrossbowSlow" />
+      </fields>
+    </stat_object>
+    <stat_object is_substat="false">
+      <fields>
+        <field name="Name" type="NameStatObjectFieldDefinition" value="MEDUSA_HEAD" />
+        <field name="ForGameMaster" type="EnumerationStatObjectFieldDefinition" value="0" enumeration_type_name="YesNo" />
+        <field name="InitiateCombat" type="EnumerationStatObjectFieldDefinition" value="0" enumeration_type_name="YesNo" />
+        <field name="DisplayName" type="TranslatedStringStatObjectFieldDefinition" value="|Medusa Head|" />
+        <field name="Description" type="TranslatedStringStatObjectFieldDefinition" value="|Slow enemies in [1]m range.|" />
+        <field name="DescriptionParams" type="StringStatObjectFieldDefinition" value="AuraRadius" />
+        <field name="Icon" type="StringStatObjectFieldDefinition" value="Skill_Polymorph_MedusaHead" />
+        <field name="FormatColor" type="EnumerationStatObjectFieldDefinition" value="0" enumeration_type_name="FormatStringColor" />
+        <field name="StatsId" type="StringStatObjectFieldDefinition" value="Stats_MedusaHead" />
+        <field name="StackId" type="StringStatObjectFieldDefinition" value="Stack_Head" />
+        <field name="AuraRadius" type="IntegerStatObjectFieldDefinition" value="5" />
+        <field name="AuraEnemies" type="StringStatObjectFieldDefinition" value="SLOWED" />
+        <field name="Skills" type="StringStatObjectFieldDefinition" value="Shout_PetrifyingVisage" />
+        <field name="Items" type="StringStatObjectFieldDefinition" value="ARM_MedusaHead" />
+        <field name="ForceStackOverwrite" type="EnumerationStatObjectFieldDefinition" value="1" enumeration_type_name="YesNo" />
       </fields>
     </stat_object>
   </stat_objects>

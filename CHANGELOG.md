@@ -230,3 +230,29 @@ Fixes
 
 Balance
 * Food regeneration now restore vitality only during combat to avoid repetitive and unnecessary permanent healing effects
+
+#0.11.18.26 (Vasnya)
+Fixes
+* Fixed a bug related to skills tooltip that was clutering the console
+* Fixed a typo in Escapist description (thanks to our grammar nazi)
+
+Balance
+* Reduced Explosion damage by half (still 1.5x vanilla)
+* Crossbows movement penalty is now scaled with crossbow level, starting from -1.0m at level 1 and decrease the Movement by 0.08m per additional level.
+* Bull Horns now give 2 Retribution
+* Medusa Head aura now apply Slowed instead of Petrified and radius is increased to 4 meters from 3
+* Breathing Bubble now give Lingering for 1 turn, give a high amount of Wits (5 base) but doesn't give Accuracy anymore
+* Mass Corpse explosion AP cost increased from 1 to 2 and cooldown from 4 to 6
+* Elemental skins duration increased from 2 turns to 3 and provide 1 turn of Momentum and Lingering
+* Reduced Two Handed swords accuracy boost from 10% to 5%
+* Reduced One handed swords accuracy boost from 5% to 2%
+* Cup of milk provide Well fed 1 instead of Well fed 2
+* Cup of honey milk now correctly provide Well fed 2
+
+Modules
+* Included a new module : Fall damage (!DGM_Module_FallDamage on|off). This module enable fall damage when using Jump, Projectiles and when being victim of a Force effect (e.g. Blowback skill in GM mode).
+	- Damage starts after 5 meters high, you get knocked down after 12 meters and death is guaranteed after 15 meters.
+	- Scoundrel increase all those values by 0.5m per point
+	- If you have Wings or Pure, you are immune to fall damage
+	- /!\ CAUTION : The AI is unable to take fall damage into account. Enabling this against AI isn't recommended at all. This module is designed for the GM to play opponents.
+

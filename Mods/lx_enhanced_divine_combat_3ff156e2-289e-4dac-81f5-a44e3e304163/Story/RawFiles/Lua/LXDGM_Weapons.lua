@@ -182,20 +182,3 @@ function GetWeaponsType(character)
 	if offHand ~= nil then offHandType = offHand.WeaponType end
 	return {mainWeaponType, offHandType}
 end
-
----@param character EsvCharacter
-function ManageWeaponSpeedPenalty(character, status, enabled)
-	local char = Ext.GetCharacter(character)
-	Ext.Print(char.WalkSpeedOverride, char.RunSpeedOverride, char.RootTemplate.WalkSpeed, char.RootTemplate.RunSpeed)
-	if status == "LX_CROSSBOWPENALTY" and enabled == 1 then
-		char.WalkSpeed = 4
-		char.RunSpeed = 7.5
-	end
-	if enabled == 0 then
-		Ext.Print(char.WalkSpeedOverride, char.RunSpeedOverride, char.RootTemplate.WalkSpeed, char.RootTemplate.RunSpeed)
-		char.WalkSpeed = 2
-		char.RunSpeed= 3.75
-	end
-end
-
-Ext.NewCall(ManageWeaponSpeedPenalty, "LX_EXT_ManageWeaponSpeed", "(CHARACTERGUID)_Character, (STRING)_Status, (INTEGER)_Enabled")

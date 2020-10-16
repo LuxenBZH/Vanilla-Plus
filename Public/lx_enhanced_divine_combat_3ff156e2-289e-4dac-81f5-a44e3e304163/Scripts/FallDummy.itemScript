@@ -1,0 +1,11 @@
+INIT
+	ITEM: __Me
+
+EVENTS
+EVENT Init
+VARS
+	ITEMTEMPLATE: _Item
+ON
+	OnInit()
+ACTIONS
+	ItemEvent(__Me, "DGM_FallDamageInit")

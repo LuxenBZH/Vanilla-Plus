@@ -571,5 +571,27 @@
         <field name="Value" type="FloatStatObjectFieldDefinition" value="10" />
       </fields>
     </stat_object>
+    <stat_object is_substat="false">
+      <fields>
+        <field name="Name" type="NameStatObjectFieldDefinition" value="DGM_CrossbowBasePenalty" />
+        <field name="Value" type="FloatStatObjectFieldDefinition" value="-92" />
+      </fields>
+    </stat_object>
+    <stat_object is_substat="false">
+      <fields>
+        <field name="Name" type="NameStatObjectFieldDefinition" value="DGM_CrossbowLevelGrowthPenalty" />
+        <field name="Value" type="FloatStatObjectFieldDefinition" value="-8" />
+      </fields>
+    </stat_object>
+    <stat_object is_substat="false">
+      <fields>
+        <field name="Name" type="NameStatObjectFieldDefinition" value="DGM_MaceBasePenalty" />
+      </fields>
+    </stat_object>
+    <stat_object is_substat="false">
+      <fields>
+        <field name="Name" type="NameStatObjectFieldDefinition" value="DGM_MaceLevelGrowthPenalty" />
+      </fields>
+    </stat_object>
   </stat_objects>
 </stats>

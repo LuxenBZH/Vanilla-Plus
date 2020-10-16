@@ -78,6 +78,16 @@ local function CharacterUnlearnJumpSkill(character, skill)
     end
 end
 
+local function EnableFallDamage(cmd)
+    if cmd == "on" then
+        print("Fall damage module activated")
+        PersistentVars["DGM_FallDamage"] = true
+    elseif cmd == "off" then
+        print("Fall damage module deactivated")
+        PersistentVars["DGM_FallDamage"] = false
+    end
+end
+
 local function DGM_Modules_consoleCmd(cmd, ...)
 	local params = {...}
 	for i=1,10,1 do
@@ -89,10 +99,12 @@ local function DGM_Modules_consoleCmd(cmd, ...)
 			params[i] = par
 		end
 	end
-	if cmd == "DGM_Module_RealJump" then ReplaceAllJumps(params[1]) end
+    if cmd == "DGM_Module_RealJump" then ReplaceAllJumps(params[1]) end
+    if cmd == "DGM_Module_FallDamage" then EnableFallDamage(params[1]) end
 end
 
 Ext.RegisterConsoleCommand("DGM_Module_RealJump", DGM_Modules_consoleCmd)
+Ext.RegisterConsoleCommand("DGM_Module_FallDamage", DGM_Modules_consoleCmd)
 Ext.RegisterOsirisListener("StoryEvent", 2, "before", CharacterReplaceJumpSkills)
 Ext.RegisterOsirisListener("CharacterLearnedSkill", 2, "before", CharacterUnlearnJumpSkill)
 Ext.RegisterOsirisListener("GameStarted", 2, "after", GameStartJumpModule)

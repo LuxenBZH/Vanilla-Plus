@@ -314,6 +314,7 @@ local function SkillGetDescriptionParam(skill, character, isFromItem, par)
 		local once = false
 		
         for dmgType, damages in pairs(dmg) do
+            if damages.Min == nil then return end
 			local minDmg = math.floor(damages.Min)
 			local maxDmg = math.floor(damages.Max)
 			local color = getDamageColor(dmgType)

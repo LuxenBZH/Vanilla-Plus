@@ -186,3 +186,9 @@ key "VitalityLinearGrowth","0"
 
 key "SkillAbilityMovementSpeedPerPoint","10"
 
+key "DGM_CrossbowBasePenalty","-92"
+
+key "DGM_CrossbowLevelGrowthPenalty","-8"
+
+
+

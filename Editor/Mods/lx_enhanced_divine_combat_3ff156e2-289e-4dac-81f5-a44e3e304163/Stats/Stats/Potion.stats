@@ -3,6 +3,15 @@
   <stat_objects>
     <stat_object is_substat="false">
       <fields>
+        <field name="Name" type="NameStatObjectFieldDefinition" value="Stats_Infusion_Shadow" />
+        <field name="Act" type="EnumerationStatObjectFieldDefinition" value="0" enumeration_type_name="Act" />
+        <field name="Act part" type="EnumerationStatObjectFieldDefinition" value="0" enumeration_type_name="ActPart" />
+        <field name="Movement" type="IntegerStatObjectFieldDefinition" value="100" />
+        <field name="DamageBoost" type="IntegerStatObjectFieldDefinition" value="10" />
+      </fields>
+    </stat_object>
+    <stat_object is_substat="false">
+      <fields>
         <field name="Name" type="NameStatObjectFieldDefinition" value="Stats_FavourableWind_Aura" />
         <field name="Act" type="EnumerationStatObjectFieldDefinition" value="0" enumeration_type_name="Act" />
         <field name="Act part" type="EnumerationStatObjectFieldDefinition" value="0" enumeration_type_name="ActPart" />
@@ -34,7 +43,7 @@
         <field name="Act part" type="EnumerationStatObjectFieldDefinition" value="0" enumeration_type_name="ActPart" />
         <field name="Flags" type="EnumerationListStatObjectFieldDefinition" value="48;38;8" enumeration_type_name="AttributeFlags" />
         <field name="APMaximum" type="IntegerStatObjectFieldDefinition" value="1" />
-        <field name="AccuracyBoost" type="IntegerStatObjectFieldDefinition" value="15" />
+        <field name="Wits" type="EnumerationStatObjectFieldDefinition" value="151" enumeration_type_name="Penalty PreciseQualifier" />
       </fields>
     </stat_object>
     <stat_object is_substat="false">
@@ -64,15 +73,6 @@
         <field name="Act part" type="EnumerationStatObjectFieldDefinition" value="0" enumeration_type_name="ActPart" />
         <field name="DamageBoost" type="IntegerStatObjectFieldDefinition" value="10" />
         <field name="Armor" type="IntegerStatObjectFieldDefinition" value="50" />
-      </fields>
-    </stat_object>
-    <stat_object is_substat="false">
-      <fields>
-        <field name="Name" type="NameStatObjectFieldDefinition" value="Stats_Infusion_Shadow" />
-        <field name="Act" type="EnumerationStatObjectFieldDefinition" value="0" enumeration_type_name="Act" />
-        <field name="Act part" type="EnumerationStatObjectFieldDefinition" value="0" enumeration_type_name="ActPart" />
-        <field name="Movement" type="IntegerStatObjectFieldDefinition" value="100" />
-        <field name="DamageBoost" type="IntegerStatObjectFieldDefinition" value="10" />
       </fields>
     </stat_object>
     <stat_object is_substat="false">
@@ -2925,24 +2925,8 @@
         <field name="ComboCategory" type="StringStatObjectFieldDefinition" value="Drink" />
         <field name="Weight" type="IntegerStatObjectFieldDefinition" value="300" />
         <field name="Value" type="IntegerStatObjectFieldDefinition" value="5" />
-        <field name="ExtraProperties" type="StringStatObjectFieldDefinition" value="WARM,100,50;LX_FOOD_REGENERATION_2,100,50" />
+        <field name="ExtraProperties" type="StringStatObjectFieldDefinition" value="LX_FOOD_REGENERATION2,100,50;WARM,100,50" />
         <field name="Constitution" type="EnumerationStatObjectFieldDefinition" value="111" enumeration_type_name="Penalty PreciseQualifier" />
-      </fields>
-    </stat_object>
-    <stat_object is_substat="false">
-      <fields>
-        <field name="Name" type="NameStatObjectFieldDefinition" value="CON_Drink_Cup_A_Milk_Poisoned" />
-        <field name="Using" type="BaseClassStatObjectFieldDefinition" value="_ComboFood" />
-        <field name="RootTemplate" type="RootTemplateStatObjectFieldDefinition" value="811a8646-d8b1-4156-9c1b-ae9990b2a627" />
-        <field name="StackId" type="StringStatObjectFieldDefinition" value="PoisonedFood" />
-        <field name="Weight" type="IntegerStatObjectFieldDefinition" value="300" />
-        <field name="Value" type="IntegerStatObjectFieldDefinition" value="0" />
-        <field name="Duration" type="IntegerStatObjectFieldDefinition" value="0" />
-        <field name="Damage" type="EnumerationStatObjectFieldDefinition" value="3" enumeration_type_name="Qualifier" />
-        <field name="Damage Multiplier" type="IntegerStatObjectFieldDefinition" value="40" />
-        <field name="Damage Range" type="IntegerStatObjectFieldDefinition" value="10" />
-        <field name="DamageType" type="EnumerationStatObjectFieldDefinition" value="10" enumeration_type_name="Damage Type" />
-        <field name="ExtraProperties" type="StringStatObjectFieldDefinition" value="LX_FOOD_POISONED,100,50" />
       </fields>
     </stat_object>
     <stat_object is_substat="false">
@@ -2959,7 +2943,23 @@
         <field name="MaxAmount" type="IntegerStatObjectFieldDefinition" value="1" />
         <field name="Priority" type="IntegerStatObjectFieldDefinition" value="2" />
         <field name="MinLevel" type="IntegerStatObjectFieldDefinition" value="1" />
-        <field name="ExtraProperties" type="StringStatObjectFieldDefinition" value="LX_FOOD_REGENERATION_2,100,50" />
+        <field name="ExtraProperties" type="StringStatObjectFieldDefinition" value="LX_FOOD_REGENERATION,100,50" />
+      </fields>
+    </stat_object>
+    <stat_object is_substat="false">
+      <fields>
+        <field name="Name" type="NameStatObjectFieldDefinition" value="CON_Drink_Cup_A_Milk_Poisoned" />
+        <field name="Using" type="BaseClassStatObjectFieldDefinition" value="_ComboFood" />
+        <field name="RootTemplate" type="RootTemplateStatObjectFieldDefinition" value="811a8646-d8b1-4156-9c1b-ae9990b2a627" />
+        <field name="StackId" type="StringStatObjectFieldDefinition" value="PoisonedFood" />
+        <field name="Weight" type="IntegerStatObjectFieldDefinition" value="300" />
+        <field name="Value" type="IntegerStatObjectFieldDefinition" value="0" />
+        <field name="Duration" type="IntegerStatObjectFieldDefinition" value="0" />
+        <field name="Damage" type="EnumerationStatObjectFieldDefinition" value="3" enumeration_type_name="Qualifier" />
+        <field name="Damage Multiplier" type="IntegerStatObjectFieldDefinition" value="40" />
+        <field name="Damage Range" type="IntegerStatObjectFieldDefinition" value="10" />
+        <field name="DamageType" type="EnumerationStatObjectFieldDefinition" value="10" enumeration_type_name="Damage Type" />
+        <field name="ExtraProperties" type="StringStatObjectFieldDefinition" value="LX_FOOD_POISONED,100,50" />
       </fields>
     </stat_object>
     <stat_object is_substat="false">
@@ -4106,6 +4106,14 @@
         <field name="MaxAmount" type="IntegerStatObjectFieldDefinition" value="1" />
         <field name="Priority" type="IntegerStatObjectFieldDefinition" value="2" />
         <field name="MinLevel" type="IntegerStatObjectFieldDefinition" value="4" />
+      </fields>
+    </stat_object>
+    <stat_object is_substat="false">
+      <fields>
+        <field name="Name" type="NameStatObjectFieldDefinition" value="Stats_Horns" />
+        <field name="Act" type="EnumerationStatObjectFieldDefinition" value="0" enumeration_type_name="Act" />
+        <field name="Act part" type="EnumerationStatObjectFieldDefinition" value="0" enumeration_type_name="ActPart" />
+        <field name="PainReflection" type="IntegerStatObjectFieldDefinition" value="2" />
       </fields>
     </stat_object>
   </stat_objects>
