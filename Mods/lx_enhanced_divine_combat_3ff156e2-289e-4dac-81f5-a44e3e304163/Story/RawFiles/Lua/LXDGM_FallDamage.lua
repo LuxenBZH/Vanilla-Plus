@@ -7,18 +7,17 @@ local nullifyStatuses = {
 }
 
 local function CalculateFallDamage(character)
-    Ext.Print("Calculating fall damage")
     local height = jumpers[character][1] - jumpers[character][2]
+    Ext.Print("Calculating fall damage, total height:", height)
     if height > 5 then
         for i,status in pairs(nullifyStatuses) do
             if HasActiveStatus(character, status) == 1 then return end
         end
         local char = Ext.GetCharacter(character)
-        local damageHeight = height-5-char.Stats.RogueLore*0.5
-        if damageHeight < 1 then damageHeight = 1 end
-        local totalDamage = char.Stats.MaxVitality*(0.01*(damageHeight*damageHeight))
-        ApplyDamage(character, char.Stats.MaxVitality*(0.01*(damageHeight*damageHeight)), "Piercing")
-        if damageHeight*damageHeight > 50 then
+        local damageHeight = height-5-char.Stats.RogueLore*0.35
+        local totalDamage = char.Stats.MaxVitality*(0.2+0.08*(damageHeight))
+        ApplyDamage(character, totalDamage, "Piercing")
+        if totalDamage > 0.5*char.Stats.MaxVitality then
             ApplyStatus(character, "KNOCKED_DOWN", 6.0, 1.0)
         end
     end
@@ -78,6 +77,7 @@ local function CheckShockwavePos(timer)
     local check = false
     for character, pos in pairs(fallers) do
         local nX, nY, nZ = GetPosition(character)
+        -- Ext.Print(nX, nY, nZ, "|", pos[1], pos[2], pos[3])
         if nX == pos[1] and nY == pos[2] and nZ == pos[3] then
             jumpers[character][2] = nY
             fallers[character] = nil
@@ -93,8 +93,8 @@ end
 Ext.RegisterOsirisListener("TimerFinished", 1, "before", CheckShockwavePos)
 
 local function ShockwaveCheck(character, status, causee)
-    if not PersistentVars["DGM_FallDamage"] then return end
     if status ~= "SHOCKWAVE" then return end
+    if not PersistentVars["DGM_FallDamage"] then return end
     local x,y,z = GetPosition(character)
     jumpers[character] = {y, y}
     fallers[character] = {x, y, z}

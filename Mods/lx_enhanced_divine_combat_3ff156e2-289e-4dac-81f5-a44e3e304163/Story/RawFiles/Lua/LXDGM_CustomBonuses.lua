@@ -10,6 +10,7 @@ local function CreateCrossbowSlowdownStat(char)
     char = Ext.GetCharacter(char)
     if char == nil then return end
     local weapon = char.Stats.MainWeapon
+    if weapon.WeaponType ~= "Crossbow" then return end
     local leveledSlow = weapon.Level * crossbowSlowdown.Level
     local statusName = "DGM_CrossbowSlow_"..weapon.Level
     if NRD_StatExists(statusName) then
@@ -166,4 +167,21 @@ function SyncAbilitiesBonuses(char)
 end
 
 Ext.NewCall(SyncAbilitiesBonuses, "LX_EXT_SyncAbilityBonuses", "(CHARACTERGUID)_Character")
+
+local function CheckAllCustomBonuses(level, isEditor)
+    CharacterLaunchOsirisOnlyIterator("DGM_GlobalStatCheck")
+end
+
+Ext.RegisterOsirisListener("GameStarted", 2, "before", CheckAllCustomBonuses)
+
+local function CharacterGlobalCheck(character, event)
+    if event ~= "DGM_GlobalStatCheck" then return end
+    SyncAttributeBonuses(character)
+    SyncAbilitiesBonuses(character)
+    if HasActiveStatus(character, "LX_CROSSBOWINIT") then
+        CreateCrossbowSlowdownStat(character)
+    end
+end
+
+Ext.RegisterOsirisListener("StoryEvent", 2, "before", CharacterGlobalCheck)
 
