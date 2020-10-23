@@ -255,4 +255,21 @@ Modules
 	- Scoundrel increase all those values by 0.5m per point
 	- If you have Wings or Pure, you are immune to fall damage
 	- /!\ CAUTION : The AI is unable to take fall damage into account. Enabling this against AI isn't recommended at all. This module is designed for the GM to play opponents.
+	
+#0.11.19.27 (Trompdoy)
+Fixes
+* Fixed Walk it Off description not being correct
+* Fixed an issue where talents special effects would not be applied when reloading a game
+
+Balance
+* Reduced Bows and Crossbows critical multiplier from 150 to 130
+* Reduced Bows base damage from 85 to 70
+* Reduced Crossbows base damage from 105 to 90
+* Reduced Bows range from 1300 to 1100
+* Reduced Crossbows range from 1300 to 1250
+* Reduced Elemental Weapon base damage bonus from 40 to 25 for elements and 30 to 15 for blood
+
+Modules
+* Changed the fall damage formula. Starts at 20% HP at 5 meters and go up to 100% at 15 meters
+* Scoundrel now increase fall distance tolerance by 0.4m per point instead of 0.5m
 

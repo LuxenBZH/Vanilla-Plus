@@ -180,7 +180,7 @@ local function GetSkillDamageRange(character, skill)
 			local weaponDamage = Ext.StatGetAttribute(weaponStat, "Damage")
 			if weaponDamage > 2 then return end
 			skillDamageType = damageConvert[tonumber(weaponDamage)+1]
-			skill.DamageType = Ext.StatGetAttribute(weaponStat, "Damage Type")
+			skill.DamageType = Ext.StatGetAttribute(weaponStat, "DamageType")
 			damageMultiplier = Ext.StatGetAttribute(weaponStat, "DamageFromBase")*0.01
 			skill["Damage Range"] = Ext.StatGetAttribute(weaponStat, "Damage Range")
         end

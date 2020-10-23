@@ -181,6 +181,7 @@ local function CharacterGlobalCheck(character, event)
     if HasActiveStatus(character, "LX_CROSSBOWINIT") then
         CreateCrossbowSlowdownStat(character)
     end
+    CheckAllTalents(character)
 end
 
 Ext.RegisterOsirisListener("StoryEvent", 2, "before", CharacterGlobalCheck)
