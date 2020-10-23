@@ -105,7 +105,7 @@ local function GetSkillDamageRange(character, skill)
     if desc:find("Skill:") ~= nil then
         local skillStat = desc:gsub("^[A-z]*:", ""):gsub(":.*", "")
         local skillDamage = Ext.StatGetAttribute(skillStat, "Damage")
-        skill.DamageType = Ext.StatGetAttribute(skillStat, "DamageType")
+        skill.DamageType = Ext.StatGetAttribute(skillStat, "Damage Type")
         damageMultiplier = Ext.StatGetAttribute(skillStat, "Damage Multiplier")*0.01
         skill["Damage Range"] = Ext.StatGetAttribute(skillStat, "Damage Range")
         skill.UseWeaponDamage = Ext.StatGetAttribute(skillStat, "UseWeaponDamage")
@@ -180,7 +180,7 @@ local function GetSkillDamageRange(character, skill)
 			local weaponDamage = Ext.StatGetAttribute(weaponStat, "Damage")
 			if weaponDamage > 2 then return end
 			skillDamageType = damageConvert[tonumber(weaponDamage)+1]
-			skill.DamageType = Ext.StatGetAttribute(weaponStat, "Damage Type")
+			skill.DamageType = Ext.StatGetAttribute(weaponStat, "DamageType")
 			damageMultiplier = Ext.StatGetAttribute(weaponStat, "DamageFromBase")*0.01
 			skill["Damage Range"] = Ext.StatGetAttribute(weaponStat, "Damage Range")
         end
