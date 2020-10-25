@@ -11,6 +11,14 @@ Ext.Require("LXDGM_Modules.lua")
 Ext.Require("LXDGM_Consumables.lua")
 Ext.Require("LXDGM_FallDamage.lua")
 
+gameMode = nil
+
+local function GameMode(mode, isEditor)
+	gameMode = mode
+end
+
+Ext.RegisterOsirisListener("GameModeStarted", 2, "before", GameMode)
+
 ---- General Functions ----
 ---@param character EsvCharacter
 function InitCharacterStatCheck(character)

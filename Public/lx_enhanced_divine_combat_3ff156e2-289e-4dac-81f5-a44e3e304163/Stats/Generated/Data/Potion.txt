@@ -32,6 +32,7 @@ type "Potion"
 data "Act" "1"
 data "Act part" "0"
 data "Wits" "5"
+data "AccuracyBoost" "15"
 data "APMaximum" "1"
 data "Flags" "IgnoreClouds;SuffocatingImmunity;MuteImmunity"
 

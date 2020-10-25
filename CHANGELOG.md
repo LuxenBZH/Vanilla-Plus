@@ -273,3 +273,14 @@ Modules
 * Changed the fall damage formula. Starts at 20% HP at 5 meters and go up to 100% at 15 meters
 * Scoundrel now increase fall distance tolerance by 0.4m per point instead of 0.5m
 
+#0.11.20.28 (Han)
+Fixes
+* Walk it off status does not get back to the first stage after reaching the third one
+* Fixed an issue in the Fall damage module where fall damage would be randomly applied during inappropriate moments
+
+Balance
+* Breathing Bubble now give 15% Accuracy (again)
+* Medusa Head slow aura now go through magic armor
+
+Modules
+* Added an option to the Fall damage module to disable jump fall damage (in that case, only fall damage from Force skills will work)

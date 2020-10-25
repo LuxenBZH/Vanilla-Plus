@@ -76,8 +76,58 @@ local function ReplaceDescriptionParams()
 	end
 end
 
+--- @param character StatEntryObject
+local function GetArchetype(stats)
+	if stats.Strength > stats.Finesse and stats.Strength > stats.Intelligence then
+		return "Strength"
+	elseif stats.Finesse > stats.Strength and stats.Finesse > stats.Intelligence then
+		return "Finesse"
+	elseif stats.Intelligence > stats.Strength and stats.Intelligence > stats.Finesse then
+		return "Intelligence"
+	end
+	return "None"
+end
+
+local function HasParent(stat, value)
+	if stat.Using == value then
+		return true
+	elseif stat.Using ~= nil or stat.Using == "" then
+		HasParent(stat.Using, value)
+	else
+		return false
+	end
+end
+
+local function AdjustNPCStats()
+	Ext.Print("Game mode: ",gameMode)
+	if gameMode == "Campaign" then
+		Ext.Print("Overriding NPC stats for balance...")
+		local attributes = {
+			"Strength",
+			"Finesse",
+			"Intelligence"
+		}
+		for i,stat in Ext.GetStatEntries("Character") do
+			if not HasParent(stat, "_Hero") then
+				local archetype = GetArchetype()
+				for i,attr in pairs(attributes) do
+					if attr == archetype then
+						Ext.StatSetAttribute(stat, attr, tostring(RoundToFirstDecimal(stat[attr]*0.85)))
+					elseif archetype == "None" then
+						Ext.StatSetAttribute(stat, attr, tostring(RoundToFirstDecimal(stat[attr]*0.7)))
+					else
+						Ext.StatSetAttribute(stat, attr, tostring(RoundToFirstDecimal(stat[attr]*0.5)))
+					end
+				end
+
+			end
+		end
+	end
+end
+
 Ext.RegisterListener("StatsLoaded", AddDamageToDescription)
 Ext.RegisterListener("StatsLoaded", AdaptWeaponEnhancingSkills)
 Ext.RegisterListener("StatsLoaded", AddAdditionalDescription)
 Ext.RegisterListener("StatsLoaded", ReduceEquipmentMovementBonus)
 Ext.RegisterListener("StatsLoaded", ReplaceDescriptionParams)
+Ext.RegisterListener("StatsLoaded", AdjustNPCStats)

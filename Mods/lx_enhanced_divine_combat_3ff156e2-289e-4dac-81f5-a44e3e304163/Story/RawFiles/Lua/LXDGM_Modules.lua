@@ -88,6 +88,16 @@ local function EnableFallDamage(cmd)
     end
 end
 
+local function EnableJumpDamage(cmd)
+    if cmd == "on" then
+        print("Jump fall damage module activated")
+        PersistentVars["DGM_FallDamage_Jump"] = true
+    elseif cmd == "off" then
+        print("Jump fall damage module deactivated")
+        PersistentVars["DGM_FallDamage_Jump"] = false
+    end
+end
+
 local function DGM_Modules_consoleCmd(cmd, ...)
 	local params = {...}
 	for i=1,10,1 do
@@ -101,6 +111,7 @@ local function DGM_Modules_consoleCmd(cmd, ...)
 	end
     if cmd == "DGM_Module_RealJump" then ReplaceAllJumps(params[1]) end
     if cmd == "DGM_Module_FallDamage" then EnableFallDamage(params[1]) end
+    if cmd == "DGM_Module_FallDamage_Jump" then EnableJumpDamage(params[1]) end
 end
 
 Ext.RegisterConsoleCommand("DGM_Module_RealJump", DGM_Modules_consoleCmd)

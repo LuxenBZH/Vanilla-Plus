@@ -110,15 +110,15 @@ function WalkItOffReplacement(character)
 	local hasStatus = 0
 	local wioStates = {"LX_WALKITOFF", "LX_WALKITOFF_2", "LX_WALKITOFF_3"}
 	local reapply = false
-	for i,stage in pairs(wioStates) do
+	for i=1,3,1 do
 		if reapply == true then
-			ApplyStatus(character, stage, 6.0)
+			ApplyStatus(character, wioStates[i], 6.0)
 			return 
 		end
-		hasStatus = HasActiveStatus(character, stage)
+		hasStatus = HasActiveStatus(character, wioStates[i])
 		--Ext.Print("Has ",stage, ": ", hasStatus)
 		if hasStatus == 1 then reapply = true end
-		if stage == "LX_WALKITOFF_5" then return end
+		if wioStates[i] == "LX_WALKITOFF_3" then return end
 	end
 	ApplyStatus(character, "LX_WALKITOFF", 6.0)
 end

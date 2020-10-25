@@ -441,10 +441,26 @@
         <field name="StatsId" type="StringStatObjectFieldDefinition" value="Stats_MedusaHead" />
         <field name="StackId" type="StringStatObjectFieldDefinition" value="Stack_Head" />
         <field name="AuraRadius" type="IntegerStatObjectFieldDefinition" value="5" />
-        <field name="AuraEnemies" type="StringStatObjectFieldDefinition" value="SLOWED" />
+        <field name="AuraEnemies" type="StringStatObjectFieldDefinition" value="LX_SLOWED" />
         <field name="Skills" type="StringStatObjectFieldDefinition" value="Shout_PetrifyingVisage" />
         <field name="Items" type="StringStatObjectFieldDefinition" value="ARM_MedusaHead" />
         <field name="ForceStackOverwrite" type="EnumerationStatObjectFieldDefinition" value="1" enumeration_type_name="YesNo" />
+      </fields>
+    </stat_object>
+    <stat_object is_substat="false">
+      <fields>
+        <field name="Name" type="NameStatObjectFieldDefinition" value="LX_SLOWED" />
+        <field name="ForGameMaster" type="EnumerationStatObjectFieldDefinition" value="1" enumeration_type_name="YesNo" />
+        <field name="InitiateCombat" type="EnumerationStatObjectFieldDefinition" value="0" enumeration_type_name="YesNo" />
+        <field name="DisplayName" type="TranslatedStringStatObjectFieldDefinition" value="Slowed" />
+        <field name="Description" type="TranslatedStringStatObjectFieldDefinition" value="|Reduced Movement speed by [1]%. Cured by Hasted, Adrenaline.|" />
+        <field name="DescriptionParams" type="StringStatObjectFieldDefinition" value="Stats:Stats_Slowed:MovementSpeedBoost" />
+        <field name="Icon" type="StringStatObjectFieldDefinition" value="statIcons_Slowed" />
+        <field name="FormatColor" type="EnumerationStatObjectFieldDefinition" value="4" enumeration_type_name="FormatStringColor" />
+        <field name="StatusEffect" type="StringStatObjectFieldDefinition" value="RS3_FX_GP_Status_Slowed_01" />
+        <field name="ImmuneFlag" type="EnumerationStatObjectFieldDefinition" value="17" enumeration_type_name="AttributeFlag" />
+        <field name="StatsId" type="StringStatObjectFieldDefinition" value="Stats_Slowed" />
+        <field name="StackId" type="StringStatObjectFieldDefinition" value="Stack_Slowed" />
       </fields>
     </stat_object>
   </stat_objects>
