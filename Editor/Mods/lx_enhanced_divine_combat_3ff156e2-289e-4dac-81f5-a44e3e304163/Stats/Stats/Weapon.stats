@@ -286,8 +286,8 @@
         <field name="Damage Type" type="EnumerationStatObjectFieldDefinition" value="1" enumeration_type_name="Damage Type" />
         <field name="Damage" type="IntegerStatObjectFieldDefinition" value="0" />
         <field name="Damage Range" type="IntegerStatObjectFieldDefinition" value="10" />
-        <field name="DamageFromBase" type="IntegerStatObjectFieldDefinition" value="70" />
-        <field name="CriticalDamage" type="IntegerStatObjectFieldDefinition" value="130" />
+        <field name="DamageFromBase" type="IntegerStatObjectFieldDefinition" value="75" />
+        <field name="CriticalDamage" type="IntegerStatObjectFieldDefinition" value="140" />
         <field name="CriticalChance" type="IntegerStatObjectFieldDefinition" value="0" />
         <field name="WeaponRange" type="IntegerStatObjectFieldDefinition" value="1100" />
         <field name="Durability" type="IntegerStatObjectFieldDefinition" value="0" />
@@ -319,8 +319,8 @@
         <field name="Damage Type" type="EnumerationStatObjectFieldDefinition" value="1" enumeration_type_name="Damage Type" />
         <field name="Damage" type="IntegerStatObjectFieldDefinition" value="0" />
         <field name="Damage Range" type="IntegerStatObjectFieldDefinition" value="5" />
-        <field name="DamageFromBase" type="IntegerStatObjectFieldDefinition" value="90" />
-        <field name="CriticalDamage" type="IntegerStatObjectFieldDefinition" value="130" />
+        <field name="DamageFromBase" type="IntegerStatObjectFieldDefinition" value="95" />
+        <field name="CriticalDamage" type="IntegerStatObjectFieldDefinition" value="140" />
         <field name="CriticalChance" type="IntegerStatObjectFieldDefinition" value="0" />
         <field name="WeaponRange" type="IntegerStatObjectFieldDefinition" value="1250" />
         <field name="Durability" type="IntegerStatObjectFieldDefinition" value="0" />

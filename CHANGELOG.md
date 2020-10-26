@@ -279,8 +279,12 @@ Fixes
 * Fixed an issue in the Fall damage module where fall damage would be randomly applied during inappropriate moments
 
 Balance
+* Story mode : NPCs stats have been adjusted to take into account damage from all attributes, so they should all have less Strength, Finesse and Intelligence for similar damage compared to vanilla.
 * Breathing Bubble now give 15% Accuracy (again)
 * Medusa Head slow aura now go through magic armor
+* Increased Bows base damage from 70 to 75 and critical multiplier from 130 to 140
+* Increased Crossbows base damage from 90 to 95 and critical multiplier from 130 to 140
+
 
 Modules
 * Added an option to the Fall damage module to disable jump fall damage (in that case, only fall damage from Force skills will work)

@@ -76,13 +76,25 @@ local function ReplaceDescriptionParams()
 	end
 end
 
+local function GetParentStat(entry, stat)
+	if entry[stat] == "None" and entry.Using ~= nil then
+		GetParentStat(entry.Using, stat)
+	else
+		return entry[stat]
+	end
+end
+
 --- @param character StatEntryObject
 local function GetArchetype(stats)
-	if stats.Strength > stats.Finesse and stats.Strength > stats.Intelligence then
+	local strength = GetParentStat(stats, "Strength")
+	local finesse = GetParentStat(stats, "Finesse")
+	local intelligence = GetParentStat(stats, "Intelligence")
+	--Ext.Print(stats.Name, strength, finesse, intelligence)
+	if strength > finesse and strength > intelligence then
 		return "Strength"
-	elseif stats.Finesse > stats.Strength and stats.Finesse > stats.Intelligence then
+	elseif finesse > strength and finesse > intelligence then
 		return "Finesse"
-	elseif stats.Intelligence > stats.Strength and stats.Intelligence > stats.Finesse then
+	elseif intelligence > strength and intelligence > finesse then
 		return "Intelligence"
 	end
 	return "None"
@@ -98,28 +110,42 @@ local function HasParent(stat, value)
 	end
 end
 
+local function CheckStoryMode()
+	local ftj = Ext.GetStat("_FortJoyNPCs")
+	local rc = Ext.GetStat("_ReapersCoastNPCs")
+	local cos = Ext.GetStat("_CoS")
+	local arx = Ext.GetStat("_ARX")
+	Ext.Print(ftj.Name,rc.Name,cos.Name,arx.Name)
+	if ftj ~= nil and rc ~= nil and cos ~= nil and arx ~= nil then
+		return true
+	else
+		return false
+	end
+end
+
 local function AdjustNPCStats()
-	Ext.Print("Game mode: ",gameMode)
-	if gameMode == "Campaign" then
+	if CheckStoryMode() then
 		Ext.Print("Overriding NPC stats for balance...")
 		local attributes = {
 			"Strength",
 			"Finesse",
 			"Intelligence"
 		}
-		for i,stat in Ext.GetStatEntries("Character") do
-			if not HasParent(stat, "_Hero") then
-				local archetype = GetArchetype()
+		for i,stat in pairs(Ext.GetStatEntries("Character")) do
+			stat = Ext.GetStat(stat)
+			if not HasParent(stat, "_Hero") and string.find(stat.Name, "Summon_") ~= 1 then
+				local archetype = GetArchetype(stat)
 				for i,attr in pairs(attributes) do
-					if attr == archetype then
-						Ext.StatSetAttribute(stat, attr, tostring(RoundToFirstDecimal(stat[attr]*0.85)))
-					elseif archetype == "None" then
-						Ext.StatSetAttribute(stat, attr, tostring(RoundToFirstDecimal(stat[attr]*0.7)))
-					else
-						Ext.StatSetAttribute(stat, attr, tostring(RoundToFirstDecimal(stat[attr]*0.5)))
+					if stat[attr] ~= "None" then
+						if attr == archetype then
+							Ext.StatSetAttribute(stat.Name, attr, string.gsub(tostring(RoundToFirstDecimal(stat[attr]*0.8)), ".0", ""))
+						elseif archetype == "None" then
+							Ext.StatSetAttribute(stat.Name, attr, string.gsub(tostring(RoundToFirstDecimal(stat[attr]*0.65)), ".0", ""))
+						else
+							Ext.StatSetAttribute(stat.Name, attr, string.gsub(tostring(RoundToFirstDecimal(stat[attr]*0.5)), ".0", ""))
+						end
 					end
 				end
-
 			end
 		end
 	end
