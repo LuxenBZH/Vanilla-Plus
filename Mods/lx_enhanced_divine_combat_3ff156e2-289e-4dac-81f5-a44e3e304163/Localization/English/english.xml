@@ -68,8 +68,8 @@
     <content contentuid="hffc37ae5g6651g4a60ga1c1g49d233cb1ca2" comment="Ranged dynamic tooltip new">Next Level [1]: +[2]% Damage, +[3]% Critical Chance and increase Range by [4]m.</content>
     <content contentuid="h70707bb2g5a48g4571g9a68ged2fe5a030ea" comment="Single handed dynamic tooltip current">Level [1]: +[2]% Damage, +[3]% accuracy, +[4]% armours and +[5]% to Elemental Resistances.</content>
     <content contentuid="h2afdc1f0g4650g4ea9gafb7gb0c042367766" comment="Single handed dynamic tooltip current new">Next Level [1]: +[2]% Damage, +[3]% accuracy, +[4]% armours and +[5]% to Elemental Resistances.</content>
-    <content contentuid="h6e9ec88dgcbb7g426bgb1d9g69df0240825a" comment="Two handed dynamic tooltip current">Level [1]: +[2]% Damage, +[3]% Critical Multiplier and [4]% Accuracy.</content>
-    <content contentuid="hda7ee9a4g5bbeg4c62g96b7ge31b21e094f3" comment="Two handed dynamic tooltip new">Next Level [1]: +[2]% Damage, +[3]% Critical Multiplier and [4]% Accuracy.</content>
+    <content contentuid="h6e9ec88dgcbb7g426bgb1d9g69df0240825a" comment="Two handed dynamic tooltip current">Level [1]: +[2]% Damage, +[3]% Critical Multiplier.</content>
+    <content contentuid="hda7ee9a4g5bbeg4c62g96b7ge31b21e094f3" comment="Two handed dynamic tooltip new">Next Level [1]: +[2]% Damage, +[3]% Critical Multiplier.</content>
     <content contentuid="h5d0c3ad0g3d9dg4cf1g92b7g20d6d7d26344" comment="Perseverance dyanmic tooltip current">Level [1]: +[2]% Armour and +[3]% Vitality restored after a hard Crowd Control effect recovery.</content>
     <content contentuid="h443a51dcgbd6fg46c2g8988gbfe93a3123a5" comment="Perseverance dyanmic tooltip new">Next Level [1]: +[2]% Armour and +[3]% Vitality restored after a hard Crowd Control effect recovery.</content>
     <content contentuid="h1e5caa33g4d5dg4f42g91edg9f546d42f56b" comment="Staff dynamic tooltip">Increases all Skill damage by [1]%.</content>

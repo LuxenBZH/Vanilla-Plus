@@ -273,18 +273,28 @@ Modules
 * Changed the fall damage formula. Starts at 20% HP at 5 meters and go up to 100% at 15 meters
 * Scoundrel now increase fall distance tolerance by 0.4m per point instead of 0.5m
 
-#0.11.20.28 (Han)
+#0.12.20.29 (Han)
 Fixes
+* Improved performance on the server side, which was causing desyncs to the host itself and also to clients
 * Walk it off status does not get back to the first stage after reaching the third one
+* Fixed Walk it off not triggering in certain conditions
 * Fixed an issue in the Fall damage module where fall damage would be randomly applied during inappropriate moments
+* Fixed skillbooks with spells requirements that have been lowered not appearing and with wrong requirements
+* Fixed some skills damage not displaying correctly
+* Reflection damage shouldn't be scaled with attributes anymore
+
 
 Balance
-* Story mode : NPCs stats have been adjusted to take into account damage from all attributes, so they should all have less Strength, Finesse and Intelligence for similar damage compared to vanilla.
+* (V53+) Story mode : NPCs stats have been adjusted to take into account damage from all attributes, so they should all have less Strength, Finesse and Intelligence for similar damage compared to vanilla.
 * Breathing Bubble now give 15% Accuracy (again)
 * Medusa Head slow aura now go through magic armor
 * Increased Bows base damage from 70 to 75 and critical multiplier from 130 to 140
 * Increased Crossbows base damage from 90 to 95 and critical multiplier from 130 to 140
-
+* Two Handed does not provide Accuracy anymore
+* Changed Damage and Armors calculations for a number of hits to take a character down similar to vanilla.
+	- VitalityToDamageRatio : 6.5 > 8.0
+	- VitalityToDamageRatioGrowth : 0.2 > 0.3
+	- ArmorToVitality : 0.45 > 0.35
 
 Modules
 * Added an option to the Fall damage module to disable jump fall damage (in that case, only fall damage from Force skills will work)

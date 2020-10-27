@@ -98,17 +98,20 @@ end
 ---@param character StatCharacter
 ---@param skill StatEntrySkillData
 local function GetSkillDamageRange(character, skill)
+    skill = Ext.GetStat(skill.Name)
     local desc = skill.StatsDescriptionParams
 
 	--Ext.Print(skill.DamageMultiplier)
     local damageMultiplier = skill['Damage Multiplier'] * 0.01
     if desc:find("Skill:") ~= nil then
         local skillStat = desc:gsub("^[A-z]*:", ""):gsub(":.*", "")
-        local skillDamage = Ext.StatGetAttribute(skillStat, "Damage")
-        skill.DamageType = Ext.StatGetAttribute(skillStat, "Damage Type")
-        damageMultiplier = Ext.StatGetAttribute(skillStat, "Damage Multiplier")*0.01
-        skill["Damage Range"] = Ext.StatGetAttribute(skillStat, "Damage Range")
-        skill.UseWeaponDamage = Ext.StatGetAttribute(skillStat, "UseWeaponDamage")
+        skillStat = Ext.GetStat(skillStat)
+        Ext.Dump(skillStat)
+        local skillDamage = skillStat.Damage
+        skill.DamageType = skillStat.DamageType
+        damageMultiplier = skillStat["Damage Multiplier"]*0.01
+        skill["Damage Range"] = skillStat["Damage Range"]
+        skill.UseWeaponDamage = skillStat.UseWeaponDamage
     end
 
     local amplifierMult = 1.0
@@ -180,7 +183,7 @@ local function GetSkillDamageRange(character, skill)
 			local weaponDamage = Ext.StatGetAttribute(weaponStat, "Damage")
 			if weaponDamage > 2 then return end
 			skillDamageType = damageConvert[tonumber(weaponDamage)+1]
-			skill.DamageType = Ext.StatGetAttribute(weaponStat, "DamageType")
+			skill.DamageType = Ext.StatGetAttribute(weaponStat, "Damage Type")
 			damageMultiplier = Ext.StatGetAttribute(weaponStat, "DamageFromBase")*0.01
 			skill["Damage Range"] = Ext.StatGetAttribute(weaponStat, "Damage Range")
         end
@@ -205,7 +208,6 @@ local function GetSkillDamageRange(character, skill)
 		local globalMult = 1.0
 		
         if skill.StatsDescriptionParams:find("Weapon:") ~= nil  or skill.Name == "Target_TentacleLash" then
-            Ext.Print("Strength scaling")
 			local weaponStat = skill.StatsDescriptionParams:gsub("^[A-z]*:", ""):gsub(":.*", "")
 			globalMult = 1 + (character.Strength-10) * (Ext.ExtraData.DGM_StrengthGlobalBonus*0.01 + Ext.ExtraData.DGM_StrengthWeaponBonus*0.01) +
 		(character.Finesse-10) * (Ext.ExtraData.DGM_FinesseGlobalBonus*0.01) +
@@ -284,6 +286,8 @@ end
 -- Odinblade compatibility
 Game.Math.GetSkillDamageRange = GetSkillDamageRange
 
+Ext.RegisterListener("StatusGetDescriptionParam", StatusGetDescriptionParam)
+
 local SkillGetDescriptionParamForbidden = {"Projectile_OdinHUN_HuntersTrap", "Target_ElementalArrowheads", "Projectile_OdinHUN_TheHunt"}
 
 ---@param skill StatEntrySkillData
@@ -329,6 +333,8 @@ local function SkillGetDescriptionParam(skill, character, isFromItem, par)
 	end
 	return nil
 end
+
+Ext.RegisterListener("SkillGetDescriptionParam", SkillGetDescriptionParam)
 
 local DamageTypes = {
     None = 0,
@@ -393,8 +399,8 @@ local function DGM_SetupUI()
 end
 
 Ext.RegisterListener("SessionLoaded", DGM_SetupUI)
-Ext.RegisterListener("SkillGetDescriptionParam", SkillGetDescriptionParam)
-Ext.RegisterListener("StatusGetDescriptionParam", StatusGetDescriptionParam)
+
+
 
 ---@param attacker EsvCharacter
 ---@param target EsvCharacter

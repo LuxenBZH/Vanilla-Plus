@@ -408,5 +408,117 @@
         <field name="InventoryTab" type="EnumerationStatObjectFieldDefinition" value="3" enumeration_type_name="InventoryTabs" />
       </fields>
     </stat_object>
+    <stat_object is_substat="false">
+      <fields>
+        <field name="Name" type="NameStatObjectFieldDefinition" value="SKILLBOOK_Fire_FireBrand" />
+        <field name="Using" type="BaseClassStatObjectFieldDefinition" value="_Skillbooks" />
+        <field name="RootTemplate" type="RootTemplateStatObjectFieldDefinition" value="99abc6f3-953c-42c1-a8f5-7e83a43e201c" />
+        <field name="Act part" type="EnumerationStatObjectFieldDefinition" value="9" enumeration_type_name="ActPart" />
+        <field name="Value" type="IntegerStatObjectFieldDefinition" value="500" />
+        <field name="ComboCategory" type="StringStatObjectFieldDefinition" value="SkillbookFire" />
+        <field name="Requirements" type="StringStatObjectFieldDefinition" value="FireSpecialist 2" />
+        <field name="ObjectCategory" type="StringStatObjectFieldDefinition" value="SkillbookFireLate" />
+        <field name="MinAmount" type="IntegerStatObjectFieldDefinition" value="1" />
+        <field name="MaxAmount" type="IntegerStatObjectFieldDefinition" value="1" />
+        <field name="Priority" type="IntegerStatObjectFieldDefinition" value="1" />
+        <field name="MinLevel" type="IntegerStatObjectFieldDefinition" value="16" />
+      </fields>
+    </stat_object>
+    <stat_object is_substat="false">
+      <fields>
+        <field name="Name" type="NameStatObjectFieldDefinition" value="SKILLBOOK_Earth_LivingWall" />
+        <field name="Using" type="BaseClassStatObjectFieldDefinition" value="_Skillbooks" />
+        <field name="RootTemplate" type="RootTemplateStatObjectFieldDefinition" value="630681f7-3fbb-4d81-a3e6-7d499e857762" />
+        <field name="Act part" type="EnumerationStatObjectFieldDefinition" value="9" enumeration_type_name="ActPart" />
+        <field name="Value" type="IntegerStatObjectFieldDefinition" value="500" />
+        <field name="ComboCategory" type="StringStatObjectFieldDefinition" value="SkillbookEarth" />
+        <field name="Requirements" type="StringStatObjectFieldDefinition" value="EarthSpecialist 2" />
+        <field name="ObjectCategory" type="StringStatObjectFieldDefinition" value="SkillbookEarthLate" />
+        <field name="MinAmount" type="IntegerStatObjectFieldDefinition" value="1" />
+        <field name="MaxAmount" type="IntegerStatObjectFieldDefinition" value="1" />
+        <field name="Priority" type="IntegerStatObjectFieldDefinition" value="1" />
+        <field name="MinLevel" type="IntegerStatObjectFieldDefinition" value="16" />
+      </fields>
+    </stat_object>
+    <stat_object is_substat="false">
+      <fields>
+        <field name="Name" type="NameStatObjectFieldDefinition" value="SKILLBOOK_Earth_SiphonPoison" />
+        <field name="Using" type="BaseClassStatObjectFieldDefinition" value="_Skillbooks" />
+        <field name="RootTemplate" type="RootTemplateStatObjectFieldDefinition" value="4c26b290-4c4c-494e-a4d7-f197a1c2ced1" />
+        <field name="Act part" type="EnumerationStatObjectFieldDefinition" value="1" enumeration_type_name="ActPart" />
+        <field name="Value" type="IntegerStatObjectFieldDefinition" value="100" />
+        <field name="ComboCategory" type="StringStatObjectFieldDefinition" value="SkillbookEarth" />
+        <field name="Requirements" type="StringStatObjectFieldDefinition" value="EarthSpecialist 1" />
+        <field name="ObjectCategory" type="StringStatObjectFieldDefinition" value="SkillbookEarthLate" />
+        <field name="MinAmount" type="IntegerStatObjectFieldDefinition" value="1" />
+        <field name="MaxAmount" type="IntegerStatObjectFieldDefinition" value="1" />
+        <field name="Priority" type="IntegerStatObjectFieldDefinition" value="1" />
+        <field name="MinLevel" type="IntegerStatObjectFieldDefinition" value="16" />
+      </fields>
+    </stat_object>
+    <stat_object is_substat="false">
+      <fields>
+        <field name="Name" type="NameStatObjectFieldDefinition" value="SKILLBOOK_Air_Tornado" />
+        <field name="Using" type="BaseClassStatObjectFieldDefinition" value="_Skillbooks" />
+        <field name="RootTemplate" type="RootTemplateStatObjectFieldDefinition" value="e0d4e3f4-141e-4675-b323-9f5233c5911f" />
+        <field name="Act part" type="EnumerationStatObjectFieldDefinition" value="9" enumeration_type_name="ActPart" />
+        <field name="Value" type="IntegerStatObjectFieldDefinition" value="500" />
+        <field name="ComboCategory" type="StringStatObjectFieldDefinition" value="SkillbookAir" />
+        <field name="Requirements" type="StringStatObjectFieldDefinition" value="AirSpecialist 2" />
+        <field name="ObjectCategory" type="StringStatObjectFieldDefinition" value="SkillbookAirLate" />
+        <field name="MinAmount" type="IntegerStatObjectFieldDefinition" value="1" />
+        <field name="MaxAmount" type="IntegerStatObjectFieldDefinition" value="1" />
+        <field name="Priority" type="IntegerStatObjectFieldDefinition" value="1" />
+        <field name="MinLevel" type="IntegerStatObjectFieldDefinition" value="16" />
+      </fields>
+    </stat_object>
+    <stat_object is_substat="false">
+      <fields>
+        <field name="Name" type="NameStatObjectFieldDefinition" value="SKILLBOOK_Summoning_Cannibalize" />
+        <field name="Using" type="BaseClassStatObjectFieldDefinition" value="_Skillbooks" />
+        <field name="RootTemplate" type="RootTemplateStatObjectFieldDefinition" value="ad1f38d3-d7c9-4dea-88e5-cb52c31892ea" />
+        <field name="Act part" type="EnumerationStatObjectFieldDefinition" value="9" enumeration_type_name="ActPart" />
+        <field name="Value" type="IntegerStatObjectFieldDefinition" value="900" />
+        <field name="ComboCategory" type="StringStatObjectFieldDefinition" value="SkillbookSummoning" />
+        <field name="Requirements" type="StringStatObjectFieldDefinition" value="Summoning 2" />
+        <field name="ObjectCategory" type="StringStatObjectFieldDefinition" value="SkillbookSummoningLate" />
+        <field name="MinAmount" type="IntegerStatObjectFieldDefinition" value="1" />
+        <field name="MaxAmount" type="IntegerStatObjectFieldDefinition" value="1" />
+        <field name="Priority" type="IntegerStatObjectFieldDefinition" value="1" />
+        <field name="MinLevel" type="IntegerStatObjectFieldDefinition" value="16" />
+      </fields>
+    </stat_object>
+    <stat_object is_substat="false">
+      <fields>
+        <field name="Name" type="NameStatObjectFieldDefinition" value="SKILLBOOK_Rogue_LaunchBomber" />
+        <field name="Using" type="BaseClassStatObjectFieldDefinition" value="_Skillbooks" />
+        <field name="RootTemplate" type="RootTemplateStatObjectFieldDefinition" value="3a291754-71e6-496b-8038-69f0d0b2adca" />
+        <field name="Act part" type="EnumerationStatObjectFieldDefinition" value="9" enumeration_type_name="ActPart" />
+        <field name="Value" type="IntegerStatObjectFieldDefinition" value="900" />
+        <field name="ComboCategory" type="StringStatObjectFieldDefinition" value="SkillbookRogue" />
+        <field name="Requirements" type="StringStatObjectFieldDefinition" value="RogueLore 2" />
+        <field name="ObjectCategory" type="StringStatObjectFieldDefinition" value="SkillbookRogueLate" />
+        <field name="MinAmount" type="IntegerStatObjectFieldDefinition" value="1" />
+        <field name="MaxAmount" type="IntegerStatObjectFieldDefinition" value="1" />
+        <field name="Priority" type="IntegerStatObjectFieldDefinition" value="1" />
+        <field name="MinLevel" type="IntegerStatObjectFieldDefinition" value="16" />
+      </fields>
+    </stat_object>
+    <stat_object is_substat="false">
+      <fields>
+        <field name="Name" type="NameStatObjectFieldDefinition" value="SKILLBOOK_Warrior_GuardianAngel" />
+        <field name="Using" type="BaseClassStatObjectFieldDefinition" value="_Skillbooks" />
+        <field name="RootTemplate" type="RootTemplateStatObjectFieldDefinition" value="84eb7f03-e386-4d8b-bb3c-431573e4ea2a" />
+        <field name="Act part" type="EnumerationStatObjectFieldDefinition" value="9" enumeration_type_name="ActPart" />
+        <field name="Value" type="IntegerStatObjectFieldDefinition" value="900" />
+        <field name="ComboCategory" type="StringStatObjectFieldDefinition" value="SkillbookWarrior" />
+        <field name="Requirements" type="StringStatObjectFieldDefinition" value="WarriorLore 2" />
+        <field name="ObjectCategory" type="StringStatObjectFieldDefinition" value="SkillbookWarriorLate" />
+        <field name="MinAmount" type="IntegerStatObjectFieldDefinition" value="1" />
+        <field name="MaxAmount" type="IntegerStatObjectFieldDefinition" value="1" />
+        <field name="Priority" type="IntegerStatObjectFieldDefinition" value="1" />
+        <field name="MinLevel" type="IntegerStatObjectFieldDefinition" value="16" />
+      </fields>
+    </stat_object>
   </stat_objects>
 </stats>
