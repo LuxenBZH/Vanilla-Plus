@@ -29,6 +29,8 @@ function DamageControl(target, handle, instigator)
 	local backstab = NRD_StatusGetInt(target, handle, "Backstab")
 	local fixedValue = 0
 	-- print("SkillID: "..skillID)
+
+	if fromReflection == 1 then return end
 	if NRD_StatusGetInt(target, handle, "HitReason") == 0 then
 		fromWeapon = 1
 	elseif skillID ~= "" then

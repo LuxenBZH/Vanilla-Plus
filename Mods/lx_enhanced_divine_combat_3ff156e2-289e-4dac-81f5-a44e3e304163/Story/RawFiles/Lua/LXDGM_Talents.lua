@@ -38,7 +38,9 @@ end
 ---@param unlocked boolean
 function ManageMemory(character, unlocked)
 	if unlocked then
-		InitCharacterStatCheck(character)
+		local mem = math.floor(CharacterGetBaseAttribute(character, "Memory") - Ext.ExtraData.AttributeBaseValue)
+		NRD_CharacterSetPermanentBoostInt(character, "Memory", mem)
+		CharacterAddAttribute(character, "Dummy", 0)
 	else
 		local memBonus = NRD_CharacterGetPermanentBoostInt(character, "Memory")
 		local mem = math.floor(CharacterGetBaseAttribute(character, "Memory") - Ext.ExtraData.AttributeBaseValue)
@@ -100,8 +102,12 @@ function SetWalkItOff(target, handle)
 	local hasTalent = CharacterHasTalent(target, "WalkItOff")
 	-- Ext.Print("Target has WalkItOff: ",hasTalent)
 	if hasTalent == 1 then
-		local hitType = NRD_StatusGetInt(target, handle, "HitType")
-		if hitType ~= 4 then WalkItOffReplacement(target) end
+		local surfaceHit = NRD_StatusGetInt(target, handle, "Surface")
+		local dot = NRD_StatusGetInt(target, handle, "DoT")
+		local reflection = NRD_StatusGetInt(target, handle, "Reflection")
+		if surfaceHit == 0 and dot == 0 and reflection == 0 then
+			WalkItOffReplacement(target)
+		end
 	end
 end
 
@@ -110,15 +116,15 @@ function WalkItOffReplacement(character)
 	local hasStatus = 0
 	local wioStates = {"LX_WALKITOFF", "LX_WALKITOFF_2", "LX_WALKITOFF_3"}
 	local reapply = false
-	for i,stage in pairs(wioStates) do
+	for i=1,3,1 do
 		if reapply == true then
-			ApplyStatus(character, stage, 6.0)
+			ApplyStatus(character, wioStates[i], 6.0)
 			return 
 		end
-		hasStatus = HasActiveStatus(character, stage)
+		hasStatus = HasActiveStatus(character, wioStates[i])
 		--Ext.Print("Has ",stage, ": ", hasStatus)
 		if hasStatus == 1 then reapply = true end
-		if stage == "LX_WALKITOFF_5" then return end
+		if hasStatus == 1 and wioStates[i] == "LX_WALKITOFF_3" then return end
 	end
 	ApplyStatus(character, "LX_WALKITOFF", 6.0)
 end

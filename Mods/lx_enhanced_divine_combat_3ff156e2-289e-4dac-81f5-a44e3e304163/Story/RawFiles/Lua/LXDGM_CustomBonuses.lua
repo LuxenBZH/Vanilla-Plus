@@ -100,7 +100,7 @@ local customAbilityBonuses = {
         WaterResistance=Ext.ExtraData.DGM_SingleHandedResistanceBonus,
         AirResistance=Ext.ExtraData.DGM_SingleHandedResistanceBonus
     },
-    TwoHanded = {AccuracyBoost=Ext.ExtraData.DGM_TwoHandedCTHBonus},
+    TwoHanded = {},
     Ranged = {RangeBoost=Ext.ExtraData.DGM_RangedRangeBonus},
     DualWielding = {},
     None = {}
@@ -175,7 +175,7 @@ end
 Ext.RegisterOsirisListener("GameStarted", 2, "before", CheckAllCustomBonuses)
 
 local function CharacterGlobalCheck(character, event)
-    if event ~= "DGM_GlobalStatCheck" then return end
+    if event ~= "DGM_GlobalStatCheck" or character == "NULL_00000000-0000-0000-0000-000000000000" then return end
     SyncAttributeBonuses(character)
     SyncAbilitiesBonuses(character)
     if HasActiveStatus(character, "LX_CROSSBOWINIT") then
@@ -186,3 +186,44 @@ end
 
 Ext.RegisterOsirisListener("StoryEvent", 2, "before", CharacterGlobalCheck)
 
+local function CharacterPunctualCheck(character)
+    if character ~= "NULL_00000000-0000-0000-0000-000000000000" then return end
+    SyncAbilitiesBonuses(character)
+    SyncAbilitiesBonuses(character)
+end
+
+local function StatusCharacterPunctualCheck(char, ...)
+    CharacterPunctualCheck(char)
+end
+
+Ext.RegisterOsirisListener("CharacterStatusApplied", 3, "before", StatusCharacterPunctualCheck)
+Ext.RegisterOsirisListener("CharacterStatusRemoved", 3, "before", StatusCharacterPunctualCheck)
+
+local function EquipmentCharacterPunctualCheck(item, char)
+    CharacterPunctualCheck(char)
+end
+
+Ext.RegisterOsirisListener("ItemEquipped", 2, "before", EquipmentCharacterPunctualCheck)
+Ext.RegisterOsirisListener("ItemUnequipped", 2, "before", EquipmentCharacterPunctualCheck)
+
+local function CheckStatChangeNetID(message, netID)
+	local char = Ext.GetCharacter(tonumber(netID))
+	CharacterPunctualCheck(char.MyGuid)
+end
+
+Ext.RegisterNetListener("DGM_UpdateCharacter", CheckStatChangeNetID)
+
+local function CombatCharacterPunctualCheck(...)
+    local params = {...}
+    if ObjectIsCharacter(params[1]) == 0 then return end
+    CharacterPunctualCheck(params[1])
+end
+
+Ext.RegisterOsirisListener("ObjectTurnStarted", 1, "before", CombatCharacterPunctualCheck)
+Ext.RegisterOsirisListener("ObjectEnteredCombat", 2, "before", CombatCharacterPunctualCheck)
+
+local function ResurrectGlobalCheck(character)
+    CharacterGlobalCheck(character, "DGM_GlobalStatCheck")
+end
+
+Ext.RegisterOsirisListener("CharacterResurrected", 1, "before", ResurrectGlobalCheck)

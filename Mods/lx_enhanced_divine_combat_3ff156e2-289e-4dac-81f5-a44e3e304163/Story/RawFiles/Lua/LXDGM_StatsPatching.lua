@@ -76,8 +76,77 @@ local function ReplaceDescriptionParams()
 	end
 end
 
+local function GetParentStat(entry, stat)
+	if entry[stat] == "None" and entry.Using ~= nil then
+		GetParentStat(entry.Using, stat)
+	else
+		return entry[stat]
+	end
+end
+
+--- @param character StatEntryObject
+local function GetArchetype(stats)
+	local strength = GetParentStat(stats, "Strength")
+	local finesse = GetParentStat(stats, "Finesse")
+	local intelligence = GetParentStat(stats, "Intelligence")
+	--Ext.Print(stats.Name, strength, finesse, intelligence)
+	if strength > finesse and strength > intelligence then
+		return "Strength"
+	elseif finesse > strength and finesse > intelligence then
+		return "Finesse"
+	elseif intelligence > strength and intelligence > finesse then
+		return "Intelligence"
+	end
+	return "None"
+end
+
+local function HasParent(stat, value)
+	if stat.Using == value then
+		return true
+	elseif stat.Using ~= nil or stat.Using == "" then
+		HasParent(stat.Using, value)
+	else
+		return false
+	end
+end
+
+local function AdjustNPCStats()
+	if Ext.Version() < 53 then return end
+	if Ext.GetGameMode() == "Campaign" then
+		Ext.Print("Overriding NPC stats for balance...")
+		local attributes = {
+			"Strength",
+			"Finesse",
+			"Intelligence"
+		}
+		for i,stat in pairs(Ext.GetStatEntries("Character")) do
+			stat = Ext.GetStat(stat)
+			if not HasParent(stat, "_Hero") and string.find(stat.Name, "Summon_") ~= 1 then
+				local archetype = GetArchetype(stat)
+				local total = 0
+				if stat.Strength ~= "None" and stat.Finesse ~= "None" and stat.Intelligence ~= "None" then
+					total = tonumber(stat.Strength)+tonumber(stat.Finesse)+tonumber(stat.Intelligence)
+				end
+				Ext.StatSetAttribute(stat.Name, "DamageBoost", Ext.Round(stat.DamageBoost-total))
+				for i,attr in pairs(attributes) do
+					if stat[attr] ~= "None" then
+						if attr == archetype then
+							Ext.StatSetAttribute(stat.Name, attr, string.gsub(tostring(RoundToFirstDecimal((stat[attr])*(1-stat[attr]*0.08))), ".0", ""))
+						elseif archetype == "None" then
+							Ext.StatSetAttribute(stat.Name, attr, string.gsub(tostring(RoundToFirstDecimal((stat[attr])*(1-stat[attr]*0.09))), ".0", ""))
+						else
+							Ext.StatSetAttribute(stat.Name, attr, string.gsub(tostring(RoundToFirstDecimal((stat[attr])*(1-stat[attr]*0.10))), ".0", ""))
+						end
+					end
+				end
+			end
+		end
+	end
+end
+
 Ext.RegisterListener("StatsLoaded", AddDamageToDescription)
 Ext.RegisterListener("StatsLoaded", AdaptWeaponEnhancingSkills)
 Ext.RegisterListener("StatsLoaded", AddAdditionalDescription)
 Ext.RegisterListener("StatsLoaded", ReduceEquipmentMovementBonus)
 Ext.RegisterListener("StatsLoaded", ReplaceDescriptionParams)
+Ext.RegisterListener("StatsLoaded", AdjustNPCStats)

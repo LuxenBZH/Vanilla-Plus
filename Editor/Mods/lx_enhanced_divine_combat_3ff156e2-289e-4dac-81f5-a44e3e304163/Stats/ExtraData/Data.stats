@@ -4,7 +4,7 @@
     <stat_object is_substat="false">
       <fields>
         <field name="Name" type="NameStatObjectFieldDefinition" value="ArmorToVitalityRatio" />
-        <field name="Value" type="FloatStatObjectFieldDefinition" value="0.45" />
+        <field name="Value" type="FloatStatObjectFieldDefinition" value="0.35" />
       </fields>
     </stat_object>
     <stat_object is_substat="false">
@@ -16,13 +16,13 @@
     <stat_object is_substat="false">
       <fields>
         <field name="Name" type="NameStatObjectFieldDefinition" value="VitalityToDamageRatio" />
-        <field name="Value" type="FloatStatObjectFieldDefinition" value="6.5" />
+        <field name="Value" type="FloatStatObjectFieldDefinition" value="8" />
       </fields>
     </stat_object>
     <stat_object is_substat="false">
       <fields>
         <field name="Name" type="NameStatObjectFieldDefinition" value="VitalityToDamageRatioGrowth" />
-        <field name="Value" type="FloatStatObjectFieldDefinition" value="0.2" />
+        <field name="Value" type="FloatStatObjectFieldDefinition" value="0.3" />
       </fields>
     </stat_object>
     <stat_object is_substat="false">
