@@ -44,7 +44,7 @@
         <field name="Flags" type="EnumerationListStatObjectFieldDefinition" value="48;38;8" enumeration_type_name="AttributeFlags" />
         <field name="APMaximum" type="IntegerStatObjectFieldDefinition" value="1" />
         <field name="Wits" type="EnumerationStatObjectFieldDefinition" value="151" enumeration_type_name="Penalty PreciseQualifier" />
-        <field name="AccuracyBoost" type="IntegerStatObjectFieldDefinition" value="15" />
+        <field name="AccuracyBoost" type="IntegerStatObjectFieldDefinition" value="10" />
       </fields>
     </stat_object>
     <stat_object is_substat="false">
@@ -739,6 +739,7 @@
       <fields>
         <field name="Name" type="NameStatObjectFieldDefinition" value="Stats_LX_Demon" />
         <field name="FireResistance" type="IntegerStatObjectFieldDefinition" value="15" />
+        <field name="Flags" type="EnumerationListStatObjectFieldDefinition" value="2" enumeration_type_name="AttributeFlags" />
       </fields>
     </stat_object>
     <stat_object is_substat="false">
@@ -3297,8 +3298,7 @@
         <field name="Duration" type="IntegerStatObjectFieldDefinition" value="2" />
         <field name="StatusIcon" type="StringStatObjectFieldDefinition" value="statIcons_Raged" />
         <field name="DodgeBoost" type="IntegerStatObjectFieldDefinition" value="-100" />
-        <field name="ArmorBoost" type="IntegerStatObjectFieldDefinition" value="-20" />
-        <field name="MagicArmorBoost" type="IntegerStatObjectFieldDefinition" value="-20" />
+        <field name="AccuracyBoost" type="IntegerStatObjectFieldDefinition" value="-15" />
       </fields>
     </stat_object>
     <stat_object is_substat="false">
@@ -4115,6 +4115,27 @@
         <field name="Act" type="EnumerationStatObjectFieldDefinition" value="0" enumeration_type_name="Act" />
         <field name="Act part" type="EnumerationStatObjectFieldDefinition" value="0" enumeration_type_name="ActPart" />
         <field name="PainReflection" type="IntegerStatObjectFieldDefinition" value="2" />
+      </fields>
+    </stat_object>
+    <stat_object is_substat="false">
+      <fields>
+        <field name="Name" type="NameStatObjectFieldDefinition" value="SKILLBOOST_InspireStart" />
+        <field name="Using" type="BaseClassStatObjectFieldDefinition" value="_SkillBoost" />
+        <field name="Act part" type="EnumerationStatObjectFieldDefinition" value="0" enumeration_type_name="ActPart" />
+        <field name="StackId" type="StringStatObjectFieldDefinition" value="BuffAll" />
+        <field name="Strength" type="EnumerationStatObjectFieldDefinition" value="121" enumeration_type_name="Penalty PreciseQualifier" />
+        <field name="Finesse" type="EnumerationStatObjectFieldDefinition" value="121" enumeration_type_name="Penalty PreciseQualifier" />
+        <field name="Intelligence" type="EnumerationStatObjectFieldDefinition" value="121" enumeration_type_name="Penalty PreciseQualifier" />
+        <field name="Constitution" type="EnumerationStatObjectFieldDefinition" value="121" enumeration_type_name="Penalty PreciseQualifier" />
+        <field name="Duration" type="IntegerStatObjectFieldDefinition" value="3" />
+        <field name="StatusIcon" type="StringStatObjectFieldDefinition" value="Skill_Warrior_Inspire" />
+      </fields>
+    </stat_object>
+    <stat_object is_substat="false">
+      <fields>
+        <field name="Name" type="NameStatObjectFieldDefinition" value="Stats_LX_IceKing" />
+        <field name="WaterResistance" type="IntegerStatObjectFieldDefinition" value="15" />
+        <field name="Flags" type="EnumerationListStatObjectFieldDefinition" value="9" enumeration_type_name="AttributeFlags" />
       </fields>
     </stat_object>
   </stat_objects>

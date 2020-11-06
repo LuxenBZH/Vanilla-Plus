@@ -225,7 +225,7 @@ Ext.NewCall(CheckDuelist, "LX_EXT_CheckDuelist", "(CHARACTERGUID)_Character");
 
 -- DamageControl
 Ext.NewCall(DamageControl, "LX_EXT_DamageControl", "(GUIDSTRING)_Target, (INTEGER64)_HitHandle, (GUIDSTRING)_Instigator");
-Ext.NewCall(ManagePerseverance, "LX_EXT_ManagePerseverance", "(GUIDSTRING)_Target, (INTEGER)_Perseverance, (STRING)_Type");
+-- Ext.NewCall(ManagePerseverance, "LX_EXT_ManagePerseverance", "(GUIDSTRING)_Target, (INTEGER)_Perseverance, (STRING)_Type");
 
 -- Status Control
 Ext.NewCall(BlockPhysicalCCs, "LX_EXT_CheckPhysicalCC", "(GUIDSTRING)_Character, (STRING)_Status, (INTEGER64)_Handle");

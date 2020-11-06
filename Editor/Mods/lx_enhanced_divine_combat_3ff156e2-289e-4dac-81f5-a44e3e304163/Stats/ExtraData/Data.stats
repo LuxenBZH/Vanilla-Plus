@@ -428,7 +428,7 @@
     <stat_object is_substat="false">
       <fields>
         <field name="Name" type="NameStatObjectFieldDefinition" value="DGM_DemonStatusesBonus" />
-        <field name="Value" type="FloatStatObjectFieldDefinition" value="20" />
+        <field name="Value" type="FloatStatObjectFieldDefinition" value="0" />
       </fields>
     </stat_object>
     <stat_object is_substat="false">
@@ -591,6 +591,12 @@
     <stat_object is_substat="false">
       <fields>
         <field name="Name" type="NameStatObjectFieldDefinition" value="DGM_MaceLevelGrowthPenalty" />
+      </fields>
+    </stat_object>
+    <stat_object is_substat="false">
+      <fields>
+        <field name="Name" type="NameStatObjectFieldDefinition" value="LivingArmorHealPercentage" />
+        <field name="Value" type="FloatStatObjectFieldDefinition" value="35" />
       </fields>
     </stat_object>
   </stat_objects>

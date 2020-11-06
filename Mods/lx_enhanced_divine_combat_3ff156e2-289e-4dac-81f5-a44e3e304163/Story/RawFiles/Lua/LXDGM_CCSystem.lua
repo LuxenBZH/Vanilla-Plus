@@ -13,6 +13,8 @@ function BlockPhysicalCCs(character, status, handle)
 	for i,block in pairs(blockedStatuses) do
 		if status == block then
 			NRD_StatusPreventApply(character, handle, 1)
+			if Ext.GetCharacter(character).Stats.CurrentArmor ~= 0 and source ~= 3 then break end
+			if Ext.GetCharacter(character).Stats.CurrentMagicArmor ~= 0 and NRD_StatusGetInt(character, handle, "ForceStatus") == 0 then return end
 			if lifetime ~= -1 and source ~= 5 then -- if it's not from aura then apply the corresponding debuff
 				RollStatusApplication(character, "LX_STAGGERED", 6.0, 1, enterChance, handle)
 			end
@@ -39,6 +41,8 @@ function BlockMagicalCCs(character, status, handle)
 	for i,block in pairs(blockedStatuses) do
 		if status == block then
 			NRD_StatusPreventApply(character, handle, 1)
+			if Ext.GetCharacter(character).Stats.CurrentMagicArmor ~= 0 and source ~= 3 then return end
+			if Ext.GetCharacter(character).Stats.CurrentMagicArmor ~= 0 and NRD_StatusGetInt(character, handle, "ForceStatus") == 0 then return end
 			if lifetime ~= -1 and source ~= 5 then -- if it's not from aura then apply the corresponding debuff
 				RollStatusApplication(character, "LX_CONFUSED", 6.0, 1, enterChance, handle)
 			end
@@ -54,7 +58,7 @@ end
 ---@param baseHandle number
 function RollStatusApplication(character, status, duration, force, enterChance, baseHandle)
 	local roll = math.random(1, 100)
-	Ext.Print("[LXDGM_CCSystem.RollStatusApplication] Status",status,"has enter chance",enterChance,"roll:",roll)
+	-- Ext.Print("[LXDGM_CCSystem.RollStatusApplication] Status",status,"has enter chance",enterChance,"roll:",roll)
 	if roll <= enterChance then 
 		ApplyStatus(character, status, duration, force)
 	else 

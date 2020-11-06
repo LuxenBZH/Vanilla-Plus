@@ -138,7 +138,7 @@ key "DGM_SlingshotBonus","30"
 
 key "DGM_IceKingDamageBonus","20"
 
-key "DGM_DemonStatusesBonus","20"
+key "DGM_DemonStatusesBonus","0"
 
 key "DGM_StaffSkillMultiplier","10"
 
@@ -191,4 +191,6 @@ key "DGM_CrossbowBasePenalty","-92"
 key "DGM_CrossbowLevelGrowthPenalty","-8"
 
 
+
+key "LivingArmorHealPercentage","35"
 

@@ -37,8 +37,8 @@ end
 ---@param character EsvCharacter
 ---@param unlocked boolean
 function ManageMemory(character, unlocked)
-	if unlocked then
-		local mem = math.floor(CharacterGetBaseAttribute(character, "Memory") - Ext.ExtraData.AttributeBaseValue)
+	if unlocked == 1 then
+		local mem = math.floor(Ext.GetCharacter(character).Stats.BaseMemory - NRD_CharacterGetPermanentBoostInt(character, "Memory") - Ext.ExtraData.AttributeBaseValue)
 		NRD_CharacterSetPermanentBoostInt(character, "Memory", mem)
 		CharacterAddAttribute(character, "Dummy", 0)
 	else
@@ -165,3 +165,20 @@ function RestorePetPalPower(character, summon)
 	if summons[1] == nil then return end
 	RemoveStatus(summons[1][2], "LX_PETPAL")
 end
+
+local function ExecutionerHaste(defender, attackerOwner, attacker)
+	if ObjectIsCharacter(attacker) == 0 then return end
+	local attacker = Ext.GetCharacter(attacker)
+	if attacker.Stats.TALENT_Executioner and CharacterIsInCombat(attacker.MyGuid) == 1 then
+		local haste = attacker.GetStatus(attacker, "HASTED")
+		if haste == nil then
+			ApplyStatus(attacker.MyGuid, "HASTED", 6.0)
+		else
+			if haste.CurrentLifeTime < 6 then
+				ApplyStatus(attacker.MyGuid, "HASTED", 6.0)
+			end
+		end
+	end
+end
+
+Ext.RegisterOsirisListener("CharacterKilledBy", 3, "before", ExecutionerHaste)

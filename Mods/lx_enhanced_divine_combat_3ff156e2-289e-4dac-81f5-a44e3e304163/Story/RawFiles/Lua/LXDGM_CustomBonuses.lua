@@ -14,7 +14,9 @@ local function CreateCrossbowSlowdownStat(char)
     local leveledSlow = weapon.Level * crossbowSlowdown.Level
     local statusName = "DGM_CrossbowSlow_"..weapon.Level
     if NRD_StatExists(statusName) then
-        ApplyStatus(char.MyGuid, statusName, -1, 1)
+        if HasActiveStatus(char.MyGuid, statusName) == 0 then
+            ApplyStatus(char.MyGuid, statusName, -1, 1)
+        end
     else
         local newPotion = {Name = "DGM_Potion_CrossbowSlow_"..weapon.Level}
         if not NRD_StatExists(newPotion.Name) then
@@ -67,7 +69,9 @@ function SyncAttributeBonuses(char)
         local charAttr = math.floor(char.Stats[attribute] - Ext.ExtraData.AttributeBaseValue)
         local statusName = "DGM_"..attribute.."_"..charAttr
         if NRD_StatExists(statusName) then
-            ApplyStatus(char.MyGuid, statusName, -1, 1)
+            if HasActiveStatus(char.MyGuid, statusName) == 0 then
+                ApplyStatus(char.MyGuid, statusName, -1, 1)
+            end
         else
             local newPotion = Ext.CreateStat("DGM_Potion_"..attribute.."_"..charAttr, "Potion", "DGM_Potion_Base")
             for bonus,value in pairs(bonuses) do
@@ -137,7 +141,9 @@ function SyncAbilitiesBonuses(char)
     local ability = GetWeaponAbility(char.Stats, char.Stats.MainWeapon)
     if ability == nil then
         if NRD_StatExists("DGM_NoWeapon") then
-            ApplyStatus(char.MyGuid, "DGM_NoWeapon", -1, 1)
+            if HasActiveStatus(char.MyGuid, "DGM_NoWeapon") == 0 then
+                ApplyStatus(char.MyGuid, "DGM_NoWeapon", -1, 1)
+            end
         else
             local newStatus = Ext.CreateStat("DGM_NoWeapon", "StatusData", "DGM_BASE")
             newStatus["StackId"] = "DGM_WeaponAbility"
@@ -149,9 +155,12 @@ function SyncAbilitiesBonuses(char)
     local charAbi = math.floor(char.Stats[ability])
     local statusName = "DGM_"..ability.."_"..charAbi
     if NRD_StatExists(statusName) then
-        ApplyStatus(char.MyGuid, statusName, -1, 1)
+        if HasActiveStatus(char.MyGuid, statusName) == 0 then
+            ApplyStatus(char.MyGuid, statusName, -1, 1)
+        end
     else
         local bonuses = customAbilityBonuses[ability]
+        if GetTableSize(bonuses) == 0 then return end
         local newPotion = Ext.CreateStat("DGM_Potion_"..ability.."_"..charAbi, "Potion", "DGM_Potion_Base")
         for bonus,value in pairs(bonuses) do
             newPotion[bonus] = charAbi * value
@@ -175,24 +184,57 @@ end
 Ext.RegisterOsirisListener("GameStarted", 2, "before", CheckAllCustomBonuses)
 
 local function CharacterGlobalCheck(character, event)
-    if event ~= "DGM_GlobalStatCheck" or character == "NULL_00000000-0000-0000-0000-000000000000" then return end
+    if event ~= "DGM_GlobalStatCheck" or character == "NULL_00000000-0000-0000-0000-000000000000" or ObjectExists(character) == 0 then return end
+    Ext.Print("Global check")
     SyncAttributeBonuses(character)
     SyncAbilitiesBonuses(character)
     if HasActiveStatus(character, "LX_CROSSBOWINIT") then
         CreateCrossbowSlowdownStat(character)
     end
     CheckAllTalents(character)
+    if Ext.GetCharacter(character).Stats.TALENT_Memory then
+        ManageMemory(character, 1)
+    else
+        ManageMemory(character, 0)
+    end
 end
 
 Ext.RegisterOsirisListener("StoryEvent", 2, "before", CharacterGlobalCheck)
 
 local function CharacterPunctualCheck(character)
-    if character ~= "NULL_00000000-0000-0000-0000-000000000000" then return end
+    if character == "NULL_00000000-0000-0000-0000-000000000000" or ObjectExists(character) == 0 then return end
+    Ext.Print("Punctual check")
+    SyncAttributeBonuses(character)
     SyncAbilitiesBonuses(character)
-    SyncAbilitiesBonuses(character)
+    if Ext.GetCharacter(character).Stats.TALENT_Memory then
+        ManageMemory(character, 1)
+    else
+        ManageMemory(character, 0)
+    end
 end
 
-local function StatusCharacterPunctualCheck(char, ...)
+local bannedStatusTemplates = {
+    "DGM_Finesse",
+    "DGM_Intelligence",
+    "DGM_NoWeapon",
+    "DGM_OneHanded",
+    "DGM_Ranged",
+    "DGM_CrossbowSlow",
+    "GM_SELECTED",
+    "GM_SELECTEDDISCREET",
+    "GM_TARGETED",
+    "HIT",
+    "INSURFACE",
+    "SHOCKWAVE",
+    "UNSHEATHED",
+    "THROWN"
+}
+
+local function StatusCharacterPunctualCheck(char, status, causee)
+    Ext.Print(char, status, causee)
+    for i,ban in pairs(bannedStatusTemplates) do
+        if string.find(status, ban) ~= nil then return end
+    end
     CharacterPunctualCheck(char)
 end
 
@@ -206,12 +248,32 @@ end
 Ext.RegisterOsirisListener("ItemEquipped", 2, "before", EquipmentCharacterPunctualCheck)
 Ext.RegisterOsirisListener("ItemUnequipped", 2, "before", EquipmentCharacterPunctualCheck)
 
+local currentChar
+
 local function CheckStatChangeNetID(message, netID)
-	local char = Ext.GetCharacter(tonumber(netID))
-	CharacterPunctualCheck(char.MyGuid)
+    local char = Ext.GetCharacter(tonumber(netID))
+    currentChar = char.MyGuid
+	TimerLaunch("DGM_UIStatCheck", 33)
 end
 
 Ext.RegisterNetListener("DGM_UpdateCharacter", CheckStatChangeNetID)
+
+-- local function CheckStatChangeNetIDFromItem(message, netID)
+--     Ext.Print(netID)
+--     local char = Ext.GetItem(tonumber(netID))
+--     Ext.Print(char)
+--     -- currentChar = Ext.GetCharacter(char.OwnerHandle)
+-- 	-- TimerLaunch("DGM_UIStatCheck", 33)
+-- end
+
+-- Ext.RegisterNetListener("DGM_UpdateCharacterFromItem", CheckStatChangeNetIDFromItem)
+
+local function CheckStatChangeTimer(timer)
+    if timer ~= "DGM_UIStatCheck" then return end
+    CharacterPunctualCheck(currentChar)
+end
+
+Ext.RegisterOsirisListener("TimerFinished", 1, "before", CheckStatChangeTimer)
 
 local function CombatCharacterPunctualCheck(...)
     local params = {...}

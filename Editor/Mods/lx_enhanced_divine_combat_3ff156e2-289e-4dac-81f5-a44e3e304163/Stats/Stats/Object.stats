@@ -417,7 +417,7 @@
         <field name="Value" type="IntegerStatObjectFieldDefinition" value="500" />
         <field name="ComboCategory" type="StringStatObjectFieldDefinition" value="SkillbookFire" />
         <field name="Requirements" type="StringStatObjectFieldDefinition" value="FireSpecialist 2" />
-        <field name="ObjectCategory" type="StringStatObjectFieldDefinition" value="SkillbookFireLate" />
+        <field name="ObjectCategory" type="StringStatObjectFieldDefinition" value="SkillbookFireMid" />
         <field name="MinAmount" type="IntegerStatObjectFieldDefinition" value="1" />
         <field name="MaxAmount" type="IntegerStatObjectFieldDefinition" value="1" />
         <field name="Priority" type="IntegerStatObjectFieldDefinition" value="1" />
@@ -433,7 +433,7 @@
         <field name="Value" type="IntegerStatObjectFieldDefinition" value="500" />
         <field name="ComboCategory" type="StringStatObjectFieldDefinition" value="SkillbookEarth" />
         <field name="Requirements" type="StringStatObjectFieldDefinition" value="EarthSpecialist 2" />
-        <field name="ObjectCategory" type="StringStatObjectFieldDefinition" value="SkillbookEarthLate" />
+        <field name="ObjectCategory" type="StringStatObjectFieldDefinition" value="SkillbookEarthMid" />
         <field name="MinAmount" type="IntegerStatObjectFieldDefinition" value="1" />
         <field name="MaxAmount" type="IntegerStatObjectFieldDefinition" value="1" />
         <field name="Priority" type="IntegerStatObjectFieldDefinition" value="1" />
@@ -449,7 +449,7 @@
         <field name="Value" type="IntegerStatObjectFieldDefinition" value="100" />
         <field name="ComboCategory" type="StringStatObjectFieldDefinition" value="SkillbookEarth" />
         <field name="Requirements" type="StringStatObjectFieldDefinition" value="EarthSpecialist 1" />
-        <field name="ObjectCategory" type="StringStatObjectFieldDefinition" value="SkillbookEarthLate" />
+        <field name="ObjectCategory" type="StringStatObjectFieldDefinition" value="SkillbookEarthEarly" />
         <field name="MinAmount" type="IntegerStatObjectFieldDefinition" value="1" />
         <field name="MaxAmount" type="IntegerStatObjectFieldDefinition" value="1" />
         <field name="Priority" type="IntegerStatObjectFieldDefinition" value="1" />
@@ -465,7 +465,7 @@
         <field name="Value" type="IntegerStatObjectFieldDefinition" value="500" />
         <field name="ComboCategory" type="StringStatObjectFieldDefinition" value="SkillbookAir" />
         <field name="Requirements" type="StringStatObjectFieldDefinition" value="AirSpecialist 2" />
-        <field name="ObjectCategory" type="StringStatObjectFieldDefinition" value="SkillbookAirLate" />
+        <field name="ObjectCategory" type="StringStatObjectFieldDefinition" value="SkillbookAirMid" />
         <field name="MinAmount" type="IntegerStatObjectFieldDefinition" value="1" />
         <field name="MaxAmount" type="IntegerStatObjectFieldDefinition" value="1" />
         <field name="Priority" type="IntegerStatObjectFieldDefinition" value="1" />
@@ -481,7 +481,7 @@
         <field name="Value" type="IntegerStatObjectFieldDefinition" value="900" />
         <field name="ComboCategory" type="StringStatObjectFieldDefinition" value="SkillbookSummoning" />
         <field name="Requirements" type="StringStatObjectFieldDefinition" value="Summoning 2" />
-        <field name="ObjectCategory" type="StringStatObjectFieldDefinition" value="SkillbookSummoningLate" />
+        <field name="ObjectCategory" type="StringStatObjectFieldDefinition" value="SkillbookSummoningMid" />
         <field name="MinAmount" type="IntegerStatObjectFieldDefinition" value="1" />
         <field name="MaxAmount" type="IntegerStatObjectFieldDefinition" value="1" />
         <field name="Priority" type="IntegerStatObjectFieldDefinition" value="1" />
@@ -497,7 +497,7 @@
         <field name="Value" type="IntegerStatObjectFieldDefinition" value="900" />
         <field name="ComboCategory" type="StringStatObjectFieldDefinition" value="SkillbookRogue" />
         <field name="Requirements" type="StringStatObjectFieldDefinition" value="RogueLore 2" />
-        <field name="ObjectCategory" type="StringStatObjectFieldDefinition" value="SkillbookRogueLate" />
+        <field name="ObjectCategory" type="StringStatObjectFieldDefinition" value="SkillbookRogueMid" />
         <field name="MinAmount" type="IntegerStatObjectFieldDefinition" value="1" />
         <field name="MaxAmount" type="IntegerStatObjectFieldDefinition" value="1" />
         <field name="Priority" type="IntegerStatObjectFieldDefinition" value="1" />
@@ -513,7 +513,7 @@
         <field name="Value" type="IntegerStatObjectFieldDefinition" value="900" />
         <field name="ComboCategory" type="StringStatObjectFieldDefinition" value="SkillbookWarrior" />
         <field name="Requirements" type="StringStatObjectFieldDefinition" value="WarriorLore 2" />
-        <field name="ObjectCategory" type="StringStatObjectFieldDefinition" value="SkillbookWarriorLate" />
+        <field name="ObjectCategory" type="StringStatObjectFieldDefinition" value="SkillbookWarriorMid" />
         <field name="MinAmount" type="IntegerStatObjectFieldDefinition" value="1" />
         <field name="MaxAmount" type="IntegerStatObjectFieldDefinition" value="1" />
         <field name="Priority" type="IntegerStatObjectFieldDefinition" value="1" />
