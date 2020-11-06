@@ -97,3 +97,11 @@ function RoundToFirstDecimal(number)
 	local multiplied = math.floor(Ext.Round(number*10)) --floor operation to remove any unneeded 0 after the final decimal
 	return multiplied/10
 end
+
+function GetTableSize(table)
+	local size = 0
+	for i,j in pairs(table) do
+		size = size + 1
+	end
+	return size
+end

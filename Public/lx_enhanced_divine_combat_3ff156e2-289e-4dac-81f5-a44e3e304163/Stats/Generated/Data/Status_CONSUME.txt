@@ -215,6 +215,12 @@ data "StatusType" "CONSUME"
 data "StatsId" "Stats_LX_DDGoose"
 data "StackId" "Stack_LX_DDGoose"
 
+new entry "LX_ICEKING"
+type "StatusData"
+data "StatusType" "CONSUME"
+data "StatsId" "Stats_LX_IceKing"
+data "StackId" "Stack_LX_IceKing"
+
 new entry "LX_DEMON"
 type "StatusData"
 data "StatusType" "CONSUME"

@@ -131,11 +131,11 @@ local function AdjustNPCStats()
 				for i,attr in pairs(attributes) do
 					if stat[attr] ~= "None" then
 						if attr == archetype then
-							Ext.StatSetAttribute(stat.Name, attr, string.gsub(tostring(RoundToFirstDecimal((stat[attr])*(1-stat[attr]*0.08))), ".0", ""))
+							Ext.StatSetAttribute(stat.Name, attr, string.gsub(tostring(RoundToFirstDecimal((stat[attr])*(1-stat[attr]*0.075))), ".0", ""))
 						elseif archetype == "None" then
-							Ext.StatSetAttribute(stat.Name, attr, string.gsub(tostring(RoundToFirstDecimal((stat[attr])*(1-stat[attr]*0.09))), ".0", ""))
+							Ext.StatSetAttribute(stat.Name, attr, string.gsub(tostring(RoundToFirstDecimal((stat[attr])*(1-stat[attr]*0.085))), ".0", ""))
 						else
-							Ext.StatSetAttribute(stat.Name, attr, string.gsub(tostring(RoundToFirstDecimal((stat[attr])*(1-stat[attr]*0.10))), ".0", ""))
+							Ext.StatSetAttribute(stat.Name, attr, string.gsub(tostring(RoundToFirstDecimal((stat[attr])*(1-stat[attr]*0.095))), ".0", ""))
 						end
 					end
 				end

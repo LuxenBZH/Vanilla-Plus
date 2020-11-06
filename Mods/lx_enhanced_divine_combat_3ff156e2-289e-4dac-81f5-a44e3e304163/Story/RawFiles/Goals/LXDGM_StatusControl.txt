@@ -132,47 +132,47 @@ LX_EXT_CheckMagicalCC(_Target, "SLEEPING", _Handle);
 // THEN
 // LX_EXT_ManagePerseverance(_Char, _Pers, "Physical");
 
-IF
-CharacterStatusRemoved(_Char, "LX_STAGGERED", _)
-AND
-CharacterGetAbility(_Char, "Perseverance", _Pers)
-THEN
-LX_EXT_ManagePerseverance(_Char, _Pers, "Demi-Physic");
+// IF
+// CharacterStatusRemoved(_Char, "LX_STAGGERED", _)
+// AND
+// CharacterGetAbility(_Char, "Perseverance", _Pers)
+// THEN
+// LX_EXT_ManagePerseverance(_Char, _Pers, "Demi-Physic");
 
-IF
-CharacterStatusRemoved(_Char, "LX_STAGGERED2", _)
-AND
-CharacterGetAbility(_Char, "Perseverance", _Pers)
-THEN
-LX_EXT_ManagePerseverance(_Char, _Pers, "Demi-Physic");
+// IF
+// CharacterStatusRemoved(_Char, "LX_STAGGERED2", _)
+// AND
+// CharacterGetAbility(_Char, "Perseverance", _Pers)
+// THEN
+// LX_EXT_ManagePerseverance(_Char, _Pers, "Demi-Physic");
 
-IF
-CharacterStatusRemoved(_Char, "LX_STAGGERED3", _)
-AND
-CharacterGetAbility(_Char, "Perseverance", _Pers)
-THEN
-LX_EXT_ManagePerseverance(_Char, _Pers, "Demi-Physic");
+// IF
+// CharacterStatusRemoved(_Char, "LX_STAGGERED3", _)
+// AND
+// CharacterGetAbility(_Char, "Perseverance", _Pers)
+// THEN
+// LX_EXT_ManagePerseverance(_Char, _Pers, "Demi-Physic");
 
-IF
-CharacterStatusRemoved(_Char, "LX_CONFUSED", _)
-AND
-CharacterGetAbility(_Char, "Perseverance", _Pers)
-THEN
-LX_EXT_ManagePerseverance(_Char, _Pers, "Demi-Magic");
+// IF
+// CharacterStatusRemoved(_Char, "LX_CONFUSED", _)
+// AND
+// CharacterGetAbility(_Char, "Perseverance", _Pers)
+// THEN
+// LX_EXT_ManagePerseverance(_Char, _Pers, "Demi-Magic");
 
-IF
-CharacterStatusRemoved(_Char, "LX_CONFUSED2", _)
-AND
-CharacterGetAbility(_Char, "Perseverance", _Pers)
-THEN
-LX_EXT_ManagePerseverance(_Char, _Pers, "Demi-Magic");
+// IF
+// CharacterStatusRemoved(_Char, "LX_CONFUSED2", _)
+// AND
+// CharacterGetAbility(_Char, "Perseverance", _Pers)
+// THEN
+// LX_EXT_ManagePerseverance(_Char, _Pers, "Demi-Magic");
 
-IF
-CharacterStatusRemoved(_Char, "LX_CONFUSED3", _)
-AND
-CharacterGetAbility(_Char, "Perseverance", _Pers)
-THEN
-LX_EXT_ManagePerseverance(_Char, _Pers, "Demi-Magic");
+// IF
+// CharacterStatusRemoved(_Char, "LX_CONFUSED3", _)
+// AND
+// CharacterGetAbility(_Char, "Perseverance", _Pers)
+// THEN
+// LX_EXT_ManagePerseverance(_Char, _Pers, "Demi-Magic");
 
 IF
 CharacterLearnedSkill(_,_)

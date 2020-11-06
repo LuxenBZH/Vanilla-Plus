@@ -184,7 +184,7 @@
         <field name="ItemGroup" type="StringStatObjectFieldDefinition" value="Spears_2H" />
         <field name="ModifierType" type="EnumerationStatObjectFieldDefinition" value="0" enumeration_type_name="ModifierType" />
         <field name="Act" type="EnumerationStatObjectFieldDefinition" value="0" enumeration_type_name="Act" />
-        <field name="Requirements" type="StringStatObjectFieldDefinition" value="Strength 12" />
+        <field name="Requirements" type="StringStatObjectFieldDefinition" value="Strength 14" />
         <field name="IsTwoHanded" type="EnumerationStatObjectFieldDefinition" value="1" enumeration_type_name="YesNo" />
         <field name="AttackAPCost" type="IntegerStatObjectFieldDefinition" value="2" />
         <field name="Damage Type" type="EnumerationStatObjectFieldDefinition" value="1" enumeration_type_name="Damage Type" />
@@ -248,7 +248,7 @@
         <field name="ItemGroup" type="StringStatObjectFieldDefinition" value="Axes_2H" />
         <field name="ModifierType" type="EnumerationStatObjectFieldDefinition" value="0" enumeration_type_name="ModifierType" />
         <field name="Act" type="EnumerationStatObjectFieldDefinition" value="0" enumeration_type_name="Act" />
-        <field name="Requirements" type="StringStatObjectFieldDefinition" value="Strength 12" />
+        <field name="Requirements" type="StringStatObjectFieldDefinition" value="Strength 14" />
         <field name="IsTwoHanded" type="EnumerationStatObjectFieldDefinition" value="1" enumeration_type_name="YesNo" />
         <field name="AttackAPCost" type="IntegerStatObjectFieldDefinition" value="2" />
         <field name="Damage Type" type="EnumerationStatObjectFieldDefinition" value="1" enumeration_type_name="Damage Type" />
@@ -280,7 +280,7 @@
         <field name="ItemGroup" type="StringStatObjectFieldDefinition" value="Bows" />
         <field name="ModifierType" type="EnumerationStatObjectFieldDefinition" value="0" enumeration_type_name="ModifierType" />
         <field name="Act" type="EnumerationStatObjectFieldDefinition" value="0" enumeration_type_name="Act" />
-        <field name="Requirements" type="StringStatObjectFieldDefinition" value="Finesse 12" />
+        <field name="Requirements" type="StringStatObjectFieldDefinition" value="Finesse 14" />
         <field name="IsTwoHanded" type="EnumerationStatObjectFieldDefinition" value="1" enumeration_type_name="YesNo" />
         <field name="AttackAPCost" type="IntegerStatObjectFieldDefinition" value="2" />
         <field name="Damage Type" type="EnumerationStatObjectFieldDefinition" value="1" enumeration_type_name="Damage Type" />
@@ -289,7 +289,7 @@
         <field name="DamageFromBase" type="IntegerStatObjectFieldDefinition" value="75" />
         <field name="CriticalDamage" type="IntegerStatObjectFieldDefinition" value="140" />
         <field name="CriticalChance" type="IntegerStatObjectFieldDefinition" value="0" />
-        <field name="WeaponRange" type="IntegerStatObjectFieldDefinition" value="1100" />
+        <field name="WeaponRange" type="IntegerStatObjectFieldDefinition" value="1200" />
         <field name="Durability" type="IntegerStatObjectFieldDefinition" value="0" />
         <field name="DurabilityDegradeSpeed" type="EnumerationStatObjectFieldDefinition" value="7" enumeration_type_name="Qualifier" />
         <field name="Value" type="IntegerStatObjectFieldDefinition" value="75" />
@@ -313,7 +313,7 @@
         <field name="ItemGroup" type="StringStatObjectFieldDefinition" value="Crossbows" />
         <field name="ModifierType" type="EnumerationStatObjectFieldDefinition" value="0" enumeration_type_name="ModifierType" />
         <field name="Act" type="EnumerationStatObjectFieldDefinition" value="0" enumeration_type_name="Act" />
-        <field name="Requirements" type="StringStatObjectFieldDefinition" value="Finesse 12" />
+        <field name="Requirements" type="StringStatObjectFieldDefinition" value="Finesse 14" />
         <field name="IsTwoHanded" type="EnumerationStatObjectFieldDefinition" value="1" enumeration_type_name="YesNo" />
         <field name="AttackAPCost" type="IntegerStatObjectFieldDefinition" value="2" />
         <field name="Damage Type" type="EnumerationStatObjectFieldDefinition" value="1" enumeration_type_name="Damage Type" />
@@ -322,7 +322,7 @@
         <field name="DamageFromBase" type="IntegerStatObjectFieldDefinition" value="95" />
         <field name="CriticalDamage" type="IntegerStatObjectFieldDefinition" value="140" />
         <field name="CriticalChance" type="IntegerStatObjectFieldDefinition" value="0" />
-        <field name="WeaponRange" type="IntegerStatObjectFieldDefinition" value="1250" />
+        <field name="WeaponRange" type="IntegerStatObjectFieldDefinition" value="1300" />
         <field name="Durability" type="IntegerStatObjectFieldDefinition" value="0" />
         <field name="DurabilityDegradeSpeed" type="EnumerationStatObjectFieldDefinition" value="7" enumeration_type_name="Qualifier" />
         <field name="Value" type="IntegerStatObjectFieldDefinition" value="100" />
@@ -379,7 +379,7 @@
         <field name="ItemGroup" type="StringStatObjectFieldDefinition" value="Swords_2H" />
         <field name="ModifierType" type="EnumerationStatObjectFieldDefinition" value="0" enumeration_type_name="ModifierType" />
         <field name="Act" type="EnumerationStatObjectFieldDefinition" value="0" enumeration_type_name="Act" />
-        <field name="Requirements" type="StringStatObjectFieldDefinition" value="Strength 12" />
+        <field name="Requirements" type="StringStatObjectFieldDefinition" value="Strength 14" />
         <field name="IsTwoHanded" type="EnumerationStatObjectFieldDefinition" value="1" enumeration_type_name="YesNo" />
         <field name="AttackAPCost" type="IntegerStatObjectFieldDefinition" value="2" />
         <field name="Damage Type" type="EnumerationStatObjectFieldDefinition" value="1" enumeration_type_name="Damage Type" />
@@ -443,7 +443,7 @@
         <field name="ItemGroup" type="StringStatObjectFieldDefinition" value="Maces_2H" />
         <field name="ModifierType" type="EnumerationStatObjectFieldDefinition" value="0" enumeration_type_name="ModifierType" />
         <field name="Act" type="EnumerationStatObjectFieldDefinition" value="0" enumeration_type_name="Act" />
-        <field name="Requirements" type="StringStatObjectFieldDefinition" value="Strength 12" />
+        <field name="Requirements" type="StringStatObjectFieldDefinition" value="Strength 14" />
         <field name="IsTwoHanded" type="EnumerationStatObjectFieldDefinition" value="1" enumeration_type_name="YesNo" />
         <field name="AttackAPCost" type="IntegerStatObjectFieldDefinition" value="2" />
         <field name="Damage Type" type="EnumerationStatObjectFieldDefinition" value="1" enumeration_type_name="Damage Type" />
@@ -506,7 +506,7 @@
         <field name="ItemGroup" type="StringStatObjectFieldDefinition" value="Staves_2H" />
         <field name="ModifierType" type="EnumerationStatObjectFieldDefinition" value="0" enumeration_type_name="ModifierType" />
         <field name="Act" type="EnumerationStatObjectFieldDefinition" value="0" enumeration_type_name="Act" />
-        <field name="Requirements" type="StringStatObjectFieldDefinition" value="Intelligence 12" />
+        <field name="Requirements" type="StringStatObjectFieldDefinition" value="Intelligence 14" />
         <field name="IsTwoHanded" type="EnumerationStatObjectFieldDefinition" value="1" enumeration_type_name="YesNo" />
         <field name="AttackAPCost" type="IntegerStatObjectFieldDefinition" value="2" />
         <field name="Damage Type" type="EnumerationStatObjectFieldDefinition" value="1" enumeration_type_name="Damage Type" />

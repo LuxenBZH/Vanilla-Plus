@@ -283,7 +283,6 @@ Fixes
 * Fixed some skills damage not displaying correctly
 * Reflection damage shouldn't be scaled with attributes anymore
 
-
 Balance
 * (V53+) Story mode : NPCs stats have been adjusted to take into account damage from all attributes, so they should all have less Strength, Finesse and Intelligence for similar damage compared to vanilla.
 * Breathing Bubble now give 15% Accuracy (again)
@@ -298,3 +297,34 @@ Balance
 
 Modules
 * Added an option to the Fall damage module to disable jump fall damage (in that case, only fall damage from Force skills will work)
+
+#0.13.21.30 (Claud)
+Fixes
+* Staggered and Confused are not triggered if the target have remaining armor anymore
+* Fixed Mnemonics not refreshing correctly
+* Fixed Perseverance not giving HP
+* Fixed Perseverance not giving HP and armors after Staggered/Confused expiration
+* Fixed Ice King not giving the proper Water Resistance
+* Fixed an issue where walking on surfaces giving CCs through armor (Frozen surfaces) would not apply Staggered/Confused when having Momentum/Lingering with magic armor
+* Fixed an issue with custom bonuses not refreshing correctly
+* Tweaked Strength and Intelligence descriptions to be more clear about their behavior on skills
+
+Balance
+* Encourage Constitution bonus lowered from base 3 to base 2
+* Story Mode : slightly decreased the attributes and damage debuff
+* Condor Vitality increased from 40 to 60
+* Condor armors increased from 0 to 20
+* Increased Bows range from 1100 to 1200
+* Increased Crossbow range from 1250 to 1300
+* Enraged does not reduce armors anymore, but provide a -15 Accuracy penalty instead
+* Breathing Bubble accuracy bonus reduced from 15 to 10
+* Demon doesn't increase damage from burning statuses anymore but grants immunity to Burning and Necrofire instead
+* Ice King now also give Chilled immunity
+* Cursed frozen surfaces have now 50% chance per 2m to set Frozen for 1 turn instead of 75% per 2m to set Frozen for 2 turns
+* Cursed electrified surfaces now have 50% chance per 2m to set Stunned for 1 turn (through magic armor). It also set Shocked if you don't have magic armor.
+* Cursed electrified clouds now have 50% chance per 2m to set Stunned for 1 turn (through magic armor). It also set Shocked if you don't have magic armor.
+* Cursed electrified surfaces does not de-electrify when someone get stunned or shocked anymore
+* Normal electrified surfaces and cloud now apply Shocked as a keep alive status - which mean the status duration won't progress until the character get out of the surface. Getting shocked doesn't de-electrify the surface anymore.
+* Two Handed weapons now have higher attribute requirements (12 > 14)
+* Executioner now provide Hasted for 1 turn when dealing a killing blow (unless the character already have Hasted)
+

@@ -2,8 +2,8 @@
     <content contentuid="h278b2bccg1afcg4314gbfcbgb10105ebc12b" comment="Morning Person description">When resurrected, you resurrect to full health. You begin combat with maximum AP.</content>
     <content contentuid="h42b4c1e3g7c07g400dg8924g2807a024e6bb" comment="Pet Pal description">Pet Pal enables you to talk to animals. Also increases your maximum number of summons by 1, but reduces their damage and Vitality by 50%.</content>
     <content contentuid="h6a4d6da0g29cfg44ecg8913g5a0a76cf1bbd" comment="Arrow Recovery description">Arrow Recovery provides a 33% chance to recover a special arrow after shooting it, and removes the close-quarters damage penalty of ranged weapons.</content>
-    <content contentuid="h18f97d5bg9a79g4917g809dgb0ac7a5ec302" comment="Strength description">Increases all damage by 2% per point. Damage dealt with weapons are further increased by 3% and ignore 1% of enemy resistance per point if it's under 100%. Allows you to lift and carry heavier items.</content>
-    <content contentuid="h6b67efcagf943g43a1g959eg36f9ecc42e7e" comment="Intelligence description">Increases all damage by 2% per point. Damage dealt by skills is further increased by 3% and Accuracy by 1% per point.</content>
+    <content contentuid="h18f97d5bg9a79g4917g809dgb0ac7a5ec302" comment="Strength description">Increases all damage by 2% per point. Damage dealt with weapons are further increased by 3% (including weapon-based skills) and ignore 1% of enemy resistance per point if it's under 100%. Allows you to lift and carry heavier items.</content>
+    <content contentuid="h6b67efcagf943g43a1g959eg36f9ecc42e7e" comment="Intelligence description">Increases all damage by 2% per point. Damage dealt by skills is further increased by 3% (including weapon-based skills) and Accuracy by 1% per point.</content>
 	<content contentuid="h6d2cd8aeg4e09g4003ga57cg3fea3a0f5502" comment="Wits description">Wits affect your Critical Chance, Initiative, increase damages dealt by damaging statuses and your ability to detect traps and find hidden treasures.</content>
     <content contentuid="h6d76eb15gdb1ag4ebeg8001g58173516a923" comment="Walk It Off description">Walk It Off reduces all status durations by 1 turn, including positive statuses. Does not affect statuses with a duration of 1 turn. Also increases all resistances by 10% each time you are hit by a character, up to a maximum of 30%, until the next turn.</content>
     <content contentuid="h75391bafg8744g4441g9b1egf52f182f96fc" comment="Finesse description">Increases all damage by 3% per point. Dodge is increased by 1%, Critical Chance by 1% and Movement by 0.2m per AP per point.</content>
@@ -11,10 +11,11 @@
     <content contentuid="h878c02c0gc629g470dg955cg80dc2a125cb2" comment="Stench description">Stench decreases everyone&apos;s attitude towards you by [2], but melee opponents find you less attractive in combat. Increases your Poison resistance by 30% and makes you immune to Diseased and Infected.</content>
     <content contentuid="h8ddc8dd4ge8feg4420ga6dag0d87ce8ec743" comment="Duck Duck Goose description">[1] lets you evade attacks of opportunity. Increases your Dodge by 5% and Movement by 1m per AP.</content>
     <content contentuid="hbde985cfgb1c4g4bb6g9a61gbec72c9b4ed6" comment="Mnemonic description">Mnenomic doubles all points invested in Memory.</content>
-    <content contentuid="hc453e399ge1f5g41f1gaeabgcdd4de833c63" comment="Demon or IceKing">A character with [1] has an extra 30% [3], but takes a [4]% penalty to [5]. Additionally, the maximum [3] is raised by [6]. Demon grants 20% additional damage on all Burning and Necrofire statuses you apply to enemies. Ice King increases all Water damage you deal by 20%.</content>
+    <content contentuid="hc453e399ge1f5g41f1gaeabgcdd4de833c63" comment="Demon or IceKing">A character with [1] has an extra 30% [3], but takes a [4]% penalty to [5]. Additionally, the maximum [3] is raised by [6]. Demon grants immunity to Burning and Necrofire. Ice King increases all Water damage you deal by 20% and grants immunity to Chilled.</content>
     <content contentuid="hcb8f9837gdf0fg4a01ga7d6g5ed522b74189" comment="Escapist description">[1] allows you to flee combat even when enemies are close by. Provides immunity to Crippled, Entangled and Enwebbed.</content>
     <content contentuid="he94327f7g293dg488eg9d25gcb4f7ae7be24" comment="HotHead description">While above 75% Vitality, Hothead provides 10% Critical Chance and 10% Accuracy.</content>
     <content contentuid="hf3cd8067g36c0g4b48ga4dfg361f33579b43" comment="Ambidextrous description">Ambidextrous reduces the cost of using grenades and scrolls by 1 AP when your off-hand is free. Refund the AP cost for 2 equipment switches per turn.</content>
+	<content contentuid="h98163163g695ag4813gb105g3ade9ea09050" comment="Executioner description">[1] gives you [2] extra Action Points after dealing a killing blow once per turn and set Hasted for 1 turn (unless you are already hasted).</content>
     <content contentuid="hf4632a8fg42a7g4d53gbe26gd203f28e3d5e" comment="Shadow damages ?">Shadow</content>
     <content contentuid="hfb8eec35g3339g4762g8382g712e74a2ac0b" comment="Slingshot description">[1] adds an extra [2]m range to your grenade throws and increase their damage by 30%.</content>
     <content contentuid="hfc8981a1g8f84g49c8ga8b4g17564a836c45" comment="Duelist description">Duelist increases AP Start and Recovery by 1, and Max AP by 1, if you are wielding a Single-Handed weapon with a free off-hand.</content>
@@ -120,7 +121,7 @@
 	<content contentuid="h600f8b60g94fbg439bg963eg56599207438f" comment="LX_STAGGERED2_DisplayName">Staggered (2)</content>
 	<content contentuid="h5e23317dgf4ecg409bg9a6cg6d5be3ae8867" comment="LX_STAGGERED3_DisplayName">Staggered (3)</content>
 	<content contentuid="ha2bd4aa9gae5dg4bb0gb6ddg25a682c5a68b" comment="Stats_LX_DDGoose">Duck Duck Goose</content>
-	<content contentuid="h3d077707gcc2cg4b6eg808agda8c3a0384a8" comment="Stats_LX_Demon">Demon (Bonus)</content>
+	<content contentuid="h3d077707gcc2cg4b6eg808agda8c3a0384a8" comment="Stats_LX_DemonDemon">Demon (Bonus)</content>
 	<content contentuid="hb1fc6d8bg6bf6g4a3bg83f7g94177ced086a" comment="Stats_LX_Duelist">Duelist</content>
 	<content contentuid="hb4d441e2g0d7cg45f5g8917g5fa55696a431" comment="Stats_LX_Hothead">Hothead</content>
 	<content contentuid="h43401d61ga5dfg4282ga423gc4a5b78ff7ac" comment="Stats_LX_Leech">Leech</content>

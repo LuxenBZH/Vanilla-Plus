@@ -388,6 +388,16 @@ local function sheetButtonPressed(ui, call, state)
     Ext.PostMessageToServer("DGM_UpdateCharacter", tostring(char.NetID))
 end
 
+---@param ui UIObject
+---@param call string
+---@param state any
+local function itemSheetButtonPressed(ui, call, state)
+    local item = Ext.GetItem(Ext.DoubleToHandle(ui:GetValue("itemHandle", "number")))
+    if item ~= nil then
+        Ext.PostMessageToServer("DGM_UpdateCharacterFromItem", tostring(item.NetID))
+    end
+end
+
 local function DGM_SetupUI()
     local charSheet = Ext.GetBuiltinUI("Public/Game/GUI/characterSheet.swf")
     Ext.RegisterUIInvokeListener(charSheet, "updateArraySystem", changeDamageValue)
@@ -396,6 +406,11 @@ local function DGM_SetupUI()
     Ext.RegisterUICall(charSheet, "plusStat", sheetButtonPressed)
     Ext.RegisterUICall(charSheet, "minLevel", sheetButtonPressed)
     Ext.RegisterUICall(charSheet, "plusLevel", sheetButtonPressed)
+    Ext.RegisterUICall(charSheet, "minusTalent", sheetButtonPressed)
+    Ext.RegisterUICall(charSheet, "plusTalent", sheetButtonPressed)
+    Ext.RegisterUICall(charSheet, "minusAbility", sheetButtonPressed)
+    Ext.RegisterUICall(charSheet, "plusAbility", sheetButtonPressed)
+    -- Ext.RegisterUINameCall("onChangeParam", itemSheetButtonPressed)
 end
 
 Ext.RegisterListener("SessionLoaded", DGM_SetupUI)

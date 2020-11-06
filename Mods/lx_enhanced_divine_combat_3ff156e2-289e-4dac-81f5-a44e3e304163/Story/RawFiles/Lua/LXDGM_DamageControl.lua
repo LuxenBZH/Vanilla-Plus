@@ -246,24 +246,57 @@ end
 ---@param character EsvCharacter
 ---@param perseverance number
 ---@param type string
-function ManagePerseverance(character, perseverance, type)
-	-- Ext.Print(perseverance)
+function ManagePerseverance(character, type)
+	local perseverance = Ext.GetCharacter(character).Stats.Perseverance
 	local charHP = NRD_CharacterGetStatInt(character, "MaxVitality")
-	NRD_CharacterSetStatInt(character, "CurrentVitality", NRD_CharacterGetStatInt(character, "CurrentVitality")+(perseverance*Ext.ExtraData.DGM_PerseveranceVitalityRecovery*0.01*charHP))
-	if type == "Magic" then
-		local charMA = NRD_CharacterGetStatInt(character, "MaxMagicArmor")
-		NRD_CharacterSetStatInt(character, "CurrentMagicArmor", NRD_CharacterGetStatInt(character, "CurrentMagicArmor")+(perseverance*Ext.ExtraData.SkillAbilityArmorRestoredPerPoint*0.01*charMA))
-	elseif type == "Physical" then
-		local charPA = NRD_CharacterGetStatInt(character, "MaxArmor")
-		NRD_CharacterSetStatInt(character, "CurrentArmor", NRD_CharacterGetStatInt(character, "CurrentArmor")+(perseverance*Ext.ExtraData.SkillAbilityArmorRestoredPerPoint*0.01*charPA))
+	if type == "Normal" then
+		NRD_CharacterSetStatInt(character, "CurrentVitality", NRD_CharacterGetStatInt(character, "CurrentVitality")+(perseverance*Ext.ExtraData.DGM_PerseveranceVitalityRecovery*0.01*charHP))
 	elseif type == "Demi-Physic" then
 		local charPA = NRD_CharacterGetStatInt(character, "MaxArmor")
 		NRD_CharacterSetStatInt(character, "CurrentArmor", NRD_CharacterGetStatInt(character, "CurrentArmor")+(perseverance*Ext.ExtraData.SkillAbilityArmorRestoredPerPoint*0.005*charPA))
+		NRD_CharacterSetStatInt(character, "CurrentVitality", NRD_CharacterGetStatInt(character, "CurrentVitality")+(perseverance*Ext.ExtraData.DGM_PerseveranceVitalityRecovery*0.005*charHP))
 	elseif type == "Demi-Magic" then
-			local charMA = NRD_CharacterGetStatInt(character, "MaxMagicArmor")
-			NRD_CharacterSetStatInt(character, "CurrentMagicArmor", NRD_CharacterGetStatInt(character, "CurrentMagicArmor")+(perseverance*Ext.ExtraData.SkillAbilityArmorRestoredPerPoint*0.005*charMA))
+		local charMA = NRD_CharacterGetStatInt(character, "MaxMagicArmor")
+		NRD_CharacterSetStatInt(character, "CurrentMagicArmor", NRD_CharacterGetStatInt(character, "CurrentMagicArmor")+(perseverance*Ext.ExtraData.SkillAbilityArmorRestoredPerPoint*0.005*charMA))
+		NRD_CharacterSetStatInt(character, "CurrentVitality", NRD_CharacterGetStatInt(character, "CurrentVitality")+(perseverance*Ext.ExtraData.DGM_PerseveranceVitalityRecovery*0.005*charHP))
 	end
 end
+
+local ccStatusesPhysical = {
+	"LX_STAGGERED",
+	"LX_STAGGERED2",
+	"LX_STAGGERED3",
+	"DUMMY"
+}
+
+local ccStatusesMagical = {
+	"LX_CONFUSED",
+	"LX_CONFUSED2",
+	"LX_CONFUSED3",
+	"DUMMY"
+}
+
+local function ManageDemiPerseverance(character, status, causee)
+	if status == "POST_PHYS_CONTROL" or status == "POST_MAGIC_CONTROL" then
+		ManagePerseverance(character, "Normal")
+	end
+	for i,cc in pairs(ccStatusesPhysical) do
+		if status == cc and HasActiveStatus(character, ccStatusesPhysical[i+1]) == 0 then
+			if i ~= GetTableSize(ccStatusesMagical) and HasActiveStatus(character, ccStatusesPhysical[i+1]) == 0 then
+				ManagePerseverance(character, "Demi-Physic")
+			end
+		end
+	end
+	for i,cc in pairs(ccStatusesMagical) do
+		if status == cc then
+			if i ~= GetTableSize(ccStatusesMagical) and HasActiveStatus(character, ccStatusesMagical[i+1]) == 0 then
+				ManagePerseverance(character, "Demi-Magic")
+			end
+		end
+	end
+end
+
+Ext.RegisterOsirisListener("CharacterStatusRemoved", 3, "before", ManageDemiPerseverance)
 
 ---@param attacker EsvCharacter
 ---@param target EsvCharacter

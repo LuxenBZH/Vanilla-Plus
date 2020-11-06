@@ -72,20 +72,20 @@ KBSECTION
 // GenerateTreasure(LOOT_Pouch_A_000_66db1925-fcc2-4ff3-a5c6-76f9f9c0d543, "ST_WeaponNormal", 10, _Char);
 
 //Attribute sync
-IF
-StoryEvent((CHARACTERGUID)_Char, "DGM_SyncAttributeBonuses")
-THEN
-DB_DGM_AttributeSync(_Char);
-TimerLaunch("DGM_SyncAttributesTimer", 50);
+// IF
+// StoryEvent((CHARACTERGUID)_Char, "DGM_SyncAttributeBonuses")
+// THEN
+// DB_DGM_AttributeSync(_Char);
+// TimerLaunch("DGM_SyncAttributesTimer", 50);
 
-IF
-TimerFinished("DGM_SyncAttributesTimer")
-AND
-DB_DGM_AttributeSync(_Char)
-THEN
-LX_EXT_SyncAttributeBonuses(_Char);
-LX_EXT_SyncAbilityBonuses(_Char);
-NOT DB_DGM_AttributeSync(_Char);
+// IF
+// TimerFinished("DGM_SyncAttributesTimer")
+// AND
+// DB_DGM_AttributeSync(_Char)
+// THEN
+// LX_EXT_SyncAttributeBonuses(_Char);
+// LX_EXT_SyncAbilityBonuses(_Char);
+// NOT DB_DGM_AttributeSync(_Char);
 
 // IF
 // CharacterResurrected(_Char)

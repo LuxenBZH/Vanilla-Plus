@@ -145,7 +145,6 @@ end
 ---@param skill string
 ---@param tooltip TooltipData
 local function OnStatTooltip(character, stat, tooltip)
-    
     local stat = tooltip:GetElement("StatName").Label
     local statsPointValue = tooltip:GetElement("StatsPointValue")
 

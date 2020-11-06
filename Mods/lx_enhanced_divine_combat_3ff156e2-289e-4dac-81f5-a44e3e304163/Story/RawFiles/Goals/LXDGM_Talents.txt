@@ -14,10 +14,10 @@ CharacterLockedTalent(_Char, _Talent)
 THEN
 LX_EXT_CheckBoostTalents(_Char, _Talent, 0);
 
-IF
-CharacterResurrected(_Char)
-THEN
-LX_EXT_CheckBoostTalents(_Char, "Resurrection", 0);
+// IF
+// CharacterResurrected(_Char)
+// THEN
+// LX_EXT_CheckBoostTalents(_Char, "Resurrection", 0);
 
 //// Escapist immunities
 IF

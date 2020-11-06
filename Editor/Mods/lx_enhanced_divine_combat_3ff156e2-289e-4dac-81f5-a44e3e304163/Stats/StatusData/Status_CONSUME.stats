@@ -208,6 +208,13 @@
     </stat_object>
     <stat_object is_substat="false">
       <fields>
+        <field name="Name" type="NameStatObjectFieldDefinition" value="LX_ICEKING" />
+        <field name="StatsId" type="StringStatObjectFieldDefinition" value="Stats_LX_IceKing" />
+        <field name="StackId" type="StringStatObjectFieldDefinition" value="Stack_LX_IceKing" />
+      </fields>
+    </stat_object>
+    <stat_object is_substat="false">
+      <fields>
         <field name="Name" type="NameStatObjectFieldDefinition" value="LX_DEMON" />
         <field name="StatsId" type="StringStatObjectFieldDefinition" value="Stats_LX_Demon" />
         <field name="StackId" type="StringStatObjectFieldDefinition" value="Stack_LX_Demon" />
