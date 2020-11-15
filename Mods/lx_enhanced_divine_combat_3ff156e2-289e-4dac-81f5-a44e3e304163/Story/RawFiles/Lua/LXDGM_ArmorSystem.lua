@@ -3,6 +3,7 @@
 ---@param amount number
 ---@param dmgType string
 function CalculatePassingDamage(character, amount, dmgType)
+	if ObjectIsCharacter(character) == 0 then return end
 	if amount == nil then amount = 0 end
 	local dmgThrough = 0
 	local passingMod = Ext.ExtraData.DGM_DamageThroughArmor/100
@@ -62,6 +63,7 @@ end
 ---@param character EsvCharacter
 ---@param amount number
 function ApplyPassingDamage(character, amount)
+	if ObjectIsCharacter(character) == 0 then return end
 	local currentVitality = NRD_CharacterGetStatInt(character, "CurrentVitality")
 	if currentVitality == nil then return end
 	NRD_CharacterSetStatInt(character, "CurrentVitality", currentVitality - amount)
