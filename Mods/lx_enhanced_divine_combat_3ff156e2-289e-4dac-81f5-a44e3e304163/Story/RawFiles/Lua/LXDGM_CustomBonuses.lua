@@ -185,7 +185,7 @@ Ext.RegisterOsirisListener("GameStarted", 2, "before", CheckAllCustomBonuses)
 
 local function CharacterGlobalCheck(character, event)
     if event ~= "DGM_GlobalStatCheck" or character == "NULL_00000000-0000-0000-0000-000000000000" or ObjectExists(character) == 0 then return end
-    Ext.Print("Global check")
+    -- Ext.Print("Global check")
     SyncAttributeBonuses(character)
     SyncAbilitiesBonuses(character)
     if HasActiveStatus(character, "LX_CROSSBOWINIT") then
@@ -203,7 +203,7 @@ Ext.RegisterOsirisListener("StoryEvent", 2, "before", CharacterGlobalCheck)
 
 local function CharacterPunctualCheck(character)
     if character == "NULL_00000000-0000-0000-0000-000000000000" or ObjectExists(character) == 0 then return end
-    Ext.Print("Punctual check")
+    -- Ext.Print("Punctual check")
     SyncAttributeBonuses(character)
     SyncAbilitiesBonuses(character)
     if Ext.GetCharacter(character).Stats.TALENT_Memory then
@@ -227,11 +227,13 @@ local bannedStatusTemplates = {
     "INSURFACE",
     "SHOCKWAVE",
     "UNSHEATHED",
-    "THROWN"
+    "THROWN",
+    "HEAL",
+    "LEADERSHIP"
 }
 
 local function StatusCharacterPunctualCheck(char, status, causee)
-    Ext.Print(char, status, causee)
+    -- Ext.Print(char, status, causee)
     for i,ban in pairs(bannedStatusTemplates) do
         if string.find(status, ban) ~= nil then return end
     end

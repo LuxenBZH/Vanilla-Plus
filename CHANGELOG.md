@@ -328,3 +328,6 @@ Balance
 * Two Handed weapons now have higher attribute requirements (12 > 14)
 * Executioner now provide Hasted for 1 turn when dealing a killing blow (unless the character already have Hasted)
 
+#0.13.21.31 (Claud's mace)
+Fixes
+* Removed a lot of prints used for debugging the custom bonuses refreshment system
