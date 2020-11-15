@@ -331,8 +331,3 @@ Balance
 #0.13.21.31 (Claud's mace)
 Fixes
 * Removed a lot of prints used for debugging the custom bonuses refreshment system
-
-#0.13.22.32 (Amyro)
-Fixes
-* Fixed errors popping in the console when damage applied to non-character entities was creating a triple error, ultimately affecting server performance
-

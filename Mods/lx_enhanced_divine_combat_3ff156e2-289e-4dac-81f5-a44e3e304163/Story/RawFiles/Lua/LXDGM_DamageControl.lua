@@ -6,6 +6,7 @@ function DamageControl(target, handle, instigator)
 		Main damage control : damages are teared down to the original formula and apply custom
 		bonuses from the overhaul
 	]]--
+	if ObjectIsCharacter(instigator) == 0 then return end
 	-- Get hit properties
 	local damages = {}
 	local types = DamageTypeEnum()
@@ -37,21 +38,18 @@ function DamageControl(target, handle, instigator)
 		fixedValue = NRD_StatGetInt(string.gsub(skillID, "%_%-1", ""), "Damage")
 	end
 	
+	local weaponTypes = GetWeaponsType(instigator)
+	
 	-- Get hit damages
 	for i,dmgType in pairs(types) do
 		damages[dmgType] = NRD_HitStatusGetDamage(target, handle, dmgType)
 		if damages[dmgType] ~= 0 then Ext.Print("Damage "..dmgType..": "..damages[dmgType]) end
 	end
-
-	if ObjectIsCharacter(instigator) == 0 then InitiatePassingDamage(target, damages) return end
-	if ObjectIsCharacter(target) == 0 then InitiatePassingDamage(target, damages) return end
-
-	local weaponTypes = GetWeaponsType(instigator)
 	
 	if isBlocked == 1 then return end
-	if sourceType == 1 or sourceType == 2 or sourceType == 3 and ObjectIsCharacter(target) == 1 then InitiatePassingDamage(target, damages); return end
-	if skillID == "" and sourceType == 0 and ObjectIsCharacter(target) == 1 then InitiatePassingDamage(target, damages); return end
-	if fixedValue ~= 0 and fixedValue ~= 1 and fixedValue ~= 2 and ObjectIsCharacter(target) == 1 then InitiatePassingDamage(target, damages); return end
+	if sourceType == 1 or sourceType == 2 or sourceType == 3 then InitiatePassingDamage(target, damages); return end
+	if skillID == "" and sourceType == 0 then InitiatePassingDamage(target, damages); return end
+	if fixedValue ~= 0 and fixedValue ~= 1 and fixedValue ~= 2 then InitiatePassingDamage(target, damages); return end
 	
 	-- Dodge mechanic override
 	if isMissed == 1 or isDodged == 1 then
@@ -134,10 +132,10 @@ function DamageControl(target, handle, instigator)
 	if skillID == "Projectile_Talent_Unstable" then globalMultiplier = 1 end
 	damages = ChangeDamage(damages, (damageBonus/100+1)*globalMultiplier, 0, instigator)
 	ReplaceDamages(damages, handle, target)
-	if ObjectIsCharacter(target) == 1 then SetWalkItOff(target, handle) end
+	SetWalkItOff(target, handle)
 	
 	-- Armor passing damages
-	 if ObjectIsCharacter(target) == 1 then InitiatePassingDamage(target, damages) end
+	InitiatePassingDamage(target, damages)
 end
 
 ---@param target EsvCharacter
