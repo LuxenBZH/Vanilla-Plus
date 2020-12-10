@@ -563,3 +563,11 @@ data "Damage" "1"
 data "Damage Range" "5"
 data "DamageFromBase" "0"
 
+new entry "_Summon_Condor"
+type "Weapon"
+using "_NpcDaggers"
+data "ItemGroup" "EMPTY"
+data "Damage Type" "Piercing"
+data "Damage" "1"
+data "WeaponType" "None"
+

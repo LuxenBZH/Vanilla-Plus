@@ -3304,7 +3304,6 @@
     <stat_object is_substat="false">
       <fields>
         <field name="Name" type="NameStatObjectFieldDefinition" value="Stats_CrossbowPenalty" />
-        <field name="MovementSpeedBoost" type="IntegerStatObjectFieldDefinition" value="-50" />
       </fields>
     </stat_object>
     <stat_object is_substat="false">
@@ -4136,6 +4135,20 @@
         <field name="Name" type="NameStatObjectFieldDefinition" value="Stats_LX_IceKing" />
         <field name="WaterResistance" type="IntegerStatObjectFieldDefinition" value="15" />
         <field name="Flags" type="EnumerationListStatObjectFieldDefinition" value="9" enumeration_type_name="AttributeFlags" />
+      </fields>
+    </stat_object>
+    <stat_object is_substat="false">
+      <fields>
+        <field name="Name" type="NameStatObjectFieldDefinition" value="Stats_Apotheosis" />
+        <field name="Act" type="EnumerationStatObjectFieldDefinition" value="0" enumeration_type_name="Act" />
+        <field name="Act part" type="EnumerationStatObjectFieldDefinition" value="0" enumeration_type_name="ActPart" />
+        <field name="Strength" type="EnumerationStatObjectFieldDefinition" value="126" enumeration_type_name="Penalty PreciseQualifier" />
+        <field name="Finesse" type="EnumerationStatObjectFieldDefinition" value="126" enumeration_type_name="Penalty PreciseQualifier" />
+        <field name="Intelligence" type="EnumerationStatObjectFieldDefinition" value="126" enumeration_type_name="Penalty PreciseQualifier" />
+        <field name="Constitution" type="EnumerationStatObjectFieldDefinition" value="121" enumeration_type_name="Penalty PreciseQualifier" />
+        <field name="Memory" type="EnumerationStatObjectFieldDefinition" value="131" enumeration_type_name="Penalty PreciseQualifier" />
+        <field name="Wits" type="EnumerationStatObjectFieldDefinition" value="131" enumeration_type_name="Penalty PreciseQualifier" />
+        <field name="SPCostBoost" type="IntegerStatObjectFieldDefinition" value="-3" />
       </fields>
     </stat_object>
   </stat_objects>

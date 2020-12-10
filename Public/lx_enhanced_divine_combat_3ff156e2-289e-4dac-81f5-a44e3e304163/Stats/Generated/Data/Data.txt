@@ -6,7 +6,7 @@ key "VitalityToDamageRatio","8"
 
 key "VitalityToDamageRatioGrowth","0.3"
 
-key "UnstableRadius","6"
+key "UnstableRadius","4"
 
 key "VitalityBoostFromAttribute","0.1"
 
@@ -34,7 +34,7 @@ key "CombatAbilityDodgingBonus","3"
 
 key "CombatAbilityAccuracyBonus","2"
 
-key "CombatAbilityCritMultiplierBonus","5"
+key "CombatAbilityCritMultiplierBonus","4"
 
 key "CombatAbilityCritBonus","1"
 
@@ -193,4 +193,10 @@ key "DGM_CrossbowLevelGrowthPenalty","-8"
 
 
 key "LivingArmorHealPercentage","35"
+
+key "SkillAbilityCritMultiplierPerPoint","3"
+
+key "Surface Distance Evaluation","2"
+
+key "HealToDamageRatio","1.4"
 

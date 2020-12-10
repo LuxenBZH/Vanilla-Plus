@@ -210,7 +210,7 @@ local function OnAbilityTooltip(character, stat, tooltip)
         
     elseif stat == "Two-Handed" then
         if stats.TwoHanded > 0 then
-            abilityDescription.CurrentLevelEffect = GetDynamicTranslationString(stat, stats.TwoHanded, attrBonus["two"], attrBonus["twoCrit"], attrBonus["twoAcc"])
+            abilityDescription.CurrentLevelEffect = GetDynamicTranslationString(stat, stats.TwoHanded, attrBonus["two"], attrBonus["twoCrit"])
         end
 
         abilityDescription.NextLevelEffect =  GetDynamicTranslationString(stat, stats.TwoHanded+1, attrBonusNew["two"], attrBonusNew["twoCrit"], attrBonusNew["twoAcc"])
