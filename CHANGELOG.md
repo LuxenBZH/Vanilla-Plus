@@ -335,4 +335,13 @@ Fixes
 #0.13.22.32 (Amyro)
 Fixes
 * Fixed errors popping in the console when damage applied to non-character entities was creating a triple error, ultimately affecting server performance
+* Fixed Two-handed description
 
+Balance
+* Meteor Shower damage multiplier reduced from 25 to 20 and explosion radius from 6 to 5
+* Two Handed critical multiplier reduced from 5% to 4%
+* Scoundrel critical multiplier reduced from 4% to 3%
+* Apotheosis status Strength, Finesse and Intelligence bonus reduced from 3 to 2.5 and Constitution from 3 to 2
+* Blessed frozen surfaces now have 100% chance to apply Magic Shell (from 50%), similarly to Blessed oil with Fortified
+* Unstable radius reduced from 6 to 4 (back to vanilla)
+* Slightly increased all healings (by ~7%)

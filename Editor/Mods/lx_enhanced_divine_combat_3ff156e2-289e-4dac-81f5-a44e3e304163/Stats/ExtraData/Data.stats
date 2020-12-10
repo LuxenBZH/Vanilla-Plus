@@ -28,7 +28,7 @@
     <stat_object is_substat="false">
       <fields>
         <field name="Name" type="NameStatObjectFieldDefinition" value="UnstableRadius" />
-        <field name="Value" type="FloatStatObjectFieldDefinition" value="6" />
+        <field name="Value" type="FloatStatObjectFieldDefinition" value="4" />
       </fields>
     </stat_object>
     <stat_object is_substat="false">
@@ -112,7 +112,7 @@
     <stat_object is_substat="false">
       <fields>
         <field name="Name" type="NameStatObjectFieldDefinition" value="CombatAbilityCritMultiplierBonus" />
-        <field name="Value" type="FloatStatObjectFieldDefinition" value="5" />
+        <field name="Value" type="FloatStatObjectFieldDefinition" value="4" />
       </fields>
     </stat_object>
     <stat_object is_substat="false">
@@ -597,6 +597,24 @@
       <fields>
         <field name="Name" type="NameStatObjectFieldDefinition" value="LivingArmorHealPercentage" />
         <field name="Value" type="FloatStatObjectFieldDefinition" value="35" />
+      </fields>
+    </stat_object>
+    <stat_object is_substat="false">
+      <fields>
+        <field name="Name" type="NameStatObjectFieldDefinition" value="SkillAbilityCritMultiplierPerPoint" />
+        <field name="Value" type="FloatStatObjectFieldDefinition" value="3" />
+      </fields>
+    </stat_object>
+    <stat_object is_substat="false">
+      <fields>
+        <field name="Name" type="NameStatObjectFieldDefinition" value="Surface Distance Evaluation" />
+        <field name="Value" type="FloatStatObjectFieldDefinition" value="2" />
+      </fields>
+    </stat_object>
+    <stat_object is_substat="false">
+      <fields>
+        <field name="Name" type="NameStatObjectFieldDefinition" value="HealToDamageRatio" />
+        <field name="Value" type="FloatStatObjectFieldDefinition" value="1.4" />
       </fields>
     </stat_object>
   </stat_objects>

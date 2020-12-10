@@ -9,12 +9,12 @@
         <field name="Tier" type="EnumerationStatObjectFieldDefinition" value="3" enumeration_type_name="SkillTier" />
         <field name="ActionPoints" type="IntegerStatObjectFieldDefinition" value="4" />
         <field name="Cooldown" type="IntegerStatObjectFieldDefinition" value="4" />
-        <field name="Damage Multiplier" type="IntegerStatObjectFieldDefinition" value="25" />
+        <field name="Damage Multiplier" type="IntegerStatObjectFieldDefinition" value="20" />
         <field name="Damage Range" type="IntegerStatObjectFieldDefinition" value="5" />
         <field name="DamageType" type="EnumerationStatObjectFieldDefinition" value="6" enumeration_type_name="Damage Type" />
         <field name="SkillProperties" type="StringStatObjectFieldDefinition" value="Ignite;CreateSurface,3,,Fire,100" />
         <field name="TargetRadius" type="IntegerStatObjectFieldDefinition" value="13" />
-        <field name="AreaRadius" type="IntegerStatObjectFieldDefinition" value="6" />
+        <field name="AreaRadius" type="IntegerStatObjectFieldDefinition" value="5" />
         <field name="DeathType" type="EnumerationStatObjectFieldDefinition" value="5" enumeration_type_name="Death Type" />
         <field name="ExplodeRadius" type="IntegerStatObjectFieldDefinition" value="5" />
         <field name="StrikeCount" type="IntegerStatObjectFieldDefinition" value="25" />
