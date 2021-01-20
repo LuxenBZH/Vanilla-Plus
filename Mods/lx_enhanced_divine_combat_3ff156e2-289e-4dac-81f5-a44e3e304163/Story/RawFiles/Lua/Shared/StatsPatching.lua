@@ -112,7 +112,15 @@ end
 
 local function AdjustNPCStats()
 	if Ext.Version() < 53 then return end
-	if Ext.GetGameMode() == "Campaign" then
+	local hardSaved = Ext.LoadFile("LeaderLib_GlobalSettings.json")
+	local campaignScaling = true
+	local GMscaling = false
+	if hardSaved ~= nil and hardSaved ~= "" then
+		local variables = Ext.JsonParse(hardSaved).Mods["3ff156e2-289e-4dac-81f5-a44e3e304163"].Global.Flags
+		if not variables.LXDGM_NPCStatsCorrectionCampaignDisable.Enabled then campaignScaling = true else campaignScaling = false end
+		if variables.LXDGM_NPCStatsCorrectionGM.Enabled then GMscaling = true end
+	end
+	if Ext.GetGameMode() == "Campaign" and campaignScaling or Ext.GetGameMode() == "GameMaster" and GMscaling then
 		Ext.Print("Overriding NPC stats for balance...")
 		local attributes = {
 			"Strength",
@@ -127,15 +135,15 @@ local function AdjustNPCStats()
 				if stat.Strength ~= "None" and stat.Finesse ~= "None" and stat.Intelligence ~= "None" then
 					total = tonumber(stat.Strength)+tonumber(stat.Finesse)+tonumber(stat.Intelligence)
 				end
-				Ext.StatSetAttribute(stat.Name, "DamageBoost", Ext.Round(stat.DamageBoost-total))
+				-- Ext.StatSetAttribute(stat.Name, "DamageBoost", Ext.Round(stat.DamageBoost-total))
 				for i,attr in pairs(attributes) do
 					if stat[attr] ~= "None" then
 						if attr == archetype then
-							Ext.StatSetAttribute(stat.Name, attr, string.gsub(tostring(RoundToFirstDecimal((stat[attr])*(1-stat[attr]*0.075))), ".0", ""))
+							Ext.StatSetAttribute(stat.Name, attr, string.gsub(tostring(RoundToFirstDecimal((stat[attr])*(1-stat[attr]*Ext.ExtraData.DGM_NpcScalingMainAttributeCorrection*0.001))), ".0", ""))
 						elseif archetype == "None" then
-							Ext.StatSetAttribute(stat.Name, attr, string.gsub(tostring(RoundToFirstDecimal((stat[attr])*(1-stat[attr]*0.085))), ".0", ""))
+							Ext.StatSetAttribute(stat.Name, attr, string.gsub(tostring(RoundToFirstDecimal((stat[attr])*(1-stat[attr]*Ext.ExtraData.DGM_NpcScalingSecondaryAttributeCorrection*0.001))), ".0", ""))
 						else
-							Ext.StatSetAttribute(stat.Name, attr, string.gsub(tostring(RoundToFirstDecimal((stat[attr])*(1-stat[attr]*0.095))), ".0", ""))
+							Ext.StatSetAttribute(stat.Name, attr, string.gsub(tostring(RoundToFirstDecimal((stat[attr])*(1-stat[attr]*Ext.ExtraData.DGM_NpcScalingNoArchetypeCorrection*0.001))), ".0", ""))
 						end
 					end
 				end

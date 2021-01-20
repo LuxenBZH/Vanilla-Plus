@@ -51,7 +51,7 @@ function CharGetDGMAttributeBonus(char, next)
 		str = math.floor(strength+next),
 		strGlobal = math.floor((strength+next) * Ext.ExtraData.DGM_StrengthGlobalBonus),
 		strWeapon = math.floor((strength+next) * Ext.ExtraData.DGM_StrengthWeaponBonus),
-		strRes = math.floor((strength+next) * Ext.ExtraData.DGM_StrengthResistanceIgnore),
+		strRes = math.floor(Ext.Round((strength+next) * Ext.ExtraData.DGM_StrengthResistanceIgnore * 100))/100,
 		fin = math.floor(finesse+next),
 		finGlobal = math.floor((finesse+next) * Ext.ExtraData.DGM_FinesseGlobalBonus),
 		finDodge = round((finesse+next) * Ext.ExtraData.DodgingBoostFromAttribute * 100, 0),
@@ -96,6 +96,10 @@ end
 function RoundToFirstDecimal(number)
 	local multiplied = math.floor(Ext.Round(number*10)) --floor operation to remove any unneeded 0 after the final decimal
 	return multiplied/10
+end
+
+function RoundToSecondDecimal(number)
+	return tonumber(string.format("%.2f", number))
 end
 
 function GetTableSize(table)

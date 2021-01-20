@@ -16,7 +16,7 @@
         <field name="TargetRadius" type="IntegerStatObjectFieldDefinition" value="13" />
         <field name="AreaRadius" type="IntegerStatObjectFieldDefinition" value="5" />
         <field name="DeathType" type="EnumerationStatObjectFieldDefinition" value="5" enumeration_type_name="Death Type" />
-        <field name="ExplodeRadius" type="IntegerStatObjectFieldDefinition" value="5" />
+        <field name="ExplodeRadius" type="IntegerStatObjectFieldDefinition" value="4" />
         <field name="StrikeCount" type="IntegerStatObjectFieldDefinition" value="25" />
         <field name="StrikeDelay" type="IntegerStatObjectFieldDefinition" value="80" />
         <field name="CanTargetCharacters" type="EnumerationStatObjectFieldDefinition" value="1" enumeration_type_name="YesNo" />

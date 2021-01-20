@@ -1,4 +1,4 @@
-Project Divine Game Master Changelog
+Vanilla Plus Changelog
 =======
 # 0.8.1.5
 * Initial Release
@@ -231,7 +231,7 @@ Fixes
 Balance
 * Food regeneration now restore vitality only during combat to avoid repetitive and unnecessary permanent healing effects
 
-#0.11.18.26 (Vasnya)
+# 0.11.18.26 (Vasnya)
 Fixes
 * Fixed a bug related to skills tooltip that was clutering the console
 * Fixed a typo in Escapist description (thanks to our grammar nazi)
@@ -256,7 +256,7 @@ Modules
 	- If you have Wings or Pure, you are immune to fall damage
 	- /!\ CAUTION : The AI is unable to take fall damage into account. Enabling this against AI isn't recommended at all. This module is designed for the GM to play opponents.
 	
-#0.11.19.27 (Trompdoy)
+# 0.11.19.27 (Trompdoy)
 Fixes
 * Fixed Walk it Off description not being correct
 * Fixed an issue where talents special effects would not be applied when reloading a game
@@ -273,7 +273,7 @@ Modules
 * Changed the fall damage formula. Starts at 20% HP at 5 meters and go up to 100% at 15 meters
 * Scoundrel now increase fall distance tolerance by 0.4m per point instead of 0.5m
 
-#0.12.20.29 (Han)
+# 0.12.20.29 (Han)
 Fixes
 * Improved performance on the server side, which was causing desyncs to the host itself and also to clients
 * Walk it off status does not get back to the first stage after reaching the third one
@@ -298,7 +298,7 @@ Balance
 Modules
 * Added an option to the Fall damage module to disable jump fall damage (in that case, only fall damage from Force skills will work)
 
-#0.13.21.30 (Claud)
+# 0.13.21.30 (Claud)
 Fixes
 * Staggered and Confused are not triggered if the target have remaining armor anymore
 * Fixed Mnemonics not refreshing correctly
@@ -328,11 +328,11 @@ Balance
 * Two Handed weapons now have higher attribute requirements (12 > 14)
 * Executioner now provide Hasted for 1 turn when dealing a killing blow (unless the character already have Hasted)
 
-#0.13.21.31 (Claud's mace)
+# 0.13.21.31 (Claud's mace)
 Fixes
 * Removed a lot of prints used for debugging the custom bonuses refreshment system
 
-#0.13.22.32 (Amyro)
+# 0.13.22.32 (Amyro)
 Fixes
 * Fixed errors popping in the console when damage applied to non-character entities was creating a triple error, ultimately affecting server performance
 * Fixed Two-handed description
@@ -345,3 +345,48 @@ Balance
 * Blessed frozen surfaces now have 100% chance to apply Magic Shell (from 50%), similarly to Blessed oil with Fortified
 * Unstable radius reduced from 6 to 4 (back to vanilla)
 * Slightly increased all healings (by ~7%)
+
+# 1.0.0.40 (Malady)
+New features
+* If LeaderLib is enabled Vanilla Plus have a set of options in the game menu allowing to modify a lot of gameplay features, giving the most modular experience ever.
+	* Modules
+	* Attributes bonuses
+	* Armor system
+	* Miscellaneous
+	* Scaling system
+* Strength now create a resistance bypass multiplier that increase each point and is applied per Intelligence point e.g. each point in strength increase the multiplier by 0.15, so if you have 10 Strength your multiplier is 1.5 and is applied per Intelligence point. If you have 10 Intelligence points, then you will ignore 1.5*10 = 15% resistance.
+
+Fixes
+* Fixed Pet Pal talent where summoning a third creature would remove Weak Summon from both summons
+* Fixed a bug where Mend Metal would not reduce damage going through physical armor
+* Added more compatibility for the Real Jump module to replace some of the NPCs jumps as well
+
+Balance
+* Two Handed critical multiplier bonus reduced from 4% to 3% per point
+* Incarnate constitution increased from 1 to 2
+* Incarnate champion constitution increased from 2 to 3
+* Bone Widow constitution reduced from 5 to 2.5
+* Bone Widow finesse reduced from 4 to 2.5
+* Oily blob base vitality increased from 45 to 55
+* Oily blob constituion increased from 1 to 2
+* Charm arrow now cost 3 AP (from 2)
+* Charm grenade now cost 3 AP (from 2)
+* Mind maggot grenade now cost 3 AP (from 2)
+* Oily carapace radius increased from 2 to 5
+* Living on the Edge cooldown increased from 5 to 6
+* Confused Initiative penalty increased from -1/-2/-3 to -2/-4/-6
+* Confused Max AP penalty decrased from -2/-3/-4 to -1/-2-3
+* Oily Carapace and Cryotherapy now reduce 100% of the physical and magic damage going through armor for 2 turns respectively
+* Scoundrel movement bonus increased from 0.1 to 0.15
+* Blood Sucker, Oily Carapace and Cryotherapy absorption range increased from 2 to 3
+
+Miscellaneous
+* Momentum, Lingering, Staggered and Confused now have fancy new icons
+
+Code
+* Project structure refactored
+* Transferred the old localization modifications to LaughingLeader's Source Control Generator system, making translations across languages easier. However, errors might have appeared. Please report any text issue.
+
+# 1.0.1.41
+Fixes
+* Fixed some options not changing when using LeaderLib

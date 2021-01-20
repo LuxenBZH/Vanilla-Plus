@@ -171,6 +171,7 @@
         <field name="ObjectCategory" type="StringStatObjectFieldDefinition" value="GrenadeMid" />
         <field name="Priority" type="IntegerStatObjectFieldDefinition" value="2" />
         <field name="MinLevel" type="IntegerStatObjectFieldDefinition" value="9" />
+        <field name="UseAPCost" type="IntegerStatObjectFieldDefinition" value="3" />
       </fields>
     </stat_object>
     <stat_object is_substat="false">
@@ -301,6 +302,7 @@
         <field name="Act part" type="EnumerationStatObjectFieldDefinition" value="12" enumeration_type_name="ActPart" />
         <field name="Value" type="IntegerStatObjectFieldDefinition" value="300" />
         <field name="Constitution" type="EnumerationStatObjectFieldDefinition" value="11" enumeration_type_name="PreciseQualifier" />
+        <field name="UseAPCost" type="IntegerStatObjectFieldDefinition" value="3" />
       </fields>
     </stat_object>
     <stat_object is_substat="false">
@@ -421,7 +423,7 @@
         <field name="MinAmount" type="IntegerStatObjectFieldDefinition" value="1" />
         <field name="MaxAmount" type="IntegerStatObjectFieldDefinition" value="1" />
         <field name="Priority" type="IntegerStatObjectFieldDefinition" value="1" />
-        <field name="MinLevel" type="IntegerStatObjectFieldDefinition" value="16" />
+        <field name="MinLevel" type="IntegerStatObjectFieldDefinition" value="9" />
       </fields>
     </stat_object>
     <stat_object is_substat="false">
@@ -437,7 +439,7 @@
         <field name="MinAmount" type="IntegerStatObjectFieldDefinition" value="1" />
         <field name="MaxAmount" type="IntegerStatObjectFieldDefinition" value="1" />
         <field name="Priority" type="IntegerStatObjectFieldDefinition" value="1" />
-        <field name="MinLevel" type="IntegerStatObjectFieldDefinition" value="16" />
+        <field name="MinLevel" type="IntegerStatObjectFieldDefinition" value="9" />
       </fields>
     </stat_object>
     <stat_object is_substat="false">
@@ -453,7 +455,7 @@
         <field name="MinAmount" type="IntegerStatObjectFieldDefinition" value="1" />
         <field name="MaxAmount" type="IntegerStatObjectFieldDefinition" value="1" />
         <field name="Priority" type="IntegerStatObjectFieldDefinition" value="1" />
-        <field name="MinLevel" type="IntegerStatObjectFieldDefinition" value="16" />
+        <field name="MinLevel" type="IntegerStatObjectFieldDefinition" value="9" />
       </fields>
     </stat_object>
     <stat_object is_substat="false">
@@ -469,7 +471,7 @@
         <field name="MinAmount" type="IntegerStatObjectFieldDefinition" value="1" />
         <field name="MaxAmount" type="IntegerStatObjectFieldDefinition" value="1" />
         <field name="Priority" type="IntegerStatObjectFieldDefinition" value="1" />
-        <field name="MinLevel" type="IntegerStatObjectFieldDefinition" value="16" />
+        <field name="MinLevel" type="IntegerStatObjectFieldDefinition" value="9" />
       </fields>
     </stat_object>
     <stat_object is_substat="false">
@@ -485,7 +487,7 @@
         <field name="MinAmount" type="IntegerStatObjectFieldDefinition" value="1" />
         <field name="MaxAmount" type="IntegerStatObjectFieldDefinition" value="1" />
         <field name="Priority" type="IntegerStatObjectFieldDefinition" value="1" />
-        <field name="MinLevel" type="IntegerStatObjectFieldDefinition" value="16" />
+        <field name="MinLevel" type="IntegerStatObjectFieldDefinition" value="9" />
       </fields>
     </stat_object>
     <stat_object is_substat="false">
@@ -501,7 +503,7 @@
         <field name="MinAmount" type="IntegerStatObjectFieldDefinition" value="1" />
         <field name="MaxAmount" type="IntegerStatObjectFieldDefinition" value="1" />
         <field name="Priority" type="IntegerStatObjectFieldDefinition" value="1" />
-        <field name="MinLevel" type="IntegerStatObjectFieldDefinition" value="16" />
+        <field name="MinLevel" type="IntegerStatObjectFieldDefinition" value="9" />
       </fields>
     </stat_object>
     <stat_object is_substat="false">
@@ -517,7 +519,21 @@
         <field name="MinAmount" type="IntegerStatObjectFieldDefinition" value="1" />
         <field name="MaxAmount" type="IntegerStatObjectFieldDefinition" value="1" />
         <field name="Priority" type="IntegerStatObjectFieldDefinition" value="1" />
-        <field name="MinLevel" type="IntegerStatObjectFieldDefinition" value="16" />
+        <field name="MinLevel" type="IntegerStatObjectFieldDefinition" value="9" />
+      </fields>
+    </stat_object>
+    <stat_object is_substat="false">
+      <fields>
+        <field name="Name" type="NameStatObjectFieldDefinition" value="WPN_Arrow_Charming_A" />
+        <field name="Using" type="BaseClassStatObjectFieldDefinition" value="_Arrows" />
+        <field name="RootTemplate" type="RootTemplateStatObjectFieldDefinition" value="d2740ee3-6f34-459d-b4bc-100c34f5ab7a" />
+        <field name="Act part" type="EnumerationStatObjectFieldDefinition" value="9" enumeration_type_name="ActPart" />
+        <field name="Value" type="IntegerStatObjectFieldDefinition" value="145" />
+        <field name="Weight" type="IntegerStatObjectFieldDefinition" value="50" />
+        <field name="ObjectCategory" type="StringStatObjectFieldDefinition" value="ArrowMid" />
+        <field name="Priority" type="IntegerStatObjectFieldDefinition" value="2" />
+        <field name="MinLevel" type="IntegerStatObjectFieldDefinition" value="9" />
+        <field name="UseAPCost" type="IntegerStatObjectFieldDefinition" value="3" />
       </fields>
     </stat_object>
   </stat_objects>

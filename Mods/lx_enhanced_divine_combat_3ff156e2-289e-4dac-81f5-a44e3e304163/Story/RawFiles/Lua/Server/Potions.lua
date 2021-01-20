@@ -15,7 +15,11 @@ function CharacterUsePoisonedPotion(character, potion)
 	end
 	SetStoryEvent(character, "LX_Get_Max_HP")
 	local charMaxHP = GetVarFloat(character, "LX_Max_HP")
-	potionDmg = charMaxHP * potionDmg
+	local fsd = 1
+	if Ext.GetCharacter(character).Stats.TALENT_FiveStarRestaurant then
+		fsd = 2
+	end
+	potionDmg = charMaxHP * potionDmg * fsd
 	charRes = NRD_CharacterGetComputedStat(character, "PoisonResistance", 0)/100
 	potionDmg = potionDmg * (1-charRes)
 	hitHandle = NRD_HitPrepare(character, character)

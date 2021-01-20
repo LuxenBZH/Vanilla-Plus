@@ -1,4 +1,18 @@
 ---- Armor system modification ---
+local physicalArmorReduction = {
+	FORTIFIED = Ext.ExtraData.DGM_FortifiedPassingPhysicalReduction,
+	MEND_METAL = Ext.ExtraData.DGM_MendMetalPassingPhysicalReduction,
+	STEEL_SKIN = Ext.ExtraData.DGM_SteelSkinPassingPhysicalReduction,
+	LX_SHIELDSUP = Ext.ExtraData.DGM_ShieldsUpPassingReduction,
+	LX_OILYCARAPACE = Ext.ExtraData.DGM_OilyCarapacePassingReduction,
+}
+
+local magicArmorReduction = {
+	MAGIC_SHELL = Ext.ExtraData.DGM_MagicShellPassingMagicReduction,
+	FROST_AURA = Ext.ExtraData.DGM_FrostAuraPassingMagicReduction,
+	LX_CRYOTHERAPY = Ext.ExtraData.DGM_CryotherapyPassingMagicReduction,
+}
+
 ---@param character EsvCharacter
 ---@param amount number
 ---@param dmgType string
@@ -19,10 +33,9 @@ function CalculatePassingDamage(character, amount, dmgType)
 	end
 	
 	if dmgType == "Physical" then
-		if HasActiveStatus(character, "FORTIFIED") == 1 then passingModMult = passingModMult - Ext.ExtraData.DGM_FortifiedPassingPhysicalReduction end
-		if HasActiveStatus(character, "MEND_MENTAL") == 1 then passingModMult = passingModMult - Ext.ExtraData.DGM_MendMetalPassingPhysicalReduction end
-		if HasActiveStatus(character, "STEEL_SKIN") == 1 then passingModMult = passingModMult - Ext.ExtraData.DGM_SteelSkinPassingPhysicalReduction end
-		if HasActiveStatus(character, "LX_SHIELDSUP") == 1 then passingModMult = passingModMult - Ext.ExtraData.DGM_ShieldsUpPassingReduction end
+		for status,reduction in pairs(physicalArmorReduction) do
+			if HasActiveStatus(status) == 1 then passingModMult = passingModMult - reduction end
+		end
 		passingMod = passingMod * passingModMult
 		if pArmor > 0 then
 			if pArmor > amount then
@@ -43,9 +56,9 @@ function CalculatePassingDamage(character, amount, dmgType)
 	}
 	for i, mDmg in pairs(magicTypes) do
 		if dmgType == mDmg then
-			if HasActiveStatus(character, "MAGIC_SHELL") == 1 then passingModMult = passingModMult - Ext.ExtraData.DGM_MagicShellPassingMagicReduction end
-			if HasActiveStatus(character, "FROST_AURA") == 1 then passingModMult = passingModMult - Ext.ExtraData.DGM_FrostAuraPassingMagicReduction end
-			if HasActiveStatus(character, "LX_SHIELDSUP") == 1 then passingModMult = passingModMult - Ext.ExtraData.DGM_ShieldsUpPassingReduction end
+			for status,reduction in pairs(magicArmorReduction) do
+				if HasActiveStatus(status) == 1 then passingModMult = passingModMult - reduction end
+			end
 			passingMod = passingMod * passingModMult
 			if mArmor > 0 then
 				if mArmor > amount then

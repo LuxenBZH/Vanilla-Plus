@@ -3,7 +3,7 @@
 ---@param talent string
 ---@param unlocked boolean
 function CheckBoostTalents(character, talent, unlocked)
-	Ext.Print("Talent ",talent," changed :",unlocked)
+	--Ext.Print("Talent ",talent," changed :",unlocked)
 	if unlocked == 1 then
 		unlocked = true
 	else
@@ -11,7 +11,7 @@ function CheckBoostTalents(character, talent, unlocked)
 	end
 	
 	if talent == "Resurrection" then
-		Ext.Print("[LXGDM_Talents.CheckBoostTalents] Check Talents after resurrection...")
+		--Ext.Print("[LXGDM_Talents.CheckBoostTalents] Check Talents after resurrection...")
 		CheckAllTalents(character)
 	end
 	
@@ -152,8 +152,9 @@ end
 function ManagePetPal(character, summon)
 	local summons = Osi.DB_DGM_Available_Summons:Get(character, nil);
 	if summons[1] ~= nil and summons[2] ~= nil then
-		ApplyStatus(summons[1][2], "LX_PETPAL", -1.0, 1)
-		ApplyStatus(summons[2][2], "LX_PETPAL", -1.0, 1)
+		for i,summon in pairs(summons) do
+			ApplyStatus(summon[2], "LX_PETPAL", -1.0, 1)
+		end
 	end
 end
 
@@ -163,7 +164,9 @@ function RestorePetPalPower(character, summon)
 	-- Call this function on DB remove of the second summon
 	local summons = Osi.DB_DGM_Available_Summons:Get(character, nil)
 	if summons[1] == nil then return end
-	RemoveStatus(summons[1][2], "LX_PETPAL")
+	if GetTableSize(summons) < 2 then
+		RemoveStatus(summons[1][2], "LX_PETPAL")
+	end
 end
 
 local function ExecutionerHaste(defender, attackerOwner, attacker)
@@ -182,3 +185,4 @@ local function ExecutionerHaste(defender, attackerOwner, attacker)
 end
 
 Ext.RegisterOsirisListener("CharacterKilledBy", 3, "before", ExecutionerHaste)
+
