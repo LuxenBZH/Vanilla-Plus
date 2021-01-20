@@ -11,10 +11,6 @@ function DamageControl(target, handle, instigator)
 	]]--
 	if ObjectIsCharacter(instigator) == 0 then return end
 	-- Get hit properties
-	--Ext.Print(context.HitType)
-	-- local handle = status.StatusHandle
-	-- local target = Ext.GetGameObject(status.TargetHandle).MyGuid
-	-- local instigator = Ext.GetGameObject(status.StatusSourceHandle).MyGuid
 	local damages = {}
 	local types = DamageTypeEnum()
 	local isCrit = NRD_StatusGetInt(target, handle, "CriticalHit")
@@ -140,13 +136,11 @@ function DamageControl(target, handle, instigator)
 	if skillID == "Projectile_Talent_Unstable" then globalMultiplier = 1 end
 	damages = ChangeDamage(damages, (damageBonus/100+1)*globalMultiplier, 0, instigator)
 	ReplaceDamages(damages, handle, target)
-	SetWalkItOff(target, handle)
+	if ObjectIsCharacter(target) == 1 then SetWalkItOff(target, handle) end
 	
 	-- Armor passing damages
-	InitiatePassingDamage(target, damages)
+	if ObjectIsCharacter(target) == 1 then InitiatePassingDamage(target, damages) end
 end
-
--- Ext.RegisterListener("StatusHitEnter", DamageControl)
 
 ---@param target EsvCharacter
 ---@param damages table
