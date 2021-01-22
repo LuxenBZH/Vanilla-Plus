@@ -1,18 +1,9 @@
+Ext.Require("Server/Modules/FallDamage.lua")
+
 PersistentVars = {}
 
 ------ Real Jumps module -------
-function JumpProjectile(projectile, hitObject, position)
-    local skill = projectile.SkillId:gsub("%_%-1", "")
-    --Ext.Print(skill)
-    if skill == "Projectile_TacticalRetreat" or skill == "Projectile_CloakAndDagger" or skill == "Projectile_PhoenixDive" then
-        local char = Ext.GetCharacter(projectile.CasterHandle)
-        PlayAnimation(char.MyGuid, "skill_jump_flight_land")
-    end
-end
-
---Ext.RegisterListener("ProjectileHit", JumpProjectile)
-
-local function ReplaceAllJumps(toggle)
+function ReplaceAllJumps(toggle)
     if toggle == "on" then
         print("RealJump module activated")
         PersistentVars["DGM_RealJump"] = true
@@ -32,6 +23,16 @@ local function GameStartJumpModule(arg1, arg2)
     end
 end
 
+local elligibleSkills = {
+    "Jump_PhoenixDive",
+    "Jump_EnemyPhoenixDive",
+    "Jump_TacticalRetreat",
+    "Jump_EnemyTacticalRetreat",
+    "Jump_EnemyTacticalRetreat_Frog",
+    "Jump_IncarnateJump",
+    "Jump_CloakAndDagger",
+    "Jump_EnemyCloakAndDagger"
+}
 
 local function CharacterReplaceJumpSkills(character, eventName)
     if eventName == "DGM_CharacterReplaceJumpSkills" then
@@ -40,45 +41,51 @@ local function CharacterReplaceJumpSkills(character, eventName)
         --print(character)
         local skills = character.GetSkills(character)
         for i,skill in pairs(skills) do
-            if skill == "Jump_TacticalRetreat" or skill == "Jump_CloakAndDagger" or skill == "Jump_PhoenixDive" then
-                --print(skill)
-                CharacterRemoveSkill(character.MyGuid, skill)
-                local newJump = string.gsub(skill, "Jump", "Projectile")
-                --print(newJump)
-                CharacterAddSkill(character.MyGuid, newJump)
+            for j,jump in pairs(elligibleSkills) do
+                if skill == jump then
+                    --print(skill)
+                    CharacterRemoveSkill(character.MyGuid, skill)
+                    local newJump = string.gsub(skill, "Jump", "Projectile")
+                    --print(newJump)
+                    CharacterAddSkill(character.MyGuid, newJump)
+                end
             end
         end
     end
 
     if eventName == "DGM_CharacterReplaceJumpSkillsRevert" then
         local character = Ext.GetCharacter(character)
-        --print(character)
+        if character == nil then return end
         local skills = character.GetSkills(character)
         for i,skill in pairs(skills) do
-            if skill == "Projectile_TacticalRetreat" or skill == "Projectile_CloakAndDagger" or skill == "Projectile_PhoenixDive" then
-                --print(skill)
-                CharacterRemoveSkill(character.MyGuid, skill)
-                local newJump = string.gsub(skill, "Projectile", "Jump")
-                --print(newJump)
-                CharacterAddSkill(character.MyGuid, newJump)
+            for j,jump in pairs(elligibleSkills) do
+                if skill == jump then
+                    --print(skill)
+                    CharacterRemoveSkill(character.MyGuid, skill)
+                    local newJump = string.gsub(skill, "Projectile", "Jump")
+                    --print(newJump)
+                    CharacterAddSkill(character.MyGuid, newJump)
+                end
             end
         end
     end
 end
 
 local function CharacterUnlearnJumpSkill(character, skill)
-    if skill == "Jump_TacticalRetreat" or skill == "Jump_CloakAndDagger" or skill == "Jump_PhoenixDive" then
-        --print("Jump learned")
-        local character = Ext.GetCharacter(character)
-        if character == nil then return end
-        CharacterRemoveSkill(character.MyGuid, skill)
-        local newJump = string.gsub(skill, "Jump", "Projectile")
-        --print(newJump)
-        CharacterAddSkill(character.MyGuid, newJump)
+    for i,jump in pairs(elligibleSkills) do
+        if skill == jump then
+            --print("Jump learned")
+            local character = Ext.GetCharacter(character)
+            if character == nil then return end
+            CharacterRemoveSkill(character.MyGuid, skill)
+            local newJump = string.gsub(skill, "Jump", "Projectile")
+            --print(newJump)
+            CharacterAddSkill(character.MyGuid, newJump)
+        end
     end
 end
 
-local function EnableFallDamage(cmd)
+function EnableFallDamage(cmd)
     if cmd == "on" then
         print("Fall damage module activated")
         PersistentVars["DGM_FallDamage"] = true
@@ -88,7 +95,7 @@ local function EnableFallDamage(cmd)
     end
 end
 
-local function EnableJumpDamage(cmd)
+function EnableJumpDamage(cmd)
     if cmd == "on" then
         print("Jump fall damage module activated")
         PersistentVars["DGM_FallDamage_Jump"] = true
@@ -113,6 +120,28 @@ local function DGM_Modules_consoleCmd(cmd, ...)
     if cmd == "DGM_Module_FallDamage" then EnableFallDamage(params[1]) end
     if cmd == "DGM_Module_FallDamage_Jump" then EnableJumpDamage(params[1]) end
 end
+
+local function ActivateModule(flag)
+    if flag == "LXDGM_ModuleRealJump" then 
+        ReplaceAllJumps("on")
+    elseif flag == "LXDGM_ModuleFallDamageClassic" then 
+        EnableFallDamage("on")
+    elseif flag == "LXDGM_ModuleFallDamageAlternate" then 
+        EnableJumpDamage("on")
+    end
+end
+Ext.RegisterOsirisListener("GlobalFlagSet", 1, "after", ActivateModule)
+
+local function DeactivateModule(flag)
+    if flag == "LXDGM_ModuleRealJump" then 
+        ReplaceAllJumps("off")
+    elseif flag == "LXDGM_ModuleFallDamageClassic" then 
+        EnableFallDamage("off")
+    elseif flag == "LXDGM_ModuleFallDamageAlternate" then 
+        EnableJumpDamage("off")
+    end
+end
+Ext.RegisterOsirisListener("GlobalFlagCleared", 1, "after", DeactivateModule)
 
 Ext.RegisterConsoleCommand("DGM_Module_RealJump", DGM_Modules_consoleCmd)
 Ext.RegisterConsoleCommand("DGM_Module_FallDamage", DGM_Modules_consoleCmd)

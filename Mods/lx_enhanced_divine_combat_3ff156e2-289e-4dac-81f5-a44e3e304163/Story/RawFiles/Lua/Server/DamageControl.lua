@@ -1,7 +1,10 @@
 ---@param target EsvCharacter
 ---@param handle number
 ---@param instigator EsvCharacter
+---@param status EsvStatusHit
+---@param context HitContext
 function DamageControl(target, handle, instigator)
+-- function DamageControl(status, context)
 	--[[
 		Main damage control : damages are teared down to the original formula and apply custom
 		bonuses from the overhaul
@@ -23,7 +26,7 @@ function DamageControl(target, handle, instigator)
 	local fromReflection = NRD_StatusGetInt(target, handle, "Reflection")
 	-- print("Hit from reflection: "..fromReflection)
 	local hitType = NRD_StatusGetInt(target, handle, "DoT")
-	--print("HitType: "..hitType)
+	-- print("HitType: "..hitType)
 	local sourceType = NRD_StatusGetInt(target, handle, "DamageSourceType")
 	local skillID = NRD_StatusGetString(target, handle, "SkillId")
 	local backstab = NRD_StatusGetInt(target, handle, "Backstab")
@@ -96,16 +99,17 @@ function DamageControl(target, handle, instigator)
 	end
 	if hitType == 1 then
 		damageBonus = wits*Ext.ExtraData.DGM_WitsDotBonus
+		Ext.Print("Dot bonus",damageBonus)
 		-- print("Bonus: DoT") 
 		-- Demon bonus for burning/necrofire
-		local hasDemon = CharacterHasTalent(instigator, "Demon")
-		if hasDemon == 1 then
-			local statusID = NRD_StatusGetString(target, handle, "StatusId")
-			if statusID == "BURNING" or statusID == "NECROFIRE" then
-				-- print("Bonus: Demon")
-				damageBonus = damageBonus + Ext.ExtraData.DGM_DemonStatusesBonus
-			end
-		end
+		-- local hasDemon = CharacterHasTalent(instigator, "Demon")
+		-- if hasDemon == 1 then
+		-- 	local statusID = NRD_StatusGetString(target, handle, "StatusId")
+		-- 	if statusID == "BURNING" or statusID == "NECROFIRE" then
+		-- 		-- print("Bonus: Demon")
+		-- 		damageBonus = damageBonus + Ext.ExtraData.DGM_DemonStatusesBonus
+		-- 	end
+		-- end
 	end
 	if skillID ~= "" then 
 		damageBonus = damageBonus + intelligence*Ext.ExtraData.DGM_IntelligenceSkillBonus
@@ -132,10 +136,10 @@ function DamageControl(target, handle, instigator)
 	if skillID == "Projectile_Talent_Unstable" then globalMultiplier = 1 end
 	damages = ChangeDamage(damages, (damageBonus/100+1)*globalMultiplier, 0, instigator)
 	ReplaceDamages(damages, handle, target)
-	SetWalkItOff(target, handle)
+	if ObjectIsCharacter(target) == 1 then SetWalkItOff(target, handle) end
 	
 	-- Armor passing damages
-	InitiatePassingDamage(target, damages)
+	if ObjectIsCharacter(target) == 1 then InitiatePassingDamage(target, damages) end
 end
 
 ---@param target EsvCharacter
@@ -372,18 +376,94 @@ local function GetDamageMultipliers(skill, stealthed, attackerPos, targetPos)
     return stealthDamageMultiplier * distanceDamageMultiplier * damageMultiplier
 end
 
+--- @param damageList DamageList
+--- @param armor integer
+local function ComputeArmorDamage(damageList, armor)
+    local damage = damageList:GetByType("Corrosive") + damageList:GetByType("Physical") + damageList:GetByType("Sulfuric")
+    return math.min(armor, damage)
+end
+
+--- @param damageList DamageList
+--- @param magicArmor integer
+local function ComputeMagicArmorDamage(damageList, magicArmor)
+    local damage = damageList:GetByType("Magic") 
+        + damageList:GetByType("Fire") 
+        + damageList:GetByType("Water")
+        + damageList:GetByType("Air")
+        + damageList:GetByType("Earth")
+        + damageList:GetByType("Poison")
+    return math.min(magicArmor, damage)
+end
+
+--- @param hit HitRequest
+--- @param damageList DamageList
+--- @param statusBonusDmgTypes DamageList
+--- @param hitType string HitType enumeration
+--- @param target StatCharacter
+--- @param attacker StatCharacter
+function DoHit(hit, damageList, statusBonusDmgTypes, hitType, target, attacker)
+    hit.EffectFlags = hit.EffectFlags | Game.Math.HitFlag.Hit;
+    damageList:AggregateSameTypeDamages()
+    damageList:Multiply(hit.DamageMultiplier)
+
+    local totalDamage = 0
+    for i,damage in pairs(damageList:ToTable()) do
+        totalDamage = totalDamage + damage.Amount
+    end
+
+    if totalDamage < 0 then
+        damageList:Clear()
+    end
+
+    Game.Math.ApplyDamageCharacterBonuses(target, attacker, damageList)
+    damageList:AggregateSameTypeDamages()
+    hit.DamageList = Ext.NewDamageList()
+
+    for i,damageType in pairs(statusBonusDmgTypes) do
+        damageList.Add(damageType, math.ceil(totalDamage * 0.1))
+    end
+
+    Game.Math.ApplyDamagesToHitInfo(damageList, hit)
+    hit.ArmorAbsorption = hit.ArmorAbsorption + ComputeArmorDamage(damageList, target.CurrentArmor)
+    hit.ArmorAbsorption = hit.ArmorAbsorption + ComputeMagicArmorDamage(damageList, target.CurrentMagicArmor)
+
+    if hit.TotalDamageDone > 0 then
+        Game.Math.ApplyLifeSteal(hit, target, attacker, hitType)
+    else
+        hit.EffectFlags = hit.EffectFlags | Game.Math.HitFlag.DontCreateBloodSurface
+    end
+
+    if hitType == "Surface" then
+        hit.EffectFlags = hit.EffectFlags | Game.Math.HitFlag.Surface
+    end
+
+    if hitType == "DoT" then
+        hit.EffectFlags = hit.EffectFlags | Game.Math.HitFlag.DoT
+    end
+end
+
 --- @param character StatCharacter
 --- @param damageList DamageList
 --- @param attacker StatCharacter
 function ApplyHitResistances(character, damageList, attacker)
 	local strength = Ext.ExtraData.AttributeBaseValue
-	if attacker ~= nil then strength = attacker.Strength end
+	local intelligence = Ext.ExtraData.AttributeBaseValue
+	if attacker ~= nil then 
+		strength = attacker.Strength
+		intelligence = attacker.Intelligence
+	end
 	for i,damage in pairs(damageList:ToTable()) do
-		local resistance = Game.Math.GetResistance(character, damage.DamageType)
-		if resistance > 0 and resistance < 100 then
-			resistance = resistance - (strength - Ext.ExtraData.AttributeBaseValue) * Ext.ExtraData.DGM_StrengthResistanceIgnore
+		local originalResistance = Game.Math.GetResistance(character, damage.DamageType)
+		local resistance = originalResistance
+		local bypassValue = (strength - Ext.ExtraData.AttributeBaseValue) * Ext.ExtraData.DGM_StrengthResistanceIgnore * (intelligence - Ext.ExtraData.AttributeBaseValue)
+		if originalResistance > 0 and originalResistance < 100 and bypassValue > 0 then
+			resistance = originalResistance - bypassValue
+			if resistance < 0 then
+				resistance = 0
+			elseif resistance > originalResistance then
+				resistance = originalResistance
+			end
 		end
-		if resistance < 0 then resistance = 0 end
         damageList:Add(damage.DamageType, math.floor(damage.Amount * -resistance / 100.0))
     end
 end
@@ -402,6 +482,12 @@ Game.Math.ApplyDamageCharacterBonuses = ApplyDamageCharacterBonuses
 Game.Math.ApplyHitResistances = ApplyHitResistances
 Ext.RegisterListener("ComputeCharacterHit", Game.Math.ComputeCharacterHit)
 
+if Mods.LeaderLib ~= nil then
+	local info = Ext.GetModInfo("7e737d2f-31d2-4751-963f-be6ccc59cd0c")
+	if info.Version <= 386465794 then
+		Game.Math.DoHit = DoHit
+	end
+end
 
 ---- Total lx_damage script conversion
 local function SetDodgeCounter(object)

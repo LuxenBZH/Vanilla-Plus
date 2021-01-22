@@ -1,8 +1,12 @@
 local dynamicTooltips = {
     ["Strength"]                = "he1708d1eg243dg4b72g8f48gddb9bc8d62ff",
+    ["StrengthDescription"]     = "h18f97d5bg9a79g4917g809dgb0ac7a5ec302",
     ["Finesse"]                 = "h2e87e6cfg0183g4968g8ec1g325614c7d9fa",
+    ["FinesseDescription"]      = "h75391bafg8744g4441g9b1egf52f182f96fc",
     ["Intelligence"]            = "h58e777ddgd569g4c0dg8f58gece56cce053d",
+    ["IntelligenceDescription"] = "h6b67efcagf943g43a1g959eg36f9ecc42e7e",
     ["Wits"]                    = "ha422c4f4ge2bbg4cbcgbbf3g505c7ce673d1",
+    ["WitsDescription"]         = "h6d2cd8aeg4e09g4003ga57cg3fea3a0f5502",
     ["Damage"]                  = "h7fec5db8g58d3g4abbgab7ag03e19b542bef",
     ["WpnStaff"]                = "h1e5caa33g4d5dg4f42g91edg9f546d42f56b",
     ["WpnWand"]                 = "h314ee256g43cdg4864ga519gd23e909ec63e",
@@ -146,20 +150,25 @@ end
 ---@param tooltip TooltipData
 local function OnStatTooltip(character, stat, tooltip)
     local stat = tooltip:GetElement("StatName").Label
+    local statsDescription = tooltip:GetElement("StatsDescription")
     local statsPointValue = tooltip:GetElement("StatsPointValue")
 
     local attrBonus = CharGetDGMAttributeBonus(character, 0)
 
     if stat == "Strength" then
+        statsDescription.Label = GetDynamicTranslationString(stat.."Description", Ext.ExtraData.DGM_StrengthGlobalBonus, Ext.ExtraData.DGM_StrengthWeaponBonus, math.floor(Ext.Round(Ext.ExtraData.DGM_StrengthResistanceIgnore*100))/100)
         statsPointValue.Label = GetDynamicTranslationString(stat, attrBonus["str"], attrBonus["strGlobal"], attrBonus["strWeapon"], attrBonus["strRes"])
 
     elseif stat == "Finesse" then
+        statsDescription.Label = GetDynamicTranslationString(stat.."Description", Ext.ExtraData.DGM_FinesseGlobalBonus, math.floor(Ext.Round(Ext.ExtraData.DodgingBoostFromAttribute*100)), Ext.ExtraData.DGM_FinesseCritChance, Ext.ExtraData.DGM_FinesseMovementBonus/100)
         statsPointValue.Label = GetDynamicTranslationString(stat, attrBonus["fin"], attrBonus["finGlobal"], attrBonus["finDodge"], attrBonus["finMovement"], attrBonus["finCrit"])
 
     elseif stat == "Intelligence" then
-        statsPointValue.Label = GetDynamicTranslationString(stat, attrBonus["int"], attrBonus["intGlobal"], attrBonus["intSkill"], attrBonus["intAcc"])
+        statsDescription.Label = GetDynamicTranslationString(stat.."Description", Ext.ExtraData.DGM_IntelligenceGlobalBonus, Ext.ExtraData.DGM_IntelligenceSkillBonus, Ext.ExtraData.DGM_IntelligenceAccuracyBonus)
+        statsPointValue.Label = GetDynamicTranslationString(stat, attrBonus["int"], attrBonus["intGlobal"], attrBonus["intSkill"], attrBonus["intAcc"], (character.Stats.Intelligence-Ext.ExtraData.AttributeBaseValue)*attrBonus["strRes"])
 
     elseif stat == "Wits" then
+        statsDescription.Label = GetDynamicTranslationString(stat.."Description", Ext.ExtraData.CriticalBonusFromWits, Ext.ExtraData.InitiativeBonusFromWits, Ext.ExtraData.DGM_WitsDotBonus)
         statsPointValue.Label = GetDynamicTranslationString(stat, attrBonus["wits"], attrBonus["witsCrit"], attrBonus["witsIni"], attrBonus["witsDot"])
         
     elseif stat == "Damage" then

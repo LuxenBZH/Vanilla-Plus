@@ -112,7 +112,7 @@
     <stat_object is_substat="false">
       <fields>
         <field name="Name" type="NameStatObjectFieldDefinition" value="CombatAbilityCritMultiplierBonus" />
-        <field name="Value" type="FloatStatObjectFieldDefinition" value="4" />
+        <field name="Value" type="FloatStatObjectFieldDefinition" value="3" />
       </fields>
     </stat_object>
     <stat_object is_substat="false">
@@ -299,7 +299,7 @@
     <stat_object is_substat="false">
       <fields>
         <field name="Name" type="NameStatObjectFieldDefinition" value="DGM_StrengthResistanceIgnore" />
-        <field name="Value" type="FloatStatObjectFieldDefinition" value="1" />
+        <field name="Value" type="FloatStatObjectFieldDefinition" value="0.15" />
       </fields>
     </stat_object>
     <stat_object is_substat="false">
@@ -568,7 +568,7 @@
     <stat_object is_substat="false">
       <fields>
         <field name="Name" type="NameStatObjectFieldDefinition" value="SkillAbilityMovementSpeedPerPoint" />
-        <field name="Value" type="FloatStatObjectFieldDefinition" value="10" />
+        <field name="Value" type="FloatStatObjectFieldDefinition" value="15" />
       </fields>
     </stat_object>
     <stat_object is_substat="false">
@@ -615,6 +615,42 @@
       <fields>
         <field name="Name" type="NameStatObjectFieldDefinition" value="HealToDamageRatio" />
         <field name="Value" type="FloatStatObjectFieldDefinition" value="1.4" />
+      </fields>
+    </stat_object>
+    <stat_object is_substat="false">
+      <fields>
+        <field name="Name" type="NameStatObjectFieldDefinition" value="DGM_NpcScalingMainAttributeCorrection" />
+        <field name="Value" type="FloatStatObjectFieldDefinition" value="50" />
+      </fields>
+    </stat_object>
+    <stat_object is_substat="false">
+      <fields>
+        <field name="Name" type="NameStatObjectFieldDefinition" value="DGM_NpcScalingSecondaryAttributeCorrection" />
+        <field name="Value" type="FloatStatObjectFieldDefinition" value="70" />
+      </fields>
+    </stat_object>
+    <stat_object is_substat="false">
+      <fields>
+        <field name="Name" type="NameStatObjectFieldDefinition" value="DGM_NpcScalingNoArchetypeCorrection" />
+        <field name="Value" type="FloatStatObjectFieldDefinition" value="60" />
+      </fields>
+    </stat_object>
+    <stat_object is_substat="false">
+      <fields>
+        <field name="Name" type="NameStatObjectFieldDefinition" value="DGM_OilyCarapacePassingReduction" />
+        <field name="Value" type="FloatStatObjectFieldDefinition" value="1" />
+      </fields>
+    </stat_object>
+    <stat_object is_substat="false">
+      <fields>
+        <field name="Name" type="NameStatObjectFieldDefinition" value="DGM_CryotherapyPassingMagicReduction" />
+        <field name="Value" type="FloatStatObjectFieldDefinition" value="1" />
+      </fields>
+    </stat_object>
+    <stat_object is_substat="false">
+      <fields>
+        <field name="Name" type="NameStatObjectFieldDefinition" value="DGM_EnableDualCCParry" />
+        <field name="Value" type="FloatStatObjectFieldDefinition" value="0" />
       </fields>
     </stat_object>
   </stat_objects>

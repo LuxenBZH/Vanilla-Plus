@@ -17,14 +17,14 @@
                     <attribute id="LobbyLevelName" value="" type="22" />
                     <attribute id="MD5" value="" type="23" />
                     <attribute id="MenuLevelName" value="" type="22" />
-                    <attribute id="Name" value="Project Divine Game Master" type="22" />
+                    <attribute id="Name" value="Vanilla Plus" type="22" />
                     <attribute id="NumPlayers" value="2" type="1" />
                     <attribute id="PhotoBooth" value="" type="22" />
                     <attribute id="StartupLevelName" value="" type="22" />
                     <attribute id="Tags" value="" type="30" />
                     <attribute id="Type" value="Add-on" type="22" />
                     <attribute id="UUID" value="3ff156e2-289e-4dac-81f5-a44e3e304163" type="22" />
-                    <attribute id="Version" value="219545633" type="4" />
+                    <attribute id="Version" value="268501033" type="4" />
                     <children>
                         <node id="PublishVersion">
                             <attribute id="Version" value="909321303" type="4" />

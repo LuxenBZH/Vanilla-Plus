@@ -34,7 +34,7 @@ key "CombatAbilityDodgingBonus","3"
 
 key "CombatAbilityAccuracyBonus","2"
 
-key "CombatAbilityCritMultiplierBonus","4"
+key "CombatAbilityCritMultiplierBonus","3"
 
 key "CombatAbilityCritBonus","1"
 
@@ -96,7 +96,7 @@ key "CriticalBonusFromWits","2"
 
 key "DGM_StrengthGlobalBonus","2"
 
-key "DGM_StrengthResistanceIgnore","1"
+key "DGM_StrengthResistanceIgnore","0.15"
 
 key "DGM_StrengthWeaponBonus","3"
 
@@ -184,7 +184,7 @@ key "VitalityStartingAmount","100"
 
 key "VitalityLinearGrowth","0"
 
-key "SkillAbilityMovementSpeedPerPoint","10"
+key "SkillAbilityMovementSpeedPerPoint","15"
 
 key "DGM_CrossbowBasePenalty","-92"
 
@@ -199,4 +199,16 @@ key "SkillAbilityCritMultiplierPerPoint","3"
 key "Surface Distance Evaluation","2"
 
 key "HealToDamageRatio","1.4"
+
+key "DGM_NpcScalingMainAttributeCorrection","50"
+
+key "DGM_NpcScalingSecondaryAttributeCorrection","70"
+
+key "DGM_NpcScalingNoArchetypeCorrection","60"
+
+key "DGM_OilyCarapacePassingReduction","1"
+
+key "DGM_CryotherapyPassingMagicReduction","1"
+
+key "DGM_EnableDualCCParry","0"
 

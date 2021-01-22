@@ -85,7 +85,7 @@
         <field name="ForGameMaster" type="EnumerationStatObjectFieldDefinition" value="0" enumeration_type_name="YesNo" />
         <field name="DisplayName" type="TranslatedStringStatObjectFieldDefinition" value="Staggered" />
         <field name="Description" type="TranslatedStringStatObjectFieldDefinition" value="This character have staggered during his recovery." />
-        <field name="Icon" type="StringStatObjectFieldDefinition" value="statIcons_LingeringWounds" />
+        <field name="Icon" type="StringStatObjectFieldDefinition" value="icon_staggered" />
         <field name="StatsId" type="StringStatObjectFieldDefinition" value="Stats_LX_Staggered" />
         <field name="StackId" type="StringStatObjectFieldDefinition" value="Stack_LX_Staggered" />
       </fields>
@@ -95,7 +95,7 @@
         <field name="Name" type="NameStatObjectFieldDefinition" value="LX_STAGGERED2" />
         <field name="DisplayName" type="TranslatedStringStatObjectFieldDefinition" value="Staggered (2)" />
         <field name="Description" type="TranslatedStringStatObjectFieldDefinition" value="This character have staggered during his recovery." />
-        <field name="Icon" type="StringStatObjectFieldDefinition" value="statIcons_LingeringWounds" />
+        <field name="Icon" type="StringStatObjectFieldDefinition" value="icon_staggered" />
         <field name="StatsId" type="StringStatObjectFieldDefinition" value="Stats_LX_Staggered2" />
         <field name="StackId" type="StringStatObjectFieldDefinition" value="Stack_LX_Staggered" />
       </fields>
@@ -105,7 +105,7 @@
         <field name="Name" type="NameStatObjectFieldDefinition" value="LX_STAGGERED3" />
         <field name="DisplayName" type="TranslatedStringStatObjectFieldDefinition" value="Staggered (3)" />
         <field name="Description" type="TranslatedStringStatObjectFieldDefinition" value="This character have staggered during his recovery." />
-        <field name="Icon" type="StringStatObjectFieldDefinition" value="statIcons_LingeringWounds" />
+        <field name="Icon" type="StringStatObjectFieldDefinition" value="icon_staggered" />
         <field name="StatsId" type="StringStatObjectFieldDefinition" value="Stats_LX_Staggered3" />
         <field name="StackId" type="StringStatObjectFieldDefinition" value="Stack_LX_Staggered" />
       </fields>
@@ -116,7 +116,7 @@
         <field name="ForGameMaster" type="EnumerationStatObjectFieldDefinition" value="0" enumeration_type_name="YesNo" />
         <field name="DisplayName" type="TranslatedStringStatObjectFieldDefinition" value="Confused" />
         <field name="Description" type="TranslatedStringStatObjectFieldDefinition" value="This character have been magically affected during recovery." />
-        <field name="Icon" type="StringStatObjectFieldDefinition" value="statIcons_Clean" />
+        <field name="Icon" type="StringStatObjectFieldDefinition" value="icon_confused" />
         <field name="StatsId" type="StringStatObjectFieldDefinition" value="Stats_LX_Confused" />
         <field name="StackId" type="StringStatObjectFieldDefinition" value="Stack_LX_Confused" />
       </fields>
@@ -126,7 +126,7 @@
         <field name="Name" type="NameStatObjectFieldDefinition" value="LX_CONFUSED2" />
         <field name="DisplayName" type="TranslatedStringStatObjectFieldDefinition" value="Confused (2)" />
         <field name="Description" type="TranslatedStringStatObjectFieldDefinition" value="This character have been magically affected during recovery." />
-        <field name="Icon" type="StringStatObjectFieldDefinition" value="statIcons_Clean" />
+        <field name="Icon" type="StringStatObjectFieldDefinition" value="icon_confused" />
         <field name="StatsId" type="StringStatObjectFieldDefinition" value="Stats_LX_Confused2" />
         <field name="StackId" type="StringStatObjectFieldDefinition" value="Stack_LX_Confused" />
       </fields>
@@ -136,7 +136,7 @@
         <field name="Name" type="NameStatObjectFieldDefinition" value="LX_CONFUSED3" />
         <field name="DisplayName" type="TranslatedStringStatObjectFieldDefinition" value="Confused (3)" />
         <field name="Description" type="TranslatedStringStatObjectFieldDefinition" value="This character have been magically affected during recovery." />
-        <field name="Icon" type="StringStatObjectFieldDefinition" value="statIcons_Clean" />
+        <field name="Icon" type="StringStatObjectFieldDefinition" value="icon_confused" />
         <field name="StatsId" type="StringStatObjectFieldDefinition" value="Stats_LX_Confused3" />
         <field name="StackId" type="StringStatObjectFieldDefinition" value="Stack_LX_Confused" />
       </fields>
@@ -146,7 +146,7 @@
         <field name="Name" type="NameStatObjectFieldDefinition" value="LX_MOMENTUM" />
         <field name="DisplayName" type="TranslatedStringStatObjectFieldDefinition" value="Momentum" />
         <field name="Description" type="TranslatedStringStatObjectFieldDefinition" value="Any attempt to apply Knocked Down or Chicken will apply Staggered instead." />
-        <field name="Icon" type="StringStatObjectFieldDefinition" value="statIcons_Perseverance" />
+        <field name="Icon" type="StringStatObjectFieldDefinition" value="icon_momentum" />
         <field name="ForGameMaster" type="EnumerationStatObjectFieldDefinition" value="1" enumeration_type_name="YesNo" />
       </fields>
     </stat_object>
@@ -155,7 +155,7 @@
         <field name="Name" type="NameStatObjectFieldDefinition" value="LX_LINGERING" />
         <field name="DisplayName" type="TranslatedStringStatObjectFieldDefinition" value="Lingering" />
         <field name="Description" type="TranslatedStringStatObjectFieldDefinition" value="Any attempt to apply Stunned, Petrified, Frozen, Madness, Terrified or Charm will apply Confused instead." />
-        <field name="Icon" type="StringStatObjectFieldDefinition" value="statIcons_ferocity" />
+        <field name="Icon" type="StringStatObjectFieldDefinition" value="icon_lingering" />
         <field name="ForGameMaster" type="EnumerationStatObjectFieldDefinition" value="1" enumeration_type_name="YesNo" />
       </fields>
     </stat_object>
@@ -468,6 +468,24 @@
         <field name="ImmuneFlag" type="EnumerationStatObjectFieldDefinition" value="17" enumeration_type_name="AttributeFlag" />
         <field name="StatsId" type="StringStatObjectFieldDefinition" value="Stats_Slowed" />
         <field name="StackId" type="StringStatObjectFieldDefinition" value="Stack_Slowed" />
+      </fields>
+    </stat_object>
+    <stat_object is_substat="false">
+      <fields>
+        <field name="Name" type="NameStatObjectFieldDefinition" value="LX_OILYCARAPACE" />
+        <field name="DisplayName" type="TranslatedStringStatObjectFieldDefinition" value="Oily Carapace" />
+        <field name="Description" type="TranslatedStringStatObjectFieldDefinition" value="Reduce damage going through Physical armour by 100%" />
+        <field name="Icon" type="StringStatObjectFieldDefinition" value="Skill_Skillcrafting_Earth_OilyCarapace" />
+        <field name="StackId" type="StringStatObjectFieldDefinition" value="Stack_OilyCarapace" />
+      </fields>
+    </stat_object>
+    <stat_object is_substat="false">
+      <fields>
+        <field name="Name" type="NameStatObjectFieldDefinition" value="LX_CRYOTHERAPY" />
+        <field name="DisplayName" type="TranslatedStringStatObjectFieldDefinition" value="Cryotherapy" />
+        <field name="Description" type="TranslatedStringStatObjectFieldDefinition" value="Reduce damage going through Magic armour by 100%" />
+        <field name="Icon" type="StringStatObjectFieldDefinition" value="Skill_Skillcrafting_Water_Cryotherapy" />
+        <field name="StackId" type="StringStatObjectFieldDefinition" value="Stack_Cryotherapy" />
       </fields>
     </stat_object>
   </stat_objects>

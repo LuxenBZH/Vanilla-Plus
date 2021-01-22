@@ -645,12 +645,12 @@
         <field name="WaterResistance" type="IntegerStatObjectFieldDefinition" value="-15" />
         <field name="AirResistance" type="IntegerStatObjectFieldDefinition" value="-15" />
         <field name="PoisonResistance" type="IntegerStatObjectFieldDefinition" value="-15" />
-        <field name="Initiative" type="IntegerStatObjectFieldDefinition" value="-1" />
+        <field name="Initiative" type="IntegerStatObjectFieldDefinition" value="-2" />
         <field name="AccuracyBoost" type="IntegerStatObjectFieldDefinition" value="-15" />
         <field name="APCostBoost" type="IntegerStatObjectFieldDefinition" value="0" />
         <field name="Duration" type="IntegerStatObjectFieldDefinition" value="1" />
         <field name="APStart" type="IntegerStatObjectFieldDefinition" value="-1" />
-        <field name="APMaximum" type="IntegerStatObjectFieldDefinition" value="-2" />
+        <field name="APMaximum" type="IntegerStatObjectFieldDefinition" value="-1" />
         <field name="APRecovery" type="IntegerStatObjectFieldDefinition" value="-1" />
       </fields>
     </stat_object>
@@ -663,11 +663,11 @@
         <field name="WaterResistance" type="IntegerStatObjectFieldDefinition" value="-30" />
         <field name="AirResistance" type="IntegerStatObjectFieldDefinition" value="-30" />
         <field name="PoisonResistance" type="IntegerStatObjectFieldDefinition" value="-30" />
-        <field name="Initiative" type="IntegerStatObjectFieldDefinition" value="-2" />
+        <field name="Initiative" type="IntegerStatObjectFieldDefinition" value="-4" />
         <field name="AccuracyBoost" type="IntegerStatObjectFieldDefinition" value="-30" />
         <field name="APCostBoost" type="IntegerStatObjectFieldDefinition" value="0" />
         <field name="Duration" type="IntegerStatObjectFieldDefinition" value="1" />
-        <field name="APMaximum" type="IntegerStatObjectFieldDefinition" value="-3" />
+        <field name="APMaximum" type="IntegerStatObjectFieldDefinition" value="-2" />
         <field name="APStart" type="IntegerStatObjectFieldDefinition" value="-1" />
         <field name="APRecovery" type="IntegerStatObjectFieldDefinition" value="-1" />
       </fields>
@@ -681,11 +681,11 @@
         <field name="WaterResistance" type="IntegerStatObjectFieldDefinition" value="-45" />
         <field name="AirResistance" type="IntegerStatObjectFieldDefinition" value="-45" />
         <field name="PoisonResistance" type="IntegerStatObjectFieldDefinition" value="-45" />
-        <field name="Initiative" type="IntegerStatObjectFieldDefinition" value="-3" />
+        <field name="Initiative" type="IntegerStatObjectFieldDefinition" value="-6" />
         <field name="AccuracyBoost" type="IntegerStatObjectFieldDefinition" value="-45" />
         <field name="APCostBoost" type="IntegerStatObjectFieldDefinition" value="0" />
         <field name="Duration" type="IntegerStatObjectFieldDefinition" value="1" />
-        <field name="APMaximum" type="IntegerStatObjectFieldDefinition" value="-4" />
+        <field name="APMaximum" type="IntegerStatObjectFieldDefinition" value="-3" />
         <field name="APStart" type="IntegerStatObjectFieldDefinition" value="-1" />
         <field name="APRecovery" type="IntegerStatObjectFieldDefinition" value="-1" />
       </fields>
@@ -4122,10 +4122,10 @@
         <field name="Using" type="BaseClassStatObjectFieldDefinition" value="_SkillBoost" />
         <field name="Act part" type="EnumerationStatObjectFieldDefinition" value="0" enumeration_type_name="ActPart" />
         <field name="StackId" type="StringStatObjectFieldDefinition" value="BuffAll" />
-        <field name="Strength" type="EnumerationStatObjectFieldDefinition" value="121" enumeration_type_name="Penalty PreciseQualifier" />
-        <field name="Finesse" type="EnumerationStatObjectFieldDefinition" value="121" enumeration_type_name="Penalty PreciseQualifier" />
-        <field name="Intelligence" type="EnumerationStatObjectFieldDefinition" value="121" enumeration_type_name="Penalty PreciseQualifier" />
-        <field name="Constitution" type="EnumerationStatObjectFieldDefinition" value="121" enumeration_type_name="Penalty PreciseQualifier" />
+        <field name="Strength" type="EnumerationStatObjectFieldDefinition" value="116" enumeration_type_name="Penalty PreciseQualifier" />
+        <field name="Finesse" type="EnumerationStatObjectFieldDefinition" value="116" enumeration_type_name="Penalty PreciseQualifier" />
+        <field name="Intelligence" type="EnumerationStatObjectFieldDefinition" value="116" enumeration_type_name="Penalty PreciseQualifier" />
+        <field name="Constitution" type="EnumerationStatObjectFieldDefinition" value="116" enumeration_type_name="Penalty PreciseQualifier" />
         <field name="Duration" type="IntegerStatObjectFieldDefinition" value="3" />
         <field name="StatusIcon" type="StringStatObjectFieldDefinition" value="Skill_Warrior_Inspire" />
       </fields>
