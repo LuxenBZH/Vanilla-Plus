@@ -456,6 +456,7 @@ function ApplyHitResistances(character, damageList, attacker)
 		local originalResistance = Game.Math.GetResistance(character, damage.DamageType)
 		local resistance = originalResistance
 		local bypassValue = (strength - Ext.ExtraData.AttributeBaseValue) * Ext.ExtraData.DGM_StrengthResistanceIgnore * (intelligence - Ext.ExtraData.AttributeBaseValue)
+		Ext.Print("bypass value:",bypassValue)
 		if originalResistance > 0 and originalResistance < 100 and bypassValue > 0 then
 			resistance = originalResistance - bypassValue
 			if resistance < 0 then
@@ -472,6 +473,7 @@ end
 --- @param attacker StatCharacter
 --- @param damageList DamageList
 function ApplyDamageCharacterBonuses(character, attacker, damageList)
+	Ext.Print("VANILLA PLUS ApplyDamageCharacterBonuses")
     damageList:AggregateSameTypeDamages()
     ApplyHitResistances(character, damageList, attacker)
 
@@ -483,10 +485,11 @@ Game.Math.ApplyHitResistances = ApplyHitResistances
 Ext.RegisterListener("ComputeCharacterHit", Game.Math.ComputeCharacterHit)
 
 if Mods.LeaderLib ~= nil then
-	local info = Ext.GetModInfo("7e737d2f-31d2-4751-963f-be6ccc59cd0c")
-	if info.Version <= 386465794 then
-		Game.Math.DoHit = DoHit
-	end
+	-- local info = Ext.GetModInfo("7e737d2f-31d2-4751-963f-be6ccc59cd0c")
+	-- if info.Version <= 386465794 then
+		Mods.LeaderLib.HitOverrides.DoHitModified = DoHit
+		Mods.LeaderLib.HitOverrides.ApplyDamageCharacterBonusesModified = ApplyDamageCharacterBonuses
+	-- end
 end
 
 ---- Total lx_damage script conversion

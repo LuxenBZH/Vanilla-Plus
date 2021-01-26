@@ -34,7 +34,7 @@ function CalculatePassingDamage(character, amount, dmgType)
 	
 	if dmgType == "Physical" then
 		for status,reduction in pairs(physicalArmorReduction) do
-			if HasActiveStatus(status) == 1 then passingModMult = passingModMult - reduction end
+			if HasActiveStatus(character, status) == 1 then passingModMult = passingModMult - reduction end
 		end
 		passingMod = passingMod * passingModMult
 		if pArmor > 0 then
@@ -57,7 +57,7 @@ function CalculatePassingDamage(character, amount, dmgType)
 	for i, mDmg in pairs(magicTypes) do
 		if dmgType == mDmg then
 			for status,reduction in pairs(magicArmorReduction) do
-				if HasActiveStatus(status) == 1 then passingModMult = passingModMult - reduction end
+				if HasActiveStatus(character, status) == 1 then passingModMult = passingModMult - reduction end
 			end
 			passingMod = passingMod * passingModMult
 			if mArmor > 0 then

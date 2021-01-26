@@ -390,3 +390,13 @@ Code
 # 1.0.1.41
 Fixes
 * Fixed some options not changing when using LeaderLib
+
+# 1.0.2.42
+Fixes
+* Fixed typo in Intelligence description
+* Changed All Skilled Up description for something less confusing (thanks beccarte)
+* Fixed the armour penetration system not working
+* Fixed the resistance bypass system not working with the last update of LeaderLib
+
+Known issues
+* Attributes descriptions won't display correctly on Character Creation presets
