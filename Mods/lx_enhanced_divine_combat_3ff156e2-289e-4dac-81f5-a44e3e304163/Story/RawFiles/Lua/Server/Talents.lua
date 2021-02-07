@@ -37,21 +37,54 @@ end
 ---@param character EsvCharacter
 ---@param unlocked boolean
 function ManageMemory(character, unlocked)
-	if unlocked == 1 then
+	if unlocked then
+		if CharacterGetHostCharacter() == character then Ext.Print("MEMORY UNLOCKED") end
 		local mem = math.floor(Ext.GetCharacter(character).Stats.BaseMemory - NRD_CharacterGetPermanentBoostInt(character, "Memory") - Ext.ExtraData.AttributeBaseValue)
 		NRD_CharacterSetPermanentBoostInt(character, "Memory", mem)
 		CharacterAddAttribute(character, "Dummy", 0)
-	else
-		local memBonus = NRD_CharacterGetPermanentBoostInt(character, "Memory")
-		local mem = math.floor(CharacterGetBaseAttribute(character, "Memory") - Ext.ExtraData.AttributeBaseValue)
-		if memBonus-mem < 0 then
-			NRD_CharacterSetPermanentBoostInt(character, "Memory", 0)
-		else
-			NRD_CharacterSetPermanentBoostInt(character, "Memory", memBonus - mem)
-		end
-		CharacterAddAttribute(character, "Dummy", 0)
+	-- else
+		-- local memBonus = NRD_CharacterGetPermanentBoostInt(character, "Memory")
+		-- local mem = math.floor(CharacterGetBaseAttribute(character, "Memory") - Ext.ExtraData.AttributeBaseValue)
+		-- if memBonus-mem < 0 then
+		-- 	NRD_CharacterSetPermanentBoostInt(character, "Memory", 0)
+		-- else
+		-- 	NRD_CharacterSetPermanentBoostInt(character, "Memory", memBonus - mem)
+		-- end
+		-- CharacterAddAttribute(character, "Dummy", 0)
 	end
 end
+
+local function MnemonicLocked(character, talent)
+	if talent ~= "Memory" then return end
+	local memBonus = NRD_CharacterGetPermanentBoostInt(character, "Memory")
+	local mem = math.floor(Ext.GetCharacter(character).Stats.BaseMemory - memBonus - Ext.ExtraData.AttributeBaseValue)
+	Ext.Print(memBonus, mem)
+	if not Ext.GetCharacter(character).CharacterCreationFinished then
+		SetTag(character, "DGM_MemoryManagement")
+		return
+	end
+	NRD_CharacterSetPermanentBoostInt(character, "Memory", memBonus-mem)
+	CharacterAddAttribute(character, "Dummy", 0)
+end
+
+Ext.RegisterOsirisListener("CharacterLockedTalent", 2, "before", MnemonicLocked)
+
+Ext.RegisterOsirisListener("CharacterCreationFinished", 1, "after", function(character)
+	if Ext.GetCharacter(character).Stats.TALENT_Memory then
+		ManageMemory(character, true)
+	elseif IsTagged(character, "DGM_MemoryManagement") then
+		TimerLaunch("MEMORY_"..character, 1000)
+	end
+	ClearTag(character, "DGM_MemoryManagement")
+end)
+
+Ext.RegisterOsirisListener("TimerFinished", 1, "after", function(timer)
+	if string.starts(timer, "MEMORY_") then
+		local character = string.gsub(timer, "MEMORY_", "")
+		NRD_CharacterSetPermanentBoostInt(character, "Memory", 0)
+		CharacterAddAttribute(character, "Dummy", 0)
+	end
+end)
 
 ---@param character EsvCharacter
 function CheckAllTalents(character)

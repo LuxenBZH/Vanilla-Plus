@@ -97,10 +97,6 @@ Ext.RegisterConsoleCommand("DGM_CleanPermaBoosts", DGM_consoleCmd)
 Ext.NewCall(CheckBoostTalents, "LX_EXT_CheckBoostTalents", "(CHARACTERGUID)_Character, (STRING)_Talent, (INTEGER)_Unlocked");
 Ext.NewCall(CheckDuelist, "LX_EXT_CheckDuelist", "(CHARACTERGUID)_Character");
 
--- Status Control
-Ext.NewCall(BlockPhysicalCCs, "LX_EXT_CheckPhysicalCC", "(GUIDSTRING)_Character, (STRING)_Status, (INTEGER64)_Handle");
-Ext.NewCall(BlockMagicalCCs, "LX_EXT_CheckMagicalCC", "(GUIDSTRING)_Character, (STRING)_Status, (INTEGER64)_Handle");
-
 -- Items Control
 Ext.NewCall(CharacterUsePoisonedPotion, "LX_EXT_PoisonedPotionManagement", "(GUIDSTRING)_Character, (ITEMGUID)_Potion");
 Ext.NewCall(ManagePotionFatigue, "LX_EXT_ManagePotionFatigue", "(CHARACTERGUID)_Character, (ITEMGUID)_Item");

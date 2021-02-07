@@ -331,7 +331,7 @@
         <field name="Slot" type="EnumerationStatObjectFieldDefinition" value="3" enumeration_type_name="Itemslot" />
         <field name="Projectile" type="StringStatObjectFieldDefinition" value="c18e979b-b3be-4a62-bbec-cbe53fcf0e15" />
         <field name="IgnoreVisionBlock" type="EnumerationStatObjectFieldDefinition" value="1" enumeration_type_name="YesNo" />
-        <field name="AccuracyBoost" type="IntegerStatObjectFieldDefinition" value="5" />
+        <field name="AccuracyBoost" type="IntegerStatObjectFieldDefinition" value="10" />
         <field name="InventoryTab" type="EnumerationStatObjectFieldDefinition" value="1" enumeration_type_name="InventoryTabs" />
         <field name="Charges" type="IntegerStatObjectFieldDefinition" value="0" />
         <field name="MaxCharges" type="IntegerStatObjectFieldDefinition" value="0" />
@@ -370,7 +370,7 @@
         <field name="ItemColor" type="StringStatObjectFieldDefinition" value="DefaultGray" />
         <field name="RuneSlots" type="IntegerStatObjectFieldDefinition" value="0" />
         <field name="RuneSlots_V1" type="IntegerStatObjectFieldDefinition" value="0" />
-        <field name="AccuracyBoost" type="IntegerStatObjectFieldDefinition" value="2" />
+        <field name="AccuracyBoost" type="IntegerStatObjectFieldDefinition" value="5" />
       </fields>
     </stat_object>
     <stat_object is_substat="false">
@@ -403,7 +403,7 @@
         <field name="ItemColor" type="StringStatObjectFieldDefinition" value="DefaultGray" />
         <field name="RuneSlots" type="IntegerStatObjectFieldDefinition" value="0" />
         <field name="RuneSlots_V1" type="IntegerStatObjectFieldDefinition" value="0" />
-        <field name="AccuracyBoost" type="IntegerStatObjectFieldDefinition" value="5" />
+        <field name="AccuracyBoost" type="IntegerStatObjectFieldDefinition" value="10" />
       </fields>
     </stat_object>
     <stat_object is_substat="false">

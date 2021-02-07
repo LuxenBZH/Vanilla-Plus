@@ -59,17 +59,18 @@ local function CharacterReplaceJumpSkills(character, eventName)
         local skills = character.GetSkills(character)
         for i,skill in pairs(skills) do
             for j,jump in pairs(elligibleSkills) do
-                if skill == jump then
-                    --print(skill)
+                local projectileJump = string.gsub(jump, "Jump", "Projectile")
+                if skill == projectileJump then
                     CharacterRemoveSkill(character.MyGuid, skill)
                     local newJump = string.gsub(skill, "Projectile", "Jump")
-                    --print(newJump)
                     CharacterAddSkill(character.MyGuid, newJump)
                 end
             end
         end
     end
 end
+
+Ext.RegisterOsirisListener("StoryEvent", 2, "before", CharacterReplaceJumpSkills)
 
 local function CharacterUnlearnJumpSkill(character, skill)
     for i,jump in pairs(elligibleSkills) do
@@ -128,6 +129,8 @@ local function ActivateModule(flag)
         EnableFallDamage("on")
     elseif flag == "LXDGM_ModuleFallDamageAlternate" then 
         EnableJumpDamage("on")
+    elseif flag == "LXDGM_ModuleDualCC" then
+        Ext.ExtraData.DGM_EnableDualCCParry = 1
     end
 end
 Ext.RegisterOsirisListener("GlobalFlagSet", 1, "after", ActivateModule)
@@ -139,12 +142,13 @@ local function DeactivateModule(flag)
         EnableFallDamage("off")
     elseif flag == "LXDGM_ModuleFallDamageAlternate" then 
         EnableJumpDamage("off")
+    elseif flag == "LXDGM_ModuleDualCC" then
+        Ext.ExtraData.DGM_EnableDualCCParry = 0
     end
 end
 Ext.RegisterOsirisListener("GlobalFlagCleared", 1, "after", DeactivateModule)
 
 Ext.RegisterConsoleCommand("DGM_Module_RealJump", DGM_Modules_consoleCmd)
 Ext.RegisterConsoleCommand("DGM_Module_FallDamage", DGM_Modules_consoleCmd)
-Ext.RegisterOsirisListener("StoryEvent", 2, "before", CharacterReplaceJumpSkills)
 Ext.RegisterOsirisListener("CharacterLearnedSkill", 2, "before", CharacterUnlearnJumpSkill)
 Ext.RegisterOsirisListener("GameStarted", 2, "after", GameStartJumpModule)

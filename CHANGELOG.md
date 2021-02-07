@@ -400,3 +400,40 @@ Fixes
 
 Known issues
 * Attributes descriptions won't display correctly on Character Creation presets
+
+# 1.0.3.44 (Alexandar)
+Fixes
+* Deactivating the Real Jump module should correctly restore the old jumps
+* Activating Real Jump should not create a duplicate of the skill for NPCs anymore
+* "Pure" (None) damage type won't be ignored anymore, which was ultimately affecting some mods like Odinblade's Necromancer overhaul
+* Cleared some debug prints from the console
+* Fixed an issue related to skill damage tooltips
+* Sucker Punch can now be casted while being Muted
+* Fixed an issue where the custom bonuses from attributes would require to invest a second point to take effect. The counterpart is these bonuses will be granted with a delay of 10 server frames (~ 330ms) after you click the buttons
+* Reworked Mnemonics code so changing the Memory boost in GM mode is now possible again without being instantly shut up by the mod
+* Ranged penalty won't display on ranged weapons anymore if you set it to 0
+
+Balance
+* Changed Dragon Blaze, Demonic Stare, Blinding Squall and Terrify scaling from AverageLevelDamage to BaseLevelDamage for consistency with the new attribute system
+* Dodge and Critical Chance gain from equipments random generated bonuses (aka DeltaModifiers) are now halved considering the amount you can gain naturally through stats
+* Runes are not concerned by the Dodge bonus cut anymore
+* Default bonus accuracy from Intelligence is now 2
+* Warfare Physical damage boost is increased from 3% to 4% per point
+* Last Rites damage increased from 50% of Max Vitality to 90%
+* Elemental skins doesn't provide Momentum and Lingering anymore but instead reflect damage and inflict the corresponding status on contact
+	* Fire and Poison skins reflect 40% damage and inflict Burning/Poisoned on contact
+	* Ice and Electric skins reflect 20% damage and inflict Frozen/Stunned on contact
+	* Duration reduced from 3 to 2 turns (vanilla)
+	* Opposite element weakness increased from -30 to -40
+* Two Handed Swords and Crossbows Accuracy bonus increased from 5 to 10
+* One Handed swords Accuracy bonus increased from 2 to 5
+
+Settings
+* You can now modify critical chance to backstab bonus in the settings if LeaderLib is enabled (Default : 0.5)
+* You can now modify the duration of Momentum and Lingering, so you can put their duration to 0 to completely disable the CC system extension
+
+Modules
+* New module : Dual CC Resistance. When activated, Momentum and Lingering are both triggered together when recovering from a hard CC whatever is its nature.
+
+Known issues
+* Weapon-enhancing skills (e.g. Venom Coating) damage tooltip is still lying on its true value (to my defense, it was also lying in the base game!)

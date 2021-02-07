@@ -7,7 +7,7 @@ local defaultDataValues = {
     DGM_FinesseCritChance = 1,
     DGM_IntelligenceGlobalBonus = 2,
     DGM_IntelligenceSkillBonus = 3,
-    DGM_IntelligenceAccuracyBonus = 1,
+    DGM_IntelligenceAccuracyBonus = 2,
     DGM_WitsDotBonus = 10,
     DGM_DamageThroughArmor = 50,
     DGM_DamageThroughArmorDepleted = 25,
@@ -21,6 +21,8 @@ local defaultDataValues = {
     DGM_NpcScalingMainAttributeCorrection = 50,
     DGM_NpcScalingSecondaryAttributeCorrection = 70,
     DGM_NpcScalingNoArchetypeCorrection = 60,
+    DGM_BackstabCritChanceBonus = 0.5,
+    DGM_CCParryDuration = 2
 }
 
 local idToVariable = {
@@ -45,6 +47,8 @@ local idToVariable = {
     NPCStatsMainCorrection = "DGM_NpcScalingMainAttributeCorrection",
     NPCStatsSecondaryCorrection = "DGM_NpcScalingSecondaryAttributeCorrection",
     NPCStatsNoArchetypeCorrection = "DGM_NpcScalingNoArchetypeCorrection",
+    CritChanceBackstabBonus = "DGM_BackstabCritChanceBonus",
+    CCParryDuration = "DGM_CCParryDuration"
 }
 
 local requireRestart = {
@@ -68,13 +72,16 @@ local requireRestart = {
     PerseveranceVitality = false,
     NPCStatsMainCorrection = true,
     NPCStatsSecondaryCorrection = true,
-    NPCStatsNoArchetypeCorrection = true
+    NPCStatsNoArchetypeCorrection = true,
+    CritChanceBackstabBonus = false,
+    CCParryDuration = false
 }
 
 local flags = {
     "LXDGM_ModuleRealJump",
     "LXDGM_ModuleFallDamageClassic", 
     "LXDGM_ModuleFallDamageAlternate",
+    "LXDGM_ModuleDualCC",
     "LXDGM_NPCStatsCorrectionCampaign",
     "LXDGM_NPCStatsCorrectionGM",
 }
@@ -82,7 +89,8 @@ local flags = {
 local BootStat = {}
 
 Ext.RegisterListener("StatsLoaded", function()
-	Ext.Print("Loading stored vars...")
+    Ext.Print("Loading stored vars...")
+    if Mods.LeaderLib == nil then return end
     local json = Ext.LoadFile("LeaderLib_GlobalSettings.json", "user")
     if json == nil or json == "" then return end
     for var,value in pairs(Ext.JsonParse(json).Mods["3ff156e2-289e-4dac-81f5-a44e3e304163"].Global.Variables) do
@@ -103,7 +111,7 @@ Ext.RegisterListener("SessionLoaded", function()
     settings.Global:AddLocalizedFlag("LXDGM_ModuleRealJump", "Global", false, nil, nil, false)
     settings.Global:AddLocalizedFlag("LXDGM_ModuleFallDamageClassic", "Global", false, nil, nil, false)
     settings.Global:AddLocalizedFlag("LXDGM_ModuleFallDamageAlternate", "Global", false, nil, nil, false)
-    -- settings.Global:AddLocalizedFlag("LXDGM_ModuleDualCC", "Global", false, nil, nil, false)
+    settings.Global:AddLocalizedFlag("LXDGM_ModuleDualCC", "Global", false, nil, nil, false)
 
     -- settings.Global:AddLocalizedFlag("LXDGM_SettingsUseDefaultAttributeValues", "Global", true, nil, nil, false)
     settings.Global:AddLocalizedVariable("StrengthGloBonus", "LXDGM_StrengthGlobalDamageBonus", Ext.ExtraData.DGM_StrengthGlobalBonus, 0, 10, 0.5, "LXDGM_StrengthGlobalDamageBonus_Description")
@@ -116,6 +124,7 @@ Ext.RegisterListener("SessionLoaded", function()
     settings.Global:AddLocalizedVariable("IntelligenceSkillBonus", "LXDGM_IntelligenceSpecialDamageBonus", Ext.ExtraData.DGM_IntelligenceSkillBonus, 0, 10, 0.5, "LXDGM_IntelligenceSpecialDamageBonus_Description")
     settings.Global:AddLocalizedVariable("IntelligenceAccuracyBonus", "LXDGM_IntelligenceAccuracyBonus", Ext.ExtraData.DGM_IntelligenceAccuracyBonus, 0, 10, 1, "LXDGM_IntelligenceAccuracyBonus_Description")
     settings.Global:AddLocalizedVariable("WitsDotBonus", "LXDGM_WitsDotBonus", Ext.ExtraData.DGM_WitsDotBonus, 0, 50, 1, "LXDGM_WitsDotBonus_Description")
+    settings.Global:AddLocalizedVariable("CritChanceBackstabBonus", "LXDGM_BackstabCritChanceBonus", Ext.ExtraData.DGM_BackstabCritChanceBonus, 0, 3, 0.25, "LXDGM_BackstabCritChanceBonus_Description")
 
     settings.Global:AddLocalizedVariable("ArmourDamagePass", "LXDGM_ArmourDamagePass", Ext.ExtraData.DGM_DamageThroughArmor, 0, 100, 1, "LXDGM_ArmourDamagePass_Description")
     settings.Global:AddLocalizedVariable("ArmourDamagePassDepleted", "LXDGM_ArmourDamagePassDepleted", Ext.ExtraData.DGM_DamageThroughArmorDepleted, 0, 100, 1, "LXDGM_ArmourDamagePassDepleted_Description")
@@ -127,6 +136,7 @@ Ext.RegisterListener("SessionLoaded", function()
     settings.Global:AddLocalizedVariable("CrossbowPenaltyBase", "LXDGM_CrossbowPenaltyBase", Ext.ExtraData.DGM_CrossbowBasePenalty, -300, 0, 1, "LXDGM_CrossbowPenaltyBase_Description")
     settings.Global:AddLocalizedVariable("CrossbowPenaltyGrowth", "LXDGM_CrossbowPenaltyGrowth", Ext.ExtraData.DGM_CrossbowLevelGrowthPenalty, -100, 0, 1, "LXDGM_CrossbowPenaltyGrowth_Description")
     settings.Global:AddLocalizedVariable("PerseveranceVitality", "LXDGM_PerseveranceVitality", Ext.ExtraData.DGM_PerseveranceVitalityRecovery, 0, 20, 0.5, "LXDGM_PerseveranceVitality_Description")
+    settings.Global:AddLocalizedVariable("CCParryDuration", "LXDGM_CCParryDuration", Ext.ExtraData.DGM_CCParryDuration, 0, 5, 1, "LXDGM_CCParryDuration_Description")
 
     settings.Global:AddLocalizedFlag("LXDGM_NPCStatsCorrectionCampaignDisable", "Global", false, nil, nil, false)
     settings.Global:AddLocalizedFlag("LXDGM_NPCStatsCorrectionGM", "Global", false, nil, nil, false)
@@ -141,11 +151,10 @@ Ext.RegisterListener("SessionLoaded", function()
                     "LXDGM_ModuleRealJump",
                     "LXDGM_ModuleFallDamageClassic",
                     "LXDGM_ModuleFallDamageAlternate",
-                    -- "LXDGM_ModuleDualCC"
+                    "LXDGM_ModuleDualCC"
                 }},
                 {DisplayName = "Attributes",
                 Entries = {
-                    -- "LXDGM_SettingsUseDefaultAttributeValues",
                     "StrengthGloBonus",
                     "StrengthWeaponBonus",
                     "StrengthResBypass",
@@ -156,6 +165,7 @@ Ext.RegisterListener("SessionLoaded", function()
                     "IntelligenceSkillBonus",
                     "IntelligenceAccuracyBonus",
                     "WitsDotBonus",
+                    "CritChanceBackstabBonus",
                 }},
                 {DisplayName = "Armour System",
                 Entries = {
@@ -171,6 +181,7 @@ Ext.RegisterListener("SessionLoaded", function()
                     "CrossbowPenaltyBase",
                     "CrossbowPenaltyGrowth",
                     "PerseveranceVitality",
+                    "CCParryDuration"
                 }},
                 {DisplayName = "NPC Stats Scaling",
                 Entries = {

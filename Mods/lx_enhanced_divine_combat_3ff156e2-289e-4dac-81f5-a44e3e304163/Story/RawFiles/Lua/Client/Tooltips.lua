@@ -33,7 +33,8 @@ local dynamicTooltips = {
     ["Shout_FrostAura"]         = "h2ce13614gab6cg4878gb781gcb3186a8ead9",
     ["Shout_RecoverArmour"]     = "hf7a19975gea84g44a3g8fffg5b4f063b88b4",
     ["Target_TentacleLash"]     = "hddb00621g65ddg46acg89d2gfcf3efd8cd78",
-    ["WpnCrossbow"]             = "h846daabdg90beg4ac9gb930g02e96dcdbd8d"
+    ["WpnCrossbow"]             = "h846daabdg90beg4ac9gb930g02e96dcdbd8d",
+    ["CriticalChanceDescription"]= "h9df517d1gf64bg499dgb23fg462fd1f061bc" 
 }
 
 ---@param str string
@@ -80,25 +81,26 @@ local function WeaponTooltips(item, tooltip)
         equipment["Label"] = GetDynamicTranslationString("WpnWand", Ext.ExtraData.DGM_WandSkillMultiplier)
         tooltip:AppendElementAfter(equipment, "ExtraProperties")
     end
+    if Ext.ExtraData.DGM_RangedCQBPenalty > 0 then
+        if item.WeaponType == "Bow" or item.WeaponType == "Crossbow" or item.WeaponType == "Rifle" or item.WeaponType == "Wand" then
+            local equipment = {
+                Type = "ItemRequirement",
+                Label = "",
+                RequirementMet = true
+            }
+            equipment["Label"] = GetDynamicTranslationString("WpnRanged", Ext.ExtraData.DGM_RangedCQBPenalty, Ext.ExtraData.DGM_RangedCQBPenaltyRange)
+            equipment["RequirementMet"] = false
+            tooltip:AppendElementAfter(equipment, "ExtraProperties")
+        end
 
-    if item.WeaponType == "Bow" or item.WeaponType == "Crossbow" or item.WeaponType == "Rifle" or item.WeaponType == "Wand" then
-        local equipment = {
-            Type = "ItemRequirement",
-            Label = "",
-            RequirementMet = true
-        }
-        equipment["Label"] = GetDynamicTranslationString("WpnRanged", Ext.ExtraData.DGM_RangedCQBPenalty, Ext.ExtraData.DGM_RangedCQBPenaltyRange)
-        equipment["RequirementMet"] = false
-        tooltip:AppendElementAfter(equipment, "ExtraProperties")
-    end
-
-    if item.WeaponType == "Crossbow" then
-        local equipment = {
-            Type = "ItemRequirement",
-            Label = GetDynamicTranslationString("WpnCrossbow", -1*Ext.ExtraData.DGM_CrossbowBasePenalty/100+(-1*Ext.ExtraData.DGM_CrossbowLevelGrowthPenalty/100*item.Level)),
-            RequirementMet = false
-        }
-        tooltip:AppendElementAfter(equipment, "ExtraProperties")
+        if item.WeaponType == "Crossbow" then
+            local equipment = {
+                Type = "ItemRequirement",
+                Label = GetDynamicTranslationString("WpnCrossbow", -1*Ext.ExtraData.DGM_CrossbowBasePenalty/100+(-1*Ext.ExtraData.DGM_CrossbowLevelGrowthPenalty/100*item.Level)),
+                RequirementMet = false
+            }
+            tooltip:AppendElementAfter(equipment, "ExtraProperties")
+        end
     end
 end
 
@@ -170,6 +172,9 @@ local function OnStatTooltip(character, stat, tooltip)
     elseif stat == "Wits" then
         statsDescription.Label = GetDynamicTranslationString(stat.."Description", Ext.ExtraData.CriticalBonusFromWits, Ext.ExtraData.InitiativeBonusFromWits, Ext.ExtraData.DGM_WitsDotBonus)
         statsPointValue.Label = GetDynamicTranslationString(stat, attrBonus["wits"], attrBonus["witsCrit"], attrBonus["witsIni"], attrBonus["witsDot"])
+
+    elseif stat == "Critical Chance" then
+        statsDescription.Label = GetDynamicTranslationString("CriticalChanceDescription", Ext.ExtraData.DGM_BackstabCritChanceBonus)
         
     elseif stat == "Damage" then
         local damageText = tooltip:GetElement("StatsTotalDamage")

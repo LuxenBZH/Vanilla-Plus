@@ -58,7 +58,7 @@ key "SkillAbilityLifeStealPerPoint","10"
 
 key "SkillAbilitySulfuricDamageBoostPerPoint","5"
 
-key "SkillAbilityPhysicalDamageBoostPerPoint","3"
+key "SkillAbilityPhysicalDamageBoostPerPoint","4"
 
 key "SkillAbilityWaterDamageBoostPerPoint","5"
 
@@ -110,7 +110,7 @@ key "DGM_IntelligenceGlobalBonus","2"
 
 key "DGM_IntelligenceSkillBonus","3"
 
-key "DGM_IntelligenceAccuracyBonus","1"
+key "DGM_IntelligenceAccuracyBonus","2"
 
 key "DGM_WitsDotBonus","10"
 
@@ -211,4 +211,6 @@ key "DGM_OilyCarapacePassingReduction","1"
 key "DGM_CryotherapyPassingMagicReduction","1"
 
 key "DGM_EnableDualCCParry","0"
+
+key "DGM_CCParryDuration","2"
 
