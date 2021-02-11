@@ -625,7 +625,7 @@
         <field name="Damage Type" type="EnumerationStatObjectFieldDefinition" value="9" enumeration_type_name="Damage Type" />
         <field name="Damage" type="IntegerStatObjectFieldDefinition" value="1" />
         <field name="Damage Range" type="IntegerStatObjectFieldDefinition" value="5" />
-        <field name="DamageFromBase" type="IntegerStatObjectFieldDefinition" value="0" />
+        <field name="DamageFromBase" type="IntegerStatObjectFieldDefinition" value="25" />
       </fields>
     </stat_object>
     <stat_object is_substat="false">

@@ -18,7 +18,7 @@ end
 local function GameStartJumpModule(arg1, arg2)
     if PersistentVars["DGM_RealJump"] == true then
         ReplaceAllJumps("on")
-    elseif PersistentVars["DGM_RealJump"] == true then
+    elseif PersistentVars["DGM_RealJump"] == false then
         ReplaceAllJumps("off")
     end
 end
@@ -33,6 +33,15 @@ local elligibleSkills = {
     "Jump_CloakAndDagger",
     "Jump_EnemyCloakAndDagger"
 }
+
+local function IsElligibleJump(skill)
+    for i,jump in pairs(elligibleSkills) do
+        if skill == jump then
+            return true
+        end
+    end
+    return false
+end
 
 local function CharacterReplaceJumpSkills(character, eventName)
     if eventName == "DGM_CharacterReplaceJumpSkills" then
@@ -85,6 +94,19 @@ local function CharacterUnlearnJumpSkill(character, skill)
         end
     end
 end
+
+local function CharacterHotReplaceJumps(character, x, y, z, skill, skillType, skillElement)
+    if not PersistentVars.DGM_RealJump then return end
+    if skillType ~= "jump" then return end
+    CharacterUnlearnJumpSkill(character, skill)
+    -- Cancel cast for NPCs
+    if not Ext.GetCharacter(character).IsPlayer and IsElligibleJump(skill) then
+        CharacterUseSkill(character, "Shout_LX_CancelCast", character, 0, 1, 1)
+        CharacterAddActionPoints(character, 1)
+    end
+end
+
+Ext.RegisterOsirisListener("CharacterUsedSkillAtPosition", 7, "before", CharacterHotReplaceJumps)
 
 function EnableFallDamage(cmd)
     if cmd == "on" then

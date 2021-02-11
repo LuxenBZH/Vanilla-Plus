@@ -437,3 +437,16 @@ Modules
 
 Known issues
 * Weapon-enhancing skills (e.g. Venom Coating) damage tooltip is still lying on its true value (to my defense, it was also lying in the base game!)
+
+# 1.0.4.45
+Fixes
+* Fixed some status not correctly triggering Momentum/Lingering and Staggered/Confused
+
+# 1.0.5.46
+Fixes
+* Fixed (again) some issues with the CC system.
+
+# 1.0.5.47
+Fixes
+* Fixed an issue with Oil weapons not dealing proper damage
+* Fixed an issue with the Real Jump module where NPCs would still have duplicates (again!). The new fix removes automatically an incorrect jump if it's used when the module is enabled. That way, there's no risk of duplicates and it's more user friendly for the GM.

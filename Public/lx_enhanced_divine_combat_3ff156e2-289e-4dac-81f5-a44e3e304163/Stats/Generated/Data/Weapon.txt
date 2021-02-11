@@ -561,7 +561,7 @@ data "ModifierType" "Item"
 data "Damage Type" "Earth"
 data "Damage" "1"
 data "Damage Range" "5"
-data "DamageFromBase" "0"
+data "DamageFromBase" "25"
 
 new entry "_Summon_Condor"
 type "Weapon"

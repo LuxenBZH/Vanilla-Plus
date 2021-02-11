@@ -205,7 +205,7 @@ local function CharacterPunctualCheck(character)
     ManageMemory(character, Ext.GetCharacter(character).Stats.TALENT_Memory)
 end
 
-local bannedStatusTemplates = {
+bannedStatusTemplates = {
     "DGM_Finesse",
     "DGM_Intelligence",
     "DGM_NoWeapon",
