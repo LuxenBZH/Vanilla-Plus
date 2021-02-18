@@ -56,11 +56,27 @@ local function AddAdditionalDescription()
 	end
 end
 
-local function ReduceEquipmentMovementBonus()
+local function OverrideBonus(name, type, multiplier)
+	local boost = Ext.StatGetAttribute(name, type)
+	if string.find(name, "Rune") ~= nil then return end
+	if boost ~= '' then
+		Ext.StatSetAttribute(name, type, math.floor(boost*multiplier))
+	end
+end
+
+local function ReduceDeltaModBonuses()
 	for i,name in pairs(Ext.GetStatEntries("Armor")) do
-		local boostArmor = Ext.StatGetAttribute(name, "Movement")
-		if boostArmor ~= '' then
-			Ext.StatSetAttribute(name, "Movement", math.floor(boostArmor/2))
+		if string.starts(name, "_Boost") then
+			OverrideBonus(name, "Movement", 0.5)
+			OverrideBonus(name, "CriticalChance", 0.5)
+			OverrideBonus(name, "DodgeBoost", 0.5)
+		end
+	end
+	for i,name in pairs(Ext.GetStatEntries("Weapon")) do
+		if string.starts(name, "_Boost") then
+			OverrideBonus(name, "Movement", 0.5)
+			OverrideBonus(name, "CriticalChance", 0.5)
+			OverrideBonus(name, "DodgeBoost", 0.5)
 		end
 	end
 end
@@ -115,7 +131,7 @@ local function AdjustNPCStats()
 	local hardSaved = Ext.LoadFile("LeaderLib_GlobalSettings.json")
 	local campaignScaling = true
 	local GMscaling = false
-	if hardSaved ~= nil and hardSaved ~= "" then
+	if Mods.LeaderLib ~= nil and hardSaved ~= nil and hardSaved ~= "" then
 		local variables = Ext.JsonParse(hardSaved).Mods["3ff156e2-289e-4dac-81f5-a44e3e304163"].Global.Flags
 		if not variables.LXDGM_NPCStatsCorrectionCampaignDisable.Enabled then campaignScaling = true else campaignScaling = false end
 		if variables.LXDGM_NPCStatsCorrectionGM.Enabled then GMscaling = true end
@@ -155,6 +171,6 @@ end
 Ext.RegisterListener("StatsLoaded", AddDamageToDescription)
 Ext.RegisterListener("StatsLoaded", AdaptWeaponEnhancingSkills)
 Ext.RegisterListener("StatsLoaded", AddAdditionalDescription)
-Ext.RegisterListener("StatsLoaded", ReduceEquipmentMovementBonus)
+Ext.RegisterListener("StatsLoaded", ReduceDeltaModBonuses)
 Ext.RegisterListener("StatsLoaded", ReplaceDescriptionParams)
 Ext.RegisterListener("StatsLoaded", AdjustNPCStats)

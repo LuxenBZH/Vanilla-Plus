@@ -3,11 +3,13 @@
   <stat_objects>
     <stat_object is_substat="false">
       <fields>
-        <field name="Name" type="NameStatObjectFieldDefinition" value="Stats_Infusion_Shadow" />
+        <field name="Name" type="NameStatObjectFieldDefinition" value="Stats_Infusion_Water" />
         <field name="Act" type="EnumerationStatObjectFieldDefinition" value="0" enumeration_type_name="Act" />
         <field name="Act part" type="EnumerationStatObjectFieldDefinition" value="0" enumeration_type_name="ActPart" />
-        <field name="Movement" type="IntegerStatObjectFieldDefinition" value="100" />
-        <field name="DamageBoost" type="IntegerStatObjectFieldDefinition" value="10" />
+        <field name="WaterSpecialist" type="IntegerStatObjectFieldDefinition" value="3" />
+        <field name="FireResistance" type="IntegerStatObjectFieldDefinition" value="-20" />
+        <field name="WaterResistance" type="IntegerStatObjectFieldDefinition" value="100" />
+        <field name="Flags" type="EnumerationListStatObjectFieldDefinition" value="1" enumeration_type_name="AttributeFlags" />
       </fields>
     </stat_object>
     <stat_object is_substat="false">
@@ -64,7 +66,18 @@
         <field name="Act" type="EnumerationStatObjectFieldDefinition" value="0" enumeration_type_name="Act" />
         <field name="Act part" type="EnumerationStatObjectFieldDefinition" value="0" enumeration_type_name="ActPart" />
         <field name="DamageBoost" type="IntegerStatObjectFieldDefinition" value="10" />
-        <field name="MagicArmor" type="IntegerStatObjectFieldDefinition" value="50" />
+        <field name="MagicArmor" type="IntegerStatObjectFieldDefinition" value="40" />
+        <field name="VitalityBoost" type="IntegerStatObjectFieldDefinition" value="15" />
+      </fields>
+    </stat_object>
+    <stat_object is_substat="false">
+      <fields>
+        <field name="Name" type="NameStatObjectFieldDefinition" value="Stats_Infusion_Shadow" />
+        <field name="Act" type="EnumerationStatObjectFieldDefinition" value="0" enumeration_type_name="Act" />
+        <field name="Act part" type="EnumerationStatObjectFieldDefinition" value="0" enumeration_type_name="ActPart" />
+        <field name="Movement" type="IntegerStatObjectFieldDefinition" value="100" />
+        <field name="DamageBoost" type="IntegerStatObjectFieldDefinition" value="10" />
+        <field name="VitalityBoost" type="IntegerStatObjectFieldDefinition" value="15" />
       </fields>
     </stat_object>
     <stat_object is_substat="false">
@@ -73,7 +86,8 @@
         <field name="Act" type="EnumerationStatObjectFieldDefinition" value="0" enumeration_type_name="Act" />
         <field name="Act part" type="EnumerationStatObjectFieldDefinition" value="0" enumeration_type_name="ActPart" />
         <field name="DamageBoost" type="IntegerStatObjectFieldDefinition" value="10" />
-        <field name="Armor" type="IntegerStatObjectFieldDefinition" value="50" />
+        <field name="Armor" type="IntegerStatObjectFieldDefinition" value="40" />
+        <field name="VitalityBoost" type="IntegerStatObjectFieldDefinition" value="15" />
       </fields>
     </stat_object>
     <stat_object is_substat="false">
@@ -83,6 +97,7 @@
         <field name="Act part" type="EnumerationStatObjectFieldDefinition" value="0" enumeration_type_name="ActPart" />
         <field name="DodgeBoost" type="IntegerStatObjectFieldDefinition" value="15" />
         <field name="DamageBoost" type="IntegerStatObjectFieldDefinition" value="10" />
+        <field name="VitalityBoost" type="IntegerStatObjectFieldDefinition" value="15" />
       </fields>
     </stat_object>
     <stat_object is_substat="false">
@@ -90,7 +105,7 @@
         <field name="Name" type="NameStatObjectFieldDefinition" value="Stats_Infusion_Fire" />
         <field name="Act" type="EnumerationStatObjectFieldDefinition" value="0" enumeration_type_name="Act" />
         <field name="Act part" type="EnumerationStatObjectFieldDefinition" value="0" enumeration_type_name="ActPart" />
-        <field name="FireSpecialist" type="IntegerStatObjectFieldDefinition" value="5" />
+        <field name="FireSpecialist" type="IntegerStatObjectFieldDefinition" value="3" />
         <field name="FireResistance" type="IntegerStatObjectFieldDefinition" value="100" />
         <field name="WaterResistance" type="IntegerStatObjectFieldDefinition" value="-20" />
         <field name="Flags" type="EnumerationListStatObjectFieldDefinition" value="2" enumeration_type_name="AttributeFlags" />
@@ -101,7 +116,7 @@
         <field name="Name" type="NameStatObjectFieldDefinition" value="Stats_Infusion_Necrofire" />
         <field name="Act" type="EnumerationStatObjectFieldDefinition" value="0" enumeration_type_name="Act" />
         <field name="Act part" type="EnumerationStatObjectFieldDefinition" value="0" enumeration_type_name="ActPart" />
-        <field name="FireSpecialist" type="IntegerStatObjectFieldDefinition" value="10" />
+        <field name="FireSpecialist" type="IntegerStatObjectFieldDefinition" value="5" />
         <field name="FireResistance" type="IntegerStatObjectFieldDefinition" value="130" />
         <field name="WaterResistance" type="IntegerStatObjectFieldDefinition" value="-20" />
         <field name="MagicPoints" type="IntegerStatObjectFieldDefinition" value="2" />
@@ -109,21 +124,10 @@
     </stat_object>
     <stat_object is_substat="false">
       <fields>
-        <field name="Name" type="NameStatObjectFieldDefinition" value="Stats_Infusion_Water" />
-        <field name="Act" type="EnumerationStatObjectFieldDefinition" value="0" enumeration_type_name="Act" />
-        <field name="Act part" type="EnumerationStatObjectFieldDefinition" value="0" enumeration_type_name="ActPart" />
-        <field name="WaterSpecialist" type="IntegerStatObjectFieldDefinition" value="5" />
-        <field name="FireResistance" type="IntegerStatObjectFieldDefinition" value="-20" />
-        <field name="WaterResistance" type="IntegerStatObjectFieldDefinition" value="100" />
-        <field name="Flags" type="EnumerationListStatObjectFieldDefinition" value="1" enumeration_type_name="AttributeFlags" />
-      </fields>
-    </stat_object>
-    <stat_object is_substat="false">
-      <fields>
         <field name="Name" type="NameStatObjectFieldDefinition" value="Stats_Infusion_Blessed_Ice" />
         <field name="Act" type="EnumerationStatObjectFieldDefinition" value="0" enumeration_type_name="Act" />
         <field name="Act part" type="EnumerationStatObjectFieldDefinition" value="0" enumeration_type_name="ActPart" />
-        <field name="WaterSpecialist" type="IntegerStatObjectFieldDefinition" value="10" />
+        <field name="WaterSpecialist" type="IntegerStatObjectFieldDefinition" value="5" />
         <field name="FireResistance" type="IntegerStatObjectFieldDefinition" value="-20" />
         <field name="WaterResistance" type="IntegerStatObjectFieldDefinition" value="120" />
         <field name="MagicPoints" type="IntegerStatObjectFieldDefinition" value="2" />
@@ -135,7 +139,7 @@
         <field name="Name" type="NameStatObjectFieldDefinition" value="Stats_Infusion_Poison" />
         <field name="Act" type="EnumerationStatObjectFieldDefinition" value="0" enumeration_type_name="Act" />
         <field name="Act part" type="EnumerationStatObjectFieldDefinition" value="0" enumeration_type_name="ActPart" />
-        <field name="EarthSpecialist" type="IntegerStatObjectFieldDefinition" value="5" />
+        <field name="EarthSpecialist" type="IntegerStatObjectFieldDefinition" value="3" />
         <field name="AirResistance" type="IntegerStatObjectFieldDefinition" value="-20" />
         <field name="PoisonResistance" type="IntegerStatObjectFieldDefinition" value="100" />
         <field name="Flags" type="EnumerationListStatObjectFieldDefinition" value="4" enumeration_type_name="AttributeFlags" />
@@ -146,7 +150,7 @@
         <field name="Name" type="NameStatObjectFieldDefinition" value="Stats_Infusion_Acid" />
         <field name="Act" type="EnumerationStatObjectFieldDefinition" value="0" enumeration_type_name="Act" />
         <field name="Act part" type="EnumerationStatObjectFieldDefinition" value="0" enumeration_type_name="ActPart" />
-        <field name="EarthSpecialist" type="IntegerStatObjectFieldDefinition" value="10" />
+        <field name="EarthSpecialist" type="IntegerStatObjectFieldDefinition" value="5" />
         <field name="AirResistance" type="IntegerStatObjectFieldDefinition" value="-20" />
         <field name="PoisonResistance" type="IntegerStatObjectFieldDefinition" value="120" />
         <field name="MagicPoints" type="IntegerStatObjectFieldDefinition" value="2" />
@@ -157,7 +161,7 @@
         <field name="Name" type="NameStatObjectFieldDefinition" value="Stats_Infusion_Electric" />
         <field name="Act" type="EnumerationStatObjectFieldDefinition" value="0" enumeration_type_name="Act" />
         <field name="Act part" type="EnumerationStatObjectFieldDefinition" value="0" enumeration_type_name="ActPart" />
-        <field name="AirSpecialist" type="IntegerStatObjectFieldDefinition" value="5" />
+        <field name="AirSpecialist" type="IntegerStatObjectFieldDefinition" value="3" />
         <field name="EarthResistance" type="IntegerStatObjectFieldDefinition" value="-20" />
         <field name="AirResistance" type="IntegerStatObjectFieldDefinition" value="100" />
         <field name="PoisonResistance" type="IntegerStatObjectFieldDefinition" value="-20" />
@@ -169,7 +173,7 @@
         <field name="Name" type="NameStatObjectFieldDefinition" value="Stats_Infusion_Cursed_Electric" />
         <field name="Act" type="EnumerationStatObjectFieldDefinition" value="0" enumeration_type_name="Act" />
         <field name="Act part" type="EnumerationStatObjectFieldDefinition" value="0" enumeration_type_name="ActPart" />
-        <field name="AirSpecialist" type="IntegerStatObjectFieldDefinition" value="10" />
+        <field name="AirSpecialist" type="IntegerStatObjectFieldDefinition" value="5" />
         <field name="EarthResistance" type="IntegerStatObjectFieldDefinition" value="-20" />
         <field name="AirResistance" type="IntegerStatObjectFieldDefinition" value="120" />
         <field name="PoisonResistance" type="IntegerStatObjectFieldDefinition" value="-20" />
@@ -194,7 +198,7 @@
         <field name="Name" type="NameStatObjectFieldDefinition" value="Stats_Infusion_Oil" />
         <field name="Act" type="EnumerationStatObjectFieldDefinition" value="0" enumeration_type_name="Act" />
         <field name="Act part" type="EnumerationStatObjectFieldDefinition" value="0" enumeration_type_name="ActPart" />
-        <field name="EarthSpecialist" type="IntegerStatObjectFieldDefinition" value="10" />
+        <field name="EarthSpecialist" type="IntegerStatObjectFieldDefinition" value="5" />
         <field name="EarthResistance" type="IntegerStatObjectFieldDefinition" value="120" />
         <field name="AirResistance" type="IntegerStatObjectFieldDefinition" value="-20" />
         <field name="Flags" type="EnumerationListStatObjectFieldDefinition" value="17;20" enumeration_type_name="AttributeFlags" />
@@ -3314,7 +3318,7 @@
         <field name="Damage Multiplier" type="IntegerStatObjectFieldDefinition" value="0" />
         <field name="Damage Range" type="IntegerStatObjectFieldDefinition" value="0" />
         <field name="DamageType" type="EnumerationStatObjectFieldDefinition" value="2" enumeration_type_name="Damage Type" />
-        <field name="VitalityPercentage" type="IntegerStatObjectFieldDefinition" value="-50" />
+        <field name="VitalityPercentage" type="IntegerStatObjectFieldDefinition" value="-90" />
       </fields>
     </stat_object>
     <stat_object is_substat="false">
@@ -4149,6 +4153,64 @@
         <field name="Memory" type="EnumerationStatObjectFieldDefinition" value="131" enumeration_type_name="Penalty PreciseQualifier" />
         <field name="Wits" type="EnumerationStatObjectFieldDefinition" value="131" enumeration_type_name="Penalty PreciseQualifier" />
         <field name="SPCostBoost" type="IntegerStatObjectFieldDefinition" value="-3" />
+      </fields>
+    </stat_object>
+    <stat_object is_substat="false">
+      <fields>
+        <field name="Name" type="NameStatObjectFieldDefinition" value="Stats_ElectricSkin" />
+        <field name="Act" type="EnumerationStatObjectFieldDefinition" value="0" enumeration_type_name="Act" />
+        <field name="Act part" type="EnumerationStatObjectFieldDefinition" value="0" enumeration_type_name="ActPart" />
+        <field name="EarthResistance" type="IntegerStatObjectFieldDefinition" value="-40" />
+        <field name="AirResistance" type="IntegerStatObjectFieldDefinition" value="100" />
+        <field name="PoisonResistance" type="IntegerStatObjectFieldDefinition" value="-30" />
+        <field name="BloodSurfaceType" type="StringStatObjectFieldDefinition" value="SurfaceWaterElectrified" />
+        <field name="Flags" type="EnumerationListStatObjectFieldDefinition" value="3;52;25" enumeration_type_name="AttributeFlags" />
+        <field name="Reflection" type="StringStatObjectFieldDefinition" value="20::Air:melee" />
+      </fields>
+    </stat_object>
+    <stat_object is_substat="false">
+      <fields>
+        <field name="Name" type="NameStatObjectFieldDefinition" value="Stats_FireSkin" />
+        <field name="Act" type="EnumerationStatObjectFieldDefinition" value="0" enumeration_type_name="Act" />
+        <field name="Act part" type="EnumerationStatObjectFieldDefinition" value="0" enumeration_type_name="ActPart" />
+        <field name="FireResistance" type="IntegerStatObjectFieldDefinition" value="100" />
+        <field name="WaterResistance" type="IntegerStatObjectFieldDefinition" value="-40" />
+        <field name="BloodSurfaceType" type="StringStatObjectFieldDefinition" value="SurfaceFire" />
+        <field name="Flags" type="EnumerationListStatObjectFieldDefinition" value="2;10;24" enumeration_type_name="AttributeFlags" />
+        <field name="Reflection" type="StringStatObjectFieldDefinition" value="40::Fire:melee" />
+      </fields>
+    </stat_object>
+    <stat_object is_substat="false">
+      <fields>
+        <field name="Name" type="NameStatObjectFieldDefinition" value="Stats_IceSkin" />
+        <field name="Act" type="EnumerationStatObjectFieldDefinition" value="0" enumeration_type_name="Act" />
+        <field name="Act part" type="EnumerationStatObjectFieldDefinition" value="0" enumeration_type_name="ActPart" />
+        <field name="FireResistance" type="IntegerStatObjectFieldDefinition" value="-40" />
+        <field name="WaterResistance" type="IntegerStatObjectFieldDefinition" value="100" />
+        <field name="BloodSurfaceType" type="StringStatObjectFieldDefinition" value="SurfaceWaterFrozen" />
+        <field name="Flags" type="EnumerationListStatObjectFieldDefinition" value="1;9;23" enumeration_type_name="AttributeFlags" />
+        <field name="Reflection" type="StringStatObjectFieldDefinition" value="20::Water:melee" />
+      </fields>
+    </stat_object>
+    <stat_object is_substat="false">
+      <fields>
+        <field name="Name" type="NameStatObjectFieldDefinition" value="Stats_PoisonSkin" />
+        <field name="Act" type="EnumerationStatObjectFieldDefinition" value="0" enumeration_type_name="Act" />
+        <field name="Act part" type="EnumerationStatObjectFieldDefinition" value="0" enumeration_type_name="ActPart" />
+        <field name="EarthResistance" type="IntegerStatObjectFieldDefinition" value="100" />
+        <field name="AirResistance" type="IntegerStatObjectFieldDefinition" value="-40" />
+        <field name="PoisonResistance" type="IntegerStatObjectFieldDefinition" value="100" />
+        <field name="BloodSurfaceType" type="StringStatObjectFieldDefinition" value="SurfacePoison" />
+        <field name="Flags" type="EnumerationListStatObjectFieldDefinition" value="20;4;17;37;26" enumeration_type_name="AttributeFlags" />
+        <field name="Reflection" type="StringStatObjectFieldDefinition" value="40::Poison:melee" />
+      </fields>
+    </stat_object>
+    <stat_object is_substat="false">
+      <fields>
+        <field name="Name" type="NameStatObjectFieldDefinition" value="Stats_SiphonPoison" />
+        <field name="Act" type="EnumerationStatObjectFieldDefinition" value="0" enumeration_type_name="Act" />
+        <field name="Act part" type="EnumerationStatObjectFieldDefinition" value="0" enumeration_type_name="ActPart" />
+        <field name="BonusWeapon" type="StringStatObjectFieldDefinition" value="Status_SiphonPoison" />
       </fields>
     </stat_object>
   </stat_objects>

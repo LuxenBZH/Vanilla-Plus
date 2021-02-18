@@ -18,7 +18,7 @@ end
 local function GameStartJumpModule(arg1, arg2)
     if PersistentVars["DGM_RealJump"] == true then
         ReplaceAllJumps("on")
-    elseif PersistentVars["DGM_RealJump"] == true then
+    elseif PersistentVars["DGM_RealJump"] == false then
         ReplaceAllJumps("off")
     end
 end
@@ -34,6 +34,15 @@ local elligibleSkills = {
     "Jump_EnemyCloakAndDagger"
 }
 
+local function IsElligibleJump(skill)
+    for i,jump in pairs(elligibleSkills) do
+        if skill == jump then
+            return true
+        end
+    end
+    return false
+end
+
 local function CharacterReplaceJumpSkills(character, eventName)
     if eventName == "DGM_CharacterReplaceJumpSkills" then
         local character = Ext.GetCharacter(character)
@@ -45,7 +54,7 @@ local function CharacterReplaceJumpSkills(character, eventName)
                 if skill == jump then
                     --print(skill)
                     CharacterRemoveSkill(character.MyGuid, skill)
-                    local newJump = string.gsub(skill, "Jump", "Projectile")
+                    local newJump = string.gsub(skill, "Jump_", "Projectile_")
                     --print(newJump)
                     CharacterAddSkill(character.MyGuid, newJump)
                 end
@@ -59,17 +68,18 @@ local function CharacterReplaceJumpSkills(character, eventName)
         local skills = character.GetSkills(character)
         for i,skill in pairs(skills) do
             for j,jump in pairs(elligibleSkills) do
-                if skill == jump then
-                    --print(skill)
+                local projectileJump = string.gsub(jump, "Jump_", "Projectile_")
+                if skill == projectileJump then
                     CharacterRemoveSkill(character.MyGuid, skill)
-                    local newJump = string.gsub(skill, "Projectile", "Jump")
-                    --print(newJump)
+                    local newJump = string.gsub(skill, "Projectile_", "Jump_")
                     CharacterAddSkill(character.MyGuid, newJump)
                 end
             end
         end
     end
 end
+
+Ext.RegisterOsirisListener("StoryEvent", 2, "before", CharacterReplaceJumpSkills)
 
 local function CharacterUnlearnJumpSkill(character, skill)
     for i,jump in pairs(elligibleSkills) do
@@ -78,12 +88,25 @@ local function CharacterUnlearnJumpSkill(character, skill)
             local character = Ext.GetCharacter(character)
             if character == nil then return end
             CharacterRemoveSkill(character.MyGuid, skill)
-            local newJump = string.gsub(skill, "Jump", "Projectile")
+            local newJump = string.gsub(skill, "Jump_", "Projectile_")
             --print(newJump)
             CharacterAddSkill(character.MyGuid, newJump)
         end
     end
 end
+
+local function CharacterHotReplaceJumps(character, x, y, z, skill, skillType, skillElement)
+    if not PersistentVars.DGM_RealJump then return end
+    if skillType ~= "jump" then return end
+    CharacterUnlearnJumpSkill(character, skill)
+    -- Cancel cast for NPCs
+    if not Ext.GetCharacter(character).IsPlayer and IsElligibleJump(skill) then
+        CharacterUseSkill(character, "Shout_LX_CancelCast", character, 0, 1, 1)
+        CharacterAddActionPoints(character, 1)
+    end
+end
+
+Ext.RegisterOsirisListener("CharacterUsedSkillAtPosition", 7, "before", CharacterHotReplaceJumps)
 
 function EnableFallDamage(cmd)
     if cmd == "on" then
@@ -128,6 +151,8 @@ local function ActivateModule(flag)
         EnableFallDamage("on")
     elseif flag == "LXDGM_ModuleFallDamageAlternate" then 
         EnableJumpDamage("on")
+    elseif flag == "LXDGM_ModuleDualCC" then
+        Ext.ExtraData.DGM_EnableDualCCParry = 1
     end
 end
 Ext.RegisterOsirisListener("GlobalFlagSet", 1, "after", ActivateModule)
@@ -139,12 +164,13 @@ local function DeactivateModule(flag)
         EnableFallDamage("off")
     elseif flag == "LXDGM_ModuleFallDamageAlternate" then 
         EnableJumpDamage("off")
+    elseif flag == "LXDGM_ModuleDualCC" then
+        Ext.ExtraData.DGM_EnableDualCCParry = 0
     end
 end
 Ext.RegisterOsirisListener("GlobalFlagCleared", 1, "after", DeactivateModule)
 
 Ext.RegisterConsoleCommand("DGM_Module_RealJump", DGM_Modules_consoleCmd)
 Ext.RegisterConsoleCommand("DGM_Module_FallDamage", DGM_Modules_consoleCmd)
-Ext.RegisterOsirisListener("StoryEvent", 2, "before", CharacterReplaceJumpSkills)
 Ext.RegisterOsirisListener("CharacterLearnedSkill", 2, "before", CharacterUnlearnJumpSkill)
 Ext.RegisterOsirisListener("GameStarted", 2, "after", GameStartJumpModule)

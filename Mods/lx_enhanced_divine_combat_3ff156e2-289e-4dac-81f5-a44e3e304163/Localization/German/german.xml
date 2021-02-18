@@ -16,7 +16,7 @@
 	<content contentuid="h0fe63523g3caeg4e46g8152geabd390080af">Receive Sparkstriker status. This causes your melee attacks to create a Spark projectile that bounces off the initial target to hit the closest enemy, dealing [1].</content>
 	<content contentuid="h169eda41gad02g4143g997eg29c0cee15c14">Walk It Off (3)</content>
 	<content contentuid="h18f97d5bg9a79g4917g809dgb0ac7a5ec302">Increases all damage by [1]% per point. Damage dealt with weapons are further increased by [2]% (including weapon-based skills). Each point invested increase the resistance bypass multiplier by [3]%. Allows you to lift and carry heavier items.</content>
-	<content contentuid="h19525dddg3cadg4699g94d2g342b1192a332">Set the target distance threshold which defines when do ranged weapons gets a penalty.&lt;br&gt;Default : 2</content>
+	<content contentuid="h19525dddg3cadg4699g94d2g342b1192a332">Set the target distance threshold which defines when do ranged weapons gets a penalty.&lt;br&gt;Default : 2&lt;br&gt;</content>
 	<content contentuid="h19eab510gec8cg4d4fg92fag5918044ab001">Default : 3</content>
 	<content contentuid="h1a6bf0edg47eeg4ee8gaa86g5a608e5dda7b">Explode all corpses around you, dealing [1] in the area.</content>
 	<content contentuid="h1b361ce1gd5d3g4c0eg8b8cg7d87658e755f">Activate the stats correction formula for Story mode or any additional custom Adventure mod. Strongly recommended.&lt;br&gt;Default : on&lt;br&gt;&lt;font color=#ff0000&gt;Require a game restart&lt;/font&gt;</content>
@@ -47,6 +47,7 @@
 	<content contentuid="h3e8d0f43g5060g48d8g95cag541abe3a7c08">Receive a [1]% Damage penalty if the target is closer than [2] meters</content>
 	<content contentuid="h41b54dbagf949g40aagb148gd7c0b42eedfe">Walk It Off</content>
 	<content contentuid="h42b4c1e3g7c07g400dg8924g2807a024e6bb">Pet Pal enables you to talk to animals. Also increases your maximum number of summons by 1, but reduces their damage and Vitality by 50%.</content>
+	<content contentuid="h42f0b1b6gd786g46ebga04egf56b57d92048">Incarnate learns how to go invisible and strike foes with a corrosive slash. Increases damage by [1]% and maximum Vitality by 15%.</content>
 	<content contentuid="h43401d61ga5dfg4282ga423gc4a5b78ff7ac">Leech</content>
 	<content contentuid="h443a51dcgbd6fg46c2g8988gbfe93a3123a5">Next Level [1]: +[2]% Armour and +[3]% Vitality restored after a hard Crowd Control effect recovery.</content>
 	<content contentuid="h4542353bg043cg4964ga401g7a80dd267e5b">Target a surface in melee radius. Elemental damage matching that surface is added to your weapon attacks and weapon-based skills.</content>
@@ -58,7 +59,8 @@
 	<content contentuid="h4be1f455g2614g43e1gbe42g7636850e7749">Burning Weapons</content>
 	<content contentuid="h4e021a63g8d27g4cf2g865agf52e17ae50c2">General Attribute Correction</content>
 	<content contentuid="h50e9548eg61f2g4aedg8a3eg570a7ffee6d3">Reduce damage going through Physical Armour by [1]%</content>
-	<content contentuid="h51631525ga7c5g4ff3gbf10ga04307fcdf7e">When recovering from a hard crowd control effect, both Momentum and Lingering </content>
+	<content contentuid="h51631525ga7c5g4ff3gbf10ga04307fcdf7e">When recovering from a hard crowd control effect, both Momentum and Lingering will always be triggered together whatever the crowd control effect it was. &lt;br&gt;Default : off&lt;br&gt;</content>
+	<content contentuid="h5181573egec45g4adcgb6d2g6b8d856c3b4f">Crit. Chance Backstab Bonus</content>
 	<content contentuid="h5340847eg5242g4a5bgb0dcg581a25c167ce">Default : 2</content>
 	<content contentuid="h54f2ea13g97dbg4b86g9d13geeb81186faca">[1] increases damage and Critical Chance when using bows and crossbows. Also increases the range by 0.5m per point when wielding a bow, crossbow or wand(s).</content>
 	<content contentuid="h552b479bg3e56g4ea1gb01fg96d986de5e5f">Activate the stats correction formula for GM mode. This is up to your preferences, but if you already created and balanced encounters, you might need to rebalance them.&lt;br&gt;Default : off&lt;br&gt;&lt;font color=#ff0000&gt;Require a game restart&lt;/font&gt;</content>
@@ -103,6 +105,7 @@
 	<content contentuid="h768669d0g02adg48f7g901eg83068a96bf19">Dual-Wielding increases damage and Dodging when wielding two Single-Handed weapons, and increases off-hand damage by 10% per point.</content>
 	<content contentuid="h7b1052abg9968g4acdgb399g989954144550">Finesse Global Damage Bonus</content>
 	<content contentuid="h7fec5db8g58d3g4abbgab7ag03e19b542bef">Total damage: [1]-[2]</content>
+	<content contentuid="h80149363gb072g4531gae22gf187147b9c44">CC Recover Duration</content>
 	<content contentuid="h81ca938fg5ef4g452agb093g1294e2f0718b">Leech heals you when standing in blood. Also increases Lifesteal by 25%.</content>
 	<content contentuid="h8256bf13gb4cag4662gaafegb5724b210c92">[1] grants Dodging and Resistance bonuses to all allies in a 16m radius.</content>
 	<content contentuid="h8271feceg6b6cg470cg8c8fg5de1ee77a76b">Set the percentage of damage going through armours.&lt;br&gt;Default : 50</content>
@@ -112,9 +115,11 @@
 	<content contentuid="h878c02c0gc629g470dg955cg80dc2a125cb2">Stench decreases everyone&apos;s attitude towards you by [2], but melee opponents find you less attractive in combat. Increases your Poison resistance by 30% and makes you immune to Diseased and Infected.</content>
 	<content contentuid="h8ddc8dd4ge8feg4420ga6dag0d87ce8ec743">[1] lets you evade attacks of opportunity. Increases your Dodge by 5% and Movement by 1m per AP.</content>
 	<content contentuid="h9055594bg16a7g48b8g81ffg25bbbf89963b">Sets off a chain reaction that causes ice areas to explode into water puddles, dealing [1] and setting Chilled.</content>
+	<content contentuid="h93731b66g32c8g425dg8ed5g9863a8d35279">Unlock Whirlwind and Rush for your Incarnate. Provides [1] (amount depends on your level). Increases damage by [2]% and increase maximum Vitality by 15%.</content>
 	<content contentuid="h944c3db5gc792g4cdcg923cg9471f4cb0969">Water Weapons</content>
+	<content contentuid="h9729b9ceg2860g4396g8b3fg9eef86106d4f">Unlock ranged attack for your Incarnate. Provides [1] (amount depends on your level). Increases damage by [2]% and increase maximum Vitality by 15%.</content>
 	<content contentuid="h98163163g695ag4813gb105g3ade9ea09050">[1] gives you [2] extra Action Points after dealing a killing blow once per turn and set Hasted for 1 turn (unless you are already hasted).</content>
-	<content contentuid="h9df517d1gf64bg499dgb23fg462fd1f061bc">Your chance to Critically Strike when attacking with a weapon or when using a weapon-based skill. If you Backstab, your Critical Chance is converted to additional damage in a ratio of 2% Critical Chance to 1% damage.</content>
+	<content contentuid="h9df517d1gf64bg499dgb23fg462fd1f061bc">Your chance to Critically Strike when attacking with a weapon or when using a weapon-based skill. If you Backstab, your Critical Chance is converted to additional damage : for 1% of Critical Chance, you gain [1]% damage.</content>
 	<content contentuid="h9dffbeb7g85b6g4275g8c58g8b0de33c8583">This character drank too many potions and could not handle the side effects.</content>
 	<content contentuid="h9e8b6e5bgd7b4g4444g8853g5eb8910285a4">The amount of damage going through Physical and Magic Armour is reduced by half.</content>
 	<content contentuid="h9e97f6cdg7b63g4603g9f25g7a515742c55d">Flaming Tongues protect you, immediately attacking approaching enemies and deals them [1].</content>
@@ -122,10 +127,11 @@
 	<content contentuid="ha2bd4aa9gae5dg4bb0gb6ddg25a682c5a68b">Duck Duck Goose</content>
 	<content contentuid="ha418e064g2d69g4407gadc2gf2f590f0e895">From Strength weapon bonus : [1]%</content>
 	<content contentuid="ha422c4f4ge2bbg4cbcgbbf3g505c7ce673d1">+[1] point(s) = +[2]% Critical Chance, +[3] Initiative and +[4]% to statuses inflicting damages.</content>
-	<content contentuid="ha4a2351eg24cdg4f68g8ef6gb7ee91c0c08e">Default : 1&lt;br&gt;&lt;font color=#ff0000&gt;Require a game restart&lt;/font&gt;</content>
+	<content contentuid="ha4a2351eg24cdg4f68g8ef6gb7ee91c0c08e">Default : 2&lt;br&gt;&lt;font color=#ff0000&gt;Require a game restart&lt;/font&gt;</content>
 	<content contentuid="ha4cfd852g52f1g4079g8919gd392ac8ade1a">Damage is based on your basic attack and trigger the additional bonus from both Strength and Intelligence.</content>
 	<content contentuid="ha742cf9eg80e6g4b43g8106ga4b83bd5e241">Cause target character to teleport in a random direction each time they are attacked. Increases Dodge by [1]% and Air Resistance by [2]%.</content>
 	<content contentuid="hae29de3agcf14g44f7g9020g90e1fd77694d">If deactivated, you will be able to use custom attributes bonuses. Not recommended if you want to keep an overall balanced experience unless you really know what you are doing.&lt;br&gt;Default : on</content>
+	<content contentuid="haee8a8d1g10e8g491ag83c8g833c3a4d0fbb">The damage bonus provided per Critical Chance percent when backstabbing. &lt;br&gt;Default : 0.5&lt;br&gt;</content>
 	<content contentuid="hb1fc6d8bg6bf6g4a3bg83f7g94177ced086a">Duelist</content>
 	<content contentuid="hb4d441e2g0d7cg45f5g8917g5fa55696a431">Hothead</content>
 	<content contentuid="hb5c81b75ga23dg44aeg8ceeg6c88bf367e38">Secondary Attribute Correction</content>
@@ -153,11 +159,12 @@
 	<content contentuid="hda7ee9a4g5bbeg4c62g96b7ge31b21e094f3">Next Level [1]: +[2]% Damage, +[3]% Critical Multiplier.</content>
 	<content contentuid="hdc60c039gac18g416cgb2a0g3d58fc54afcc">Reduce damage going through Physical Armour by [1]%</content>
 	<content contentuid="hddb00621g65ddg46acg89d2gfcf3efd8cd78">Also triggers the Strength weapon bonus.</content>
+	<content contentuid="hdef2f1beg2fc7g4a22gab9eg29c2f0694e4d">The duration of Momentum and Lingering when they are triggered. &lt;br&gt;Default : 2&lt;br&gt;</content>
 	<content contentuid="hdf2a4bd0g134eg4107g9a8agd93d6d22fd68">From Attributes : [1]%</content>
 	<content contentuid="he1708d1eg243dg4b72g8f48gddb9bc8d62ff">+[1] point(s) = +[2]% to all Damage and +[3]% more for weapon-based attacks. Each point in Intelligence will increase resistance bypass by [4]% per point.</content>
 	<content contentuid="he3980bf8gf554g4dd8g823cgf2ccb71036a6">Offhand penalty: [1]%</content>
 	<content contentuid="he47a8a79g2f04g410bgbf00gd6b2a84ba9a5">Reduce damage going through Physical Armour by [1]%</content>
-	<content contentuid="he53d3385g125cg49ddgaacegce01ebea865f">Always trigger both Momentum and Lingering</content>
+	<content contentuid="he53d3385g125cg49ddgaacegce01ebea865f">Dual CC Resistance</content>
 	<content contentuid="he573ce38g6445g4975g8562ge97ea0a52c79">This module transforms Cloak and Dagger, Phoenix Dive and Tactical Retreat as projectile equivalents (like Fly with Spread your wings). It applies to everyone. If some NPC still have the classic version, deactivate and reactivate this module.</content>
 	<content contentuid="he6c2c979gd7a7g4926g9180g5d69e9d79d62">Crossbow Penalty Per Level</content>
 	<content contentuid="he86bfd28ge123g42a4g8c0cg2f9bcd7d9e05">Level [1]: +[2]% Damage, +[3]% Critical Chance and increase Range by [4]m.</content>
@@ -176,6 +183,7 @@
 	<content contentuid="hf7a19975gea84g44a3g8fffg5b4f063b88b4">Reduce damage going through Physical and Magic Armour by [1]%</content>
 	<content contentuid="hf7f34763g19feg4018gb6f6g4cc298dc512d">Int. Global Damage Bonus</content>
 	<content contentuid="hf859c7e8g7e30g48e3ga24aga943a18f0c5c">Set the percentage of damage penalty when using a ranged weapon on a target within the CQB range limit.&lt;br&gt;Default : 35</content>
+	<content contentuid="hfb851683g738cg4b48g8fd8g478d375c030a">Incarnate learns a teleport skill, and a skill to swap places with its master. Increases damage by [1]% and maximum Vitality by 15%.</content>
 	<content contentuid="hfb8eec35g3339g4762g8382g712e74a2ac0b">[1] adds an extra [2]m range to your grenade throws and increase their damage by 30%.</content>
 	<content contentuid="hfc25a87dg9103g4602g872dg8ecb8965fc0a">Explode two random grenades or arrows in the inventories of every enemy, dealing [1] and set Atrophy in a target circle.</content>
 	<content contentuid="hfc8981a1g8f84g49c8ga8b4g17564a836c45">Duelist increases AP Start and Recovery by 1, and Max AP by 1, if you are wielding a Single-Handed weapon with a free off-hand.</content>

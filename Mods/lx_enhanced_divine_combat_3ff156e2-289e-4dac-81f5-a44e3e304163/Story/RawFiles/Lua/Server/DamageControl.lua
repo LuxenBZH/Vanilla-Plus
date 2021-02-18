@@ -9,6 +9,7 @@ function DamageControl(target, handle, instigator)
 		Main damage control : damages are teared down to the original formula and apply custom
 		bonuses from the overhaul
 	]]--
+	
 	if ObjectIsCharacter(instigator) == 0 then return end
 	-- Get hit properties
 	local damages = {}
@@ -456,7 +457,7 @@ function ApplyHitResistances(character, damageList, attacker)
 		local originalResistance = Game.Math.GetResistance(character, damage.DamageType)
 		local resistance = originalResistance
 		local bypassValue = (strength - Ext.ExtraData.AttributeBaseValue) * Ext.ExtraData.DGM_StrengthResistanceIgnore * (intelligence - Ext.ExtraData.AttributeBaseValue)
-		Ext.Print("bypass value:",bypassValue)
+		-- Ext.Print("bypass value:",bypassValue)
 		if originalResistance > 0 and originalResistance < 100 and bypassValue > 0 then
 			resistance = originalResistance - bypassValue
 			if resistance < 0 then
@@ -473,7 +474,7 @@ end
 --- @param attacker StatCharacter
 --- @param damageList DamageList
 function ApplyDamageCharacterBonuses(character, attacker, damageList)
-	Ext.Print("VANILLA PLUS ApplyDamageCharacterBonuses")
+	-- Ext.Print("VANILLA PLUS ApplyDamageCharacterBonuses")
     damageList:AggregateSameTypeDamages()
     ApplyHitResistances(character, damageList, attacker)
 

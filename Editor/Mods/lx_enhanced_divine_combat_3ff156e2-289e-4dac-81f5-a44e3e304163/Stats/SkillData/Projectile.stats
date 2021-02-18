@@ -1683,54 +1683,12 @@
     </stat_object>
     <stat_object is_substat="false">
       <fields>
-        <field name="Name" type="NameStatObjectFieldDefinition" value="WandPower" />
-        <field name="ForGameMaster" type="EnumerationStatObjectFieldDefinition" value="0" enumeration_type_name="YesNo" />
-        <field name="Ability" type="EnumerationStatObjectFieldDefinition" value="0" enumeration_type_name="SkillAbility" />
-        <field name="Requirement" type="EnumerationStatObjectFieldDefinition" value="2" enumeration_type_name="SkillRequirement" />
-        <field name="ActionPoints" type="IntegerStatObjectFieldDefinition" value="3" />
-        <field name="Cooldown" type="IntegerStatObjectFieldDefinition" value="1" />
-        <field name="Damage Multiplier" type="IntegerStatObjectFieldDefinition" value="90" />
-        <field name="TargetRadius" type="IntegerStatObjectFieldDefinition" value="13" />
-        <field name="ExplodeRadius" type="IntegerStatObjectFieldDefinition" value="0" />
-        <field name="CanTargetCharacters" type="EnumerationStatObjectFieldDefinition" value="1" enumeration_type_name="YesNo" />
-        <field name="CanTargetItems" type="EnumerationStatObjectFieldDefinition" value="1" enumeration_type_name="YesNo" />
-        <field name="CanTargetTerrain" type="EnumerationStatObjectFieldDefinition" value="1" enumeration_type_name="YesNo" />
-        <field name="ForceTarget" type="EnumerationStatObjectFieldDefinition" value="0" enumeration_type_name="YesNo" />
-        <field name="UseCharacterStats" type="EnumerationStatObjectFieldDefinition" value="0" enumeration_type_name="YesNo" />
-        <field name="UseWeaponDamage" type="EnumerationStatObjectFieldDefinition" value="1" enumeration_type_name="YesNo" />
-        <field name="UseWeaponProperties" type="EnumerationStatObjectFieldDefinition" value="1" enumeration_type_name="YesNo" />
-        <field name="ProjectileCount" type="IntegerStatObjectFieldDefinition" value="1" />
-        <field name="ProjectileDelay" type="IntegerStatObjectFieldDefinition" value="0" />
-        <field name="Template" type="StringStatObjectFieldDefinition" value="d2363d6f-bad6-4912-bf9d-f726a77ed2ea" />
-        <field name="Icon" type="StringStatObjectFieldDefinition" value="Skill_Unique_StaffOfMagus" />
-        <field name="DisplayName" type="TranslatedStringStatObjectFieldDefinition" value="Wand Power" />
-        <field name="Description" type="TranslatedStringStatObjectFieldDefinition" value="Transfer the power of your second wand into the main one to release a magic missile that can bounce up to 4 times, dealing [1] damage which reduces each target hit." />
-        <field name="StatsDescription" type="TranslatedStringStatObjectFieldDefinition" value="Range: [2]&lt;br&gt;Launches a magical missile that inherits the power and damage type of the staff. The better the staff, the more damage this spell sows. Can target terrain." />
-        <field name="StatsDescriptionParams" type="StringStatObjectFieldDefinition" value="Damage;TargetRadius" />
-        <field name="PrepareAnimationInit" type="StringStatObjectFieldDefinition" value="skill_prepare_weapon_01_start" />
-        <field name="PrepareAnimationLoop" type="StringStatObjectFieldDefinition" value="skill_prepare_weapon_01_loop" />
-        <field name="PrepareEffect" type="StringStatObjectFieldDefinition" value="RS3_FX_Items_Weapons_Prepare_Weapon_Root_01,KeepRot;RS3_FX_Items_Weapons_Prepare_Weapon_Hand_01:Dummy_R_Hand" />
-        <field name="CastAnimation" type="StringStatObjectFieldDefinition" value="skill_attack_projectile_01_cast" />
-        <field name="CastTextEvent" type="StringStatObjectFieldDefinition" value="cast" />
-        <field name="CastEffect" type="StringStatObjectFieldDefinition" value="RS3_FX_Items_Weapons_Cast_Weapon_Root_01;RS3_FX_Items_Weapons_Cast_Weapon_Hand_01:Dummy_R_Hand;RS3_FX_Items_Weapons_Cast_Weapon_Hand_01_Texkey:Dummy_R_Hand:cast" />
-        <field name="PreviewEffect" type="StringStatObjectFieldDefinition" value="RS3_FX_Items_Weapons_Target_Staff_Of_Magus_01" />
-        <field name="Magic Cost" type="IntegerStatObjectFieldDefinition" value="0" />
-        <field name="ProjectileTerrainOffset" type="EnumerationStatObjectFieldDefinition" value="1" enumeration_type_name="YesNo" />
-        <field name="OverrideMinAP" type="EnumerationStatObjectFieldDefinition" value="1" enumeration_type_name="YesNo" />
-        <field name="CycleConditions" type="StringStatObjectFieldDefinition" value="Enemy;!Dead" />
-        <field name="ForkingConditions" type="StringStatObjectFieldDefinition" value="Enemy;!Dead;!Tagged:BLOCK_FORK" />
-        <field name="MaxForkCount" type="IntegerStatObjectFieldDefinition" value="3" />
-        <field name="ForkLevels" type="IntegerStatObjectFieldDefinition" value="2" />
-        <field name="ForkChance" type="IntegerStatObjectFieldDefinition" value="100" />
-      </fields>
-    </stat_object>
-    <stat_object is_substat="false">
-      <fields>
         <field name="Name" type="NameStatObjectFieldDefinition" value="EnemyTacticalRetreat" />
         <field name="Using" type="BaseClassStatObjectFieldDefinition" value="TacticalRetreat" />
         <field name="ForGameMaster" type="EnumerationStatObjectFieldDefinition" value="0" enumeration_type_name="YesNo" />
         <field name="IsEnemySkill" type="EnumerationStatObjectFieldDefinition" value="1" enumeration_type_name="YesNo" />
         <field name="Memory Cost" type="IntegerStatObjectFieldDefinition" value="0" />
+        <field name="MemorizationRequirements" type="StringStatObjectFieldDefinition" value="None" />
       </fields>
     </stat_object>
     <stat_object is_substat="false">
@@ -1743,6 +1701,7 @@
         <field name="TargetRadius" type="IntegerStatObjectFieldDefinition" value="20" />
         <field name="DisplayName" type="TranslatedStringStatObjectFieldDefinition" value="Amphibian Leap" />
         <field name="Memory Cost" type="IntegerStatObjectFieldDefinition" value="0" />
+        <field name="MemorizationRequirements" type="StringStatObjectFieldDefinition" value="None" />
       </fields>
     </stat_object>
     <stat_object is_substat="false">
@@ -1752,6 +1711,7 @@
         <field name="ForGameMaster" type="EnumerationStatObjectFieldDefinition" value="0" enumeration_type_name="YesNo" />
         <field name="IsEnemySkill" type="EnumerationStatObjectFieldDefinition" value="1" enumeration_type_name="YesNo" />
         <field name="Memory Cost" type="IntegerStatObjectFieldDefinition" value="0" />
+        <field name="MemorizationRequirements" type="StringStatObjectFieldDefinition" value="None" />
       </fields>
     </stat_object>
     <stat_object is_substat="false">
@@ -1761,6 +1721,7 @@
         <field name="ForGameMaster" type="EnumerationStatObjectFieldDefinition" value="0" enumeration_type_name="YesNo" />
         <field name="IsEnemySkill" type="EnumerationStatObjectFieldDefinition" value="1" enumeration_type_name="YesNo" />
         <field name="Memory Cost" type="IntegerStatObjectFieldDefinition" value="0" />
+        <field name="MemorizationRequirements" type="StringStatObjectFieldDefinition" value="None" />
       </fields>
     </stat_object>
     <stat_object is_substat="false">
@@ -1770,6 +1731,7 @@
         <field name="ForGameMaster" type="EnumerationStatObjectFieldDefinition" value="0" enumeration_type_name="YesNo" />
         <field name="IsEnemySkill" type="EnumerationStatObjectFieldDefinition" value="1" enumeration_type_name="YesNo" />
         <field name="Memory Cost" type="IntegerStatObjectFieldDefinition" value="0" />
+        <field name="MemorizationRequirements" type="StringStatObjectFieldDefinition" value="None" />
       </fields>
     </stat_object>
   </stat_objects>

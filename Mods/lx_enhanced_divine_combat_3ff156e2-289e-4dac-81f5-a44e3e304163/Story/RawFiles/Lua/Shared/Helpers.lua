@@ -11,7 +11,8 @@ function DamageTypeEnum()
 		"Water",
 		"Earth",
 		"Poison",
-		"Shadow"
+		"Shadow",
+		"None"
 	}
 	return enum
 end
@@ -108,4 +109,8 @@ function GetTableSize(table)
 		size = size + 1
 	end
 	return size
+end
+
+function string.starts(String, Start)
+	return string.sub(String, 1, string.len(Start))==Start
 end

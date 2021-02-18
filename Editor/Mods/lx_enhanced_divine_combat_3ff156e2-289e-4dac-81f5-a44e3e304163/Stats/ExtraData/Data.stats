@@ -184,7 +184,7 @@
     <stat_object is_substat="false">
       <fields>
         <field name="Name" type="NameStatObjectFieldDefinition" value="SkillAbilityPhysicalDamageBoostPerPoint" />
-        <field name="Value" type="FloatStatObjectFieldDefinition" value="3" />
+        <field name="Value" type="FloatStatObjectFieldDefinition" value="4" />
       </fields>
     </stat_object>
     <stat_object is_substat="false">
@@ -342,7 +342,7 @@
     <stat_object is_substat="false">
       <fields>
         <field name="Name" type="NameStatObjectFieldDefinition" value="DGM_IntelligenceAccuracyBonus" />
-        <field name="Value" type="FloatStatObjectFieldDefinition" value="1" />
+        <field name="Value" type="FloatStatObjectFieldDefinition" value="2" />
       </fields>
     </stat_object>
     <stat_object is_substat="false">
@@ -651,6 +651,18 @@
       <fields>
         <field name="Name" type="NameStatObjectFieldDefinition" value="DGM_EnableDualCCParry" />
         <field name="Value" type="FloatStatObjectFieldDefinition" value="0" />
+      </fields>
+    </stat_object>
+    <stat_object is_substat="false">
+      <fields>
+        <field name="Name" type="NameStatObjectFieldDefinition" value="DGM_CCParryDuration" />
+        <field name="Value" type="FloatStatObjectFieldDefinition" value="2" />
+      </fields>
+    </stat_object>
+    <stat_object is_substat="false">
+      <fields>
+        <field name="Name" type="NameStatObjectFieldDefinition" value="IncarnateSummoningLevel" />
+        <field name="Value" type="FloatStatObjectFieldDefinition" value="10" />
       </fields>
     </stat_object>
   </stat_objects>

@@ -192,11 +192,7 @@ local function CharacterGlobalCheck(character, event)
         CreateCrossbowSlowdownStat(character)
     end
     CheckAllTalents(character)
-    if Ext.GetCharacter(character).Stats.TALENT_Memory then
-        ManageMemory(character, 1)
-    else
-        ManageMemory(character, 0)
-    end
+    ManageMemory(character, Ext.GetCharacter(character).Stats.TALENT_Memory)
 end
 
 Ext.RegisterOsirisListener("StoryEvent", 2, "before", CharacterGlobalCheck)
@@ -206,14 +202,10 @@ local function CharacterPunctualCheck(character)
     -- Ext.Print("Punctual check")
     SyncAttributeBonuses(character)
     SyncAbilitiesBonuses(character)
-    if Ext.GetCharacter(character).Stats.TALENT_Memory then
-        ManageMemory(character, 1)
-    else
-        ManageMemory(character, 0)
-    end
+    ManageMemory(character, Ext.GetCharacter(character).Stats.TALENT_Memory)
 end
 
-local bannedStatusTemplates = {
+bannedStatusTemplates = {
     "DGM_Finesse",
     "DGM_Intelligence",
     "DGM_NoWeapon",
@@ -255,7 +247,7 @@ local currentChar
 local function CheckStatChangeNetID(message, netID)
     local char = Ext.GetCharacter(tonumber(netID))
     currentChar = char.MyGuid
-	TimerLaunch("DGM_UIStatCheck", 33)
+	TimerLaunch("DGM_UIStatCheck", 330) -- Below 10 frames would actually trigger before the stat change
 end
 
 Ext.RegisterNetListener("DGM_UpdateCharacter", CheckStatChangeNetID)

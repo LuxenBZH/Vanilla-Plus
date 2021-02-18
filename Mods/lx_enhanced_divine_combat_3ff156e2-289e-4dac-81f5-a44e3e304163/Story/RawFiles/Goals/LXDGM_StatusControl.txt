@@ -3,118 +3,118 @@ SubGoalCombiner SGC_AND
 INITSECTION
 
 KBSECTION
-//Momentum proc
-IF
-CharacterStatusRemoved(_Char, "KNOCKED_DOWN", _)
-THEN
-ApplyStatus(_Char, "LX_MOMENTUM", 12.0, 1);
+// //Momentum proc
+// IF
+// CharacterStatusRemoved(_Char, "KNOCKED_DOWN", _)
+// THEN
+// ApplyStatus(_Char, "LX_MOMENTUM", 12.0, 1);
 
-IF
-CharacterStatusRemoved(_Char, "CHICKEN", _)
-THEN
-ApplyStatus(_Char, "LX_MOMENTUM", 12.0, 1);
+// IF
+// CharacterStatusRemoved(_Char, "CHICKEN", _)
+// THEN
+// ApplyStatus(_Char, "LX_MOMENTUM", 12.0, 1);
 
-//Lingering proc
-IF
-CharacterStatusRemoved(_Char, "STUNNED", _)
-THEN
-ApplyStatus(_Char, "LX_LINGERING", 12.0, 1);
+// //Lingering proc
+// IF
+// CharacterStatusRemoved(_Char, "STUNNED", _)
+// THEN
+// ApplyStatus(_Char, "LX_LINGERING", 12.0, 1);
 
-IF
-CharacterStatusRemoved(_Char, "FROZEN", _)
-THEN
-ApplyStatus(_Char, "LX_LINGERING", 12.0, 1);
+// IF
+// CharacterStatusRemoved(_Char, "FROZEN", _)
+// THEN
+// ApplyStatus(_Char, "LX_LINGERING", 12.0, 1);
 
-IF
-CharacterStatusRemoved(_Char, "PETRIFIED", _)
-THEN
-ApplyStatus(_Char, "LX_LINGERING", 12.0, 1);
+// IF
+// CharacterStatusRemoved(_Char, "PETRIFIED", _)
+// THEN
+// ApplyStatus(_Char, "LX_LINGERING", 12.0, 1);
 
-IF
-CharacterStatusRemoved(_Char, "MADNESS", _)
-THEN
-ApplyStatus(_Char, "LX_LINGERING", 12.0, 1);
+// IF
+// CharacterStatusRemoved(_Char, "MADNESS", _)
+// THEN
+// ApplyStatus(_Char, "LX_LINGERING", 12.0, 1);
 
-IF
-CharacterStatusRemoved(_Char, "FEAR", _)
-THEN
-ApplyStatus(_Char, "LX_LINGERING", 12.0, 1);
+// IF
+// CharacterStatusRemoved(_Char, "FEAR", _)
+// THEN
+// ApplyStatus(_Char, "LX_LINGERING", 12.0, 1);
 
-IF
-CharacterStatusRemoved(_Char, "CHARMED", _)
-THEN
-ApplyStatus(_Char, "LX_LINGERING", 12.0, 1);
+// IF
+// CharacterStatusRemoved(_Char, "CHARMED", _)
+// THEN
+// ApplyStatus(_Char, "LX_LINGERING", 12.0, 1);
 
-IF
-CharacterStatusRemoved(_Char, "SLEEPING", _)
-THEN
-ApplyStatus(_Char, "LX_LINGERING", 12.0, 1);
+// IF
+// CharacterStatusRemoved(_Char, "SLEEPING", _)
+// THEN
+// ApplyStatus(_Char, "LX_LINGERING", 12.0, 1);
 
 
-//Physical
-IF
-NRD_OnStatusAttempt(_Target, "KNOCKED_DOWN", _Handle, _Instigator)
-AND
-HasActiveStatus(_Target, "LX_MOMENTUM", 1)
-THEN
-LX_EXT_CheckPhysicalCC(_Target, "KNOCKED_DOWN", _Handle);
+// //Physical
+// IF
+// NRD_OnStatusAttempt(_Target, "KNOCKED_DOWN", _Handle, _Instigator)
+// AND
+// HasActiveStatus(_Target, "LX_MOMENTUM", 1)
+// THEN
+// LX_EXT_CheckPhysicalCC(_Target, "KNOCKED_DOWN", _Handle);
 
-IF
-NRD_OnStatusAttempt(_Target, "CHICKEN", _Handle, _Instigator)
-AND
-HasActiveStatus(_Target, "LX_MOMENTUM", 1)
-THEN
-LX_EXT_CheckPhysicalCC(_Target, "CHICKEN", _Handle);
+// IF
+// NRD_OnStatusAttempt(_Target, "CHICKEN", _Handle, _Instigator)
+// AND
+// HasActiveStatus(_Target, "LX_MOMENTUM", 1)
+// THEN
+// LX_EXT_CheckPhysicalCC(_Target, "CHICKEN", _Handle);
 
-//Magical
-IF
-NRD_OnStatusAttempt(_Target, "STUNNED", _Handle, _Instigator)
-AND
-HasActiveStatus(_Target, "LX_LINGERING", 1)
-THEN
-LX_EXT_CheckMagicalCC(_Target, "STUNNED", _Handle);
+// //Magical
+// IF
+// NRD_OnStatusAttempt(_Target, "STUNNED", _Handle, _Instigator)
+// AND
+// HasActiveStatus(_Target, "LX_LINGERING", 1)
+// THEN
+// LX_EXT_CheckMagicalCC(_Target, "STUNNED", _Handle);
 
-IF
-NRD_OnStatusAttempt(_Target, "FEAR", _Handle, _Instigator)
-AND
-HasActiveStatus(_Target, "LX_LINGERING", 1)
-THEN
-LX_EXT_CheckMagicalCC(_Target, "FEAR", _Handle);
+// IF
+// NRD_OnStatusAttempt(_Target, "FEAR", _Handle, _Instigator)
+// AND
+// HasActiveStatus(_Target, "LX_LINGERING", 1)
+// THEN
+// LX_EXT_CheckMagicalCC(_Target, "FEAR", _Handle);
 
-IF
-NRD_OnStatusAttempt(_Target, "FROZEN", _Handle, _Instigator)
-AND
-HasActiveStatus(_Target, "LX_LINGERING", 1)
-THEN
-LX_EXT_CheckMagicalCC(_Target, "FROZEN", _Handle);
+// IF
+// NRD_OnStatusAttempt(_Target, "FROZEN", _Handle, _Instigator)
+// AND
+// HasActiveStatus(_Target, "LX_LINGERING", 1)
+// THEN
+// LX_EXT_CheckMagicalCC(_Target, "FROZEN", _Handle);
 
-IF
-NRD_OnStatusAttempt(_Target, "PETRIFIED", _Handle, _Instigator)
-AND
-HasActiveStatus(_Target, "LX_LINGERING", 1)
-THEN
-LX_EXT_CheckMagicalCC(_Target, "PETRIFIED", _Handle);
+// IF
+// NRD_OnStatusAttempt(_Target, "PETRIFIED", _Handle, _Instigator)
+// AND
+// HasActiveStatus(_Target, "LX_LINGERING", 1)
+// THEN
+// LX_EXT_CheckMagicalCC(_Target, "PETRIFIED", _Handle);
 
-IF
-NRD_OnStatusAttempt(_Target, "MADNESS", _Handle, _Instigator)
-AND
-HasActiveStatus(_Target, "LX_LINGERING", 1)
-THEN
-LX_EXT_CheckMagicalCC(_Target, "MADNESS", _Handle);
+// IF
+// NRD_OnStatusAttempt(_Target, "MADNESS", _Handle, _Instigator)
+// AND
+// HasActiveStatus(_Target, "LX_LINGERING", 1)
+// THEN
+// LX_EXT_CheckMagicalCC(_Target, "MADNESS", _Handle);
 
-IF
-NRD_OnStatusAttempt(_Target, "CHARMED", _Handle, _Instigator)
-AND
-HasActiveStatus(_Target, "LX_LINGERING", 1)
-THEN
-LX_EXT_CheckMagicalCC(_Target, "CHARMED", _Handle);
+// IF
+// NRD_OnStatusAttempt(_Target, "CHARMED", _Handle, _Instigator)
+// AND
+// HasActiveStatus(_Target, "LX_LINGERING", 1)
+// THEN
+// LX_EXT_CheckMagicalCC(_Target, "CHARMED", _Handle);
 
-IF
-NRD_OnStatusAttempt(_Target, "SLEEPING", _Handle, _Instigator)
-AND
-HasActiveStatus(_Target, "LX_LINGERING", 1)
-THEN
-LX_EXT_CheckMagicalCC(_Target, "SLEEPING", _Handle);
+// IF
+// NRD_OnStatusAttempt(_Target, "SLEEPING", _Handle, _Instigator)
+// AND
+// HasActiveStatus(_Target, "LX_LINGERING", 1)
+// THEN
+// LX_EXT_CheckMagicalCC(_Target, "SLEEPING", _Handle);
 
 
 //Perseverance HP rejuveration
