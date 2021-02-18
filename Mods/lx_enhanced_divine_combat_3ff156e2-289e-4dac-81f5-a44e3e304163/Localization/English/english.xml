@@ -47,6 +47,7 @@
 	<content contentuid="h3e8d0f43g5060g48d8g95cag541abe3a7c08">Receive a [1]% Damage penalty if the target is closer than [2] meters</content>
 	<content contentuid="h41b54dbagf949g40aagb148gd7c0b42eedfe">Walk It Off</content>
 	<content contentuid="h42b4c1e3g7c07g400dg8924g2807a024e6bb">Pet Pal enables you to talk to animals. Also increases your maximum number of summons by 1, but reduces their damage and Vitality by 50%.</content>
+	<content contentuid="h42f0b1b6gd786g46ebga04egf56b57d92048">Incarnate learns how to go invisible and strike foes with a corrosive slash. Increases damage by [1]% and maximum Vitality by 15%.</content>
 	<content contentuid="h43401d61ga5dfg4282ga423gc4a5b78ff7ac">Leech</content>
 	<content contentuid="h443a51dcgbd6fg46c2g8988gbfe93a3123a5">Next Level [1]: +[2]% Armour and +[3]% Vitality restored after a hard Crowd Control effect recovery.</content>
 	<content contentuid="h4542353bg043cg4964ga401g7a80dd267e5b">Target a surface in melee radius. Elemental damage matching that surface is added to your weapon attacks and weapon-based skills.</content>
@@ -114,7 +115,9 @@
 	<content contentuid="h878c02c0gc629g470dg955cg80dc2a125cb2">Stench decreases everyone&apos;s attitude towards you by [2], but melee opponents find you less attractive in combat. Increases your Poison resistance by 30% and makes you immune to Diseased and Infected.</content>
 	<content contentuid="h8ddc8dd4ge8feg4420ga6dag0d87ce8ec743">[1] lets you evade attacks of opportunity. Increases your Dodge by 5% and Movement by 1m per AP.</content>
 	<content contentuid="h9055594bg16a7g48b8g81ffg25bbbf89963b">Sets off a chain reaction that causes ice areas to explode into water puddles, dealing [1] and setting Chilled.</content>
+	<content contentuid="h93731b66g32c8g425dg8ed5g9863a8d35279">Unlock Whirlwind and Rush for your Incarnate. Provides [1] (amount depends on your level). Increases damage by [2]% and increase maximum Vitality by 15%.</content>
 	<content contentuid="h944c3db5gc792g4cdcg923cg9471f4cb0969">Water Weapons</content>
+	<content contentuid="h9729b9ceg2860g4396g8b3fg9eef86106d4f">Unlock ranged attack for your Incarnate. Provides [1] (amount depends on your level). Increases damage by [2]% and increase maximum Vitality by 15%.</content>
 	<content contentuid="h98163163g695ag4813gb105g3ade9ea09050">[1] gives you [2] extra Action Points after dealing a killing blow once per turn and set Hasted for 1 turn (unless you are already hasted).</content>
 	<content contentuid="h9df517d1gf64bg499dgb23fg462fd1f061bc">Your chance to Critically Strike when attacking with a weapon or when using a weapon-based skill. If you Backstab, your Critical Chance is converted to additional damage : for 1% of Critical Chance, you gain [1]% damage.</content>
 	<content contentuid="h9dffbeb7g85b6g4275g8c58g8b0de33c8583">This character drank too many potions and could not handle the side effects.</content>
@@ -180,6 +183,7 @@
 	<content contentuid="hf7a19975gea84g44a3g8fffg5b4f063b88b4">Reduce damage going through Physical and Magic Armour by [1]%</content>
 	<content contentuid="hf7f34763g19feg4018gb6f6g4cc298dc512d">Int. Global Damage Bonus</content>
 	<content contentuid="hf859c7e8g7e30g48e3ga24aga943a18f0c5c">Set the percentage of damage penalty when using a ranged weapon on a target within the CQB range limit.&lt;br&gt;Default : 35</content>
+	<content contentuid="hfb851683g738cg4b48g8fd8g478d375c030a">Incarnate learns a teleport skill, and a skill to swap places with its master. Increases damage by [1]% and maximum Vitality by 15%.</content>
 	<content contentuid="hfb8eec35g3339g4762g8382g712e74a2ac0b">[1] adds an extra [2]m range to your grenade throws and increase their damage by 30%.</content>
 	<content contentuid="hfc25a87dg9103g4602g872dg8ecb8965fc0a">Explode two random grenades or arrows in the inventories of every enemy, dealing [1] and set Atrophy in a target circle.</content>
 	<content contentuid="hfc8981a1g8f84g49c8ga8b4g17564a836c45">Duelist increases AP Start and Recovery by 1, and Max AP by 1, if you are wielding a Single-Handed weapon with a free off-hand.</content>

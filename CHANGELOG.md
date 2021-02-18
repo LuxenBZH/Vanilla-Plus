@@ -446,7 +446,49 @@ Fixes
 Fixes
 * Fixed (again) some issues with the CC system.
 
-# 1.0.5.47
+# 1.0.5.47 (Arhu)
 Fixes
 * Fixed an issue with Oil weapons not dealing proper damage
 * Fixed an issue with the Real Jump module where NPCs would still have duplicates (again!). The new fix removes automatically an incorrect jump if it's used when the module is enabled. That way, there's no risk of duplicates and it's more user friendly for the GM.
+* Momentum and Lingering cannot stack anymore
+
+Balance
+* Incarnate changes :
+	- Reduced base Constitution from 1.5 to 1
+	- Increased base Vitality from 15 to 25
+	- Increased base Armor and Magic Armor from 10 to 20
+	- Removed the damage penalty growth (was -1% per level)
+* Champion incarnate changes :
+	- Reduced base Constitution from 3 to 2
+	- Increased base Vitality from 25 to 35
+	- Increased base Armor and Magic Armor from 15 to 30
+	- Removed the damage penalty growth (was -1% per level)
+	- Removed the flat 50% damage bonus
+* Decreased abilities points provided by elemental infusion from 5 to 3 and from 10 to 5 for Source variants
+* Power, Far sight, Shadow and Warp infusions now increase base Vitality by 15% each
+* Oily blob :
+	- Reduced base Vitality from 55 to 40
+	- Reduced base Geomancy from 7 to 2
+* Fire slug :
+	- Reduced base Pyrokinetic from 8 to 2
+	- Nullified Single Handed
+* Bone Pile :
+	- Nullified Single Handed
+	- Nullified Warfare
+	- Nullified Resistances
+	- Reduced base Vitality from 60 to 50
+* Bomber :
+	- Bonus damage of 25%
+* Elemental Totems :
+	- Removed the damage penalty growth (was -1% per level)
+
+Comments
+* I know that a lot of people have been complaining about the incarnate nerf and because of it there's no point playing Summoning. This is wrong, and I'll explain why :
+	- The incarnate is surely much more fragile than before. However, its AP cost efficiency is still very high - meaning that with 2 AP you deal more damage than an average hit (since the summon has 4 AP during its turn). Yes, it's probably too fragile right now so I adjusted the HP scaling to be a slightly higher at low levels, so it can actually take 2 full normal hits before dying and without any strong Summoning investment.
+	- For people who says that vanilla summoner was trash, they definitely played it wrong. Vanilla champion incarnate is insanely strong, it has a hidden +50% damage bonus and is extremely bulky. Summoning is actually one of the most OP things in the original game.
+	- "If the incarnate is nerfed then summoning bad" : no. Summoning is also all the supporting skills around it - and no, the incarnate isn't the only summon out there. The Bone Widow is terrifying even in vanilla, the Fire slug and Artillery plant both deals insane amounts of damage, ... You can play summoning without the Incarnate as your main summon. And that's what Vanilla+ try to encourage. The incarnate is nerfed because way too versatile for the effort it requires to make it work in vanilla, so each summon shall now be plainly considered instead of mindlessly throwing the same incarnate in every single battle of the game.
+	- I can foresee people complaining about a lot of nerfs that happened in this update. Before you yell at me, please read what's following : in this update, all summons (except totems and bomber) deal a more than decent amount of damage with proper investment in Summoning. How could I say that ? There is a damage scaling called AverageLevelDamage which basically takes the level scaled damage and apply the expected average growth from Attributes and Abilities bonuses. It corresponds to a 2AP 100% damage hit - what we can call a "normal" hit. If the damage of a 2 AP hit is under this value, that mean the origin is most likely not optimised enough. If the damage is equal or above, that mean the origin is decently optimised and in the extreme cases min/maxed. I compared the damage of each summon to this value at low, mid and high level. With proper investment in Summoning, they ALL do the at least AverageLevelDamage, and with full investment in Summoning it goes even beyond. So I do not make changes on something because "I don't like this or that". I make changes by considering real values.
+	- Don't mistake Summoning for what it's not. Yes, the summons might not make as much damage as that rogue or that mage, etc... So what ? All classes shall be able to do the same amount of damage ? Summoning is probably one of the worst ability possible to make burst damage. It is however extremely good at sustaining constant damage all the time while the caster can soak a lot of hits and provide its summons and teammates a lot of support. Summoning is also very good combined with another abilities and fit very well for a Ranger. Keep in mind that your summons are not just damage makers, but they also occupy space on the battlefield and can be a real annoyance for the enemies. A summoner is not, however, a main damage dealer. If it's what vanilla made you believe because of broken scalings and questionable balancing, then you might be deceived by Summoning in this mod. There are many other mods out there that makes Summoning very powerful - you might consider use one of them with Vanilla+ if Summoning sounds underwhelming for you.
+	- The philosophy of the mod is to stay true to vanilla. The issue is - Summoning is the ability that have the most flaws in the original game, so there's no obvious anchor on what direction I shall go. I decided to make Summoning a versatile ability since there are already a lot of ways to do burst damage and do some Michael Bay-grade styled builds.
+
+In summary, I decided to revise all summons for this update since I probably neglected them too much before. I'm open for suggestions but please provide tangible explanation for me to work with.

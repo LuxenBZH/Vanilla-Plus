@@ -515,6 +515,13 @@ data "WeaponType" "None"
 data "Flags" "Unbreakable"
 data "InventoryTab" "Hidden"
 
+new entry "_Summon_Incarnate_Giant"
+type "Weapon"
+using "_Summon_Incarnate"
+data "Damage Range" "10"
+data "DamageBoost" "0"
+data "DamageFromBase" "50"
+
 new entry "Status_Arrowhead_Fire"
 type "Weapon"
 data "ModifierType" "Item"

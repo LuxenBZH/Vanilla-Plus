@@ -54,7 +54,7 @@ local function CharacterReplaceJumpSkills(character, eventName)
                 if skill == jump then
                     --print(skill)
                     CharacterRemoveSkill(character.MyGuid, skill)
-                    local newJump = string.gsub(skill, "Jump", "Projectile")
+                    local newJump = string.gsub(skill, "Jump_", "Projectile_")
                     --print(newJump)
                     CharacterAddSkill(character.MyGuid, newJump)
                 end
@@ -68,10 +68,10 @@ local function CharacterReplaceJumpSkills(character, eventName)
         local skills = character.GetSkills(character)
         for i,skill in pairs(skills) do
             for j,jump in pairs(elligibleSkills) do
-                local projectileJump = string.gsub(jump, "Jump", "Projectile")
+                local projectileJump = string.gsub(jump, "Jump_", "Projectile_")
                 if skill == projectileJump then
                     CharacterRemoveSkill(character.MyGuid, skill)
-                    local newJump = string.gsub(skill, "Projectile", "Jump")
+                    local newJump = string.gsub(skill, "Projectile_", "Jump_")
                     CharacterAddSkill(character.MyGuid, newJump)
                 end
             end
@@ -88,7 +88,7 @@ local function CharacterUnlearnJumpSkill(character, skill)
             local character = Ext.GetCharacter(character)
             if character == nil then return end
             CharacterRemoveSkill(character.MyGuid, skill)
-            local newJump = string.gsub(skill, "Jump", "Projectile")
+            local newJump = string.gsub(skill, "Jump_", "Projectile_")
             --print(newJump)
             CharacterAddSkill(character.MyGuid, newJump)
         end

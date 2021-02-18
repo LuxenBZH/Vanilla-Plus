@@ -12,7 +12,7 @@
         <field name="Constitution" type="EnumerationStatObjectFieldDefinition" value="21" enumeration_type_name="PreciseQualifier" />
         <field name="Memory" type="EnumerationStatObjectFieldDefinition" value="1" enumeration_type_name="PreciseQualifier" />
         <field name="Wits" type="EnumerationStatObjectFieldDefinition" value="1" enumeration_type_name="PreciseQualifier" />
-        <field name="Vitality" type="IntegerStatObjectFieldDefinition" value="55" />
+        <field name="Vitality" type="IntegerStatObjectFieldDefinition" value="40" />
         <field name="MagicPoints" type="IntegerStatObjectFieldDefinition" value="0" />
         <field name="Gain" type="EnumerationStatObjectFieldDefinition" value="0" enumeration_type_name="BigQualifier" />
         <field name="Hearing" type="EnumerationStatObjectFieldDefinition" value="16" enumeration_type_name="Penalty Qualifier" />
@@ -20,7 +20,7 @@
         <field name="FireResistance" type="IntegerStatObjectFieldDefinition" value="-50" />
         <field name="EarthResistance" type="IntegerStatObjectFieldDefinition" value="150" />
         <field name="PoisonResistance" type="IntegerStatObjectFieldDefinition" value="50" />
-        <field name="EarthSpecialist" type="IntegerStatObjectFieldDefinition" value="7" />
+        <field name="EarthSpecialist" type="IntegerStatObjectFieldDefinition" value="2" />
         <field name="Polymorph" type="IntegerStatObjectFieldDefinition" value="1" />
         <field name="Flags" type="EnumerationListStatObjectFieldDefinition" value="22;17" enumeration_type_name="AttributeFlags" />
         <field name="PathInfluence" type="StringStatObjectFieldDefinition" value="Web,50;BloodCloudCursed,50;BloodCloudElectrified,100;BloodCloudElectrifiedCursed,50;BloodCursed,50;BloodElectrified,100;BloodElectrifiedCursed,50;BloodFrozenCursed,50;Fire,70;FireCloud,70;FireCloudCursed,70;FireCursed,70;Lava,700;OilCursed,50;PoisonCloudCursed,70;PoisonCursed,70;SmokeCloudCursed,50;WaterCloudCursed,50;WaterCloudElectrified,100;WaterCloudElectrifiedCursed,100;WaterCursed,50;WaterElectrified,100;WaterElectrifiedCursed,100;WaterFrozenCursed,50;Deathfog,200;" />
@@ -32,8 +32,8 @@
         <field name="Name" type="NameStatObjectFieldDefinition" value="Summon_Fire_Slug" />
         <field name="Using" type="BaseClassStatObjectFieldDefinition" value="_Animal" />
         <field name="Act part" type="EnumerationStatObjectFieldDefinition" value="1" enumeration_type_name="ActPart" />
-        <field name="Strength" type="EnumerationStatObjectFieldDefinition" value="31" enumeration_type_name="PreciseQualifier" />
-        <field name="Finesse" type="EnumerationStatObjectFieldDefinition" value="21" enumeration_type_name="PreciseQualifier" />
+        <field name="Strength" type="EnumerationStatObjectFieldDefinition" value="11" enumeration_type_name="PreciseQualifier" />
+        <field name="Finesse" type="EnumerationStatObjectFieldDefinition" value="11" enumeration_type_name="PreciseQualifier" />
         <field name="Intelligence" type="EnumerationStatObjectFieldDefinition" value="31" enumeration_type_name="PreciseQualifier" />
         <field name="Constitution" type="EnumerationStatObjectFieldDefinition" value="21" enumeration_type_name="PreciseQualifier" />
         <field name="Memory" type="EnumerationStatObjectFieldDefinition" value="1" enumeration_type_name="PreciseQualifier" />
@@ -50,8 +50,8 @@
         <field name="WaterResistance" type="IntegerStatObjectFieldDefinition" value="-50" />
         <field name="AirResistance" type="IntegerStatObjectFieldDefinition" value="0" />
         <field name="PoisonResistance" type="IntegerStatObjectFieldDefinition" value="0" />
-        <field name="SingleHanded" type="IntegerStatObjectFieldDefinition" value="4" />
-        <field name="FireSpecialist" type="IntegerStatObjectFieldDefinition" value="8" />
+        <field name="SingleHanded" type="IntegerStatObjectFieldDefinition" value="0" />
+        <field name="FireSpecialist" type="IntegerStatObjectFieldDefinition" value="2" />
         <field name="Flags" type="EnumerationListStatObjectFieldDefinition" value="22;2" enumeration_type_name="AttributeFlags" />
         <field name="PathInfluence" type="StringStatObjectFieldDefinition" value="Web,50;BloodCloudCursed,50;BloodCloudElectrified,100;BloodCloudElectrifiedCursed,50;BloodCursed,50;BloodElectrified,100;BloodElectrifiedCursed,50;BloodFrozenCursed,50;Lava,700;Oil,30;OilCursed,50;PoisonCloudCursed,70;PoisonCursed,70;SmokeCloudCursed,50;WaterCloudCursed,50;WaterCloudElectrified,100;WaterCloudElectrifiedCursed,100;WaterCursed,50;WaterElectrified,100;WaterElectrifiedCursed,100;WaterFrozenCursed,50;Deathfog,200;" />
         <field name="Talents" type="StringStatObjectFieldDefinition" value="AttackOfOpportunity" />
@@ -70,15 +70,19 @@
         <field name="Wits" type="EnumerationStatObjectFieldDefinition" value="1" enumeration_type_name="PreciseQualifier" />
         <field name="Armor" type="IntegerStatObjectFieldDefinition" value="30" />
         <field name="MagicArmor" type="IntegerStatObjectFieldDefinition" value="0" />
-        <field name="Vitality" type="IntegerStatObjectFieldDefinition" value="60" />
+        <field name="Vitality" type="IntegerStatObjectFieldDefinition" value="50" />
         <field name="MagicPoints" type="IntegerStatObjectFieldDefinition" value="0" />
         <field name="Gain" type="EnumerationStatObjectFieldDefinition" value="0" enumeration_type_name="BigQualifier" />
         <field name="Hearing" type="EnumerationStatObjectFieldDefinition" value="16" enumeration_type_name="Penalty Qualifier" />
         <field name="PoisonResistance" type="IntegerStatObjectFieldDefinition" value="100" />
-        <field name="SingleHanded" type="IntegerStatObjectFieldDefinition" value="5" />
-        <field name="WarriorLore" type="IntegerStatObjectFieldDefinition" value="5" />
+        <field name="SingleHanded" type="IntegerStatObjectFieldDefinition" value="0" />
+        <field name="WarriorLore" type="IntegerStatObjectFieldDefinition" value="0" />
         <field name="Flags" type="EnumerationListStatObjectFieldDefinition" value="12" enumeration_type_name="AttributeFlags" />
         <field name="Talents" type="StringStatObjectFieldDefinition" value="Zombie;AttackOfOpportunity" />
+        <field name="FireResistance" type="IntegerStatObjectFieldDefinition" value="0" />
+        <field name="EarthResistance" type="IntegerStatObjectFieldDefinition" value="0" />
+        <field name="WaterResistance" type="IntegerStatObjectFieldDefinition" value="0" />
+        <field name="AirResistance" type="IntegerStatObjectFieldDefinition" value="0" />
       </fields>
     </stat_object>
     <stat_object is_substat="false">
@@ -92,13 +96,13 @@
         <field name="Constitution" type="EnumerationStatObjectFieldDefinition" value="11" enumeration_type_name="PreciseQualifier" />
         <field name="Memory" type="EnumerationStatObjectFieldDefinition" value="11" enumeration_type_name="PreciseQualifier" />
         <field name="Wits" type="EnumerationStatObjectFieldDefinition" value="21" enumeration_type_name="PreciseQualifier" />
-        <field name="Vitality" type="IntegerStatObjectFieldDefinition" value="60" />
+        <field name="Vitality" type="IntegerStatObjectFieldDefinition" value="40" />
         <field name="MagicPoints" type="IntegerStatObjectFieldDefinition" value="0" />
         <field name="Gain" type="EnumerationStatObjectFieldDefinition" value="0" enumeration_type_name="BigQualifier" />
         <field name="Hearing" type="EnumerationStatObjectFieldDefinition" value="16" enumeration_type_name="Penalty Qualifier" />
         <field name="AirSpecialist" type="IntegerStatObjectFieldDefinition" value="5" />
         <field name="CriticalChance" type="EnumerationStatObjectFieldDefinition" value="16" enumeration_type_name="Penalty Qualifier" />
-        <field name="WarriorLore" type="IntegerStatObjectFieldDefinition" value="3" />
+        <field name="WarriorLore" type="IntegerStatObjectFieldDefinition" value="0" />
         <field name="Dodge" type="IntegerStatObjectFieldDefinition" value="20" />
         <field name="Talents" type="StringStatObjectFieldDefinition" value="AttackOfOpportunity" />
         <field name="Armor" type="IntegerStatObjectFieldDefinition" value="20" />
@@ -258,12 +262,12 @@
         <field name="Strength" type="EnumerationStatObjectFieldDefinition" value="11" enumeration_type_name="PreciseQualifier" />
         <field name="Finesse" type="EnumerationStatObjectFieldDefinition" value="11" enumeration_type_name="PreciseQualifier" />
         <field name="Intelligence" type="EnumerationStatObjectFieldDefinition" value="11" enumeration_type_name="PreciseQualifier" />
-        <field name="Constitution" type="EnumerationStatObjectFieldDefinition" value="21" enumeration_type_name="PreciseQualifier" />
+        <field name="Constitution" type="EnumerationStatObjectFieldDefinition" value="11" enumeration_type_name="PreciseQualifier" />
         <field name="Memory" type="EnumerationStatObjectFieldDefinition" value="21" enumeration_type_name="PreciseQualifier" />
         <field name="Wits" type="EnumerationStatObjectFieldDefinition" value="1" enumeration_type_name="PreciseQualifier" />
-        <field name="Armor" type="IntegerStatObjectFieldDefinition" value="10" />
-        <field name="MagicArmor" type="IntegerStatObjectFieldDefinition" value="10" />
-        <field name="Vitality" type="IntegerStatObjectFieldDefinition" value="20" />
+        <field name="Armor" type="IntegerStatObjectFieldDefinition" value="15" />
+        <field name="MagicArmor" type="IntegerStatObjectFieldDefinition" value="15" />
+        <field name="Vitality" type="IntegerStatObjectFieldDefinition" value="25" />
         <field name="Gain" type="EnumerationStatObjectFieldDefinition" value="0" enumeration_type_name="BigQualifier" />
         <field name="Hearing" type="EnumerationStatObjectFieldDefinition" value="16" enumeration_type_name="Penalty Qualifier" />
         <field name="Initiative" type="IntegerStatObjectFieldDefinition" value="0" />
@@ -273,11 +277,11 @@
         <field name="WaterResistance" type="IntegerStatObjectFieldDefinition" value="0" />
         <field name="AirResistance" type="IntegerStatObjectFieldDefinition" value="0" />
         <field name="PoisonResistance" type="IntegerStatObjectFieldDefinition" value="0" />
-        <field name="SingleHanded" type="IntegerStatObjectFieldDefinition" value="1" />
-        <field name="WarriorLore" type="IntegerStatObjectFieldDefinition" value="5" />
+        <field name="SingleHanded" type="IntegerStatObjectFieldDefinition" value="0" />
+        <field name="WarriorLore" type="IntegerStatObjectFieldDefinition" value="3" />
         <field name="PathInfluence" type="StringStatObjectFieldDefinition" value="Web,50;BloodCloudCursed,50;BloodCloudElectrified,100;BloodCloudElectrifiedCursed,50;BloodCursed,50;BloodElectrified,100;BloodElectrifiedCursed,50;BloodFrozenCursed,50;Lava,700;Oil,30;OilCursed,50;PoisonCloudCursed,70;PoisonCursed,70;SmokeCloudCursed,50;WaterCloudCursed,50;WaterCloudElectrified,100;WaterCloudElectrifiedCursed,100;WaterCursed,50;WaterElectrified,100;WaterElectrifiedCursed,100;WaterFrozenCursed,50;Deathfog,200;" />
         <field name="DamageBoost" type="IntegerStatObjectFieldDefinition" value="-20" />
-        <field name="DamageBoostGrowthPerLevel" type="IntegerStatObjectFieldDefinition" value="-1" />
+        <field name="DamageBoostGrowthPerLevel" type="IntegerStatObjectFieldDefinition" value="0" />
       </fields>
     </stat_object>
     <stat_object is_substat="false">
@@ -287,15 +291,15 @@
         <field name="Strength" type="EnumerationStatObjectFieldDefinition" value="21" enumeration_type_name="PreciseQualifier" />
         <field name="Finesse" type="EnumerationStatObjectFieldDefinition" value="21" enumeration_type_name="PreciseQualifier" />
         <field name="Intelligence" type="EnumerationStatObjectFieldDefinition" value="21" enumeration_type_name="PreciseQualifier" />
-        <field name="Constitution" type="EnumerationStatObjectFieldDefinition" value="31" enumeration_type_name="PreciseQualifier" />
+        <field name="Constitution" type="EnumerationStatObjectFieldDefinition" value="21" enumeration_type_name="PreciseQualifier" />
         <field name="Wits" type="EnumerationStatObjectFieldDefinition" value="1" enumeration_type_name="PreciseQualifier" />
-        <field name="Armor" type="IntegerStatObjectFieldDefinition" value="15" />
-        <field name="MagicArmor" type="IntegerStatObjectFieldDefinition" value="15" />
-        <field name="Vitality" type="IntegerStatObjectFieldDefinition" value="30" />
-        <field name="SingleHanded" type="IntegerStatObjectFieldDefinition" value="2" />
-        <field name="WarriorLore" type="IntegerStatObjectFieldDefinition" value="5" />
+        <field name="Armor" type="IntegerStatObjectFieldDefinition" value="30" />
+        <field name="MagicArmor" type="IntegerStatObjectFieldDefinition" value="30" />
+        <field name="Vitality" type="IntegerStatObjectFieldDefinition" value="35" />
+        <field name="SingleHanded" type="IntegerStatObjectFieldDefinition" value="0" />
+        <field name="WarriorLore" type="IntegerStatObjectFieldDefinition" value="3" />
         <field name="DamageBoost" type="IntegerStatObjectFieldDefinition" value="-20" />
-        <field name="DamageBoostGrowthPerLevel" type="IntegerStatObjectFieldDefinition" value="-1" />
+        <field name="DamageBoostGrowthPerLevel" type="IntegerStatObjectFieldDefinition" value="0" />
       </fields>
     </stat_object>
     <stat_object is_substat="false">
@@ -422,7 +426,30 @@
         <field name="Gain" type="EnumerationStatObjectFieldDefinition" value="0" enumeration_type_name="BigQualifier" />
         <field name="PathInfluence" type="StringStatObjectFieldDefinition" value="Web,50;BloodCloudCursed,50;BloodCloudElectrified,100;BloodCloudElectrifiedCursed,50;BloodCursed,50;BloodElectrified,100;BloodElectrifiedCursed,50;BloodFrozen,30;BloodFrozenCursed,50;Fire,70;FireCloud,70;FireCloudCursed,70;FireCursed,70;Lava,700;Oil,30;OilCursed,50;PoisonCloudCursed,70;PoisonCursed,70;SmokeCloudCursed,50;WaterCloudCursed,50;WaterCloudElectrified,100;WaterCloudElectrifiedCursed,100;WaterCursed,50;WaterElectrified,100;WaterElectrifiedCursed,100;WaterFrozen,30;WaterFrozenCursed,50;Deathfog,200;" />
         <field name="DamageBoost" type="IntegerStatObjectFieldDefinition" value="-20" />
-        <field name="DamageBoostGrowthPerLevel" type="IntegerStatObjectFieldDefinition" value="-1" />
+        <field name="DamageBoostGrowthPerLevel" type="IntegerStatObjectFieldDefinition" value="0" />
+      </fields>
+    </stat_object>
+    <stat_object is_substat="false">
+      <fields>
+        <field name="Name" type="NameStatObjectFieldDefinition" value="Summon_Bomber" />
+        <field name="Using" type="BaseClassStatObjectFieldDefinition" value="_Base" />
+        <field name="Act part" type="EnumerationStatObjectFieldDefinition" value="1" enumeration_type_name="ActPart" />
+        <field name="Strength" type="EnumerationStatObjectFieldDefinition" value="11" enumeration_type_name="PreciseQualifier" />
+        <field name="Finesse" type="EnumerationStatObjectFieldDefinition" value="21" enumeration_type_name="PreciseQualifier" />
+        <field name="Intelligence" type="EnumerationStatObjectFieldDefinition" value="21" enumeration_type_name="PreciseQualifier" />
+        <field name="Constitution" type="EnumerationStatObjectFieldDefinition" value="6" enumeration_type_name="PreciseQualifier" />
+        <field name="Memory" type="EnumerationStatObjectFieldDefinition" value="1" enumeration_type_name="PreciseQualifier" />
+        <field name="Wits" type="EnumerationStatObjectFieldDefinition" value="1" enumeration_type_name="PreciseQualifier" />
+        <field name="Vitality" type="IntegerStatObjectFieldDefinition" value="5" />
+        <field name="MagicPoints" type="IntegerStatObjectFieldDefinition" value="0" />
+        <field name="Gain" type="EnumerationStatObjectFieldDefinition" value="0" enumeration_type_name="BigQualifier" />
+        <field name="Hearing" type="EnumerationStatObjectFieldDefinition" value="16" enumeration_type_name="Penalty Qualifier" />
+        <field name="Weight" type="IntegerStatObjectFieldDefinition" value="5000" />
+        <field name="FireResistance" type="IntegerStatObjectFieldDefinition" value="-100" />
+        <field name="PoisonResistance" type="IntegerStatObjectFieldDefinition" value="100" />
+        <field name="Flags" type="EnumerationListStatObjectFieldDefinition" value="12;4" enumeration_type_name="AttributeFlags" />
+        <field name="PathInfluence" type="StringStatObjectFieldDefinition" value="Web,50;BloodCloudCursed,50;BloodCloudElectrified,100;BloodCloudElectrifiedCursed,50;BloodCursed,50;BloodElectrified,100;BloodElectrifiedCursed,50;BloodFrozenCursed,50;Fire,70;FireCloud,70;FireCloudCursed,70;FireCursed,70;Lava,700;Oil,30;OilCursed,50;Poison,70;PoisonCloud,70;PoisonCloudCursed,70;PoisonCursed,70;SmokeCloudCursed,50;WaterCloudCursed,50;WaterCloudElectrified,100;WaterCloudElectrifiedCursed,100;WaterCursed,50;WaterElectrified,100;WaterElectrifiedCursed,100;WaterFrozenCursed,50;Deathfog,200;" />
+        <field name="DamageBoost" type="IntegerStatObjectFieldDefinition" value="25" />
       </fields>
     </stat_object>
   </stat_objects>

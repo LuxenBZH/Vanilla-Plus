@@ -148,6 +148,7 @@
         <field name="Description" type="TranslatedStringStatObjectFieldDefinition" value="Any attempt to apply Knocked Down or Chicken will apply Staggered instead." />
         <field name="Icon" type="StringStatObjectFieldDefinition" value="icon_momentum" />
         <field name="ForGameMaster" type="EnumerationStatObjectFieldDefinition" value="1" enumeration_type_name="YesNo" />
+        <field name="StackId" type="StringStatObjectFieldDefinition" value="Stack_LX_Momentum" />
       </fields>
     </stat_object>
     <stat_object is_substat="false">
@@ -157,6 +158,7 @@
         <field name="Description" type="TranslatedStringStatObjectFieldDefinition" value="Any attempt to apply Stunned, Petrified, Frozen, Madness, Terrified or Charm will apply Confused instead." />
         <field name="Icon" type="StringStatObjectFieldDefinition" value="icon_lingering" />
         <field name="ForGameMaster" type="EnumerationStatObjectFieldDefinition" value="1" enumeration_type_name="YesNo" />
+        <field name="StackId" type="StringStatObjectFieldDefinition" value="Stack_LX_Lingering" />
       </fields>
     </stat_object>
     <stat_object is_substat="false">

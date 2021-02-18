@@ -214,3 +214,5 @@ key "DGM_EnableDualCCParry","0"
 
 key "DGM_CCParryDuration","2"
 
+key "IncarnateSummoningLevel","10"
+
