@@ -492,3 +492,5 @@ Comments
 	- The philosophy of the mod is to stay true to vanilla. The issue is - Summoning is the ability that have the most flaws in the original game, so there's no obvious anchor on what direction I shall go. I decided to make Summoning a versatile ability since there are already a lot of ways to do burst damage and do some Michael Bay-grade styled builds.
 
 In summary, I decided to revise all summons for this update since I probably neglected them too much before. I'm open for suggestions but please provide tangible explanation for me to work with.
+
+# 1.0.5.48

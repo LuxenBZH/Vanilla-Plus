@@ -39,6 +39,7 @@
 	<content contentuid="h314ee256g43cdg4864ga519gd23e909ec63e">Increase all Skill damage by [1]% (stackable when dual-wielding)</content>
 	<content contentuid="h3240460dgd250g435bg9ebegc1682089c5ed">Explode target corpse, dealing [1] in the area.</content>
 	<content contentuid="h32fcbbfbgec6bg4af4g894ag49fd997307fe">Any attempt to apply Stunned, Petrified, Frozen, Madness, Terrified or Charm will apply Confused instead.</content>
+	<content contentuid="h362a94a5g0b60g4be6g9998gd44214d4a78f">Sacrifice yourself to bring an ally back to life. Reduce your Vitality by [1]% and ressurrects target character with maximum Vitality.</content>
 	<content contentuid="h36683e27ge1cag45f9gb7ddgdf954e865e33">Default : 2</content>
 	<content contentuid="h39ded39fg40a6g46a1gafe4gbaf448e4f20a">Last armour penetration</content>
 	<content contentuid="h3c306881g0106g4b61g931eg1e837bca6149">Walk It Off (5)</content>

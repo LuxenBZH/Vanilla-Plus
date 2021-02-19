@@ -195,9 +195,9 @@ local function GetSkillDamageRange(character, skill)
         end
 
         local level = character.Level
-        if (level < 0 or skill.OverrideSkillLevel == "Yes") and skill.Level > 0 then
-            level = skill.Level
-        end
+        -- if (level < 0 or skill.OverrideSkillLevel == "Yes") and skill.Level > 0 then
+        --     level = skill.Level
+        -- end
         
         local attrDamageScale
         if skillDamageType == "BaseLevelDamage" or skillDamageType == "AverageLevelDamge" or skillDamageType == "MonsterWeaponDamage" then
