@@ -7,6 +7,7 @@
 	<content contentuid="h06098edfg8629g4f30gb6d4g45057f6622ce">Deals [1] damage each turn.</content>
 	<content contentuid="h08adfff4gbd75g4ee9g8070gf928d43a6302">Stench</content>
 	<content contentuid="h092684e6gbf69g4372g99f8g4743516b0efe">Offhand penalty: [1]% (penalty reduced by [2]% from Dual-Wielding)</content>
+	<content contentuid="h0a8b0b59g5da9g483fg86a3g59afce30dbb7">Next Level [1]: Water attacks deal +[2]% more damage, +[3]% Vitality healed, +[4]% Magic Armour from skills and potions.</content>
 	<content contentuid="h0b24b325g8818g4552g97ebgcb6a2481f573">Set the skill damage multiplier percentage when a staff is equipped.&lt;br&gt;Default : 10</content>
 	<content contentuid="h0bd1a48dg8f40g44b7g9229g826720785117">Activate for Adventure mode</content>
 	<content contentuid="h0c972945g2320g4a0agbfebg86667bcf4c7b">CQB Ranged Combat Penalty</content>
@@ -144,6 +145,7 @@
 	<content contentuid="hbf9f6f92g699ag47b3gb967g5bfa164a0612">Bloody Weapons</content>
 	<content contentuid="hc13ac1f2ge15eg4791ga4bcgca5508715345">Activate for GM mode</content>
 	<content contentuid="hc385872cge252g4da0gbc7agf774df831f28">Electric Weapons</content>
+	<content contentuid="hc4400964gcf4bg429cg882cg9e90ba8cf0ce">Level [1]: Water attacks deal +[2]% more damage, +[3]% Vitality healed, +[4]% Magic Armour from skills and potions.</content>
 	<content contentuid="hc453e399ge1f5g41f1gaeabgcdd4de833c63">A character with [1] has an extra 30% [3], but takes a [4]% penalty to [5]. Additionally, the maximum [3] is raised by [6]. Demon grants immunity to Burning and Necrofire. Ice King increases all Water damage you deal by 20% and grants immunity to Chilled.</content>
 	<content contentuid="hc5574731g874ag4d82gb4a0gba70af698168">Crossbow Base Penalty</content>
 	<content contentuid="hc5d5552bg6b33g44c1gbb0cg8d55a101f081">Level [1]: +[2]% Damage, +[3]% Dodging and increase Offhand damage by [4]%.</content>

@@ -21,6 +21,8 @@ local dynamicTooltips = {
     ["Two-Handed_Next"]         = "hda7ee9a4g5bbeg4c62g96b7ge31b21e094f3",
     ["Perseverance"]            = "h5d0c3ad0g3d9dg4cf1g92b7g20d6d7d26344", 
     ["Perseverance_Next"]       = "h443a51dcgbd6fg46c2g8988gbfe93a3123a5",
+    ["Hydrosophist"]            = "hc4400964gcf4bg429cg882cg9e90ba8cf0ce",
+    ["Hydrosophist_Next"]       = "h0a8b0b59g5da9g483fg86a3g59afce30dbb7",
     ["AttrGenBonus"]            = "hdf2a4bd0g134eg4107g9a8agd93d6d22fd68",
     ["StrWpnBonus"]             = "ha418e064g2d69g4407gadc2gf2f590f0e895",
     ["IntSkillBonus"]           = "hf338b2c0gd158g49b4ga2ceg15a7099a4b7b",
@@ -235,6 +237,14 @@ local function OnAbilityTooltip(character, stat, tooltip)
         end
         
         abilityDescription.NextLevelEffect = GetDynamicTranslationString(stat, stats.Perseverance+1, attrBonusNew["persArm"], attrBonusNew["persVit"])
+    
+    elseif stat == "Hydrosophist" then
+        Ext.Print(stats.WaterSpecialist+1, attrBonusNew["hydroDmg"], attrBonusNew["hydroHeal"], attrBonusNew["hydroArmor"])
+        if stats.WaterSpecialist > 0 then
+            abilityDescription.CurrentLevelEffect = GetDynamicTranslationString(stat, stats.WaterSpecialist, attrBonus["hydroDmg"], attrBonus["hydroHeal"], attrBonus["hydroArmor"])
+        end
+        
+        abilityDescription.NextLevelEffect = GetDynamicTranslationString(stat, stats.WaterSpecialist+1, attrBonusNew["hydroDmg"], attrBonusNew["hydroHeal"], attrBonusNew["hydroArmor"])
 
     end
 end
