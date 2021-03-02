@@ -494,5 +494,7 @@ Comments
 In summary, I decided to revise all summons for this update since I probably neglected them too much before. I'm open for suggestions but please provide tangible explanation for me to work with.
 
 # 1.0.5.48
+Fixes
 * Fixed a tooltip issue with storm skills
 * Fixed a tooltip issue with Hydrosophist
+* Fixed Lifesteal not being scaled correctly
