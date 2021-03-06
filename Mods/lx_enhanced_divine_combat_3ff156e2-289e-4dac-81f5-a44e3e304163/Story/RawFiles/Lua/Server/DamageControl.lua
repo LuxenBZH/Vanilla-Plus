@@ -168,6 +168,9 @@ function ChangeDamage(damages, multiplier, value, instigator, target, handle)
 			multiplier = multiplier + Ext.ExtraData.DGM_IceKingDamageBonus/100
 			-- print("Bonus: IceKing")
 		end
+		if dmgType == "Corrosive" or dmgType == "Magic" then
+			multiplier = multiplier*(Ext.ExtraData.DGM_ArmourReductionMultiplier/100)
+		end
 		local rangeFix = math.random()
 		if amount > 0 then amount = amount + rangeFix end
 		if dmgType ~= "Corrosive" and dmgType ~= "Magic" then

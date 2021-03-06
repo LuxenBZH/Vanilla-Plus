@@ -195,7 +195,6 @@ end
 ---@param stat string
 ---@param tooltip TooltipData
 local function OnAbilityTooltip(character, stat, tooltip)
-    
     local stat = tooltip:GetElement("StatName").Label
     local abilityDescription = tooltip:GetElement("AbilityDescription")
     local attrBonus = CharGetDGMAttributeBonus(character, 0)
@@ -239,7 +238,6 @@ local function OnAbilityTooltip(character, stat, tooltip)
         abilityDescription.NextLevelEffect = GetDynamicTranslationString(stat, stats.Perseverance+1, attrBonusNew["persArm"], attrBonusNew["persVit"])
     
     elseif stat == "Hydrosophist" then
-        Ext.Print(stats.WaterSpecialist+1, attrBonusNew["hydroDmg"], attrBonusNew["hydroHeal"], attrBonusNew["hydroArmor"])
         if stats.WaterSpecialist > 0 then
             abilityDescription.CurrentLevelEffect = GetDynamicTranslationString(stat, stats.WaterSpecialist, attrBonus["hydroDmg"], attrBonus["hydroHeal"], attrBonus["hydroArmor"])
         end
@@ -300,13 +298,27 @@ local function FixCustomBonusesTranslationKeyMalus(character, stat, tooltip)
     end
 end
 
-local function DGM_Init()
+---- Credits to Focus
+---@param character EsvCharacter
+---@param talent string
+---@param tooltip TooltipData
+local function TalentTooltip(character, talent, tooltip)
+    local description = tooltip:GetElement("TalentDescription")
+    if talent == "IceKing" then
+        description.Description = Ext.GetTranslatedStringFromKey("IceKing")
+    elseif talent == "Demon" then
+        description.Description = Ext.GetTranslatedStringFromKey("Demon")
+    end
+end
+
+local function DGM_Tooltips_Init()
     Game.Tooltip.RegisterListener("Item", nil, WeaponTooltips)
     Game.Tooltip.RegisterListener("Stat", "Damage", SkillAttributeTooltipBonus)
     Game.Tooltip.RegisterListener("Stat", nil, OnStatTooltip)
     Game.Tooltip.RegisterListener("Ability", nil, OnAbilityTooltip)
     Game.Tooltip.RegisterListener("Stat", nil, FixCustomBonusesTranslationKeyBonus)
     Game.Tooltip.RegisterListener("Stat", nil, FixCustomBonusesTranslationKeyMalus)
+    Game.Tooltip.RegisterListener("Talent", nil, TalentTooltip)
 end
 
-Ext.RegisterListener("SessionLoaded", DGM_Init)
+Ext.RegisterListener("SessionLoaded", DGM_Tooltips_Init)

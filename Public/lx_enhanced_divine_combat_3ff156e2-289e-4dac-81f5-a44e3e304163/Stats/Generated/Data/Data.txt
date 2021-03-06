@@ -142,7 +142,7 @@ key "DGM_DemonStatusesBonus","0"
 
 key "DGM_StaffSkillMultiplier","10"
 
-key "DGM_WandSkillMultiplier","2.5"
+key "DGM_WandSkillMultiplier","5"
 
 key "DGM_PerseveranceVitalityRecovery","2"
 
@@ -186,9 +186,9 @@ key "VitalityLinearGrowth","0"
 
 key "SkillAbilityMovementSpeedPerPoint","15"
 
-key "DGM_CrossbowBasePenalty","-92"
+key "DGM_CrossbowBasePenalty","-88"
 
-key "DGM_CrossbowLevelGrowthPenalty","-8"
+key "DGM_CrossbowLevelGrowthPenalty","-12"
 
 
 
@@ -215,4 +215,10 @@ key "DGM_EnableDualCCParry","0"
 key "DGM_CCParryDuration","2"
 
 key "IncarnateSummoningLevel","10"
+
+key "DGM_ArmourReductionMultiplier","100"
+
+key "DGM_PlayerVitalityMultiplier","100"
+
+key "DGM_NpcVitalityMultiplier","100"
 

@@ -22,7 +22,10 @@ local defaultDataValues = {
     DGM_NpcScalingSecondaryAttributeCorrection = 70,
     DGM_NpcScalingNoArchetypeCorrection = 60,
     DGM_BackstabCritChanceBonus = 0.5,
-    DGM_CCParryDuration = 2
+    DGM_CCParryDuration = 2,
+    DGM_ArmourReductionMultiplier = 100,
+    DGM_PlayerVitalityMultiplier = 100,
+    DGM_NpcVitalityMultiplier = 100
 }
 
 local idToVariable = {
@@ -48,7 +51,10 @@ local idToVariable = {
     NPCStatsSecondaryCorrection = "DGM_NpcScalingSecondaryAttributeCorrection",
     NPCStatsNoArchetypeCorrection = "DGM_NpcScalingNoArchetypeCorrection",
     CritChanceBackstabBonus = "DGM_BackstabCritChanceBonus",
-    CCParryDuration = "DGM_CCParryDuration"
+    CCParryDuration = "DGM_CCParryDuration",
+    ArmourReductionMultiplier = "DGM_ArmourReductionMultiplier",
+    PlayerVitalityMultiplier = "DGM_PlayerVitalityMultiplier",
+    NpcVitalityMultiplier = "DGM_NpcVitalityMultiplier"
 }
 
 local requireRestart = {
@@ -74,7 +80,10 @@ local requireRestart = {
     NPCStatsSecondaryCorrection = true,
     NPCStatsNoArchetypeCorrection = true,
     CritChanceBackstabBonus = false,
-    CCParryDuration = false
+    CCParryDuration = false,
+    ArmourReductionMultiplier = false,
+    PlayerVitalityMultiplier = true,
+    NpcVitalityMultiplier = true,
 }
 
 local flags = {
@@ -85,8 +94,6 @@ local flags = {
     "LXDGM_NPCStatsCorrectionCampaign",
     "LXDGM_NPCStatsCorrectionGM",
 }
-
-local BootStat = {}
 
 Ext.RegisterListener("StatsLoaded", function()
     Ext.Print("Loading stored vars...")
@@ -137,12 +144,15 @@ Ext.RegisterListener("SessionLoaded", function()
     settings.Global:AddLocalizedVariable("CrossbowPenaltyGrowth", "LXDGM_CrossbowPenaltyGrowth", Ext.ExtraData.DGM_CrossbowLevelGrowthPenalty, -100, 0, 1, "LXDGM_CrossbowPenaltyGrowth_Description")
     settings.Global:AddLocalizedVariable("PerseveranceVitality", "LXDGM_PerseveranceVitality", Ext.ExtraData.DGM_PerseveranceVitalityRecovery, 0, 20, 0.5, "LXDGM_PerseveranceVitality_Description")
     settings.Global:AddLocalizedVariable("CCParryDuration", "LXDGM_CCParryDuration", Ext.ExtraData.DGM_CCParryDuration, 0, 5, 1, "LXDGM_CCParryDuration_Description")
+    settings.Global:AddLocalizedVariable("ArmourReductionMultiplier", "LXDGM_ArmourReductionMultiplier", Ext.ExtraData.DGM_ArmourReductionMultiplier, 50, 300, 5, "LXDGM_ArmourReductionMultiplier_Description")
 
     settings.Global:AddLocalizedFlag("LXDGM_NPCStatsCorrectionCampaignDisable", "Global", false, nil, nil, false)
     settings.Global:AddLocalizedFlag("LXDGM_NPCStatsCorrectionGM", "Global", false, nil, nil, false)
     settings.Global:AddLocalizedVariable("NPCStatsMainCorrection", "LXDGM_NPCStatsMainCorrection", Ext.ExtraData.DGM_NpcScalingMainAttributeCorrection, 0, 100, 1, "LXDGM_NPCStatsMainCorrection_Description")
     settings.Global:AddLocalizedVariable("NPCStatsSecondaryCorrection", "LXDGM_NPCStatsSecondaryCorrection", Ext.ExtraData.DGM_NpcScalingSecondaryAttributeCorrection, 0, 100, 1, "LXDGM_NPCStatsSecondaryCorrection_Description")
     settings.Global:AddLocalizedVariable("NPCStatsNoArchetypeCorrection", "LXDGM_NPCStatsNoArchetypeCorrection", Ext.ExtraData.DGM_NpcScalingNoArchetypeCorrection, 0, 100, 1, "LXDGM_NPCStatsNoArchetypeCorrection_Description")
+    settings.Global:AddLocalizedVariable("PlayerVitalityMultiplier", "LXDGM_PlayerVitalityMultiplier", Ext.ExtraData.DGM_PlayerVitalityMultiplier, 5, 300, 5, "LXDGM_PlayerVitalityMultiplier_Description")
+    -- settings.Global:AddLocalizedVariable("NpcVitalityMultiplier", "LXDGM_NpcVitalityMultiplier", Ext.ExtraData.DGM_NpcVitalityMultiplier, 5, 300, 5, "LXDGM_NpcVitalityMultiplier_Description")
 
     settings.GetMenuOrder = function()
         return {{
@@ -181,7 +191,8 @@ Ext.RegisterListener("SessionLoaded", function()
                     "CrossbowPenaltyBase",
                     "CrossbowPenaltyGrowth",
                     "PerseveranceVitality",
-                    "CCParryDuration"
+                    "CCParryDuration",
+                    "ArmourReductionMultiplier"
                 }},
                 {DisplayName = "NPC Stats Scaling",
                 Entries = {
@@ -190,6 +201,8 @@ Ext.RegisterListener("SessionLoaded", function()
                     "NPCStatsMainCorrection",
                     "NPCStatsSecondaryCorrection",
                     "NPCStatsNoArchetypeCorrection",
+                    "PlayerVitalityMultiplier",
+                    -- "NpcVitalityMultiplier",
                 }},
         }
     end

@@ -493,8 +493,33 @@ Comments
 
 In summary, I decided to revise all summons for this update since I probably neglected them too much before. I'm open for suggestions but please provide tangible explanation for me to work with.
 
-# 1.0.5.48
+# 1.0.5.48 (Ryker)
+New Features
+* You can now set a Vitality multiplier for players in the options
+* You can now set a damage multiplier for Corrosive and Magic damage
+
 Fixes
 * Fixed a tooltip issue with storm skills
 * Fixed a tooltip issue with Hydrosophist
+* Split Demon and Ice King tooltips (credits to Focus)
+* Changed combat abilities tooltips to remove values in their fixed description to avoid misunderstanding
 * Fixed Lifesteal not being scaled correctly
+
+Balance
+* Default skill damage multiplier for wands increased from 2.5% to 5%
+* Reduced Bows Finesse requirements from base 14 to 10
+* Increased Bows range from 1200 to 1300 (now matching crossbows)
+* Increased Bows base damage from 75 to 80
+* Increased default Crossbow movement penalty growth from -8 to -12
+* Decreased default Crossbow movement penalty from -92 to -88
+* Increased Crossbow Finesse base requirement from 14 to 16
+* Crossbows are now excluded from Ambidextrous effect
+* Steam Lance angle increased from 25 to 35
+* Steam Lance base healing amount increased from 75 to 100
+* Steam Lance healing effect do not share the same stack than Regenerating anymore, which mean they can be active concurrently
+* Steam Lance cooldown increased from 3 to 5 turns
+* Food bonus duration greatly increased
+* Two Handed Axes base damage range increased from 25 to 30
+* Two Handed Axes base damage decreased from 105 to 100
+* Teleportation cooldown increased from 4 to 5
+* Netherswap cooldown increased from 3 to 4

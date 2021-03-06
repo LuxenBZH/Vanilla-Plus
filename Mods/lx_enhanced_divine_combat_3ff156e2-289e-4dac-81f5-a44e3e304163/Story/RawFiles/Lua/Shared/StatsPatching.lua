@@ -163,6 +163,23 @@ local function AdjustNPCStats()
 						end
 					end
 				end
+				-- if Ext.ExtraData.DGM_NpcVitalityMultiplier ~= 100 then
+				-- 	Ext.StatSetAttribute(stat.Name, "Vitality", stat.Vitality*(Ext.ExtraData.DGM_NpcVitalityMultiplier/100))
+				-- end
+			end
+		end
+	end
+end
+
+local function ScaleVitality()
+	if Ext.ExtraData.DGM_PlayerVitalityMultiplier ~= 100 then
+		for i,stat in pairs(Ext.GetStatEntries("Character")) do
+			stat = Ext.GetStat(stat)
+			if HasParent(stat, "_Hero") then
+				Ext.StatSetAttribute(stat.Name, "Vitality", math.floor(Ext.Round(stat.Vitality*(Ext.ExtraData.DGM_PlayerVitalityMultiplier/100))))
+			end
+			if string.find(stat.Name, "Summon_") == 1 then
+				Ext.StatSetAttribute(stat.Name, "Vitality", math.floor(Ext.Round(stat.Vitality*(Ext.ExtraData.DGM_PlayerVitalityMultiplier/100))))
 			end
 		end
 	end
@@ -174,3 +191,4 @@ Ext.RegisterListener("StatsLoaded", AddAdditionalDescription)
 Ext.RegisterListener("StatsLoaded", ReduceDeltaModBonuses)
 Ext.RegisterListener("StatsLoaded", ReplaceDescriptionParams)
 Ext.RegisterListener("StatsLoaded", AdjustNPCStats)
+Ext.RegisterListener("StatsLoaded", ScaleVitality)

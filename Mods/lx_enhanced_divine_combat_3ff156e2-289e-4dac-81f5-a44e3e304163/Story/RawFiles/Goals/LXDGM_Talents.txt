@@ -162,28 +162,28 @@ NRD_CharacterSetPermanentBoostInt(_Char, "Memory", 0);
 CharacterAddAttribute(_Char, "Dummy", 0);
 
 // Ambidextrous refund
-IF
-ObjectTurnStarted((CHARACTERGUID)_Char)
-AND
-CharacterHasTalent(_Char, "Ambidextrous", 1)
-THEN
-SetVarInteger(_Char, "DGM_AmbidextrousCount", 2);
+// IF
+// ObjectTurnStarted((CHARACTERGUID)_Char)
+// AND
+// CharacterHasTalent(_Char, "Ambidextrous", 1)
+// THEN
+// SetVarInteger(_Char, "DGM_AmbidextrousCount", 2);
 
-IF
-ItemEquipped(_Item, _Char)
-AND
-CharacterIsInCombat(_Char, 1)
-AND
-CharacterHasTalent(_Char, "Ambidextrous", 1)
-AND
-GetVarInteger(_Char, "DGM_AmbidextrousCount", _Count)
-AND
-_Count > 0
-AND
-IntegerSubtract(_Count, 1, _NewCount)
-THEN
-SetVarInteger(_Char, "DGM_AmbidextrousCount", _NewCount);
-CharacterAddActionPoints(_Char, 1);
+// IF
+// ItemEquipped(_Item, _Char)
+// AND
+// CharacterIsInCombat(_Char, 1)
+// AND
+// CharacterHasTalent(_Char, "Ambidextrous", 1)
+// AND
+// GetVarInteger(_Char, "DGM_AmbidextrousCount", _Count)
+// AND
+// _Count > 0
+// AND
+// IntegerSubtract(_Count, 1, _NewCount)
+// THEN
+// SetVarInteger(_Char, "DGM_AmbidextrousCount", _NewCount);
+// CharacterAddActionPoints(_Char, 1);
 
 // Morning Person Max AP start fight
 IF
