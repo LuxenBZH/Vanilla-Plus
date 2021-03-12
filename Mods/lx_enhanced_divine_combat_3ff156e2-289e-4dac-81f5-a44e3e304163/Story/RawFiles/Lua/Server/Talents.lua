@@ -186,6 +186,11 @@ function ManagePetPal(character, summon)
 	local summons = Osi.DB_DGM_Available_Summons:Get(character, nil);
 	if summons[1] ~= nil and summons[2] ~= nil then
 		for i,summon in pairs(summons) do
+			if ObjectExists(summon[2]) == 0 then 
+				Osi.DB_DGM_Available_Summons:Delete(character, summon[2])
+				RestorePetPalPower(character, nil)
+				return
+			end
 			ApplyStatus(summon[2], "LX_PETPAL", -1.0, 1)
 		end
 	end

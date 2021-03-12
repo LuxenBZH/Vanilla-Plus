@@ -14,9 +14,9 @@ local defaultDataValues = {
     DGM_RangedCQBPenalty = 35,
     DGM_RangedCQBPenaltyRange = 2,
     DGM_StaffSkillMultiplier = 10,
-    DGM_WandSkillMultiplier = 2.5,
-    DGM_CrossbowBasePenalty = -98,
-    DGM_CrossbowLevelGrowthPenalty = -8,
+    DGM_WandSkillMultiplier = 5,
+    DGM_CrossbowBasePenalty = -88,
+    DGM_CrossbowLevelGrowthPenalty = -12,
     DGM_PerseveranceVitalityRecovery = 2,
     DGM_NpcScalingMainAttributeCorrection = 50,
     DGM_NpcScalingSecondaryAttributeCorrection = 70,
@@ -54,36 +54,24 @@ local idToVariable = {
     CCParryDuration = "DGM_CCParryDuration",
     ArmourReductionMultiplier = "DGM_ArmourReductionMultiplier",
     PlayerVitalityMultiplier = "DGM_PlayerVitalityMultiplier",
-    NpcVitalityMultiplier = "DGM_NpcVitalityMultiplier"
+    NpcVitalityMultiplier = "DGM_NpcVitalityMultiplier",
+    SummonsVitalityMultiplier = "DGM_SummonsVitalityMultiplier",
+    SummonsDamageBoost = "DGM_SummonsDamageBoost"
 }
 
 local requireRestart = {
-    StrengthGloBonus = false,
-    StrengthWeaponBonus = false,
-    FinesseGloBonus = false,
     FinesseMovement = true,
     FinesseCriticalChance = true,
-    IntelligenceGloBonus = false,
-    IntelligenceSkillBonus = false,
     IntelligenceAccuracyBonus = true,
-    WitsDotBonus = false,
-    ArmourDamagePass = false,
-    ArmourDamagePassDepleted = false,
-    CQBPenalty = false,
-    CQBPenaltyRange = false,
-    StaffSkillMult = false,
-    WandSkillMult = false,
     CrossbowPenaltyBase = true,
     CrossbowPenaltyGrowth = true,
-    PerseveranceVitality = false,
     NPCStatsMainCorrection = true,
     NPCStatsSecondaryCorrection = true,
     NPCStatsNoArchetypeCorrection = true,
-    CritChanceBackstabBonus = false,
-    CCParryDuration = false,
-    ArmourReductionMultiplier = false,
     PlayerVitalityMultiplier = true,
     NpcVitalityMultiplier = true,
+    SummonsVitalityMultiplier = true,
+    SummonsDamageBoost = true
 }
 
 local flags = {
@@ -147,12 +135,17 @@ Ext.RegisterListener("SessionLoaded", function()
     settings.Global:AddLocalizedVariable("ArmourReductionMultiplier", "LXDGM_ArmourReductionMultiplier", Ext.ExtraData.DGM_ArmourReductionMultiplier, 50, 300, 5, "LXDGM_ArmourReductionMultiplier_Description")
 
     settings.Global:AddLocalizedFlag("LXDGM_NPCStatsCorrectionCampaignDisable", "Global", false, nil, nil, false)
-    settings.Global:AddLocalizedFlag("LXDGM_NPCStatsCorrectionGM", "Global", false, nil, nil, false)
+    -- settings.Global:AddLocalizedFlag("LXDGM_NPCStatsCorrectionGM", "Global", false, nil, nil, false)
     settings.Global:AddLocalizedVariable("NPCStatsMainCorrection", "LXDGM_NPCStatsMainCorrection", Ext.ExtraData.DGM_NpcScalingMainAttributeCorrection, 0, 100, 1, "LXDGM_NPCStatsMainCorrection_Description")
     settings.Global:AddLocalizedVariable("NPCStatsSecondaryCorrection", "LXDGM_NPCStatsSecondaryCorrection", Ext.ExtraData.DGM_NpcScalingSecondaryAttributeCorrection, 0, 100, 1, "LXDGM_NPCStatsSecondaryCorrection_Description")
     settings.Global:AddLocalizedVariable("NPCStatsNoArchetypeCorrection", "LXDGM_NPCStatsNoArchetypeCorrection", Ext.ExtraData.DGM_NpcScalingNoArchetypeCorrection, 0, 100, 1, "LXDGM_NPCStatsNoArchetypeCorrection_Description")
     settings.Global:AddLocalizedVariable("PlayerVitalityMultiplier", "LXDGM_PlayerVitalityMultiplier", Ext.ExtraData.DGM_PlayerVitalityMultiplier, 5, 300, 5, "LXDGM_PlayerVitalityMultiplier_Description")
+    settings.Global:AddLocalizedVariable("SummonsVitalityMultiplier", "LXDGM_SummonsVitalityMultiplier", Ext.ExtraData.DGM_SummonsVitalityMultiplier, 5, 300, 5, "LXDGM_SummonsVitalityMultiplier_Description")
+    settings.Global:AddLocalizedVariable("SummonsDamageBoost", "LXDGM_SummonsDamageBoost", Ext.ExtraData.DGM_SummonsDamageBoost, -50, 200, 1, "LXDGM_SummonsDamageBoost_Description")
     -- settings.Global:AddLocalizedVariable("NpcVitalityMultiplier", "LXDGM_NpcVitalityMultiplier", Ext.ExtraData.DGM_NpcVitalityMultiplier, 5, 300, 5, "LXDGM_NpcVitalityMultiplier_Description")
+    settings.Global:AddLocalizedButton("FixConstitutionGap", "LXDGM_FixConstitutionGap", function(button, uuid, character)
+        Ext.PostMessageToServer("DGM_FixConstitutionGap", "")
+    end, nil, true, "LXDGM_FixConstitutionGap_Description")
 
     settings.GetMenuOrder = function()
         return {{
@@ -197,12 +190,15 @@ Ext.RegisterListener("SessionLoaded", function()
                 {DisplayName = "NPC Stats Scaling",
                 Entries = {
                     "LXDGM_NPCStatsCorrectionCampaignDisable",
-                    "LXDGM_NPCStatsCorrectionGM",
+                    -- "LXDGM_NPCStatsCorrectionGM",
                     "NPCStatsMainCorrection",
                     "NPCStatsSecondaryCorrection",
                     "NPCStatsNoArchetypeCorrection",
                     "PlayerVitalityMultiplier",
                     -- "NpcVitalityMultiplier",
+                    "SummonsVitalityMultiplier",
+                    "SummonsDamageBoost",
+                    "FixConstitutionGap"
                 }},
         }
     end

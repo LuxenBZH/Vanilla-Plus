@@ -90,6 +90,7 @@ Ext.RegisterOsirisListener("CharacterStatusRemoved", 3, "after", RecoverFromCCs)
 ---@param status string
 ---@param handle number
 local function BlockCCs(character, status, handle)
+	if ObjectIsCharacter(character) ~= 1 then return end
 	local lifetime = NRD_StatusGetInt(character, handle, "LifeTime")
 	local source = NRD_StatusGetInt(character, handle, "DamageSourceType") -- If 5 it's from an aura
 	local enterChance = NRD_StatusGetInt(character, handle, "CanEnterChance")

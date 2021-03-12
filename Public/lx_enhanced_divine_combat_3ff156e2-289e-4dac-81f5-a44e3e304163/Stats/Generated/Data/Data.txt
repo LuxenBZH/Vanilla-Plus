@@ -222,3 +222,7 @@ key "DGM_PlayerVitalityMultiplier","100"
 
 key "DGM_NpcVitalityMultiplier","100"
 
+key "DGM_SummonsVitalityMultiplier","100"
+
+key "DGM_SummonsDamageBoost","0"
+

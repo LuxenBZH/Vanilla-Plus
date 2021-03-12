@@ -52,10 +52,8 @@ local function CharacterReplaceJumpSkills(character, eventName)
         for i,skill in pairs(skills) do
             for j,jump in pairs(elligibleSkills) do
                 if skill == jump then
-                    --print(skill)
                     CharacterRemoveSkill(character.MyGuid, skill)
                     local newJump = string.gsub(skill, "Jump_", "Projectile_")
-                    --print(newJump)
                     CharacterAddSkill(character.MyGuid, newJump)
                 end
             end
@@ -107,6 +105,16 @@ local function CharacterHotReplaceJumps(character, x, y, z, skill, skillType, sk
 end
 
 Ext.RegisterOsirisListener("CharacterUsedSkillAtPosition", 7, "before", CharacterHotReplaceJumps)
+
+local function ReplaceJumpsOnTurn(char)
+    if ObjectIsCharacter(char) ~= 1 then return end
+    char = Ext.GetCharacter(char)
+    for i,skill in pairs(char.GetSkills(char)) do
+        CharacterUnlearnJumpSkill(char.MyGuid, skill)
+    end
+end
+
+Ext.RegisterOsirisListener("ObjectTurnStarted", 1, "after", ReplaceJumpsOnTurn)
 
 function EnableFallDamage(cmd)
     if cmd == "on" then

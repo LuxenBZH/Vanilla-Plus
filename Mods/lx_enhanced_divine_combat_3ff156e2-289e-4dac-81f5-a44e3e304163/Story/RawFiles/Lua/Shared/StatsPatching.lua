@@ -130,13 +130,13 @@ local function AdjustNPCStats()
 	if Ext.Version() < 53 then return end
 	local hardSaved = Ext.LoadFile("LeaderLib_GlobalSettings.json")
 	local campaignScaling = true
-	local GMscaling = false
+	-- local GMscaling = false
 	if Mods.LeaderLib ~= nil and hardSaved ~= nil and hardSaved ~= "" then
 		local variables = Ext.JsonParse(hardSaved).Mods["3ff156e2-289e-4dac-81f5-a44e3e304163"].Global.Flags
-		if not variables.LXDGM_NPCStatsCorrectionCampaignDisable.Enabled then campaignScaling = true else campaignScaling = false end
-		if variables.LXDGM_NPCStatsCorrectionGM.Enabled then GMscaling = true end
+		if variables.LXDGM_NPCStatsCorrectionCampaignDisable.Enabled then campaignScaling = false end
+		-- if variables.LXDGM_NPCStatsCorrectionGM.Enabled then GMscaling = true end
 	end
-	if Ext.GetGameMode() == "Campaign" and campaignScaling or Ext.GetGameMode() == "GameMaster" and GMscaling then
+	if campaignScaling then -- Ext.GetGameMode() == "Campaign" and campaignScaling then or Ext.GetGameMode() == "GameMaster" and GMscaling then
 		Ext.Print("Overriding NPC stats for balance...")
 		local attributes = {
 			"Strength",
@@ -171,15 +171,25 @@ local function AdjustNPCStats()
 	end
 end
 
-local function ScaleVitality()
+local function CustomScalings()
 	if Ext.ExtraData.DGM_PlayerVitalityMultiplier ~= 100 then
 		for i,stat in pairs(Ext.GetStatEntries("Character")) do
 			stat = Ext.GetStat(stat)
 			if HasParent(stat, "_Hero") then
 				Ext.StatSetAttribute(stat.Name, "Vitality", math.floor(Ext.Round(stat.Vitality*(Ext.ExtraData.DGM_PlayerVitalityMultiplier/100))))
 			end
+		end
+	end
+	if Ext.ExtraData.SummonsVitalityMultiplier ~= 100 or Ext.ExtraData.SummonsDamageBoost ~= 0 then
+		for i,stat in pairs(Ext.GetStatEntries("Character")) do
+			stat = Ext.GetStat(stat)
 			if string.find(stat.Name, "Summon_") == 1 then
-				Ext.StatSetAttribute(stat.Name, "Vitality", math.floor(Ext.Round(stat.Vitality*(Ext.ExtraData.DGM_PlayerVitalityMultiplier/100))))
+				if Ext.ExtraData.SummonsVitalityMultiplier ~= 100 then
+					Ext.StatSetAttribute(stat.Name, "Vitality", math.floor(Ext.Round(stat.Vitality*(Ext.ExtraData.DGM_SummonsVitalityMultiplier/100))))
+				end
+				if Ext.ExtraData.SummonsDamageBoost ~= 0 then
+					Ext.StatSetAttribute(stat.Name, "DamageBoost", math.floor(Ext.Round(stat.DamageBoost+Ext.ExtraData.DGM_SummonsDamageBoost)))
+				end
 			end
 		end
 	end
@@ -191,4 +201,4 @@ Ext.RegisterListener("StatsLoaded", AddAdditionalDescription)
 Ext.RegisterListener("StatsLoaded", ReduceDeltaModBonuses)
 Ext.RegisterListener("StatsLoaded", ReplaceDescriptionParams)
 Ext.RegisterListener("StatsLoaded", AdjustNPCStats)
-Ext.RegisterListener("StatsLoaded", ScaleVitality)
+Ext.RegisterListener("StatsLoaded", CustomScalings)

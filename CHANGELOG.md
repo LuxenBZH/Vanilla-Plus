@@ -523,3 +523,20 @@ Balance
 * Two Handed Axes base damage decreased from 105 to 100
 * Teleportation cooldown increased from 4 to 5
 * Netherswap cooldown increased from 3 to 4
+
+# 1.0.6.49 (Mordus)
+Fixes
+* Fixed an error popping in the console when hit an item with a crowd-control effect
+* Fixed an error in the console when hit an item with a normal attack
+* Fixed an issue with the Real Jump module where AI calculations would be wrecked by the hot replacement of the skill
+* Fixed an issue with Pet Pal where the debuff would linger when you have only one summon after changing map in Story mode
+* Taunted should now make the AI correctly focus the taunter.
+
+Balance
+* Shackles of Pain duration reduced from 3 to 2 turns
+* Shackles of Pain cooldown increased from 5 to 6 turns
+
+Settings
+* Merged Story and GM campaign options for NPC correction formula, since the option for GM mode was not working correctly and would use Story mode option instead
+* You can now set a Vitality and a Damage multiplier for summons.
+* An option is now available to fix the Vitality gap if you enabled Vanilla Plus on a running save or GM campaign.

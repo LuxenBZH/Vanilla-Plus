@@ -43,7 +43,7 @@ function DamageControl(target, instigator, hitDamage, handle)
 	end
 	
 	local weaponTypes = GetWeaponsType(instigator)
-	local hitStatus = Ext.GetStatus(target, handle)
+	-- local hitStatus = Ext.GetStatus(target, handle)
 	
 	-- Get hit damages
 	for i,dmgType in pairs(types) do
@@ -119,9 +119,9 @@ function DamageControl(target, instigator, hitDamage, handle)
 		-- Apply bonus from wand and staves
 		if weaponTypes[1] == "Wand" then
 			if weaponTypes[2] == "Wand" then
-				globalMultiplier = globalMultiplier + Ext.ExtraData.DGM_WandSkillMultiplier/100
-			else
 				globalMultiplier = globalMultiplier + Ext.ExtraData.DGM_WandSkillMultiplier/100*2
+			else
+				globalMultiplier = globalMultiplier + Ext.ExtraData.DGM_WandSkillMultiplier/100
 			end
 		elseif weaponTypes[1] == "Staff" then
 			globalMultiplier = globalMultiplier + Ext.ExtraData.DGM_StaffSkillMultiplier/100
@@ -147,6 +147,7 @@ end
 ---@param target EsvCharacter
 ---@param damages table
 function InitiatePassingDamage(target, damages)
+	if ObjectIsCharacter(target) ~= 1 then return end
 	for dmgType,amount  in pairs(damages) do
 		if amount ~= 0 then
 			local piercing = CalculatePassingDamage(target, amount, dmgType)
