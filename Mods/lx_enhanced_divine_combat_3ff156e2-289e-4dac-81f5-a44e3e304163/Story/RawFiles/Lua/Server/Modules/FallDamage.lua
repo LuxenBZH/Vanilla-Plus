@@ -35,12 +35,12 @@ end
 Ext.RegisterOsirisListener("TimerFinished", 1, "before", TimerJumpSkill)
 
 local function GetJumpHeight(character, x, y, z, skill, skillType, skillElement)
-    if not PersistentVars["DGM_FallDamage"] then return end
+    if not PersistentVars["DGM_FallDamage_Jump"] then return end
     if skillType == "jump" or (skillType == "projectile" and Ext.GetStat(skill).MovingObject == "Caster") then
         local bX, bY, bZ = GetPosition(character)
         jumpers[character] = {bY, y}
     end
-    if skillType == "jump" and PersistentVars["DGM_FallDamage_Jump"] then
+    if skillType == "jump" then
         jumpSkillUsers[#jumpSkillUsers+1] = character
         TimerLaunch("DGM_FallDamageJumpSkill", 1000)
     end

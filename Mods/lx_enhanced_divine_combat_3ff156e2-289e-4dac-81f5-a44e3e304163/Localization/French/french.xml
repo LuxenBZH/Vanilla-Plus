@@ -109,6 +109,7 @@
 	<content contentuid="h768669d0g02adg48f7g901eg83068a96bf19">Dual-Wielding increases damage and Dodging when wielding two Single-Handed weapons and increases off-hand damage.</content>
 	<content contentuid="h7b1052abg9968g4acdgb399g989954144550">Finesse Global Damage Bonus</content>
 	<content contentuid="h7bcfac6eg76a6g4ccega83bg2ff334058ccc">Armour Damage Multiplier</content>
+	<content contentuid="h7c3dcbc3gb3f4g4746g9a94g00021c9c2930">Target a circular area. Until your next turn, you will reflexively shoot at the first three enemies moving within this area if you have sight on them.</content>
 	<content contentuid="h7fec5db8g58d3g4abbgab7ag03e19b542bef">Total damage: [1]-[2]</content>
 	<content contentuid="h80149363gb072g4531gae22gf187147b9c44">CC Recover Duration</content>
 	<content contentuid="h81ca938fg5ef4g452agb093g1294e2f0718b">Leech heals you when standing in blood. Also increases Lifesteal by 25%.</content>

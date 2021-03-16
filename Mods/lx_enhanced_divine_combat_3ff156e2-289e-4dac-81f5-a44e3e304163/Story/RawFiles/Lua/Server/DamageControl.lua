@@ -185,6 +185,7 @@ function ChangeDamage(damages, multiplier, value, instigator, target, handle)
 		if amount ~= 0 then Ext.Print("Changed "..dmgType.." to "..amount.." (Multiplier = "..multiplier..")") end
 		damages[dmgType] = amount
 	end
+	if ObjectIsCharacter(target) ~= 1 then lifesteal = 0 end
 	NRD_StatusSetInt(target, handle, "LifeSteal", lifesteal)
 	return damages
 end

@@ -107,6 +107,7 @@ end
 Ext.RegisterOsirisListener("CharacterUsedSkillAtPosition", 7, "before", CharacterHotReplaceJumps)
 
 local function ReplaceJumpsOnTurn(char)
+    if not PersistentVars.DGM_RealJump then return end
     if ObjectIsCharacter(char) ~= 1 then return end
     char = Ext.GetCharacter(char)
     for i,skill in pairs(char.GetSkills(char)) do
