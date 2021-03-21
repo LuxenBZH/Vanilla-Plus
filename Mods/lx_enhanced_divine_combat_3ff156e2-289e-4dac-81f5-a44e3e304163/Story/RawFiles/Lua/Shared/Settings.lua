@@ -84,8 +84,8 @@ local flags = {
 }
 
 Ext.RegisterListener("StatsLoaded", function()
-    Ext.Print("Loading stored vars...")
     if Mods.LeaderLib == nil then return end
+    Ext.Print("Loading stored vars...")
     local json = Ext.LoadFile("LeaderLib_GlobalSettings.json", "user")
     if json == nil or json == "" then return end
     for var,value in pairs(Ext.JsonParse(json).Mods["3ff156e2-289e-4dac-81f5-a44e3e304163"].Global.Variables) do

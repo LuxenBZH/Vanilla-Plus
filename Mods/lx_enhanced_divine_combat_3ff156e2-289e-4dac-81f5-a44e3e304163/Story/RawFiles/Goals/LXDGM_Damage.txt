@@ -26,6 +26,11 @@ KBSECTION
 // THEN
 // LX_EXT_DamageControl(_Target, _Handle, _Instigator);
 
+IF
+NRD_OnHit(_,_,_,_)
+THEN
+DB_NOOP(1);
+
 
 EXITSECTION
 

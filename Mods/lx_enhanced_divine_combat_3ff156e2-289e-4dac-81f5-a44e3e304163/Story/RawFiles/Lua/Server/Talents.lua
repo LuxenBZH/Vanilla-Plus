@@ -70,6 +70,7 @@ end
 Ext.RegisterOsirisListener("CharacterLockedTalent", 2, "before", MnemonicLocked)
 
 Ext.RegisterOsirisListener("CharacterCreationFinished", 1, "after", function(character)
+	if Ext.GetCharacter(character) == nil then return end
 	if Ext.GetCharacter(character).Stats.TALENT_Memory then
 		ManageMemory(character, true)
 	elseif IsTagged(character, "DGM_MemoryManagement") then

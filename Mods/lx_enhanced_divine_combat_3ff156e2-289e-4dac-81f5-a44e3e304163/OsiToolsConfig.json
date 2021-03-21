@@ -1,9 +1,8 @@
 {
-    "RequiredExtensionVersion": 51,
-	"ModTable": "PDGM",
+    "RequiredExtensionVersion": 53,
+	"ModTable": "VanillaPlus",
     "FeatureFlags": [
         "OsirisExtensions",
-        "Lua",
-        "CustomStats"
+        "Lua"
     ]
 }

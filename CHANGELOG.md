@@ -552,3 +552,20 @@ Balance
 
 Miscellaneous
 * Changed description of Reactive Shot to explicitly says it requires vision on the target to work
+
+# 1.0.7.51
+Fixes
+* Fixed an issue with Guardian Angel where the aura provider would get a higher amount of damage than expected
+* Fixed an issue with Shackles of Pain where reflected damage was scaled whereas it should not
+* Damage from Shackles of Pain don't recover Vitality from Life Steal anymore
+* Fixed an issue with skill tooltips where having a parameter that is a Weapon entry (such as damaging statuses) would make all damage tooltip equal to this one
+
+Miscellaneous
+* Tagged food and drinks unusable by AI, since it's stupid enough to consider that using 4 AP to eat a tactical apple is a good decision in combat
+* Enhanced tooltips to take into account Wits bonus if the damage tooltip is the one from a status (such as in Astronomer class)
+
+# 1.0.7.52
+Fixes
+* Fixed an issue with Spectre class tooltips (and potentially any mod with skills having unused skill params)
+* Fixed an error popping in the console related to Mnemonics in Character Creation
+* Fixed an issue where damage scaling wouldn't work at all without LeaderLib

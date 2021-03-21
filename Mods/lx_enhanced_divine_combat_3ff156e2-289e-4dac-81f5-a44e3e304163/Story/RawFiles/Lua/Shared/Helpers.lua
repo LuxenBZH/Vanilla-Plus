@@ -117,3 +117,16 @@ end
 function string.starts(String, Start)
 	return string.sub(String, 1, string.len(Start))==Start
 end
+
+---@param inputStr string
+---@param sep string
+function string.split(inputStr, sep)
+	if sep == nil then
+			sep = "%s"
+	end
+	local t={}
+	for str in string.gmatch(inputStr, "([^"..sep.."]+)") do
+			table.insert(t, str)
+	end
+	return t
+end

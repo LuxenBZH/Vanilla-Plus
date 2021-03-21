@@ -153,6 +153,7 @@ end
 ---@param skill string
 ---@param tooltip TooltipData
 local function OnStatTooltip(character, stat, tooltip)
+    if tooltip == nil then return end
     local stat = tooltip:GetElement("StatName").Label
     local statsDescription = tooltip:GetElement("StatsDescription")
     local statsPointValue = tooltip:GetElement("StatsPointValue")
@@ -260,6 +261,7 @@ local tooltipFix = {
 ---@param skill any
 ---@param tooltip TooltipData
 local function FixCustomBonusesTranslationKeyBonus(character, stat, tooltip)
+    if tooltip == nil then return end
     local boosts = tooltip:GetElements("StatsPercentageBoost")
     if #boosts == 0 then 
         boosts = tooltip:GetElements("StatsTalentsBoost")
@@ -279,6 +281,7 @@ local function FixCustomBonusesTranslationKeyBonus(character, stat, tooltip)
 end
 
 local function FixCustomBonusesTranslationKeyMalus(character, stat, tooltip)
+    if tooltip == nil then return end
     local boosts = tooltip:GetElements("StatsPercentageMalus")
     if #boosts == 0 then 
         boosts = tooltip:GetElements("StatsTalentsMalus")

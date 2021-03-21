@@ -41,7 +41,7 @@ local function itemSheetButtonPressed(ui, call, state)
     if item ~= nil then
         Ext.PostMessageToServer("DGM_UpdateCharacterFromItem", tostring(item.NetID))
     end
-    end
+end
 
     local function DGM_SetupUI()
     local charSheet = Ext.GetBuiltinUI("Public/Game/GUI/characterSheet.swf")
