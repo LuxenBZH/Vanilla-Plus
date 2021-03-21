@@ -1,4 +1,125 @@
 <?xml version="1.0" encoding="utf-8"?>
 <stats stat_object_definition_id="c777d263-6c6a-4347-9652-667e59945528">
-  <stat_objects />
+  <stat_objects>
+    <stat_object is_substat="false">
+      <fields>
+        <field name="Name" type="NameStatObjectFieldDefinition" value="LastRites" />
+        <field name="ForGameMaster" type="EnumerationStatObjectFieldDefinition" value="1" enumeration_type_name="YesNo" />
+        <field name="IsEnemySkill" type="EnumerationStatObjectFieldDefinition" value="0" enumeration_type_name="YesNo" />
+        <field name="Ability" type="EnumerationStatObjectFieldDefinition" value="9" enumeration_type_name="SkillAbility" />
+        <field name="Tier" type="EnumerationStatObjectFieldDefinition" value="4" enumeration_type_name="SkillTier" />
+        <field name="ActionPoints" type="IntegerStatObjectFieldDefinition" value="3" />
+        <field name="Cooldown" type="IntegerStatObjectFieldDefinition" value="-1" />
+        <field name="Memory Cost" type="IntegerStatObjectFieldDefinition" value="1" />
+        <field name="Magic Cost" type="IntegerStatObjectFieldDefinition" value="0" />
+        <field name="TargetRadius" type="IntegerStatObjectFieldDefinition" value="13" />
+        <field name="AreaRadius" type="IntegerStatObjectFieldDefinition" value="13" />
+        <field name="TeleportDelay" type="IntegerStatObjectFieldDefinition" value="500" />
+        <field name="SkillProperties" type="StringStatObjectFieldDefinition" value="SELF:OnHit:LAST_RITE,100,0;Resurrect,100,100;" />
+        <field name="TargetConditions" type="StringStatObjectFieldDefinition" value="Player;Dead;!Tagged:BLOCK_RESURRECTION" />
+        <field name="TeleportSelf" type="EnumerationStatObjectFieldDefinition" value="0" enumeration_type_name="YesNo" />
+        <field name="CanTargetCharacters" type="EnumerationStatObjectFieldDefinition" value="0" enumeration_type_name="YesNo" />
+        <field name="CanTargetItems" type="EnumerationStatObjectFieldDefinition" value="0" enumeration_type_name="YesNo" />
+        <field name="CanTargetTerrain" type="EnumerationStatObjectFieldDefinition" value="1" enumeration_type_name="YesNo" />
+        <field name="MemorizationRequirements" type="StringStatObjectFieldDefinition" value="Necromancy 3" />
+        <field name="Icon" type="StringStatObjectFieldDefinition" value="Skill_Decay_LastRites" />
+        <field name="DisplayName" type="TranslatedStringStatObjectFieldDefinition" value="|Last Rites|" />
+        <field name="Description" type="TranslatedStringStatObjectFieldDefinition" value="|Sacrifice your lifeblood to bring an ally back to life. Deals [1] damage to you, resurrects target character with maximum Vitality.|" />
+        <field name="StatsDescriptionParams" type="StringStatObjectFieldDefinition" value="Potion:Stats_LastRites:VitalityPercentage" />
+        <field name="FXScale" type="IntegerStatObjectFieldDefinition" value="100" />
+        <field name="PrepareAnimationInit" type="StringStatObjectFieldDefinition" value="skill_prepare_soul_01_start" />
+        <field name="PrepareAnimationLoop" type="StringStatObjectFieldDefinition" value="skill_prepare_soul_01_loop" />
+        <field name="PrepareEffect" type="StringStatObjectFieldDefinition" value="RS3_FX_Soul_Prepare_Soul_LastRites_Hand_01:Dummy_R_Hand;RS3_FX_Soul_Prepare_Soul_LastRites_Hand_02:Dummy_R_Hand,Dummy_L_Hand;RS3_FX_Soul_Prepare_Soul_LastRites_Hand_Loop_01:Dummy_R_Hand" />
+        <field name="CastAnimation" type="StringStatObjectFieldDefinition" value="skill_cast_target_soul_01_cast" />
+        <field name="CastTextEvent" type="StringStatObjectFieldDefinition" value="cast" />
+        <field name="CastEffect" type="StringStatObjectFieldDefinition" value="RS3_FX_Skills_Soul_Cast_Target_Cast_LastRites_Hand_01:Dummy_R_HandFX;RS3_FX_Skills_Soul_Cast_Target_Cast_LastRites_Hand_Cast_01:Dummy_L_HandFX:cast;RS3_FX_Skills_Soul_Cast_Target_Cast_LastRites_Body_01:Dummy_BodyFX:cast" />
+        <field name="PreviewEffect" type="StringStatObjectFieldDefinition" value="RS3_FX_UI_TargetPreviewer_Soul_01" />
+        <field name="DisappearEffect" type="StringStatObjectFieldDefinition" value="RS3_FX_GP_Combat_Death_Generic_Dissolve_01,Detach;RS3_FX_GP_Combat_Death_Generic_Dissolve_Body_01" />
+        <field name="ReappearEffect" type="StringStatObjectFieldDefinition" value="RS3_FX_GP_Combat_Resurrect_Generic_01:Dummy_BodyFX" />
+        <field name="CycleConditions" type="StringStatObjectFieldDefinition" value="Player;Dead;!Tagged:BLOCK_RESURRECTION" />
+      </fields>
+    </stat_object>
+    <stat_object is_substat="false">
+      <fields>
+        <field name="Name" type="NameStatObjectFieldDefinition" value="FreeFall" />
+        <field name="ForGameMaster" type="EnumerationStatObjectFieldDefinition" value="1" enumeration_type_name="YesNo" />
+        <field name="Ability" type="EnumerationStatObjectFieldDefinition" value="7" enumeration_type_name="SkillAbility" />
+        <field name="Tier" type="EnumerationStatObjectFieldDefinition" value="2" enumeration_type_name="SkillTier" />
+        <field name="ActionPoints" type="IntegerStatObjectFieldDefinition" value="2" />
+        <field name="Cooldown" type="IntegerStatObjectFieldDefinition" value="5" />
+        <field name="Damage Multiplier" type="IntegerStatObjectFieldDefinition" value="100" />
+        <field name="Damage Range" type="IntegerStatObjectFieldDefinition" value="10" />
+        <field name="DamageType" type="EnumerationStatObjectFieldDefinition" value="1" enumeration_type_name="Damage Type" />
+        <field name="Memory Cost" type="IntegerStatObjectFieldDefinition" value="1" />
+        <field name="Magic Cost" type="IntegerStatObjectFieldDefinition" value="0" />
+        <field name="TargetRadius" type="IntegerStatObjectFieldDefinition" value="13" />
+        <field name="AreaRadius" type="IntegerStatObjectFieldDefinition" value="13" />
+        <field name="DeathType" type="EnumerationStatObjectFieldDefinition" value="1" enumeration_type_name="Death Type" />
+        <field name="HitRadius" type="IntegerStatObjectFieldDefinition" value="1" />
+        <field name="Height" type="IntegerStatObjectFieldDefinition" value="5" />
+        <field name="Acceleration" type="IntegerStatObjectFieldDefinition" value="20000" />
+        <field name="TeleportDelay" type="IntegerStatObjectFieldDefinition" value="500" />
+        <field name="TargetConditions" type="StringStatObjectFieldDefinition" value="!Grounded;AllowDead;NonSelf" />
+        <field name="TeleportSelf" type="EnumerationStatObjectFieldDefinition" value="0" enumeration_type_name="YesNo" />
+        <field name="CanTargetCharacters" type="EnumerationStatObjectFieldDefinition" value="0" enumeration_type_name="YesNo" />
+        <field name="CanTargetItems" type="EnumerationStatObjectFieldDefinition" value="0" enumeration_type_name="YesNo" />
+        <field name="CanTargetTerrain" type="EnumerationStatObjectFieldDefinition" value="1" enumeration_type_name="YesNo" />
+        <field name="MemorizationRequirements" type="StringStatObjectFieldDefinition" value="AirSpecialist 2" />
+        <field name="Icon" type="StringStatObjectFieldDefinition" value="Skill_Air_Teleport" />
+        <field name="DisplayName" type="TranslatedStringStatObjectFieldDefinition" value="Teleportation" />
+        <field name="Description" type="TranslatedStringStatObjectFieldDefinition" value="Throw an item or character up high and drop it to the ground, dealing [1] damage." />
+        <field name="StatsDescription" type="TranslatedStringStatObjectFieldDefinition" value="Target range: [2]&lt;br&gt;Target can be moved [3] away from its position.&lt;br&gt;&lt;br&gt;Select item or character first, then select its destination." />
+        <field name="StatsDescriptionParams" type="StringStatObjectFieldDefinition" value="Damage;AreaRadius;TargetRadius" />
+        <field name="FXScale" type="IntegerStatObjectFieldDefinition" value="100" />
+        <field name="PrepareAnimationInit" type="StringStatObjectFieldDefinition" value="skill_prepare_divine_01_start" />
+        <field name="PrepareAnimationLoop" type="StringStatObjectFieldDefinition" value="skill_prepare_divine_01_loop" />
+        <field name="PrepareEffect" type="StringStatObjectFieldDefinition" value="RS3_FX_Skills_Air_FreeFall_Prepare_01:root;RS3_FX_Skills_Air_FreeFall_Prepare_Hand_01:Dummy_L_HandFX" />
+        <field name="CastAnimation" type="StringStatObjectFieldDefinition" value="skill_cast_aoe_divine_01_cast" />
+        <field name="CastTextEvent" type="StringStatObjectFieldDefinition" value="cast" />
+        <field name="CastEffect" type="StringStatObjectFieldDefinition" value="RS3_FX_Skills_Air_FreeFall_Cast_01:Dummy_R_HandFX:cast" />
+        <field name="PreviewEffect" type="StringStatObjectFieldDefinition" value="RS3_FX_UI_TargetPreviewer_Void_01" />
+        <field name="DisappearEffect" type="StringStatObjectFieldDefinition" value="RS3_FX_Skills_Air_FreeFall_Disappear_01,Detach;RS3_FX_Skills_Air_FreeFall_Disappear_Overlay_01" />
+        <field name="ReappearEffect" type="StringStatObjectFieldDefinition" value="RS3_FX_Skills_Air_FreeFall_Reappear_01" />
+        <field name="OverrideSkillLevel" type="EnumerationStatObjectFieldDefinition" value="1" enumeration_type_name="YesNo" />
+        <field name="CycleConditions" type="StringStatObjectFieldDefinition" value="Character;!Dead" />
+      </fields>
+    </stat_object>
+    <stat_object is_substat="false">
+      <fields>
+        <field name="Name" type="NameStatObjectFieldDefinition" value="Netherswap" />
+        <field name="ForGameMaster" type="EnumerationStatObjectFieldDefinition" value="1" enumeration_type_name="YesNo" />
+        <field name="Ability" type="EnumerationStatObjectFieldDefinition" value="7" enumeration_type_name="SkillAbility" />
+        <field name="Tier" type="EnumerationStatObjectFieldDefinition" value="3" enumeration_type_name="SkillTier" />
+        <field name="ActionPoints" type="IntegerStatObjectFieldDefinition" value="1" />
+        <field name="Cooldown" type="IntegerStatObjectFieldDefinition" value="4" />
+        <field name="Memory Cost" type="IntegerStatObjectFieldDefinition" value="1" />
+        <field name="Magic Cost" type="IntegerStatObjectFieldDefinition" value="0" />
+        <field name="TargetRadius" type="IntegerStatObjectFieldDefinition" value="13" />
+        <field name="AreaRadius" type="IntegerStatObjectFieldDefinition" value="13" />
+        <field name="HitRadius" type="IntegerStatObjectFieldDefinition" value="1" />
+        <field name="Height" type="IntegerStatObjectFieldDefinition" value="5" />
+        <field name="Acceleration" type="IntegerStatObjectFieldDefinition" value="20000" />
+        <field name="TeleportDelay" type="IntegerStatObjectFieldDefinition" value="500" />
+        <field name="TargetConditions" type="StringStatObjectFieldDefinition" value="(Character|Dead);!Grounded" />
+        <field name="TeleportSelf" type="EnumerationStatObjectFieldDefinition" value="0" enumeration_type_name="YesNo" />
+        <field name="CanTargetCharacters" type="EnumerationStatObjectFieldDefinition" value="1" enumeration_type_name="YesNo" />
+        <field name="CanTargetItems" type="EnumerationStatObjectFieldDefinition" value="1" enumeration_type_name="YesNo" />
+        <field name="CanTargetTerrain" type="EnumerationStatObjectFieldDefinition" value="0" enumeration_type_name="YesNo" />
+        <field name="MemorizationRequirements" type="StringStatObjectFieldDefinition" value="AirSpecialist 2" />
+        <field name="Icon" type="StringStatObjectFieldDefinition" value="Skill_Air_NetherSwap" />
+        <field name="DisplayName" type="TranslatedStringStatObjectFieldDefinition" value="Netherswap" />
+        <field name="Description" type="TranslatedStringStatObjectFieldDefinition" value="Make two characters switch places. One of the characters can be you." />
+        <field name="FXScale" type="IntegerStatObjectFieldDefinition" value="100" />
+        <field name="PrepareAnimationInit" type="StringStatObjectFieldDefinition" value="skill_prepare_divine_01_start" />
+        <field name="PrepareAnimationLoop" type="StringStatObjectFieldDefinition" value="skill_prepare_divine_01_loop" />
+        <field name="PrepareEffect" type="StringStatObjectFieldDefinition" value="RS3_FX_Skills_Void_Netherswap_Prepare_Root_01:root;RS3_FX_Skills_Void_Netherswap_Prepare_Hand_01:Dummy_L_HandFX;RS3_FX_Skills_Void_Netherswap_Prepare_Hand_Hand_01:Dummy_L_HandFX:hand01;RS3_FX_Skills_Void_Netherswap_Prepare_Hand_Hand_01:Dummy_L_HandFX:hand02" />
+        <field name="CastAnimation" type="StringStatObjectFieldDefinition" value="skill_cast_aoe_divine_01_cast" />
+        <field name="CastTextEvent" type="StringStatObjectFieldDefinition" value="cast" />
+        <field name="PreviewEffect" type="StringStatObjectFieldDefinition" value="RS3_FX_UI_TargetPreviewer_Void_01" />
+        <field name="DisappearEffect" type="StringStatObjectFieldDefinition" value="RS3_FX_Skills_Void_Netherswap_Disappear_Root_01,Detach;RS3_FX_Skills_Void_Netherswap_Disappear_Overlay_01" />
+        <field name="ReappearEffect" type="StringStatObjectFieldDefinition" value="RS3_FX_Skills_Void_Netherswap_Reappear_01" />
+        <field name="CycleConditions" type="StringStatObjectFieldDefinition" value="Character;!Dead" />
+      </fields>
+    </stat_object>
+  </stat_objects>
 </stats>

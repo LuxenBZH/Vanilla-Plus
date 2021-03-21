@@ -483,7 +483,7 @@ Balance
 	- Removed the damage penalty growth (was -1% per level)
 
 Comments
-* I know that a lot of people have been complaining about the incarnate nerf and because of it there's no point playing Summoning. This is wrong, and I'll explain why :
+ I know that a lot of people have been complaining about the incarnate nerf and because of it there's no point playing Summoning. This is wrong, and I'll explain why :
 	- The incarnate is surely much more fragile than before. However, its AP cost efficiency is still very high - meaning that with 2 AP you deal more damage than an average hit (since the summon has 4 AP during its turn). Yes, it's probably too fragile right now so I adjusted the HP scaling to be a slightly higher at low levels, so it can actually take 2 full normal hits before dying and without any strong Summoning investment.
 	- For people who says that vanilla summoner was trash, they definitely played it wrong. Vanilla champion incarnate is insanely strong, it has a hidden +50% damage bonus and is extremely bulky. Summoning is actually one of the most OP things in the original game.
 	- "If the incarnate is nerfed then summoning bad" : no. Summoning is also all the supporting skills around it - and no, the incarnate isn't the only summon out there. The Bone Widow is terrifying even in vanilla, the Fire slug and Artillery plant both deals insane amounts of damage, ... You can play summoning without the Incarnate as your main summon. And that's what Vanilla+ try to encourage. The incarnate is nerfed because way too versatile for the effort it requires to make it work in vanilla, so each summon shall now be plainly considered instead of mindlessly throwing the same incarnate in every single battle of the game.
@@ -492,3 +492,63 @@ Comments
 	- The philosophy of the mod is to stay true to vanilla. The issue is - Summoning is the ability that have the most flaws in the original game, so there's no obvious anchor on what direction I shall go. I decided to make Summoning a versatile ability since there are already a lot of ways to do burst damage and do some Michael Bay-grade styled builds.
 
 In summary, I decided to revise all summons for this update since I probably neglected them too much before. I'm open for suggestions but please provide tangible explanation for me to work with.
+
+# 1.0.5.48 (Ryker)
+New Features
+* You can now set a Vitality multiplier for players in the options
+* You can now set a damage multiplier for Corrosive and Magic damage
+
+Fixes
+* Fixed a tooltip issue with storm skills
+* Fixed a tooltip issue with Hydrosophist
+* Split Demon and Ice King tooltips (credits to Focus)
+* Changed combat abilities tooltips to remove values in their fixed description to avoid misunderstanding
+* Fixed Lifesteal not being scaled correctly
+
+Balance
+* Default skill damage multiplier for wands increased from 2.5% to 5%
+* Reduced Bows Finesse requirements from base 14 to 10
+* Increased Bows range from 1200 to 1300 (now matching crossbows)
+* Increased Bows base damage from 75 to 80
+* Increased default Crossbow movement penalty growth from -8 to -12
+* Decreased default Crossbow movement penalty from -92 to -88
+* Increased Crossbow Finesse base requirement from 14 to 16
+* Crossbows are now excluded from Ambidextrous effect
+* Steam Lance angle increased from 25 to 35
+* Steam Lance base healing amount increased from 75 to 100
+* Steam Lance healing effect do not share the same stack than Regenerating anymore, which mean they can be active concurrently
+* Steam Lance cooldown increased from 3 to 5 turns
+* Food bonus duration greatly increased
+* Two Handed Axes base damage range increased from 25 to 30
+* Two Handed Axes base damage decreased from 105 to 100
+* Teleportation cooldown increased from 4 to 5
+* Netherswap cooldown increased from 3 to 4
+
+# 1.0.6.49 (Mordus)
+Fixes
+* Fixed an error popping in the console when hit an item with a crowd-control effect
+* Fixed an error in the console when hit an item with a normal attack
+* Fixed an issue with the Real Jump module where AI calculations would be wrecked by the hot replacement of the skill
+* Fixed an issue with Pet Pal where the debuff would linger when you have only one summon after changing map in Story mode
+* Taunted should now make the AI correctly focus the taunter.
+
+Balance
+* Shackles of Pain duration reduced from 3 to 2 turns
+* Shackles of Pain cooldown increased from 5 to 6 turns
+
+Settings
+* Merged Story and GM campaign options for NPC correction formula, since the option for GM mode was not working correctly and would use Story mode option instead
+* You can now set a Vitality and a Damage multiplier for summons.
+* An option is now available to fix the Vitality gap if you enabled Vanilla Plus on a running save or GM campaign.
+
+# 1.0.7.50
+Fixes
+* Fixed an issue with the Force Fall Damage module where having the Jump version deactivated would still sometimes make character take damage when using jumps
+* Fixed an issue with the Real Jumps where they would appear even though the module is deactivated
+* Fixed a rare issue happening with skills tooltip where it could change the damage type of it in the client side such as in Astronomer class
+
+Balance
+* Increased Reaction Shot radius from 4m to 7m
+
+Miscellaneous
+* Changed description of Reactive Shot to explicitly says it requires vision on the target to work

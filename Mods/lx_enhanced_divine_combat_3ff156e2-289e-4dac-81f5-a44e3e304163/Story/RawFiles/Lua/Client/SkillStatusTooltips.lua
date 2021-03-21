@@ -173,6 +173,8 @@ local function GetSkillDamageRange(character, skill)
 		local skillDamageType = skill.Damage
         local desc = skill.StatsDescriptionParams
         local weaponSkill = false
+        local damageType = skill.DamageType
+        local damageRange = skill["Damage Range"]
 		if desc:find("Weapon:") ~= nil then
 			local damageConvert = {
 				"BaseLevelWeaponDamage",
@@ -184,20 +186,20 @@ local function GetSkillDamageRange(character, skill)
 			local weaponDamage = Ext.StatGetAttribute(weaponStat, "Damage")
 			if weaponDamage > 2 then return end
 			skillDamageType = damageConvert[tonumber(weaponDamage)+1]
-			skill.DamageType = Ext.StatGetAttribute(weaponStat, "Damage Type")
+			damageType = Ext.StatGetAttribute(weaponStat, "Damage Type")
 			damageMultiplier = Ext.StatGetAttribute(weaponStat, "DamageFromBase")*0.01
-			skill["Damage Range"] = Ext.StatGetAttribute(weaponStat, "Damage Range")
+			damageRange = Ext.StatGetAttribute(weaponStat, "Damage Range")
         end
-        local damageType = skill.DamageType
+        
         -- Ext.Print(skill.Name, damageType)
         if damageMultiplier <= 0 then
             return {}
         end
 
         local level = character.Level
-        if (level < 0 or skill.OverrideSkillLevel == "Yes") and skill.Level > 0 then
-            level = skill.Level
-        end
+        -- if (level < 0 or skill.OverrideSkillLevel == "Yes") and skill.Level > 0 then
+        --     level = skill.Level
+        -- end
         
         local attrDamageScale
         if skillDamageType == "BaseLevelDamage" or skillDamageType == "AverageLevelDamge" or skillDamageType == "MonsterWeaponDamage" then
@@ -221,9 +223,8 @@ local function GetSkillDamageRange(character, skill)
 		end
 		--Ext.Print("Global mult", globalMult, skillDamageType)
         local baseDamage = CalculateBaseDamage(skillDamageType, character, 0, level) * attrDamageScale * damageMultiplier * globalMult
-        local damageRange = skill['Damage Range'] * baseDamage * 0.005
+        damageRange = damageRange * baseDamage * 0.005
 
-        local damageType = skill.DamageType
         local damageTypeBoost = 1.0 + Game.Math.GetDamageBoostByType(character, damageType)
         local damageBoost = 1.0 + (character.DamageBoost / 100.0)
         local damageRanges = {}
@@ -336,7 +337,7 @@ local function SkillGetDescriptionParam(skill, character, isFromItem, par, ...)
 	return nil
 end
 
-Ext.RegisterListener("SkillGetDescriptionParam", SkillGetDescriptionParam)
+-- Ext.RegisterListener("SkillGetDescriptionParam", SkillGetDescriptionParam)
 
 local DamageTypes = {
     None = 0,

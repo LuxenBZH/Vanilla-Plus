@@ -5,10 +5,12 @@
 	<content contentuid="h049f29acg76c5g4336ga831g3effd3b94d4e">Default : 1&lt;br&gt;&lt;font color=#ff0000&gt;Require a game restart&lt;/font&gt;</content>
 	<content contentuid="h055c33d3ge1f1g431eg8fd0gebd6da7eb962">Morning Person</content>
 	<content contentuid="h06098edfg8629g4f30gb6d4g45057f6622ce">Deals [1] damage each turn.</content>
+	<content contentuid="h06c77362g1304g4f81ga661g695dc6b814bc">A character with Demon has an extra 30% Fire Resistance, but takes a 15% penalty to Water Resistance. Additionally, the maximum Fire Resistance is raised by 10 and grants immunity to Burning and Necrofire.</content>
 	<content contentuid="h08adfff4gbd75g4ee9g8070gf928d43a6302">Stench</content>
 	<content contentuid="h092684e6gbf69g4372g99f8g4743516b0efe">Offhand penalty: [1]% (penalty reduced by [2]% from Dual-Wielding)</content>
+	<content contentuid="h0a8b0b59g5da9g483fg86a3g59afce30dbb7">Next Level [1]: Water attacks deal +[2]% more damage, +[3]% Vitality healed, +[4]% Magic Armour from skills and potions.</content>
 	<content contentuid="h0b24b325g8818g4552g97ebgcb6a2481f573">Set the skill damage multiplier percentage when a staff is equipped.&lt;br&gt;Default : 10</content>
-	<content contentuid="h0bd1a48dg8f40g44b7g9229g826720785117">Activate for Adventure mode</content>
+	<content contentuid="h0bd1a48dg8f40g44b7g9229g826720785117">Activate stats correction</content>
 	<content contentuid="h0c972945g2320g4a0agbfebg86667bcf4c7b">CQB Ranged Combat Penalty</content>
 	<content contentuid="h0cf4ee90g8298g491eg9c31g396810cbce3b">Dodge Fatigue (2)</content>
 	<content contentuid="h0dd878f8g8f63g4c9ag86b2g2488d2a86c79">Potion Poisoning</content>
@@ -19,8 +21,8 @@
 	<content contentuid="h19525dddg3cadg4699g94d2g342b1192a332">Set the target distance threshold which defines when do ranged weapons gets a penalty.&lt;br&gt;Default : 2&lt;br&gt;</content>
 	<content contentuid="h19eab510gec8cg4d4fg92fag5918044ab001">Default : 3</content>
 	<content contentuid="h1a6bf0edg47eeg4ee8gaa86g5a608e5dda7b">Explode all corpses around you, dealing [1] in the area.</content>
-	<content contentuid="h1b361ce1gd5d3g4c0eg8b8cg7d87658e755f">Activate the stats correction formula for Story mode or any additional custom Adventure mod. Strongly recommended.&lt;br&gt;Default : on&lt;br&gt;&lt;font color=#ff0000&gt;Require a game restart&lt;/font&gt;</content>
-	<content contentuid="h1bae56a9ga45fg431fg80bfg2afbef03c1d2">Perseverance restores Magic Armour on recovering from Frozen or Stunned, and restores Physical Armour on recovering from Knocked Down or Petrified. Additionally, 2% of maximum Vitality is restored per point. When recovering from a Staggered or Confused status, Perseverance also triggers but its effect is halved.</content>
+	<content contentuid="h1b361ce1gd5d3g4c0eg8b8cg7d87658e755f">Activate the stats correction formula. Strongly recommended when playing Story mode or any Adventure mod that has not been balanced for Vanilla Plus.&lt;br&gt;Default : on&lt;br&gt;&lt;font color=#ff0000&gt;Require a game restart&lt;/font&gt;</content>
+	<content contentuid="h1bae56a9ga45fg431fg80bfg2afbef03c1d2">Perseverance restores Magic Armour on recovering from Frozen or Stunned, and restores Physical Armour on recovering from Knocked Down or Petrified. Additionally, a fraction of maximum Vitality is restored. When recovering from a Staggered or Confused status, Perseverance also triggers but its effect is halved.</content>
 	<content contentuid="h1e5caa33g4d5dg4f42g91edg9f546d42f56b">Increases all Skill damage by [1]%.</content>
 	<content contentuid="h206ce4abg4f84g4b2dg934aga0d96a602f2c">Two-Handed increases damage and Critical Multiplier when using two-handed melee weapons (swords, axe, mace, spear or staff).</content>
 	<content contentuid="h22a39843gf968g4212g851dg6e121235fa85">Bless target character or surface. Prevent Diseased, Decaying, Petrified, Stunned, increase Dodge by [1]%, Accuracy by [2]% and elemental resistances by [3].</content>
@@ -39,6 +41,7 @@
 	<content contentuid="h314ee256g43cdg4864ga519gd23e909ec63e">Increase all Skill damage by [1]% (stackable when dual-wielding)</content>
 	<content contentuid="h3240460dgd250g435bg9ebegc1682089c5ed">Explode target corpse, dealing [1] in the area.</content>
 	<content contentuid="h32fcbbfbgec6bg4af4g894ag49fd997307fe">Any attempt to apply Stunned, Petrified, Frozen, Madness, Terrified or Charm will apply Confused instead.</content>
+	<content contentuid="h362a94a5g0b60g4be6g9998gd44214d4a78f">Sacrifice yourself to bring an ally back to life. Reduce your Vitality by [1]% and ressurrects target character with maximum Vitality.</content>
 	<content contentuid="h36683e27ge1cag45f9gb7ddgdf954e865e33">Default : 2</content>
 	<content contentuid="h39ded39fg40a6g46a1gafe4gbaf448e4f20a">Last armour penetration</content>
 	<content contentuid="h3c306881g0106g4b61g931eg1e837bca6149">Walk It Off (5)</content>
@@ -62,9 +65,10 @@
 	<content contentuid="h51631525ga7c5g4ff3gbf10ga04307fcdf7e">When recovering from a hard crowd control effect, both Momentum and Lingering will always be triggered together whatever the crowd control effect it was. &lt;br&gt;Default : off&lt;br&gt;</content>
 	<content contentuid="h5181573egec45g4adcgb6d2g6b8d856c3b4f">Crit. Chance Backstab Bonus</content>
 	<content contentuid="h5340847eg5242g4a5bgb0dcg581a25c167ce">Default : 2</content>
-	<content contentuid="h54f2ea13g97dbg4b86g9d13geeb81186faca">[1] increases damage and Critical Chance when using bows and crossbows. Also increases the range by 0.5m per point when wielding a bow, crossbow or wand(s).</content>
+	<content contentuid="h54f2ea13g97dbg4b86g9d13geeb81186faca">Ranged increases damage and Critical Chance when using bows and crossbows. Also increases the range when wielding a bow, crossbow or wand(s).</content>
 	<content contentuid="h552b479bg3e56g4ea1gb01fg96d986de5e5f">Activate the stats correction formula for GM mode. This is up to your preferences, but if you already created and balanced encounters, you might need to rebalance them.&lt;br&gt;Default : off&lt;br&gt;&lt;font color=#ff0000&gt;Require a game restart&lt;/font&gt;</content>
 	<content contentuid="h562bb140gab7bg4f78gba75g5aaf2cd7f27b">Default : 3</content>
+	<content contentuid="h579e2544g8e6cg4bbdg92a1g5598996b8f7b">Apply a multiplier to all Corrosive and Magic damage. &lt;br&gt;Default : 100</content>
 	<content contentuid="h5822708bgb172g42d7g8d1fg948980c9d8eb">Finesse Movement Bonus</content>
 	<content contentuid="h584b8016g05e3g4c00gbaccg0c441bf1c3f5">Activate fall damage when character use Jump skills or Projectile skills moving the character. Damage is not applied for Fly.</content>
 	<content contentuid="h58e777ddgd569g4c0dg8f58gece56cce053d">+[1] point(s) = +[2]% to all Damage, +[3]% more for skills, +[4]% Accuracy and attacks ignore [5]% Resistance if it&apos;s under 100%.</content>
@@ -88,7 +92,7 @@
 	<content contentuid="h6c5806e8g7bccg4ecdg959eg254d17edbd71">This character has drunk a lot of potions. One more potion and they will overdose!</content>
 	<content contentuid="h6d219e8ag59abg4adegbf53g2f73649ee312">The correction indice for damaging attribute if there is a tie between two or all three damaging attributes for NPCs. The higher it is, the lower will be the final result.&lt;br&gt;Default : 60&lt;br&gt;&lt;font color=#ff0000&gt;Require a game restart&lt;/font&gt;</content>
 	<content contentuid="h6d2cd8aeg4e09g4003ga57cg3fea3a0f5502">Wits increase your Critical Chance by [1]%, Initiative by [2], increase damages dealt by damaging statuses by [3]% per point and your ability to detect traps and find hidden treasures.</content>
-	<content contentuid="h6d523ea5g116eg4380g816fg72079d80f321">Set the skill damage multplier pencetage when a wand is equipped (can be doubled when dual-wielding).&lt;br&gt;Default : 2.5</content>
+	<content contentuid="h6d523ea5g116eg4380g816fg72079d80f321">Set the skill damage multplier pencetage when a wand is equipped (can be doubled when dual-wielding).&lt;br&gt;Default : 5</content>
 	<content contentuid="h6d76eb15gdb1ag4ebeg8001g58173516a923">Walk It Off reduces all status durations by 1 turn, including positive statuses. Does not affect statuses with a duration of 1 turn. Also increases all resistances by 10% each time you are hit by a character, up to a maximum of 30%, until the next turn.</content>
 	<content contentuid="h6e9ec88dgcbb7g426bgb1d9g69df0240825a">Level [1]: +[2]% Damage, +[3]% Critical Multiplier.</content>
 	<content contentuid="h70707bb2g5a48g4571g9a68ged2fe5a030ea">Level [1]: +[2]% Damage, +[3]% accuracy, +[4]% armours and +[5]% to Elemental Resistances.</content>
@@ -96,14 +100,16 @@
 	<content contentuid="h7184b190ge934g49d4g9b5cg67ff537bd723">Shoot a volatile bolt that deals [1], and then creates a corresponding surface. Chaos trigger a random type of damage.</content>
 	<content contentuid="h71b09f9fg285fg4532gab16g1c7640864141">Damage is based on your level and trigger the additional skill bonus from Intelligence.</content>
 	<content contentuid="h74f2f4d1gb916g4bccgb635g264d3444d84b">Perseverance Vitality Restoration</content>
-	<content contentuid="h751cb9fcgcc15g485fg80dag96d013bb5fff">Single-Handed increases damage and Accuracy when using a single-handed weapon (dagger, sword, axe, mace or wand) with a shield or empty off-hand. Increases armours by 6% and resistances by 2% per point.</content>
+	<content contentuid="h751cb9fcgcc15g485fg80dag96d013bb5fff">Single-Handed increases damage and Accuracy when using a single-handed weapon (dagger, sword, axe, mace or wand) with a shield or empty off-hand. Also increases armours and resistances.</content>
 	<content contentuid="h75391bafg8744g4441g9b1egf52f182f96fc">Increases all damage by [1]% per point. Dodge is increased by [2]%, Critical Chance by [3]% and Movement by [4]m per AP per point.</content>
 	<content contentuid="h753b1b3fgdfdfg428fg90e0g9e631beb1f06">Strength Global Damage Bonus</content>
 	<content contentuid="h75422cb0g14ccg4731g89a7gae632f7669a8">Str. Resistance Bypass Multiplier</content>
 	<content contentuid="h7579318fg2a13g4185g856bgad8960145220">Confused (2)</content>
 	<content contentuid="h76856ed3gf1cdg4c63g887fgb4c1fd40952b">This summon is weaker.</content>
-	<content contentuid="h768669d0g02adg48f7g901eg83068a96bf19">Dual-Wielding increases damage and Dodging when wielding two Single-Handed weapons, and increases off-hand damage by 10% per point.</content>
+	<content contentuid="h768669d0g02adg48f7g901eg83068a96bf19">Dual-Wielding increases damage and Dodging when wielding two Single-Handed weapons and increases off-hand damage.</content>
 	<content contentuid="h7b1052abg9968g4acdgb399g989954144550">Finesse Global Damage Bonus</content>
+	<content contentuid="h7bcfac6eg76a6g4ccega83bg2ff334058ccc">Armour Damage Multiplier</content>
+	<content contentuid="h7c3dcbc3gb3f4g4746g9a94g00021c9c2930">Target a circular area. Until your next turn, you will reflexively shoot at the first three enemies moving within this area if you have sight on them.</content>
 	<content contentuid="h7fec5db8g58d3g4abbgab7ag03e19b542bef">Total damage: [1]-[2]</content>
 	<content contentuid="h80149363gb072g4531gae22gf187147b9c44">CC Recover Duration</content>
 	<content contentuid="h81ca938fg5ef4g452agb093g1294e2f0718b">Leech heals you when standing in blood. Also increases Lifesteal by 25%.</content>
@@ -113,6 +119,7 @@
 	<content contentuid="h8521db9fgfb9ag40c7g8767g7465226e3a00">Confused</content>
 	<content contentuid="h863fc18ag2674g47e8g9657ge6fb4a5b074f">Activate fall damage when characters are victim of the Force property of some skills.&lt;br&gt;Scoundrel reduce the height tolerance for each point. Damage is not applied if the victim has Wings.</content>
 	<content contentuid="h878c02c0gc629g470dg955cg80dc2a125cb2">Stench decreases everyone&apos;s attitude towards you by [2], but melee opponents find you less attractive in combat. Increases your Poison resistance by 30% and makes you immune to Diseased and Infected.</content>
+	<content contentuid="h88ed61e9g4d7fg4eb7g81f1g9e7c48dde602">Multiply the base Vitality of all summons (ally and enemy). &lt;br&gt;Default : 100 &lt;br&gt;&lt;font color=#ff0000&gt;Require a game restart&lt;/font&gt;</content>
 	<content contentuid="h8ddc8dd4ge8feg4420ga6dag0d87ce8ec743">[1] lets you evade attacks of opportunity. Increases your Dodge by 5% and Movement by 1m per AP.</content>
 	<content contentuid="h9055594bg16a7g48b8g81ffg25bbbf89963b">Sets off a chain reaction that causes ice areas to explode into water puddles, dealing [1] and setting Chilled.</content>
 	<content contentuid="h93731b66g32c8g425dg8ed5g9863a8d35279">Unlock Whirlwind and Rush for your Incarnate. Provides [1] (amount depends on your level). Increases damage by [2]% and increase maximum Vitality by 15%.</content>
@@ -137,12 +144,17 @@
 	<content contentuid="hb5c81b75ga23dg44aeg8ceeg6c88bf367e38">Secondary Attribute Correction</content>
 	<content contentuid="hb924258ag2cf7g4c11gaf4eg8b7de303c197"> </content>
 	<content contentuid="hbce8b81ag1259g4a30g99f9g1f99e9b74583">Elemental Weapons</content>
+	<content contentuid="hbd257f75g9084g4c73g9db0g77d418e677c9">A character with Ice King has an extra 30% Water Resistance, but takes a 15% penalty to Fire Resistance. Additionally, the maximum Water Resistance is raised by 10. All Water damage you deal are increased by 20% and grants immunity to Chilled.</content>
 	<content contentuid="hbd5f39f8g78e1g42c8g95b6g1917a8c65816">Target character and surrounding allies receive Sparkmaster status that make melee attacks firing sparks that can fork twice at nearby enemies. Each spark hit deals [1].</content>
 	<content contentuid="hbde985cfgb1c4g4bb6g9a61gbec72c9b4ed6">Mnenomic doubles all points invested in Memory.</content>
+	<content contentuid="hbe73e4f8g0448g4a54gaa87g3905ebfeb604">Use this if you enabled Vanilla Plus on a running save and you witness most characters and items lack some Vitality.</content>
 	<content contentuid="hbef625c0g5d09g42f2g9065gf9099a39e11e">Dodge Fatigue (3)</content>
+	<content contentuid="hbf283d5cgda64g4436g886cg3452c10aa414">Warning ! Use it only if you enabled Vanilla Plus in a running save and witness everything lacking Vitality. The fix might be somewhat inaccurate and can potentially break encounters. Proceed ?</content>
 	<content contentuid="hbf9f6f92g699ag47b3gb967g5bfa164a0612">Bloody Weapons</content>
+	<content contentuid="hc13534c0gc9e9g453dgab9bg194a3f41689b">Multiply the base vitality of the player characters and summons. &lt;br&gt;Default : 100 &lt;br&gt;&lt;font color=#ff0000&gt;Require a game restart&lt;/font&gt;</content>
 	<content contentuid="hc13ac1f2ge15eg4791ga4bcgca5508715345">Activate for GM mode</content>
 	<content contentuid="hc385872cge252g4da0gbc7agf774df831f28">Electric Weapons</content>
+	<content contentuid="hc4400964gcf4bg429cg882cg9e90ba8cf0ce">Level [1]: Water attacks deal +[2]% more damage, +[3]% Vitality healed, +[4]% Magic Armour from skills and potions.</content>
 	<content contentuid="hc453e399ge1f5g41f1gaeabgcdd4de833c63">A character with [1] has an extra 30% [3], but takes a [4]% penalty to [5]. Additionally, the maximum [3] is raised by [6]. Demon grants immunity to Burning and Necrofire. Ice King increases all Water damage you deal by 20% and grants immunity to Chilled.</content>
 	<content contentuid="hc5574731g874ag4d82gb4a0gba70af698168">Crossbow Base Penalty</content>
 	<content contentuid="hc5d5552bg6b33g44c1gbb0cg8d55a101f081">Level [1]: +[2]% Damage, +[3]% Dodging and increase Offhand damage by [4]%.</content>
@@ -150,10 +162,12 @@
 	<content contentuid="hc8901962g28ceg4fd9g82c2ge28ef16abd5b">Finesse Critical Chance Bonus</content>
 	<content contentuid="hcb8f9837gdf0fg4a01ga7d6g5ed522b74189">[1] allows you to flee combat even when enemies are close by. Provides immunity to Crippled, Entangled and Enwebbed.</content>
 	<content contentuid="hcf74a6efg1ab6g45ecgaa12g147f528975ee">Throw [1] explosive traps at target locations. Each trap takes a turn to activate. When active, trap will explode when a character approaches it, dealing [2].</content>
+	<content contentuid="hd15c8d51gb26bg460cgaa29g8f2cc4f96877">Summons Damage Boost</content>
 	<content contentuid="hd281d94fg1f41g4af0ga8c2g69747893e1f2">This character has staggered during their recovery.</content>
 	<content contentuid="hd2fd14e5gaf70g4acagb99bg491d9c3c5ce2">Staggered</content>
 	<content contentuid="hd4f241b4gb997g41efga6c0gb5d38e0ad0b0">Intelligence Accuracy Bonus</content>
 	<content contentuid="hd5148365gb1f7g4f21g9521gd50d897e5e4a">Default : 20&lt;br&gt;&lt;font color=#ff0000&gt;Require a game restart&lt;/font&gt;</content>
+	<content contentuid="hd573aa44gad41g4232g8040gf59652415d1d">Summons Vitality Multiplier</content>
 	<content contentuid="hd980a2a1gc33eg4810gafc8g07f55ba70245">Duelist</content>
 	<content contentuid="hd9f92f34g0daag4393g887cg1be725ab19ab">Dodge Fatigue</content>
 	<content contentuid="hda7ee9a4g5bbeg4c62g96b7ge31b21e094f3">Next Level [1]: +[2]% Damage, +[3]% Critical Multiplier.</content>
@@ -174,12 +188,14 @@
 	<content contentuid="he9b44d3fg577fg4d9bgab26g3a6b1910b1f7">The correction indice for the damaging attributes that are not the highest for NPCs. The higher it is, the lower will be the final result.&lt;br&gt;Default: 70&lt;br&gt;&lt;font color=#ff0000&gt;Require a game restart&lt;/font&gt;</content>
 	<content contentuid="heace2e30g4075g428cg8163g3fc8eff9323b">Armour penetration</content>
 	<content contentuid="heb8111a8g1b89g4bf6gbf1age84937263ba2">Set the Movement penalty of Crossbows growth per level.&lt;br&gt;Default : -8&lt;br&gt;&lt;font color=#ff0000&gt;Require a game restart&lt;/font&gt;</content>
+	<content contentuid="hed14cc79g467bg4d3fgbed6gec529691740e">Multiply all damages of summons (ally and enemy). &lt;br&gt; Default: +0% &lt;br&gt;&lt;font color=#ff0000&gt;Require a game restart&lt;/font&gt;</content>
 	<content contentuid="hf130b10ag0b9ag4c68g8c17g54d30b86fe2b">Pet Pal (Summoner)</content>
 	<content contentuid="hf2c55a59ge06dg4e77g8d04g69f9ea668541">Set the percentage of damage going through armour when one type of armour is depleted. Additive to the first value.&lt;br&gt;Default : 25</content>
 	<content contentuid="hf2f2ceb4g7be9g453fgb093ga8d7c563f782">Reduce damage going through Magic Armour by [1]%</content>
 	<content contentuid="hf338b2c0gd158g49b4ga2ceg15a7099a4b7b">Skills gets a bonus of +[1]% from Intelligence</content>
 	<content contentuid="hf3893f8fg20c5g4078ga83cgef8783082103">The first skill used each turn has its cooldown reduced by one turn (minimum 1).</content>
-	<content contentuid="hf3cd8067g36c0g4b48ga4dfg361f33579b43">Ambidextrous reduces the cost of using grenades and scrolls by 1 AP when your off-hand is free. Refund the AP cost for 2 equipment switches per turn.</content>
+	<content contentuid="hf3cd8067g36c0g4b48ga4dfg361f33579b43">Ambidextrous reduces the cost of using grenades and scrolls by 1 AP when your off-hand is free. Refund the AP cost for 2 equipment switches per turn (except for Crossbows).</content>
+	<content contentuid="hf69fc03eg0a46g4ed6g80e4ga325a7ffe659">Fix Vitality Gap</content>
 	<content contentuid="hf7a19975gea84g44a3g8fffg5b4f063b88b4">Reduce damage going through Physical and Magic Armour by [1]%</content>
 	<content contentuid="hf7f34763g19feg4018gb6f6g4cc298dc512d">Int. Global Damage Bonus</content>
 	<content contentuid="hf859c7e8g7e30g48e3ga24aga943a18f0c5c">Set the percentage of damage penalty when using a ranged weapon on a target within the CQB range limit.&lt;br&gt;Default : 35</content>
@@ -191,4 +207,5 @@
 	<content contentuid="hfe32bba9g038fg4541g921cge1be27275d5f">Activate Force fall damage</content>
 	<content contentuid="hfe5567d9g5f27g4729g8774g36bce3393b4d">Walk It Off (4)</content>
 	<content contentuid="hffc37ae5g6651g4a60ga1c1g49d233cb1ca2">Next Level [1]: +[2]% Damage, +[3]% Critical Chance and increase Range by [4]m.</content>
+	<content contentuid="hffe960e0g8d88g4c63gb285g507247c47d43">Player Vitality Multiplier</content>
 </contentList>

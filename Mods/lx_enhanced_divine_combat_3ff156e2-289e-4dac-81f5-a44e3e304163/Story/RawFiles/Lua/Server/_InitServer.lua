@@ -7,6 +7,13 @@ Ext.Require("Server/Weapons.lua")
 Ext.Require("Server/CustomBonuses.lua")
 Ext.Require("Server/Modules/Modules.lua")
 Ext.Require("Server/Consumables.lua")
+Ext.Require("Server/Taunt.lua")
+
+gameLevel = ""
+
+Ext.RegisterOsirisListener("GameStarted", "2", "after", function(level, editor)
+	gameLevel = level
+end)
 
 if Mods.LeaderLib ~= nil then
 	Mods.LeaderLib.Features.BackstabCalculation = false
@@ -55,6 +62,82 @@ local function DGM_consoleCmd(cmd, ...)
 end
 
 Ext.RegisterConsoleCommand("DGM_CleanPermaBoosts", DGM_consoleCmd)
+
+--- @param level integer
+--- @param extra string[]
+local function GetVitalityBoostByLevel(level, extra)
+    local expGrowth = extra.VitalityExponentialGrowth
+    local growth = expGrowth ^ (level - 1)
+
+    if level >= extra.FirstVitalityLeapLevel then
+        growth = growth * extra.FirstVitalityLeapGrowth / expGrowth
+    end
+
+    if level >= extra.SecondVitalityLeapLevel then
+        growth = growth * extra.SecondVitalityLeapGrowth / expGrowth
+    end
+
+    if level >= extra.ThirdVitalityLeapLevel then
+        growth = growth * extra.ThirdVitalityLeapGrowth / expGrowth
+    end
+
+    if level >= extra.FourthVitalityLeapLevel then
+        growth = growth * extra.FourthVitalityLeapGrowth / expGrowth
+    end
+
+    local vit = level * extra.VitalityLinearGrowth + extra.VitalityStartingAmount * growth
+    return Ext.Round(vit / 5.0) * 5.0
+end
+
+Ext.RegisterNetListener("DGM_FixConstitutionGap", function(...)
+	OpenMessageBoxYesNo(CharacterGetHostCharacter(), "LXDGM_FixConstitutionGap_Message")
+end)
+
+Ext.RegisterOsirisListener("MessageBoxYesNoClosed", 3, "after", function(char, message, result)
+	if message ~= "LXDGM_FixConstitutionGap_Message" then return end
+	if result == 0 then return end
+	local allCharacters = Ext.GetAllCharacters(gameLevel)
+	local vanillaVars = {
+		VitalityStartingAmount = 21,
+		VitalityLinearGrowth = 9.091,
+		FirstVitalityLeapLevel = 4,
+		SecondVitalityLeapLevel = 9,
+		ThirdVitalityLeapLevel = 12,
+		FourthVitalityLeapLevel = 18,
+		FirstVitalityLeapGrowth = 1.25,
+		SecondVitalityLeapGrowth = 1.25,
+		ThirdVitalityLeapGrowth = 1.25,
+		FourthVitalityLeapGrowth = 1.35,
+		VitalityExponentialGrowth = 1.25
+	}
+	for i,guid in pairs(allCharacters) do
+		local vitalityPerc = CharacterGetHitpointsPercentage(guid)
+		if vitalityPerc < 100 and vitalityPerc > 0 then
+			local char = Ext.GetCharacter(guid)
+			local oldMaxVitality = GetVitalityBoostByLevel(char.Stats.Level, vanillaVars)*(1+0.07*char.Stats.Constitution)
+			local newMaxVitality = GetVitalityBoostByLevel(char.Stats.Level, Ext.ExtraData)*(1+Ext.ExtraData.VitalityBoostFromAttribute*char.Stats.Constitution)
+			local ratio = newMaxVitality / oldMaxVitality
+			
+			if newMaxVitality > oldMaxVitality then
+				if (char.Stats.CurrentVitality*ratio) / char.Stats.MaxVitality > 0.75 then
+					char.Stats.CurrentVitality = char.Stats.MaxVitality
+				else
+					char.Stats.CurrentVitality = math.floor(char.Stats.CurrentVitality*ratio)
+				end
+			end
+		end
+	end
+	local allItems = Ext.GetAllItems(gameLevel)
+	for i,guid in pairs(allItems) do
+		local item = Ext.GetItem(guid)
+		if item.Vitality ~= 0 then
+			local oldMaxVitality = GetVitalityBoostByLevel(item.LevelOverride, vanillaVars)
+			local newMaxVitality = GetVitalityBoostByLevel(item.LevelOverride, Ext.ExtraData)
+			local ratio = newMaxVitality / oldMaxVitality + 0.2
+			item.Vitality = math.floor(item.Vitality*ratio)
+		end
+	end
+end)
 
 -- local function EnableStatsOverride(flag)
 --     if flag == "LXDGM_NPCStatsCorrectionCampaign" or "LXDGM_NPCStatsCorrectionGM" then

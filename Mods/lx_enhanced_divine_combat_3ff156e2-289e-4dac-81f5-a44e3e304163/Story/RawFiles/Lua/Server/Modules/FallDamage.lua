@@ -8,7 +8,7 @@ local nullifyStatuses = {
 
 local function CalculateFallDamage(character)
     local height = jumpers[character][1] - jumpers[character][2]
-    Ext.Print("Calculating fall damage, total height:", height)
+    -- Ext.Print("Calculating fall damage, total height:", height)
     if height > 5 then
         for i,status in pairs(nullifyStatuses) do
             if HasActiveStatus(character, status) == 1 then return end
@@ -35,12 +35,12 @@ end
 Ext.RegisterOsirisListener("TimerFinished", 1, "before", TimerJumpSkill)
 
 local function GetJumpHeight(character, x, y, z, skill, skillType, skillElement)
-    if not PersistentVars["DGM_FallDamage"] then return end
+    if not PersistentVars["DGM_FallDamage_Jump"] then return end
     if skillType == "jump" or (skillType == "projectile" and Ext.GetStat(skill).MovingObject == "Caster") then
         local bX, bY, bZ = GetPosition(character)
         jumpers[character] = {bY, y}
     end
-    if skillType == "jump" and PersistentVars["DGM_FallDamage_Jump"] then
+    if skillType == "jump" then
         jumpSkillUsers[#jumpSkillUsers+1] = character
         TimerLaunch("DGM_FallDamageJumpSkill", 1000)
     end
@@ -77,7 +77,7 @@ local function CheckShockwavePos(timer)
     local check = false
     for character, pos in pairs(fallers) do
         local nX, nY, nZ = GetPosition(character)
-        Ext.Print(nX, nY, nZ, "|", pos[1], pos[2], pos[3])
+        -- Ext.Print(nX, nY, nZ, "|", pos[1], pos[2], pos[3])
         if nX == pos[1] and nY == pos[2] and nZ == pos[3] then
             jumpers[character][2] = nY
             fallers[character] = nil

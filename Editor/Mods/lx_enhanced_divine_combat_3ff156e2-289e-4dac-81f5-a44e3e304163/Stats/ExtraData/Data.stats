@@ -440,7 +440,7 @@
     <stat_object is_substat="false">
       <fields>
         <field name="Name" type="NameStatObjectFieldDefinition" value="DGM_WandSkillMultiplier" />
-        <field name="Value" type="FloatStatObjectFieldDefinition" value="2.5" />
+        <field name="Value" type="FloatStatObjectFieldDefinition" value="5" />
       </fields>
     </stat_object>
     <stat_object is_substat="false">
@@ -574,13 +574,13 @@
     <stat_object is_substat="false">
       <fields>
         <field name="Name" type="NameStatObjectFieldDefinition" value="DGM_CrossbowBasePenalty" />
-        <field name="Value" type="FloatStatObjectFieldDefinition" value="-92" />
+        <field name="Value" type="FloatStatObjectFieldDefinition" value="-88" />
       </fields>
     </stat_object>
     <stat_object is_substat="false">
       <fields>
         <field name="Name" type="NameStatObjectFieldDefinition" value="DGM_CrossbowLevelGrowthPenalty" />
-        <field name="Value" type="FloatStatObjectFieldDefinition" value="-8" />
+        <field name="Value" type="FloatStatObjectFieldDefinition" value="-12" />
       </fields>
     </stat_object>
     <stat_object is_substat="false">
@@ -663,6 +663,36 @@
       <fields>
         <field name="Name" type="NameStatObjectFieldDefinition" value="IncarnateSummoningLevel" />
         <field name="Value" type="FloatStatObjectFieldDefinition" value="10" />
+      </fields>
+    </stat_object>
+    <stat_object is_substat="false">
+      <fields>
+        <field name="Name" type="NameStatObjectFieldDefinition" value="DGM_ArmourReductionMultiplier" />
+        <field name="Value" type="FloatStatObjectFieldDefinition" value="100" />
+      </fields>
+    </stat_object>
+    <stat_object is_substat="false">
+      <fields>
+        <field name="Name" type="NameStatObjectFieldDefinition" value="DGM_PlayerVitalityMultiplier" />
+        <field name="Value" type="FloatStatObjectFieldDefinition" value="100" />
+      </fields>
+    </stat_object>
+    <stat_object is_substat="false">
+      <fields>
+        <field name="Name" type="NameStatObjectFieldDefinition" value="DGM_NpcVitalityMultiplier" />
+        <field name="Value" type="FloatStatObjectFieldDefinition" value="100" />
+      </fields>
+    </stat_object>
+    <stat_object is_substat="false">
+      <fields>
+        <field name="Name" type="NameStatObjectFieldDefinition" value="DGM_SummonsVitalityMultiplier" />
+        <field name="Value" type="FloatStatObjectFieldDefinition" value="100" />
+      </fields>
+    </stat_object>
+    <stat_object is_substat="false">
+      <fields>
+        <field name="Name" type="NameStatObjectFieldDefinition" value="DGM_SummonsDamageBoost" />
+        <field name="Value" type="FloatStatObjectFieldDefinition" value="0" />
       </fields>
     </stat_object>
   </stat_objects>

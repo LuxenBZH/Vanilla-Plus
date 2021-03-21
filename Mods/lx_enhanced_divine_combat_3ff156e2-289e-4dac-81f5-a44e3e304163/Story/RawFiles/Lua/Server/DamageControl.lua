@@ -3,7 +3,7 @@
 ---@param instigator EsvCharacter
 ---@param status EsvStatusHit
 ---@param context HitContext
-function DamageControl(target, handle, instigator)
+function DamageControl(target, instigator, hitDamage, handle)
 -- function DamageControl(status, context)
 	--[[
 		Main damage control : damages are teared down to the original formula and apply custom
@@ -43,6 +43,7 @@ function DamageControl(target, handle, instigator)
 	end
 	
 	local weaponTypes = GetWeaponsType(instigator)
+	-- local hitStatus = Ext.GetStatus(target, handle)
 	
 	-- Get hit damages
 	for i,dmgType in pairs(types) do
@@ -118,9 +119,9 @@ function DamageControl(target, handle, instigator)
 		-- Apply bonus from wand and staves
 		if weaponTypes[1] == "Wand" then
 			if weaponTypes[2] == "Wand" then
-				globalMultiplier = globalMultiplier + Ext.ExtraData.DGM_WandSkillMultiplier/100
-			else
 				globalMultiplier = globalMultiplier + Ext.ExtraData.DGM_WandSkillMultiplier/100*2
+			else
+				globalMultiplier = globalMultiplier + Ext.ExtraData.DGM_WandSkillMultiplier/100
 			end
 		elseif weaponTypes[1] == "Staff" then
 			globalMultiplier = globalMultiplier + Ext.ExtraData.DGM_StaffSkillMultiplier/100
@@ -135,7 +136,7 @@ function DamageControl(target, handle, instigator)
 	
 	-- Apply damage changes and side effects
 	if skillID == "Projectile_Talent_Unstable" then globalMultiplier = 1 end
-	damages = ChangeDamage(damages, (damageBonus/100+1)*globalMultiplier, 0, instigator)
+	damages = ChangeDamage(damages, (damageBonus/100+1)*globalMultiplier, 0, instigator, target, handle)
 	ReplaceDamages(damages, handle, target)
 	if ObjectIsCharacter(target) == 1 then SetWalkItOff(target, handle) end
 	
@@ -146,6 +147,7 @@ end
 ---@param target EsvCharacter
 ---@param damages table
 function InitiatePassingDamage(target, damages)
+	if ObjectIsCharacter(target) ~= 1 then return end
 	for dmgType,amount  in pairs(damages) do
 		if amount ~= 0 then
 			local piercing = CalculatePassingDamage(target, amount, dmgType)
@@ -158,20 +160,33 @@ end
 ---@param multiplier number
 ---@param value number
 ---@param instigator EsvCharacter
-function ChangeDamage(damages, multiplier, value, instigator)
+function ChangeDamage(damages, multiplier, value, instigator, target, handle)
+	local lifesteal = NRD_StatusGetInt(target, handle, "LifeSteal")
+	instigator = Ext.GetCharacter(instigator)
 	for dmgType,amount in pairs(damages) do
 		-- Ice king water damage bonus
-		if dmgType == "Water" and CharacterHasTalent(instigator, "IceKing") == 1 then
+		if dmgType == "Water" and CharacterHasTalent(instigator.MyGuid, "IceKing") == 1 then
 			multiplier = multiplier + Ext.ExtraData.DGM_IceKingDamageBonus/100
 			-- print("Bonus: IceKing")
 		end
+		if dmgType == "Corrosive" or dmgType == "Magic" then
+			multiplier = multiplier*(Ext.ExtraData.DGM_ArmourReductionMultiplier/100)
+		end
 		local rangeFix = math.random()
 		if amount > 0 then amount = amount + rangeFix end
+		if dmgType ~= "Corrosive" and dmgType ~= "Magic" then
+			lifesteal = lifesteal - amount * (instigator.Stats.LifeSteal/100)
+		end
 		amount = amount * multiplier
 		amount = amount + value
+		if dmgType ~= "Corrosive" and dmgType ~= "Magic" then
+			lifesteal = lifesteal + Ext.Round(amount * (instigator.Stats.LifeSteal/100)) 
+		end
 		if amount ~= 0 then Ext.Print("Changed "..dmgType.." to "..amount.." (Multiplier = "..multiplier..")") end
 		damages[dmgType] = amount
 	end
+	if ObjectIsCharacter(target) ~= 1 then lifesteal = 0 end
+	NRD_StatusSetInt(target, handle, "LifeSteal", lifesteal)
 	return damages
 end
 
@@ -505,4 +520,5 @@ local function HitCatch(target, status, handle, instigator)
 	DamageControl(target, handle, instigator)
 end
 
-Ext.RegisterOsirisListener("NRD_OnStatusAttempt", 4, "before", HitCatch)
+-- Ext.RegisterOsirisListener("NRD_OnStatusAttempt", 4, "before", HitCatch)
+Ext.RegisterOsirisListener("NRD_OnHit", 4, "before", DamageControl)

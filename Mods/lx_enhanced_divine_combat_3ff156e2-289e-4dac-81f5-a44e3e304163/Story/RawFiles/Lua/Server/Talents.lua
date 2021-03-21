@@ -186,6 +186,11 @@ function ManagePetPal(character, summon)
 	local summons = Osi.DB_DGM_Available_Summons:Get(character, nil);
 	if summons[1] ~= nil and summons[2] ~= nil then
 		for i,summon in pairs(summons) do
+			if ObjectExists(summon[2]) == 0 then 
+				Osi.DB_DGM_Available_Summons:Delete(character, summon[2])
+				RestorePetPalPower(character, nil)
+				return
+			end
 			ApplyStatus(summon[2], "LX_PETPAL", -1.0, 1)
 		end
 	end
@@ -219,3 +224,25 @@ end
 
 Ext.RegisterOsirisListener("CharacterKilledBy", 3, "before", ExecutionerHaste)
 
+---- Ambidextrous refund
+---@param item EsvItem
+---@param char EsvCharacter
+Ext.RegisterOsirisListener("ItemEquipped", 2, "before", function(item, char)
+	char = Ext.GetCharacter(char) ---@type EsvCharacter
+	if char.Stats.TALENT_Ambidextrous and CharacterIsInCombat(char.MyGuid) == 1 then
+		item = Ext.GetItem(item) ---@type EsvItem
+		local swapCounter = GetVarInteger(char.MyGuid, "DGM_AmbidextrousCount")
+		if swapCounter > 0 and item.Stats.WeaponType ~= "Crossbow" then
+			SetVarInteger(char.MyGuid, "DGM_AmbidextrousCount", swapCounter-1)
+			CharacterAddActionPoints(char.MyGuid, 1)
+		end
+	end
+end)
+
+---- Ambidextrous counter reset
+---@param char EsvCharacter
+Ext.RegisterOsirisListener("ObjectTurnStarted", 1, "before", function(char)
+	if Ext.GetCharacter(char).Stats.TALENT_Ambidextrous then
+		SetVarInteger(char, "DGM_AmbidextrousCount", 2)
+	end
+end)
