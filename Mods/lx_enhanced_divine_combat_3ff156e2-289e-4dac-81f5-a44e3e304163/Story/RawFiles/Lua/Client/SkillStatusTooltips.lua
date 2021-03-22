@@ -127,6 +127,7 @@ local function GetSkillDamageRange(character, skill)
     elseif skillParams[paramsOrder[currentParam]]:starts("Weapon:") then
         isWeaponEntry = true
     end
+    if skillParams[paramsOrder[currentParam]]:gsub("*.:", "") ~= "Damage" then return end
 
     local amplifierMult = 1.0
     if character.MainWeapon.WeaponType == "Staff" then
@@ -335,7 +336,7 @@ local function SkillGetDescriptionParam(skill, character, isFromItem, par, ...)
 		local dmg = GetSkillDamageRange(character, skill)
 		local result = ""
 		local once = false
-		
+        if dmg == nil then return end
         for dmgType, damages in pairs(dmg) do
             if damages.Min == nil then return end
 			local minDmg = math.floor(damages.Min)

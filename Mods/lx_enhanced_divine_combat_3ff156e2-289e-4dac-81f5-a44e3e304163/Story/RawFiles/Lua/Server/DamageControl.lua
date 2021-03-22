@@ -508,7 +508,7 @@ function ApplyHitResistances(character, damageList, attacker)
 		local resistance = originalResistance
 		local bypassValue = (strength - Ext.ExtraData.AttributeBaseValue) * Ext.ExtraData.DGM_StrengthResistanceIgnore * (intelligence - Ext.ExtraData.AttributeBaseValue)
 		-- Ext.Print("bypass value:",bypassValue)
-		Ext.Print(resistance)
+		-- Ext.Print(resistance)
 		if originalResistance ~= nil and originalResistance > 0 and originalResistance < 100 and bypassValue > 0 then
 			resistance = originalResistance - bypassValue
 			if resistance < 0 then
@@ -516,8 +516,8 @@ function ApplyHitResistances(character, damageList, attacker)
 			elseif resistance > originalResistance then
 				resistance = originalResistance
 			end
-		else
-			resistance = 1
+		-- else
+			-- resistance = 1
 		end
         damageList:Add(damage.DamageType, math.floor(damage.Amount * -resistance / 100.0))
     end

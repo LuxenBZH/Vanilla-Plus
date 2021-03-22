@@ -48,7 +48,7 @@ Ext.RegisterListener("SessionLoaded", function()
                 root.addOH_array[scArray[highest][1]] = scArray[highest][2]:gsub("#797980", colours.Corrosive)
                 root.addOH_array[scArray[lowest][1]] = scArray[lowest][2]:gsub("#797980", colours.Shadow)
             end
-            Ext.Print(root.addOH_array[scArray[1][1]], root.addOH_array[scArray[2][1]])
+            -- Ext.Print(root.addOH_array[scArray[1][1]], root.addOH_array[scArray[2][1]])
         end
     end
     Ext.RegisterUIInvokeListener(OverheadUI, "updateOHs", DamageOverheadColor, "Before")

@@ -572,3 +572,8 @@ Fixes
 
 Miscellaneous
 * Recolored Corrosive and Shadow damage flying texts and tooltips (credits to Focus for the base code)
+
+# 1.0.7.53
+Fixes
+* Fixed an issue with tooltips having params that aren't damage
+* Fixed a critical issue with resistances where 100+ wouldn't recover at all but damage instead
