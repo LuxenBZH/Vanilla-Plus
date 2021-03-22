@@ -1,3 +1,17 @@
+local function TagShadowCorrosiveDifference(damageArray)
+	if damageArray.Shadow > 0 and damageArray.Corrosive > 0 then
+		if damageArray.Shadow > damageArray.Corrosive then
+			Ext.BroadcastMessage("DGM_ShadowCorrosiveTag", "S")
+		else
+			Ext.BroadcastMessage("DGM_ShadowCorrosiveTag", "C")
+		end
+	elseif damageArray.Shadow > 0 then
+		Ext.BroadcastMessage("DGM_ShadowCorrosiveTag", "S")
+	elseif damageArray.Corrosive > 0 then
+		Ext.BroadcastMessage("DGM_ShadowCorrosiveTag", "C")
+	end
+end
+
 ---@param target EsvCharacter
 local function TraceDamageSpreaders(target)
 	local statuses = target:GetStatuses()
@@ -59,6 +73,7 @@ function DamageControl(target, instigator, hitDamage, handle)
 		damages[dmgType] = NRD_HitStatusGetDamage(target, handle, dmgType)
 		if damages[dmgType] ~= 0 then Ext.Print("Damage "..dmgType..": "..damages[dmgType]) end
 	end
+	TagShadowCorrosiveDifference(damages)
 	
 	if isBlocked == 1 then return end
 	if sourceType == 1 or sourceType == 2 or sourceType == 3 then InitiatePassingDamage(target, damages); return end
@@ -155,6 +170,7 @@ function DamageControl(target, instigator, hitDamage, handle)
 	end
 	damages = ChangeDamage(damages, (damageBonus/100+1)*globalMultiplier, 0, instigator, target, handle)
 	ReplaceDamages(damages, handle, target)
+	TagShadowCorrosiveDifference(damages)
 	if ObjectIsCharacter(target) == 1 then SetWalkItOff(target, handle) end
 	
 	-- Armor passing damages
@@ -492,13 +508,16 @@ function ApplyHitResistances(character, damageList, attacker)
 		local resistance = originalResistance
 		local bypassValue = (strength - Ext.ExtraData.AttributeBaseValue) * Ext.ExtraData.DGM_StrengthResistanceIgnore * (intelligence - Ext.ExtraData.AttributeBaseValue)
 		-- Ext.Print("bypass value:",bypassValue)
-		if originalResistance > 0 and originalResistance < 100 and bypassValue > 0 then
+		Ext.Print(resistance)
+		if originalResistance ~= nil and originalResistance > 0 and originalResistance < 100 and bypassValue > 0 then
 			resistance = originalResistance - bypassValue
 			if resistance < 0 then
 				resistance = 0
 			elseif resistance > originalResistance then
 				resistance = originalResistance
 			end
+		else
+			resistance = 1
 		end
         damageList:Add(damage.DamageType, math.floor(damage.Amount * -resistance / 100.0))
     end

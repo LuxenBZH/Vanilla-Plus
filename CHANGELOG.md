@@ -569,3 +569,6 @@ Fixes
 * Fixed an issue with Spectre class tooltips (and potentially any mod with skills having unused skill params)
 * Fixed an error popping in the console related to Mnemonics in Character Creation
 * Fixed an issue where damage scaling wouldn't work at all without LeaderLib
+
+Miscellaneous
+* Recolored Corrosive and Shadow damage flying texts and tooltips (credits to Focus for the base code)
