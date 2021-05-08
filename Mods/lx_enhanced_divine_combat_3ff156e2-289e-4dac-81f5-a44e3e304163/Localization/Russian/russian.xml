@@ -19,6 +19,7 @@
 	<content contentuid="h169eda41gad02g4143g997eg29c0cee15c14">Walk It Off (3)</content>
 	<content contentuid="h18f97d5bg9a79g4917g809dgb0ac7a5ec302">Increases all damage by [1]% per point. Damage dealt with weapons are further increased by [2]% (including weapon-based skills). Each point invested increase the resistance bypass multiplier by [3]%. Allows you to lift and carry heavier items.</content>
 	<content contentuid="h19525dddg3cadg4699g94d2g342b1192a332">Set the target distance threshold which defines when do ranged weapons gets a penalty.&lt;br&gt;Default : 2&lt;br&gt;</content>
+	<content contentuid="h195e0642ge46ag4d02g85ecg20a8a0012104">Each ally consumes oil surfaces around them, converting the oil surfaces to Physical Armour. If they are Slowed or Petrified, they restore an additional 30% Physical Armour. Removes Slowed, Petrified and Stunned.</content>
 	<content contentuid="h19eab510gec8cg4d4fg92fag5918044ab001">Default : 3</content>
 	<content contentuid="h1a6bf0edg47eeg4ee8gaa86g5a608e5dda7b">Explode all corpses around you, dealing [1] in the area.</content>
 	<content contentuid="h1b361ce1gd5d3g4c0eg8b8cg7d87658e755f">Activate the stats correction formula. Strongly recommended when playing Story mode or any Adventure mod that has not been balanced for Vanilla Plus.&lt;br&gt;Default : on&lt;br&gt;&lt;font color=#ff0000&gt;Require a game restart&lt;/font&gt;</content>
@@ -38,6 +39,7 @@
 	<content contentuid="h2e87e6cfg0183g4968g8ec1g325614c7d9fa">+[1] point(s) = +[2]% to all Damage, +[3]% Dodge, +[4]m of movement per AP and +[5]% Critical Chance.</content>
 	<content contentuid="h2e8803d0g3b27g470dgb836g26fcbeb60714">Activate Jump fall damage</content>
 	<content contentuid="h2ea5f141g4d43g49b8g8d6agd365b90a0d6d">Dodge Fatigue (4)</content>
+	<content contentuid="h2f904fe7g83d0g4d51g8bcfgd6b561ba92e3">Magnificent horns sprout from your forehead, making you see red. You can rush at your enemies and gore them. Increases Retribution ability by 2 for the duration.</content>
 	<content contentuid="h314ee256g43cdg4864ga519gd23e909ec63e">Increase all Skill damage by [1]% (stackable when dual-wielding)</content>
 	<content contentuid="h3240460dgd250g435bg9ebegc1682089c5ed">Explode target corpse, dealing [1] in the area.</content>
 	<content contentuid="h32fcbbfbgec6bg4af4g894ag49fd997307fe">Any attempt to apply Stunned, Petrified, Frozen, Madness, Terrified or Charm will apply Confused instead.</content>
@@ -68,6 +70,7 @@
 	<content contentuid="h54f2ea13g97dbg4b86g9d13geeb81186faca">Ranged increases damage and Critical Chance when using bows and crossbows. Also increases the range when wielding a bow, crossbow or wand(s).</content>
 	<content contentuid="h552b479bg3e56g4ea1gb01fg96d986de5e5f">Activate the stats correction formula for GM mode. This is up to your preferences, but if you already created and balanced encounters, you might need to rebalance them.&lt;br&gt;Default : off&lt;br&gt;&lt;font color=#ff0000&gt;Require a game restart&lt;/font&gt;</content>
 	<content contentuid="h562bb140gab7bg4f78gba75g5aaf2cd7f27b">Default : 3</content>
+	<content contentuid="h56cb39a0ge913g4364g97e6g843aca99bcdc">Consume oil surfaces around you and convert them to Physical Armour. If you are Slowed or Petrified, you restore an additional 30% Physical Armour. Remove Slowed, Petrified and Stunned.</content>
 	<content contentuid="h579e2544g8e6cg4bbdg92a1g5598996b8f7b">Apply a multiplier to all Corrosive and Magic damage. &lt;br&gt;Default : 100</content>
 	<content contentuid="h5822708bgb172g42d7g8d1fg948980c9d8eb">Finesse Movement Bonus</content>
 	<content contentuid="h584b8016g05e3g4c00gbaccg0c441bf1c3f5">Activate fall damage when character use Jump skills or Projectile skills moving the character. Damage is not applied for Fly.</content>
@@ -110,6 +113,7 @@
 	<content contentuid="h7b1052abg9968g4acdgb399g989954144550">Finesse Global Damage Bonus</content>
 	<content contentuid="h7bcfac6eg76a6g4ccega83bg2ff334058ccc">Armour Damage Multiplier</content>
 	<content contentuid="h7c3dcbc3gb3f4g4746g9a94g00021c9c2930">Target a circular area. Until your next turn, you will reflexively shoot at the first three enemies moving within this area if you have sight on them.</content>
+	<content contentuid="h7e7b669dged21g4b8ag8a44g32bede9e51ae">Consume frozen surfaces around you and convert them to Magic Armour. If you are Chilled or Frozen, you restore an additional 30% Magic Armour. Remove Chilled, Frozen, Burning and Necrofire.</content>
 	<content contentuid="h7fec5db8g58d3g4abbgab7ag03e19b542bef">Total damage: [1]-[2]</content>
 	<content contentuid="h80149363gb072g4531gae22gf187147b9c44">CC Recover Duration</content>
 	<content contentuid="h81ca938fg5ef4g452agb093g1294e2f0718b">Leech heals you when standing in blood. Also increases Lifesteal by 25%.</content>
@@ -145,6 +149,7 @@
 	<content contentuid="hb924258ag2cf7g4c11gaf4eg8b7de303c197"> </content>
 	<content contentuid="hbce8b81ag1259g4a30g99f9g1f99e9b74583">Elemental Weapons</content>
 	<content contentuid="hbd257f75g9084g4c73g9db0g77d418e677c9">A character with Ice King has an extra 30% Water Resistance, but takes a 15% penalty to Fire Resistance. Additionally, the maximum Water Resistance is raised by 10. All Water damage you deal are increased by 20% and grants immunity to Chilled.</content>
+	<content contentuid="hbd366dc5g10a3g48acg9bffg4a11bccb189d">Each ally consumes frozen surfaces around them, converting the frozen surfaces to Magic Armour. If they are Chilled or Frozen, they restore an additional 30% Magic Armour. Removes Chilled, Frozen, Burning and Necrofire.</content>
 	<content contentuid="hbd5f39f8g78e1g42c8g95b6g1917a8c65816">Target character and surrounding allies receive Sparkmaster status that make melee attacks firing sparks that can fork twice at nearby enemies. Each spark hit deals [1].</content>
 	<content contentuid="hbde985cfgb1c4g4bb6g9a61gbec72c9b4ed6">Mnenomic doubles all points invested in Memory.</content>
 	<content contentuid="hbe73e4f8g0448g4a54gaa87g3905ebfeb604">Use this if you enabled Vanilla Plus on a running save and you witness most characters and items lack some Vitality.</content>
@@ -165,6 +170,8 @@
 	<content contentuid="hd15c8d51gb26bg460cgaa29g8f2cc4f96877">Summons Damage Boost</content>
 	<content contentuid="hd281d94fg1f41g4af0ga8c2g69747893e1f2">This character has staggered during their recovery.</content>
 	<content contentuid="hd2fd14e5gaf70g4acagb99bg491d9c3c5ce2">Staggered</content>
+	<content contentuid="hd376dcd8g0707g4bd5g9052g01d558955583">Teleport a target character or item to a point of your choosing, dealing [1].</content>
+	<content contentuid="hd4d51fddgb38cg4394ga485gf37cb37523d0">Remove poison surfaces and clouds. Gain poison damage bonus to weapon attacks and weapon-based skills (dependent upon size of poison area cleared) for 2 turns and your weapon attacks now also set Acid for 1 turn (3 turns if Venom Coating is also active).</content>
 	<content contentuid="hd4f241b4gb997g41efga6c0gb5d38e0ad0b0">Intelligence Accuracy Bonus</content>
 	<content contentuid="hd5148365gb1f7g4f21g9521gd50d897e5e4a">Default : 20&lt;br&gt;&lt;font color=#ff0000&gt;Require a game restart&lt;/font&gt;</content>
 	<content contentuid="hd573aa44gad41g4232g8040gf59652415d1d">Summons Vitality Multiplier</content>
@@ -178,6 +185,7 @@
 	<content contentuid="he1708d1eg243dg4b72g8f48gddb9bc8d62ff">+[1] point(s) = +[2]% to all Damage and +[3]% more for weapon-based attacks. Each point in Intelligence will increase resistance bypass by [4]% per point.</content>
 	<content contentuid="he3980bf8gf554g4dd8g823cgf2ccb71036a6">Offhand penalty: [1]%</content>
 	<content contentuid="he47a8a79g2f04g410bgbf00gd6b2a84ba9a5">Reduce damage going through Physical Armour by [1]%</content>
+	<content contentuid="he534e470gb8a2g4032gbd9bgee0ac41f1f0f"></content>
 	<content contentuid="he53d3385g125cg49ddgaacegce01ebea865f">Dual CC Resistance</content>
 	<content contentuid="he573ce38g6445g4975g8562ge97ea0a52c79">This module transforms Cloak and Dagger, Phoenix Dive and Tactical Retreat as projectile equivalents (like Fly with Spread your wings). It applies to everyone. If some NPC still have the classic version, deactivate and reactivate this module.</content>
 	<content contentuid="he6c2c979gd7a7g4926g9180g5d69e9d79d62">Crossbow Penalty Per Level</content>

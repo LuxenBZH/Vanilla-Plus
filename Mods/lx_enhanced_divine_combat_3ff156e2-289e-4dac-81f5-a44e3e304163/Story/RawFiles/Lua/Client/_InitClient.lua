@@ -2,6 +2,7 @@ Ext.Require("Client/SkillStatusTooltips.lua")
 Ext.Require("Client/Tooltips.lua")
 Ext.Require("Client/CharacterSheet.lua")
 Ext.Require("Client/DamageColour.lua")
+Ext.Require("Client/CustomSkillPropertiesClient.lua")
 
 tooltipStatusDmgHelper = {}
 

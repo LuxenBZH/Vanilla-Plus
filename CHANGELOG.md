@@ -577,3 +577,33 @@ Miscellaneous
 Fixes
 * Fixed an issue with tooltips having params that aren't damage
 * Fixed a critical issue with resistances where 100+ wouldn't recover at all but damage instead
+
+# 1.0.7.54
+Fixes
+* Fixed an issue with skill tooltips when the offhand add additional damage types
+* Fixed an issue with the damage tooltip concerning offhand penalty and changed the dual-wielding ability to make it more clear
+* Fixed a tooltip issue with Bull Horns
+
+Balance
+* Summon Ifan's Soul Wolf AP cost increased from 1 to 2
+* Medusa Head AP cost reduced from 2 to 1
+
+Miscellaneous
+* Teleportation tooltip now display the damage
+
+# 1.0.8.55 (Hannag)
+Fixes
+* Fixed an issue with dual wielding tooltip
+* Fixed the tooltip issue with weapon-enhancing statuses not displaying the correct damage (it is still somewhat inaccurate on low level)
+
+New
+* When wielding a ranged weapon during combat, close characters triggering the CQB penalty will be now highlighted
+* Physical, Piercing and Shadow resistances will now be displayed on the character sheet if their value is different than 0
+
+Balance
+* Elemental Warrior (previously Elemental Ranger) now provide Elemental Weapon of the same damage type of the special arrow or grenade you used for 1 turn and the original effect now also work with melee weapons.
+* Oily Carapace now also clear Petrified and Stunned, and recover 30% of the max Physical armour if targetted characters have Slowed or Petrified
+* Cryotherapy now also clear Frozen and Chilled, and recover 30% of the max Magic armour if targetted characters have Chilled or Frozen
+* Siphon poison surface boost has been reworked. Base damage is now 20 and increase by 2 per 7.5 tiles of Poison surfaces absorbed for a maximum of 30 boosts. Your weapon attacks will now also set Acid for 1 turn. If Venom Coating is also active, Acid duration is increased by 2 turns.
+* Firebrand is now correctly scaled
+* Firebrand base damage increased from 20 to 28

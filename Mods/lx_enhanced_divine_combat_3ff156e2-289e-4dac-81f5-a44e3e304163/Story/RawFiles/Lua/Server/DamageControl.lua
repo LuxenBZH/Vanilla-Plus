@@ -114,6 +114,9 @@ function DamageControl(target, instigator, hitDamage, handle)
 		damageBonus = damageBonus + strength*Ext.ExtraData.DGM_StrengthWeaponBonus
 		-- print("Bonus: Weapon")
 		-- Check distance penalty if it's a distance weapon
+		if HasActiveStatus(instigator, "SIPHON_POISON") == 1 then
+			ApplyStatus(target, "ACID", 12.0, 1)
+		end
 		if weaponTypes[1] == "Bow" or weaponTypes[1] == "Crossbow" or weaponTypes[1] == "Rifle" or weaponTypes[1] == "Wand" then
 			local distance = GetDistanceTo(target, instigator)
 			--Ext.Print("[LXDGM_DamageControl.DamageControl] Distance :",distance)
@@ -560,3 +563,4 @@ end
 
 -- Ext.RegisterOsirisListener("NRD_OnStatusAttempt", 4, "before", HitCatch)
 Ext.RegisterOsirisListener("NRD_OnHit", 4, "before", DamageControl)
+

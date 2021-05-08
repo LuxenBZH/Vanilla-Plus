@@ -3653,6 +3653,7 @@ new entry "Stats_SiphonPoison"
 type "Potion"
 data "Act" "1"
 data "Act part" "0"
+data "PoisonResistance" "0"
 data "BonusWeapon" "Status_SiphonPoison"
 
 new entry "Stats_Summoning_Ability"

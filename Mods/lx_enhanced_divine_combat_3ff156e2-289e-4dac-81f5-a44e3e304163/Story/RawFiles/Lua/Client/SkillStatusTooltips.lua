@@ -63,7 +63,7 @@ paramsOrder = {}
 ---@param attacker StatCharacter
 ---@param target StatCharacter
 ---@param level integer
-local function CalculateBaseDamage(skillDamageType, attacker, target, level)
+function CustomCalculateBaseDamage(skillDamageType, attacker, target, level)
     return DamageSourceCalcTable[skillDamageType](attacker, target, level)
 end
 
@@ -127,7 +127,7 @@ local function GetSkillDamageRange(character, skill)
     elseif skillParams[paramsOrder[currentParam]]:starts("Weapon:") then
         isWeaponEntry = true
     end
-    if skillParams[paramsOrder[currentParam]]:gsub("*.:", "") ~= "Damage" then return end
+    if skillParams[paramsOrder[currentParam]]:gsub(".*:", "") ~= "Damage" then return end
 
     local amplifierMult = 1.0
     if character.MainWeapon.WeaponType == "Staff" then
@@ -156,7 +156,7 @@ local function GetSkillDamageRange(character, skill)
                     range.Min = range.Min + min
                     range.Max = range.Max + max
                 else
-                    mainDamageRange[damageType] = {min, max}
+                    mainDamageRange[damageType] = {Min = min, Max = max}
                 end
             end
         end
@@ -243,7 +243,7 @@ local function GetSkillDamageRange(character, skill)
 		(character.Intelligence-10) * (Ext.ExtraData.DGM_IntelligenceGlobalBonus*0.01 + Ext.ExtraData.DGM_IntelligenceSkillBonus*0.01)
 		end
 		--Ext.Print("Global mult", globalMult, skillDamageType)
-        local baseDamage = CalculateBaseDamage(skillDamageType, character, 0, level) * attrDamageScale * damageMultiplier * globalMult
+        local baseDamage = CustomCalculateBaseDamage(skillDamageType, character, 0, level) * attrDamageScale * damageMultiplier * globalMult
         damageRange = damageRange * baseDamage * 0.005
 
         local damageTypeBoost = 1.0 + Game.Math.GetDamageBoostByType(character, damageType)
@@ -255,28 +255,6 @@ local function GetSkillDamageRange(character, skill)
         }
         return damageRanges
     end
-end
-
----@param dmgType string
-local function getDamageColor(dmgType)
-	local colorCode = ""
-	local types = {}
-	types["Physical"]="'#A8A8A8'"
-	types["Corrosive"]="'#cccc00'"
-	types["Magic"]="'#7F00FF'"
-	types["Fire"]="'#FE6E27'"
-	types["Water"]="'#4197E2'"
-	types["Earth"]="'#7F3D00'"
-	types["Poison"]="'#65C900'"
-	types["Air"]="'#7D71D9'"
-	types["Shadow"]="'#6600ff'"
-    types["Piercing"]="'#C80030'"
-    types["None"]="'#C80030'"
-	
-	for t,code in pairs(types) do
-		if dmgType == t then return code end
-	end
-	return "'#A8A8A8'"
 end
 
 -- Odinblade compatibility

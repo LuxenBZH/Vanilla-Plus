@@ -213,5 +213,21 @@
         <field name="AbsorbSurfaceRange" type="IntegerStatObjectFieldDefinition" value="300" />
       </fields>
     </stat_object>
+    <stat_object is_substat="false">
+      <fields>
+        <field name="Name" type="NameStatObjectFieldDefinition" value="LX_OILYCARAPACESLOW" />
+        <field name="HealStat" type="EnumerationStatObjectFieldDefinition" value="2" enumeration_type_name="StatusHealType" />
+        <field name="HealType" type="EnumerationStatObjectFieldDefinition" value="1" enumeration_type_name="HealValueType" />
+        <field name="HealValue" type="IntegerStatObjectFieldDefinition" value="30" />
+      </fields>
+    </stat_object>
+    <stat_object is_substat="false">
+      <fields>
+        <field name="Name" type="NameStatObjectFieldDefinition" value="LX_CRYOTHERAPYCHILL" />
+        <field name="HealStat" type="EnumerationStatObjectFieldDefinition" value="3" enumeration_type_name="StatusHealType" />
+        <field name="HealType" type="EnumerationStatObjectFieldDefinition" value="1" enumeration_type_name="HealValueType" />
+        <field name="HealValue" type="IntegerStatObjectFieldDefinition" value="30" />
+      </fields>
+    </stat_object>
   </stat_objects>
 </stats>

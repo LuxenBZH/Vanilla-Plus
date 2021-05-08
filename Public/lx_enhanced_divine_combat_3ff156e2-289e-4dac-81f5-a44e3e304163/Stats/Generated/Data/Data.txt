@@ -226,3 +226,5 @@ key "DGM_SummonsVitalityMultiplier","100"
 
 key "DGM_SummonsDamageBoost","0"
 
+key "SurfaceAbsorbBoostPerTilesCount","10"
+
