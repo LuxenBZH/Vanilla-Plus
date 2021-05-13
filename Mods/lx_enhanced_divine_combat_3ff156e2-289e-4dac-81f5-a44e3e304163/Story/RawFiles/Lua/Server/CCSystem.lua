@@ -75,10 +75,14 @@ end
 local function RecoverFromCCs(character, status, ...)
 	for armour,statuses in pairs(blockedStatuses) do
 		if statuses[status] then
+			local duration = Ext.ExtraData.DGM_CCParryDuration
+			if CharacterHasTalent(character, "WalkItOff") == 1 then
+				duration = duration + 1
+			end
 			if armour == "PhysicalArmor" then
-				ApplyStatus(character, "LX_MOMENTUM", Ext.ExtraData.DGM_CCParryDuration*6, 1)
+				ApplyStatus(character, "LX_MOMENTUM", duration*6, 1)
 			elseif armour == "MagicArmor" then
-				ApplyStatus(character, "LX_LINGERING", Ext.ExtraData.DGM_CCParryDuration*6, 1)
+				ApplyStatus(character, "LX_LINGERING", duration*6, 1)
 			end
 		end
 	end

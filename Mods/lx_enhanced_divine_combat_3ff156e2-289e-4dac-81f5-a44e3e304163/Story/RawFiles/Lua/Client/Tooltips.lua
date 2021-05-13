@@ -36,7 +36,7 @@ local dynamicTooltips = {
     ["Shout_RecoverArmour"]     = "hf7a19975gea84g44a3g8fffg5b4f063b88b4",
     ["Target_TentacleLash"]     = "hddb00621g65ddg46acg89d2gfcf3efd8cd78",
     ["WpnCrossbow"]             = "h846daabdg90beg4ac9gb930g02e96dcdbd8d",
-    ["CriticalChanceDescription"]= "h9df517d1gf64bg499dgb23fg462fd1f061bc" 
+    ["CriticalChanceDescription"]= "h9df517d1gf64bg499dgb23fg462fd1f061bc",
 }
 
 ---@param str string
@@ -59,6 +59,9 @@ function GetDynamicTranslationString(dynamicKey, ...)
     if handle == nil then return nil end
 
     local str = Ext.GetTranslatedString(handle, "Handle Error!")
+    if str == "Handle Error!" then
+        Ext.Print("Tooltip handle error:", dynamicKey, handle)
+    end
     str = SubstituteString(str, table.unpack(args))
     return str
 end
@@ -80,7 +83,7 @@ local function WeaponTooltips(item, tooltip)
     end
 
     if item.WeaponType == "Wand" then
-        equipment["Label"] = GetDynamicTranslationString("WpnWand", Ext.ExtraData.DGM_WandSkillMultiplier)
+        equipment["Label"] = GetDynamicTranslationString("WpnWand", Ext.ExtraData.DGM_WandSkillMultiplier, Ext.ExtraData.DGM_WandSurfaceBonus)
         tooltip:AppendElementAfter(equipment, "ExtraProperties")
     end
     if Ext.ExtraData.DGM_RangedCQBPenalty > 0 then
@@ -138,7 +141,7 @@ local function SkillAttributeTooltipBonus(character, skill, tooltip)
         if stats.OffHandWeapon ~= nil and stats.OffHandWeapon.WeaponType ~= "Shield" then
             local offhandPenalty = tooltip:GetElements("StatsPercentageMalus")
 
-            local finalPenalty = Ext.ExtraData.DualWieldingDamagePenalty*100 - stats.DualWielding * Ext.ExtraData.DGM_DualWieldingOffhandBonus
+            local finalPenalty = Ext.ExtraData.DualWieldingDamagePenalty*100 - stats.DualWielding * math.floor(Ext.ExtraData.DGM_DualWieldingOffhandBonus / 2)
 
             local reducedBy = Ext.ExtraData.DualWieldingDamagePenalty*100 - finalPenalty
             
@@ -153,6 +156,8 @@ end
 ---@param skill string
 ---@param tooltip TooltipData
 local function OnStatTooltip(character, stat, tooltip)
+    if tooltip == nil then return end
+    -- Ext.Dump(tooltip:GetElement("StatName"))
     local stat = tooltip:GetElement("StatName").Label
     local statsDescription = tooltip:GetElement("StatsDescription")
     local statsPointValue = tooltip:GetElement("StatsPointValue")
@@ -204,10 +209,10 @@ local function OnAbilityTooltip(character, stat, tooltip)
     if stat == "Dual-Wielding" then
 
         if stats.DualWielding > 0 then
-            abilityDescription.CurrentLevelEffect = GetDynamicTranslationString(stat, stats.DualWielding, attrBonus["dual"], attrBonus["dualDodge"], attrBonus["dualOff"])
+            abilityDescription.CurrentLevelEffect = GetDynamicTranslationString(stat, stats.DualWielding, attrBonus["dual"], attrBonus["dualDodge"], math.floor(attrBonus["dualOff"]/2))
         end
         
-        abilityDescription.NextLevelEffect = GetDynamicTranslationString(stat.."_Next", stats.DualWielding+1, attrBonusNew["dual"], attrBonusNew["dualDodge"], attrBonusNew["dualOff"])
+        abilityDescription.NextLevelEffect = GetDynamicTranslationString(stat.."_Next", stats.DualWielding+1, attrBonusNew["dual"], attrBonusNew["dualDodge"], math.floor(attrBonus["dualOff"]/2))
         
     elseif stat == "Ranged" then
         if stats.Ranged > 0 then
@@ -260,6 +265,7 @@ local tooltipFix = {
 ---@param skill any
 ---@param tooltip TooltipData
 local function FixCustomBonusesTranslationKeyBonus(character, stat, tooltip)
+    if tooltip == nil then return end
     local boosts = tooltip:GetElements("StatsPercentageBoost")
     if #boosts == 0 then 
         boosts = tooltip:GetElements("StatsTalentsBoost")
@@ -279,6 +285,7 @@ local function FixCustomBonusesTranslationKeyBonus(character, stat, tooltip)
 end
 
 local function FixCustomBonusesTranslationKeyMalus(character, stat, tooltip)
+    if tooltip == nil then return end
     local boosts = tooltip:GetElements("StatsPercentageMalus")
     if #boosts == 0 then 
         boosts = tooltip:GetElements("StatsTalentsMalus")

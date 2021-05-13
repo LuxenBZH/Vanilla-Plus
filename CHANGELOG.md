@@ -552,3 +552,62 @@ Balance
 
 Miscellaneous
 * Changed description of Reactive Shot to explicitly says it requires vision on the target to work
+
+# 1.0.7.51
+Fixes
+* Fixed an issue with Guardian Angel where the aura provider would get a higher amount of damage than expected
+* Fixed an issue with Shackles of Pain where reflected damage was scaled whereas it should not
+* Damage from Shackles of Pain don't recover Vitality from Life Steal anymore
+* Fixed an issue with skill tooltips where having a parameter that is a Weapon entry (such as damaging statuses) would make all damage tooltip equal to this one
+
+Miscellaneous
+* Tagged food and drinks unusable by AI, since it's stupid enough to consider that using 4 AP to eat a tactical apple is a good decision in combat
+* Enhanced tooltips to take into account Wits bonus if the damage tooltip is the one from a status (such as in Astronomer class)
+
+# 1.0.7.52
+Fixes
+* Fixed an issue with Spectre class tooltips (and potentially any mod with skills having unused skill params)
+* Fixed an error popping in the console related to Mnemonics in Character Creation
+* Fixed an issue where damage scaling wouldn't work at all without LeaderLib
+
+Miscellaneous
+* Recolored Corrosive and Shadow damage flying texts and tooltips (credits to Focus for the base code)
+
+# 1.0.7.53
+Fixes
+* Fixed an issue with tooltips having params that aren't damage
+* Fixed a critical issue with resistances where 100+ wouldn't recover at all but damage instead
+
+# 1.0.7.54
+Fixes
+* Fixed an issue with skill tooltips when the offhand add additional damage types
+* Fixed an issue with the damage tooltip concerning offhand penalty and changed the dual-wielding ability to make it more clear
+* Fixed a tooltip issue with Bull Horns
+
+Balance
+* Summon Ifan's Soul Wolf AP cost increased from 1 to 2
+* Medusa Head AP cost reduced from 2 to 1
+
+Miscellaneous
+* Teleportation tooltip now display the damage
+
+# 1.0.8.55 (Hannag)
+Fixes
+* Fixed an issue with dual wielding tooltip
+* Fixed the tooltip issue with weapon-enhancing statuses not displaying the correct damage (it is still somewhat inaccurate on low level)
+* Fixed an issue with some Odinblade's skills tooltips
+
+New
+* When wielding a ranged weapon during combat, close characters triggering the CQB penalty will be now highlighted
+* Physical, Piercing and Shadow resistances will now be displayed on the character sheet if their value is different than 0
+
+Balance
+* Wands are now empowered by the surface and cloud the user stands in, granting a 15% multiplicative damage boost of the type of the surface (both surface and cloud are additive). This bonus can be controlled in the options.
+* Elemental Ranger now provide 1 turn of Elemental Weapon of the same damage type of the special arrow or grenade you used.
+* Morning Person do not make you start combat with full AP anymore but instead you get a +2 AP Recovery if your turn have been skipped incapacitating effect(s) (cumulating effects that reduce your AP recovery to 0 also count as incapacitating). Effects making you lose the control of your character doesn't count as incapacitating.
+* Walk it off do not reduce Momentum and Lingering duration anymore
+* Oily Carapace now also clear Petrified and Stunned, and recover 30% of the max Physical armour if targetted characters have Slowed or Petrified
+* Cryotherapy now also clear Frozen and Chilled, and recover 30% of the max Magic armour if targetted characters have Chilled or Frozen
+* Siphon poison surface boost has been reworked. Base damage is now 20 and increase by 2 per 7.5 tiles of Poison surfaces absorbed for a maximum of 30 boosts. Your weapon attacks will now also set Acid for 1 turn. If Venom Coating is also active, Acid duration is increased by 2 turns.
+* Firebrand is now correctly scaled
+* Firebrand base damage increased from 20 to 28

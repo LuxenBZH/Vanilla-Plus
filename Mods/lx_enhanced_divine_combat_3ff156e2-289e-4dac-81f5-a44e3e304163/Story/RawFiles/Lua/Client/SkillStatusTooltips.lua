@@ -54,44 +54,18 @@ local DamageSourceCalcTable = {
     end
 }
 
+lastSkill = ""
+skillParams = {}
+currentParam = 1
+paramsOrder = {}
+
 ---@param skillDamageType string
 ---@param attacker StatCharacter
 ---@param target StatCharacter
 ---@param level integer
-local function CalculateBaseDamage(skillDamageType, attacker, target, level)
+function CustomCalculateBaseDamage(skillDamageType, attacker, target, level)
     return DamageSourceCalcTable[skillDamageType](attacker, target, level)
 end
-
----@param character StatCharacter
----@param weapon StatEntryWeapon
--- local function CalculateWeaponDamageRange(character, weapon)
---     local damages, damageBoost = Game.Math.ComputeBaseWeaponDamage(weapon)
-
---     local abilityBoosts = character.DamageBoost 
---         + Game.Math.ComputeWeaponCombatAbilityBoost(character, weapon)
---         + Game.Math.ComputeWeaponRequirementScaledDamage(character, weapon)
---     abilityBoosts = math.max(abilityBoosts + 100.0, 0.0) / 100.0
-
---     local boost = 1.0 + damageBoost * 0.01
---     -- if character.NotSneaking then
---         -- boost = boost + Ext.ExtraData['Sneak Damage Multiplier']
---     -- end
-
---     local ranges = {}
---     for damageType, damage in pairs(damages) do
---         local min = damage.Min * boost * abilityBoosts
--- 		local max = damage.Max * boost * abilityBoosts
--- 		--Ext.Print(min, max)
-
---         if min > max then
---             max = min
---         end
-
---         ranges[damageType] = {min, max}
---     end
-
---     return ranges
--- end
 
 ---@param character StatCharacter
 ---@param skill StatEntrySkillData
@@ -112,6 +86,17 @@ local function GetSkillDamageRange(character, skill)
     --     skill["Damage Range"] = skillStat["Damage Range"]
     --     skill.UseWeaponDamage = skillStat.UseWeaponDamage
     -- end
+
+    ---@type string
+    local isWeaponEntry = false
+    if skillParams[paramsOrder[currentParam]]:starts("Skill:") then
+        local skillName = skillParams[paramsOrder[currentParam]]:gsub("Skill:", ""):gsub(":.*", "")
+        skill = Ext.GetStat(skillName)
+        if skill == nil then return end
+    elseif skillParams[paramsOrder[currentParam]]:starts("Weapon:") then
+        isWeaponEntry = true
+    end
+    if skillParams[paramsOrder[currentParam]]:gsub(".*:", "") ~= "Damage" then return end
 
     local amplifierMult = 1.0
     if character.MainWeapon.WeaponType == "Staff" then
@@ -140,7 +125,7 @@ local function GetSkillDamageRange(character, skill)
                     range.Min = range.Min + min
                     range.Max = range.Max + max
                 else
-                    mainDamageRange[damageType] = {min, max}
+                    mainDamageRange[damageType] = {Min = min, Max = max}
                 end
             end
         end
@@ -175,13 +160,14 @@ local function GetSkillDamageRange(character, skill)
         local weaponSkill = false
         local damageType = skill.DamageType
         local damageRange = skill["Damage Range"]
-		if desc:find("Weapon:") ~= nil then
+		if isWeaponEntry then
 			local damageConvert = {
 				"BaseLevelWeaponDamage",
 				"AverageLevelDamge",
 				"MonsterWeaponDamage"
 			}
-            local weaponStat = desc:gsub(".*Weapon:", ""):gsub(":Damage.*", "")
+            -- local weaponStat = desc:gsub(".*Weapon:", ""):gsub(":Damage.*", "")
+            local weaponStat = skillParams[paramsOrder[currentParam]]:gsub("Weapon:", ""):gsub(":.*", "")
             weaponSkill = true
 			local weaponDamage = Ext.StatGetAttribute(weaponStat, "Damage")
 			if weaponDamage > 2 then return end
@@ -212,19 +198,26 @@ local function GetSkillDamageRange(character, skill)
 		local globalMult = 1.0
 		
         if skill.StatsDescriptionParams:find("Weapon:") ~= nil  or skill.Name == "Target_TentacleLash" then
-			local weaponStat = skill.StatsDescriptionParams:gsub("^[A-z]*:", ""):gsub(":.*", "")
-			globalMult = 1 + (character.Strength-10) * (Ext.ExtraData.DGM_StrengthGlobalBonus*0.01 + Ext.ExtraData.DGM_StrengthWeaponBonus*0.01) +
+			local weaponStat = skillParams[paramsOrder[currentParam]]:gsub("Weapon:", ""):gsub(":.*", "")
+            if tooltipStatusDmgHelper[weaponStat] then
+                globalMult = 1 + (character.Wits-10) * (Ext.ExtraData.DGM_WitsDotBonus*0.01)
+            else
+                globalMult = 1 + (character.Strength-10) * (Ext.ExtraData.DGM_StrengthGlobalBonus*0.01 + Ext.ExtraData.DGM_StrengthWeaponBonus*0.01) +
 		(character.Finesse-10) * (Ext.ExtraData.DGM_FinesseGlobalBonus*0.01) +
 		(character.Intelligence-10) * (Ext.ExtraData.DGM_IntelligenceGlobalBonus*0.01)
+            end
 		else
 			globalMult = 1 + (character.Strength-10) * (Ext.ExtraData.DGM_StrengthGlobalBonus*0.01) +
 		(character.Finesse-10) * (Ext.ExtraData.DGM_FinesseGlobalBonus*0.01) +
 		(character.Intelligence-10) * (Ext.ExtraData.DGM_IntelligenceGlobalBonus*0.01 + Ext.ExtraData.DGM_IntelligenceSkillBonus*0.01)
 		end
 		--Ext.Print("Global mult", globalMult, skillDamageType)
-        local baseDamage = CalculateBaseDamage(skillDamageType, character, 0, level) * attrDamageScale * damageMultiplier * globalMult
+        local baseDamage = CustomCalculateBaseDamage(skillDamageType, character, 0, level) * attrDamageScale * damageMultiplier * globalMult
         damageRange = damageRange * baseDamage * 0.005
 
+        -- Ext.Print(damageType, 1.0 + Game.Math.GetDamageBoostByType(character, damageType))
+        -- print(Game.Math.DamageBoostTable[damageType])
+        -- Ext.Dump(character.Character:GetTags())
         local damageTypeBoost = 1.0 + Game.Math.GetDamageBoostByType(character, damageType)
         local damageBoost = 1.0 + (character.DamageBoost / 100.0)
         local damageRanges = {}
@@ -236,27 +229,83 @@ local function GetSkillDamageRange(character, skill)
     end
 end
 
----@param dmgType string
-local function getDamageColor(dmgType)
-	local colorCode = ""
-	local types = {}
-	types["Physical"]="'#A8A8A8'"
-	types["Corrosive"]="'#454545'"
-	types["Magic"]="'#7F00FF'"
-	types["Fire"]="'#FE6E27'"
-	types["Water"]="'#4197E2'"
-	types["Earth"]="'#7F3D00'"
-	types["Poison"]="'#65C900'"
-	types["Air"]="'#7D71D9'"
-	types["Shadow"]="'#797980'"
-    types["Piercing"]="'#C80030'"
-    types["None"]="'#C80030'"
-	
-	for t,code in pairs(types) do
-		if dmgType == t then return code end
+-- Odinblade compatibility
+Game.Math.GetSkillDamageRange = GetSkillDamageRange
+
+local SkillGetDescriptionParamForbidden = {"Projectile_OdinHUN_HuntersTrap", "Target_ElementalArrowheads", "Projectile_OdinHUN_TheHunt"}
+
+---@param skill StatEntrySkillData
+---@param character StatCharacter
+---@param isFromItem boolean
+---@param par string
+local function SkillGetDescriptionParam(skill, character, isFromItem, par, ...)
+	-- Ext.Print(skill.Damage, skill.DamageMultiplier)
+	-- Ext.Print("BaseLevelDamage:",Game.Math.GetLevelScaledDamage(character.Level))
+	-- Ext.Print("AverageLevelDamage:",Game.Math.GetAverageLevelDamage(character.Level))
+	-- Ext.Print("LevelScaledMonsterWeaponDamage:", Game.Math.GetLevelScaledMonsterWeaponDamage(character.Level))
+    -- Ext.Print("LevelScaledWeaponDamage:", Game.Math.GetLevelScaledWeaponDamage(character.Level))
+    for _, name in pairs(SkillGetDescriptionParamForbidden) do
+        if name == skill.Name then
+            return nil
+        end
+    end
+    local additional = {...}
+
+    if currentParam > GetTableSize(paramsOrder) then 
+        currentParam = 1
+    end
+    if lastSkill ~= skill.Name then
+        lastSkill = skill.Name
+        currentParam = 1
+        skillParams = {}
+        for i,param in pairs(skill.StatsDescriptionParams:split(";")) do
+            if param:starts("Damage") or (param:starts("Skill") and param:gsub(".*:", "") == "Damage") or (param:starts("Weapon") and param:gsub(".*:", "") == "Damage") then
+                skillParams[i] = param
+            else
+                skillParams[i] = ""
+            end
+        end
+        local index = 1
+        paramsOrder = {}
+        for nb in Ext.GetTranslatedStringFromKey(skill.Description):gmatch("%[.%]") do
+            paramsOrder[index] = tonumber(nb:sub(2, 2))
+            index = index + 1
+        end
+    end
+    if skillParams[paramsOrder[currentParam]] == "" or skillParams[paramsOrder[currentParam]] == nil then
+        currentParam = currentParam + 1
+        return 
+    end
+
+	local desc = skill.StatsDescriptionParams
+    if par == "Damage" or par == "Skill" or par == "Weapon" then
+        if par == "Skill" then skill = Ext.GetStat(additional[1], character.Level)
+        else skill = Ext.GetStat(skill.Name, character.Level) end
+        -- Ext.Print(par, skill.Name, skill.DamageType)
+		if skill.Damage ~= "BaseLevelDamage" and skill.Damage ~= "AverageLevelDamge" then return nil end
+		local dmg = GetSkillDamageRange(character, skill)
+		local result = ""
+		local once = false
+        if dmg == nil then return end
+        for dmgType, damages in pairs(dmg) do
+            if damages.Min == nil then return end
+			local minDmg = math.floor(damages.Min)
+			local maxDmg = math.floor(damages.Max)
+			local color = getDamageColor(dmgType)
+			if not once then
+				result = result.."<font color="..color..">"..tostring(minDmg).."-"..tostring(maxDmg).." "..dmgType.." damage".."</font>"
+				once = true
+			else
+				result = result.." + ".."<font color="..color..">"..tostring(minDmg).."-"..tostring(maxDmg).." "..dmgType.." damage".."</font>"
+			end
+        end
+        currentParam = currentParam + 1
+        return result
 	end
-	return "'#A8A8A8'"
+	return nil
 end
+
+Ext.RegisterListener("SkillGetDescriptionParam", SkillGetDescriptionParam)
 
 ---@param status EsvStatus
 ---@param statusSource EsvGameObject
@@ -286,58 +335,7 @@ local function StatusGetDescriptionParam(status, statusSource, character, par)
 	return nil
 end
 
--- Odinblade compatibility
-Game.Math.GetSkillDamageRange = GetSkillDamageRange
-
 Ext.RegisterListener("StatusGetDescriptionParam", StatusGetDescriptionParam)
-
-local SkillGetDescriptionParamForbidden = {"Projectile_OdinHUN_HuntersTrap", "Target_ElementalArrowheads", "Projectile_OdinHUN_TheHunt"}
-
----@param skill StatEntrySkillData
----@param character StatCharacter
----@param isFromItem boolean
----@param par string
-local function SkillGetDescriptionParam(skill, character, isFromItem, par, ...)
-	--Ext.Print(skill.Damage, skill.DamageMultiplier)
-	-- Ext.Print("BaseLevelDamage:",Game.Math.GetLevelScaledDamage(character.Level))
-	-- Ext.Print("AverageLevelDamage:",Game.Math.GetAverageLevelDamage(character.Level))
-	-- Ext.Print("LevelScaledMonsterWeaponDamage:", Game.Math.GetLevelScaledMonsterWeaponDamage(character.Level))
-    -- Ext.Print("LevelScaledWeaponDamage:", Game.Math.GetLevelScaledWeaponDamage(character.Level))
-    for _, name in pairs(SkillGetDescriptionParamForbidden) do
-        if name == skill.Name then
-            return nil
-        end
-    end
-    local additional = {...}
-
-	local desc = skill.StatsDescriptionParams
-    if par == "Damage" or par == "Skill" or par == "Weapon" then
-        if par == "Skill" then skill = Ext.GetStat(additional[1], character.Level)
-        else skill = Ext.GetStat(skill.Name, character.Level) end
-        -- Ext.Print(par, skill.Name, skill.DamageType)
-		if skill.Damage ~= "BaseLevelDamage" and skill.Damage ~= "AverageLevelDamge" then return nil end
-		local dmg = GetSkillDamageRange(character, skill)
-		local result = ""
-		local once = false
-		
-        for dmgType, damages in pairs(dmg) do
-            if damages.Min == nil then return end
-			local minDmg = math.floor(damages.Min)
-			local maxDmg = math.floor(damages.Max)
-			local color = getDamageColor(dmgType)
-			if not once then
-				result = result.."<font color="..color..">"..tostring(minDmg).."-"..tostring(maxDmg).." "..dmgType.." damage".."</font>"
-				once = true
-			else
-				result = result.." + ".."<font color="..color..">"..tostring(minDmg).."-"..tostring(maxDmg).." "..dmgType.." damage".."</font>"
-			end
-        end
-        return result
-	end
-	return nil
-end
-
--- Ext.RegisterListener("SkillGetDescriptionParam", SkillGetDescriptionParam)
 
 local DamageTypes = {
     None = 0,

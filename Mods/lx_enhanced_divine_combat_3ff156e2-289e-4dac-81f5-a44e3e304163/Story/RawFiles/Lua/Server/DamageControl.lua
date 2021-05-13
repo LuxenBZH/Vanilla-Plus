@@ -1,3 +1,30 @@
+local function TagShadowCorrosiveDifference(damageArray)
+	if damageArray.Shadow > 0 and damageArray.Corrosive > 0 then
+		if damageArray.Shadow > damageArray.Corrosive then
+			Ext.BroadcastMessage("DGM_ShadowCorrosiveTag", "S")
+		else
+			Ext.BroadcastMessage("DGM_ShadowCorrosiveTag", "C")
+		end
+	elseif damageArray.Shadow > 0 then
+		Ext.BroadcastMessage("DGM_ShadowCorrosiveTag", "S")
+	elseif damageArray.Corrosive > 0 then
+		Ext.BroadcastMessage("DGM_ShadowCorrosiveTag", "C")
+	end
+end
+
+---@param target EsvCharacter
+local function TraceDamageSpreaders(target)
+	local statuses = target:GetStatuses()
+	for i,status in pairs(statuses) do
+		if target:GetStatus(status).StatusType == "GUARDIAN_ANGEL" then
+			local source = target:GetStatus(status).StatusSourceHandle
+			if source ~= nil then
+				SetTag(Ext.GetCharacter(source).MyGuid, "DGM_GuardianAngelProtector")
+			end
+		end
+	end
+end
+
 ---@param target EsvCharacter
 ---@param handle number
 ---@param instigator EsvCharacter
@@ -9,30 +36,22 @@ function DamageControl(target, instigator, hitDamage, handle)
 		Main damage control : damages are teared down to the original formula and apply custom
 		bonuses from the overhaul
 	]]--
-	
 	if ObjectIsCharacter(instigator) == 0 then return end
 	-- Get hit properties
 	local damages = {}
 	local types = DamageTypeEnum()
 	local isCrit = NRD_StatusGetInt(target, handle, "CriticalHit")
-	-- print("Crit: "..isCrit)
 	local isDodged = NRD_StatusGetInt(target, handle, "Dodged")
-	-- print("Dodged: "..isDodged)
 	local isBlocked = NRD_StatusGetInt(target, handle, "Blocked")
-	-- print("Blocked: "..isBlocked)
 	local isMissed = NRD_StatusGetInt(target, handle, "Missed")
-	-- print("Missed: "..isMissed)
 	local fromWeapon = NRD_StatusGetInt(target, handle, "HitWithWeapon")
-	-- print("Hit with weapon: "..fromWeapon)
 	local fromReflection = NRD_StatusGetInt(target, handle, "Reflection")
-	-- print("Hit from reflection: "..fromReflection)
-	local hitType = NRD_StatusGetInt(target, handle, "DoT")
-	-- print("HitType: "..hitType)
+	local isDoT = NRD_StatusGetInt(target, handle, "DoT")
 	local sourceType = NRD_StatusGetInt(target, handle, "DamageSourceType")
 	local skillID = NRD_StatusGetString(target, handle, "SkillId")
 	local backstab = NRD_StatusGetInt(target, handle, "Backstab")
 	local fixedValue = 0
-	-- print("SkillID: "..skillID)
+	local isFromShacklesOfPain = false
 
 	if fromReflection == 1 then return end
 	if NRD_StatusGetInt(target, handle, "HitReason") == 0 then
@@ -40,22 +59,33 @@ function DamageControl(target, instigator, hitDamage, handle)
 	elseif skillID ~= "" then
 		fromWeapon = NRD_StatGetInt(string.gsub(skillID, "%_%-1", ""), "UseWeaponDamage")
 		fixedValue = NRD_StatGetInt(string.gsub(skillID, "%_%-1", ""), "Damage")
+	elseif NRD_StatusGetInt(target, handle, "HitReason") == 1 and skillID == "" and isDoT == 0 
+		and HasActiveStatus(target, "SHACKLES_OF_PAIN") == 1 and HasActiveStatus(instigator, "SHACKLES_OF_PAIN_CASTER") == 1 then
+		isFromShacklesOfPain = true
+		Ext.Print("Shackles of Pain hit!")
 	end
 	
 	local weaponTypes = GetWeaponsType(instigator)
 	-- local hitStatus = Ext.GetStatus(target, handle)
 	
 	-- Get hit damages
+	local totalDamage = 0
 	for i,dmgType in pairs(types) do
 		damages[dmgType] = NRD_HitStatusGetDamage(target, handle, dmgType)
+		totalDamage = totalDamage + damages[dmgType]
 		if damages[dmgType] ~= 0 then Ext.Print("Damage "..dmgType..": "..damages[dmgType]) end
 	end
+	TagShadowCorrosiveDifference(damages)
 	
 	if isBlocked == 1 then return end
 	if sourceType == 1 or sourceType == 2 or sourceType == 3 then InitiatePassingDamage(target, damages); return end
-	if skillID == "" and sourceType == 0 then InitiatePassingDamage(target, damages); return end
+	if skillID == "" and sourceType == 0 and ObjectIsCharacter(target) == 1 then InitiatePassingDamage(target, damages); return end
 	if fixedValue ~= 0 and fixedValue ~= 1 and fixedValue ~= 2 then InitiatePassingDamage(target, damages); return end
 	
+	if ObjectIsCharacter(target) == 1 then
+		TraceDamageSpreaders(Ext.GetCharacter(target))
+	end
+
 	-- Dodge mechanic override
 	if isMissed == 1 or isDodged == 1 then
 		-- local weaponHandle = NRD_StatusGetString(target, handle, "WeaponHandle")
@@ -67,7 +97,7 @@ function DamageControl(target, instigator, hitDamage, handle)
 		TriggerDodgeFatigue(target, instigator)
 		return
 	end
-		
+	
 	-- Get instigator bonuses
 	local strength = CharacterGetAttribute(instigator, "Strength") - Ext.ExtraData.AttributeBaseValue
 	local finesse = CharacterGetAttribute(instigator, "Finesse") - Ext.ExtraData.AttributeBaseValue
@@ -80,11 +110,32 @@ function DamageControl(target, instigator, hitDamage, handle)
 		local criticalHit = NRD_CharacterGetComputedStat(instigator, "CriticalChance", 0)
 		damageBonus = damageBonus + criticalHit * Ext.ExtraData.DGM_BackstabCritChanceBonus
 	end
-	
+
 	-- Get damage type bonus
 	if fromWeapon == 1 or skillID == "Target_TentacleLash_-1" then 
 		damageBonus = damageBonus + strength*Ext.ExtraData.DGM_StrengthWeaponBonus
-		-- print("Bonus: Weapon")
+		-- Siphon Poison effect
+		if HasActiveStatus(instigator, "SIPHON_POISON") == 1 then
+			local seconds = 6.0
+			if HasActiveStatus(instigator, "VENOM_COATING") == 1 or HasActiveStatus(instigator, "VENOM_AURA") == 1 then
+				seconds = seconds + 12.0
+			end
+			if CharacterHasTalent(instigator, "Torturer") == 1 then
+				seconds = seconds + 6.0
+			end
+			ApplyStatus(target, "ACID", seconds, 1)
+		end
+		-- Wands bonus
+		if weaponTypes[1] == "Wand" then
+			local groundSurface = string.gsub(GetSurfaceGroundAt(instigator), "Surface", "")
+			local cloudSurface = string.gsub(GetSurfaceCloudAt(instigator), "Surface", "")
+			if surfaceToType[groundSurface] ~= nil then
+				damages[surfaceToType[groundSurface]] = damages[surfaceToType[groundSurface]] + (totalDamage * Ext.ExtraData.DGM_WandSurfaceBonus/100)
+			end
+			if surfaceToType[cloudSurface] ~= nil then
+				damages[surfaceToType[cloudSurface]] = damages[surfaceToType[cloudSurface]] + (totalDamage * Ext.ExtraData.DGM_WandSurfaceBonus/100)
+			end
+		end
 		-- Check distance penalty if it's a distance weapon
 		if weaponTypes[1] == "Bow" or weaponTypes[1] == "Crossbow" or weaponTypes[1] == "Rifle" or weaponTypes[1] == "Wand" then
 			local distance = GetDistanceTo(target, instigator)
@@ -99,19 +150,9 @@ function DamageControl(target, instigator, hitDamage, handle)
 		end
 		
 	end
-	if hitType == 1 then
+	if isDoT == 1 then
 		damageBonus = wits*Ext.ExtraData.DGM_WitsDotBonus
 		Ext.Print("Dot bonus",damageBonus)
-		-- print("Bonus: DoT") 
-		-- Demon bonus for burning/necrofire
-		-- local hasDemon = CharacterHasTalent(instigator, "Demon")
-		-- if hasDemon == 1 then
-		-- 	local statusID = NRD_StatusGetString(target, handle, "StatusId")
-		-- 	if statusID == "BURNING" or statusID == "NECROFIRE" then
-		-- 		-- print("Bonus: Demon")
-		-- 		damageBonus = damageBonus + Ext.ExtraData.DGM_DemonStatusesBonus
-		-- 	end
-		-- end
 	end
 	if skillID ~= "" then 
 		damageBonus = damageBonus + intelligence*Ext.ExtraData.DGM_IntelligenceSkillBonus
@@ -135,9 +176,14 @@ function DamageControl(target, instigator, hitDamage, handle)
 	end
 	
 	-- Apply damage changes and side effects
-	if skillID == "Projectile_Talent_Unstable" then globalMultiplier = 1 end
+	if skillID == "Projectile_Talent_Unstable" or IsTagged(target, "DGM_GuardianAngelProtector") == 1 or isFromShacklesOfPain then 
+		ClearTag(target, "DGM_GuardianAngelProtector")
+		damageBonus = 0
+		globalMultiplier = 1
+	end
 	damages = ChangeDamage(damages, (damageBonus/100+1)*globalMultiplier, 0, instigator, target, handle)
 	ReplaceDamages(damages, handle, target)
+	TagShadowCorrosiveDifference(damages)
 	if ObjectIsCharacter(target) == 1 then SetWalkItOff(target, handle) end
 	
 	-- Armor passing damages
@@ -180,7 +226,9 @@ function ChangeDamage(damages, multiplier, value, instigator, target, handle)
 		amount = amount * multiplier
 		amount = amount + value
 		if dmgType ~= "Corrosive" and dmgType ~= "Magic" then
-			lifesteal = lifesteal + Ext.Round(amount * (instigator.Stats.LifeSteal/100)) 
+			if lifesteal ~= 0 then
+				lifesteal = lifesteal + Ext.Round(amount * (instigator.Stats.LifeSteal/100)) 
+			end
 		end
 		if amount ~= 0 then Ext.Print("Changed "..dmgType.." to "..amount.." (Multiplier = "..multiplier..")") end
 		damages[dmgType] = amount
@@ -414,10 +462,10 @@ end
 --- @param hit HitRequest
 --- @param damageList DamageList
 --- @param statusBonusDmgTypes DamageList
---- @param hitType string HitType enumeration
+--- @param isDoT string HitType enumeration
 --- @param target StatCharacter
 --- @param attacker StatCharacter
-function DoHit(hit, damageList, statusBonusDmgTypes, hitType, target, attacker)
+function DoHit(hit, damageList, statusBonusDmgTypes, isDoT, target, attacker)
     hit.EffectFlags = hit.EffectFlags | Game.Math.HitFlag.Hit;
     damageList:AggregateSameTypeDamages()
     damageList:Multiply(hit.DamageMultiplier)
@@ -444,16 +492,16 @@ function DoHit(hit, damageList, statusBonusDmgTypes, hitType, target, attacker)
     hit.ArmorAbsorption = hit.ArmorAbsorption + ComputeMagicArmorDamage(damageList, target.CurrentMagicArmor)
 
     if hit.TotalDamageDone > 0 then
-        Game.Math.ApplyLifeSteal(hit, target, attacker, hitType)
+        Game.Math.ApplyLifeSteal(hit, target, attacker, isDoT)
     else
         hit.EffectFlags = hit.EffectFlags | Game.Math.HitFlag.DontCreateBloodSurface
     end
 
-    if hitType == "Surface" then
+    if isDoT == "Surface" then
         hit.EffectFlags = hit.EffectFlags | Game.Math.HitFlag.Surface
     end
 
-    if hitType == "DoT" then
+    if isDoT == "DoT" then
         hit.EffectFlags = hit.EffectFlags | Game.Math.HitFlag.DoT
     end
 end
@@ -473,13 +521,16 @@ function ApplyHitResistances(character, damageList, attacker)
 		local resistance = originalResistance
 		local bypassValue = (strength - Ext.ExtraData.AttributeBaseValue) * Ext.ExtraData.DGM_StrengthResistanceIgnore * (intelligence - Ext.ExtraData.AttributeBaseValue)
 		-- Ext.Print("bypass value:",bypassValue)
-		if originalResistance > 0 and originalResistance < 100 and bypassValue > 0 then
+		-- Ext.Print(resistance)
+		if originalResistance ~= nil and originalResistance > 0 and originalResistance < 100 and bypassValue > 0 then
 			resistance = originalResistance - bypassValue
 			if resistance < 0 then
 				resistance = 0
 			elseif resistance > originalResistance then
 				resistance = originalResistance
 			end
+		-- else
+			-- resistance = 1
 		end
         damageList:Add(damage.DamageType, math.floor(damage.Amount * -resistance / 100.0))
     end
@@ -522,3 +573,4 @@ end
 
 -- Ext.RegisterOsirisListener("NRD_OnStatusAttempt", 4, "before", HitCatch)
 Ext.RegisterOsirisListener("NRD_OnHit", 4, "before", DamageControl)
+

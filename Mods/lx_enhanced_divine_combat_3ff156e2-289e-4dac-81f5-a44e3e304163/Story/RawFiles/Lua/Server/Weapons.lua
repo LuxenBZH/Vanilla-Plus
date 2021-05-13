@@ -60,8 +60,8 @@ function CheckCurrentWeaponAbility(character)
 		return "Ranged"
 	elseif mainWeaponHandedness then
 		return "TwoHanded"
-	elseif mainWeaponType == "Wand" and offHandType == "Wand" then
-		return "Ranged" 
+	-- elseif mainWeaponType == "Wand" and offHandType == "Wand" then
+	-- 	return "Ranged" 
 	elseif mainWeaponType ~= "None"	and offHandType ~= "None" then
 		return "DualWielding"
 	end
@@ -130,7 +130,7 @@ function ApplyOverhaulWeaponAbilityBonuses(character)
 	-- If gained point while ability is active
 	if wpnAbility == previousWpnAbility and change ~= 0 then
 		for n,bonus in pairs(bonuses) do
-			print("Apply bonus for "..bonus.." with a mutiplier of "..multipliers[n].." Stat being "..change)
+			-- print("Apply bonus for "..bonus.." with a mutiplier of "..multipliers[n].." Stat being "..change)
 			ApplyBonus(character, wpnAbility, bonus, multipliers[n])
 		end
 		SetVarInteger(character, "LX_Changed_"..wpnAbility, 0)
@@ -144,12 +144,12 @@ function ApplyOverhaulWeaponAbilityBonuses(character)
 	
 		change2 = GetVarInteger(character, "LX_Changed_"..previousWpnAbility)
 		if change2 == nil then change2 = 0 end
-		print("Weapon ability: "..wpnAbility.." change of "..change)
-		print("Previous weapon ability: "..previousWpnAbility.." change of "..change2)
+		-- print("Weapon ability: "..wpnAbility.." change of "..change)
+		-- print("Previous weapon ability: "..previousWpnAbility.." change of "..change2)
 		if wpnAbility ~= "None" and wpnAbility ~= "DualWielding" then
 			for n,bonus in pairs(bonuses) do
 				ApplyBonus(character, wpnAbility, bonus, multipliers[n])
-				print("Apply bonus for "..bonus.." with a mutiplier of "..multipliers[n].." Stat being "..change)
+				-- print("Apply bonus for "..bonus.." with a mutiplier of "..multipliers[n].." Stat being "..change)
 			end
 			SetVarInteger(character, "LX_Changed_"..wpnAbility, 0)
 		end
@@ -163,7 +163,7 @@ function ApplyOverhaulWeaponAbilityBonuses(character)
 			end
 			for n,bonus in pairs(bonuses) do
 				ApplyBonus(character, previousWpnAbility, bonus, multipliers[n])
-				print("Apply bonus for "..bonus.." with a mutiplier of "..multipliers[n])
+				-- print("Apply bonus for "..bonus.." with a mutiplier of "..multipliers[n])
 			end
 			SetVarInteger(character, "LX_Changed_"..previousWpnAbility, 0)
 		end

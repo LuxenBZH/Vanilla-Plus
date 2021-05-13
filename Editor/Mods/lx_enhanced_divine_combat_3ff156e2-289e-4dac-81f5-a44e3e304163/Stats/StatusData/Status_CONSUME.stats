@@ -3,6 +3,15 @@
   <stat_objects>
     <stat_object is_substat="false">
       <fields>
+        <field name="Name" type="NameStatObjectFieldDefinition" value="LX_WALKITOFF_2" />
+        <field name="DisplayName" type="TranslatedStringStatObjectFieldDefinition" value="Walk It Off" />
+        <field name="StatsId" type="StringStatObjectFieldDefinition" value="Stats_LX_WalkItOff_2" />
+        <field name="StackId" type="StringStatObjectFieldDefinition" value="Stack_LX_WalkItOff" />
+        <field name="Icon" type="StringStatObjectFieldDefinition" value="Talent_WalkItOff" />
+      </fields>
+    </stat_object>
+    <stat_object is_substat="false">
+      <fields>
         <field name="Name" type="NameStatObjectFieldDefinition" value="FIREBLOOD" />
         <field name="ForGameMaster" type="EnumerationStatObjectFieldDefinition" value="1" enumeration_type_name="YesNo" />
         <field name="InitiateCombat" type="EnumerationStatObjectFieldDefinition" value="1" enumeration_type_name="YesNo" />
@@ -21,15 +30,6 @@
         <field name="Name" type="NameStatObjectFieldDefinition" value="LX_WALKITOFF" />
         <field name="DisplayName" type="TranslatedStringStatObjectFieldDefinition" value="Walk It Off" />
         <field name="StatsId" type="StringStatObjectFieldDefinition" value="Stats_LX_WalkItOff" />
-        <field name="StackId" type="StringStatObjectFieldDefinition" value="Stack_LX_WalkItOff" />
-        <field name="Icon" type="StringStatObjectFieldDefinition" value="Talent_WalkItOff" />
-      </fields>
-    </stat_object>
-    <stat_object is_substat="false">
-      <fields>
-        <field name="Name" type="NameStatObjectFieldDefinition" value="LX_WALKITOFF_2" />
-        <field name="DisplayName" type="TranslatedStringStatObjectFieldDefinition" value="Walk It Off" />
-        <field name="StatsId" type="StringStatObjectFieldDefinition" value="Stats_LX_WalkItOff_2" />
         <field name="StackId" type="StringStatObjectFieldDefinition" value="Stack_LX_WalkItOff" />
         <field name="Icon" type="StringStatObjectFieldDefinition" value="Talent_WalkItOff" />
       </fields>
@@ -280,6 +280,8 @@
         <field name="FormatColor" type="EnumerationStatObjectFieldDefinition" value="8" enumeration_type_name="FormatStringColor" />
         <field name="StatsId" type="StringStatObjectFieldDefinition" value="Stats_Arrowhead_Fire" />
         <field name="StackId" type="StringStatObjectFieldDefinition" value="Stack_ElementalArrowhead" />
+        <field name="Description" type="TranslatedStringStatObjectFieldDefinition" value="Adds [1] to weapon attacks and skills." />
+        <field name="DescriptionParams" type="StringStatObjectFieldDefinition" value="WPN-DamageFromBase" />
       </fields>
     </stat_object>
     <stat_object is_substat="false">
@@ -292,6 +294,8 @@
         <field name="FormatColor" type="EnumerationStatObjectFieldDefinition" value="8" enumeration_type_name="FormatStringColor" />
         <field name="StatsId" type="StringStatObjectFieldDefinition" value="Stats_Arrowhead_Water" />
         <field name="StackId" type="StringStatObjectFieldDefinition" value="Stack_ElementalArrowhead" />
+        <field name="Description" type="TranslatedStringStatObjectFieldDefinition" value="Adds [1] to weapon attacks and skills." />
+        <field name="DescriptionParams" type="StringStatObjectFieldDefinition" value="WPN-DamageFromBase" />
       </fields>
     </stat_object>
     <stat_object is_substat="false">
@@ -304,6 +308,8 @@
         <field name="FormatColor" type="EnumerationStatObjectFieldDefinition" value="8" enumeration_type_name="FormatStringColor" />
         <field name="StatsId" type="StringStatObjectFieldDefinition" value="Stats_Arrowhead_Poison" />
         <field name="StackId" type="StringStatObjectFieldDefinition" value="Stack_ElementalArrowhead" />
+        <field name="Description" type="TranslatedStringStatObjectFieldDefinition" value="Adds [1] to weapon attacks and skills." />
+        <field name="DescriptionParams" type="StringStatObjectFieldDefinition" value="WPN-DamageFromBase" />
       </fields>
     </stat_object>
     <stat_object is_substat="false">
@@ -316,6 +322,8 @@
         <field name="FormatColor" type="EnumerationStatObjectFieldDefinition" value="8" enumeration_type_name="FormatStringColor" />
         <field name="StatsId" type="StringStatObjectFieldDefinition" value="Stats_Arrowhead_Electric" />
         <field name="StackId" type="StringStatObjectFieldDefinition" value="Stack_ElementalArrowhead" />
+        <field name="Description" type="TranslatedStringStatObjectFieldDefinition" value="Adds [1] to weapon attacks and skills." />
+        <field name="DescriptionParams" type="StringStatObjectFieldDefinition" value="WPN-DamageFromBase" />
       </fields>
     </stat_object>
     <stat_object is_substat="false">
@@ -329,6 +337,8 @@
         <field name="StatusEffect" type="StringStatObjectFieldDefinition" value="RS3_FX_Items_Weapons_DamageType_Blood_Overlay_01" />
         <field name="StatsId" type="StringStatObjectFieldDefinition" value="Stats_Arrowhead_Blood" />
         <field name="StackId" type="StringStatObjectFieldDefinition" value="Stack_ElementalArrowhead" />
+        <field name="Description" type="TranslatedStringStatObjectFieldDefinition" value="Adds [1] to weapon attacks and skills." />
+        <field name="DescriptionParams" type="StringStatObjectFieldDefinition" value="WPN-DamageFromBase" />
       </fields>
     </stat_object>
     <stat_object is_substat="false">
@@ -341,6 +351,8 @@
         <field name="FormatColor" type="EnumerationStatObjectFieldDefinition" value="8" enumeration_type_name="FormatStringColor" />
         <field name="StatsId" type="StringStatObjectFieldDefinition" value="Stats_Arrowhead_Oil" />
         <field name="StackId" type="StringStatObjectFieldDefinition" value="Stack_ElementalArrowhead" />
+        <field name="Description" type="TranslatedStringStatObjectFieldDefinition" value="Adds [1] to weapon attacks and skills." />
+        <field name="DescriptionParams" type="StringStatObjectFieldDefinition" value="WPN-DamageFromBase" />
       </fields>
     </stat_object>
     <stat_object is_substat="false">
@@ -506,6 +518,111 @@
         <field name="StatsId" type="StringStatObjectFieldDefinition" value="Stats_Taunted" />
         <field name="StackId" type="StringStatObjectFieldDefinition" value="Stack_Taunted" />
         <field name="LoseControl" type="EnumerationStatObjectFieldDefinition" value="1" enumeration_type_name="YesNo" />
+      </fields>
+    </stat_object>
+    <stat_object is_substat="false">
+      <fields>
+        <field name="Name" type="NameStatObjectFieldDefinition" value="LX_CLOSEQUARTER" />
+        <field name="ForGameMaster" type="EnumerationStatObjectFieldDefinition" value="0" enumeration_type_name="YesNo" />
+        <field name="AuraEnemies" type="StringStatObjectFieldDefinition" value="LX_INCQB" />
+        <field name="StackId" type="StringStatObjectFieldDefinition" value="Stack_CQBAura" />
+      </fields>
+    </stat_object>
+    <stat_object is_substat="false">
+      <fields>
+        <field name="Name" type="NameStatObjectFieldDefinition" value="LX_INCQB" />
+        <field name="DisplayName" type="TranslatedStringStatObjectFieldDefinition" value="Close Quarter Penalty" />
+        <field name="Description" type="TranslatedStringStatObjectFieldDefinition" value="If you attack this character with a ranged weapon, the damage will be lowered." />
+        <field name="StatusEffect" type="StringStatObjectFieldDefinition" value="RS3_FX_Status_InCQB_01" />
+        <field name="Icon" type="StringStatObjectFieldDefinition" value="icon_cqbpenalty" />
+        <field name="StackId" type="StringStatObjectFieldDefinition" value="Stack_InCQB" />
+      </fields>
+    </stat_object>
+    <stat_object is_substat="false">
+      <fields>
+        <field name="Name" type="NameStatObjectFieldDefinition" value="DGM_StatusData_Base" />
+      </fields>
+    </stat_object>
+    <stat_object is_substat="false">
+      <fields>
+        <field name="Name" type="NameStatObjectFieldDefinition" value="SIPHON_POISON" />
+        <field name="ForGameMaster" type="EnumerationStatObjectFieldDefinition" value="0" enumeration_type_name="YesNo" />
+        <field name="InitiateCombat" type="EnumerationStatObjectFieldDefinition" value="0" enumeration_type_name="YesNo" />
+        <field name="DisplayName" type="TranslatedStringStatObjectFieldDefinition" value="|Siphon Poison|" />
+        <field name="Icon" type="StringStatObjectFieldDefinition" value="Skill_Earth_SiphonPoison" />
+        <field name="FormatColor" type="EnumerationStatObjectFieldDefinition" value="8" enumeration_type_name="FormatStringColor" />
+        <field name="StatusEffect" type="StringStatObjectFieldDefinition" value="RS3_FX_GP_Status_VenomCoating_Subject_Hand_01:Dummy_L_HandFX,Dummy_R_HandFX" />
+        <field name="StackId" type="StringStatObjectFieldDefinition" value="Stack_Siphon" />
+        <field name="Description" type="TranslatedStringStatObjectFieldDefinition" value="Adds [2] damage to your weapon attacks and skills. They now also set Acid for 1 turn (3 if Venom Coating is active)." />
+        <field name="DescriptionParams" type="StringStatObjectFieldDefinition" value="Damage:Status_SiphonPoison;CSB-DamageFromBase" />
+      </fields>
+    </stat_object>
+    <stat_object is_substat="false">
+      <fields>
+        <field name="Name" type="NameStatObjectFieldDefinition" value="VENOM_COATING" />
+        <field name="ForGameMaster" type="EnumerationStatObjectFieldDefinition" value="0" enumeration_type_name="YesNo" />
+        <field name="InitiateCombat" type="EnumerationStatObjectFieldDefinition" value="0" enumeration_type_name="YesNo" />
+        <field name="DisplayName" type="TranslatedStringStatObjectFieldDefinition" value="|Venom Coating|" />
+        <field name="Icon" type="StringStatObjectFieldDefinition" value="Skill_Skillcrafting_Earth_VenomCoating" />
+        <field name="FormatColor" type="EnumerationStatObjectFieldDefinition" value="8" enumeration_type_name="FormatStringColor" />
+        <field name="StatusEffect" type="StringStatObjectFieldDefinition" value="RS3_FX_GP_Status_VenomCoating_Subject_Hand_01:Dummy_L_HandFX,Dummy_R_HandFX" />
+        <field name="StatsId" type="StringStatObjectFieldDefinition" value="Stats_VenomCoating" />
+        <field name="StackId" type="StringStatObjectFieldDefinition" value="Stack_Venom" />
+        <field name="StackPriority" type="IntegerStatObjectFieldDefinition" value="0" />
+        <field name="Description" type="TranslatedStringStatObjectFieldDefinition" value="Adds [1] to weapon attacks and skills." />
+        <field name="DescriptionParams" type="StringStatObjectFieldDefinition" value="WPN-DamageFromBase" />
+      </fields>
+    </stat_object>
+    <stat_object is_substat="false">
+      <fields>
+        <field name="Name" type="NameStatObjectFieldDefinition" value="VENOM_AURA" />
+        <field name="ForGameMaster" type="EnumerationStatObjectFieldDefinition" value="0" enumeration_type_name="YesNo" />
+        <field name="InitiateCombat" type="EnumerationStatObjectFieldDefinition" value="0" enumeration_type_name="YesNo" />
+        <field name="DisplayName" type="TranslatedStringStatObjectFieldDefinition" value="|Venom Aura|" />
+        <field name="Icon" type="StringStatObjectFieldDefinition" value="Skill_Skillcrafting_Earth_VenomCoatingAura" />
+        <field name="FormatColor" type="EnumerationStatObjectFieldDefinition" value="8" enumeration_type_name="FormatStringColor" />
+        <field name="StatusEffect" type="StringStatObjectFieldDefinition" value="RS3_FX_GP_Status_VenomCoating_Aura_01;RS3_FX_GP_Status_VenomCoating_Subject_Hand_01:Dummy_L_HandFX,Dummy_R_HandFX" />
+        <field name="StatsId" type="StringStatObjectFieldDefinition" value="Stats_VenomAura" />
+        <field name="StackId" type="StringStatObjectFieldDefinition" value="Stack_Venom" />
+        <field name="StackPriority" type="IntegerStatObjectFieldDefinition" value="1" />
+        <field name="AuraRadius" type="IntegerStatObjectFieldDefinition" value="8" />
+        <field name="AuraAllies" type="StringStatObjectFieldDefinition" value="VENOM_COATING" />
+        <field name="Description" type="TranslatedStringStatObjectFieldDefinition" value="Adds [1] to weapon attacks and skills." />
+        <field name="DescriptionParams" type="StringStatObjectFieldDefinition" value="WPN-DamageFromBase" />
+      </fields>
+    </stat_object>
+    <stat_object is_substat="false">
+      <fields>
+        <field name="Name" type="NameStatObjectFieldDefinition" value="FIRE_BRAND" />
+        <field name="ForGameMaster" type="EnumerationStatObjectFieldDefinition" value="0" enumeration_type_name="YesNo" />
+        <field name="InitiateCombat" type="EnumerationStatObjectFieldDefinition" value="0" enumeration_type_name="YesNo" />
+        <field name="DisplayName" type="TranslatedStringStatObjectFieldDefinition" value="|Fire Brand|" />
+        <field name="Icon" type="StringStatObjectFieldDefinition" value="Skill_Fire_FireBrand" />
+        <field name="FormatColor" type="EnumerationStatObjectFieldDefinition" value="8" enumeration_type_name="FormatStringColor" />
+        <field name="StatusEffect" type="StringStatObjectFieldDefinition" value="RS3_FX_GP_Status_Firebrand_Subject_Hand_01:Dummy_L_HandFX,Dummy_R_HandFX;RS3_FX_GP_Status_Firebrand_Subject_Weapon_01" />
+        <field name="StatsId" type="StringStatObjectFieldDefinition" value="Stats_FireBrand" />
+        <field name="StackId" type="StringStatObjectFieldDefinition" value="Stack_FireBrand" />
+        <field name="StackPriority" type="IntegerStatObjectFieldDefinition" value="0" />
+        <field name="DescriptionParams" type="StringStatObjectFieldDefinition" value="WPN-DamageFromBase" />
+        <field name="Description" type="TranslatedStringStatObjectFieldDefinition" value="Adds [1] to weapon attacks and skills." />
+      </fields>
+    </stat_object>
+    <stat_object is_substat="false">
+      <fields>
+        <field name="Name" type="NameStatObjectFieldDefinition" value="FIRE_BRAND_AURA" />
+        <field name="ForGameMaster" type="EnumerationStatObjectFieldDefinition" value="0" enumeration_type_name="YesNo" />
+        <field name="InitiateCombat" type="EnumerationStatObjectFieldDefinition" value="0" enumeration_type_name="YesNo" />
+        <field name="DisplayName" type="TranslatedStringStatObjectFieldDefinition" value="|Fire Brand|" />
+        <field name="Icon" type="StringStatObjectFieldDefinition" value="Skill_Fire_FireBrand" />
+        <field name="FormatColor" type="EnumerationStatObjectFieldDefinition" value="8" enumeration_type_name="FormatStringColor" />
+        <field name="StatusEffect" type="StringStatObjectFieldDefinition" value="RS3_FX_GP_Status_Firebrand_Subject_Hand_01:Dummy_L_HandFX,Dummy_R_HandFX;RS3_FX_GP_Status_Firebrand_Subject_Weapon_01;RS3_FX_GP_Status_Firebrand_Aura_01" />
+        <field name="StatsId" type="StringStatObjectFieldDefinition" value="Stats_FireBrand" />
+        <field name="StackId" type="StringStatObjectFieldDefinition" value="Stack_FireBrand" />
+        <field name="StackPriority" type="IntegerStatObjectFieldDefinition" value="1" />
+        <field name="AuraRadius" type="IntegerStatObjectFieldDefinition" value="8" />
+        <field name="AuraAllies" type="StringStatObjectFieldDefinition" value="FIRE_BRAND" />
+        <field name="DescriptionParams" type="StringStatObjectFieldDefinition" value="WPN-DamageFromBase" />
+        <field name="Description" type="TranslatedStringStatObjectFieldDefinition" value="Adds [1] to weapon attacks and skills." />
       </fields>
     </stat_object>
   </stat_objects>

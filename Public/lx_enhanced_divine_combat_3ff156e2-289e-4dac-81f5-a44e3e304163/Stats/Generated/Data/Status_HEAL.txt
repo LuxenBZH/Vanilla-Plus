@@ -198,3 +198,17 @@ data "HealValue" "400"
 data "AbsorbSurfaceType" "Oil;OilCursed;OilBlessed"
 data "AbsorbSurfaceRange" "300"
 
+new entry "LX_OILYCARAPACESLOW"
+type "StatusData"
+data "StatusType" "HEAL"
+data "HealStat" "PhysicalArmor"
+data "HealType" "Percentage"
+data "HealValue" "30"
+
+new entry "LX_CRYOTHERAPYCHILL"
+type "StatusData"
+data "StatusType" "HEAL"
+data "HealStat" "MagicArmor"
+data "HealType" "Percentage"
+data "HealValue" "30"
+

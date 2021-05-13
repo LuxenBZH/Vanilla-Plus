@@ -186,24 +186,24 @@ CharacterAddAttribute(_Char, "Dummy", 0);
 // CharacterAddActionPoints(_Char, 1);
 
 // Morning Person Max AP start fight
-IF
-ObjectEnteredCombat((CHARACTERGUID)_Char, _)
-AND
-CharacterHasTalent(_Char, "ResurrectToFullHealth", 1)
-THEN
-SetVarInteger(_Char, "DGM_FirstRound", 1);
+// IF
+// ObjectEnteredCombat((CHARACTERGUID)_Char, _)
+// AND
+// CharacterHasTalent(_Char, "ResurrectToFullHealth", 1)
+// THEN
+// SetVarInteger(_Char, "DGM_FirstRound", 1);
 
-IF
-ObjectTurnStarted((CHARACTERGUID)_Char)
-AND
-CharacterHasTalent(_Char, "ResurrectToFullHealth", 1)
-AND
-GetVarInteger(_Char, "DGM_FirstRound", _FirstRound)
-AND
-_FirstRound == 1
-THEN
-CharacterAddActionPoints(_Char, 99);
-SetVarInteger(_Char, "DGM_FirstRound", 0);
+// IF
+// ObjectTurnStarted((CHARACTERGUID)_Char)
+// AND
+// CharacterHasTalent(_Char, "ResurrectToFullHealth", 1)
+// AND
+// GetVarInteger(_Char, "DGM_FirstRound", _FirstRound)
+// AND
+// _FirstRound == 1
+// THEN
+// CharacterAddActionPoints(_Char, 99);
+// SetVarInteger(_Char, "DGM_FirstRound", 0);
 
 EXITSECTION
 
