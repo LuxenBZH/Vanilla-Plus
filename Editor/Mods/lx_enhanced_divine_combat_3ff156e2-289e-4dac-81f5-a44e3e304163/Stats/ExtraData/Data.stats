@@ -702,5 +702,11 @@
         <field name="Comment" type="CommentStatObjectFieldDefinition" value="How many tiles of a surface you must absorb per surface absorb boos level (round up)" />
       </fields>
     </stat_object>
+    <stat_object is_substat="false">
+      <fields>
+        <field name="Name" type="NameStatObjectFieldDefinition" value="DGM_WandSurfaceBonus" />
+        <field name="Value" type="FloatStatObjectFieldDefinition" value="15" />
+      </fields>
+    </stat_object>
   </stat_objects>
 </stats>

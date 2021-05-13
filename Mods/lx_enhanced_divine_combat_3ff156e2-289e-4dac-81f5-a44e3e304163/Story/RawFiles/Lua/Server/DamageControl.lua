@@ -69,8 +69,10 @@ function DamageControl(target, instigator, hitDamage, handle)
 	-- local hitStatus = Ext.GetStatus(target, handle)
 	
 	-- Get hit damages
+	local totalDamage = 0
 	for i,dmgType in pairs(types) do
 		damages[dmgType] = NRD_HitStatusGetDamage(target, handle, dmgType)
+		totalDamage = totalDamage + damages[dmgType]
 		if damages[dmgType] ~= 0 then Ext.Print("Damage "..dmgType..": "..damages[dmgType]) end
 	end
 	TagShadowCorrosiveDifference(damages)
@@ -112,11 +114,29 @@ function DamageControl(target, instigator, hitDamage, handle)
 	-- Get damage type bonus
 	if fromWeapon == 1 or skillID == "Target_TentacleLash_-1" then 
 		damageBonus = damageBonus + strength*Ext.ExtraData.DGM_StrengthWeaponBonus
-		-- print("Bonus: Weapon")
-		-- Check distance penalty if it's a distance weapon
+		-- Siphon Poison effect
 		if HasActiveStatus(instigator, "SIPHON_POISON") == 1 then
-			ApplyStatus(target, "ACID", 12.0, 1)
+			local seconds = 6.0
+			if HasActiveStatus(instigator, "VENOM_COATING") == 1 or HasActiveStatus(instigator, "VENOM_AURA") == 1 then
+				seconds = seconds + 12.0
+			end
+			if CharacterHasTalent(instigator, "Torturer") == 1 then
+				seconds = seconds + 6.0
+			end
+			ApplyStatus(target, "ACID", seconds, 1)
 		end
+		-- Wands bonus
+		if weaponTypes[1] == "Wand" then
+			local groundSurface = string.gsub(GetSurfaceGroundAt(instigator), "Surface", "")
+			local cloudSurface = string.gsub(GetSurfaceCloudAt(instigator), "Surface", "")
+			if surfaceToType[groundSurface] ~= nil then
+				damages[surfaceToType[groundSurface]] = damages[surfaceToType[groundSurface]] + (totalDamage * Ext.ExtraData.DGM_WandSurfaceBonus/100)
+			end
+			if surfaceToType[cloudSurface] ~= nil then
+				damages[surfaceToType[cloudSurface]] = damages[surfaceToType[cloudSurface]] + (totalDamage * Ext.ExtraData.DGM_WandSurfaceBonus/100)
+			end
+		end
+		-- Check distance penalty if it's a distance weapon
 		if weaponTypes[1] == "Bow" or weaponTypes[1] == "Crossbow" or weaponTypes[1] == "Rifle" or weaponTypes[1] == "Wand" then
 			local distance = GetDistanceTo(target, instigator)
 			--Ext.Print("[LXDGM_DamageControl.DamageControl] Distance :",distance)
@@ -133,16 +153,6 @@ function DamageControl(target, instigator, hitDamage, handle)
 	if isDoT == 1 then
 		damageBonus = wits*Ext.ExtraData.DGM_WitsDotBonus
 		Ext.Print("Dot bonus",damageBonus)
-		-- print("Bonus: DoT") 
-		-- Demon bonus for burning/necrofire
-		-- local hasDemon = CharacterHasTalent(instigator, "Demon")
-		-- if hasDemon == 1 then
-		-- 	local statusID = NRD_StatusGetString(target, handle, "StatusId")
-		-- 	if statusID == "BURNING" or statusID == "NECROFIRE" then
-		-- 		-- print("Bonus: Demon")
-		-- 		damageBonus = damageBonus + Ext.ExtraData.DGM_DemonStatusesBonus
-		-- 	end
-		-- end
 	end
 	if skillID ~= "" then 
 		damageBonus = damageBonus + intelligence*Ext.ExtraData.DGM_IntelligenceSkillBonus

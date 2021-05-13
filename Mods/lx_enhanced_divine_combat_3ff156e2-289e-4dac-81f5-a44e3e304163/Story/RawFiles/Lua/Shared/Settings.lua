@@ -25,7 +25,8 @@ local defaultDataValues = {
     DGM_CCParryDuration = 2,
     DGM_ArmourReductionMultiplier = 100,
     DGM_PlayerVitalityMultiplier = 100,
-    DGM_NpcVitalityMultiplier = 100
+    DGM_NpcVitalityMultiplier = 100,
+    DGM_WandSurfaceBonus = 15,
 }
 
 local idToVariable = {
@@ -44,6 +45,7 @@ local idToVariable = {
     CQBPenaltyRange = "DGM_RangedCQBPenaltyRange",
     StaffSkillMult = "DGM_StaffSkillMultiplier",
     WandSkillMult = "DGM_WandSkillMultiplier",
+    WandSurfaceMult = "DGM_WandSurfaceBonus",
     CrossbowPenaltyBase = "DGM_CrossbowBasePenalty",
     CrossbowPenaltyGrowth = "DGM_CrossbowLevelGrowthPenalty",
     PerseveranceVitality = "DGM_PerseveranceVitalityRecovery",
@@ -128,6 +130,7 @@ Ext.RegisterListener("SessionLoaded", function()
     settings.Global:AddLocalizedVariable("CQBPenaltyRange", "LXDGM_CQBPenaltyRange", Ext.ExtraData.DGM_RangedCQBPenaltyRange, 0, 10, 1, "LXDGM_CQBPenaltyRange_Description")
     settings.Global:AddLocalizedVariable("StaffSkillMult", "LXDGM_StaffSkillMult", Ext.ExtraData.DGM_StaffSkillMultiplier, 0, 100, 0.5, "LXDGM_StaffSkillMult_Description")
     settings.Global:AddLocalizedVariable("WandSkillMult", "LXDGM_WandSkillMult", Ext.ExtraData.DGM_WandSkillMultiplier, 0, 100, 0.5, "LXDGM_WandSkillMult_Description")
+    settings.Global:AddLocalizedVariable("WandSurfaceMult", "LXDGM_WandSurfaceMult", Ext.ExtraData.DGM_WandSurfaceBonus, 0, 100, 0.5, "LXDGM_WandSurfaceMult_Description")
     settings.Global:AddLocalizedVariable("CrossbowPenaltyBase", "LXDGM_CrossbowPenaltyBase", Ext.ExtraData.DGM_CrossbowBasePenalty, -300, 0, 1, "LXDGM_CrossbowPenaltyBase_Description")
     settings.Global:AddLocalizedVariable("CrossbowPenaltyGrowth", "LXDGM_CrossbowPenaltyGrowth", Ext.ExtraData.DGM_CrossbowLevelGrowthPenalty, -100, 0, 1, "LXDGM_CrossbowPenaltyGrowth_Description")
     settings.Global:AddLocalizedVariable("PerseveranceVitality", "LXDGM_PerseveranceVitality", Ext.ExtraData.DGM_PerseveranceVitalityRecovery, 0, 20, 0.5, "LXDGM_PerseveranceVitality_Description")
@@ -181,6 +184,7 @@ Ext.RegisterListener("SessionLoaded", function()
                     "CQBPenaltyRange",
                     "StaffSkillMult",
                     "WandSkillMult",
+                    "WandSurfaceMult",
                     "CrossbowPenaltyBase",
                     "CrossbowPenaltyGrowth",
                     "PerseveranceVitality",

@@ -247,3 +247,109 @@ Ext.RegisterOsirisListener("ObjectTurnStarted", 1, "before", function(char)
 		SetVarInteger(char, "DGM_AmbidextrousCount", 2)
 	end
 end)
+
+---- Elemental Ranger
+
+local typeMap = {
+	Fire = "FIRE",
+	Water = "WATER",
+	Poison = "POISON",
+	Air = "ELECTRIC",
+	Physical = "BLOOD",
+	Earth = "OIL",
+	Shadow = "BLOOD",
+	None = ""
+}
+
+local surfaceTypeMap = {
+	Fire = "FIRE",
+	FireBlessed = "FIRE",
+	FireCursed = "FIRE",
+	FireCloud = "FIRE",
+	FireCloudBlessed = "FIRE",
+	FireCloudCursed = "FIRE",
+	Water = "WATER",
+	WaterFrozen = "WATER",
+	WaterFrozenBlessed = "WATER",
+	WaterFrozenCursed = "WATER",
+	WaterBlessed = "WATER",
+	WaterCursed = "WATER",
+	WaterCloud = "WATER",
+	WaterCloudBlessed = "WATER",
+	WaterCloudCursed = "WATER",
+	WaterElectrified = "ELECTRIC",
+	WaterElectrifiedCursed = "ELECTRIC",
+	WaterElectrifiedBlessed = "ELECTRIC",
+	WaterCloudElectrified = "ELECTRIC",
+	WaterCloudElectrifiedCursed = "ELECTRIC",
+	WaterCloudElectrifiedBlessed = "ELECTRIC",
+	BloodCloudElectrified = "ELECTRIC",
+	BloodCloudElectrifiedCursed = "ELECTRIC",
+	BloodCloudElectrifiedBlessed = "ELECTRIC",
+	PoisonBlessed = "POISON",
+	PoisonCursed = "POISON",
+	PoisonCloud = "POISON",
+	PoisonCloudBlessed = "POISON",
+	PoisonCloudCursed = "POISON",
+	Oil = "OIL",
+	OilBlessed = "OIL",
+	OilCursed = "OIL",
+	Blood = "BLOOD",
+	BloodCursed = "BLOOD",
+	BloodBlessed = "BLOOD",
+	BloodCloud = "BLOOD",
+	BloodCloudBlessed = "BLOOD",
+	BloodCloudCursed = "BLOOD",
+}
+
+--- @param character string GUID
+--- @param skill string Name
+--- @param skillType string Type
+--- @param skillElement string Elements enum
+Ext.RegisterOsirisListener("CharacterUsedSkill", 4, "before", function(character, skill, skillType, skillElement)
+	local skill = Ext.GetStat(skill)
+	if (skill.ProjectileType == "Grenade" and skill.Requirement == "None") or (skill.ProjectileType == "Arrow" and skill.Requirement == "RangedWeapon") and skill.IsEnemySkill == "Yes" and skill["Memory Cost"] == 0 then
+		if skill.DamageType == "Chaos" then
+			local random = math.random(1, 8)
+			local i = 1
+			for k,v in pairs(typeMap) do
+				if random == i then
+					if HasActiveStatus(character, "ARROWHEAD_"..v) == 0 then
+						ApplyStatus(character, "ARROWHEAD_"..v, 6.0, 1)
+					end
+					break
+				end
+				i = i + 1
+			end
+		elseif skill.DamageType == "None" then
+			local surfaces = {}
+			for i, properties in pairs(skill.SkillProperties) do
+				if properties.Action == "CreateSurface" then
+					table.insert(surfaces, properties.Arg3)
+				end
+				if HasActiveStatus(character, "ARROWHEAD_"..surfaceTypeMap[properties.Arg3]) == 0 then
+					ApplyStatus(character, "ARROWHEAD_"..surfaceTypeMap[properties.Arg3], 6.0, 1)
+				end
+			end
+		else
+			if HasActiveStatus(character, "ARROWHEAD_"..typeMap[skill.DamageType]) == 0 then
+				ApplyStatus(character, "ARROWHEAD_"..typeMap[skill.DamageType], 6.0, 1)
+			end
+		end
+	end
+end)
+
+---- Morning Person AP recovery
+
+Ext.RegisterOsirisListener("ObjectTurnStarted", 1, "before", function(object)
+	if ObjectIsCharacter(object) == 0 then return end
+	local char = Ext.GetCharacter(object)
+	if char.Stats.TALENT_ResurrectToFullHealth then
+		if char.Stats.CurrentAP == 0 then
+			SetTag(object, "MorningPersonRecovery")
+		elseif IsTagged(object, "MorningPersonRecovery") == 1 then
+			ClearTag(object, "MorningPersonRecovery")
+			CharacterAddActionPoints(object, 2)
+		end
+	end
+end)

@@ -68,37 +68,6 @@ function CustomCalculateBaseDamage(skillDamageType, attacker, target, level)
 end
 
 ---@param character StatCharacter
----@param weapon StatEntryWeapon
--- local function CalculateWeaponDamageRange(character, weapon)
---     local damages, damageBoost = Game.Math.ComputeBaseWeaponDamage(weapon)
-
---     local abilityBoosts = character.DamageBoost 
---         + Game.Math.ComputeWeaponCombatAbilityBoost(character, weapon)
---         + Game.Math.ComputeWeaponRequirementScaledDamage(character, weapon)
---     abilityBoosts = math.max(abilityBoosts + 100.0, 0.0) / 100.0
-
---     local boost = 1.0 + damageBoost * 0.01
---     -- if character.NotSneaking then
---         -- boost = boost + Ext.ExtraData['Sneak Damage Multiplier']
---     -- end
-
---     local ranges = {}
---     for damageType, damage in pairs(damages) do
---         local min = damage.Min * boost * abilityBoosts
--- 		local max = damage.Max * boost * abilityBoosts
--- 		--Ext.Print(min, max)
-
---         if min > max then
---             max = min
---         end
-
---         ranges[damageType] = {min, max}
---     end
-
---     return ranges
--- end
-
----@param character StatCharacter
 ---@param skill StatEntrySkillData
 local function GetSkillDamageRange(character, skill)
     skill = Ext.GetStat(skill.Name)
@@ -246,6 +215,9 @@ local function GetSkillDamageRange(character, skill)
         local baseDamage = CustomCalculateBaseDamage(skillDamageType, character, 0, level) * attrDamageScale * damageMultiplier * globalMult
         damageRange = damageRange * baseDamage * 0.005
 
+        -- Ext.Print(damageType, 1.0 + Game.Math.GetDamageBoostByType(character, damageType))
+        -- print(Game.Math.DamageBoostTable[damageType])
+        -- Ext.Dump(character.Character:GetTags())
         local damageTypeBoost = 1.0 + Game.Math.GetDamageBoostByType(character, damageType)
         local damageBoost = 1.0 + (character.DamageBoost / 100.0)
         local damageRanges = {}
@@ -287,7 +259,7 @@ local function SkillGetDescriptionParam(skill, character, isFromItem, par, ...)
         currentParam = 1
         skillParams = {}
         for i,param in pairs(skill.StatsDescriptionParams:split(";")) do
-            if param:starts("Damage") or param:starts("Skill") or param:starts("Weapon") then
+            if param:starts("Damage") or (param:starts("Skill") and param:gsub(".*:", "") == "Damage") or (param:starts("Weapon") and param:gsub(".*:", "") == "Damage") then
                 skillParams[i] = param
             else
                 skillParams[i] = ""

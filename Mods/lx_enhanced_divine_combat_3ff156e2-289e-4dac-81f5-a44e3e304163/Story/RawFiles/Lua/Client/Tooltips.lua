@@ -83,7 +83,7 @@ local function WeaponTooltips(item, tooltip)
     end
 
     if item.WeaponType == "Wand" then
-        equipment["Label"] = GetDynamicTranslationString("WpnWand", Ext.ExtraData.DGM_WandSkillMultiplier)
+        equipment["Label"] = GetDynamicTranslationString("WpnWand", Ext.ExtraData.DGM_WandSkillMultiplier, Ext.ExtraData.DGM_WandSurfaceBonus)
         tooltip:AppendElementAfter(equipment, "ExtraProperties")
     end
     if Ext.ExtraData.DGM_RangedCQBPenalty > 0 then

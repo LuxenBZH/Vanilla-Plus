@@ -24,10 +24,11 @@
 	<content contentuid="h1a6bf0edg47eeg4ee8gaa86g5a608e5dda7b">Explode all corpses around you, dealing [1] in the area.</content>
 	<content contentuid="h1b361ce1gd5d3g4c0eg8b8cg7d87658e755f">Activate the stats correction formula. Strongly recommended when playing Story mode or any Adventure mod that has not been balanced for Vanilla Plus.&lt;br&gt;Default : on&lt;br&gt;&lt;font color=#ff0000&gt;Require a game restart&lt;/font&gt;</content>
 	<content contentuid="h1bae56a9ga45fg431fg80bfg2afbef03c1d2">Perseverance restores Magic Armour on recovering from Frozen or Stunned, and restores Physical Armour on recovering from Knocked Down or Petrified. Additionally, a fraction of maximum Vitality is restored. When recovering from a Staggered or Confused status, Perseverance also triggers but its effect is halved.</content>
+	<content contentuid="h1c81462eg26ceg48a1g8828gdf9254cbdae0">Wands Surface Bonus</content>
 	<content contentuid="h1e5caa33g4d5dg4f42g91edg9f546d42f56b">Increases all Skill damage by [1]%.</content>
 	<content contentuid="h206ce4abg4f84g4b2dg934aga0d96a602f2c">Two-Handed increases damage and Critical Multiplier when using two-handed melee weapons (swords, axe, mace, spear or staff).</content>
 	<content contentuid="h22a39843gf968g4212g851dg6e121235fa85">Bless target character or surface. Prevent Diseased, Decaying, Petrified, Stunned, increase Dodge by [1]%, Accuracy by [2]% and elemental resistances by [3].</content>
-	<content contentuid="h278b2bccg1afcg4314gbfcbgb10105ebc12b">When resurrected, you resurrect to full health. You begin combat with maximum AP.</content>
+	<content contentuid="h278b2bccg1afcg4314gbfcbgb10105ebc12b">When resurrected, you resurrect to full health. When your turn is skipped because of incapacitating effect(s), you start your next turn with 2 additional AP.</content>
 	<content contentuid="h278d3a4fg4dceg4362g9b35g9c3685c93268">The damage you inflict when successfully hitting an enemy or object.</content>
 	<content contentuid="h2802446bg3159g4290g9154g8cac4a93eaf1">Main Attribute Correction</content>
 	<content contentuid="h285f26a1g0683g4a86gae3eg0c69934433b8">Strength Weapon Damage Bonus</content>
@@ -40,7 +41,7 @@
 	<content contentuid="h2e8803d0g3b27g470dgb836g26fcbeb60714">Activate Jump fall damage</content>
 	<content contentuid="h2ea5f141g4d43g49b8g8d6agd365b90a0d6d">Dodge Fatigue (4)</content>
 	<content contentuid="h2f904fe7g83d0g4d51g8bcfgd6b561ba92e3">Magnificent horns sprout from your forehead, making you see red. You can rush at your enemies and gore them. Increases Retribution ability by 2 for the duration.</content>
-	<content contentuid="h314ee256g43cdg4864ga519gd23e909ec63e">Increase all Skill damage by [1]% (stackable when dual-wielding)</content>
+	<content contentuid="h314ee256g43cdg4864ga519gd23e909ec63e">Increase all Skill damage by [1]%.&lt;br&gt;Wands attacks do [2]% more damage of the type of the surface and the cloud the character is standing in.</content>
 	<content contentuid="h3240460dgd250g435bg9ebegc1682089c5ed">Explode target corpse, dealing [1] in the area.</content>
 	<content contentuid="h32fcbbfbgec6bg4af4g894ag49fd997307fe">Any attempt to apply Stunned, Petrified, Frozen, Madness, Terrified or Charm will apply Confused instead.</content>
 	<content contentuid="h362a94a5g0b60g4be6g9998gd44214d4a78f">Sacrifice yourself to bring an ally back to life. Reduce your Vitality by [1]% and ressurrects target character with maximum Vitality.</content>
@@ -92,7 +93,7 @@
 	<content contentuid="h6268c71cge671g4168g8827g653a7ace2925">This character drank too many potions and is experiencing side effects.</content>
 	<content contentuid="h6a4d6da0g29cfg44ecg8913g5a0a76cf1bbd">Arrow Recovery provides a 33% chance to recover a special arrow after shooting it, and removes the close-quarters damage penalty of ranged weapons.</content>
 	<content contentuid="h6b67efcagf943g43a1g959eg36f9ecc42e7e">Increases all damage by [1]% per point. Damage dealt by skills is further increased by [2]% (including weapon-based skills) and Accuracy by [3]% per point. Each point also makes attacks ignore resistance by the multiplier set by your Strength as long as the target resistance is under 100%.</content>
-	<content contentuid="h6c5806e8g7bccg4ecdg959eg254d17edbd71">This character has drunk a lot of potions. One more potion and they will overdose!</content>
+	<content contentuid="h6c5806e8g7bccg4ecdg959eg254d17edbd71">This character has already drunk one potion during their turn. Drinking another potion before the end of the turn will have side effects.</content>
 	<content contentuid="h6d219e8ag59abg4adegbf53g2f73649ee312">The correction indice for damaging attribute if there is a tie between two or all three damaging attributes for NPCs. The higher it is, the lower will be the final result.&lt;br&gt;Default : 60&lt;br&gt;&lt;font color=#ff0000&gt;Require a game restart&lt;/font&gt;</content>
 	<content contentuid="h6d2cd8aeg4e09g4003ga57cg3fea3a0f5502">Wits increase your Critical Chance by [1]%, Initiative by [2], increase damages dealt by damaging statuses by [3]% per point and your ability to detect traps and find hidden treasures.</content>
 	<content contentuid="h6d523ea5g116eg4380g816fg72079d80f321">Set the skill damage multplier pencetage when a wand is equipped (can be doubled when dual-wielding).&lt;br&gt;Default : 5</content>
@@ -108,8 +109,10 @@
 	<content contentuid="h753b1b3fgdfdfg428fg90e0g9e631beb1f06">Strength Global Damage Bonus</content>
 	<content contentuid="h75422cb0g14ccg4731g89a7gae632f7669a8">Str. Resistance Bypass Multiplier</content>
 	<content contentuid="h7579318fg2a13g4185g856bgad8960145220">Confused (2)</content>
+	<content contentuid="h7583bee1g949cg433dg8b2ag94d9a47bef82">Bonus damage (%) from surface AND cloud the character stands in.&lt;br&gt;Default : 20</content>
 	<content contentuid="h76856ed3gf1cdg4c63g887fgb4c1fd40952b">This summon is weaker.</content>
 	<content contentuid="h768669d0g02adg48f7g901eg83068a96bf19">Dual-Wielding increases damage and Dodging when wielding two Single-Handed weapons and increases off-hand damage.</content>
+	<content contentuid="h7a2f1a05g4b52g4ec2g8354g1f92a8bf442d">Ranged weapons (including wands) deal 20% additional damage of the type of the surface the target stands on. Using a grenade or an arrow also now provide 1 turn of Elemental Weapons of the same type.</content>
 	<content contentuid="h7b1052abg9968g4acdgb399g989954144550">Finesse Global Damage Bonus</content>
 	<content contentuid="h7bcfac6eg76a6g4ccega83bg2ff334058ccc">Armour Damage Multiplier</content>
 	<content contentuid="h7c3dcbc3gb3f4g4746g9a94g00021c9c2930">Target a circular area. Until your next turn, you will reflexively shoot at the first three enemies moving within this area if you have sight on them.</content>

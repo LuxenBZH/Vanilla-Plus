@@ -595,13 +595,17 @@ Miscellaneous
 Fixes
 * Fixed an issue with dual wielding tooltip
 * Fixed the tooltip issue with weapon-enhancing statuses not displaying the correct damage (it is still somewhat inaccurate on low level)
+* Fixed an issue with some Odinblade's skills tooltips
 
 New
 * When wielding a ranged weapon during combat, close characters triggering the CQB penalty will be now highlighted
 * Physical, Piercing and Shadow resistances will now be displayed on the character sheet if their value is different than 0
 
 Balance
-* Elemental Warrior (previously Elemental Ranger) now provide Elemental Weapon of the same damage type of the special arrow or grenade you used for 1 turn and the original effect now also work with melee weapons.
+* Wands are now empowered by the surface and cloud the user stands in, granting a 15% multiplicative damage boost of the type of the surface (both surface and cloud are additive). This bonus can be controlled in the options.
+* Elemental Ranger now provide 1 turn of Elemental Weapon of the same damage type of the special arrow or grenade you used.
+* Morning Person do not make you start combat with full AP anymore but instead you get a +2 AP Recovery if your turn have been skipped incapacitating effect(s) (cumulating effects that reduce your AP recovery to 0 also count as incapacitating). Effects making you lose the control of your character doesn't count as incapacitating.
+* Walk it off do not reduce Momentum and Lingering duration anymore
 * Oily Carapace now also clear Petrified and Stunned, and recover 30% of the max Physical armour if targetted characters have Slowed or Petrified
 * Cryotherapy now also clear Frozen and Chilled, and recover 30% of the max Magic armour if targetted characters have Chilled or Frozen
 * Siphon poison surface boost has been reworked. Base damage is now 20 and increase by 2 per 7.5 tiles of Poison surfaces absorbed for a maximum of 30 boosts. Your weapon attacks will now also set Acid for 1 turn. If Venom Coating is also active, Acid duration is increased by 2 turns.

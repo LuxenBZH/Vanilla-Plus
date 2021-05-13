@@ -228,3 +228,5 @@ key "DGM_SummonsDamageBoost","0"
 
 key "SurfaceAbsorbBoostPerTilesCount","10"
 
+key "DGM_WandSurfaceBonus","15"
+
