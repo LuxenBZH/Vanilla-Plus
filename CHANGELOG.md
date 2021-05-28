@@ -611,3 +611,22 @@ Balance
 * Siphon poison surface boost has been reworked. Base damage is now 20 and increase by 2 per 7.5 tiles of Poison surfaces absorbed for a maximum of 30 boosts. Your weapon attacks will now also set Acid for 1 turn. If Venom Coating is also active, Acid duration is increased by 2 turns.
 * Firebrand is now correctly scaled
 * Firebrand base damage increased from 20 to 28
+
+# 1.1.9.57 (Almira)
+New
+* If LeaderLib is enabled, a lot of tooltips are now expanded if you hold Shift when hovering certain skills or items. More to come in the future !
+
+Fixes
+* Weapons do not display "Scales with X" anymore since it's irrelevant
+
+Balance
+* All food and drinks duration are 300 turns, not only combo food
+* Turn to Oil now refunds its AP cost if the user is Wet
+* Mass Breathing Bubble AP cost increased from 1 to 3
+* Mass Breathing Bubble SP cost decreased from 1 to 0
+* Vacuum Touch damage multiplier decreased from 105 to 60
+* Shocking Touch damage multiplier increased from 110 to 120
+* Thunderstorm damage multiplier per hit reduced from 100 to 80
+* Pyroclastic eruption explosion radius per projectile reduced from 3 to 2 meters
+* Chameleon Cloak now require 1 Polymorph + 2 Scoundrel. Before you try to chase me with pitchforks, you can enable a module to revert back to the original requirements
+* Lucian's Heaven Blessing AP cost increased from 1 to 3

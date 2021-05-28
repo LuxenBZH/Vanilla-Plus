@@ -73,6 +73,7 @@
 	<content contentuid="h562bb140gab7bg4f78gba75g5aaf2cd7f27b">Default : 3</content>
 	<content contentuid="h56cb39a0ge913g4364g97e6g843aca99bcdc">Consume oil surfaces around you and convert them to Physical Armour. If you are Slowed or Petrified, you restore an additional 30% Physical Armour. Remove Slowed, Petrified and Stunned.</content>
 	<content contentuid="h579e2544g8e6cg4bbdg92a1g5598996b8f7b">Apply a multiplier to all Corrosive and Magic damage. &lt;br&gt;Default : 100</content>
+	<content contentuid="h5806fbdcgce18g421dg8affg316856abad0f">Refund 1 AP on use if the user is Wet.</content>
 	<content contentuid="h5822708bgb172g42d7g8d1fg948980c9d8eb">Finesse Movement Bonus</content>
 	<content contentuid="h584b8016g05e3g4c00gbaccg0c441bf1c3f5">Activate fall damage when character use Jump skills or Projectile skills moving the character. Damage is not applied for Fly.</content>
 	<content contentuid="h58e777ddgd569g4c0dg8f58gece56cce053d">+[1] point(s) = +[2]% to all Damage, +[3]% more for skills, +[4]% Accuracy and attacks ignore [5]% Resistance if it&apos;s under 100%.</content>
@@ -137,12 +138,14 @@
 	<content contentuid="h9dffbeb7g85b6g4275g8c58g8b0de33c8583">This character drank too many potions and could not handle the side effects.</content>
 	<content contentuid="h9e8b6e5bgd7b4g4444g8853g5eb8910285a4">The amount of damage going through Physical and Magic Armour is reduced by half.</content>
 	<content contentuid="h9e97f6cdg7b63g4603g9f25g7a515742c55d">Flaming Tongues protect you, immediately attacking approaching enemies and deals them [1].</content>
+	<content contentuid="ha0a64a63g9fd2g40edg98b0g421c3099523d">Classic Chameleon Cloak</content>
 	<content contentuid="ha1578450g666bg4b87g8377g1c389879435f">Default : 10</content>
 	<content contentuid="ha2bd4aa9gae5dg4bb0gb6ddg25a682c5a68b">Duck Duck Goose</content>
 	<content contentuid="ha418e064g2d69g4407gadc2gf2f590f0e895">From Strength weapon bonus : [1]%</content>
 	<content contentuid="ha422c4f4ge2bbg4cbcgbbf3g505c7ce673d1">+[1] point(s) = +[2]% Critical Chance, +[3] Initiative and +[4]% to statuses inflicting damages.</content>
 	<content contentuid="ha4a2351eg24cdg4f68g8ef6gb7ee91c0c08e">Default : 2&lt;br&gt;&lt;font color=#ff0000&gt;Require a game restart&lt;/font&gt;</content>
 	<content contentuid="ha4cfd852g52f1g4079g8919gd392ac8ade1a">Damage is based on your basic attack and trigger the additional bonus from both Strength and Intelligence.</content>
+	<content contentuid="ha6f17eacgbfdbg4cc2g9734g87d7801fe648">Revert Chameleon Cloak ability requirements to Polymorph 1 only.&lt;br&gt;Default : off&lt;br&gt;&lt;font color=#ff0000&gt;Require a game restart&lt;/font&gt;</content>
 	<content contentuid="ha742cf9eg80e6g4b43g8106ga4b83bd5e241">Cause target character to teleport in a random direction each time they are attacked. Increases Dodge by [1]% and Air Resistance by [2]%.</content>
 	<content contentuid="hae29de3agcf14g44f7g9020g90e1fd77694d">If deactivated, you will be able to use custom attributes bonuses. Not recommended if you want to keep an overall balanced experience unless you really know what you are doing.&lt;br&gt;Default : on</content>
 	<content contentuid="haee8a8d1g10e8g491ag83c8g833c3a4d0fbb">The damage bonus provided per Critical Chance percent when backstabbing. &lt;br&gt;Default : 0.5&lt;br&gt;</content>

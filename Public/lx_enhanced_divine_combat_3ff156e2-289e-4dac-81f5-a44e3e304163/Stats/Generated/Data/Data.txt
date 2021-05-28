@@ -230,3 +230,5 @@ key "SurfaceAbsorbBoostPerTilesCount","10"
 
 key "DGM_WandSurfaceBonus","15"
 
+key "DGM_ChameleonCloakRevert","0"
+

@@ -46,7 +46,8 @@ local function AddAdditionalDescription()
 		["Target_FrostyShell"]     = {math.floor(Ext.ExtraData.DGM_MagicShellPassingMagicReduction*100)},
 		["Shout_FrostAura"]        = {math.floor(Ext.ExtraData.DGM_FrostAuraPassingMagicReduction*100)},
 		["Shout_RecoverArmour"]    = {math.floor(Ext.ExtraData.DGM_ShieldsUpPassingReduction*100)},
-		["Target_TentacleLash"]	   = {}
+		["Target_TentacleLash"]	   = {},
+		["Target_Condense"]		   = {},
 	}
 
 	for skill, params in pairs(descriptions) do
@@ -92,14 +93,6 @@ local function ReplaceDescriptionParams()
 	end
 end
 
-local function GetParentStat(entry, stat)
-	if entry[stat] == "None" and entry.Using ~= nil then
-		GetParentStat(entry.Using, stat)
-	else
-		return entry[stat]
-	end
-end
-
 --- @param character StatEntryObject
 local function GetArchetype(stats)
 	local strength = GetParentStat(stats, "Strength")
@@ -116,15 +109,6 @@ local function GetArchetype(stats)
 	return "None"
 end
 
-local function HasParent(stat, value)
-	if stat.Using == value then
-		return true
-	elseif stat.Using ~= nil or stat.Using == "" then
-		HasParent(stat.Using, value)
-	else
-		return false
-	end
-end
 
 local function AdjustNPCStats()
 	if Ext.Version() < 53 then return end
@@ -195,6 +179,23 @@ local function CustomScalings()
 	end
 end
 
+local function ChameleonCloakRevert()
+	local hardSaved = Ext.LoadFile("LeaderLib_GlobalSettings.json")
+	if hardSaved ~= nil then
+		local variables = Ext.JsonParse(hardSaved).Mods["3ff156e2-289e-4dac-81f5-a44e3e304163"].Global.Flags
+		if variables.LXDGM_ModuleOriginalChameleonCloak.Enabled then
+			Ext.Print("Reverting Chameleon Cloak requirements...")
+			local requirements = {}
+			for i,requirement in pairs(Ext.GetStat("Shout_ChameleonSkin").MemorizationRequirements) do
+				if requirement.Param ~= 2 and requirement ~= "RogueLore" then
+					table.insert(requirements, requirement)
+				end
+			end
+			Ext.GetStat("Shout_ChameleonSkin").MemorizationRequirements = requirements
+		end
+	end
+end
+
 Ext.RegisterListener("StatsLoaded", AddDamageToDescription)
 Ext.RegisterListener("StatsLoaded", AdaptWeaponEnhancingSkills)
 Ext.RegisterListener("StatsLoaded", AddAdditionalDescription)
@@ -202,3 +203,4 @@ Ext.RegisterListener("StatsLoaded", ReduceDeltaModBonuses)
 Ext.RegisterListener("StatsLoaded", ReplaceDescriptionParams)
 Ext.RegisterListener("StatsLoaded", AdjustNPCStats)
 Ext.RegisterListener("StatsLoaded", CustomScalings)
+Ext.RegisterListener("StatsLoaded", ChameleonCloakRevert)
