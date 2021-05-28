@@ -54,11 +54,6 @@ local DamageSourceCalcTable = {
     end
 }
 
-lastSkill = ""
-skillParams = {}
-currentParam = 1
-paramsOrder = {}
-
 ---@param skillDamageType string
 ---@param attacker StatCharacter
 ---@param target StatCharacter
@@ -69,7 +64,7 @@ end
 
 ---@param character StatCharacter
 ---@param skill StatEntrySkillData
-local function GetSkillDamageRange(character, skill)
+local function GetSkillDamageRange(character, skill, fromExpandedTooltip)
     skill = Ext.GetStat(skill.Name)
     local desc = skill.StatsDescriptionParams
 
@@ -89,14 +84,16 @@ local function GetSkillDamageRange(character, skill)
 
     ---@type string
     local isWeaponEntry = false
-    if skillParams[paramsOrder[currentParam]]:starts("Skill:") then
-        local skillName = skillParams[paramsOrder[currentParam]]:gsub("Skill:", ""):gsub(":.*", "")
-        skill = Ext.GetStat(skillName)
-        if skill == nil then return end
-    elseif skillParams[paramsOrder[currentParam]]:starts("Weapon:") then
-        isWeaponEntry = true
+    if currentParam <= GetTableSize(paramsOrder) and not fromExpandedTooltip then
+        if skillParams[paramsOrder[currentParam]]:starts("Skill:") then
+            local skillName = skillParams[paramsOrder[currentParam]]:gsub("Skill:", ""):gsub(":.*", "")
+            skill = Ext.GetStat(skillName)
+            if skill == nil then return end
+        elseif skillParams[paramsOrder[currentParam]]:starts("Weapon:") then
+            isWeaponEntry = true
+        end
+        if skillParams[paramsOrder[currentParam]]:gsub(".*:", "") ~= "Damage" then return end
     end
-    if skillParams[paramsOrder[currentParam]]:gsub(".*:", "") ~= "Damage" then return end
 
     local amplifierMult = 1.0
     if character.MainWeapon.WeaponType == "Staff" then
@@ -197,15 +194,19 @@ local function GetSkillDamageRange(character, skill)
 		
 		local globalMult = 1.0
 		
-        if skill.StatsDescriptionParams:find("Weapon:") ~= nil  or skill.Name == "Target_TentacleLash" then
+        if skill.StatsDescriptionParams:find("Weapon:") ~= nil and not fromExpandedTooltip then
 			local weaponStat = skillParams[paramsOrder[currentParam]]:gsub("Weapon:", ""):gsub(":.*", "")
             if tooltipStatusDmgHelper[weaponStat] then
                 globalMult = 1 + (character.Wits-10) * (Ext.ExtraData.DGM_WitsDotBonus*0.01)
             else
                 globalMult = 1 + (character.Strength-10) * (Ext.ExtraData.DGM_StrengthGlobalBonus*0.01 + Ext.ExtraData.DGM_StrengthWeaponBonus*0.01) +
+                (character.Finesse-10) * (Ext.ExtraData.DGM_FinesseGlobalBonus*0.01) +
+                (character.Intelligence-10) * (Ext.ExtraData.DGM_IntelligenceGlobalBonus*0.01)
+            end
+        elseif skill.Name == "Target_TentacleLash"  then
+            globalMult = 1 + (character.Strength-10) * (Ext.ExtraData.DGM_StrengthGlobalBonus*0.01 + Ext.ExtraData.DGM_StrengthWeaponBonus*0.01) +
 		(character.Finesse-10) * (Ext.ExtraData.DGM_FinesseGlobalBonus*0.01) +
 		(character.Intelligence-10) * (Ext.ExtraData.DGM_IntelligenceGlobalBonus*0.01)
-            end
 		else
 			globalMult = 1 + (character.Strength-10) * (Ext.ExtraData.DGM_StrengthGlobalBonus*0.01) +
 		(character.Finesse-10) * (Ext.ExtraData.DGM_FinesseGlobalBonus*0.01) +

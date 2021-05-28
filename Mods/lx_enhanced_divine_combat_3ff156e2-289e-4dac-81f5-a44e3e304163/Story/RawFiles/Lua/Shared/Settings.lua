@@ -81,6 +81,7 @@ local flags = {
     "LXDGM_ModuleFallDamageClassic", 
     "LXDGM_ModuleFallDamageAlternate",
     "LXDGM_ModuleDualCC",
+    "LXDGM_ModuleOriginalChameleonCloak",
     "LXDGM_NPCStatsCorrectionCampaign",
     "LXDGM_NPCStatsCorrectionGM",
 }
@@ -109,6 +110,7 @@ Ext.RegisterListener("SessionLoaded", function()
     settings.Global:AddLocalizedFlag("LXDGM_ModuleFallDamageClassic", "Global", false, nil, nil, false)
     settings.Global:AddLocalizedFlag("LXDGM_ModuleFallDamageAlternate", "Global", false, nil, nil, false)
     settings.Global:AddLocalizedFlag("LXDGM_ModuleDualCC", "Global", false, nil, nil, false)
+    settings.Global:AddLocalizedFlag("LXDGM_ModuleOriginalChameleonCloak", "Global", false, nil, nil, false)
 
     -- settings.Global:AddLocalizedFlag("LXDGM_SettingsUseDefaultAttributeValues", "Global", true, nil, nil, false)
     settings.Global:AddLocalizedVariable("StrengthGloBonus", "LXDGM_StrengthGlobalDamageBonus", Ext.ExtraData.DGM_StrengthGlobalBonus, 0, 10, 0.5, "LXDGM_StrengthGlobalDamageBonus_Description")
@@ -157,7 +159,8 @@ Ext.RegisterListener("SessionLoaded", function()
                     "LXDGM_ModuleRealJump",
                     "LXDGM_ModuleFallDamageClassic",
                     "LXDGM_ModuleFallDamageAlternate",
-                    "LXDGM_ModuleDualCC"
+                    "LXDGM_ModuleDualCC",
+                    "LXDGM_ModuleOriginalChameleonCloak"
                 }},
                 {DisplayName = "Attributes",
                 Entries = {

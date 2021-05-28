@@ -110,30 +110,6 @@ local customAbilityBonuses = {
     None = {}
 }
 
---- @param character StatCharacter
---- @param weapon StatItem
-function GetWeaponAbility(character, weapon)
-    if weapon == nil or weapon.WeaponType == "None" then
-        return nil
-    end
-
-    local offHandWeapon = character.OffHandWeapon
-    if offHandWeapon ~= nil then
-        return "DualWielding"
-    end
-
-    local weaponType = weapon.WeaponType
-    if weaponType == "Bow" or weaponType == "Crossbow" or weaponType == "Rifle" then
-        return "Ranged"
-    end
-
-    if weapon.IsTwoHanded then
-        return "TwoHanded"
-    end
-
-    return "SingleHanded"
-end
-
 function SyncAbilitiesBonuses(char)
     if ObjectExists(char) == 0 then return end
     char = Ext.GetCharacter(char)

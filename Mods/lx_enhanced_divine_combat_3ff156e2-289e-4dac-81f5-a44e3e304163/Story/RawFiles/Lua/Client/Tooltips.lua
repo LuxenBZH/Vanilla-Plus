@@ -37,6 +37,7 @@ local dynamicTooltips = {
     ["Target_TentacleLash"]     = "hddb00621g65ddg46acg89d2gfcf3efd8cd78",
     ["WpnCrossbow"]             = "h846daabdg90beg4ac9gb930g02e96dcdbd8d",
     ["CriticalChanceDescription"]= "h9df517d1gf64bg499dgb23fg462fd1f061bc",
+    ["Target_Condense"]         = "h5806fbdcgce18g421dg8affg316856abad0f"
 }
 
 ---@param str string
@@ -71,6 +72,12 @@ end
 local function WeaponTooltips(item, tooltip)
     if tooltip == nil then return end
 	if item.ItemType ~= "Weapon" then return end
+    local requirements = tooltip:GetElements("ItemRequirement")
+    for i,el in pairs(tooltip.Data) do
+        if string.match(el.Label, "Scales With") ~= nil then
+            tooltip:RemoveElement(el)
+        end
+    end
 	local equipment = {
 		Type = "ItemRequirement",
 		Label = "",

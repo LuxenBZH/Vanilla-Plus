@@ -239,3 +239,74 @@ surfaceToType = {
 	BloodCloudBlessed = "Physical",
 	BloodCloudCursed = "Physical",
 }
+
+function GetParentStat(entry, stat)
+	if entry[stat] == "None" and entry.Using ~= nil then
+		GetParentStat(entry.Using, stat)
+	else
+		return entry[stat]
+	end
+end
+
+function HasParent(stat, value)
+	if stat.Using == value then
+		return true
+	elseif stat.Using ~= nil or stat.Using == "" then
+		HasParent(stat.Using, value)
+	else
+		return false
+	end
+end
+
+dmgTypeToSchool = {
+	Fire = "Pyrokinetic",
+	Water = "Hydrosophist",
+	Earth = "Geomancy",
+	Poison = "Geomancy",
+	Physical = "Warfare",
+	Air = "Aerotheurge",
+	None = nil,
+	Piercing = nil,
+	Shadow = nil,
+	Corrosive = nil,
+	Magic = nil,
+	Chaos = nil
+}
+
+--- @param character StatCharacter
+--- @param weapon StatItem
+function GetWeaponAbility(character, weapon)
+    if weapon == nil or weapon.WeaponType == "None" then
+        return nil
+    end
+
+    local offHandWeapon = character.OffHandWeapon
+    if offHandWeapon ~= nil then
+        return "DualWielding"
+    end
+
+    local weaponType = weapon.WeaponType
+    if weaponType == "Bow" or weaponType == "Crossbow" or weaponType == "Rifle" then
+        return "Ranged"
+    end
+
+    if weapon.IsTwoHanded then
+        return "TwoHanded"
+    end
+
+    return "SingleHanded"
+end
+
+weaponAbility = {
+	SingleHanded = "Single-Handed",
+	TwoHanded = "Two-Handed",
+	Ranged = "Ranged",
+	DualWielding = "Dual-Wielding"
+}
+
+-- Skill tooltips helpers
+lastSkill = ""
+skillParams = {}
+currentParam = 1
+paramsOrder = {}
+

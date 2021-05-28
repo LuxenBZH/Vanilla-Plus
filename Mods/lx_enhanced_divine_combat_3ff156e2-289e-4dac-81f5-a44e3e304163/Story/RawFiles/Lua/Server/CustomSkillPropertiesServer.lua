@@ -1,45 +1,45 @@
 CustomSBValues = {}
 done = 0
 
-Ext.RegisterOsirisListener("CharacterUsedSkillOnTarget", 5, "before", function(character, target, skill, skillType, skillElement)
-    local stat = Ext.GetStat(skill)
-    local isCSB = false
-    for i, properties in pairs(stat.SkillProperties) do
-        if properties.Action == "CUSTOMSURFACEBOOST" then isCSB = true end
-    end
-    if isCSB then
-        local surfaces = {}
-        for i, properties in pairs(stat.SkillProperties) do
-            if properties.SurfaceBoosts ~= nil then
-                for i,surface in pairs(properties.SurfaceBoosts) do
-                    table.insert(surfaces, surface)
-                end
-            end
-        end
-        local char = Ext.GetCharacter(target)
-        local x = char.WorldPos[1]
-		local y = char.WorldPos[3]
-		local radius = Ext.GetStat(skill).AreaRadius
-		local grid = Ext.GetAiGrid()
-		local tiles = 0
-		local scale = 0.5
-		for i = x-radius,x+radius, scale do
-			for j = y-radius,y+radius, scale do
-				local info = grid:GetCellInfo(i,j)
-				if ((i-x)*(i-x) + (j-y)*(j-y)) <= radius*radius then
-					for surfaceType, t in pairs(SiphonPoisonSurfaces) do
-						if info ~= nil and (info.Flags & surfaceFlags[surfaceType]) == surfaceFlags[surfaceType] then
-							tiles = tiles + 1
-						end
-					end
-				end
-			end
-		end
-		Ext.Print("tiles:",tiles)
-        if CustomSBValues[skill] == nil then CustomSBValues = {} end
-		CustomSBValues[skill][char.MyGuid] = tiles
-    end
-end)
+-- Ext.RegisterOsirisListener("CharacterUsedSkillOnTarget", 5, "before", function(character, target, skill, skillType, skillElement)
+--     local stat = Ext.GetStat(skill)
+--     local isCSB = false
+--     for i, properties in pairs(stat.SkillProperties) do
+--         if properties.Action == "CUSTOMSURFACEBOOST" then isCSB = true end
+--     end
+--     if isCSB then
+--         local surfaces = {}
+--         for i, properties in pairs(stat.SkillProperties) do
+--             if properties.SurfaceBoosts ~= nil then
+--                 for i,surface in pairs(properties.SurfaceBoosts) do
+--                     table.insert(surfaces, surface)
+--                 end
+--             end
+--         end
+--         local char = Ext.GetCharacter(target)
+--         local x = char.WorldPos[1]
+-- 		local y = char.WorldPos[3]
+-- 		local radius = Ext.GetStat(skill).AreaRadius
+-- 		local grid = Ext.GetAiGrid()
+-- 		local tiles = 0
+-- 		local scale = 0.5
+-- 		for i = x-radius,x+radius, scale do
+-- 			for j = y-radius,y+radius, scale do
+-- 				local info = grid:GetCellInfo(i,j)
+-- 				if ((i-x)*(i-x) + (j-y)*(j-y)) <= radius*radius then
+-- 					for surfaceType, t in pairs(SiphonPoisonSurfaces) do
+-- 						if info ~= nil and (info.Flags & surfaceFlags[surfaceType]) == surfaceFlags[surfaceType] then
+-- 							tiles = tiles + 1
+-- 						end
+-- 					end
+-- 				end
+-- 			end
+-- 		end
+-- 		Ext.Print("tiles:",tiles)
+--         if CustomSBValues[skill] == nil then CustomSBValues = {} end
+-- 		CustomSBValues[skill][char.MyGuid] = tiles
+--     end
+-- end)
 
 Ext.RegisterOsirisListener("CharacterUsedSkill", 4, "before", function(character, skill, skillType, skillElement)
     local stat = Ext.GetStat(skill)
