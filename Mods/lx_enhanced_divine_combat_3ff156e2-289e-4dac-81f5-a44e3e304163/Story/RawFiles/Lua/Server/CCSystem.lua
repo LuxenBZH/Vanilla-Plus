@@ -102,7 +102,10 @@ local function BlockCCs(character, status, handle)
 		if statuses[status] then
 			local armourValue = Ext.GetCharacter(character).Stats[correspondingArmor[armour]]
 			if armourValue ~= 0 and NRD_StatusGetInt(character, handle, "ForceStatus") == 0 then return end
-			if lifetime == -1 and source == 5 then return end -- Fuck auras
+			if lifetime == -1 and source == 5 and armourValue == 0 then -- Fuck auras
+				NRD_StatusPreventApply(character, handle, 1)
+				return
+			end 
 			if armourValue ~= 0 and source == 3 and HasActiveStatus(character, correspondingStatus[armour][1]) == 1 then
 				NRD_StatusPreventApply(character, handle, 1)
 				RollStatusApplication(character, correspondingStatus[armour][2], 6.0, 1, enterChance, handle)

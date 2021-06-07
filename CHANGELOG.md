@@ -630,3 +630,13 @@ Balance
 * Pyroclastic eruption explosion radius per projectile reduced from 3 to 2 meters
 * Chameleon Cloak now require 1 Polymorph + 2 Scoundrel. Before you try to chase me with pitchforks, you can enable a module to revert back to the original requirements
 * Lucian's Heaven Blessing AP cost increased from 1 to 3
+
+# 1.1.9.58
+Fix
+* Fixed an issue with modded auras where hard CCs could bypass Momentum/Lingering
+* Fixed an edge case where having the main hand empty with a wand in the offhand would not give skill damage bonus (credits to lololice for spotting that issue)
+* Ported the Sucker punch fix code to Lua and fixed an issue with the original fix not working properly
+* Fixed an issue with the Elemental ranger custom effect that worked without having the talent enabled
+* Fixed an issue with damage going through armour where it could regenerate more Vitality than normal if one of the damage type is completely absorbed
+* Damage over time doesn't trigger Lifesteal anymore
+* CQB Penalty marker doesn't trigger anymore if the character is sneaking and/or is invisible to avoid accidental cheese

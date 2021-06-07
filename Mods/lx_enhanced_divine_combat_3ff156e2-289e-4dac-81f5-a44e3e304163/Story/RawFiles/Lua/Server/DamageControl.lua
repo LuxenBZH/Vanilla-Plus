@@ -164,6 +164,12 @@ function DamageControl(target, instigator, hitDamage, handle)
 			else
 				globalMultiplier = globalMultiplier + Ext.ExtraData.DGM_WandSkillMultiplier/100
 			end
+		elseif weaponTypes[2] == "Wand" then -- Credits to lololice to spot that edge case
+			if weaponTypes[1] == "Wand" then
+				globalMultiplier = globalMultiplier + Ext.ExtraData.DGM_WandSkillMultiplier/100*2
+			else
+				globalMultiplier = globalMultiplier + Ext.ExtraData.DGM_WandSkillMultiplier/100
+			end
 		elseif weaponTypes[1] == "Staff" then
 			globalMultiplier = globalMultiplier + Ext.ExtraData.DGM_StaffSkillMultiplier/100
 		end
@@ -181,7 +187,7 @@ function DamageControl(target, instigator, hitDamage, handle)
 		damageBonus = 0
 		globalMultiplier = 1
 	end
-	damages = ChangeDamage(damages, (damageBonus/100+1)*globalMultiplier, 0, instigator, target, handle)
+	damages = ChangeDamage(damages, (damageBonus/100+1)*globalMultiplier, 0, instigator, target, handle, isDoT)
 	ReplaceDamages(damages, handle, target)
 	TagShadowCorrosiveDifference(damages)
 	if ObjectIsCharacter(target) == 1 then SetWalkItOff(target, handle) end
@@ -206,7 +212,7 @@ end
 ---@param multiplier number
 ---@param value number
 ---@param instigator EsvCharacter
-function ChangeDamage(damages, multiplier, value, instigator, target, handle)
+function ChangeDamage(damages, multiplier, value, instigator, target, handle, dot)
 	local lifesteal = NRD_StatusGetInt(target, handle, "LifeSteal")
 	instigator = Ext.GetCharacter(instigator)
 	for dmgType,amount in pairs(damages) do
@@ -233,7 +239,7 @@ function ChangeDamage(damages, multiplier, value, instigator, target, handle)
 		if amount ~= 0 then Ext.Print("Changed "..dmgType.." to "..amount.." (Multiplier = "..multiplier..")") end
 		damages[dmgType] = amount
 	end
-	if ObjectIsCharacter(target) ~= 1 then lifesteal = 0 end
+	if ObjectIsCharacter(target) ~= 1 or dot == 1 then lifesteal = 0 end
 	NRD_StatusSetInt(target, handle, "LifeSteal", lifesteal)
 	return damages
 end

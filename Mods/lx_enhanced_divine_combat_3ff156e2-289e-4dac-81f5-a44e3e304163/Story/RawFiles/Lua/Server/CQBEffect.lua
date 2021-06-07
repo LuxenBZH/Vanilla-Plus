@@ -9,7 +9,7 @@ local function ApplyCQBEffect(object)
     if ObjectIsCharacter(object) == 1 then
         local char = Ext.GetCharacter(object)
         local offhand = char.Stats.OffHandWeapon
-        if rangedWeapons[char.Stats.MainWeapon.WeaponType] or (offhand ~= nil and rangedWeapons[offhand]) then
+        if (rangedWeapons[char.Stats.MainWeapon.WeaponType] or (offhand ~= nil and rangedWeapons[offhand])) and (char:GetStatus("SNEAKING") == nil and char:GetStatus("INVISIBLE") == nil) then
             if NRD_StatExists("LX_CLOSEQUARTER_"..Ext.ExtraData.DGM_RangedCQBPenaltyRange) then
                 ApplyStatus(object, "LX_CLOSEQUARTER_"..Ext.ExtraData.DGM_RangedCQBPenaltyRange, 1.0, 1.0)
             else
@@ -46,12 +46,26 @@ Ext.RegisterOsirisListener("ItemUnequipped", 2, "before", RemoveCQBEffectUnequip
 
 local function ReapplyCQBEffectEquip(item, character)
     if CharacterIsInCombat(character) == 1 then
-        local char = Ext.GetCharacter(character)
-        local offhand = char.Stats.OffHandWeapon
-        if (rangedWeapons[char.Stats.MainWeapon.WeaponType] or (offhand ~= nil and rangedWeapons[offhand])) then
-            ApplyStatus(character, "LX_CLOSEQUARTER_"..Ext.ExtraData.DGM_RangedCQBPenaltyRange, -1.0, 1)
-        end
+        ApplyCQBEffect(character)
     end
 end
 
 Ext.RegisterOsirisListener("ItemEquipped", 2, "before", ReapplyCQBEffectEquip)
+
+local function RemoveCQBOnStatus(character, status, causee)
+    if CharacterIsInCombat(character) == 0 then return end
+    if status == "SNEAKING" or status == "INVISIBLE" then
+        RemoveStatus(character, "LX_CLOSEQUARTER_"..Ext.ExtraData.DGM_RangedCQBPenaltyRange)
+    end
+end
+
+Ext.RegisterOsirisListener("CharacterStatusApplied", 3, "before", RemoveCQBOnStatus)
+
+local function ReapplyCQBOnStatusLoss(character, status, causee)
+    if CharacterIsInCombat(character) == 0 then return end
+    if status == "SNEAKING" or status == "INVISIBLE" then
+        ApplyCQBEffect(character)
+    end
+end
+
+Ext.RegisterOsirisListener("CharacterStatusRemoved", 3, "before", ReapplyCQBOnStatusLoss)

@@ -307,6 +307,7 @@ local surfaceTypeMap = {
 --- @param skillType string Type
 --- @param skillElement string Elements enum
 Ext.RegisterOsirisListener("CharacterUsedSkill", 4, "before", function(character, skill, skillType, skillElement)
+	if not Ext.GetCharacter(character).Stats.TALENT_ElementalRanger then return end
 	local skill = Ext.GetStat(skill)
 	if (skill.ProjectileType == "Grenade" and skill.Requirement == "None") or (skill.ProjectileType == "Arrow" and skill.Requirement == "RangedWeapon") and skill.IsEnemySkill == "Yes" and skill["Memory Cost"] == 0 then
 		if skill.DamageType == "Chaos" then
