@@ -229,13 +229,13 @@ Ext.RegisterOsirisListener("CharacterKilledBy", 3, "before", ExecutionerHaste)
 ---@param item EsvItem
 ---@param char EsvCharacter
 Ext.RegisterOsirisListener("ItemEquipped", 2, "before", function(item, char)
-	char = Ext.GetCharacter(char) ---@type EsvCharacter
-	if char.Stats.TALENT_Ambidextrous and CharacterIsInCombat(char.MyGuid) == 1 then
+	local character = Ext.GetCharacter(char) ---@type EsvCharacter
+	if character.Stats.TALENT_Ambidextrous and CharacterIsInCombat(char) == 1 then
 		item = Ext.GetItem(item) ---@type EsvItem
-		local swapCounter = GetVarInteger(char.MyGuid, "DGM_AmbidextrousCount")
+		local swapCounter = GetVarInteger(char, "DGM_AmbidextrousCount")
 		if swapCounter > 0 and item.Stats.WeaponType ~= "Crossbow" then
-			SetVarInteger(char.MyGuid, "DGM_AmbidextrousCount", swapCounter-1)
-			CharacterAddActionPoints(char.MyGuid, 1)
+			SetVarInteger(char, "DGM_AmbidextrousCount", swapCounter-1)
+			CharacterAddActionPoints(char, 1)
 		end
 	end
 end)

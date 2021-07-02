@@ -640,3 +640,7 @@ Fix
 * Fixed an issue with damage going through armour where it could regenerate more Vitality than normal if one of the damage type is completely absorbed
 * Damage over time doesn't trigger Lifesteal anymore
 * CQB Penalty marker doesn't trigger anymore if the character is sneaking and/or is invisible to avoid accidental cheese
+
+# 1.1.9.59
+Fixes
+* Fixed an issue where Ambidextrous would not work at all
