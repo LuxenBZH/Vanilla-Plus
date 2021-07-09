@@ -4,3 +4,5 @@ requirement "ExtraSkillPoints",""
 
 requirement "NoAttackOfOpportunity","RogueLore 1"
 
+requirement "LoneWolf","!TALENT_Memory"
+

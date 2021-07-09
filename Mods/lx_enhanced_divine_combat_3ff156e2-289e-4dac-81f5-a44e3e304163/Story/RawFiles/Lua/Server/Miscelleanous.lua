@@ -49,3 +49,50 @@ Ext.RegisterOsirisListener("ObjectLeftCombat", 2, "before", function(object, com
         PersistentVars.SPunchCooldown[object] = nil
     end
 end)
+
+
+
+---- Perseverance effect
+local incapacitatedTypes = {
+    INCAPACITATED = true,
+    KNOCKED_DOWN = true
+}
+local resistances = {
+    "FireResistance",
+    "WaterResistance",
+    "AirResistance",
+    "EarthResistance",
+    "PoisonResistance",
+    "PhysicalResistance",
+    "PiercingResistance"
+}
+--- @param character string GUID
+--- @param status string StatusID
+--- @param instigator string GUID
+Ext.RegisterOsirisListener("CharacterStatusApplied", 3, "before", function(character, status, causee)
+    local sts
+    if NRD_StatExists(status) then
+        sts = Ext.GetStat(status)
+    else
+        return
+    end
+    if incapacitatedTypes[sts.StatusType] then
+        local turns = GetStatusTurns(character, status)
+        if turns > 10 or turns < 1 then return end
+        local character = Ext.GetCharacter(character)
+        local perseverance = character.Stats.Perseverance
+        if NRD_StatExists("LX_PERSEVERANCE_"..perseverance) then
+            ApplyStatus(character.MyGuid, "LX_PERSEVERANCE_"..perseverance, turns*6.0, 1)
+        else
+            local newPotion = Ext.CreateStat("Stats_LX_Perseverance_"..perseverance, "Potion", "Stats_LX_Perseverance")
+            for i,res in pairs(resistances) do
+                newPotion[res] = math.floor(perseverance * Ext.ExtraData.DGM_PerseveranceResistance)
+            end
+            Ext.SyncStat(newPotion.Name, false)
+            local newStatus = Ext.CreateStat("LX_PERSEVERANCE_"..perseverance, "StatusData", "LX_PERSEVERANCE")
+            newStatus.StatsId = newPotion.Name
+            Ext.SyncStat(newStatus.Name, false)
+            ApplyStatus(character.MyGuid, "LX_PERSEVERANCE_"..perseverance, turns*6.0, 1)
+        end
+    end
+end)

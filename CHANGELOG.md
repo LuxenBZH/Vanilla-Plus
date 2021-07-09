@@ -644,3 +644,18 @@ Fix
 # 1.1.9.59
 Fixes
 * Fixed an issue where Ambidextrous would not work at all
+
+# 1.1.10.60 (Siva)
+Fixes
+* Fixed a minor issue related to negative damage
+* Potentially fixed edge cases for the crossbow penalty and hothead effects lingering whereas they should not
+* Fixed an issue related to weapon abilities not activating/deactivating correctly
+
+Balance
+* Reworked damage scaling through levels, with VitalityToDamageRatio set to 6 instead of 8, growth set to 0.225 instead of 0.3, ArmorToVitality set to 0.4 instead of 0.35, these changes should make the base level damage fallof much less important, which was resulting in Constitution granting way too much survivability compared to a similar investment in damage. Further adjustments may be needed.
+* Adrenaline now reduce AP recovery by 3 instead of 2
+* Adrenaline cooldown increased from 4 to 6
+* Haste cooldown increased to 4 from 3
+* Skin Graft now reduce both armours to 0 for 2 turns and also remove Momentum and Lingering
+* Perseverance doesn't restore Vitality anymore but increase all resistances by 5% per point when you are incapacitated
+* Mnemonics is now incompatible with Lone Wolf

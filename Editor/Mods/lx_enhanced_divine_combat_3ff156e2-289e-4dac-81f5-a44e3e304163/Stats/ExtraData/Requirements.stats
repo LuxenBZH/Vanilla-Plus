@@ -17,5 +17,11 @@
         <field name="Requirements" type="StringStatObjectFieldDefinition" value="RogueLore 1" />
       </fields>
     </stat_object>
+    <stat_object is_substat="false">
+      <fields>
+        <field name="Name" type="NameStatObjectFieldDefinition" value="LoneWolf" />
+        <field name="Requirements" type="StringStatObjectFieldDefinition" value="!TALENT_Memory" />
+      </fields>
+    </stat_object>
   </stat_objects>
 </stats>

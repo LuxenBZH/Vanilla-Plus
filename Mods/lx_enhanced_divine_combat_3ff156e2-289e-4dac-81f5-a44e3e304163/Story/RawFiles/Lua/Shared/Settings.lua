@@ -27,6 +27,7 @@ local defaultDataValues = {
     DGM_PlayerVitalityMultiplier = 100,
     DGM_NpcVitalityMultiplier = 100,
     DGM_WandSurfaceBonus = 15,
+    DGM_PerseveranceResistance = 5,
 }
 
 local idToVariable = {
@@ -135,7 +136,7 @@ Ext.RegisterListener("SessionLoaded", function()
     settings.Global:AddLocalizedVariable("WandSurfaceMult", "LXDGM_WandSurfaceMult", Ext.ExtraData.DGM_WandSurfaceBonus, 0, 100, 0.5, "LXDGM_WandSurfaceMult_Description")
     settings.Global:AddLocalizedVariable("CrossbowPenaltyBase", "LXDGM_CrossbowPenaltyBase", Ext.ExtraData.DGM_CrossbowBasePenalty, -300, 0, 1, "LXDGM_CrossbowPenaltyBase_Description")
     settings.Global:AddLocalizedVariable("CrossbowPenaltyGrowth", "LXDGM_CrossbowPenaltyGrowth", Ext.ExtraData.DGM_CrossbowLevelGrowthPenalty, -100, 0, 1, "LXDGM_CrossbowPenaltyGrowth_Description")
-    settings.Global:AddLocalizedVariable("PerseveranceVitality", "LXDGM_PerseveranceVitality", Ext.ExtraData.DGM_PerseveranceVitalityRecovery, 0, 20, 0.5, "LXDGM_PerseveranceVitality_Description")
+    settings.Global:AddLocalizedVariable("PerseveranceResistance", "LXDGM_PerseveranceResistance", Ext.ExtraData.DGM_PerseveranceResistance, 0, 10, 1, "LXDGM_PerseveranceResistance_Description")
     settings.Global:AddLocalizedVariable("CCParryDuration", "LXDGM_CCParryDuration", Ext.ExtraData.DGM_CCParryDuration, 0, 5, 1, "LXDGM_CCParryDuration_Description")
     settings.Global:AddLocalizedVariable("ArmourReductionMultiplier", "LXDGM_ArmourReductionMultiplier", Ext.ExtraData.DGM_ArmourReductionMultiplier, 50, 300, 5, "LXDGM_ArmourReductionMultiplier_Description")
 
@@ -190,7 +191,7 @@ Ext.RegisterListener("SessionLoaded", function()
                     "WandSurfaceMult",
                     "CrossbowPenaltyBase",
                     "CrossbowPenaltyGrowth",
-                    "PerseveranceVitality",
+                    "PerseveranceResistance",
                     "CCParryDuration",
                     "ArmourReductionMultiplier"
                 }},

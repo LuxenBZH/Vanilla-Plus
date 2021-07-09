@@ -110,22 +110,31 @@ local customAbilityBonuses = {
     None = {}
 }
 
+--- @param character EsvCharacter
+local function CreateEmptyWeaponBonus(character)
+    if NRD_StatExists("DGM_NoWeapon") then
+        if HasActiveStatus(character.MyGuid, "DGM_NoWeapon") == 0 then
+            ApplyStatus(character.MyGuid, "DGM_NoWeapon", -1, 1)
+        end
+    else
+        local newStatus = Ext.CreateStat("DGM_NoWeapon", "StatusData", "DGM_BASE")
+        newStatus["StackId"] = "DGM_WeaponAbility"
+        newStatus["StackPriority"] = 1
+        Ext.SyncStat(newStatus.Name, false)
+        ApplyStatus(character.MyGuid, "DGM_NoWeapon", -1, 1)
+    end
+    return
+end
+
 function SyncAbilitiesBonuses(char)
     if ObjectExists(char) == 0 then return end
+    -- Ext.Print("Abilities punctual check")
     char = Ext.GetCharacter(char)
     if char == nil then return end
     local ability = GetWeaponAbility(char.Stats, char.Stats.MainWeapon)
+    -- Ext.Print(ability)
     if ability == nil then
-        if NRD_StatExists("DGM_NoWeapon") then
-            if HasActiveStatus(char.MyGuid, "DGM_NoWeapon") == 0 then
-                ApplyStatus(char.MyGuid, "DGM_NoWeapon", -1, 1)
-            end
-        else
-            local newStatus = Ext.CreateStat("DGM_NoWeapon", "StatusData", "DGM_BASE")
-            newStatus["StackId"] = "DGM_WeaponAbility"
-            newStatus["StackPriority"] = 1
-            Ext.SyncStat(newStatus.Name, false)
-        end
+        CreateEmptyWeaponBonus(char)
         return
     end
     local charAbi = math.floor(char.Stats[ability])
@@ -136,7 +145,7 @@ function SyncAbilitiesBonuses(char)
         end
     else
         local bonuses = customAbilityBonuses[ability]
-        if GetTableSize(bonuses) == 0 then return end
+        if GetTableSize(bonuses) == 0 then CreateEmptyWeaponBonus(char) end
         local newPotion = Ext.CreateStat("DGM_Potion_"..ability.."_"..charAbi, "Potion", "DGM_Potion_Base")
         for bonus,value in pairs(bonuses) do
             newPotion[bonus] = charAbi * value
@@ -166,6 +175,8 @@ local function CharacterGlobalCheck(character, event)
     SyncAbilitiesBonuses(character)
     if HasActiveStatus(character, "LX_CROSSBOWINIT") then
         CreateCrossbowSlowdownStat(character)
+    else
+        ApplyStatus(character, "LX_CROSSBOWCLEAR", 6.0, 1)
     end
     CheckAllTalents(character)
     ManageMemory(character, Ext.GetCharacter(character).Stats.TALENT_Memory)

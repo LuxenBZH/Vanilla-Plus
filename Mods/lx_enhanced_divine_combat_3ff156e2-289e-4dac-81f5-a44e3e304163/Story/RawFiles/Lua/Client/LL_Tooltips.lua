@@ -61,7 +61,8 @@ local function SkillCanBeExtended(skill)
                     if status.StatusType == "DAMAGE" or status.LeaveAction ~= ""  or status.StatusType == "SPARK" or status.StatusType == "ACTIVE_DEFENSE" then
                         hasStatusApplied = true
                     end
-                    if status.StatusType == "CONSUME" and status.StatsId ~= "" and Ext.GetStat(status.StatsId).BonusWeapon ~= "" then
+                    local statsId = Ext.GetStat(status.StatsId)
+                    if status.StatusType == "CONSUME" and status.StatsId ~= "" and statsId ~= nil and  statsId.BonusWeapon ~= "" then
                         hasStatusApplied = true
                     end
                 end

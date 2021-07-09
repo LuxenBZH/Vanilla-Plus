@@ -38,9 +38,15 @@ end
 ---@param unlocked boolean
 function ManageMemory(character, unlocked)
 	if unlocked then
-		if CharacterGetHostCharacter() == character then Ext.Print("MEMORY UNLOCKED") end
+		-- if CharacterGetHostCharacter() == character then Ext.Print("MEMORY UNLOCKED") end
 		local mem = math.floor(Ext.GetCharacter(character).Stats.BaseMemory - NRD_CharacterGetPermanentBoostInt(character, "Memory") - Ext.ExtraData.AttributeBaseValue)
-		NRD_CharacterSetPermanentBoostInt(character, "Memory", mem)
+		-- if Ext.GetGameMode() == "Campaign" then
+			NRD_CharacterSetPermanentBoostInt(character, "Memory", mem)
+		-- else
+		-- 	local diff = NRD_CharacterGetPermanentBoostInt(character, "Memory") - mem
+		-- 	NRD_CharacterSetPermanentBoostInt(character, "Memory", mem+diff)
+		-- end
+		
 		CharacterAddAttribute(character, "Dummy", 0)
 	-- else
 		-- local memBonus = NRD_CharacterGetPermanentBoostInt(character, "Memory")
@@ -58,7 +64,6 @@ local function MnemonicLocked(character, talent)
 	if talent ~= "Memory" then return end
 	local memBonus = NRD_CharacterGetPermanentBoostInt(character, "Memory")
 	local mem = math.floor(Ext.GetCharacter(character).Stats.BaseMemory - memBonus - Ext.ExtraData.AttributeBaseValue)
-	Ext.Print(memBonus, mem)
 	if not Ext.GetCharacter(character).CharacterCreationFinished then
 		SetTag(character, "DGM_MemoryManagement")
 		return
@@ -167,7 +172,11 @@ end
 function CheckHothead(character)
 	local HPperc = Ext.Round(NRD_CharacterGetStatInt(character, "CurrentVitality") / NRD_CharacterGetStatInt(character, "MaxVitality") * 100)
 	--Ext.Print(HPperc)
-	if HPperc > Ext.ExtraData.DGM_HotheadApplicationThreshold then ApplyStatus(character, "LX_HOTHEAD", -1.0, 1) end
+	if HPperc > Ext.ExtraData.DGM_HotheadApplicationThreshold then 
+		ApplyStatus(character, "LX_HOTHEAD", -1.0, 1) 
+	else
+		RemoveStatus(character, "LX_HOTHEAD")
+	end
 end
 
 ---@param character EsvCharacter
@@ -341,7 +350,6 @@ Ext.RegisterOsirisListener("CharacterUsedSkill", 4, "before", function(character
 end)
 
 ---- Morning Person AP recovery
-
 Ext.RegisterOsirisListener("ObjectTurnStarted", 1, "before", function(object)
 	if ObjectIsCharacter(object) == 0 then return end
 	local char = Ext.GetCharacter(object)

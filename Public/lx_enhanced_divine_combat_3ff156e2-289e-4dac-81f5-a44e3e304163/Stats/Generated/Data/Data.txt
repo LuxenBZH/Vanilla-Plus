@@ -1,10 +1,10 @@
-key "ArmorToVitalityRatio","0.35"
+key "ArmorToVitalityRatio","0.4"
 
 key "ExpectedConGrowthForArmorCalculation","1"
 
-key "VitalityToDamageRatio","8"
+key "VitalityToDamageRatio","6"
 
-key "VitalityToDamageRatioGrowth","0.3"
+key "VitalityToDamageRatioGrowth","0.225"
 
 key "UnstableRadius","4"
 
@@ -231,4 +231,6 @@ key "SurfaceAbsorbBoostPerTilesCount","10"
 key "DGM_WandSurfaceBonus","15"
 
 key "DGM_ChameleonCloakRevert","0"
+
+key "DGM_PerseveranceResistance","5"
 

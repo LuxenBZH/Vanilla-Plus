@@ -4228,5 +4228,34 @@
         <field name="MagicArmorBoost" type="IntegerStatObjectFieldDefinition" value="10" />
       </fields>
     </stat_object>
+    <stat_object is_substat="false">
+      <fields>
+        <field name="Name" type="NameStatObjectFieldDefinition" value="Stats_LX_Adrenaline" />
+        <field name="Act" type="EnumerationStatObjectFieldDefinition" value="0" enumeration_type_name="Act" />
+        <field name="Act part" type="EnumerationStatObjectFieldDefinition" value="0" enumeration_type_name="ActPart" />
+        <field name="APRecovery" type="IntegerStatObjectFieldDefinition" value="-3" />
+      </fields>
+    </stat_object>
+    <stat_object is_substat="false">
+      <fields>
+        <field name="Name" type="NameStatObjectFieldDefinition" value="Stats_Shed_Skin" />
+        <field name="Act" type="EnumerationStatObjectFieldDefinition" value="0" enumeration_type_name="Act" />
+        <field name="Act part" type="EnumerationStatObjectFieldDefinition" value="0" enumeration_type_name="ActPart" />
+        <field name="ArmorBoost" type="IntegerStatObjectFieldDefinition" value="-100" />
+        <field name="MagicArmorBoost" type="IntegerStatObjectFieldDefinition" value="-100" />
+      </fields>
+    </stat_object>
+    <stat_object is_substat="false">
+      <fields>
+        <field name="Name" type="NameStatObjectFieldDefinition" value="Stats_LX_Perseverance" />
+        <field name="FireResistance" type="IntegerStatObjectFieldDefinition" value="5" />
+        <field name="EarthResistance" type="IntegerStatObjectFieldDefinition" value="5" />
+        <field name="WaterResistance" type="IntegerStatObjectFieldDefinition" value="5" />
+        <field name="AirResistance" type="IntegerStatObjectFieldDefinition" value="5" />
+        <field name="PoisonResistance" type="IntegerStatObjectFieldDefinition" value="5" />
+        <field name="PiercingResistance" type="IntegerStatObjectFieldDefinition" value="5" />
+        <field name="PhysicalResistance" type="IntegerStatObjectFieldDefinition" value="5" />
+      </fields>
+    </stat_object>
   </stat_objects>
 </stats>

@@ -6,6 +6,7 @@
 	<content contentuid="h055c33d3ge1f1g431eg8fd0gebd6da7eb962">Morning Person</content>
 	<content contentuid="h06098edfg8629g4f30gb6d4g45057f6622ce">Deals [1] damage each turn.</content>
 	<content contentuid="h06c77362g1304g4f81ga661g695dc6b814bc">A character with Demon has an extra 30% Fire Resistance, but takes a 15% penalty to Water Resistance. Additionally, the maximum Fire Resistance is raised by 10 and grants immunity to Burning and Necrofire.</content>
+	<content contentuid="h0897c725g76cbg4ab7ga0ceg31a5294abbf8">Reset all cooldowns but remove your armours for 2 turns. Removes Burning, Necrofire, Poisoned, Bleeding, Momentum and Lingering.</content>
 	<content contentuid="h08adfff4gbd75g4ee9g8070gf928d43a6302">Stench</content>
 	<content contentuid="h092684e6gbf69g4372g99f8g4743516b0efe">Offhand penalty: [1]% (penalty reduced by [2]% from Dual-Wielding)</content>
 	<content contentuid="h0a8b0b59g5da9g483fg86a3g59afce30dbb7">Next Level [1]: Water attacks deal +[2]% more damage, +[3]% Vitality healed, +[4]% Magic Armour from skills and potions.</content>
@@ -23,7 +24,7 @@
 	<content contentuid="h19eab510gec8cg4d4fg92fag5918044ab001">Default : 3</content>
 	<content contentuid="h1a6bf0edg47eeg4ee8gaa86g5a608e5dda7b">Explode all corpses around you, dealing [1] in the area.</content>
 	<content contentuid="h1b361ce1gd5d3g4c0eg8b8cg7d87658e755f">Activate the stats correction formula. Strongly recommended when playing Story mode or any Adventure mod that has not been balanced for Vanilla Plus.&lt;br&gt;Default : on&lt;br&gt;&lt;font color=#ff0000&gt;Require a game restart&lt;/font&gt;</content>
-	<content contentuid="h1bae56a9ga45fg431fg80bfg2afbef03c1d2">Perseverance restores Magic Armour on recovering from Frozen or Stunned, and restores Physical Armour on recovering from Knocked Down or Petrified. Additionally, a fraction of maximum Vitality is restored. When recovering from a Staggered or Confused status, Perseverance also triggers but its effect is halved.</content>
+	<content contentuid="h1bae56a9ga45fg431fg80bfg2afbef03c1d2">Perseverance restores Magic Armour on recovering from Frozen or Stunned, and restores Physical Armour on recovering from Knocked Down or Petrified. Additionally, when you&apos;re incapacitated (Knocked Down, Petrified, Stunned, Frozen or similar) your resistances are increased. When recovering from a Staggered or Confused status, Perseverance also triggers but its effect is halved.</content>
 	<content contentuid="h1c81462eg26ceg48a1g8828gdf9254cbdae0">Wands Surface Bonus</content>
 	<content contentuid="h1e5caa33g4d5dg4f42g91edg9f546d42f56b">Increases all Skill damage by [1]%.</content>
 	<content contentuid="h206ce4abg4f84g4b2dg934aga0d96a602f2c">Two-Handed increases damage and Critical Multiplier when using two-handed melee weapons (swords, axe, mace, spear or staff).</content>
@@ -42,6 +43,7 @@
 	<content contentuid="h2ea5f141g4d43g49b8g8d6agd365b90a0d6d">Dodge Fatigue (4)</content>
 	<content contentuid="h2f904fe7g83d0g4d51g8bcfgd6b561ba92e3">Magnificent horns sprout from your forehead, making you see red. You can rush at your enemies and gore them. Increases Retribution ability by 2 for the duration.</content>
 	<content contentuid="h314ee256g43cdg4864ga519gd23e909ec63e">Increase all Skill damage by [1]%.&lt;br&gt;Wands attacks do [2]% more damage of the type of the surface and the cloud the character is standing in.</content>
+	<content contentuid="h31d2a547g005bg4ee3g8d2ag47720bd4fa1a">Gain 2 Action Points immediately, but lose 3 Action Points next turn. Any Action Points over your maximum are lost.</content>
 	<content contentuid="h3240460dgd250g435bg9ebegc1682089c5ed">Explode target corpse, dealing [1] in the area.</content>
 	<content contentuid="h32fcbbfbgec6bg4af4g894ag49fd997307fe">Any attempt to apply Stunned, Petrified, Frozen, Madness, Terrified or Charm will apply Confused instead.</content>
 	<content contentuid="h362a94a5g0b60g4be6g9998gd44214d4a78f">Sacrifice yourself to bring an ally back to life. Reduce your Vitality by [1]% and ressurrects target character with maximum Vitality.</content>
@@ -55,7 +57,7 @@
 	<content contentuid="h42b4c1e3g7c07g400dg8924g2807a024e6bb">Pet Pal enables you to talk to animals. Also increases your maximum number of summons by 1, but reduces their damage and Vitality by 50%.</content>
 	<content contentuid="h42f0b1b6gd786g46ebga04egf56b57d92048">Incarnate learns how to go invisible and strike foes with a corrosive slash. Increases damage by [1]% and maximum Vitality by 15%.</content>
 	<content contentuid="h43401d61ga5dfg4282ga423gc4a5b78ff7ac">Leech</content>
-	<content contentuid="h443a51dcgbd6fg46c2g8988gbfe93a3123a5">Next Level [1]: +[2]% Armour and +[3]% Vitality restored after a hard Crowd Control effect recovery.</content>
+	<content contentuid="h443a51dcgbd6fg46c2g8988gbfe93a3123a5">Next Level [1]: +[2]% Armour restored after a hard Crowd Control effect recovery and +[3]% on all Resistances when incapacitated.</content>
 	<content contentuid="h4542353bg043cg4964ga401g7a80dd267e5b">Target a surface in melee radius. Elemental damage matching that surface is added to your weapon attacks and weapon-based skills.</content>
 	<content contentuid="h456b2bf0gf693g41e8gb01cg42e3548814a2">Prevent Dodge Fatigue when active.</content>
 	<content contentuid="h4641ef2eg741ag408bg95adg2fe65094c8b6">This character has been magically affected during recovery.</content>
@@ -80,7 +82,7 @@
 	<content contentuid="h5ad5ffbeg192cg47b3gbebag87252e71f246">Confused (3)</content>
 	<content contentuid="h5c90bf4dg4c11g4bb3gaf93g2caf0bb5c4c0">Use recommended attribute values</content>
 	<content contentuid="h5cb3da10g4cddg44eegbefeg72ffb21118ee">Wits Damage Over Time Bonus</content>
-	<content contentuid="h5d0c3ad0g3d9dg4cf1g92b7g20d6d7d26344">Level [1]: +[2]% Armour and +[3]% Vitality restored after a hard Crowd Control effect recovery.</content>
+	<content contentuid="h5d0c3ad0g3d9dg4cf1g92b7g20d6d7d26344">Level [1]: +[2]% Armour after a hard Crowd Control effect recovery and +[3]% on all Resistances when incapacitated.</content>
 	<content contentuid="h5d124a78g6932g4f5egb844gf9569ec4d2ba">Your inner demon actively watches over you. When an enemy approaches in melee range, they will be pummelled by a demonic fist dealing [1].</content>
 	<content contentuid="h5d420a72gb8cag4a08gb9ffg774da57dd2f7">Set the base Movement penalty of Crossbows when they are equipped.&lt;br&gt;Default : -92&lt;br&gt;&lt;font color=#ff0000&gt;Require a game restart&lt;/font&gt;</content>
 	<content contentuid="h5e0c2cf9g042ag4803gb01bg6128e1246fc9">Real Jump</content>
@@ -171,6 +173,7 @@
 	<content contentuid="hc5d5552bg6b33g44c1gbb0cg8d55a101f081">Level [1]: +[2]% Damage, +[3]% Dodging and increase Offhand damage by [4]%.</content>
 	<content contentuid="hc82cf98agdf5dg41d5gac1bg325ac645fb79">The correction indice for the highest damaging attribute for NPCs. The higher it is, the lower will be the final result.&lt;br&gt;Default : 50&lt;br&gt;&lt;font color=#ff0000&gt;Require a game restart&lt;/font&gt;</content>
 	<content contentuid="hc8901962g28ceg4fd9g82c2ge28ef16abd5b">Finesse Critical Chance Bonus</content>
+	<content contentuid="hc9386e15gf8f2g46efg9ab1g7dc5f3910ae8">Gain 1 Action Point immediately at the cost of [1] Constitution for 2 turns. Any Action Points over your maximum are lost.</content>
 	<content contentuid="hcb8f9837gdf0fg4a01ga7d6g5ed522b74189">[1] allows you to flee combat even when enemies are close by. Provides immunity to Crippled, Entangled and Enwebbed.</content>
 	<content contentuid="hcf74a6efg1ab6g45ecgaa12g147f528975ee">Throw [1] explosive traps at target locations. Each trap takes a turn to activate. When active, trap will explode when a character approaches it, dealing [2].</content>
 	<content contentuid="hd15c8d51gb26bg460cgaa29g8f2cc4f96877">Summons Damage Boost</content>

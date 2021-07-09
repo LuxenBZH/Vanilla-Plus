@@ -625,5 +625,24 @@
         <field name="Description" type="TranslatedStringStatObjectFieldDefinition" value="Adds [1] to weapon attacks and skills." />
       </fields>
     </stat_object>
+    <stat_object is_substat="false">
+      <fields>
+        <field name="Name" type="NameStatObjectFieldDefinition" value="LX_ADRENALINE" />
+        <field name="DisplayName" type="TranslatedStringStatObjectFieldDefinition" value="Adrenaline" />
+        <field name="Icon" type="StringStatObjectFieldDefinition" value="statIcons_Adrenaline" />
+        <field name="StatusEffect" type="StringStatObjectFieldDefinition" value="RS3_FX_GP_Status_Adrenaline_01" />
+        <field name="StatsId" type="StringStatObjectFieldDefinition" value="Stats_LX_Adrenaline" />
+        <field name="StackId" type="StringStatObjectFieldDefinition" value="Stack_Adrenaline" />
+      </fields>
+    </stat_object>
+    <stat_object is_substat="false">
+      <fields>
+        <field name="Name" type="NameStatObjectFieldDefinition" value="LX_PERSEVERANCE" />
+        <field name="DisplayName" type="TranslatedStringStatObjectFieldDefinition" value="Perseverance" />
+        <field name="Icon" type="StringStatObjectFieldDefinition" value="Ability_Perseverance" />
+        <field name="StatsId" type="StringStatObjectFieldDefinition" value="Stats_LX_Perseverance" />
+        <field name="StackId" type="StringStatObjectFieldDefinition" value="Stack_LX_Perseverance" />
+      </fields>
+    </stat_object>
   </stat_objects>
 </stats>
