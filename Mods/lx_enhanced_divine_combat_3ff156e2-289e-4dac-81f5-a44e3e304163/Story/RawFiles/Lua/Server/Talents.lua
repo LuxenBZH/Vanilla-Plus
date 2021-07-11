@@ -34,20 +34,31 @@ function CheckBoostTalents(character, talent, unlocked)
 	end
 end
 
----@param character EsvCharacter
+---@param character string UUID
 ---@param unlocked boolean
 function ManageMemory(character, unlocked)
 	if unlocked then
 		-- if CharacterGetHostCharacter() == character then Ext.Print("MEMORY UNLOCKED") end
-		local mem = math.floor(Ext.GetCharacter(character).Stats.BaseMemory - NRD_CharacterGetPermanentBoostInt(character, "Memory") - Ext.ExtraData.AttributeBaseValue)
-		-- if Ext.GetGameMode() == "Campaign" then
-			NRD_CharacterSetPermanentBoostInt(character, "Memory", mem)
-		-- else
-		-- 	local diff = NRD_CharacterGetPermanentBoostInt(character, "Memory") - mem
-		-- 	NRD_CharacterSetPermanentBoostInt(character, "Memory", mem+diff)
+		local currentBoost = NRD_CharacterGetPermanentBoostInt(character, "Memory")
+		local mem = math.floor(Ext.GetCharacter(character).Stats.BaseMemory - currentBoost - Ext.ExtraData.AttributeBaseValue)
+		local previousMem = GetVarInteger(character, "DGM_MemoryBoost")
+		-- if previousMem == nil or previousMem == 0 then
+		-- 	previousMem = mem
 		-- end
-		
+		if previousMem == nil then
+			previousMem = 0
+		end
+		local diff = mem - previousMem
+		Ext.Print("memory", diff, previousMem, currentBoost, mem)
+		if diff ~= 0 and previousMem ~= 0 then
+			NRD_CharacterSetPermanentBoostInt(character, "Memory", currentBoost + diff)
+		elseif previousMem == 0 and currentBoost == mem then -- compatibility with previous saves
+			NRD_CharacterSetPermanentBoostInt(character, "Memory", mem)
+		elseif previousMem == 0 then
+			NRD_CharacterSetPermanentBoostInt(character, "Memory", currentBoost + mem)
+		end
 		CharacterAddAttribute(character, "Dummy", 0)
+		SetVarInteger(character, "DGM_MemoryBoost", mem)
 	-- else
 		-- local memBonus = NRD_CharacterGetPermanentBoostInt(character, "Memory")
 		-- local mem = math.floor(CharacterGetBaseAttribute(character, "Memory") - Ext.ExtraData.AttributeBaseValue)
@@ -64,10 +75,11 @@ local function MnemonicLocked(character, talent)
 	if talent ~= "Memory" then return end
 	local memBonus = NRD_CharacterGetPermanentBoostInt(character, "Memory")
 	local mem = math.floor(Ext.GetCharacter(character).Stats.BaseMemory - memBonus - Ext.ExtraData.AttributeBaseValue)
-	if not Ext.GetCharacter(character).CharacterCreationFinished then
+	if not Ext.GetCharacter(character).CharacterCreationFinished and Ext.GetGameMode() == "Campaign" then
 		SetTag(character, "DGM_MemoryManagement")
 		return
 	end
+	SetVarInteger(character, "DGM_MemoryBoost", 0)
 	NRD_CharacterSetPermanentBoostInt(character, "Memory", memBonus-mem)
 	CharacterAddAttribute(character, "Dummy", 0)
 end
@@ -88,6 +100,7 @@ Ext.RegisterOsirisListener("TimerFinished", 1, "after", function(timer)
 	if string.starts(timer, "MEMORY_") then
 		local character = string.gsub(timer, "MEMORY_", "")
 		NRD_CharacterSetPermanentBoostInt(character, "Memory", 0)
+		SetVarInteger(character, "DGM_MemoryBoost", 0)
 		CharacterAddAttribute(character, "Dummy", 0)
 	end
 end)
