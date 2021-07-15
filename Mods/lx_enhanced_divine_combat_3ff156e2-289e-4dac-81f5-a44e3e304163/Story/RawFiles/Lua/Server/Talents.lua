@@ -234,14 +234,7 @@ local function ExecutionerHaste(defender, attackerOwner, attacker)
 	if ObjectIsCharacter(attacker) == 0 then return end
 	local attacker = Ext.GetCharacter(attacker)
 	if attacker.Stats.TALENT_Executioner and CharacterIsInCombat(attacker.MyGuid) == 1 then
-		local haste = attacker.GetStatus(attacker, "HASTED")
-		if haste == nil then
-			ApplyStatus(attacker.MyGuid, "HASTED", 6.0)
-		else
-			if haste.CurrentLifeTime < 6 then
-				ApplyStatus(attacker.MyGuid, "HASTED", 6.0)
-			end
-		end
+		ApplyStatus(attacker.MyGuid, "LX_EXECUTIONER", 6.0)
 	end
 end
 

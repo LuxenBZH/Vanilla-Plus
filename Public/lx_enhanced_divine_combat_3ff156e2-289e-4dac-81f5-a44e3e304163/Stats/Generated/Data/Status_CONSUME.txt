@@ -663,3 +663,12 @@ data "Icon" "Ability_Perseverance"
 data "StatsId" "Stats_LX_Perseverance"
 data "StackId" "Stack_LX_Perseverance"
 
+new entry "LX_EXECUTIONER"
+type "StatusData"
+data "StatusType" "CONSUME"
+data "DisplayName" "LX_EXECUTIONER_DisplayName"
+data "DisplayNameRef" "Executioner"
+data "Icon" "Talent_Executioner"
+data "StatsId" "Stats_LX_Executioner"
+data "StackId" "Stack_LX_Executioner"
+

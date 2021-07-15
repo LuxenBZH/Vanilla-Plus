@@ -659,3 +659,11 @@ Balance
 * Skin Graft now reduce both armours to 0 for 2 turns and also remove Momentum and Lingering
 * Perseverance doesn't restore Vitality anymore but increase all resistances by 5% per point when you are incapacitated
 * Mnemonics is now incompatible with Lone Wolf
+
+# 1.1.11.61 (Lohar)
+Fix
+* Mnemonic memory system doesn't take over the permanent boost pool anymore, allowing the Game Master or mods to also influence it
+
+Balance
+* Executioner doesn't provide Haste anymore, but boosts Movement by 50% for 1 turn instead
+* Bone Widow doesn't have Bone cage anymore (didn't have the requirements anyway)

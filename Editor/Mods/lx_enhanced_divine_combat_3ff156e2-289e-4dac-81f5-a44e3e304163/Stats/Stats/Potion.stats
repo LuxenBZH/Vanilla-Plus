@@ -4257,5 +4257,13 @@
         <field name="PhysicalResistance" type="IntegerStatObjectFieldDefinition" value="5" />
       </fields>
     </stat_object>
+    <stat_object is_substat="false">
+      <fields>
+        <field name="Name" type="NameStatObjectFieldDefinition" value="Stats_LX_Executioner" />
+        <field name="Act" type="EnumerationStatObjectFieldDefinition" value="0" enumeration_type_name="Act" />
+        <field name="Act part" type="EnumerationStatObjectFieldDefinition" value="0" enumeration_type_name="ActPart" />
+        <field name="MovementSpeedBoost" type="IntegerStatObjectFieldDefinition" value="50" />
+      </fields>
+    </stat_object>
   </stat_objects>
 </stats>

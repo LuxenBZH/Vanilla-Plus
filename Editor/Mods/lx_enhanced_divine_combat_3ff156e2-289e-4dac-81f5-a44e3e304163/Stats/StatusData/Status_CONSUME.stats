@@ -644,5 +644,14 @@
         <field name="StackId" type="StringStatObjectFieldDefinition" value="Stack_LX_Perseverance" />
       </fields>
     </stat_object>
+    <stat_object is_substat="false">
+      <fields>
+        <field name="Name" type="NameStatObjectFieldDefinition" value="LX_EXECUTIONER" />
+        <field name="DisplayName" type="TranslatedStringStatObjectFieldDefinition" value="Executioner" />
+        <field name="Icon" type="StringStatObjectFieldDefinition" value="Talent_Executioner" />
+        <field name="StatsId" type="StringStatObjectFieldDefinition" value="Stats_LX_Executioner" />
+        <field name="StackId" type="StringStatObjectFieldDefinition" value="Stack_LX_Executioner" />
+      </fields>
+    </stat_object>
   </stat_objects>
 </stats>

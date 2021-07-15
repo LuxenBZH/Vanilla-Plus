@@ -1,7 +1,6 @@
 new skillset "Summon_BonePile"
 add skill "Target_BonePileConsumeCorpse"
 add skill "Jump_BonePileBurrow"
-add skill "Shout_BoneCage"
 new skillset "Summon_OilBlob"
 add skill "Projectile_PyroclasticRock"
 add skill "Target_Condense"

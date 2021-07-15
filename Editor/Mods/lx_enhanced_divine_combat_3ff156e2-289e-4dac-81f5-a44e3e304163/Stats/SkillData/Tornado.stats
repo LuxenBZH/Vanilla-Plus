@@ -33,7 +33,7 @@
         <field name="TargetEffect" type="StringStatObjectFieldDefinition" value="RS3_FX_UI_TargetPreviewer_Air_01" />
         <field name="Memory Cost" type="IntegerStatObjectFieldDefinition" value="1" />
         <field name="Magic Cost" type="IntegerStatObjectFieldDefinition" value="0" />
-        <field name="CleanseStatuses" type="StringStatObjectFieldDefinition" value="INVISIBLE;BURNING;SLOWED" />
+        <field name="CleanseStatuses" type="StringStatObjectFieldDefinition" value="INVISIBLE;BURNING;SLOWED;NECROFIRE;MARKED;WEB;WET;HASTED" />
         <field name="StatusClearChance" type="IntegerStatObjectFieldDefinition" value="100" />
         <field name="CycleConditions" type="StringStatObjectFieldDefinition" value="Character;!Dead" />
         <field name="Tier" type="EnumerationStatObjectFieldDefinition" value="2" enumeration_type_name="SkillTier" />

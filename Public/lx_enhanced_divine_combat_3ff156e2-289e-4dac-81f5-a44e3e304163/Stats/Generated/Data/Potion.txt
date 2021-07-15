@@ -3688,3 +3688,9 @@ data "PoisonResistance" "5"
 data "PiercingResistance" "5"
 data "PhysicalResistance" "5"
 
+new entry "Stats_LX_Executioner"
+type "Potion"
+data "Act" "1"
+data "Act part" "0"
+data "MovementSpeedBoost" "50"
+

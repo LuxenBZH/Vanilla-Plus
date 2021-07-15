@@ -880,7 +880,7 @@
         <field name="Tier" type="EnumerationStatObjectFieldDefinition" value="1" enumeration_type_name="SkillTier" />
         <field name="ActionPoints" type="IntegerStatObjectFieldDefinition" value="0" />
         <field name="Cooldown" type="IntegerStatObjectFieldDefinition" value="6" />
-        <field name="SkillProperties" type="StringStatObjectFieldDefinition" value="ADRENALINE,100,-1,,2,3" />
+        <field name="SkillProperties" type="StringStatObjectFieldDefinition" value="ADRENALINE,100,-1,,3,3" />
         <field name="AddWeaponRange" type="EnumerationStatObjectFieldDefinition" value="0" enumeration_type_name="YesNo" />
         <field name="TargetConditions" type="StringStatObjectFieldDefinition" value="Self" />
         <field name="UseCharacterStats" type="EnumerationStatObjectFieldDefinition" value="0" enumeration_type_name="YesNo" />
