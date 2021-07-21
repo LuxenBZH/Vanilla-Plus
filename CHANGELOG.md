@@ -667,3 +667,7 @@ Fix
 Balance
 * Executioner doesn't provide Haste anymore, but boosts Movement by 50% for 1 turn instead
 * Bone Widow doesn't have Bone cage anymore (didn't have the requirements anyway)
+* Shackles of Pain and Dominate Mind cannot target which still have the corresponding armour up anymore (to avoid misuse)
+* Siphon Poison duration increased to 3 turns from 2 turns
+* Ice King/Demon corresponding bonus resistance reduced to 25% from 30%
+* Corrosive and Magic damage are now scaled by the school they are being used from, increasing damage by 5% per point of the originating school

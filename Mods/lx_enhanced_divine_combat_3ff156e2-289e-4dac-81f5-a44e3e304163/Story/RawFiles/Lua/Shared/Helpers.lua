@@ -310,3 +310,15 @@ skillParams = {}
 currentParam = 1
 paramsOrder = {}
 
+skillAbilities = {
+	Fire = "FireSpecialist",
+	Earth = "EarthSpecialist",
+	Water = "WaterSpecialist",
+	Air = "AirSpecialist",
+	Rogue = "RogueLore",
+	Warrior = "WarriorLore",
+	Ranger = "RangerLore",
+	Summoning = "Summoning",
+	Death = "Necromancy",
+	Polymorph = "Polymorph"
+}

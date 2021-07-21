@@ -742,7 +742,7 @@
     <stat_object is_substat="false">
       <fields>
         <field name="Name" type="NameStatObjectFieldDefinition" value="Stats_LX_Demon" />
-        <field name="FireResistance" type="IntegerStatObjectFieldDefinition" value="15" />
+        <field name="FireResistance" type="IntegerStatObjectFieldDefinition" value="10" />
         <field name="Flags" type="EnumerationListStatObjectFieldDefinition" value="2" enumeration_type_name="AttributeFlags" />
       </fields>
     </stat_object>
@@ -4140,7 +4140,7 @@
     <stat_object is_substat="false">
       <fields>
         <field name="Name" type="NameStatObjectFieldDefinition" value="Stats_LX_IceKing" />
-        <field name="WaterResistance" type="IntegerStatObjectFieldDefinition" value="15" />
+        <field name="WaterResistance" type="IntegerStatObjectFieldDefinition" value="10" />
         <field name="Flags" type="EnumerationListStatObjectFieldDefinition" value="9" enumeration_type_name="AttributeFlags" />
       </fields>
     </stat_object>

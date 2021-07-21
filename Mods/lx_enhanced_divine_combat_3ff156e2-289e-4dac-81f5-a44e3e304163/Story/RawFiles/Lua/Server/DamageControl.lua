@@ -25,6 +25,21 @@ local function TraceDamageSpreaders(target)
 	end
 end
 
+--- @param instigator string GUID
+--- @param skill string
+local function IncreaseCorrosiveMagicFromSkill(instigator, skill, damageList)
+	local school = Ext.GetStat(skill).Ability
+	local stat = Ext.GetCharacter(instigator).Stats[skillAbilities[school]]
+	if stat then
+		if damageList["Corrosive"] ~= 0 then
+			damageList["Corrosive"] = damageList["Corrosive"] * 1.0+(0.05*stat)
+		end
+		if damageList["Magic"] ~= 0 then
+			damageList["Magic"] = damageList["Magic"] * 1.0+(0.05*stat)
+		end
+	end
+end
+
 ---@param target EsvCharacter
 ---@param handle number
 ---@param instigator EsvCharacter
@@ -116,7 +131,7 @@ function DamageControl(target, instigator, hitDamage, handle)
 		damageBonus = damageBonus + strength*Ext.ExtraData.DGM_StrengthWeaponBonus
 		-- Siphon Poison effect
 		if HasActiveStatus(instigator, "SIPHON_POISON") == 1 then
-			local seconds = 6.0
+			local seconds = 12.0
 			if HasActiveStatus(instigator, "VENOM_COATING") == 1 or HasActiveStatus(instigator, "VENOM_AURA") == 1 then
 				seconds = seconds + 12.0
 			end

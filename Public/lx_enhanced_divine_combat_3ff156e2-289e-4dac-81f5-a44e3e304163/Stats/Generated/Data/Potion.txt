@@ -639,7 +639,7 @@ data "LifeSteal" "25"
 
 new entry "Stats_LX_Demon"
 type "Potion"
-data "FireResistance" "15"
+data "FireResistance" "10"
 data "Flags" "BurnImmunity"
 
 new entry "Stats_LX_DDGoose"
@@ -3592,7 +3592,7 @@ data "StatusIcon" "Skill_Warrior_Inspire"
 
 new entry "Stats_LX_IceKing"
 type "Potion"
-data "WaterResistance" "15"
+data "WaterResistance" "10"
 data "Flags" "ChilledImmunity"
 
 new entry "Stats_Apotheosis"
