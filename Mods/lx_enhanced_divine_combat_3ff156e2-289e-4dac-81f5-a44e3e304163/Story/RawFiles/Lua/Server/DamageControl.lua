@@ -541,6 +541,11 @@ function ApplyHitResistances(character, damageList, attacker)
 		local originalResistance = Game.Math.GetResistance(character, damage.DamageType)
 		local resistance = originalResistance
 		local bypassValue = (strength - Ext.ExtraData.AttributeBaseValue) * Ext.ExtraData.DGM_StrengthResistanceIgnore * (intelligence - Ext.ExtraData.AttributeBaseValue)
+		if Ext.ExtraData.DGM_GB4Talents == 1 then
+			if character.TALENT_Haymaker then
+				bypassValue = bypassValue + 0.5*character.CriticalChance
+			end
+		end
 		-- Ext.Print("bypass value:",bypassValue)
 		-- Ext.Print(resistance)
 		if originalResistance ~= nil and originalResistance > 0 and originalResistance < 100 and bypassValue > 0 then

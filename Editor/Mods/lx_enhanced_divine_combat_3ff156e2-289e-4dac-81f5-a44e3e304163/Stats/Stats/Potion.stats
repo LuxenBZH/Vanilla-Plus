@@ -4265,5 +4265,19 @@
         <field name="MovementSpeedBoost" type="IntegerStatObjectFieldDefinition" value="50" />
       </fields>
     </stat_object>
+    <stat_object is_substat="false">
+      <fields>
+        <field name="Name" type="NameStatObjectFieldDefinition" value="Stats_LX_MagicCycleEarthAir" />
+        <field name="AirSpecialist" type="IntegerStatObjectFieldDefinition" value="2" />
+        <field name="EarthSpecialist" type="IntegerStatObjectFieldDefinition" value="2" />
+      </fields>
+    </stat_object>
+    <stat_object is_substat="false">
+      <fields>
+        <field name="Name" type="NameStatObjectFieldDefinition" value="Stats_LX_MagicCycleFireWater" />
+        <field name="FireSpecialist" type="IntegerStatObjectFieldDefinition" value="2" />
+        <field name="WaterSpecialist" type="IntegerStatObjectFieldDefinition" value="2" />
+      </fields>
+    </stat_object>
   </stat_objects>
 </stats>

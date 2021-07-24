@@ -653,5 +653,25 @@
         <field name="StackId" type="StringStatObjectFieldDefinition" value="Stack_LX_Executioner" />
       </fields>
     </stat_object>
+    <stat_object is_substat="false">
+      <fields>
+        <field name="Name" type="NameStatObjectFieldDefinition" value="LX_GB4_MC_EA" />
+        <field name="ForGameMaster" type="EnumerationStatObjectFieldDefinition" value="1" enumeration_type_name="YesNo" />
+        <field name="DisplayName" type="TranslatedStringStatObjectFieldDefinition" value="Magic Cycle" />
+        <field name="Icon" type="StringStatObjectFieldDefinition" value="CMP_Talents_Magic_Cycles_earthair" />
+        <field name="StatsId" type="StringStatObjectFieldDefinition" value="Stats_LX_MagicCycleEarthAir" />
+        <field name="StackId" type="StringStatObjectFieldDefinition" value="Stack_LX_MagicCycles" />
+      </fields>
+    </stat_object>
+    <stat_object is_substat="false">
+      <fields>
+        <field name="Name" type="NameStatObjectFieldDefinition" value="LX_GB4_MC_WF" />
+        <field name="ForGameMaster" type="EnumerationStatObjectFieldDefinition" value="1" enumeration_type_name="YesNo" />
+        <field name="DisplayName" type="TranslatedStringStatObjectFieldDefinition" value="Magic Cycle" />
+        <field name="Icon" type="StringStatObjectFieldDefinition" value="CMP_Talents_Magic_Cycles_waterfire" />
+        <field name="StatsId" type="StringStatObjectFieldDefinition" value="Stats_LX_MagicCycleFireWater" />
+        <field name="StackId" type="StringStatObjectFieldDefinition" value="Stack_LX_MagicCycles" />
+      </fields>
+    </stat_object>
   </stat_objects>
 </stats>

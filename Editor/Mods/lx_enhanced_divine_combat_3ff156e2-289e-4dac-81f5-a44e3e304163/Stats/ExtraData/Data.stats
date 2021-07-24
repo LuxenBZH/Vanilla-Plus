@@ -720,5 +720,11 @@
         <field name="Value" type="FloatStatObjectFieldDefinition" value="5" />
       </fields>
     </stat_object>
+    <stat_object is_substat="false">
+      <fields>
+        <field name="Name" type="NameStatObjectFieldDefinition" value="DGM_GB4Talents" />
+        <field name="Value" type="FloatStatObjectFieldDefinition" value="0" />
+      </fields>
+    </stat_object>
   </stat_objects>
 </stats>

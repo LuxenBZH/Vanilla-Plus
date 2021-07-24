@@ -3694,3 +3694,13 @@ data "Act" "1"
 data "Act part" "0"
 data "MovementSpeedBoost" "50"
 
+new entry "Stats_LX_MagicCycleEarthAir"
+type "Potion"
+data "AirSpecialist" "2"
+data "EarthSpecialist" "2"
+
+new entry "Stats_LX_MagicCycleFireWater"
+type "Potion"
+data "FireSpecialist" "2"
+data "WaterSpecialist" "2"
+

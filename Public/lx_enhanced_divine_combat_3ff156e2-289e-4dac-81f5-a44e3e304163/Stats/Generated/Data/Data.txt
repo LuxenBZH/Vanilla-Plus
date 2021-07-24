@@ -234,3 +234,5 @@ key "DGM_ChameleonCloakRevert","0"
 
 key "DGM_PerseveranceResistance","5"
 
+key "DGM_GB4Talents","0"
+
