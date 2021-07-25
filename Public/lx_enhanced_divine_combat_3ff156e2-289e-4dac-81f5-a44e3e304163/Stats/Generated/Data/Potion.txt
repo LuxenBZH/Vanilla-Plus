@@ -3704,3 +3704,7 @@ type "Potion"
 data "FireSpecialist" "2"
 data "WaterSpecialist" "2"
 
+new entry "Stats_LX_Indomitable"
+type "Potion"
+data "Flags" "StunImmunity;FreezeImmunity;KnockdownImmunity;CrippledImmunity;PetrifiedImmunity;ChickenImmunity"
+

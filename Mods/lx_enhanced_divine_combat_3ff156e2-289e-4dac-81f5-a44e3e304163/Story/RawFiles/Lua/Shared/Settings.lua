@@ -59,7 +59,8 @@ local idToVariable = {
     PlayerVitalityMultiplier = "DGM_PlayerVitalityMultiplier",
     NpcVitalityMultiplier = "DGM_NpcVitalityMultiplier",
     SummonsVitalityMultiplier = "DGM_SummonsVitalityMultiplier",
-    SummonsDamageBoost = "DGM_SummonsDamageBoost"
+    SummonsDamageBoost = "DGM_SummonsDamageBoost",
+    -- LXDGM_ModuleDivineTalents = "DGM_GB4Talents"
 }
 
 local requireRestart = {
@@ -74,7 +75,8 @@ local requireRestart = {
     PlayerVitalityMultiplier = true,
     NpcVitalityMultiplier = true,
     SummonsVitalityMultiplier = true,
-    SummonsDamageBoost = true
+    SummonsDamageBoost = true,
+    -- LXDGM_ModuleDivineTalents = true
 }
 
 local flags = {
@@ -85,6 +87,7 @@ local flags = {
     "LXDGM_ModuleOriginalChameleonCloak",
     "LXDGM_NPCStatsCorrectionCampaign",
     "LXDGM_NPCStatsCorrectionGM",
+    -- "LXDGM_ModuleDivineTalents"
 }
 
 Ext.RegisterListener("StatsLoaded", function()
@@ -98,6 +101,16 @@ Ext.RegisterListener("StatsLoaded", function()
             Ext.ExtraData[idToVariable[var]] = value.Value
         end
 	end
+    -- for var,value in pairs(Ext.JsonParse(json).Mods["3ff156e2-289e-4dac-81f5-a44e3e304163"].Global.Flags) do
+    --     Ext.Print("Set Data flag",var,value.Enabled)
+    --     if requireRestart[var] then
+    --         if value.Enabled then
+    --             Ext.ExtraData[idToVariable[var]] = 1
+    --         else
+    --             Ext.ExtraData[idToVariable[var]] = 0
+    --         end
+    --     end
+	-- end
 end)
 
 
@@ -112,6 +125,7 @@ Ext.RegisterListener("SessionLoaded", function()
     settings.Global:AddLocalizedFlag("LXDGM_ModuleFallDamageAlternate", "Global", false, nil, nil, false)
     settings.Global:AddLocalizedFlag("LXDGM_ModuleDualCC", "Global", false, nil, nil, false)
     settings.Global:AddLocalizedFlag("LXDGM_ModuleOriginalChameleonCloak", "Global", false, nil, nil, false)
+    settings.Global:AddLocalizedFlag("LXDGM_ModuleDivineTalents", "Global", false, nil, nil, false)
 
     -- settings.Global:AddLocalizedFlag("LXDGM_SettingsUseDefaultAttributeValues", "Global", true, nil, nil, false)
     settings.Global:AddLocalizedVariable("StrengthGloBonus", "LXDGM_StrengthGlobalDamageBonus", Ext.ExtraData.DGM_StrengthGlobalBonus, 0, 10, 0.5, "LXDGM_StrengthGlobalDamageBonus_Description")
@@ -161,7 +175,8 @@ Ext.RegisterListener("SessionLoaded", function()
                     "LXDGM_ModuleFallDamageClassic",
                     "LXDGM_ModuleFallDamageAlternate",
                     "LXDGM_ModuleDualCC",
-                    "LXDGM_ModuleOriginalChameleonCloak"
+                    "LXDGM_ModuleOriginalChameleonCloak",
+                    "LXDGM_ModuleDivineTalents"
                 }},
                 {DisplayName = "Attributes",
                 Entries = {

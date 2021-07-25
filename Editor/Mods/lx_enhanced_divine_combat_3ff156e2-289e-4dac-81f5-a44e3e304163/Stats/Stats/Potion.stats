@@ -4279,5 +4279,11 @@
         <field name="WaterSpecialist" type="IntegerStatObjectFieldDefinition" value="2" />
       </fields>
     </stat_object>
+    <stat_object is_substat="false">
+      <fields>
+        <field name="Name" type="NameStatObjectFieldDefinition" value="Stats_LX_Indomitable" />
+        <field name="Flags" type="EnumerationListStatObjectFieldDefinition" value="3;1;7;13;20;50" enumeration_type_name="AttributeFlags" />
+      </fields>
+    </stat_object>
   </stat_objects>
 </stats>

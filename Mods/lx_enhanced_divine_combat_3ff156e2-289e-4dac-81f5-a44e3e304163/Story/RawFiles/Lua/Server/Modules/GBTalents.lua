@@ -1,23 +1,8 @@
-local GB4Talents = {
-    "Elementalist",
-    "Sadist",
-    "Haymaker",
-    "Gladiator",
-    "Indomitable",
-    "Jitterbug",
-    "Soulcatcher",
-    "MasterThief",
-    "GreedyVessel",
-    "MagicCycles",
-}
-
-if Mods.LeaderLib ~= nil then
-    TalentManager = Mods.LeaderLib.TalentManager
-    for i,talent in pairs(GB4Talents) do
-        TalentManager.EnableTalent(talent, VPlusId)
+Ext.RegisterListener("SessionLoaded", function()
+    if PersistentVars.Soulcatcher == nil then
+        PersistentVars.Soulcatcher = {}
     end
-end
-
+end)
 -------- Magic Cycles START
 --- @param object string UUID
 --- @param combatId integer
@@ -55,7 +40,7 @@ Ext.RegisterOsirisListener("SkillCast", 4, "before", function(character, skill, 
     local pos = Ext.GetCharacter(character).WorldPos
     local group = Ext.GetCharactersAroundPosition(pos[1], pos[2], pos[3], 20.0)
     for i,char in pairs(group) do
-        if HasTalent(char, "GreedyVessel") == 1 then
+        if CharacterHasTalent(char, "GreedyVessel") == 1 then
             local roll = math.random(1,100)
             if roll < 20 then
                 CharacterAddSourcePoints(char, 1)
@@ -77,3 +62,91 @@ Ext.RegisterOsirisListener("CharacterReceivedDamage", 3, "before", function(targ
     end
 end)
 --------- Jitterbug END
+
+--------- Indomitable START
+local indomitableStatuses = {
+    CHICKEN = true,
+    FROZEN = true,
+    PETRIFIED = true,
+    STUNNED = true,
+    KNOCKED_DOWN = true,
+    CRIPPLED = true
+}
+
+Ext.RegisterOsirisListener("CharacterStatusApplied", 3, "before", function(character, status, causee)
+    local character = Ext.GetCharacter(character)
+    if character.Stats.TALENT_Indomitable and indomitableStatuses[status] and not character:GetStatus("LX_INDOMITABLE_CD") then
+        ApplyStatus(character.MyGuid, "LX_INDOMITABLE", 6.0)
+    end
+end)
+
+Ext.RegisterOsirisListener("CharacterStatusRemoved", 3, "before", function(character, status, causee)
+    if status ~= "LX_INDOMITABLE" then return end
+    ApplyStatus(character, "LX_INDOMITABLE_CD", 12.0)
+end)
+
+--------- Indomitable END
+
+--------- Soulcatcher START
+Ext.RegisterOsirisListener("CharacterDied", 1, "before", function(character)
+    if CharacterIsSummon(character) == 1 then return end
+    local pos = Ext.GetCharacter(character).WorldPos
+    local group = Ext.GetCharactersAroundPosition(pos[1], pos[2], pos[3], 12.0)
+    for i,member in pairs(group) do
+        if CharacterHasTalent(member, "Soulcatcher") == 1 and CharacterIsDead(member) == 0 and CharacterIsAlly(character, member) == 1 and CharacterIsInCombat(member) == 1 and HasActiveStatus(member, "LX_SOULCATCHER_CD") == 0 then
+            local summoning = CharacterGetAbility(member, "Summoning")
+            local corpse = CharacterSummonAtPosition(character, "e7e89c3f-b491-4771-a2e2-602cc89c3631", pos[1], pos[2], pos[3], 18.0, -1, summoning)
+            local level = CharacterGetLevel(character)
+            PersistentVars.Soulcatcher[character] = corpse
+            if level >= 9 then
+                CharacterAddSkill(corpse, "Shout_EnemyPoisonWave", 1)
+            end
+            if level >= 16 then
+                CharacterAddSkill(corpse, "Shout_EnemySiphonPoison", 1);
+            end
+            ApplyStatus(member, "LX_SOULCATCHER_CD", 6.0)
+        end
+    end
+end)
+
+Ext.RegisterOsirisListener("CharacterResurrected", 1, "before", function(character)
+    if PersistentVars.Soulcatcher[character] ~= nil then
+        CharacterDie(PersistentVars.Soulcatcher[character], 0, "DoT")
+    end
+end)
+
+Ext.RegisterOsirisListener("CharacterStatusRemoved", 3, "before", function(character, status, causee)
+    if status ~= "SUMMONING_ABILITY" then return end
+    for corpse,spawn in pairs(PersistentVars.Soulcatcher) do
+        if spawn == character then
+            PersistentVars.Soulcatcher[character] = nil
+        end
+    end
+end)
+--------- Soulcatcher END
+
+--------- Gladiator START
+---@param status EsvStatus
+---@param context HitContext
+-- Ext.RegisterListener("StatusHitEnter", function(status, context)
+--     local pass, target = pcall(Ext.GetCharacter, status.TargetHandle) ---@type EsvCharacter
+--     if not pass then return end
+--     local pass, instigator = pcall(Ext.GetCharacter, status.StatusSourceHandle) ---@type EsvCharacter
+--     if not pass then return end
+--     if instigator == nil then return end
+--     if status.DamageSourceType == "Attack"
+--     local multiplier = 1.0
+--     -- Ext.Print("FirstBlood:",firstBlood,firstBloodWeakened, status.DamageSourceType)
+--     if HasActiveStatus(instigator.MyGuid, "LX_HUNTHUNTED") == 1  and (status.DamageSourceType == "Attack" or status.SkillId ~= "") then
+--         SetVarInteger(instigator.MyGuid, "LXS_UsedHuntHunted", 1)
+--         ApplyStatus(instigator.MyGuid, "LX_ONTHEHUNT", 6.0, 1)
+--     end
+--     if CharacterIsInCombat(target.MyGuid) == 1 and (status.DamageSourceType == "Attack" or status.SkillId ~= "") then
+--         if HasActiveStatus(instigator.MyGuid, "LX_FIRSTBLOOD") == 1 then
+--             ApplyStatus(instigator.MyGuid, "LX_FIRSTBLOOD_WEAKENED", 3.0, 1.0)
+--         end
+--     end
+--     -- context.Hit.DamageList:Multiply(multiplier)
+--     -- ReplaceDamages(dmgList, status.StatusHandle, target.MyGuid)
+-- end)
+--------- Gladiator END

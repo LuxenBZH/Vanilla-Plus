@@ -1,4 +1,5 @@
 Ext.Require("Server/Modules/FallDamage.lua")
+Ext.Require("Server/Modules/GBTalents.lua")
 
 PersistentVars = {}
 
@@ -162,6 +163,8 @@ local function ActivateModule(flag)
         EnableJumpDamage("on")
     elseif flag == "LXDGM_ModuleDualCC" then
         Ext.ExtraData.DGM_EnableDualCCParry = 1
+    elseif flag == "LXDGM_ModuleDivineTalents" then
+        Ext.ExtraData.DGM_GB4Talents = 1
     end
 end
 Ext.RegisterOsirisListener("GlobalFlagSet", 1, "after", ActivateModule)
@@ -175,6 +178,8 @@ local function DeactivateModule(flag)
         EnableJumpDamage("off")
     elseif flag == "LXDGM_ModuleDualCC" then
         Ext.ExtraData.DGM_EnableDualCCParry = 0
+    elseif flag == "LXDGM_ModuleDivineTalents" then
+        Ext.ExtraData.DGM_GB4Talents = 0
     end
 end
 Ext.RegisterOsirisListener("GlobalFlagCleared", 1, "after", DeactivateModule)

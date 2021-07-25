@@ -114,7 +114,7 @@ end
 local function DGM_SetupUI()
     local charSheet = Ext.GetBuiltinUI("Public/Game/GUI/characterSheet.swf")
     local tooltip = Ext.GetBuiltinUI("Public/Game/GUI/tooltip.swf")
-    Ext.RegisterUIInvokeListener(charSheet, "updateArraySystem", changeDamageValue)
+    -- Ext.RegisterUIInvokeListener(charSheet, "updateArraySystem", changeDamageValue)
     -- Overhaul bonus refresh on buttons click
     Ext.RegisterUICall(charSheet, "minusStat", sheetButtonPressed)
     Ext.RegisterUICall(charSheet, "plusStat", sheetButtonPressed)
@@ -124,7 +124,7 @@ local function DGM_SetupUI()
     Ext.RegisterUICall(charSheet, "plusTalent", sheetButtonPressed)
     Ext.RegisterUICall(charSheet, "minusAbility", sheetButtonPressed)
     Ext.RegisterUICall(charSheet, "plusAbility", sheetButtonPressed)
-    Ext.RegisterUIInvokeListener(charSheet, "updateArraySystem", AddResistances)
+    -- Ext.RegisterUIInvokeListener(charSheet, "updateArraySystem", AddResistances)
     -- Ext.RegisterUIInvokeListener(tooltip, "addFormattedTooltip", test)
     -- Ext.RegisterUINameCall("onChangeParam", itemSheetButtonPressed)
 end

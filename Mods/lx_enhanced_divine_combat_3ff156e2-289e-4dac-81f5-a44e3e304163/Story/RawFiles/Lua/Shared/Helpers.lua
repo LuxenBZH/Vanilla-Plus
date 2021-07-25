@@ -322,3 +322,15 @@ skillAbilities = {
 	Death = "Necromancy",
 	Polymorph = "Polymorph"
 }
+
+GB4Talents = {
+    "Sadist",
+    "Haymaker",
+    "Gladiator",
+    "Indomitable",
+    "Jitterbug",
+    "Soulcatcher",
+    "MasterThief",
+    "GreedyVessel",
+    "MagicCycles",
+}
