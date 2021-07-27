@@ -28,18 +28,6 @@
     </stat_object>
     <stat_object is_substat="false">
       <fields>
-        <field name="Name" type="NameStatObjectFieldDefinition" value="Stats_FavourableWind" />
-        <field name="Act" type="EnumerationStatObjectFieldDefinition" value="0" enumeration_type_name="Act" />
-        <field name="Act part" type="EnumerationStatObjectFieldDefinition" value="0" enumeration_type_name="ActPart" />
-        <field name="Movement" type="IntegerStatObjectFieldDefinition" value="150" />
-        <field name="Duration" type="IntegerStatObjectFieldDefinition" value="2" />
-        <field name="StatusIcon" type="StringStatObjectFieldDefinition" value="statIcons_ImprovedInitiative" />
-        <field name="AirResistance" type="IntegerStatObjectFieldDefinition" value="15" />
-        <field name="DodgeBoost" type="IntegerStatObjectFieldDefinition" value="10" />
-      </fields>
-    </stat_object>
-    <stat_object is_substat="false">
-      <fields>
         <field name="Name" type="NameStatObjectFieldDefinition" value="Stats_BreathingBubble" />
         <field name="Act" type="EnumerationStatObjectFieldDefinition" value="0" enumeration_type_name="Act" />
         <field name="Act part" type="EnumerationStatObjectFieldDefinition" value="0" enumeration_type_name="ActPart" />
@@ -219,6 +207,18 @@
         <field name="VitalityPercentage" type="IntegerStatObjectFieldDefinition" value="50" />
         <field name="ObjectCategory" type="StringStatObjectFieldDefinition" value="HealingPotion" />
         <field name="MinLevel" type="IntegerStatObjectFieldDefinition" value="13" />
+      </fields>
+    </stat_object>
+    <stat_object is_substat="false">
+      <fields>
+        <field name="Name" type="NameStatObjectFieldDefinition" value="Stats_FavourableWind" />
+        <field name="Act" type="EnumerationStatObjectFieldDefinition" value="0" enumeration_type_name="Act" />
+        <field name="Act part" type="EnumerationStatObjectFieldDefinition" value="0" enumeration_type_name="ActPart" />
+        <field name="Movement" type="IntegerStatObjectFieldDefinition" value="150" />
+        <field name="Duration" type="IntegerStatObjectFieldDefinition" value="2" />
+        <field name="StatusIcon" type="StringStatObjectFieldDefinition" value="statIcons_ImprovedInitiative" />
+        <field name="AirResistance" type="IntegerStatObjectFieldDefinition" value="15" />
+        <field name="DodgeBoost" type="IntegerStatObjectFieldDefinition" value="10" />
       </fields>
     </stat_object>
     <stat_object is_substat="false">
@@ -526,13 +526,13 @@
     <stat_object is_substat="false">
       <fields>
         <field name="Name" type="NameStatObjectFieldDefinition" value="Stats_LX_WalkItOff" />
-        <field name="FireResistance" type="IntegerStatObjectFieldDefinition" value="10" />
-        <field name="EarthResistance" type="IntegerStatObjectFieldDefinition" value="10" />
-        <field name="WaterResistance" type="IntegerStatObjectFieldDefinition" value="10" />
-        <field name="AirResistance" type="IntegerStatObjectFieldDefinition" value="10" />
-        <field name="PoisonResistance" type="IntegerStatObjectFieldDefinition" value="10" />
-        <field name="PiercingResistance" type="IntegerStatObjectFieldDefinition" value="10" />
-        <field name="PhysicalResistance" type="IntegerStatObjectFieldDefinition" value="10" />
+        <field name="FireResistance" type="IntegerStatObjectFieldDefinition" value="8" />
+        <field name="EarthResistance" type="IntegerStatObjectFieldDefinition" value="8" />
+        <field name="WaterResistance" type="IntegerStatObjectFieldDefinition" value="8" />
+        <field name="AirResistance" type="IntegerStatObjectFieldDefinition" value="8" />
+        <field name="PoisonResistance" type="IntegerStatObjectFieldDefinition" value="8" />
+        <field name="PiercingResistance" type="IntegerStatObjectFieldDefinition" value="4" />
+        <field name="PhysicalResistance" type="IntegerStatObjectFieldDefinition" value="4" />
         <field name="MinAmount" type="IntegerStatObjectFieldDefinition" value="1" />
         <field name="MaxAmount" type="IntegerStatObjectFieldDefinition" value="1" />
         <field name="Duration" type="IntegerStatObjectFieldDefinition" value="1" />
@@ -541,13 +541,13 @@
     <stat_object is_substat="false">
       <fields>
         <field name="Name" type="NameStatObjectFieldDefinition" value="Stats_LX_WalkItOff_2" />
-        <field name="FireResistance" type="IntegerStatObjectFieldDefinition" value="20" />
-        <field name="EarthResistance" type="IntegerStatObjectFieldDefinition" value="20" />
-        <field name="WaterResistance" type="IntegerStatObjectFieldDefinition" value="20" />
-        <field name="AirResistance" type="IntegerStatObjectFieldDefinition" value="20" />
-        <field name="PoisonResistance" type="IntegerStatObjectFieldDefinition" value="20" />
-        <field name="PiercingResistance" type="IntegerStatObjectFieldDefinition" value="20" />
-        <field name="PhysicalResistance" type="IntegerStatObjectFieldDefinition" value="20" />
+        <field name="FireResistance" type="IntegerStatObjectFieldDefinition" value="16" />
+        <field name="EarthResistance" type="IntegerStatObjectFieldDefinition" value="16" />
+        <field name="WaterResistance" type="IntegerStatObjectFieldDefinition" value="16" />
+        <field name="AirResistance" type="IntegerStatObjectFieldDefinition" value="16" />
+        <field name="PoisonResistance" type="IntegerStatObjectFieldDefinition" value="16" />
+        <field name="PiercingResistance" type="IntegerStatObjectFieldDefinition" value="8" />
+        <field name="PhysicalResistance" type="IntegerStatObjectFieldDefinition" value="8" />
         <field name="MinAmount" type="IntegerStatObjectFieldDefinition" value="1" />
         <field name="MaxAmount" type="IntegerStatObjectFieldDefinition" value="1" />
         <field name="Duration" type="IntegerStatObjectFieldDefinition" value="1" />
@@ -556,13 +556,13 @@
     <stat_object is_substat="false">
       <fields>
         <field name="Name" type="NameStatObjectFieldDefinition" value="Stats_LX_WalkItOff_3" />
-        <field name="FireResistance" type="IntegerStatObjectFieldDefinition" value="30" />
-        <field name="EarthResistance" type="IntegerStatObjectFieldDefinition" value="30" />
-        <field name="WaterResistance" type="IntegerStatObjectFieldDefinition" value="30" />
-        <field name="AirResistance" type="IntegerStatObjectFieldDefinition" value="30" />
-        <field name="PoisonResistance" type="IntegerStatObjectFieldDefinition" value="30" />
-        <field name="PiercingResistance" type="IntegerStatObjectFieldDefinition" value="30" />
-        <field name="PhysicalResistance" type="IntegerStatObjectFieldDefinition" value="30" />
+        <field name="FireResistance" type="IntegerStatObjectFieldDefinition" value="24" />
+        <field name="EarthResistance" type="IntegerStatObjectFieldDefinition" value="24" />
+        <field name="WaterResistance" type="IntegerStatObjectFieldDefinition" value="24" />
+        <field name="AirResistance" type="IntegerStatObjectFieldDefinition" value="24" />
+        <field name="PoisonResistance" type="IntegerStatObjectFieldDefinition" value="24" />
+        <field name="PiercingResistance" type="IntegerStatObjectFieldDefinition" value="12" />
+        <field name="PhysicalResistance" type="IntegerStatObjectFieldDefinition" value="12" />
         <field name="MinAmount" type="IntegerStatObjectFieldDefinition" value="1" />
         <field name="MaxAmount" type="IntegerStatObjectFieldDefinition" value="1" />
         <field name="Duration" type="IntegerStatObjectFieldDefinition" value="1" />
@@ -742,7 +742,7 @@
     <stat_object is_substat="false">
       <fields>
         <field name="Name" type="NameStatObjectFieldDefinition" value="Stats_LX_Demon" />
-        <field name="FireResistance" type="IntegerStatObjectFieldDefinition" value="10" />
+        <field name="FireResistance" type="IntegerStatObjectFieldDefinition" value="5" />
         <field name="Flags" type="EnumerationListStatObjectFieldDefinition" value="2" enumeration_type_name="AttributeFlags" />
       </fields>
     </stat_object>
@@ -835,7 +835,7 @@
         <field name="MaxAmount" type="IntegerStatObjectFieldDefinition" value="1" />
         <field name="Priority" type="IntegerStatObjectFieldDefinition" value="1" />
         <field name="MinLevel" type="IntegerStatObjectFieldDefinition" value="9" />
-        <field name="DodgeBoost" type="IntegerStatObjectFieldDefinition" value="20" />
+        <field name="DodgeBoost" type="IntegerStatObjectFieldDefinition" value="-20" />
         <field name="ArmorBoost" type="IntegerStatObjectFieldDefinition" value="50" />
         <field name="ExtraProperties" type="StringStatObjectFieldDefinition" value="POTION_STONESKIN,100,0" />
       </fields>
@@ -3257,8 +3257,7 @@
         <field name="Act part" type="EnumerationStatObjectFieldDefinition" value="0" enumeration_type_name="ActPart" />
         <field name="Duration" type="IntegerStatObjectFieldDefinition" value="2" />
         <field name="StatusIcon" type="StringStatObjectFieldDefinition" value="statIcons_Acid" />
-        <field name="PiercingResistance" type="IntegerStatObjectFieldDefinition" value="-15" />
-        <field name="PhysicalResistance" type="IntegerStatObjectFieldDefinition" value="-15" />
+        <field name="DodgeBoost" type="IntegerStatObjectFieldDefinition" value="-20" />
       </fields>
     </stat_object>
     <stat_object is_substat="false">
@@ -4140,7 +4139,7 @@
     <stat_object is_substat="false">
       <fields>
         <field name="Name" type="NameStatObjectFieldDefinition" value="Stats_LX_IceKing" />
-        <field name="WaterResistance" type="IntegerStatObjectFieldDefinition" value="10" />
+        <field name="WaterResistance" type="IntegerStatObjectFieldDefinition" value="5" />
         <field name="Flags" type="EnumerationListStatObjectFieldDefinition" value="9" enumeration_type_name="AttributeFlags" />
       </fields>
     </stat_object>
@@ -4268,15 +4267,15 @@
     <stat_object is_substat="false">
       <fields>
         <field name="Name" type="NameStatObjectFieldDefinition" value="Stats_LX_MagicCycleEarthAir" />
-        <field name="AirSpecialist" type="IntegerStatObjectFieldDefinition" value="2" />
-        <field name="EarthSpecialist" type="IntegerStatObjectFieldDefinition" value="2" />
+        <field name="AirSpecialist" type="IntegerStatObjectFieldDefinition" value="3" />
+        <field name="EarthSpecialist" type="IntegerStatObjectFieldDefinition" value="3" />
       </fields>
     </stat_object>
     <stat_object is_substat="false">
       <fields>
         <field name="Name" type="NameStatObjectFieldDefinition" value="Stats_LX_MagicCycleFireWater" />
-        <field name="FireSpecialist" type="IntegerStatObjectFieldDefinition" value="2" />
-        <field name="WaterSpecialist" type="IntegerStatObjectFieldDefinition" value="2" />
+        <field name="FireSpecialist" type="IntegerStatObjectFieldDefinition" value="3" />
+        <field name="WaterSpecialist" type="IntegerStatObjectFieldDefinition" value="3" />
       </fields>
     </stat_object>
     <stat_object is_substat="false">

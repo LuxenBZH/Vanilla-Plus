@@ -328,9 +328,32 @@ GB4Talents = {
     "Haymaker",
     "Gladiator",
     "Indomitable",
-    "Jitterbug",
+    -- "Jitterbug",
     "Soulcatcher",
     "MasterThief",
     "GreedyVessel",
     "MagicCycles",
+	-- "WildMag",
+	-- "Elementalist"
 }
+
+resistances = {
+    "FireResistance",
+    "WaterResistance",
+    "AirResistance",
+    "EarthResistance",
+    "PoisonResistance",
+    "PhysicalResistance",
+    "PiercingResistance"
+}
+
+--- @param character EsvCharacter
+--- @param prefix string
+function FindStatus(character, prefix)
+	for i,status in pairs(character:GetStatuses()) do
+		if string.find(status, prefix) then
+			return status
+		end
+	end
+	return
+end

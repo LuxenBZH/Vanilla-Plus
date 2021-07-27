@@ -660,14 +660,38 @@ Balance
 * Perseverance doesn't restore Vitality anymore but increase all resistances by 5% per point when you are incapacitated
 * Mnemonics is now incompatible with Lone Wolf
 
-# 1.1.11.61 (Lohar)
+# 1.2.11.61 (Lohar)
+New
+* Divine Talents Plus module : you can now enable Gift Bag 4 talents with few changes to make them more appropriate with Vanilla Plus gameplay, and without needing to activate the gift bag. You can now have GB4 Talents in GM mode!
+	* Indomitable now also increase Momentum/Lingering duration by 1 turn
+	* Soulcatcher have a 1 turn cooldown after the first proc
+	* Haymaker now convert Critical Chance bonus from Wits to Resistance bypass, and is now incompatible with Savage Sortilege
+	* Magic Cycles bonus increased from 2 to 3
+* Corrogic module : corrosive and magic armour damage are now more useful than ever ! If you deal corrosive or magic damage whereas the corresponding armour is depleted, you will slightly lower resistances in a stackable way, giving you a new way to deal with resistances ! The resistance debuff is proportional to the Corrosive/Magic damage dealt and the Max Vitality of the victim.
+* Acid grenade : inflict 80% Corrosive damage and set Acid for 2 turns. Can be crafted by combining a flask with a source of poison and shadow essence. They should appear as starter grenades.
+* Silver Powder grenade : inflict 80% Magic armour damage and set Suffocating for 2 turns. Can be crafted by combining a flask with shadow essence and bone dust. They should appear as starter grenades.
+
 Fix
 * Mnemonic memory system doesn't take over the permanent boost pool anymore, allowing the Game Master or mods to also influence it
+* Momentum/Lingering won't trigger Staggered/Confused if the applied status should be stopped by an immunity
+* Perseverance effect will only trigger during combat
+* Perseverance status won't trigger anymore if the character has no points in it
+* Perseverance effect should now expires as soon as the character get a playable turn instead of lingering if the crowd control effect has been cleared before its expiration
+* Perseverance shouldn't be triggered by Force effect anymore
+* Fixed Perseverance resistance bonus tooltip
+* Fixed Chameleon Cloak skillbook requirements
+* Mnemonic and Lone Wolf incompatibility is now two-sided
 
 Balance
 * Executioner doesn't provide Haste anymore, but boosts Movement by 50% for 1 turn instead
 * Bone Widow doesn't have Bone cage anymore (didn't have the requirements anyway)
-* Shackles of Pain and Dominate Mind cannot target which still have the corresponding armour up anymore (to avoid misuse)
+* Shackles of Pain and Dominate Mind cannot target characters which still have the corresponding armour up anymore (to avoid misuse)
 * Siphon Poison duration increased to 3 turns from 2 turns
-* Ice King/Demon corresponding bonus resistance reduced to 25% from 30%
-* Corrosive and Magic damage are now scaled by the school they are being used from, increasing damage by 5% per point of the originating school
+* Ice King/Demon corresponding bonus resistance reduced to 20% from 30%
+* Walk it Off Physical and Piercing resistance bonuses reduced to 4% per step from 10%
+* Walk it Off elemental resistances reduced to 8% per step from 10%
+* Steam Lance source point cost reduced to 1 from 2
+* Arcane Stitch AP cost reduced to 1 from 2
+* Leadership range decreased to 12m from 16m
+* Stoneskin potion Dodge boost reduced to -20% from +20%
+* Acid now reduce Dodge by 20% instead of reducing physical and piercing resistances

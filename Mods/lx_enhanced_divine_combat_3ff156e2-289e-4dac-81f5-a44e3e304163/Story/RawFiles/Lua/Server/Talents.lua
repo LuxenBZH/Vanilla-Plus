@@ -49,7 +49,7 @@ function ManageMemory(character, unlocked)
 			previousMem = 0
 		end
 		local diff = mem - previousMem
-		Ext.Print("memory", diff, previousMem, currentBoost, mem)
+		-- Ext.Print("memory", diff, previousMem, currentBoost, mem)
 		if diff ~= 0 and previousMem ~= 0 then
 			NRD_CharacterSetPermanentBoostInt(character, "Memory", currentBoost + diff)
 		elseif previousMem == 0 and currentBoost == mem then -- compatibility with previous saves

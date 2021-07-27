@@ -52,39 +52,31 @@ end)
 
 
 
----- Perseverance effect
+---------- Perseverance effect
 local incapacitatedTypes = {
     INCAPACITATED = true,
     KNOCKED_DOWN = true
-}
-local resistances = {
-    "FireResistance",
-    "WaterResistance",
-    "AirResistance",
-    "EarthResistance",
-    "PoisonResistance",
-    "PhysicalResistance",
-    "PiercingResistance"
 }
 --- @param character string GUID
 --- @param status string StatusID
 --- @param instigator string GUID
 Ext.RegisterOsirisListener("CharacterStatusApplied", 3, "before", function(character, status, causee)
     local sts
-    if NRD_StatExists(status) then
+    if NRD_StatExists(status) and status ~= "SHOCKWAVE" then
         sts = Ext.GetStat(status)
     else
         return
     end
-    if incapacitatedTypes[sts.StatusType] then
-        local turns = GetStatusTurns(character, status)
+    local turns = GetStatusTurns(character, status)
+    if incapacitatedTypes[sts.StatusType] and CharacterIsInCombat(character) == 1 then
         if turns > 10 or turns < 1 then return end
         local character = Ext.GetCharacter(character)
         local perseverance = character.Stats.Perseverance
+        if perseverance == 0 then return end
         if NRD_StatExists("LX_PERSEVERANCE_"..perseverance) then
             ApplyStatus(character.MyGuid, "LX_PERSEVERANCE_"..perseverance, turns*6.0, 1)
         else
-            local newPotion = Ext.CreateStat("Stats_LX_Perseverance_"..perseverance, "Potion", "Stats_LX_Perseverance")
+            local newPotion = Ext.CreateStat("DGM_Potion_Perseverance_"..perseverance, "Potion", "Stats_LX_Perseverance")
             for i,res in pairs(resistances) do
                 newPotion[res] = math.floor(perseverance * Ext.ExtraData.DGM_PerseveranceResistance)
             end
@@ -96,3 +88,15 @@ Ext.RegisterOsirisListener("CharacterStatusApplied", 3, "before", function(chara
         end
     end
 end)
+
+--- Remove Perseverance effect if the character gets a playable turn (the CC has been cleared before its expiration)
+--- @param object string UUID
+Ext.RegisterOsirisListener("ObjectTurnStarted", 1, "before", function(object)
+    if ObjectIsCharacter(object) == 0 then return end
+    local char = Ext.GetCharacter(object)
+    local perseverance = char.Stats.Perseverance
+    if char:GetStatus("LX_PERSEVERANCE_"..perseverance) and char.Stats.CurrentAP > 0 then
+        RemoveStatus(object, "LX_PERSEVERANCE_"..perseverance)
+    end
+end)
+----------

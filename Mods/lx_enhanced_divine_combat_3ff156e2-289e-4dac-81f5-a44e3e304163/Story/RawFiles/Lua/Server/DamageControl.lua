@@ -1,3 +1,4 @@
+---------- Corrosive/Shadow damage tagging
 local function TagShadowCorrosiveDifference(damageArray)
 	if damageArray.Shadow > 0 and damageArray.Corrosive > 0 then
 		if damageArray.Shadow > damageArray.Corrosive then
@@ -24,7 +25,9 @@ local function TraceDamageSpreaders(target)
 		end
 	end
 end
+----------
 
+---------- Corrogic Module
 --- @param instigator string GUID
 --- @param skill string
 local function IncreaseCorrosiveMagicFromSkill(instigator, skill, damageList)
@@ -39,6 +42,50 @@ local function IncreaseCorrosiveMagicFromSkill(instigator, skill, damageList)
 		end
 	end
 end
+
+local function InflictResistanceDebuff(target, perc)
+	local character = Ext.GetCharacter(target)
+	local current = FindStatus(character, "LX_CORROGIC_")
+	if not current then
+		current = perc
+	else
+		current = string.gsub(current, "LX_CORROGIC_", "")
+		Ext.Print(current, perc)
+		current = tonumber(current) + perc
+	end
+	if NRD_StatExists("LX_CORROGIC_"..current) then
+		ApplyStatus(character.MyGuid, "LX_CORROGIC_"..current, 12.0, 1)
+	else
+		local newPotion = Ext.CreateStat("DGM_Potion_Corrogic_"..current, "Potion", "DGM_Potion_Base")
+		for i,res in pairs(resistances) do
+			newPotion[res] = -current
+		end
+		Ext.SyncStat(newPotion.Name, false)
+		local newStatus = Ext.CreateStat("LX_CORROGIC_"..current, "StatusData", "LX_CORROGIC")
+		newStatus.StatsId = newPotion.Name
+		Ext.SyncStat(newStatus.Name, false)
+		ApplyStatus(character.MyGuid, "LX_CORROGIC_"..current, 12.0, 1)
+	end
+end
+
+--- @param target string GUID
+--- @param dmgList number[] 
+local function TriggerCorrogicResistanceStrip(target, dmgList)
+	local character = Ext.GetCharacter(target)
+	if dmgList.Corrosive > 0 or dmgList.Magic > 0 then
+		local perc = 0
+		if character.Stats.CurrentArmor == 0 then
+			perc = perc + math.floor(dmgList.Corrosive / character.Stats.MaxVitality * 100)
+		end
+		if character.Stats.CurrentMagicArmor == 0 then
+			perc = perc + math.floor(dmgList.Magic / character.Stats.MaxVitality * 100)
+		end
+		if perc > 0 then
+			InflictResistanceDebuff(target, perc)
+		end
+	end
+end
+----------
 
 ---@param target EsvCharacter
 ---@param handle number
@@ -209,6 +256,9 @@ function DamageControl(target, instigator, hitDamage, handle)
 	
 	-- Armor passing damages
 	if ObjectIsCharacter(target) == 1 then InitiatePassingDamage(target, damages) end
+	if Ext.ExtraData.DGM_Corrogic == 1 then
+		TriggerCorrogicResistanceStrip(target, damages)
+	end
 end
 
 ---@param target EsvCharacter

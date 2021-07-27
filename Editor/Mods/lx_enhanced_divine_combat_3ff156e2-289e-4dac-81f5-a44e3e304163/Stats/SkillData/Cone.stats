@@ -115,7 +115,7 @@
         <field name="CastTextEvent" type="StringStatObjectFieldDefinition" value="castsurface" />
         <field name="CastEffect" type="StringStatObjectFieldDefinition" value="RS3_FX_Skills_Water_Cast_Beam_Fire_Dummy_01:Dummy_CastFX:cast" />
         <field name="Memory Cost" type="IntegerStatObjectFieldDefinition" value="2" />
-        <field name="Magic Cost" type="IntegerStatObjectFieldDefinition" value="2" />
+        <field name="Magic Cost" type="IntegerStatObjectFieldDefinition" value="1" />
         <field name="MemorizationRequirements" type="StringStatObjectFieldDefinition" value="WaterSpecialist 3" />
         <field name="BackStart" type="IntegerStatObjectFieldDefinition" value="12" />
         <field name="CycleConditions" type="StringStatObjectFieldDefinition" value="Ally;!Dead" />

@@ -192,6 +192,7 @@ local function ChameleonCloakRevert()
 				end
 			end
 			Ext.GetStat("Shout_ChameleonSkin").MemorizationRequirements = requirements
+			Ext.GetStat("SKILLBOOK_Polymorph_ChameleonSkin").Requirements = requirements
 		end
 	end
 end

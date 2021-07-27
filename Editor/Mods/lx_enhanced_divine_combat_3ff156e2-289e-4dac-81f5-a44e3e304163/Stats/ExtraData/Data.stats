@@ -148,7 +148,7 @@
     <stat_object is_substat="false">
       <fields>
         <field name="Name" type="NameStatObjectFieldDefinition" value="LeadershipRange" />
-        <field name="Value" type="FloatStatObjectFieldDefinition" value="16" />
+        <field name="Value" type="FloatStatObjectFieldDefinition" value="12" />
       </fields>
     </stat_object>
     <stat_object is_substat="false">
@@ -724,6 +724,12 @@
       <fields>
         <field name="Name" type="NameStatObjectFieldDefinition" value="DGM_GB4Talents" />
         <field name="Value" type="FloatStatObjectFieldDefinition" value="0" />
+      </fields>
+    </stat_object>
+    <stat_object is_substat="false">
+      <fields>
+        <field name="Name" type="NameStatObjectFieldDefinition" value="DGM_Corrogic" />
+        <field name="Value" type="FloatStatObjectFieldDefinition" value="1" />
       </fields>
     </stat_object>
   </stat_objects>

@@ -657,7 +657,7 @@
       <fields>
         <field name="Name" type="NameStatObjectFieldDefinition" value="LX_GB4_MC_EA" />
         <field name="ForGameMaster" type="EnumerationStatObjectFieldDefinition" value="1" enumeration_type_name="YesNo" />
-        <field name="DisplayName" type="TranslatedStringStatObjectFieldDefinition" value="Magic Cycle" />
+        <field name="DisplayName" type="TranslatedStringStatObjectFieldDefinition" value="Cycle of Earth and Air" />
         <field name="Icon" type="StringStatObjectFieldDefinition" value="CMP_Talents_Magic_Cycles_earthair" />
         <field name="StatsId" type="StringStatObjectFieldDefinition" value="Stats_LX_MagicCycleEarthAir" />
         <field name="StackId" type="StringStatObjectFieldDefinition" value="Stack_LX_MagicCycles" />
@@ -667,7 +667,7 @@
       <fields>
         <field name="Name" type="NameStatObjectFieldDefinition" value="LX_GB4_MC_WF" />
         <field name="ForGameMaster" type="EnumerationStatObjectFieldDefinition" value="1" enumeration_type_name="YesNo" />
-        <field name="DisplayName" type="TranslatedStringStatObjectFieldDefinition" value="Magic Cycle" />
+        <field name="DisplayName" type="TranslatedStringStatObjectFieldDefinition" value="Cycle of Water and Fire" />
         <field name="Icon" type="StringStatObjectFieldDefinition" value="CMP_Talents_Magic_Cycles_waterfire" />
         <field name="StatsId" type="StringStatObjectFieldDefinition" value="Stats_LX_MagicCycleFireWater" />
         <field name="StackId" type="StringStatObjectFieldDefinition" value="Stack_LX_MagicCycles" />
@@ -734,6 +734,16 @@
         <field name="Icon" type="StringStatObjectFieldDefinition" value="CMP_Talents_Soulcatcher" />
         <field name="FormatColor" type="EnumerationStatObjectFieldDefinition" value="33" enumeration_type_name="FormatStringColor" />
         <field name="StackId" type="StringStatObjectFieldDefinition" value="Stack_LX_Soulcatcher_CD" />
+      </fields>
+    </stat_object>
+    <stat_object is_substat="false">
+      <fields>
+        <field name="Name" type="NameStatObjectFieldDefinition" value="LX_CORROGIC" />
+        <field name="DisplayName" type="TranslatedStringStatObjectFieldDefinition" value="Resistance Corrosion" />
+        <field name="Description" type="TranslatedStringStatObjectFieldDefinition" value="Resistances are lowered by Corrosive and/or Magic armour damage on Vitality." />
+        <field name="Icon" type="StringStatObjectFieldDefinition" value="CMP_Skill_Flesh_Adaptation_affected" />
+        <field name="FormatColor" type="EnumerationStatObjectFieldDefinition" value="33" enumeration_type_name="FormatStringColor" />
+        <field name="StackId" type="StringStatObjectFieldDefinition" value="Stack_LX_Corrogic" />
       </fields>
     </stat_object>
   </stat_objects>

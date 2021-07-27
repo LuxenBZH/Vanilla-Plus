@@ -1493,5 +1493,113 @@
         <field name="PreviewTooltip" type="TranslatedStringStatObjectFieldDefinition" value="Extract rune from frame" />
       </fields>
     </stat_object>
+    <stat_object is_substat="false">
+      <fields>
+        <field name="Name" type="NameStatObjectFieldDefinition" value="GRN_Ingredient_Flask_Empty_A_TOOL_Pouch_Dust_Bone_A_LOOT_Essence_Shadow_A" />
+        <field name="RecipeCategory" type="EnumerationStatObjectFieldDefinition" value="3" enumeration_type_name="RecipeCategory" />
+        <field name="Type 1" type="EnumerationStatObjectFieldDefinition" value="1" enumeration_type_name="IngredientType" />
+        <field name="Object 1" type="StringStatObjectFieldDefinition" value="GRN_Ingredient_Flask_Empty_A" />
+        <field name="Transform 1" type="EnumerationStatObjectFieldDefinition" value="2" enumeration_type_name="IngredientTransformType" />
+        <field name="Type 2" type="EnumerationStatObjectFieldDefinition" value="1" enumeration_type_name="IngredientType" />
+        <field name="Object 2" type="StringStatObjectFieldDefinition" value="TOOL_Pouch_Dust_Bone_A" />
+        <field name="Transform 2" type="EnumerationStatObjectFieldDefinition" value="1" enumeration_type_name="IngredientTransformType" />
+        <field name="Type 3" type="EnumerationStatObjectFieldDefinition" value="1" enumeration_type_name="IngredientType" />
+        <field name="Object 3" type="StringStatObjectFieldDefinition" value="LOOT_Essence_Shadow_A" />
+        <field name="Transform 3" type="EnumerationStatObjectFieldDefinition" value="1" enumeration_type_name="IngredientTransformType" />
+        <field name="Result 1" type="StringStatObjectFieldDefinition" value="LX_GRN_Grenade_SilverPowder_A" />
+        <field name="PreviewStatsID" type="StringStatObjectFieldDefinition" value="LX_GRN_Grenade_SilverPowder_A" />
+        <field name="PreviewTooltip" type="TranslatedStringStatObjectFieldDefinition" value="Silver Powder Grenade" />
+      </fields>
+    </stat_object>
+    <stat_object is_substat="false">
+      <fields>
+        <field name="Name" type="NameStatObjectFieldDefinition" value="GRN_Ingredient_Flask_Empty_A_TOOL_Pouch_Dust_Bone_A_LOOT_Essence_Shadow_Step2_A" />
+        <field name="RecipeCategory" type="EnumerationStatObjectFieldDefinition" value="3" enumeration_type_name="RecipeCategory" />
+        <field name="Type 1" type="EnumerationStatObjectFieldDefinition" value="1" enumeration_type_name="IngredientType" />
+        <field name="Object 1" type="StringStatObjectFieldDefinition" value="GRN_Ingredient_Flask_Empty_A" />
+        <field name="Transform 1" type="EnumerationStatObjectFieldDefinition" value="2" enumeration_type_name="IngredientTransformType" />
+        <field name="Type 2" type="EnumerationStatObjectFieldDefinition" value="1" enumeration_type_name="IngredientType" />
+        <field name="Object 2" type="StringStatObjectFieldDefinition" value="TOOL_Pouch_Dust_Bone_A" />
+        <field name="Transform 2" type="EnumerationStatObjectFieldDefinition" value="1" enumeration_type_name="IngredientTransformType" />
+        <field name="Type 3" type="EnumerationStatObjectFieldDefinition" value="1" enumeration_type_name="IngredientType" />
+        <field name="Object 3" type="StringStatObjectFieldDefinition" value="LOOT_Essence_Shadow_Step2_A" />
+        <field name="Transform 3" type="EnumerationStatObjectFieldDefinition" value="1" enumeration_type_name="IngredientTransformType" />
+        <field name="Result 1" type="StringStatObjectFieldDefinition" value="LX_GRN_Grenade_SilverPowder_A" />
+        <field name="PreviewStatsID" type="StringStatObjectFieldDefinition" value="LX_GRN_Grenade_SilverPowder_A" />
+        <field name="PreviewTooltip" type="TranslatedStringStatObjectFieldDefinition" value="Silver Powder Grenade" />
+      </fields>
+    </stat_object>
+    <stat_object is_substat="false">
+      <fields>
+        <field name="Name" type="NameStatObjectFieldDefinition" value="GRN_Ingredient_Flask_Empty_A_TOOL_Pouch_Dust_Bone_A_LOOT_Essence_Shadow_Step3_A" />
+        <field name="RecipeCategory" type="EnumerationStatObjectFieldDefinition" value="3" enumeration_type_name="RecipeCategory" />
+        <field name="Type 1" type="EnumerationStatObjectFieldDefinition" value="1" enumeration_type_name="IngredientType" />
+        <field name="Object 1" type="StringStatObjectFieldDefinition" value="GRN_Ingredient_Flask_Empty_A" />
+        <field name="Transform 1" type="EnumerationStatObjectFieldDefinition" value="2" enumeration_type_name="IngredientTransformType" />
+        <field name="Type 2" type="EnumerationStatObjectFieldDefinition" value="1" enumeration_type_name="IngredientType" />
+        <field name="Object 2" type="StringStatObjectFieldDefinition" value="TOOL_Pouch_Dust_Bone_A" />
+        <field name="Transform 2" type="EnumerationStatObjectFieldDefinition" value="1" enumeration_type_name="IngredientTransformType" />
+        <field name="Type 3" type="EnumerationStatObjectFieldDefinition" value="1" enumeration_type_name="IngredientType" />
+        <field name="Object 3" type="StringStatObjectFieldDefinition" value="LOOT_Essence_Shadow_Step3_A" />
+        <field name="Transform 3" type="EnumerationStatObjectFieldDefinition" value="1" enumeration_type_name="IngredientTransformType" />
+        <field name="Result 1" type="StringStatObjectFieldDefinition" value="LX_GRN_Grenade_SilverPowder_A" />
+        <field name="PreviewStatsID" type="StringStatObjectFieldDefinition" value="LX_GRN_Grenade_SilverPowder_A" />
+        <field name="PreviewTooltip" type="TranslatedStringStatObjectFieldDefinition" value="Silver Powder Grenade" />
+      </fields>
+    </stat_object>
+    <stat_object is_substat="false">
+      <fields>
+        <field name="Name" type="NameStatObjectFieldDefinition" value="GRN_Ingredient_Flask_Empty_A_Poison_LOOT_Essence_Shadow_A" />
+        <field name="RecipeCategory" type="EnumerationStatObjectFieldDefinition" value="3" enumeration_type_name="RecipeCategory" />
+        <field name="Type 1" type="EnumerationStatObjectFieldDefinition" value="1" enumeration_type_name="IngredientType" />
+        <field name="Object 1" type="StringStatObjectFieldDefinition" value="GRN_Ingredient_Flask_Empty_A" />
+        <field name="Transform 1" type="EnumerationStatObjectFieldDefinition" value="2" enumeration_type_name="IngredientTransformType" />
+        <field name="Type 2" type="EnumerationStatObjectFieldDefinition" value="3" enumeration_type_name="IngredientType" />
+        <field name="Object 2" type="StringStatObjectFieldDefinition" value="Poison" />
+        <field name="Transform 2" type="EnumerationStatObjectFieldDefinition" value="0" enumeration_type_name="IngredientTransformType" />
+        <field name="Type 3" type="EnumerationStatObjectFieldDefinition" value="1" enumeration_type_name="IngredientType" />
+        <field name="Object 3" type="StringStatObjectFieldDefinition" value="LOOT_Essence_Shadow_A" />
+        <field name="Transform 3" type="EnumerationStatObjectFieldDefinition" value="1" enumeration_type_name="IngredientTransformType" />
+        <field name="Result 1" type="StringStatObjectFieldDefinition" value="LX_GRN_Grenade_Acid_A" />
+        <field name="PreviewStatsID" type="StringStatObjectFieldDefinition" value="LX_GRN_Grenade_Acid_A" />
+        <field name="PreviewTooltip" type="TranslatedStringStatObjectFieldDefinition" value="Acid Grenade" />
+      </fields>
+    </stat_object>
+    <stat_object is_substat="false">
+      <fields>
+        <field name="Name" type="NameStatObjectFieldDefinition" value="GRN_Ingredient_Flask_Empty_A_Poison_LOOT_Essence_Shadow_Step2_A" />
+        <field name="RecipeCategory" type="EnumerationStatObjectFieldDefinition" value="3" enumeration_type_name="RecipeCategory" />
+        <field name="Type 1" type="EnumerationStatObjectFieldDefinition" value="1" enumeration_type_name="IngredientType" />
+        <field name="Object 1" type="StringStatObjectFieldDefinition" value="GRN_Ingredient_Flask_Empty_A" />
+        <field name="Transform 1" type="EnumerationStatObjectFieldDefinition" value="2" enumeration_type_name="IngredientTransformType" />
+        <field name="Type 2" type="EnumerationStatObjectFieldDefinition" value="3" enumeration_type_name="IngredientType" />
+        <field name="Object 2" type="StringStatObjectFieldDefinition" value="Poison" />
+        <field name="Transform 2" type="EnumerationStatObjectFieldDefinition" value="0" enumeration_type_name="IngredientTransformType" />
+        <field name="Type 3" type="EnumerationStatObjectFieldDefinition" value="1" enumeration_type_name="IngredientType" />
+        <field name="Object 3" type="StringStatObjectFieldDefinition" value="LOOT_Essence_Shadow_Step2_A" />
+        <field name="Transform 3" type="EnumerationStatObjectFieldDefinition" value="1" enumeration_type_name="IngredientTransformType" />
+        <field name="Result 1" type="StringStatObjectFieldDefinition" value="LX_GRN_Grenade_Acid_A" />
+        <field name="PreviewStatsID" type="StringStatObjectFieldDefinition" value="LX_GRN_Grenade_Acid_A" />
+        <field name="PreviewTooltip" type="TranslatedStringStatObjectFieldDefinition" value="Acid Grenade" />
+      </fields>
+    </stat_object>
+    <stat_object is_substat="false">
+      <fields>
+        <field name="Name" type="NameStatObjectFieldDefinition" value="GRN_Ingredient_Flask_Empty_A_Poison_LOOT_Essence_Shadow_Step3_A" />
+        <field name="RecipeCategory" type="EnumerationStatObjectFieldDefinition" value="3" enumeration_type_name="RecipeCategory" />
+        <field name="Type 1" type="EnumerationStatObjectFieldDefinition" value="1" enumeration_type_name="IngredientType" />
+        <field name="Object 1" type="StringStatObjectFieldDefinition" value="GRN_Ingredient_Flask_Empty_A" />
+        <field name="Transform 1" type="EnumerationStatObjectFieldDefinition" value="2" enumeration_type_name="IngredientTransformType" />
+        <field name="Type 2" type="EnumerationStatObjectFieldDefinition" value="3" enumeration_type_name="IngredientType" />
+        <field name="Object 2" type="StringStatObjectFieldDefinition" value="Poison" />
+        <field name="Transform 2" type="EnumerationStatObjectFieldDefinition" value="0" enumeration_type_name="IngredientTransformType" />
+        <field name="Type 3" type="EnumerationStatObjectFieldDefinition" value="1" enumeration_type_name="IngredientType" />
+        <field name="Object 3" type="StringStatObjectFieldDefinition" value="LOOT_Essence_Shadow_Step3_A" />
+        <field name="Transform 3" type="EnumerationStatObjectFieldDefinition" value="1" enumeration_type_name="IngredientTransformType" />
+        <field name="Result 1" type="StringStatObjectFieldDefinition" value="LX_GRN_Grenade_Acid_A" />
+        <field name="PreviewStatsID" type="StringStatObjectFieldDefinition" value="LX_GRN_Grenade_Acid_A" />
+        <field name="PreviewTooltip" type="TranslatedStringStatObjectFieldDefinition" value="Acid Grenade" />
+      </fields>
+    </stat_object>
   </stat_objects>
 </stats>

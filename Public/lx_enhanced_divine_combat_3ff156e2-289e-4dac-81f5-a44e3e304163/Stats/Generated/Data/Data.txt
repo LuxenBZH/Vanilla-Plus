@@ -46,7 +46,7 @@ key "CombatAbilityNpcGrowth","0.1"
 
 key "CombatAbilityLevelGrowth","1"
 
-key "LeadershipRange","16"
+key "LeadershipRange","12"
 
 key "LeadershipDodgingBonus","2"
 
@@ -235,4 +235,6 @@ key "DGM_ChameleonCloakRevert","0"
 key "DGM_PerseveranceResistance","5"
 
 key "DGM_GB4Talents","0"
+
+key "DGM_Corrogic","1"
 

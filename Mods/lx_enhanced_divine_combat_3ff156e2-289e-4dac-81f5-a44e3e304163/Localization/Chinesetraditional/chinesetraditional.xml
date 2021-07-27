@@ -1,4 +1,5 @@
 <contentList>
+	<content contentuid="h0045f23fgb529g49d5gb9f5gab8c0a6a4b17">Enable talents from Gift Bag 4, with effects slightly adapted to Vanilla Plus gameplay. &lt;br&gt;Default : on&lt;br&gt;&lt;font color=#ff0000&gt;Require a game restart&lt;/font&gt;</content>
 	<content contentuid="h004cd16fgf0e9g4216g9a3cg2dc6e16fe78a">Deals [1] to the target character and set Atrophy. If target character is carrying grenades or arrows, a random one explodes in their inventory.</content>
 	<content contentuid="h00f565c4g6178g424fgb031g41a2c12bf85d">[1] gives you [2]% Dodging while dual wielding. Once per turn, the first dodge does not trigger Dodge Fatigue.</content>
 	<content contentuid="h03d68693g35e7g4721ga1b3g9f9882f08b12">Dual-Wielding</content>
@@ -29,6 +30,7 @@
 	<content contentuid="h1e5caa33g4d5dg4f42g91edg9f546d42f56b">Increases all Skill damage by [1]%.</content>
 	<content contentuid="h206ce4abg4f84g4b2dg934aga0d96a602f2c">Two-Handed increases damage and Critical Multiplier when using two-handed melee weapons (swords, axe, mace, spear or staff).</content>
 	<content contentuid="h22a39843gf968g4212g851dg6e121235fa85">Bless target character or surface. Prevent Diseased, Decaying, Petrified, Stunned, increase Dodge by [1]%, Accuracy by [2]% and elemental resistances by [3].</content>
+	<content contentuid="h2512e452g4bdcg4631g9f32g67f9b6e5fc99">Divine Talents Plus</content>
 	<content contentuid="h278b2bccg1afcg4314gbfcbgb10105ebc12b">When resurrected, you resurrect to full health. When your turn is skipped because of incapacitating effect(s), you start your next turn with 2 additional AP.</content>
 	<content contentuid="h278d3a4fg4dceg4362g9b35g9c3685c93268">The damage you inflict when successfully hitting an enemy or object.</content>
 	<content contentuid="h2802446bg3159g4290g9154g8cac4a93eaf1">Main Attribute Correction</content>
@@ -46,6 +48,7 @@
 	<content contentuid="h31d2a547g005bg4ee3g8d2ag47720bd4fa1a">Gain 2 Action Points immediately, but lose 3 Action Points next turn. Any Action Points over your maximum are lost.</content>
 	<content contentuid="h3240460dgd250g435bg9ebegc1682089c5ed">Explode target corpse, dealing [1] in the area.</content>
 	<content contentuid="h32fcbbfbgec6bg4af4g894ag49fd997307fe">Any attempt to apply Stunned, Petrified, Frozen, Madness, Terrified or Charm will apply Confused instead.</content>
+	<content contentuid="h34fa90bdg6d1fg4ee8gb3e7g8c3694c70fae">At the start of an encounter, you gain one of two statuses: Cycle of Fire and Water or Cycle of Earth and Air. Cycle of Fire and Water increases your Pyrokinetic and Hydrosophist by 3. Cycle of Earth and Air increases your Geomancy and Aerotheurgy by 3. Statuses swap each turn.</content>
 	<content contentuid="h362a94a5g0b60g4be6g9998gd44214d4a78f">Sacrifice yourself to bring an ally back to life. Reduce your Vitality by [1]% and ressurrects target character with maximum Vitality.</content>
 	<content contentuid="h36683e27ge1cag45f9gb7ddgdf954e865e33">Default : 2</content>
 	<content contentuid="h39ded39fg40a6g46a1gafe4gbaf448e4f20a">Last armour penetration</content>
@@ -106,6 +109,7 @@
 	<content contentuid="h711b52a9ga71ag458cg82c4gdca0433f24b2">Wand Skill Damage Multiplier</content>
 	<content contentuid="h7184b190ge934g49d4g9b5cg67ff537bd723">Shoot a volatile bolt that deals [1], and then creates a corresponding surface. Chaos trigger a random type of damage.</content>
 	<content contentuid="h71b09f9fg285fg4532gab16g1c7640864141">Damage is based on your level and trigger the additional skill bonus from Intelligence.</content>
+	<content contentuid="h730eb29cgf6a6g4efcg8625g1b7d95925932">Perseverance Resistance Bonus per point.&lt;br&gt;Default : 5&lt;br&gt;</content>
 	<content contentuid="h74f2f4d1gb916g4bccgb635g264d3444d84b">Perseverance Vitality Restoration</content>
 	<content contentuid="h751cb9fcgcc15g485fg80dag96d013bb5fff">Single-Handed increases damage and Accuracy when using a single-handed weapon (dagger, sword, axe, mace or wand) with a shield or empty off-hand. Also increases armours and resistances.</content>
 	<content contentuid="h75391bafg8744g4441g9b1egf52f182f96fc">Increases all damage by [1]% per point. Dodge is increased by [2]%, Critical Chance by [3]% and Movement by [4]m per AP per point.</content>
@@ -130,7 +134,9 @@
 	<content contentuid="h863fc18ag2674g47e8g9657ge6fb4a5b074f">Activate fall damage when characters are victim of the Force property of some skills.&lt;br&gt;Scoundrel reduce the height tolerance for each point. Damage is not applied if the victim has Wings.</content>
 	<content contentuid="h878c02c0gc629g470dg955cg80dc2a125cb2">Stench decreases everyone&apos;s attitude towards you by [2], but melee opponents find you less attractive in combat. Increases your Poison resistance by 30% and makes you immune to Diseased and Infected.</content>
 	<content contentuid="h88ed61e9g4d7fg4eb7g81f1g9e7c48dde602">Multiply the base Vitality of all summons (ally and enemy). &lt;br&gt;Default : 100 &lt;br&gt;&lt;font color=#ff0000&gt;Require a game restart&lt;/font&gt;</content>
+	<content contentuid="h8b1768fbgf8edg4ce6gab9dg617267af4852">Pers. Resistance Bonus</content>
 	<content contentuid="h8ddc8dd4ge8feg4420ga6dag0d87ce8ec743">[1] lets you evade attacks of opportunity. Increases your Dodge by 5% and Movement by 1m per AP.</content>
+	<content contentuid="h8fc505abgfadbg4481g8d79gb73e606117d7">When an allied character dies, a Zombie Crawler is raised at their corpse, under their control. Zombie Crawler lasts 3 turns or until character is resurrected. Range 12m. Does not affect summoned creatures. Can happen only once per turn.</content>
 	<content contentuid="h9055594bg16a7g48b8g81ffg25bbbf89963b">Sets off a chain reaction that causes ice areas to explode into water puddles, dealing [1] and setting Chilled.</content>
 	<content contentuid="h93731b66g32c8g425dg8ed5g9863a8d35279">Unlock Whirlwind and Rush for your Incarnate. Provides [1] (amount depends on your level). Increases damage by [2]% and increase maximum Vitality by 15%.</content>
 	<content contentuid="h944c3db5gc792g4cdcg923cg9471f4cb0969">Water Weapons</content>
@@ -149,11 +155,15 @@
 	<content contentuid="ha4cfd852g52f1g4079g8919gd392ac8ade1a">Damage is based on your basic attack and trigger the additional bonus from both Strength and Intelligence.</content>
 	<content contentuid="ha6f17eacgbfdbg4cc2g9734g87d7801fe648">Revert Chameleon Cloak ability requirements to Polymorph 1 only.&lt;br&gt;Default : off&lt;br&gt;&lt;font color=#ff0000&gt;Require a game restart&lt;/font&gt;</content>
 	<content contentuid="ha742cf9eg80e6g4b43g8106ga4b83bd5e241">Cause target character to teleport in a random direction each time they are attacked. Increases Dodge by [1]% and Air Resistance by [2]%.</content>
+	<content contentuid="ha79ac9a4g91ceg4fbfg9b70ge273d5f12090">Your attacks never miss but cannot deal critical strikes (except backstabs not triggered by skills). Convert the critical bonus from Wits to resistance bypass.</content>
+	<content contentuid="haa3cebcagba62g47bbg8546gf0c154e0e46f">You gain immunity to stunned, frozen, knocked down, polymorphed, petrified, crippled for 1 turn after being affected by one of these statuses. Can happen once every 3 turns. Increase the duration of Momentum and Lingering by 1 turn.</content>
 	<content contentuid="hae29de3agcf14g44f7g9020g90e1fd77694d">If deactivated, you will be able to use custom attributes bonuses. Not recommended if you want to keep an overall balanced experience unless you really know what you are doing.&lt;br&gt;Default : on</content>
 	<content contentuid="haee8a8d1g10e8g491ag83c8g833c3a4d0fbb">The damage bonus provided per Critical Chance percent when backstabbing. &lt;br&gt;Default : 0.5&lt;br&gt;</content>
 	<content contentuid="hb1fc6d8bg6bf6g4a3bg83f7g94177ced086a">Duelist</content>
+	<content contentuid="hb24edf38gd48ag477fgbf75g3bd3de8c6eec">Resistance Corrosion</content>
 	<content contentuid="hb4d441e2g0d7cg45f5g8917g5fa55696a431">Hothead</content>
 	<content contentuid="hb5c81b75ga23dg44aeg8ceeg6c88bf367e38">Secondary Attribute Correction</content>
+	<content contentuid="hb78e3fa5gfa77g4a00g9228g62b93db293e9">If Corrosive or Magic damage is dealt while the corresponding armour is depleted, they will strip resistances for 2 turns. Can be stacked, the resistance loss is proportional to the damage dealt and the max vitality of the target. Can be removed with Fortified or Magic Shell. &lt;br&gt;Default : on&lt;br&gt;</content>
 	<content contentuid="hb924258ag2cf7g4c11gaf4eg8b7de303c197"> </content>
 	<content contentuid="hbce8b81ag1259g4a30g99f9g1f99e9b74583">Elemental Weapons</content>
 	<content contentuid="hbd257f75g9084g4c73g9db0g77d418e677c9">A character with Ice King has an extra 30% Water Resistance, but takes a 15% penalty to Fire Resistance. Additionally, the maximum Water Resistance is raised by 10. All Water damage you deal are increased by 20% and grants immunity to Chilled.</content>
@@ -205,6 +215,7 @@
 	<content contentuid="he9b44d3fg577fg4d9bgab26g3a6b1910b1f7">The correction indice for the damaging attributes that are not the highest for NPCs. The higher it is, the lower will be the final result.&lt;br&gt;Default: 70&lt;br&gt;&lt;font color=#ff0000&gt;Require a game restart&lt;/font&gt;</content>
 	<content contentuid="heace2e30g4075g428cg8163g3fc8eff9323b">Armour penetration</content>
 	<content contentuid="heb8111a8g1b89g4bf6gbf1age84937263ba2">Set the Movement penalty of Crossbows growth per level.&lt;br&gt;Default : -8&lt;br&gt;&lt;font color=#ff0000&gt;Require a game restart&lt;/font&gt;</content>
+	<content contentuid="hebc78e7bg3775g4da6gbe21g054b280f11ce">Corrogic</content>
 	<content contentuid="hed14cc79g467bg4d3fgbed6gec529691740e">Multiply all damages of summons (ally and enemy). &lt;br&gt; Default: +0% &lt;br&gt;&lt;font color=#ff0000&gt;Require a game restart&lt;/font&gt;</content>
 	<content contentuid="hf130b10ag0b9ag4c68g8c17g54d30b86fe2b">Pet Pal (Summoner)</content>
 	<content contentuid="hf2c55a59ge06dg4e77g8d04g69f9ea668541">Set the percentage of damage going through armour when one type of armour is depleted. Additive to the first value.&lt;br&gt;Default : 25</content>
