@@ -76,7 +76,7 @@ local function RecoverFromCCs(character, status, ...)
 	for armour,statuses in pairs(blockedStatuses) do
 		if statuses[status] then
 			local duration = Ext.ExtraData.DGM_CCParryDuration
-			if CharacterHasTalent(character, "WalkItOff") == 1 then
+			if CharacterHasTalent(character, "WalkItOff") == 1 or Ext.ExtraData.DGM_GB4Talents == 1 then
 				duration = duration + 1
 			end
 			if armour == "PhysicalArmor" then
@@ -90,6 +90,13 @@ end
 
 Ext.RegisterOsirisListener("CharacterStatusRemoved", 3, "after", RecoverFromCCs)
 
+--- @param character EsvCharacter
+--- @param status string
+local function CheckImmunity(character, status)
+	local immunityFlag = Ext.GetStat(status).ImmuneFlag
+	return Ext.GetCharacter(character).Stats[immunityFlag]
+end
+
 ---@param character EsvCharacter
 ---@param status string
 ---@param handle number
@@ -102,13 +109,16 @@ local function BlockCCs(character, status, handle)
 		if statuses[status] then
 			local armourValue = Ext.GetCharacter(character).Stats[correspondingArmor[armour]]
 			if armourValue ~= 0 and NRD_StatusGetInt(character, handle, "ForceStatus") == 0 then return end
-			if lifetime == -1 and source == 5 then return end -- Fuck auras
-			if armourValue ~= 0 and source == 3 and HasActiveStatus(character, correspondingStatus[armour][1]) == 1 then
+			if lifetime == -1 and source == 5 and armourValue == 0 then -- Fuck auras
+				NRD_StatusPreventApply(character, handle, 1)
+				return
+			end 
+			if armourValue ~= 0 and source == 3 and HasActiveStatus(character, correspondingStatus[armour][1]) == 1 and not CheckImmunity(character, status) then
 				NRD_StatusPreventApply(character, handle, 1)
 				RollStatusApplication(character, correspondingStatus[armour][2], 6.0, 1, enterChance, handle)
 				return 
 			end
-			if HasActiveStatus(character, correspondingStatus[armour][1]) == 1 then -- if it's not from aura then apply the corresponding debuff
+			if HasActiveStatus(character, correspondingStatus[armour][1]) == 1 and not CheckImmunity(character, status) then -- if it's not from aura then apply the corresponding debuff
 				NRD_StatusPreventApply(character, handle, 1)
 				RollStatusApplication(character, correspondingStatus[armour][2], 6.0, 1, enterChance, handle)
 			end

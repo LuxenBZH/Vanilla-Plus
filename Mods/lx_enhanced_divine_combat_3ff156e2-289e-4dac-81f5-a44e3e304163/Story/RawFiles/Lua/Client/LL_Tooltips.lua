@@ -2,6 +2,7 @@
 local function ItemCanBeExtended(item)
     if item.StatsId ~= nil then
         local stat = Ext.GetStat(item.StatsId)
+        local template = item.RootTemplate
         if item.ItemType ~= "Weapon" and GetParentStat(stat, "IsConsumable") == "Yes" and GetParentStat(stat, "IsFood") ~= "Yes" then
             return true
         end
@@ -19,7 +20,6 @@ end
 --- @param item EsvItem
 --- @param tooltip TooltipData
 local function OnItemTooltip(item, tooltip)
-    -- Ext.Print(item.StatsId)
     if item.StatsId ~= nil then
         local element = tooltip:GetElement("ItemDescription")
         local stat = Ext.GetStat(item.StatsId)
@@ -61,7 +61,8 @@ local function SkillCanBeExtended(skill)
                     if status.StatusType == "DAMAGE" or status.LeaveAction ~= ""  or status.StatusType == "SPARK" or status.StatusType == "ACTIVE_DEFENSE" then
                         hasStatusApplied = true
                     end
-                    if status.StatusType == "CONSUME" and status.StatsId ~= "" and Ext.GetStat(status.StatsId).BonusWeapon ~= "" then
+                    local statsId = Ext.GetStat(status.StatsId)
+                    if status.StatusType == "CONSUME" and status.StatsId ~= "" and statsId ~= nil and  statsId.BonusWeapon ~= "" then
                         hasStatusApplied = true
                     end
                 end

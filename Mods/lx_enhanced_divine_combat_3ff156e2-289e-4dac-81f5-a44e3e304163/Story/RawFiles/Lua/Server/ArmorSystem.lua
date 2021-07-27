@@ -19,6 +19,7 @@ local magicArmorReduction = {
 function CalculatePassingDamage(character, amount, dmgType)
 	if ObjectIsCharacter(character) == 0 then return end
 	if amount == nil then amount = 0 end
+	if amount < 0 then return 0 end
 	local dmgThrough = 0
 	local passingMod = Ext.ExtraData.DGM_DamageThroughArmor/100
 	local passingModMult = 1

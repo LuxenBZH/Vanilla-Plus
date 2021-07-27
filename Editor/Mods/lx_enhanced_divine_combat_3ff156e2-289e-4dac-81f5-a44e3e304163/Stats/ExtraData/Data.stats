@@ -4,7 +4,7 @@
     <stat_object is_substat="false">
       <fields>
         <field name="Name" type="NameStatObjectFieldDefinition" value="ArmorToVitalityRatio" />
-        <field name="Value" type="FloatStatObjectFieldDefinition" value="0.35" />
+        <field name="Value" type="FloatStatObjectFieldDefinition" value="0.4" />
       </fields>
     </stat_object>
     <stat_object is_substat="false">
@@ -16,13 +16,13 @@
     <stat_object is_substat="false">
       <fields>
         <field name="Name" type="NameStatObjectFieldDefinition" value="VitalityToDamageRatio" />
-        <field name="Value" type="FloatStatObjectFieldDefinition" value="8" />
+        <field name="Value" type="FloatStatObjectFieldDefinition" value="6" />
       </fields>
     </stat_object>
     <stat_object is_substat="false">
       <fields>
         <field name="Name" type="NameStatObjectFieldDefinition" value="VitalityToDamageRatioGrowth" />
-        <field name="Value" type="FloatStatObjectFieldDefinition" value="0.3" />
+        <field name="Value" type="FloatStatObjectFieldDefinition" value="0.225" />
       </fields>
     </stat_object>
     <stat_object is_substat="false">
@@ -148,7 +148,7 @@
     <stat_object is_substat="false">
       <fields>
         <field name="Name" type="NameStatObjectFieldDefinition" value="LeadershipRange" />
-        <field name="Value" type="FloatStatObjectFieldDefinition" value="16" />
+        <field name="Value" type="FloatStatObjectFieldDefinition" value="12" />
       </fields>
     </stat_object>
     <stat_object is_substat="false">
@@ -712,6 +712,24 @@
       <fields>
         <field name="Name" type="NameStatObjectFieldDefinition" value="DGM_ChameleonCloakRevert" />
         <field name="Value" type="FloatStatObjectFieldDefinition" value="0" />
+      </fields>
+    </stat_object>
+    <stat_object is_substat="false">
+      <fields>
+        <field name="Name" type="NameStatObjectFieldDefinition" value="DGM_PerseveranceResistance" />
+        <field name="Value" type="FloatStatObjectFieldDefinition" value="5" />
+      </fields>
+    </stat_object>
+    <stat_object is_substat="false">
+      <fields>
+        <field name="Name" type="NameStatObjectFieldDefinition" value="DGM_GB4Talents" />
+        <field name="Value" type="FloatStatObjectFieldDefinition" value="0" />
+      </fields>
+    </stat_object>
+    <stat_object is_substat="false">
+      <fields>
+        <field name="Name" type="NameStatObjectFieldDefinition" value="DGM_Corrogic" />
+        <field name="Value" type="FloatStatObjectFieldDefinition" value="1" />
       </fields>
     </stat_object>
   </stat_objects>

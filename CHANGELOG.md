@@ -630,3 +630,68 @@ Balance
 * Pyroclastic eruption explosion radius per projectile reduced from 3 to 2 meters
 * Chameleon Cloak now require 1 Polymorph + 2 Scoundrel. Before you try to chase me with pitchforks, you can enable a module to revert back to the original requirements
 * Lucian's Heaven Blessing AP cost increased from 1 to 3
+
+# 1.1.9.58
+Fix
+* Fixed an issue with modded auras where hard CCs could bypass Momentum/Lingering
+* Fixed an edge case where having the main hand empty with a wand in the offhand would not give skill damage bonus (credits to lololice for spotting that issue)
+* Ported the Sucker punch fix code to Lua and fixed an issue with the original fix not working properly
+* Fixed an issue with the Elemental ranger custom effect that worked without having the talent enabled
+* Fixed an issue with damage going through armour where it could regenerate more Vitality than normal if one of the damage type is completely absorbed
+* Damage over time doesn't trigger Lifesteal anymore
+* CQB Penalty marker doesn't trigger anymore if the character is sneaking and/or is invisible to avoid accidental cheese
+
+# 1.1.9.59
+Fixes
+* Fixed an issue where Ambidextrous would not work at all
+
+# 1.1.10.60 (Siva)
+Fixes
+* Fixed a minor issue related to negative damage
+* Potentially fixed edge cases for the crossbow penalty and hothead effects lingering whereas they should not
+* Fixed an issue related to weapon abilities not activating/deactivating correctly
+
+Balance
+* Reworked damage scaling through levels, with VitalityToDamageRatio set to 6 instead of 8, growth set to 0.225 instead of 0.3, ArmorToVitality set to 0.4 instead of 0.35, these changes should make the base level damage fallof much less important, which was resulting in Constitution granting way too much survivability compared to a similar investment in damage. Further adjustments may be needed.
+* Adrenaline now reduce AP recovery by 3 instead of 2
+* Adrenaline cooldown increased from 4 to 6
+* Haste cooldown increased to 4 from 3
+* Skin Graft now reduce both armours to 0 for 2 turns and also remove Momentum and Lingering
+* Perseverance doesn't restore Vitality anymore but increase all resistances by 5% per point when you are incapacitated
+* Mnemonics is now incompatible with Lone Wolf
+
+# 1.2.11.61 (Lohar)
+New
+* Divine Talents Plus module : you can now enable Gift Bag 4 talents with few changes to make them more appropriate with Vanilla Plus gameplay, and without needing to activate the gift bag. You can now have GB4 Talents in GM mode!
+	* Indomitable now also increase Momentum/Lingering duration by 1 turn
+	* Soulcatcher have a 1 turn cooldown after the first proc
+	* Haymaker now convert Critical Chance bonus from Wits to Resistance bypass, and is now incompatible with Savage Sortilege
+	* Magic Cycles bonus increased from 2 to 3
+* Corrogic module : corrosive and magic armour damage are now more useful than ever ! If you deal corrosive or magic damage whereas the corresponding armour is depleted, you will slightly lower resistances in a stackable way, giving you a new way to deal with resistances ! The resistance debuff is proportional to the Corrosive/Magic damage dealt and the Max Vitality of the victim.
+* Acid grenade : inflict 80% Corrosive damage and set Acid for 2 turns. Can be crafted by combining a flask with a source of poison and shadow essence. They should appear as starter grenades.
+* Silver Powder grenade : inflict 80% Magic armour damage and set Suffocating for 2 turns. Can be crafted by combining a flask with shadow essence and bone dust. They should appear as starter grenades.
+
+Fix
+* Mnemonic memory system doesn't take over the permanent boost pool anymore, allowing the Game Master or mods to also influence it
+* Momentum/Lingering won't trigger Staggered/Confused if the applied status should be stopped by an immunity
+* Perseverance effect will only trigger during combat
+* Perseverance status won't trigger anymore if the character has no points in it
+* Perseverance effect should now expires as soon as the character get a playable turn instead of lingering if the crowd control effect has been cleared before its expiration
+* Perseverance shouldn't be triggered by Force effect anymore
+* Fixed Perseverance resistance bonus tooltip
+* Fixed Chameleon Cloak skillbook requirements
+* Mnemonic and Lone Wolf incompatibility is now two-sided
+
+Balance
+* Executioner doesn't provide Haste anymore, but boosts Movement by 50% for 1 turn instead
+* Bone Widow doesn't have Bone cage anymore (didn't have the requirements anyway)
+* Shackles of Pain and Dominate Mind cannot target characters which still have the corresponding armour up anymore (to avoid misuse)
+* Siphon Poison duration increased to 3 turns from 2 turns
+* Ice King/Demon corresponding bonus resistance reduced to 20% from 30%
+* Walk it Off Physical and Piercing resistance bonuses reduced to 4% per step from 10%
+* Walk it Off elemental resistances reduced to 8% per step from 10%
+* Steam Lance source point cost reduced to 1 from 2
+* Arcane Stitch AP cost reduced to 1 from 2
+* Leadership range decreased to 12m from 16m
+* Stoneskin potion Dodge boost reduced to -20% from +20%
+* Acid now reduce Dodge by 20% instead of reducing physical and piercing resistances

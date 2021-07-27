@@ -34,14 +34,31 @@ function CheckBoostTalents(character, talent, unlocked)
 	end
 end
 
----@param character EsvCharacter
+---@param character string UUID
 ---@param unlocked boolean
 function ManageMemory(character, unlocked)
 	if unlocked then
-		if CharacterGetHostCharacter() == character then Ext.Print("MEMORY UNLOCKED") end
-		local mem = math.floor(Ext.GetCharacter(character).Stats.BaseMemory - NRD_CharacterGetPermanentBoostInt(character, "Memory") - Ext.ExtraData.AttributeBaseValue)
-		NRD_CharacterSetPermanentBoostInt(character, "Memory", mem)
+		-- if CharacterGetHostCharacter() == character then Ext.Print("MEMORY UNLOCKED") end
+		local currentBoost = NRD_CharacterGetPermanentBoostInt(character, "Memory")
+		local mem = math.floor(Ext.GetCharacter(character).Stats.BaseMemory - currentBoost - Ext.ExtraData.AttributeBaseValue)
+		local previousMem = GetVarInteger(character, "DGM_MemoryBoost")
+		-- if previousMem == nil or previousMem == 0 then
+		-- 	previousMem = mem
+		-- end
+		if previousMem == nil then
+			previousMem = 0
+		end
+		local diff = mem - previousMem
+		-- Ext.Print("memory", diff, previousMem, currentBoost, mem)
+		if diff ~= 0 and previousMem ~= 0 then
+			NRD_CharacterSetPermanentBoostInt(character, "Memory", currentBoost + diff)
+		elseif previousMem == 0 and currentBoost == mem then -- compatibility with previous saves
+			NRD_CharacterSetPermanentBoostInt(character, "Memory", mem)
+		elseif previousMem == 0 then
+			NRD_CharacterSetPermanentBoostInt(character, "Memory", currentBoost + mem)
+		end
 		CharacterAddAttribute(character, "Dummy", 0)
+		SetVarInteger(character, "DGM_MemoryBoost", mem)
 	-- else
 		-- local memBonus = NRD_CharacterGetPermanentBoostInt(character, "Memory")
 		-- local mem = math.floor(CharacterGetBaseAttribute(character, "Memory") - Ext.ExtraData.AttributeBaseValue)
@@ -58,11 +75,11 @@ local function MnemonicLocked(character, talent)
 	if talent ~= "Memory" then return end
 	local memBonus = NRD_CharacterGetPermanentBoostInt(character, "Memory")
 	local mem = math.floor(Ext.GetCharacter(character).Stats.BaseMemory - memBonus - Ext.ExtraData.AttributeBaseValue)
-	Ext.Print(memBonus, mem)
-	if not Ext.GetCharacter(character).CharacterCreationFinished then
+	if not Ext.GetCharacter(character).CharacterCreationFinished and Ext.GetGameMode() == "Campaign" then
 		SetTag(character, "DGM_MemoryManagement")
 		return
 	end
+	SetVarInteger(character, "DGM_MemoryBoost", 0)
 	NRD_CharacterSetPermanentBoostInt(character, "Memory", memBonus-mem)
 	CharacterAddAttribute(character, "Dummy", 0)
 end
@@ -83,6 +100,7 @@ Ext.RegisterOsirisListener("TimerFinished", 1, "after", function(timer)
 	if string.starts(timer, "MEMORY_") then
 		local character = string.gsub(timer, "MEMORY_", "")
 		NRD_CharacterSetPermanentBoostInt(character, "Memory", 0)
+		SetVarInteger(character, "DGM_MemoryBoost", 0)
 		CharacterAddAttribute(character, "Dummy", 0)
 	end
 end)
@@ -167,7 +185,11 @@ end
 function CheckHothead(character)
 	local HPperc = Ext.Round(NRD_CharacterGetStatInt(character, "CurrentVitality") / NRD_CharacterGetStatInt(character, "MaxVitality") * 100)
 	--Ext.Print(HPperc)
-	if HPperc > Ext.ExtraData.DGM_HotheadApplicationThreshold then ApplyStatus(character, "LX_HOTHEAD", -1.0, 1) end
+	if HPperc > Ext.ExtraData.DGM_HotheadApplicationThreshold then 
+		ApplyStatus(character, "LX_HOTHEAD", -1.0, 1) 
+	else
+		RemoveStatus(character, "LX_HOTHEAD")
+	end
 end
 
 ---@param character EsvCharacter
@@ -212,14 +234,7 @@ local function ExecutionerHaste(defender, attackerOwner, attacker)
 	if ObjectIsCharacter(attacker) == 0 then return end
 	local attacker = Ext.GetCharacter(attacker)
 	if attacker.Stats.TALENT_Executioner and CharacterIsInCombat(attacker.MyGuid) == 1 then
-		local haste = attacker.GetStatus(attacker, "HASTED")
-		if haste == nil then
-			ApplyStatus(attacker.MyGuid, "HASTED", 6.0)
-		else
-			if haste.CurrentLifeTime < 6 then
-				ApplyStatus(attacker.MyGuid, "HASTED", 6.0)
-			end
-		end
+		ApplyStatus(attacker.MyGuid, "LX_EXECUTIONER", 6.0)
 	end
 end
 
@@ -229,13 +244,13 @@ Ext.RegisterOsirisListener("CharacterKilledBy", 3, "before", ExecutionerHaste)
 ---@param item EsvItem
 ---@param char EsvCharacter
 Ext.RegisterOsirisListener("ItemEquipped", 2, "before", function(item, char)
-	char = Ext.GetCharacter(char) ---@type EsvCharacter
-	if char.Stats.TALENT_Ambidextrous and CharacterIsInCombat(char.MyGuid) == 1 then
+	local character = Ext.GetCharacter(char) ---@type EsvCharacter
+	if character.Stats.TALENT_Ambidextrous and CharacterIsInCombat(char) == 1 then
 		item = Ext.GetItem(item) ---@type EsvItem
-		local swapCounter = GetVarInteger(char.MyGuid, "DGM_AmbidextrousCount")
+		local swapCounter = GetVarInteger(char, "DGM_AmbidextrousCount")
 		if swapCounter > 0 and item.Stats.WeaponType ~= "Crossbow" then
-			SetVarInteger(char.MyGuid, "DGM_AmbidextrousCount", swapCounter-1)
-			CharacterAddActionPoints(char.MyGuid, 1)
+			SetVarInteger(char, "DGM_AmbidextrousCount", swapCounter-1)
+			CharacterAddActionPoints(char, 1)
 		end
 	end
 end)
@@ -307,6 +322,7 @@ local surfaceTypeMap = {
 --- @param skillType string Type
 --- @param skillElement string Elements enum
 Ext.RegisterOsirisListener("CharacterUsedSkill", 4, "before", function(character, skill, skillType, skillElement)
+	if not Ext.GetCharacter(character).Stats.TALENT_ElementalRanger then return end
 	local skill = Ext.GetStat(skill)
 	if (skill.ProjectileType == "Grenade" and skill.Requirement == "None") or (skill.ProjectileType == "Arrow" and skill.Requirement == "RangedWeapon") and skill.IsEnemySkill == "Yes" and skill["Memory Cost"] == 0 then
 		if skill.DamageType == "Chaos" then
@@ -340,7 +356,6 @@ Ext.RegisterOsirisListener("CharacterUsedSkill", 4, "before", function(character
 end)
 
 ---- Morning Person AP recovery
-
 Ext.RegisterOsirisListener("ObjectTurnStarted", 1, "before", function(object)
 	if ObjectIsCharacter(object) == 0 then return end
 	local char = Ext.GetCharacter(object)

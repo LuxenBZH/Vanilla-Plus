@@ -310,3 +310,50 @@ skillParams = {}
 currentParam = 1
 paramsOrder = {}
 
+skillAbilities = {
+	Fire = "FireSpecialist",
+	Earth = "EarthSpecialist",
+	Water = "WaterSpecialist",
+	Air = "AirSpecialist",
+	Rogue = "RogueLore",
+	Warrior = "WarriorLore",
+	Ranger = "RangerLore",
+	Summoning = "Summoning",
+	Death = "Necromancy",
+	Polymorph = "Polymorph"
+}
+
+GB4Talents = {
+    "Sadist",
+    "Haymaker",
+    "Gladiator",
+    "Indomitable",
+    -- "Jitterbug",
+    "Soulcatcher",
+    "MasterThief",
+    "GreedyVessel",
+    "MagicCycles",
+	-- "WildMag",
+	-- "Elementalist"
+}
+
+resistances = {
+    "FireResistance",
+    "WaterResistance",
+    "AirResistance",
+    "EarthResistance",
+    "PoisonResistance",
+    "PhysicalResistance",
+    "PiercingResistance"
+}
+
+--- @param character EsvCharacter
+--- @param prefix string
+function FindStatus(character, prefix)
+	for i,status in pairs(character:GetStatuses()) do
+		if string.find(status, prefix) then
+			return status
+		end
+	end
+	return
+end

@@ -1,0 +1,4 @@
+new equipment "Soulcatcher_ZombieCrawler"
+add equipmentgroup
+add equipment entry "Soulcatcher_Zombie"
+

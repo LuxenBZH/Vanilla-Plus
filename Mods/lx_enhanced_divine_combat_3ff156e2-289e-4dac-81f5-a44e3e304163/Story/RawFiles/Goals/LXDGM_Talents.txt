@@ -97,8 +97,8 @@ LX_EXT_CheckDuelist(_Char);
 //// HotHead check
 IF
 CharacterVitalityChanged(_Char, _Remaining)
-AND
-CharacterHasTalent(_Char, "Perfectionist", 1)
+// AND
+// CharacterHasTalent(_Char, "Perfectionist", 1)
 AND
 _Remaining < 75
 THEN

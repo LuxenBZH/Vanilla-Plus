@@ -1734,5 +1734,99 @@
         <field name="MemorizationRequirements" type="StringStatObjectFieldDefinition" value="None" />
       </fields>
     </stat_object>
+    <stat_object is_substat="false">
+      <fields>
+        <field name="Name" type="NameStatObjectFieldDefinition" value="Grenade_Acid" />
+        <field name="ForGameMaster" type="EnumerationStatObjectFieldDefinition" value="0" enumeration_type_name="YesNo" />
+        <field name="IsEnemySkill" type="EnumerationStatObjectFieldDefinition" value="1" enumeration_type_name="YesNo" />
+        <field name="Ability" type="EnumerationStatObjectFieldDefinition" value="0" enumeration_type_name="SkillAbility" />
+        <field name="ActionPoints" type="IntegerStatObjectFieldDefinition" value="1" />
+        <field name="Cooldown" type="IntegerStatObjectFieldDefinition" value="0" />
+        <field name="Damage Multiplier" type="IntegerStatObjectFieldDefinition" value="80" />
+        <field name="Damage Range" type="IntegerStatObjectFieldDefinition" value="20" />
+        <field name="DamageType" type="EnumerationStatObjectFieldDefinition" value="3" enumeration_type_name="Damage Type" />
+        <field name="SkillProperties" type="StringStatObjectFieldDefinition" value="ACID,100,2" />
+        <field name="TargetRadius" type="IntegerStatObjectFieldDefinition" value="13" />
+        <field name="DeathType" type="EnumerationStatObjectFieldDefinition" value="6" enumeration_type_name="Death Type" />
+        <field name="ExplodeRadius" type="IntegerStatObjectFieldDefinition" value="4" />
+        <field name="CanTargetCharacters" type="EnumerationStatObjectFieldDefinition" value="1" enumeration_type_name="YesNo" />
+        <field name="CanTargetItems" type="EnumerationStatObjectFieldDefinition" value="1" enumeration_type_name="YesNo" />
+        <field name="CanTargetTerrain" type="EnumerationStatObjectFieldDefinition" value="1" enumeration_type_name="YesNo" />
+        <field name="ForceTarget" type="EnumerationStatObjectFieldDefinition" value="0" enumeration_type_name="YesNo" />
+        <field name="TargetConditions" type="StringStatObjectFieldDefinition" value="Character" />
+        <field name="UseCharacterStats" type="EnumerationStatObjectFieldDefinition" value="0" enumeration_type_name="YesNo" />
+        <field name="UseWeaponDamage" type="EnumerationStatObjectFieldDefinition" value="0" enumeration_type_name="YesNo" />
+        <field name="UseWeaponProperties" type="EnumerationStatObjectFieldDefinition" value="0" enumeration_type_name="YesNo" />
+        <field name="ProjectileCount" type="IntegerStatObjectFieldDefinition" value="1" />
+        <field name="ProjectileDelay" type="IntegerStatObjectFieldDefinition" value="0" />
+        <field name="Template" type="StringStatObjectFieldDefinition" value="f7eaad5f-2874-4754-be06-92c6aa769b94" />
+        <field name="IgnoreVisionBlock" type="EnumerationStatObjectFieldDefinition" value="1" enumeration_type_name="YesNo" />
+        <field name="Icon" type="StringStatObjectFieldDefinition" value="grenade_acid" />
+        <field name="DisplayName" type="TranslatedStringStatObjectFieldDefinition" value="Acid Grenade" />
+        <field name="Description" type="TranslatedStringStatObjectFieldDefinition" value="Deals [1] and sets Acid for 2 turns." />
+        <field name="StatsDescriptionParams" type="StringStatObjectFieldDefinition" value="Damage" />
+        <field name="PrepareAnimationInit" type="StringStatObjectFieldDefinition" value="skill_prepare_throw_arc_01_start" />
+        <field name="PrepareAnimationLoop" type="StringStatObjectFieldDefinition" value="skill_prepare_throw_arc_01_loop" />
+        <field name="PrepareEffect" type="StringStatObjectFieldDefinition" value="RS3_FX_Skills_Grenades_PoisonFlask_Prepare_01:Dummy_R_Hand" />
+        <field name="CastAnimation" type="StringStatObjectFieldDefinition" value="0;skill_cast_throw_arc_03_cast;5;skill_cast_throw_arc_02_cast;9;skill_cast_throw_arc_01_cast" />
+        <field name="CastAnimationCheck" type="EnumerationStatObjectFieldDefinition" value="1" enumeration_type_name="CastCheckType" />
+        <field name="CastTextEvent" type="StringStatObjectFieldDefinition" value="cast" />
+        <field name="CastEffect" type="StringStatObjectFieldDefinition" value="RS3_FX_Skills_Grenades_PoisonFlask_Cast_01:Dummy_R_Hand" />
+        <field name="PreviewEffect" type="StringStatObjectFieldDefinition" value="RS3_FX_UI_Targeter_03_Owner" />
+        <field name="Magic Cost" type="IntegerStatObjectFieldDefinition" value="0" />
+        <field name="ProjectileTerrainOffset" type="EnumerationStatObjectFieldDefinition" value="0" enumeration_type_name="YesNo" />
+        <field name="MovingObject" type="StringStatObjectFieldDefinition" value="d00bf5d0-a9b0-40e0-94e6-105ac89e635d" />
+        <field name="ProjectileType" type="EnumerationStatObjectFieldDefinition" value="2" enumeration_type_name="ProjectileType" />
+        <field name="OverrideMinAP" type="EnumerationStatObjectFieldDefinition" value="0" enumeration_type_name="YesNo" />
+        <field name="CycleConditions" type="StringStatObjectFieldDefinition" value="Enemy;!Dead" />
+      </fields>
+    </stat_object>
+    <stat_object is_substat="false">
+      <fields>
+        <field name="Name" type="NameStatObjectFieldDefinition" value="Grenade_SilverPowder" />
+        <field name="ForGameMaster" type="EnumerationStatObjectFieldDefinition" value="0" enumeration_type_name="YesNo" />
+        <field name="IsEnemySkill" type="EnumerationStatObjectFieldDefinition" value="1" enumeration_type_name="YesNo" />
+        <field name="Ability" type="EnumerationStatObjectFieldDefinition" value="0" enumeration_type_name="SkillAbility" />
+        <field name="ActionPoints" type="IntegerStatObjectFieldDefinition" value="1" />
+        <field name="Cooldown" type="IntegerStatObjectFieldDefinition" value="0" />
+        <field name="SkillProperties" type="StringStatObjectFieldDefinition" value="SUFFOCATING,100,2" />
+        <field name="TargetRadius" type="IntegerStatObjectFieldDefinition" value="13" />
+        <field name="ExplodeRadius" type="IntegerStatObjectFieldDefinition" value="4" />
+        <field name="CanTargetCharacters" type="EnumerationStatObjectFieldDefinition" value="1" enumeration_type_name="YesNo" />
+        <field name="CanTargetItems" type="EnumerationStatObjectFieldDefinition" value="1" enumeration_type_name="YesNo" />
+        <field name="CanTargetTerrain" type="EnumerationStatObjectFieldDefinition" value="1" enumeration_type_name="YesNo" />
+        <field name="ForceTarget" type="EnumerationStatObjectFieldDefinition" value="0" enumeration_type_name="YesNo" />
+        <field name="TargetConditions" type="StringStatObjectFieldDefinition" value="Character" />
+        <field name="UseCharacterStats" type="EnumerationStatObjectFieldDefinition" value="0" enumeration_type_name="YesNo" />
+        <field name="UseWeaponDamage" type="EnumerationStatObjectFieldDefinition" value="0" enumeration_type_name="YesNo" />
+        <field name="UseWeaponProperties" type="EnumerationStatObjectFieldDefinition" value="0" enumeration_type_name="YesNo" />
+        <field name="ProjectileCount" type="IntegerStatObjectFieldDefinition" value="1" />
+        <field name="ProjectileDelay" type="IntegerStatObjectFieldDefinition" value="0" />
+        <field name="Template" type="StringStatObjectFieldDefinition" value="883cf94f-edd2-469f-a1d6-7bc5a0d53f3e" />
+        <field name="IgnoreVisionBlock" type="EnumerationStatObjectFieldDefinition" value="1" enumeration_type_name="YesNo" />
+        <field name="Icon" type="StringStatObjectFieldDefinition" value="grenade_silverPowder" />
+        <field name="DisplayName" type="TranslatedStringStatObjectFieldDefinition" value="Silver Powder Grenade" />
+        <field name="Description" type="TranslatedStringStatObjectFieldDefinition" value="Deals [1] and sets Suffocating for 2 turns." />
+        <field name="StatsDescriptionParams" type="StringStatObjectFieldDefinition" value="Damage" />
+        <field name="PrepareAnimationInit" type="StringStatObjectFieldDefinition" value="skill_prepare_throw_arc_01_start" />
+        <field name="PrepareAnimationLoop" type="StringStatObjectFieldDefinition" value="skill_prepare_throw_arc_01_loop" />
+        <field name="PrepareEffect" type="StringStatObjectFieldDefinition" value="RS3_FX_Skills_Grenades_SilverPowder_Prepare_01:Dummy_R_Hand" />
+        <field name="CastAnimation" type="StringStatObjectFieldDefinition" value="0;skill_cast_throw_arc_03_cast;5;skill_cast_throw_arc_02_cast;9;skill_cast_throw_arc_01_cast" />
+        <field name="CastAnimationCheck" type="EnumerationStatObjectFieldDefinition" value="1" enumeration_type_name="CastCheckType" />
+        <field name="CastTextEvent" type="StringStatObjectFieldDefinition" value="cast" />
+        <field name="CastEffect" type="StringStatObjectFieldDefinition" value="RS3_FX_Skills_Grenades_SilverPowder_Cast_01:Dummy_R_Hand" />
+        <field name="PreviewEffect" type="StringStatObjectFieldDefinition" value="RS3_FX_UI_Targeter_03_Owner" />
+        <field name="Magic Cost" type="IntegerStatObjectFieldDefinition" value="0" />
+        <field name="ProjectileTerrainOffset" type="EnumerationStatObjectFieldDefinition" value="0" enumeration_type_name="YesNo" />
+        <field name="MovingObject" type="StringStatObjectFieldDefinition" value="0019cb0a-8f21-4bbc-b7c7-84bb5b9504c1" />
+        <field name="ProjectileType" type="EnumerationStatObjectFieldDefinition" value="2" enumeration_type_name="ProjectileType" />
+        <field name="OverrideMinAP" type="EnumerationStatObjectFieldDefinition" value="0" enumeration_type_name="YesNo" />
+        <field name="CycleConditions" type="StringStatObjectFieldDefinition" value="Enemy;!Dead" />
+        <field name="Damage Multiplier" type="IntegerStatObjectFieldDefinition" value="80" />
+        <field name="Damage Range" type="IntegerStatObjectFieldDefinition" value="20" />
+        <field name="DamageType" type="EnumerationStatObjectFieldDefinition" value="4" enumeration_type_name="Damage Type" />
+        <field name="DeathType" type="EnumerationStatObjectFieldDefinition" value="4" enumeration_type_name="Death Type" />
+      </fields>
+    </stat_object>
   </stat_objects>
 </stats>

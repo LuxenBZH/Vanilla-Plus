@@ -283,6 +283,34 @@
     </stat_object>
     <stat_object is_substat="false">
       <fields>
+        <field name="Name" type="NameStatObjectFieldDefinition" value="LX_GRN_Grenade_Acid_A" />
+        <field name="Using" type="BaseClassStatObjectFieldDefinition" value="_Grenades" />
+        <field name="RootTemplate" type="RootTemplateStatObjectFieldDefinition" value="d00bf5d0-a9b0-40e0-94e6-105ac89e635d" />
+        <field name="Act part" type="EnumerationStatObjectFieldDefinition" value="1" enumeration_type_name="ActPart" />
+        <field name="Value" type="IntegerStatObjectFieldDefinition" value="50" />
+        <field name="Weight" type="IntegerStatObjectFieldDefinition" value="200" />
+        <field name="Constitution" type="EnumerationStatObjectFieldDefinition" value="11" enumeration_type_name="PreciseQualifier" />
+        <field name="ObjectCategory" type="StringStatObjectFieldDefinition" value="GrenadeStarter" />
+        <field name="Priority" type="IntegerStatObjectFieldDefinition" value="2" />
+        <field name="MinLevel" type="IntegerStatObjectFieldDefinition" value="1" />
+      </fields>
+    </stat_object>
+    <stat_object is_substat="false">
+      <fields>
+        <field name="Name" type="NameStatObjectFieldDefinition" value="LX_GRN_Grenade_SilverPowder_A" />
+        <field name="Using" type="BaseClassStatObjectFieldDefinition" value="_Grenades" />
+        <field name="RootTemplate" type="RootTemplateStatObjectFieldDefinition" value="0019cb0a-8f21-4bbc-b7c7-84bb5b9504c1" />
+        <field name="Act part" type="EnumerationStatObjectFieldDefinition" value="1" enumeration_type_name="ActPart" />
+        <field name="Value" type="IntegerStatObjectFieldDefinition" value="50" />
+        <field name="Weight" type="IntegerStatObjectFieldDefinition" value="200" />
+        <field name="Constitution" type="EnumerationStatObjectFieldDefinition" value="11" enumeration_type_name="PreciseQualifier" />
+        <field name="ObjectCategory" type="StringStatObjectFieldDefinition" value="GrenadeStarter" />
+        <field name="Priority" type="IntegerStatObjectFieldDefinition" value="2" />
+        <field name="MinLevel" type="IntegerStatObjectFieldDefinition" value="1" />
+      </fields>
+    </stat_object>
+    <stat_object is_substat="false">
+      <fields>
         <field name="Name" type="NameStatObjectFieldDefinition" value="GRN_Grenade_Molotov_A" />
         <field name="Using" type="BaseClassStatObjectFieldDefinition" value="_Grenades" />
         <field name="RootTemplate" type="RootTemplateStatObjectFieldDefinition" value="5208b121-64fa-4704-8924-c61c576e1ac5" />
@@ -534,6 +562,22 @@
         <field name="Priority" type="IntegerStatObjectFieldDefinition" value="2" />
         <field name="MinLevel" type="IntegerStatObjectFieldDefinition" value="9" />
         <field name="UseAPCost" type="IntegerStatObjectFieldDefinition" value="3" />
+      </fields>
+    </stat_object>
+    <stat_object is_substat="false">
+      <fields>
+        <field name="Name" type="NameStatObjectFieldDefinition" value="SKILLBOOK_Polymorph_ChameleonSkin" />
+        <field name="Using" type="BaseClassStatObjectFieldDefinition" value="_Skillbooks" />
+        <field name="RootTemplate" type="RootTemplateStatObjectFieldDefinition" value="5257a424-4aa7-4910-a964-bacf9df0141b" />
+        <field name="Act part" type="EnumerationStatObjectFieldDefinition" value="1" enumeration_type_name="ActPart" />
+        <field name="Value" type="IntegerStatObjectFieldDefinition" value="120" />
+        <field name="ComboCategory" type="StringStatObjectFieldDefinition" value="SkillbookPolymorph" />
+        <field name="Requirements" type="StringStatObjectFieldDefinition" value="RogueLore 2;Polymorph 1" />
+        <field name="ObjectCategory" type="StringStatObjectFieldDefinition" value="SkillbookPolymorphStarter" />
+        <field name="MinAmount" type="IntegerStatObjectFieldDefinition" value="1" />
+        <field name="MaxAmount" type="IntegerStatObjectFieldDefinition" value="1" />
+        <field name="Priority" type="IntegerStatObjectFieldDefinition" value="1" />
+        <field name="MinLevel" type="IntegerStatObjectFieldDefinition" value="1" />
       </fields>
     </stat_object>
   </stat_objects>

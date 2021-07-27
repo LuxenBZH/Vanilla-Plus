@@ -17,5 +17,52 @@
         <field name="Requirements" type="StringStatObjectFieldDefinition" value="RogueLore 1" />
       </fields>
     </stat_object>
+    <stat_object is_substat="false">
+      <fields>
+        <field name="Name" type="NameStatObjectFieldDefinition" value="LoneWolf" />
+        <field name="Requirements" type="StringStatObjectFieldDefinition" value="!TALENT_Memory" />
+      </fields>
+    </stat_object>
+    <stat_object is_substat="false">
+      <fields>
+        <field name="Name" type="NameStatObjectFieldDefinition" value="Memory" />
+        <field name="Requirements" type="StringStatObjectFieldDefinition" value="!TALENT_LoneWolf" />
+      </fields>
+    </stat_object>
+    <stat_object is_substat="false">
+      <fields>
+        <field name="Name" type="NameStatObjectFieldDefinition" value="Indomitable" />
+        <field name="Requirements" type="StringStatObjectFieldDefinition" value="!TALENT_Raistlin" />
+      </fields>
+    </stat_object>
+    <stat_object is_substat="false">
+      <fields>
+        <field name="Name" type="NameStatObjectFieldDefinition" value="GreedyVessel" />
+        <field name="Requirements" type="StringStatObjectFieldDefinition" value="Level 6" />
+      </fields>
+    </stat_object>
+    <stat_object is_substat="false">
+      <fields>
+        <field name="Name" type="NameStatObjectFieldDefinition" value="Raistlin" />
+        <field name="Requirements" type="StringStatObjectFieldDefinition" value="!TALENT_LoneWolf; !TALENT_Indomitable" />
+      </fields>
+    </stat_object>
+    <stat_object is_substat="false">
+      <fields>
+        <field name="Name" type="NameStatObjectFieldDefinition" value="Jitterbug" />
+      </fields>
+    </stat_object>
+    <stat_object is_substat="false">
+      <fields>
+        <field name="Name" type="NameStatObjectFieldDefinition" value="ViolentMagic" />
+        <field name="Requirements" type="StringStatObjectFieldDefinition" value="!TALENT_Haymaker" />
+      </fields>
+    </stat_object>
+    <stat_object is_substat="false">
+      <fields>
+        <field name="Name" type="NameStatObjectFieldDefinition" value="Haymaker" />
+        <field name="Requirements" type="StringStatObjectFieldDefinition" value="!TALENT_ViolentMagic" />
+      </fields>
+    </stat_object>
   </stat_objects>
 </stats>

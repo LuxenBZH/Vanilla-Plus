@@ -654,5 +654,18 @@
         <field name="Name" type="NameStatObjectFieldDefinition" value="DGM_Weapon_Base" />
       </fields>
     </stat_object>
+    <stat_object is_substat="false">
+      <fields>
+        <field name="Name" type="NameStatObjectFieldDefinition" value="Soulcatcher_Zombie" />
+        <field name="Using" type="BaseClassStatObjectFieldDefinition" value="_NpcClubs" />
+        <field name="ItemGroup" type="StringStatObjectFieldDefinition" value="EMPTY" />
+        <field name="DamageBoost" type="IntegerStatObjectFieldDefinition" value="90" />
+        <field name="Durability" type="IntegerStatObjectFieldDefinition" value="50" />
+        <field name="WeaponType" type="EnumerationStatObjectFieldDefinition" value="0" enumeration_type_name="WeaponType" />
+        <field name="ExtraProperties" type="StringStatObjectFieldDefinition" value="POISONED,20,2" />
+        <field name="Flags" type="EnumerationListStatObjectFieldDefinition" value="30" enumeration_type_name="AttributeFlags" />
+        <field name="InventoryTab" type="EnumerationStatObjectFieldDefinition" value="7" enumeration_type_name="InventoryTabs" />
+      </fields>
+    </stat_object>
   </stat_objects>
 </stats>

@@ -27,6 +27,7 @@ local defaultDataValues = {
     DGM_PlayerVitalityMultiplier = 100,
     DGM_NpcVitalityMultiplier = 100,
     DGM_WandSurfaceBonus = 15,
+    DGM_PerseveranceResistance = 5,
 }
 
 local idToVariable = {
@@ -58,7 +59,8 @@ local idToVariable = {
     PlayerVitalityMultiplier = "DGM_PlayerVitalityMultiplier",
     NpcVitalityMultiplier = "DGM_NpcVitalityMultiplier",
     SummonsVitalityMultiplier = "DGM_SummonsVitalityMultiplier",
-    SummonsDamageBoost = "DGM_SummonsDamageBoost"
+    SummonsDamageBoost = "DGM_SummonsDamageBoost",
+    -- LXDGM_ModuleDivineTalents = "DGM_GB4Talents"
 }
 
 local requireRestart = {
@@ -73,7 +75,8 @@ local requireRestart = {
     PlayerVitalityMultiplier = true,
     NpcVitalityMultiplier = true,
     SummonsVitalityMultiplier = true,
-    SummonsDamageBoost = true
+    SummonsDamageBoost = true,
+    -- LXDGM_ModuleDivineTalents = true
 }
 
 local flags = {
@@ -84,6 +87,8 @@ local flags = {
     "LXDGM_ModuleOriginalChameleonCloak",
     "LXDGM_NPCStatsCorrectionCampaign",
     "LXDGM_NPCStatsCorrectionGM",
+    "LXDGM_ModuleDivineTalentsDisable",
+    "LXDGM_ModuleCorrogicDisable"
 }
 
 Ext.RegisterListener("StatsLoaded", function()
@@ -97,6 +102,16 @@ Ext.RegisterListener("StatsLoaded", function()
             Ext.ExtraData[idToVariable[var]] = value.Value
         end
 	end
+    -- for var,value in pairs(Ext.JsonParse(json).Mods["3ff156e2-289e-4dac-81f5-a44e3e304163"].Global.Flags) do
+    --     Ext.Print("Set Data flag",var,value.Enabled)
+    --     if requireRestart[var] then
+    --         if value.Enabled then
+    --             Ext.ExtraData[idToVariable[var]] = 1
+    --         else
+    --             Ext.ExtraData[idToVariable[var]] = 0
+    --         end
+    --     end
+	-- end
 end)
 
 
@@ -111,6 +126,8 @@ Ext.RegisterListener("SessionLoaded", function()
     settings.Global:AddLocalizedFlag("LXDGM_ModuleFallDamageAlternate", "Global", false, nil, nil, false)
     settings.Global:AddLocalizedFlag("LXDGM_ModuleDualCC", "Global", false, nil, nil, false)
     settings.Global:AddLocalizedFlag("LXDGM_ModuleOriginalChameleonCloak", "Global", false, nil, nil, false)
+    settings.Global:AddLocalizedFlag("LXDGM_ModuleDivineTalentsDisable", "Global", false, nil, nil, false)
+    settings.Global:AddLocalizedFlag("LXDGM_ModuleCorrogicDisable", "Global", false, nil, nil, false)
 
     -- settings.Global:AddLocalizedFlag("LXDGM_SettingsUseDefaultAttributeValues", "Global", true, nil, nil, false)
     settings.Global:AddLocalizedVariable("StrengthGloBonus", "LXDGM_StrengthGlobalDamageBonus", Ext.ExtraData.DGM_StrengthGlobalBonus, 0, 10, 0.5, "LXDGM_StrengthGlobalDamageBonus_Description")
@@ -135,7 +152,7 @@ Ext.RegisterListener("SessionLoaded", function()
     settings.Global:AddLocalizedVariable("WandSurfaceMult", "LXDGM_WandSurfaceMult", Ext.ExtraData.DGM_WandSurfaceBonus, 0, 100, 0.5, "LXDGM_WandSurfaceMult_Description")
     settings.Global:AddLocalizedVariable("CrossbowPenaltyBase", "LXDGM_CrossbowPenaltyBase", Ext.ExtraData.DGM_CrossbowBasePenalty, -300, 0, 1, "LXDGM_CrossbowPenaltyBase_Description")
     settings.Global:AddLocalizedVariable("CrossbowPenaltyGrowth", "LXDGM_CrossbowPenaltyGrowth", Ext.ExtraData.DGM_CrossbowLevelGrowthPenalty, -100, 0, 1, "LXDGM_CrossbowPenaltyGrowth_Description")
-    settings.Global:AddLocalizedVariable("PerseveranceVitality", "LXDGM_PerseveranceVitality", Ext.ExtraData.DGM_PerseveranceVitalityRecovery, 0, 20, 0.5, "LXDGM_PerseveranceVitality_Description")
+    settings.Global:AddLocalizedVariable("PerseveranceResistance", "LXDGM_PerseveranceResistance", Ext.ExtraData.DGM_PerseveranceResistance, 0, 10, 1, "LXDGM_PerseveranceResistance_Description")
     settings.Global:AddLocalizedVariable("CCParryDuration", "LXDGM_CCParryDuration", Ext.ExtraData.DGM_CCParryDuration, 0, 5, 1, "LXDGM_CCParryDuration_Description")
     settings.Global:AddLocalizedVariable("ArmourReductionMultiplier", "LXDGM_ArmourReductionMultiplier", Ext.ExtraData.DGM_ArmourReductionMultiplier, 50, 300, 5, "LXDGM_ArmourReductionMultiplier_Description")
 
@@ -156,11 +173,13 @@ Ext.RegisterListener("SessionLoaded", function()
         return {{
                 DisplayName = "Modules",
                 Entries = {
+                    "LXDGM_ModuleDivineTalentsDisable",
+                    "LXDGM_ModuleCorrogicDisable",
+                    "LXDGM_ModuleDualCC",
                     "LXDGM_ModuleRealJump",
                     "LXDGM_ModuleFallDamageClassic",
                     "LXDGM_ModuleFallDamageAlternate",
-                    "LXDGM_ModuleDualCC",
-                    "LXDGM_ModuleOriginalChameleonCloak"
+                    "LXDGM_ModuleOriginalChameleonCloak",
                 }},
                 {DisplayName = "Attributes",
                 Entries = {
@@ -190,7 +209,7 @@ Ext.RegisterListener("SessionLoaded", function()
                     "WandSurfaceMult",
                     "CrossbowPenaltyBase",
                     "CrossbowPenaltyGrowth",
-                    "PerseveranceVitality",
+                    "PerseveranceResistance",
                     "CCParryDuration",
                     "ArmourReductionMultiplier"
                 }},

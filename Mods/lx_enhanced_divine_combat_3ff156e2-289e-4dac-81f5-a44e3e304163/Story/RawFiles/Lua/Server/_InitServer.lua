@@ -16,6 +16,9 @@ gameLevel = ""
 
 Ext.RegisterOsirisListener("GameStarted", "2", "after", function(level, editor)
 	gameLevel = level
+	if PersistentVars.SPunchCooldown == nil then
+		PersistentVars.SPunchCooldown = {}
+	end
 end)
 
 if Mods.LeaderLib ~= nil then

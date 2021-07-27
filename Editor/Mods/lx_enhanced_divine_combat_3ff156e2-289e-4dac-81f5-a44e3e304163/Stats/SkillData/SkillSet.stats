@@ -14,13 +14,6 @@
         <field name="Skills" type="StatReferenceStatObjectFieldDefinition" stat_name="Jump_BonePileBurrow" />
       </fields>
     </stat_object>
-    <stat_object is_substat="true">
-      <fields>
-        <field name="Name" type="NameStatObjectFieldDefinition" value="Summon_BonePile_substat" />
-        <field name="Skills" type="StatReferenceStatObjectFieldDefinition" stat_name="Shout_BoneCage" />
-        <field name="Using" type="BaseClassStatObjectFieldDefinition" value="Summon_BonePile" />
-      </fields>
-    </stat_object>
     <stat_object is_substat="false">
       <fields>
         <field name="Name" type="NameStatObjectFieldDefinition" value="Summon_OilBlob" />

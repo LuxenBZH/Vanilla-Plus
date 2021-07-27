@@ -34,7 +34,7 @@ data "CastEffect" "RS3_FX_Skills_Air_Cast_Cone_Air_Tornado_Hand_01:Dummy_L_HandF
 data "TargetEffect" "RS3_FX_UI_TargetPreviewer_Air_01"
 data "Memory Cost" "1"
 data "Magic Cost" "0"
-data "CleanseStatuses" "INVISIBLE;BURNING;SLOWED"
+data "CleanseStatuses" "INVISIBLE;BURNING;SLOWED;NECROFIRE;"
 data "StatusClearChance" "100"
 data "CycleConditions" "Character;!Dead"
 

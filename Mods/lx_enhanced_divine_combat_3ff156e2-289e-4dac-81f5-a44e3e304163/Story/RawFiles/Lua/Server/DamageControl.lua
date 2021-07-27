@@ -1,3 +1,4 @@
+---------- Corrosive/Shadow damage tagging
 local function TagShadowCorrosiveDifference(damageArray)
 	if damageArray.Shadow > 0 and damageArray.Corrosive > 0 then
 		if damageArray.Shadow > damageArray.Corrosive then
@@ -24,6 +25,67 @@ local function TraceDamageSpreaders(target)
 		end
 	end
 end
+----------
+
+---------- Corrogic Module
+--- @param instigator string GUID
+--- @param skill string
+local function IncreaseCorrosiveMagicFromSkill(instigator, skill, damageList)
+	local school = Ext.GetStat(skill).Ability
+	local stat = Ext.GetCharacter(instigator).Stats[skillAbilities[school]]
+	if stat then
+		if damageList["Corrosive"] ~= 0 then
+			damageList["Corrosive"] = damageList["Corrosive"] * 1.0+(0.05*stat)
+		end
+		if damageList["Magic"] ~= 0 then
+			damageList["Magic"] = damageList["Magic"] * 1.0+(0.05*stat)
+		end
+	end
+end
+
+local function InflictResistanceDebuff(target, perc)
+	local character = Ext.GetCharacter(target)
+	local current = FindStatus(character, "LX_CORROGIC_")
+	if not current then
+		current = perc
+	else
+		current = string.gsub(current, "LX_CORROGIC_", "")
+		Ext.Print(current, perc)
+		current = tonumber(current) + perc
+	end
+	if NRD_StatExists("LX_CORROGIC_"..current) then
+		ApplyStatus(character.MyGuid, "LX_CORROGIC_"..current, 12.0, 1)
+	else
+		local newPotion = Ext.CreateStat("DGM_Potion_Corrogic_"..current, "Potion", "DGM_Potion_Base")
+		for i,res in pairs(resistances) do
+			newPotion[res] = -current
+		end
+		Ext.SyncStat(newPotion.Name, false)
+		local newStatus = Ext.CreateStat("LX_CORROGIC_"..current, "StatusData", "LX_CORROGIC")
+		newStatus.StatsId = newPotion.Name
+		Ext.SyncStat(newStatus.Name, false)
+		ApplyStatus(character.MyGuid, "LX_CORROGIC_"..current, 12.0, 1)
+	end
+end
+
+--- @param target string GUID
+--- @param dmgList number[] 
+local function TriggerCorrogicResistanceStrip(target, dmgList)
+	local character = Ext.GetCharacter(target)
+	if dmgList.Corrosive > 0 or dmgList.Magic > 0 then
+		local perc = 0
+		if character.Stats.CurrentArmor == 0 then
+			perc = perc + math.floor(dmgList.Corrosive / character.Stats.MaxVitality * 100)
+		end
+		if character.Stats.CurrentMagicArmor == 0 then
+			perc = perc + math.floor(dmgList.Magic / character.Stats.MaxVitality * 100)
+		end
+		if perc > 0 then
+			InflictResistanceDebuff(target, perc)
+		end
+	end
+end
+----------
 
 ---@param target EsvCharacter
 ---@param handle number
@@ -116,7 +178,7 @@ function DamageControl(target, instigator, hitDamage, handle)
 		damageBonus = damageBonus + strength*Ext.ExtraData.DGM_StrengthWeaponBonus
 		-- Siphon Poison effect
 		if HasActiveStatus(instigator, "SIPHON_POISON") == 1 then
-			local seconds = 6.0
+			local seconds = 12.0
 			if HasActiveStatus(instigator, "VENOM_COATING") == 1 or HasActiveStatus(instigator, "VENOM_AURA") == 1 then
 				seconds = seconds + 12.0
 			end
@@ -164,6 +226,12 @@ function DamageControl(target, instigator, hitDamage, handle)
 			else
 				globalMultiplier = globalMultiplier + Ext.ExtraData.DGM_WandSkillMultiplier/100
 			end
+		elseif weaponTypes[2] == "Wand" then -- Credits to lololice to spot that edge case
+			if weaponTypes[1] == "Wand" then
+				globalMultiplier = globalMultiplier + Ext.ExtraData.DGM_WandSkillMultiplier/100*2
+			else
+				globalMultiplier = globalMultiplier + Ext.ExtraData.DGM_WandSkillMultiplier/100
+			end
 		elseif weaponTypes[1] == "Staff" then
 			globalMultiplier = globalMultiplier + Ext.ExtraData.DGM_StaffSkillMultiplier/100
 		end
@@ -181,13 +249,16 @@ function DamageControl(target, instigator, hitDamage, handle)
 		damageBonus = 0
 		globalMultiplier = 1
 	end
-	damages = ChangeDamage(damages, (damageBonus/100+1)*globalMultiplier, 0, instigator, target, handle)
+	damages = ChangeDamage(damages, (damageBonus/100+1)*globalMultiplier, 0, instigator, target, handle, isDoT)
 	ReplaceDamages(damages, handle, target)
 	TagShadowCorrosiveDifference(damages)
 	if ObjectIsCharacter(target) == 1 then SetWalkItOff(target, handle) end
 	
 	-- Armor passing damages
 	if ObjectIsCharacter(target) == 1 then InitiatePassingDamage(target, damages) end
+	if Ext.ExtraData.DGM_Corrogic == 1 then
+		TriggerCorrogicResistanceStrip(target, damages)
+	end
 end
 
 ---@param target EsvCharacter
@@ -206,7 +277,7 @@ end
 ---@param multiplier number
 ---@param value number
 ---@param instigator EsvCharacter
-function ChangeDamage(damages, multiplier, value, instigator, target, handle)
+function ChangeDamage(damages, multiplier, value, instigator, target, handle, dot)
 	local lifesteal = NRD_StatusGetInt(target, handle, "LifeSteal")
 	instigator = Ext.GetCharacter(instigator)
 	for dmgType,amount in pairs(damages) do
@@ -233,7 +304,7 @@ function ChangeDamage(damages, multiplier, value, instigator, target, handle)
 		if amount ~= 0 then Ext.Print("Changed "..dmgType.." to "..amount.." (Multiplier = "..multiplier..")") end
 		damages[dmgType] = amount
 	end
-	if ObjectIsCharacter(target) ~= 1 then lifesteal = 0 end
+	if ObjectIsCharacter(target) ~= 1 or dot == 1 then lifesteal = 0 end
 	NRD_StatusSetInt(target, handle, "LifeSteal", lifesteal)
 	return damages
 end
@@ -520,6 +591,9 @@ function ApplyHitResistances(character, damageList, attacker)
 		local originalResistance = Game.Math.GetResistance(character, damage.DamageType)
 		local resistance = originalResistance
 		local bypassValue = (strength - Ext.ExtraData.AttributeBaseValue) * Ext.ExtraData.DGM_StrengthResistanceIgnore * (intelligence - Ext.ExtraData.AttributeBaseValue)
+		if character.TALENT_Haymaker then
+			bypassValue = bypassValue + (character.Wits-Ext.ExtraData.AttributeBaseValue)*3
+		end
 		-- Ext.Print("bypass value:",bypassValue)
 		-- Ext.Print(resistance)
 		if originalResistance ~= nil and originalResistance > 0 and originalResistance < 100 and bypassValue > 0 then

@@ -625,5 +625,126 @@
         <field name="Description" type="TranslatedStringStatObjectFieldDefinition" value="Adds [1] to weapon attacks and skills." />
       </fields>
     </stat_object>
+    <stat_object is_substat="false">
+      <fields>
+        <field name="Name" type="NameStatObjectFieldDefinition" value="LX_ADRENALINE" />
+        <field name="DisplayName" type="TranslatedStringStatObjectFieldDefinition" value="Adrenaline" />
+        <field name="Icon" type="StringStatObjectFieldDefinition" value="statIcons_Adrenaline" />
+        <field name="StatusEffect" type="StringStatObjectFieldDefinition" value="RS3_FX_GP_Status_Adrenaline_01" />
+        <field name="StatsId" type="StringStatObjectFieldDefinition" value="Stats_LX_Adrenaline" />
+        <field name="StackId" type="StringStatObjectFieldDefinition" value="Stack_Adrenaline" />
+      </fields>
+    </stat_object>
+    <stat_object is_substat="false">
+      <fields>
+        <field name="Name" type="NameStatObjectFieldDefinition" value="LX_PERSEVERANCE" />
+        <field name="DisplayName" type="TranslatedStringStatObjectFieldDefinition" value="Perseverance" />
+        <field name="Icon" type="StringStatObjectFieldDefinition" value="Ability_Perseverance" />
+        <field name="StatsId" type="StringStatObjectFieldDefinition" value="Stats_LX_Perseverance" />
+        <field name="StackId" type="StringStatObjectFieldDefinition" value="Stack_LX_Perseverance" />
+      </fields>
+    </stat_object>
+    <stat_object is_substat="false">
+      <fields>
+        <field name="Name" type="NameStatObjectFieldDefinition" value="LX_EXECUTIONER" />
+        <field name="DisplayName" type="TranslatedStringStatObjectFieldDefinition" value="Executioner" />
+        <field name="Icon" type="StringStatObjectFieldDefinition" value="Talent_Executioner" />
+        <field name="StatsId" type="StringStatObjectFieldDefinition" value="Stats_LX_Executioner" />
+        <field name="StackId" type="StringStatObjectFieldDefinition" value="Stack_LX_Executioner" />
+      </fields>
+    </stat_object>
+    <stat_object is_substat="false">
+      <fields>
+        <field name="Name" type="NameStatObjectFieldDefinition" value="LX_GB4_MC_EA" />
+        <field name="ForGameMaster" type="EnumerationStatObjectFieldDefinition" value="1" enumeration_type_name="YesNo" />
+        <field name="DisplayName" type="TranslatedStringStatObjectFieldDefinition" value="Cycle of Earth and Air" />
+        <field name="Icon" type="StringStatObjectFieldDefinition" value="CMP_Talents_Magic_Cycles_earthair" />
+        <field name="StatsId" type="StringStatObjectFieldDefinition" value="Stats_LX_MagicCycleEarthAir" />
+        <field name="StackId" type="StringStatObjectFieldDefinition" value="Stack_LX_MagicCycles" />
+      </fields>
+    </stat_object>
+    <stat_object is_substat="false">
+      <fields>
+        <field name="Name" type="NameStatObjectFieldDefinition" value="LX_GB4_MC_WF" />
+        <field name="ForGameMaster" type="EnumerationStatObjectFieldDefinition" value="1" enumeration_type_name="YesNo" />
+        <field name="DisplayName" type="TranslatedStringStatObjectFieldDefinition" value="Cycle of Water and Fire" />
+        <field name="Icon" type="StringStatObjectFieldDefinition" value="CMP_Talents_Magic_Cycles_waterfire" />
+        <field name="StatsId" type="StringStatObjectFieldDefinition" value="Stats_LX_MagicCycleFireWater" />
+        <field name="StackId" type="StringStatObjectFieldDefinition" value="Stack_LX_MagicCycles" />
+      </fields>
+    </stat_object>
+    <stat_object is_substat="false">
+      <fields>
+        <field name="Name" type="NameStatObjectFieldDefinition" value="LX_INDOMITABLE" />
+        <field name="ForGameMaster" type="EnumerationStatObjectFieldDefinition" value="1" enumeration_type_name="YesNo" />
+        <field name="DisplayName" type="TranslatedStringStatObjectFieldDefinition" value="Indomitable" />
+        <field name="Icon" type="StringStatObjectFieldDefinition" value="CMP_Talents_Indomitable" />
+        <field name="FormatColor" type="EnumerationStatObjectFieldDefinition" value="8" enumeration_type_name="FormatStringColor" />
+        <field name="StatsId" type="StringStatObjectFieldDefinition" value="Stats_LX_Indomitable" />
+        <field name="StackId" type="StringStatObjectFieldDefinition" value="Stack_LX_Indomitable" />
+      </fields>
+    </stat_object>
+    <stat_object is_substat="false">
+      <fields>
+        <field name="Name" type="NameStatObjectFieldDefinition" value="LX_INDOMITABLE_CD" />
+        <field name="ForGameMaster" type="EnumerationStatObjectFieldDefinition" value="0" enumeration_type_name="YesNo" />
+        <field name="DisplayName" type="TranslatedStringStatObjectFieldDefinition" value="Exhausted" />
+        <field name="Icon" type="StringStatObjectFieldDefinition" value="CMP_Talents_Indomitable_cooldown" />
+        <field name="FormatColor" type="EnumerationStatObjectFieldDefinition" value="33" enumeration_type_name="FormatStringColor" />
+        <field name="StackId" type="StringStatObjectFieldDefinition" value="Stack_LX_Indomitable" />
+        <field name="Description" type="TranslatedStringStatObjectFieldDefinition" value="The Indomitable talent won't have any effect while this status is present." />
+      </fields>
+    </stat_object>
+    <stat_object is_substat="false">
+      <fields>
+        <field name="Name" type="NameStatObjectFieldDefinition" value="LX_GLADIATOR_CD" />
+        <field name="DisplayName" type="TranslatedStringStatObjectFieldDefinition" value="Gladiator" />
+        <field name="Description" type="TranslatedStringStatObjectFieldDefinition" value="The Gladiator talent won't have any effect while this status is present." />
+        <field name="Icon" type="StringStatObjectFieldDefinition" value="CMP_Talents_Gladiator_cooldown" />
+        <field name="FormatColor" type="EnumerationStatObjectFieldDefinition" value="33" enumeration_type_name="FormatStringColor" />
+        <field name="StatsId" type="StringStatObjectFieldDefinition" value="Stats_LX_Gladiator_CD" />
+        <field name="StackId" type="StringStatObjectFieldDefinition" value="Stack_LX_Gladiator_CD" />
+      </fields>
+    </stat_object>
+    <stat_object is_substat="false">
+      <fields>
+        <field name="Name" type="NameStatObjectFieldDefinition" value="LX_SOULCATCHER" />
+        <field name="DisplayName" type="TranslatedStringStatObjectFieldDefinition" value="Soulcatcher" />
+        <field name="Description" type="TranslatedStringStatObjectFieldDefinition" value="Raised as a zombie until status expires or character is resurrected." />
+        <field name="Icon" type="StringStatObjectFieldDefinition" value="CMP_Talents_Soulcatcher" />
+        <field name="FormatColor" type="EnumerationStatObjectFieldDefinition" value="8" enumeration_type_name="FormatStringColor" />
+        <field name="StackId" type="StringStatObjectFieldDefinition" value="Stack_LX_Soulcatcher" />
+      </fields>
+    </stat_object>
+    <stat_object is_substat="false">
+      <fields>
+        <field name="Name" type="NameStatObjectFieldDefinition" value="LX_GB4_JITTERBUG_CD" />
+        <field name="DisplayName" type="TranslatedStringStatObjectFieldDefinition" value="Escaped" />
+        <field name="Description" type="TranslatedStringStatObjectFieldDefinition" value="The Jitterbug talent won't have any effect while this status is present." />
+        <field name="Icon" type="StringStatObjectFieldDefinition" value="CMP_Talents_Jitterbug" />
+        <field name="FormatColor" type="EnumerationStatObjectFieldDefinition" value="33" enumeration_type_name="FormatStringColor" />
+        <field name="StackId" type="StringStatObjectFieldDefinition" value="Stack_LX_Jitterbug_CD" />
+      </fields>
+    </stat_object>
+    <stat_object is_substat="false">
+      <fields>
+        <field name="Name" type="NameStatObjectFieldDefinition" value="LX_SOULCATCHER_CD" />
+        <field name="DisplayName" type="TranslatedStringStatObjectFieldDefinition" value="Soulcatcher" />
+        <field name="Description" type="TranslatedStringStatObjectFieldDefinition" value="The Soulcatcher talent won't work while this status is active." />
+        <field name="Icon" type="StringStatObjectFieldDefinition" value="CMP_Talents_Soulcatcher" />
+        <field name="FormatColor" type="EnumerationStatObjectFieldDefinition" value="33" enumeration_type_name="FormatStringColor" />
+        <field name="StackId" type="StringStatObjectFieldDefinition" value="Stack_LX_Soulcatcher_CD" />
+      </fields>
+    </stat_object>
+    <stat_object is_substat="false">
+      <fields>
+        <field name="Name" type="NameStatObjectFieldDefinition" value="LX_CORROGIC" />
+        <field name="DisplayName" type="TranslatedStringStatObjectFieldDefinition" value="Resistance Corrosion" />
+        <field name="Description" type="TranslatedStringStatObjectFieldDefinition" value="Resistances are lowered by Corrosive and/or Magic armour damage on Vitality." />
+        <field name="Icon" type="StringStatObjectFieldDefinition" value="CMP_Skill_Flesh_Adaptation_affected" />
+        <field name="FormatColor" type="EnumerationStatObjectFieldDefinition" value="33" enumeration_type_name="FormatStringColor" />
+        <field name="StackId" type="StringStatObjectFieldDefinition" value="Stack_LX_Corrogic" />
+      </fields>
+    </stat_object>
   </stat_objects>
 </stats>
