@@ -330,7 +330,7 @@ GB4Talents = {
     "Indomitable",
     -- "Jitterbug",
     "Soulcatcher",
-    "MasterThief",
+    -- "MasterThief",
     "GreedyVessel",
     "MagicCycles",
 	-- "WildMag",

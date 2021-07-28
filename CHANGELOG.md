@@ -695,3 +695,9 @@ Balance
 * Leadership range decreased to 12m from 16m
 * Stoneskin potion Dodge boost reduced to -20% from +20%
 * Acid now reduce Dodge by 20% instead of reducing physical and piercing resistances
+
+# 1.2.12.62
+Fix
+* Damage over time tooltips now take into account the corresponding school bonus (e.g. Geomancy for Poison)
+* Fixed the tooltip of some talents not being up to date with the changes
+* Removed Master Thief until it is reworked and functional
