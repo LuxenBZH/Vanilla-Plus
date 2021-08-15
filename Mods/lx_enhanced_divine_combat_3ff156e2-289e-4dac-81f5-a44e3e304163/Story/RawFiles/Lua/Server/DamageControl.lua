@@ -465,36 +465,6 @@ end
 
 Game.Math.CalculateHitChance = DGM_CalculateHitChance
 
---- @param character StatCharacter
---- @param weapon StatItem
-function CalculateWeaponDamageRange(character, weapon)
-    local damages, damageBoost = ComputeBaseWeaponDamage(weapon)
-
-    local abilityBoosts = character.DamageBoost 
-        + ComputeWeaponCombatAbilityBoost(character, weapon)
-        + ComputeWeaponRequirementScaledDamage(character, weapon)
-    abilityBoosts = math.max(abilityBoosts + 100.0, 0.0) / 100.0
-
-    local boost = 1.0 + damageBoost * 0.01
-    if character.IsSneaking then
-        boost = boost + Ext.ExtraData['Sneak Damage Multiplier']
-    end
-
-    local ranges = {}
-    for damageType, damage in pairs(damages) do
-        local min = damage.Min * boost * abilityBoosts
-        local max = damage.Max * boost * abilityBoosts
-
-        if min > max then
-            max = min
-        end
-
-        ranges[damageType] = {min, max}
-    end
-
-    return ranges
-end
-
 local function GetDamageMultipliers(skill, stealthed, attackerPos, targetPos)
     local stealthDamageMultiplier = 1.0
     if stealthed then
@@ -592,9 +562,9 @@ function ApplyHitResistances(character, damageList, attacker)
 		local resistance = originalResistance
 		local bypassValue = (strength - Ext.ExtraData.AttributeBaseValue) * Ext.ExtraData.DGM_StrengthResistanceIgnore * (intelligence - Ext.ExtraData.AttributeBaseValue)
 		if character.TALENT_Haymaker then
-			bypassValue = bypassValue + (character.Wits-Ext.ExtraData.AttributeBaseValue)*3
+			bypassValue = bypassValue + (character.Wits-Ext.ExtraData.AttributeBaseValue)*Ext.ExtraData.CriticalBonusFromWits
 		end
-		-- Ext.Print("bypass value:",bypassValue)
+		Ext.Print("Resistance bypass value:",bypassValue)
 		-- Ext.Print(resistance)
 		if originalResistance ~= nil and originalResistance > 0 and originalResistance < 100 and bypassValue > 0 then
 			resistance = originalResistance - bypassValue

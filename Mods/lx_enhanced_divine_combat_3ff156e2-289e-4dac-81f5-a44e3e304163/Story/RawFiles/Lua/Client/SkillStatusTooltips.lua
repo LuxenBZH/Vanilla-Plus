@@ -327,8 +327,14 @@ local function StatusGetDescriptionParam(status, statusSource, character, par)
 		end
         dmg = dmg*(dmgStat.DamageFromBase/100)
 		local dmgRange = dmg*(dmgStat["Damage Range"])*0.005
-		local minDmg = math.floor(Ext.Round(dmg - dmgRange)* globalMult)
-        local maxDmg = math.ceil(Ext.Round(dmg + dmgRange)* globalMult)
+        Ext.Print(statusSource.MyGuid, statusSource.NetID)
+        local schoolBonus = 1
+        local pass, characterSource = pcall(Ext.GetCharacter, statusSource.NetID)
+        if pass then
+            schoolBonus = schoolBonus + Game.Math.GetDamageBoostByType(characterSource.Stats, dmgStat["Damage Type"])
+        end
+		local minDmg = math.floor(Ext.Round(dmg - dmgRange)* globalMult * schoolBonus)
+        local maxDmg = math.ceil(Ext.Round(dmg + dmgRange)* globalMult * schoolBonus)
         if maxDmg <= minDmg then maxDmg = maxDmg+1 end
 		local color = getDamageColor(dmgStat["Damage Type"])
 		return "<font color="..color..">"..tostring(minDmg).."-"..tostring(maxDmg).." "..dmgStat["Damage Type"].." damage".."</font>"

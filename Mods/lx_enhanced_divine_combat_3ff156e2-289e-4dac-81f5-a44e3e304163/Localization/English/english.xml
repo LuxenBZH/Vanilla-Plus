@@ -6,7 +6,7 @@
 	<content contentuid="h049f29acg76c5g4336ga831g3effd3b94d4e">Default : 1&lt;br&gt;&lt;font color=#ff0000&gt;Require a game restart&lt;/font&gt;</content>
 	<content contentuid="h055c33d3ge1f1g431eg8fd0gebd6da7eb962">Morning Person</content>
 	<content contentuid="h06098edfg8629g4f30gb6d4g45057f6622ce">Deals [1] damage each turn.</content>
-	<content contentuid="h06c77362g1304g4f81ga661g695dc6b814bc">A character with Demon has an extra 30% Fire Resistance, but takes a 15% penalty to Water Resistance. Additionally, the maximum Fire Resistance is raised by 10 and grants immunity to Burning and Necrofire.</content>
+	<content contentuid="h06c77362g1304g4f81ga661g695dc6b814bc">A character with Demon has an extra 20% Fire Resistance, but takes a 15% penalty to Water Resistance. Additionally, the maximum Fire Resistance is raised by 10 and grants immunity to Burning and Necrofire.</content>
 	<content contentuid="h0897c725g76cbg4ab7ga0ceg31a5294abbf8">Reset all cooldowns but remove your armours for 2 turns. Removes Burning, Necrofire, Poisoned, Bleeding, Momentum and Lingering.</content>
 	<content contentuid="h08adfff4gbd75g4ee9g8070gf928d43a6302">Stench</content>
 	<content contentuid="h092684e6gbf69g4372g99f8g4743516b0efe">Offhand penalty: [1]% (penalty reduced by [2]% from Dual-Wielding)</content>
@@ -103,7 +103,7 @@
 	<content contentuid="h6d219e8ag59abg4adegbf53g2f73649ee312">The correction indice for damaging attribute if there is a tie between two or all three damaging attributes for NPCs. The higher it is, the lower will be the final result.&lt;br&gt;Default : 60&lt;br&gt;&lt;font color=#ff0000&gt;Require a game restart&lt;/font&gt;</content>
 	<content contentuid="h6d2cd8aeg4e09g4003ga57cg3fea3a0f5502">Wits increase your Critical Chance by [1]%, Initiative by [2], increase damages dealt by damaging statuses by [3]% per point and your ability to detect traps and find hidden treasures.</content>
 	<content contentuid="h6d523ea5g116eg4380g816fg72079d80f321">Set the skill damage multplier pencetage when a wand is equipped (can be doubled when dual-wielding).&lt;br&gt;Default : 5</content>
-	<content contentuid="h6d76eb15gdb1ag4ebeg8001g58173516a923">Walk It Off reduces all status durations by 1 turn, including positive statuses. Does not affect statuses with a duration of 1 turn. Also increases all resistances by 10% each time you are hit by a character, up to a maximum of 30%, until the next turn.</content>
+	<content contentuid="h6d76eb15gdb1ag4ebeg8001g58173516a923">Walk It Off reduces all status durations by 1 turn, including positive statuses. Does not affect statuses with a duration of 1 turn. Also increases elemental resistances by 8% and Physical and Piercing resistances by 4% each time you are directly hit by a character, up to a maximum of 3 times until the next turn.</content>
 	<content contentuid="h6e9ec88dgcbb7g426bgb1d9g69df0240825a">Level [1]: +[2]% Damage, +[3]% Critical Multiplier.</content>
 	<content contentuid="h70707bb2g5a48g4571g9a68ged2fe5a030ea">Level [1]: +[2]% Damage, +[3]% accuracy, +[4]% armours and +[5]% to Elemental Resistances.</content>
 	<content contentuid="h711b52a9ga71ag458cg82c4gdca0433f24b2">Wand Skill Damage Multiplier</content>
@@ -166,7 +166,7 @@
 	<content contentuid="hb78e3fa5gfa77g4a00g9228g62b93db293e9">If Corrosive or Magic damage is dealt while the corresponding armour is depleted, they will strip resistances for 2 turns. Can be stacked, the resistance loss is proportional to the damage dealt and the max vitality of the target. Can be removed with Fortified or Magic Shell. &lt;br&gt;Default : on&lt;br&gt;</content>
 	<content contentuid="hb924258ag2cf7g4c11gaf4eg8b7de303c197"> </content>
 	<content contentuid="hbce8b81ag1259g4a30g99f9g1f99e9b74583">Elemental Weapons</content>
-	<content contentuid="hbd257f75g9084g4c73g9db0g77d418e677c9">A character with Ice King has an extra 30% Water Resistance, but takes a 15% penalty to Fire Resistance. Additionally, the maximum Water Resistance is raised by 10. All Water damage you deal are increased by 20% and grants immunity to Chilled.</content>
+	<content contentuid="hbd257f75g9084g4c73g9db0g77d418e677c9">A character with Ice King has an extra 20% Water Resistance, but takes a 15% penalty to Fire Resistance. Additionally, the maximum Water Resistance is raised by 10. All Water damage you deal are increased by 20% and grants immunity to Chilled.</content>
 	<content contentuid="hbd366dc5g10a3g48acg9bffg4a11bccb189d">Each ally consumes frozen surfaces around them, converting the frozen surfaces to Magic Armour. If they are Chilled or Frozen, they restore an additional 30% Magic Armour. Removes Chilled, Frozen, Burning and Necrofire.</content>
 	<content contentuid="hbd5f39f8g78e1g42c8g95b6g1917a8c65816">Target character and surrounding allies receive Sparkmaster status that make melee attacks firing sparks that can fork twice at nearby enemies. Each spark hit deals [1].</content>
 	<content contentuid="hbde985cfgb1c4g4bb6g9a61gbec72c9b4ed6">Mnenomic doubles all points invested in Memory.</content>
@@ -178,7 +178,7 @@
 	<content contentuid="hc13ac1f2ge15eg4791ga4bcgca5508715345">Activate for GM mode</content>
 	<content contentuid="hc385872cge252g4da0gbc7agf774df831f28">Electric Weapons</content>
 	<content contentuid="hc4400964gcf4bg429cg882cg9e90ba8cf0ce">Level [1]: Water attacks deal +[2]% more damage, +[3]% Vitality healed, +[4]% Magic Armour from skills and potions.</content>
-	<content contentuid="hc453e399ge1f5g41f1gaeabgcdd4de833c63">A character with [1] has an extra 30% [3], but takes a [4]% penalty to [5]. Additionally, the maximum [3] is raised by [6]. Demon grants immunity to Burning and Necrofire. Ice King increases all Water damage you deal by 20% and grants immunity to Chilled.</content>
+	<content contentuid="hc453e399ge1f5g41f1gaeabgcdd4de833c63">A character with [1] has an extra 20% [3], but takes a [4]% penalty to [5]. Additionally, the maximum [3] is raised by [6]. Demon grants immunity to Burning and Necrofire. Ice King increases all Water damage you deal by 20% and grants immunity to Chilled.</content>
 	<content contentuid="hc5574731g874ag4d82gb4a0gba70af698168">Crossbow Base Penalty</content>
 	<content contentuid="hc5d5552bg6b33g44c1gbb0cg8d55a101f081">Level [1]: +[2]% Damage, +[3]% Dodging and increase Offhand damage by [4]%.</content>
 	<content contentuid="hc82cf98agdf5dg41d5gac1bg325ac645fb79">The correction indice for the highest damaging attribute for NPCs. The higher it is, the lower will be the final result.&lt;br&gt;Default : 50&lt;br&gt;&lt;font color=#ff0000&gt;Require a game restart&lt;/font&gt;</content>
