@@ -701,3 +701,11 @@ Fix
 * Damage over time tooltips now take into account the corresponding school bonus (e.g. Geomancy for Poison)
 * Fixed the tooltip of some talents not being up to date with the changes
 * Removed Master Thief until it is reworked and functional
+
+# 1.2.13.63
+New
+* Linear Vitality Scaling toggle: you can now change the vitality scaling of the game. The linear scaling, as its name implies, make the vitality grow linearly when leveling up instead of exponentially. This results in a greatly reduced equipment obsolescence and more fair inter-level battles (fighting a lower level is harder but fighting a higher level is easier). This opens up exploration paths you couldn't do before because of the level scaling, so it might be a new way to play the game (and possibly break it!)
+
+Balance
+* Soft attributes cap is now 30 instead of 40. This can be changed in the options.
+* Teleport and Nether Swap now require any enemy to have at least one of its armours depleted to be used. It can still be used on armoured allies and neutrals.

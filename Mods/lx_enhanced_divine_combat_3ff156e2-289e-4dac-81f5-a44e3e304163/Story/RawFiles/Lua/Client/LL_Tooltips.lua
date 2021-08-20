@@ -262,7 +262,7 @@ end
 local function DGM_Extended_Tooltips_Init()
     if Mods.LeaderLib == nil then return end
     if Mods.SingingScar ~= nil then
-        Ext.Print("Detected Singing Scar")
+        Ext.Print("[Vanilla+] Detected Singing Scar, applying Shadow damage scaling")
         dmgTypeToSchool["Shadow"] = "Tenebrium Infusion"
     end
     Game.Tooltip.RegisterListener("Item", nil, OnItemTooltip)

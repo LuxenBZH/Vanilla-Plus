@@ -141,6 +141,7 @@ Ext.RegisterListener("SessionLoaded", function()
     settings.Global:AddLocalizedVariable("IntelligenceAccuracyBonus", "LXDGM_IntelligenceAccuracyBonus", Ext.ExtraData.DGM_IntelligenceAccuracyBonus, 0, 10, 1, "LXDGM_IntelligenceAccuracyBonus_Description")
     settings.Global:AddLocalizedVariable("WitsDotBonus", "LXDGM_WitsDotBonus", Ext.ExtraData.DGM_WitsDotBonus, 0, 50, 1, "LXDGM_WitsDotBonus_Description")
     settings.Global:AddLocalizedVariable("CritChanceBackstabBonus", "LXDGM_BackstabCritChanceBonus", Ext.ExtraData.DGM_BackstabCritChanceBonus, 0, 3, 0.25, "LXDGM_BackstabCritChanceBonus_Description")
+    settings.Global:AddLocalizedVariable("AttributeCap", "LXDGM_AttributeCap", Ext.ExtraData.AttributeSoftCap, Ext.ExtraData.AttributeBaseValue, 60, 1, "LXDGM_AttributeCap_Description")
 
     settings.Global:AddLocalizedVariable("ArmourDamagePass", "LXDGM_ArmourDamagePass", Ext.ExtraData.DGM_DamageThroughArmor, 0, 100, 1, "LXDGM_ArmourDamagePass_Description")
     settings.Global:AddLocalizedVariable("ArmourDamagePassDepleted", "LXDGM_ArmourDamagePassDepleted", Ext.ExtraData.DGM_DamageThroughArmorDepleted, 0, 100, 1, "LXDGM_ArmourDamagePassDepleted_Description")
@@ -168,6 +169,12 @@ Ext.RegisterListener("SessionLoaded", function()
     settings.Global:AddLocalizedButton("FixConstitutionGap", "LXDGM_FixConstitutionGap", function(button, uuid, character)
         Ext.PostMessageToServer("DGM_FixConstitutionGap", "")
     end, nil, true, "LXDGM_FixConstitutionGap_Description")
+    settings.Global:AddLocalizedButton("FlatScalingActivate", "LXDGM_FlatScalingActivate", function(button, uuid, character)
+        Ext.PostMessageToServer("LXDGM_FlatScalingWarning", "")
+    end, nil, true, "LXDGM_FlatScalingActivate_Description")
+    settings.Global:AddLocalizedButton("FlatScalingDeactivate", "LXDGM_FlatScalingDeactivate", function(button, uuid, character)
+        Ext.PostMessageToServer("LXDGM_FlatScalingWarning2", "")
+    end, nil, true, "LXDGM_FlatScalingDeactivate_Description")  
 
     settings.GetMenuOrder = function()
         return {{
@@ -194,6 +201,7 @@ Ext.RegisterListener("SessionLoaded", function()
                     "IntelligenceAccuracyBonus",
                     "WitsDotBonus",
                     "CritChanceBackstabBonus",
+                    "AttributeCap"
                 }},
                 {DisplayName = "Armour System",
                 Entries = {
@@ -224,7 +232,9 @@ Ext.RegisterListener("SessionLoaded", function()
                     -- "NpcVitalityMultiplier",
                     "SummonsVitalityMultiplier",
                     "SummonsDamageBoost",
-                    "FixConstitutionGap"
+                    "FixConstitutionGap",
+                    "FlatScalingActivate",
+                    "FlatScalingDeactivate"
                 }},
         }
     end

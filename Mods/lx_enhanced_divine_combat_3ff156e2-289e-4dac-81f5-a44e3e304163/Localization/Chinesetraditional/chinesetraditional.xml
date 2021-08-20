@@ -27,6 +27,7 @@
 	<content contentuid="h1b361ce1gd5d3g4c0eg8b8cg7d87658e755f">Activate the stats correction formula. Strongly recommended when playing Story mode or any Adventure mod that has not been balanced for Vanilla Plus.&lt;br&gt;Default : on&lt;br&gt;&lt;font color=#ff0000&gt;Require a game restart&lt;/font&gt;</content>
 	<content contentuid="h1bae56a9ga45fg431fg80bfg2afbef03c1d2">Perseverance restores Magic Armour on recovering from Frozen or Stunned, and restores Physical Armour on recovering from Knocked Down or Petrified. Additionally, when you&apos;re incapacitated (Knocked Down, Petrified, Stunned, Frozen or similar) your resistances are increased. When recovering from a Staggered or Confused status, Perseverance also triggers but its effect is halved.</content>
 	<content contentuid="h1c81462eg26ceg48a1g8828gdf9254cbdae0">Wands Surface Bonus</content>
+	<content contentuid="h1cf47358gd399g486fg9401g6a12b06eb879">Disable Linear Vitality Scaling</content>
 	<content contentuid="h1e5caa33g4d5dg4f42g91edg9f546d42f56b">Increases all Skill damage by [1]%.</content>
 	<content contentuid="h206ce4abg4f84g4b2dg934aga0d96a602f2c">Two-Handed increases damage and Critical Multiplier when using two-handed melee weapons (swords, axe, mace, spear or staff).</content>
 	<content contentuid="h22a39843gf968g4212g851dg6e121235fa85">Bless target character or surface. Prevent Diseased, Decaying, Petrified, Stunned, increase Dodge by [1]%, Accuracy by [2]% and elemental resistances by [3].</content>
@@ -97,6 +98,7 @@
 	<content contentuid="h6138efe4ge000g4a7dga5e8g479f54f1234a">Oily Weapons</content>
 	<content contentuid="h619fc68ag94ccg4c8ag9442g4ad02630ad64">Slow enemies in [1] range.</content>
 	<content contentuid="h6268c71cge671g4168g8827g653a7ace2925">This character drank too many potions and is experiencing side effects.</content>
+	<content contentuid="h69b87598gf85eg4c63g9533ga0aa699de1ce">Warning ! Changing the vitality scaling will break the vitality of the characters on the current map (in story mode) or on all scenes (in GM mode). It is highly recommended that you enable this option during the character creation before starting the game, or if you are in GM mode before creating your scenes. Proceed ?</content>
 	<content contentuid="h6a4d6da0g29cfg44ecg8913g5a0a76cf1bbd">Arrow Recovery provides a 33% chance to recover a special arrow after shooting it, and removes the close-quarters damage penalty of ranged weapons.</content>
 	<content contentuid="h6b67efcagf943g43a1g959eg36f9ecc42e7e">Increases all damage by [1]% per point. Damage dealt by skills is further increased by [2]% (including weapon-based skills) and Accuracy by [3]% per point. Each point also makes attacks ignore resistance by the multiplier set by your Strength as long as the target resistance is under 100%.</content>
 	<content contentuid="h6c5806e8g7bccg4ecdg959eg254d17edbd71">This character has already drunk one potion during their turn. Drinking another potion before the end of the turn will have side effects.</content>
@@ -157,6 +159,7 @@
 	<content contentuid="ha742cf9eg80e6g4b43g8106ga4b83bd5e241">Cause target character to teleport in a random direction each time they are attacked. Increases Dodge by [1]% and Air Resistance by [2]%.</content>
 	<content contentuid="ha79ac9a4g91ceg4fbfg9b70ge273d5f12090">Your attacks never miss but cannot deal critical strikes (except backstabs not triggered by skills). Convert the critical bonus from Wits to resistance bypass.</content>
 	<content contentuid="haa3cebcagba62g47bbg8546gf0c154e0e46f">You gain immunity to stunned, frozen, knocked down, polymorphed, petrified, crippled for 1 turn after being affected by one of these statuses. Can happen once every 3 turns. Increase the duration of Momentum and Lingering by 1 turn.</content>
+	<content contentuid="hab342575gecacg4c17ga4dcg4d2c771f2a24">Change the vitality scaling to be linear instead of exponential. The difference of Vitality, Armours and Damage between levels are much lower, avoiding weapons fast obsolescence and making inter-levels combats more fair. &lt;br&gt;Default : off&lt;br&gt;&lt;font color=#ff0000&gt;Require a map reload. It is highly recommended to activate this option before starting a new game (during character creation), and deactivating it mid-playthrough will break all NPCs vitality.&lt;/font&gt;</content>
 	<content contentuid="hae29de3agcf14g44f7g9020g90e1fd77694d">If deactivated, you will be able to use custom attributes bonuses. Not recommended if you want to keep an overall balanced experience unless you really know what you are doing.&lt;br&gt;Default : on</content>
 	<content contentuid="haee8a8d1g10e8g491ag83c8g833c3a4d0fbb">The damage bonus provided per Critical Chance percent when backstabbing. &lt;br&gt;Default : 0.5&lt;br&gt;</content>
 	<content contentuid="hb1fc6d8bg6bf6g4a3bg83f7g94177ced086a">Duelist</content>
@@ -196,12 +199,15 @@
 	<content contentuid="hd573aa44gad41g4232g8040gf59652415d1d">Summons Vitality Multiplier</content>
 	<content contentuid="hd980a2a1gc33eg4810gafc8g07f55ba70245">Duelist</content>
 	<content contentuid="hd9f92f34g0daag4393g887cg1be725ab19ab">Dodge Fatigue</content>
+	<content contentuid="hda7d12b4gfd73g46dag981bg3bcc5d9e8ad1">Enable Linear Vitality Scaling</content>
 	<content contentuid="hda7ee9a4g5bbeg4c62g96b7ge31b21e094f3">Next Level [1]: +[2]% Damage, +[3]% Critical Multiplier.</content>
+	<content contentuid="hdbadc53agb463g47c8gb396gff76b7cc0164">Switch back to the exponential scaling. Break vitalities of characters on the current map (story mode), or on all scenes (GM mode).</content>
 	<content contentuid="hdc60c039gac18g416cgb2a0g3d58fc54afcc">Reduce damage going through Physical Armour by [1]%</content>
 	<content contentuid="hddb00621g65ddg46acg89d2gfcf3efd8cd78">Also triggers the Strength weapon bonus.</content>
 	<content contentuid="hdef2f1beg2fc7g4a22gab9eg29c2f0694e4d">The duration of Momentum and Lingering when they are triggered. &lt;br&gt;Default : 2&lt;br&gt;</content>
 	<content contentuid="hdf2a4bd0g134eg4107g9a8agd93d6d22fd68">From Attributes : [1]%</content>
 	<content contentuid="he1708d1eg243dg4b72g8f48gddb9bc8d62ff">+[1] point(s) = +[2]% to all Damage and +[3]% more for weapon-based attacks. Each point in Intelligence will increase resistance bypass by [4]% per point.</content>
+	<content contentuid="he187433cg29c8g44dag8924gdd2345937ed0">Warning ! Deactivating the linear scaling will break characters vitalities again. If you do it in story mode, it is recommended to do it just before transitioning to a new act. Proceed ?</content>
 	<content contentuid="he3980bf8gf554g4dd8g823cgf2ccb71036a6">Offhand penalty: [1]%</content>
 	<content contentuid="he47a8a79g2f04g410bgbf00gd6b2a84ba9a5">Reduce damage going through Physical Armour by [1]%</content>
 	<content contentuid="he534e470gb8a2g4032gbd9bgee0ac41f1f0f"></content>
