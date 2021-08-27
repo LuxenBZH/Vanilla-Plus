@@ -216,17 +216,17 @@ local function FlatScaling(fromState, toState)
 	end
 end
 
-local function AttributeCap()
-	local hardSaved = Ext.LoadFile("LeaderLib_GlobalSettings.json")
-	if hardSaved ~= nil then
-		local variables = Ext.JsonParse(hardSaved).Mods["3ff156e2-289e-4dac-81f5-a44e3e304163"].Global.Flags
-		if variables.LXDGM_AttributeCap then
-			Ext.ExtraData.Attribute
-		end
-end
+-- local function AttributeCap()
+-- 	local hardSaved = Ext.LoadFile("LeaderLib_GlobalSettings.json")
+-- 	if hardSaved ~= nil then
+-- 		local variables = Ext.JsonParse(hardSaved).Mods["3ff156e2-289e-4dac-81f5-a44e3e304163"].Global.Flags
+-- 		if variables.LXDGM_AttributeCap then
+-- 			Ext.ExtraData.Attribute
+-- 		end
+-- end
 
 Ext.RegisterListener("GameStateChanged", FlatScaling)
-Ext.RegisterListener("StatsLoaded", )
+-- Ext.RegisterListener("StatsLoaded", )
 Ext.RegisterListener("StatsLoaded", AddDamageToDescription)
 Ext.RegisterListener("StatsLoaded", AdaptWeaponEnhancingSkills)
 Ext.RegisterListener("StatsLoaded", AddAdditionalDescription)
