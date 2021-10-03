@@ -1,0 +1,43 @@
+Version 1
+SubGoalCombiner SGC_AND
+INITSECTION
+
+KBSECTION
+IF
+CharacterUsedItem(_Char, _Item)
+THEN
+LX_EXT_PoisonedPotionManagement(_Char, _Item);
+
+IF
+CharacterStatusApplied(_Char, "HEALING_ELIXIR", _)
+THEN
+RemoveStatus(_Char, "DISARMED");
+
+IF
+CharacterUsedItem(_Char, _Item)
+AND
+CharacterIsInCombat(_Char, 1)
+THEN
+LX_EXT_ManagePotionFatigue(_Char, _Item);
+
+IF
+ObjectTurnStarted(_Object)
+AND
+ObjectIsCharacter(_Object, 1)
+THEN
+SetVarInteger(_Object, "DGM_PotionFatigue", 0);
+
+//Weapons movement reduction
+// IF
+// CharacterStatusApplied(_Char, "LX_CROSSBOWPENALTY", _Cause)
+// THEN
+// LX_EXT_ManageWeaponSpeed(_Char, "LX_CROSSBOWPENALTY", 1);
+
+// IF
+// CharacterStatusRemoved(_Char, "LX_CROSSBOWPENALTY", _)
+// THEN
+// LX_EXT_ManageWeaponSpeed(_Char, "LX_CROSSBOWPENALTY", 0);
+
+EXITSECTION
+
+ENDEXITSECTION

@@ -1,0 +1,200 @@
+Version 1
+SubGoalCombiner SGC_AND
+INITSECTION
+
+KBSECTION
+//Timer functions
+// IF
+// GameStarted(_, _)
+// THEN
+// TimerLaunch("LX_Player_Loop_Check", 1000);
+// TimerLaunch("LX_Character_Loop_Check", 10000);
+
+//Loop check for NPCs around players
+// IF
+// TimerFinished("LX_Character_Loop_Check")
+// AND
+// DB_IsPlayer(_Char)
+// THEN
+// CharacterLaunchIteratorAroundObject(_Char, 30.0, "LX_Character_Check");
+// TimerLaunch("LX_Character_Loop_Check", 10000);
+
+// IF
+// StoryEvent((CHARACTERGUID)_Char, "LX_Character_Check")
+// AND
+// NOT DB_IsPlayer(_Char)
+// THEN
+// PROC_LX_CheckCharacter(_Char);
+
+//Loop check for players (more frequent than NPCs)
+// IF
+// TimerFinished("LX_Player_Loop_Check")
+// AND
+// DB_IsPlayer(_Char)
+// THEN
+// PROC_LX_CheckCharacter(_Char);
+// TimerLaunch("LX_Player_Loop_Check", 1000);
+
+// IF
+// CharacterStatusApplied(_Char, _, _)
+// THEN
+// PROC_LX_CheckCharacter(_Char);
+
+
+// PROC
+// PROC_LX_CheckCharacter((CHARACTERGUID)_Char)
+// AND
+// NOT _Char == NULL_00000000-0000-0000-0000-000000000000
+// THEN 
+// LX_EXT_SyncAttributeBonuses(_Char);
+// LX_EXT_SyncAbilityBonuses(_Char);
+//LX_EXT_ApplyOverhaulBonuses(_Char);
+
+//Weapon check for ability bonuses
+// IF
+// ItemEquipped(_, _Char)
+// THEN
+// DB_DGM_AttributeSync(_Char);
+// TimerLaunch("DGM_SyncAttributesTimer", 50);
+
+// IF
+// ItemUnEquipped(_, _Char)
+// THEN
+// DB_DGM_AttributeSync(_Char);
+// TimerLaunch("DGM_SyncAttributesTimer", 50);
+
+//Create weapons
+// IF
+// GameStarted(_,_)
+// AND
+// DB_IsPlayer(_Char)
+// THEN
+// GenerateTreasure(LOOT_Pouch_A_000_66db1925-fcc2-4ff3-a5c6-76f9f9c0d543, "ST_WeaponNormal", 10, _Char);
+
+//Attribute sync
+// IF
+// StoryEvent((CHARACTERGUID)_Char, "DGM_SyncAttributeBonuses")
+// THEN
+// DB_DGM_AttributeSync(_Char);
+// TimerLaunch("DGM_SyncAttributesTimer", 50);
+
+// IF
+// TimerFinished("DGM_SyncAttributesTimer")
+// AND
+// DB_DGM_AttributeSync(_Char)
+// THEN
+// LX_EXT_SyncAttributeBonuses(_Char);
+// LX_EXT_SyncAbilityBonuses(_Char);
+// NOT DB_DGM_AttributeSync(_Char);
+
+// IF
+// CharacterResurrected(_Char)
+// THEN
+// LX_EXT_SyncAttributeBonuses(_Char);
+// LX_EXT_SyncAbilityBonuses(_Char);
+
+// IF
+// TimerFinished("DGM_GriffToAtusaFix")
+// THEN
+// CharacterLaunchOsirisOnlyIterator("DGM_GriffToAtusaFixIterator");
+
+// IF
+// StoryEvent((CHARACTERGUID)_Char, "DGM_GriffToAtusaFixIterator")
+// THEN
+// NRD_CharacterSetPermanentBoostInt(_Char, "Movement", 0);
+// NRD_CharacterSetPermanentBoostInt(_Char, "Accuracy", 0);
+// CharacterAddAttribute(_Char, "Dummy", 0);
+
+//Sucker Punch fix
+// IF
+// CharacterUsedSkill(_Char, "Target_SingleHandedAttack", _, _)
+// AND
+// CharacterIsInCombat(_Char, 1)
+// AND
+// NRD_StatGetInt("Target_SingleHandedAttack", "Cooldown", (INTEGER)_Cooldown)
+// THEN
+// DB_Fix_SPunch(_Char, _Cooldown);
+
+// IF
+// ObjectTurnStarted((CHARACTERGUID)_Char)
+// AND
+// DB_Fix_SPunch(_Char, _Cooldown)
+// AND
+// _Cooldown > 0
+// AND
+// IntegerSubtract(_Cooldown, 1, _Final)
+// THEN
+// NOT DB_Fix_SPunch(_Char, _Cooldown);
+// DB_Fix_SPunch(_Char, _Final);
+
+// IF
+// ObjectTurnStarted((CHARACTERGUID)_Char)
+// AND
+// DB_Fix_SPunch(_Char, _Cooldown)
+// AND
+// _Cooldown == 0
+// THEN
+// NOT DB_Fix_SPunch(_Char, _Cooldown);
+
+// IF
+// ItemEquipped(_, _Char)
+// AND
+// CharacterHasSkill(_Char, "Target_SingleHandedAttack", 1)
+// AND
+// DB_Fix_SPunch(_Char, _Cooldown)
+// AND
+// Real(_Cooldown, _RCooldown)
+// THEN
+// NRD_SkillSetCooldown(_Char, "Target_SingleHandedAttack", _RCooldown);
+
+// IF
+// ItemUnequipped(_, _Char)
+// AND
+// CharacterHasSkill(_Char, "Target_SingleHandedAttack", 1)
+// AND
+// DB_Fix_SPunch(_Char, _Cooldown)
+// AND
+// Real(_Cooldown, _RCooldown)
+// AND
+// RealProduct(_RCooldown, 6.0, _Final)
+// AND
+// NRD_RealToString(_Final, _SCooldown)
+// THEN
+// NRD_SkillSetCooldown(_Char, "Target_SingleHandedAttack", _Final);
+
+// IF
+// ObjectLeftCombat((CHARACTERGUID)_Char, _)
+// AND
+// DB_Fix_SPunch(_Char, _Cooldown)
+// THEN
+// NOT DB_Fix_SPunch(_Char, _Cooldown);
+
+IF
+NRD_StatusIteratorEvent("LX_Iterate_Statuses_Accuracy", (CHARACTERGUID)_Character, (STRING)_StatusId, (INTEGER64)_StatusHandle)
+AND
+NRD_StatAttributeExists((STRING)_StatusId, "DodgeBoost")
+AND
+NRD_StatGetInt(_StatusId, "DodgeBoost", (INTEGER)_Dodge)
+AND
+_Dodge < 0
+THEN
+SetVarInteger(_Character, "LX_Accuracy_Harmed", 1);
+
+IF
+NRD_OnStatusAttempt(_,_,_,_)
+THEN
+DB_NOOP(1);
+
+IF
+ObjectTurnStarted(_)
+THEN
+DB_NOOP(1);
+
+IF
+CharacterUsedSkillAtPosition(_,_,_,_,_,_,_)
+THEN
+DB_NOOP(1);
+
+EXITSECTION
+
+ENDEXITSECTION

@@ -1,0 +1,240 @@
+key "ArmorToVitalityRatio","0.45"
+
+key "ExpectedConGrowthForArmorCalculation","1"
+
+key "VitalityToDamageRatio","6"
+
+key "VitalityToDamageRatioGrowth","0.225"
+
+key "UnstableRadius","4"
+
+key "VitalityBoostFromAttribute","0.1"
+
+key "AttributeLevelGrowth","2"
+
+key "AttributeBaseValue","10"
+
+key "AttributeBoostGrowth","0.75"
+
+key "AttributeGrowthDamp","0.7"
+
+key "AttributeSoftCap","40"
+
+key "DamageBoostFromAttribute","0"
+
+key "MonsterDamageBoostPerLevel","0.03"
+
+key "CharacterBaseMemoryCapacity","4"
+
+key "CharacterBaseMemoryCapacityGrowth","0.5"
+
+key "CombatAbilityReflectionBonus","8"
+
+key "CombatAbilityDodgingBonus","3"
+
+key "CombatAbilityAccuracyBonus","2"
+
+key "CombatAbilityCritMultiplierBonus","3"
+
+key "CombatAbilityCritBonus","1"
+
+key "CombatAbilityDamageBonus","5"
+
+key "CombatAbilityCap","10"
+
+key "CombatAbilityNpcGrowth","0.1"
+
+key "CombatAbilityLevelGrowth","1"
+
+key "LeadershipRange","12"
+
+key "LeadershipDodgingBonus","2"
+
+key "LeadershipAllResBonus","3"
+
+key "SkillAbilityVitalityRestoredPerPoint","8"
+
+key "SkillAbilityLifeStealPerPoint","10"
+
+key "SkillAbilitySulfuricDamageBoostPerPoint","5"
+
+key "SkillAbilityPhysicalDamageBoostPerPoint","4"
+
+key "SkillAbilityWaterDamageBoostPerPoint","5"
+
+key "SkillAbilityAirDamageBoostPerPoint","5"
+
+key "SkillAbilityPoisonAndEarthDamageBoostPerPoint","5"
+
+key "SkillAbilityFireDamageBoostPerPoint","5"
+
+key "SkillAbilityHighGroundBonusPerPoint","5"
+
+key "SkillAbilityArmorRestoredPerPoint","8"
+
+key "TalentAttributePointsBonus","0"
+
+key "TalentMemoryBonus","0"
+
+key "TalentCivilAbilityPointsBonus","0"
+
+key "TalentCombatAbilityPointsBonus","0"
+
+key "TalentSneakingAPCost","2"
+
+key "TalentViolentMagicCriticalChancePercent","100"
+
+key "DodgingBoostFromAttribute","0.01"
+
+key "Flanked penalty","20"
+
+key "TalentPerfectionistAccuracyBonus","0"
+
+key "TalentPerfectionistCriticalChanceBonus","0"
+
+key "CriticalBonusFromWits","2"
+
+key "DGM_StrengthGlobalBonus","2"
+
+key "DGM_StrengthResistanceIgnore","0.15"
+
+key "DGM_StrengthWeaponBonus","3"
+
+key "DGM_FinesseGlobalBonus","3"
+
+key "DGM_FinesseMovementBonus","20"
+
+key "DGM_FinesseCritChance","1"
+
+key "DGM_IntelligenceGlobalBonus","2"
+
+key "DGM_IntelligenceSkillBonus","3"
+
+key "DGM_IntelligenceAccuracyBonus","2"
+
+key "DGM_WitsDotBonus","10"
+
+key "DGM_DamageThroughArmor","50"
+
+key "DGM_DamageThroughArmorDepleted","25"
+
+key "DGM_RangedCQBPenalty","35"
+
+key "DGM_SingleHandedArmorBonus","6"
+
+key "DGM_SingleHandedResistanceBonus","2"
+
+key "DGM_RangedRangeBonus","30"
+
+key "DGM_DualWieldingOffhandBonus","10"
+
+key "DGM_TwoHandedCTHBonus","1"
+
+key "DGM_BackstabCritChanceBonus","0.5"
+
+key "DGM_HotheadApplicationThreshold","74"
+
+key "DGM_SlingshotBonus","30"
+
+key "DGM_IceKingDamageBonus","20"
+
+key "DGM_DemonStatusesBonus","0"
+
+key "DGM_StaffSkillMultiplier","10"
+
+key "DGM_WandSkillMultiplier","5"
+
+key "DGM_PerseveranceVitalityRecovery","2"
+
+key "AbilityPerseveranceArmorPerPoint","8"
+
+key "DGM_RangedCQBPenaltyRange","2"
+
+key "DGM_FortifiedPassingPhysicalReduction","0.5"
+
+key "DGM_MendMetalPassingPhysicalReduction","0.25"
+
+key "DGM_SteelSkinPassingPhysicalReduction","0.33"
+
+key "DGM_MagicShellPassingMagicReduction","0.5"
+
+key "DGM_FrostAuraPassingMagicReduction","0.25"
+
+key "DGM_ShieldsUpPassingReduction","0.5"
+
+key "FirstVitalityLeapLevel","9"
+
+key "FirstVitalityLeapGrowth","1.15"
+
+key "SecondVitalityLeapLevel","13"
+
+key "SecondVitalityLeapGrowth","1.15"
+
+key "ThirdVitalityLeapLevel","16"
+
+key "ThirdVitalityLeapGrowth","1.15"
+
+key "FourthVitalityLeapLevel","18"
+
+key "FourthVitalityLeapGrowth","1.15"
+
+key "VitalityExponentialGrowth","1.15"
+
+key "VitalityStartingAmount","100"
+
+key "VitalityLinearGrowth","0"
+
+key "SkillAbilityMovementSpeedPerPoint","15"
+
+key "DGM_CrossbowBasePenalty","-88"
+
+key "DGM_CrossbowLevelGrowthPenalty","-12"
+
+
+
+key "LivingArmorHealPercentage","35"
+
+key "SkillAbilityCritMultiplierPerPoint","3"
+
+key "Surface Distance Evaluation","2"
+
+key "HealToDamageRatio","1.4"
+
+key "DGM_NpcScalingMainAttributeCorrection","50"
+
+key "DGM_NpcScalingSecondaryAttributeCorrection","70"
+
+key "DGM_NpcScalingNoArchetypeCorrection","60"
+
+key "DGM_OilyCarapacePassingReduction","1"
+
+key "DGM_CryotherapyPassingMagicReduction","1"
+
+key "DGM_EnableDualCCParry","0"
+
+key "DGM_CCParryDuration","2"
+
+key "IncarnateSummoningLevel","10"
+
+key "DGM_ArmourReductionMultiplier","100"
+
+key "DGM_PlayerVitalityMultiplier","100"
+
+key "DGM_NpcVitalityMultiplier","100"
+
+key "DGM_SummonsVitalityMultiplier","100"
+
+key "DGM_SummonsDamageBoost","0"
+
+key "SurfaceAbsorbBoostPerTilesCount","10"
+
+key "DGM_WandSurfaceBonus","15"
+
+key "DGM_ChameleonCloakRevert","0"
+
+key "DGM_PerseveranceResistance","5"
+
+key "DGM_GB4Talents","0"
+
+key "DGM_Corrogic","1"
+

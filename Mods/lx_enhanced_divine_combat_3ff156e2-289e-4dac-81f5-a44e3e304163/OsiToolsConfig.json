@@ -1,0 +1,8 @@
+{
+    "RequiredExtensionVersion": 53,
+	"ModTable": "VanillaPlus",
+    "FeatureFlags": [
+        "OsirisExtensions",
+        "Lua"
+    ]
+}

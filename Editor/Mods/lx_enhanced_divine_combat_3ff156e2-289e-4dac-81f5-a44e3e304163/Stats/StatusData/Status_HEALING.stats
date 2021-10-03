@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<stats stat_object_definition_id="b02b3719-f0ee-4439-ac17-87079ea7453e">
+  <stat_objects>
+    <stat_object is_substat="false">
+      <fields>
+        <field name="Name" type="NameStatObjectFieldDefinition" value="STEAM_LANCE" />
+        <field name="Using" type="BaseClassStatObjectFieldDefinition" value="REGENERATION" />
+        <field name="ForGameMaster" type="EnumerationStatObjectFieldDefinition" value="0" enumeration_type_name="YesNo" />
+        <field name="InitiateCombat" type="EnumerationStatObjectFieldDefinition" value="0" enumeration_type_name="YesNo" />
+        <field name="DisplayName" type="TranslatedStringStatObjectFieldDefinition" value="|Steam Lance|" />
+        <field name="Icon" type="StringStatObjectFieldDefinition" value="Skill_Water_SteamLance" />
+        <field name="StackId" type="StringStatObjectFieldDefinition" value="Stack_SteamLance" />
+        <field name="HealValue" type="IntegerStatObjectFieldDefinition" value="100" />
+      </fields>
+    </stat_object>
+  </stat_objects>
+</stats>
