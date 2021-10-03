@@ -705,7 +705,17 @@ Fix
 # 1.2.13.63
 New
 * Linear Vitality Scaling toggle: you can now change the vitality scaling of the game. The linear scaling, as its name implies, make the vitality grow linearly when leveling up instead of exponentially. This results in a greatly reduced equipment obsolescence and more fair inter-level battles (fighting a lower level is harder but fighting a higher level is easier). This opens up exploration paths you couldn't do before because of the level scaling, so it might be a new way to play the game (and possibly break it!)
+* Resistance caps rework : resistance has always been controversial since it's known to bloat at higher levels. The resistance bypass feature by itself is quite limited since you have to build your character around it to be effective and the corrogic module also require specific preparation. As a result, a mage at higher level can get stuck for a couple of turns before being effective whereas physical damage dealers can counter dodge in a single turn. V+ now propose by default to reduce the base cap of resistances to 50%, except if the base resistance is already higher (e.g. a fire slug will still be able to absorb fire attacks).
 
 Balance
 * Soft attributes cap is now 30 instead of 40. This can be changed in the options.
 * Teleport and Nether Swap now require any enemy to have at least one of its armours depleted to be used. It can still be used on armoured allies and neutrals.
+* Reduced Critical Multiplier of Spears, Axes, Hammers, Sword, Wands and Staves from 150 to 130, Bows and XBows from 130 to 125 and Daggers from 160 to 150 (unarmed is still 150%).
+* Savage Sortilege now gives a flat 10% critical chance instead of multiplying the current critical chance by 1.1
+* Executioner movement boost reduced from 50% to 25%
+* Knocked down now nullify dodge of the victim
+* Breathing Bubble accuracy increased from 10 to 20
+* Breathing Bubble Max AP bonus removed
+
+Miscellaneous
+* Refactored damage code for more clarity
