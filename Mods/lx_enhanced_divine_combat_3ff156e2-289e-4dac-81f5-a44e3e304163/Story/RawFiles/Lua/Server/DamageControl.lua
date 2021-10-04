@@ -483,9 +483,9 @@ function DGM_CalculateHitChance(attacker, target)
 	
     local accuracy = attacker.Accuracy
 	local dodge = target.Dodge
-	-- if HasActiveStatus(target.MyGuid, "KNOCKED_DOWN") == 1 and dodge > 0 then
-	-- 	dodge = 0
-	-- end
+	if target.Character:GetStatus("KNOCKED_DOWN") and dodge > 0 then
+		dodge = 0
+	end
 
 	local chanceToHit1 = accuracy - dodge
 	chanceToHit1 = math.max(0, math.min(100, chanceToHit1))

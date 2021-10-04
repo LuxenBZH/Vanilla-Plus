@@ -33,6 +33,8 @@ function CheckBoostTalents(character, talent, unlocked)
 		CheckHothead(character)
 	elseif talent == "ViolentMagic" then
 		BoostFromTalentInt(character, "LX_SAVAGESORTILEGE", unlocked)
+	elseif talent == "Raistlin" then -- Glass Cannon
+		BoostFromTalentInt(character, "LX_GLASSCANNON", unlocked)
 	end
 end
 

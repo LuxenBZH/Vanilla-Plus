@@ -18,7 +18,7 @@ key "AttributeBoostGrowth","0.75"
 
 key "AttributeGrowthDamp","0.7"
 
-key "AttributeSoftCap","40"
+key "AttributeSoftCap","30"
 
 key "DamageBoostFromAttribute","0"
 

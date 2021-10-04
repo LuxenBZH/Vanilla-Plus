@@ -702,10 +702,16 @@ Fix
 * Fixed the tooltip of some talents not being up to date with the changes
 * Removed Master Thief until it is reworked and functional
 
-# 1.2.13.63
+# 1.2.13.63 (Jahan)
+Fixes
+* Restored Divine Talents visibility since LeaderLib pruned UI support from its last updates (original code from LaughingLeader)
+* Jump skills shouldn't have Real jump equivalent popping up even if the module is disabled
+* Using a non-projectile jump while having the Real Jump module shall now properly refund the AP
+
 New
 * Linear Vitality Scaling toggle: you can now change the vitality scaling of the game. The linear scaling, as its name implies, make the vitality grow linearly when leveling up instead of exponentially. This results in a greatly reduced equipment obsolescence and more fair inter-level battles (fighting a lower level is harder but fighting a higher level is easier). This opens up exploration paths you couldn't do before because of the level scaling, so it might be a new way to play the game (and possibly break it!)
-* Resistance caps rework : resistance has always been controversial since it's known to bloat at higher levels. The resistance bypass feature by itself is quite limited since you have to build your character around it to be effective and the corrogic module also require specific preparation. As a result, a mage at higher level can get stuck for a couple of turns before being effective whereas physical damage dealers can counter dodge in a single turn. V+ now propose by default to reduce the base cap of resistances to 50%, except if the base resistance is already higher (e.g. a fire slug will still be able to absorb fire attacks).
+* You can now craft poutine by combining Rivellon fries with Cheese in an Oven. Thank me later.
+
 
 Balance
 * Soft attributes cap is now 30 instead of 40. This can be changed in the options.
@@ -714,8 +720,14 @@ Balance
 * Savage Sortilege now gives a flat 10% critical chance instead of multiplying the current critical chance by 1.1
 * Executioner movement boost reduced from 50% to 25%
 * Knocked down now nullify dodge of the victim
-* Breathing Bubble accuracy increased from 10 to 20
-* Breathing Bubble Max AP bonus removed
+* Breathing Bubble accuracy increased from 10 to 15
+* Breathing Bubble duration reduced from 5 turns to 4
+* Alcoholic drinks now set Drunk for 300 turns instead of 150
+* Some food items now have different, more interesting effects
+* Glass Cannon now nullify armour
 
 Miscellaneous
 * Refactored damage code for more clarity
+
+# Next update
+* Resistance caps rework : resistance has always been controversial since it's known to bloat at higher levels. The resistance bypass feature by itself is quite limited since you have to build your character around it to be effective and the corrogic module also require specific preparation. As a result, a mage at higher level can get stuck for a couple of turns before being effective whereas physical damage dealers can counter dodge in a single turn. V+ now propose by default to reduce the base cap of resistances to 50%, except if the base resistance is already higher (e.g. a fire slug will still be able to absorb fire attacks).
