@@ -44,9 +44,9 @@ function ManagePotionFatigue(character, potion)
 	if isConsumable == 1 and isFood == 0 then
 		local fatigue = GetVarInteger(character, "DGM_PotionFatigue")
 		if fatigue == nil then fatigue = 0 end
-		if fatigue == 0 then ApplyStatus(character, "LX_POTIONWARNING", 3.0, 1) end
-		if fatigue == 1 then ApplyStatus(character, "LX_POTIONFATIGUE1", 3.0, 1) end
-		if fatigue > 1 then ApplyStatus(character, "LX_POTIONFATIGUE2", 3.0, 1) end
+		if fatigue == Ext.ExtraData.DGM_PotionFatigue-1 then ApplyStatus(character, "LX_POTIONWARNING", 3.0, 1) end
+		if fatigue == Ext.ExtraData.DGM_PotionFatigue then ApplyStatus(character, "LX_POTIONFATIGUE1", 3.0, 1) end
+		if fatigue > Ext.ExtraData.DGM_PotionFatigue then ApplyStatus(character, "LX_POTIONFATIGUE2", 3.0, 1) end
 		fatigue = fatigue + 1
 		SetVarInteger(character, "DGM_PotionFatigue", fatigue)
 	end

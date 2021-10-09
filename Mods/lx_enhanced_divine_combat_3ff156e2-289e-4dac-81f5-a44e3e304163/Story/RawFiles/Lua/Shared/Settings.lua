@@ -128,6 +128,7 @@ Ext.RegisterListener("SessionLoaded", function()
     settings.Global:AddLocalizedFlag("LXDGM_ModuleOriginalChameleonCloak", "Global", false, nil, nil, false)
     settings.Global:AddLocalizedFlag("LXDGM_ModuleDivineTalentsDisable", "Global", false, nil, nil, false)
     settings.Global:AddLocalizedFlag("LXDGM_ModuleCorrogicDisable", "Global", false, nil, nil, false)
+    settings.Global:AddLocalizedFlag("LXDGM_ModuleOriginalTeleport", "Global", false, nil, nil, false)
 
     -- settings.Global:AddLocalizedFlag("LXDGM_SettingsUseDefaultAttributeValues", "Global", true, nil, nil, false)
     settings.Global:AddLocalizedVariable("StrengthGloBonus", "LXDGM_StrengthGlobalDamageBonus", Ext.ExtraData.DGM_StrengthGlobalBonus, 0, 10, 0.5, "LXDGM_StrengthGlobalDamageBonus_Description")
@@ -141,10 +142,12 @@ Ext.RegisterListener("SessionLoaded", function()
     settings.Global:AddLocalizedVariable("IntelligenceAccuracyBonus", "LXDGM_IntelligenceAccuracyBonus", Ext.ExtraData.DGM_IntelligenceAccuracyBonus, 0, 10, 1, "LXDGM_IntelligenceAccuracyBonus_Description")
     settings.Global:AddLocalizedVariable("WitsDotBonus", "LXDGM_WitsDotBonus", Ext.ExtraData.DGM_WitsDotBonus, 0, 50, 1, "LXDGM_WitsDotBonus_Description")
     settings.Global:AddLocalizedVariable("CritChanceBackstabBonus", "LXDGM_BackstabCritChanceBonus", Ext.ExtraData.DGM_BackstabCritChanceBonus, 0, 3, 0.25, "LXDGM_BackstabCritChanceBonus_Description")
+    settings.Global:AddLocalizedVariable("AttributeCap", "LXDGM_AttributeCap", Ext.ExtraData.AttributeSoftCap, Ext.ExtraData.AttributeBaseValue, 80, 1, "LXDGM_AttributeCap_Description")
 
     settings.Global:AddLocalizedVariable("ArmourDamagePass", "LXDGM_ArmourDamagePass", Ext.ExtraData.DGM_DamageThroughArmor, 0, 100, 1, "LXDGM_ArmourDamagePass_Description")
     settings.Global:AddLocalizedVariable("ArmourDamagePassDepleted", "LXDGM_ArmourDamagePassDepleted", Ext.ExtraData.DGM_DamageThroughArmorDepleted, 0, 100, 1, "LXDGM_ArmourDamagePassDepleted_Description")
 
+    settings.Global:AddLocalizedVariable("PotionFatigue", "LXDGM_PotionFatigue", Ext.ExtraData.DGM_PotionFatigue, -1, 6, 1, "LXDGM_PotionFatigue_Description")
     settings.Global:AddLocalizedVariable("CQBPenalty", "LXDGM_CQBPenalty", Ext.ExtraData.DGM_RangedCQBPenalty, 0, 100, 1, "LXDGM_CQBPenalty_Description")
     settings.Global:AddLocalizedVariable("CQBPenaltyRange", "LXDGM_CQBPenaltyRange", Ext.ExtraData.DGM_RangedCQBPenaltyRange, 0, 10, 1, "LXDGM_CQBPenaltyRange_Description")
     settings.Global:AddLocalizedVariable("StaffSkillMult", "LXDGM_StaffSkillMult", Ext.ExtraData.DGM_StaffSkillMultiplier, 0, 100, 0.5, "LXDGM_StaffSkillMult_Description")
@@ -168,6 +171,12 @@ Ext.RegisterListener("SessionLoaded", function()
     settings.Global:AddLocalizedButton("FixConstitutionGap", "LXDGM_FixConstitutionGap", function(button, uuid, character)
         Ext.PostMessageToServer("DGM_FixConstitutionGap", "")
     end, nil, true, "LXDGM_FixConstitutionGap_Description")
+    settings.Global:AddLocalizedButton("FlatScalingActivate", "LXDGM_FlatScalingActivate", function(button, uuid, character)
+        Ext.PostMessageToServer("LXDGM_FlatScalingWarning", "")
+    end, nil, true, "LXDGM_FlatScalingActivate_Description")
+    settings.Global:AddLocalizedButton("FlatScalingDeactivate", "LXDGM_FlatScalingDeactivate", function(button, uuid, character)
+        Ext.PostMessageToServer("LXDGM_FlatScalingWarning2", "")
+    end, nil, true, "LXDGM_FlatScalingDeactivate_Description")  
 
     settings.GetMenuOrder = function()
         return {{
@@ -180,6 +189,7 @@ Ext.RegisterListener("SessionLoaded", function()
                     "LXDGM_ModuleFallDamageClassic",
                     "LXDGM_ModuleFallDamageAlternate",
                     "LXDGM_ModuleOriginalChameleonCloak",
+                    "LXDGM_ModuleOriginalTeleport",
                 }},
                 {DisplayName = "Attributes",
                 Entries = {
@@ -194,6 +204,7 @@ Ext.RegisterListener("SessionLoaded", function()
                     "IntelligenceAccuracyBonus",
                     "WitsDotBonus",
                     "CritChanceBackstabBonus",
+                    "AttributeCap"
                 }},
                 {DisplayName = "Armour System",
                 Entries = {
@@ -202,6 +213,7 @@ Ext.RegisterListener("SessionLoaded", function()
                 }},
                 {DisplayName = "Miscellaneous",
                 Entries = {
+                    "PotionFatigue",
                     "CQBPenalty",
                     "CQBPenaltyRange",
                     "StaffSkillMult",
@@ -224,7 +236,9 @@ Ext.RegisterListener("SessionLoaded", function()
                     -- "NpcVitalityMultiplier",
                     "SummonsVitalityMultiplier",
                     "SummonsDamageBoost",
-                    "FixConstitutionGap"
+                    "FixConstitutionGap",
+                    "FlatScalingActivate",
+                    "FlatScalingDeactivate"
                 }},
         }
     end

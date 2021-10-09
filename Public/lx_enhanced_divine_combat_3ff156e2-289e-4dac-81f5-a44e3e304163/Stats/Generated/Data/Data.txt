@@ -1,4 +1,4 @@
-key "ArmorToVitalityRatio","0.4"
+key "ArmorToVitalityRatio","0.45"
 
 key "ExpectedConGrowthForArmorCalculation","1"
 
@@ -18,7 +18,7 @@ key "AttributeBoostGrowth","0.75"
 
 key "AttributeGrowthDamp","0.7"
 
-key "AttributeSoftCap","40"
+key "AttributeSoftCap","30"
 
 key "DamageBoostFromAttribute","0"
 
@@ -34,7 +34,7 @@ key "CombatAbilityDodgingBonus","3"
 
 key "CombatAbilityAccuracyBonus","2"
 
-key "CombatAbilityCritMultiplierBonus","3"
+key "CombatAbilityCritMultiplierBonus","4"
 
 key "CombatAbilityCritBonus","1"
 
@@ -82,7 +82,7 @@ key "TalentCombatAbilityPointsBonus","0"
 
 key "TalentSneakingAPCost","2"
 
-key "TalentViolentMagicCriticalChancePercent","110"
+key "TalentViolentMagicCriticalChancePercent","100"
 
 key "DodgingBoostFromAttribute","0.01"
 
@@ -194,7 +194,7 @@ key "DGM_CrossbowLevelGrowthPenalty","-12"
 
 key "LivingArmorHealPercentage","35"
 
-key "SkillAbilityCritMultiplierPerPoint","3"
+key "SkillAbilityCritMultiplierPerPoint","4"
 
 key "Surface Distance Evaluation","2"
 
@@ -238,3 +238,4 @@ key "DGM_GB4Talents","0"
 
 key "DGM_Corrogic","1"
 
+key "DGM_PotionFatigue","1"

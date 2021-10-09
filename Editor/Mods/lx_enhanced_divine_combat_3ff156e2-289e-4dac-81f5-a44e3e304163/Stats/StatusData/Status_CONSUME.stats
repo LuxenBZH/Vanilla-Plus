@@ -746,5 +746,12 @@
         <field name="StackId" type="StringStatObjectFieldDefinition" value="Stack_LX_Corrogic" />
       </fields>
     </stat_object>
+    <stat_object is_substat="false">
+      <fields>
+        <field name="Name" type="NameStatObjectFieldDefinition" value="LX_SAVAGESORTILEGE" />
+        <field name="StatsId" type="StringStatObjectFieldDefinition" value="Stats_LX_SavageSortilege" />
+        <field name="StackId" type="StringStatObjectFieldDefinition" value="Stack_LX_SavageSortilege" />
+      </fields>
+    </stat_object>
   </stat_objects>
 </stats>

@@ -85,6 +85,73 @@ local function TriggerCorrogicResistanceStrip(target, dmgList)
 		end
 	end
 end
+-----------
+
+----------- Damage Scaling functions
+------ Intelligence Skill bonus
+---@param instigator string GUID
+---@param skillID string
+---@param intelligence integer
+---@param weaponTypes string[]
+---@param globalMultiplier float
+local function ScaleDamageFromSkill(instigator, skillID, intelligence, weaponTypes)
+	local damageBonus = intelligence*Ext.ExtraData.DGM_IntelligenceSkillBonus
+	local globalMultiplierBonus = 0
+		-- print("Bonus: skill")
+		-- Apply bonus from wand and staves
+		if weaponTypes[1] == "Wand" then
+			if weaponTypes[2] == "Wand" then
+				globalMultiplierBonus = globalMultiplierBonus + Ext.ExtraData.DGM_WandSkillMultiplier/100*2
+			else
+				globalMultiplierBonus = globalMultiplierBonus + Ext.ExtraData.DGM_WandSkillMultiplier/100
+			end
+		elseif weaponTypes[2] == "Wand" then -- Credits to lololice to spot that edge case
+			if weaponTypes[1] == "Wand" then
+				globalMultiplierBonus = globalMultiplierBonus + Ext.ExtraData.DGM_WandSkillMultiplier/100*2
+			else
+				globalMultiplierBonus = globalMultiplierBonus + Ext.ExtraData.DGM_WandSkillMultiplier/100
+			end
+		elseif weaponTypes[1] == "Staff" then
+			globalMultiplierBonus = globalMultiplierBonus + Ext.ExtraData.DGM_StaffSkillMultiplier/100
+		end
+		-- Apply Slingshot bonus if it's a grenade
+		local isGrenade = string.find(skillID, "Grenade")
+		local hasSlingshot = CharacterHasTalent(instigator, "WarriorLoreGrenadeRange")
+		if isGrenade ~= nil and hasSlingshot == 1 then
+			damageBonus = damageBonus + Ext.ExtraData.DGM_SlingshotBonus
+		end
+	return damageBonus, globalMultiplierBonus
+end
+
+---@param instigator string GUID
+---@param target string GUID
+local function SiphonPoisonBoost(instigator, target)
+	if HasActiveStatus(instigator, "SIPHON_POISON") == 1 then
+		local seconds = 12.0
+		if HasActiveStatus(instigator, "VENOM_COATING") == 1 or HasActiveStatus(instigator, "VENOM_AURA") == 1 then
+			seconds = seconds + 12.0
+		end
+		if CharacterHasTalent(instigator, "Torturer") == 1 then
+			seconds = seconds + 6.0
+		end
+		ApplyStatus(target, "ACID", seconds, 1)
+	end
+end
+
+---@param weaponTypes string[]
+---@param target string GUID
+---@param instigator string GUID
+local function ApplyCQBPenalty(weaponTypes, target, instigator)
+	local globalMultiplierBonus = 0
+	if weaponTypes[1] == "Bow" or weaponTypes[1] == "Crossbow" or weaponTypes[1] == "Rifle" or weaponTypes[1] == "Wand" then
+		local distance = GetDistanceTo(target, instigator)
+		--Ext.Print("[LXDGM_DamageControl.DamageControl] Distance :",distance)
+		if distance <= Ext.ExtraData.DGM_RangedCQBPenaltyRange and CharacterHasTalent(instigator, "RangerLoreArrowRecover") == 0 then
+			globalMultiplierBonus = (Ext.ExtraData.DGM_RangedCQBPenalty/100)
+		end
+	end
+	return globalMultiplierBonus
+end
 ----------
 
 ---@param target EsvCharacter
@@ -150,12 +217,6 @@ function DamageControl(target, instigator, hitDamage, handle)
 
 	-- Dodge mechanic override
 	if isMissed == 1 or isDodged == 1 then
-		-- local weaponHandle = NRD_StatusGetString(target, handle, "WeaponHandle")
-		-- local mainWeapon = CharacterGetEquippedWeapon(instigator)
-		-- DodgeControl(target, instigator, weaponHandle)
-		-- if mainWeapon ~= weaponHandle then
-		-- 	SetVarInteger(instigator, "LX_Miss_Main", 0)
-		-- end
 		TriggerDodgeFatigue(target, instigator)
 		return
 	end
@@ -177,16 +238,7 @@ function DamageControl(target, instigator, hitDamage, handle)
 	if fromWeapon == 1 or skillID == "Target_TentacleLash_-1" then 
 		damageBonus = damageBonus + strength*Ext.ExtraData.DGM_StrengthWeaponBonus
 		-- Siphon Poison effect
-		if HasActiveStatus(instigator, "SIPHON_POISON") == 1 then
-			local seconds = 12.0
-			if HasActiveStatus(instigator, "VENOM_COATING") == 1 or HasActiveStatus(instigator, "VENOM_AURA") == 1 then
-				seconds = seconds + 12.0
-			end
-			if CharacterHasTalent(instigator, "Torturer") == 1 then
-				seconds = seconds + 6.0
-			end
-			ApplyStatus(target, "ACID", seconds, 1)
-		end
+		SiphonPoisonBoost(instigator, target)
 		-- Wands bonus
 		if weaponTypes[1] == "Wand" then
 			local groundSurface = string.gsub(GetSurfaceGroundAt(instigator), "Surface", "")
@@ -198,51 +250,25 @@ function DamageControl(target, instigator, hitDamage, handle)
 				damages[surfaceToType[cloudSurface]] = damages[surfaceToType[cloudSurface]] + (totalDamage * Ext.ExtraData.DGM_WandSurfaceBonus/100)
 			end
 		end
-		-- Check distance penalty if it's a distance weapon
-		if weaponTypes[1] == "Bow" or weaponTypes[1] == "Crossbow" or weaponTypes[1] == "Rifle" or weaponTypes[1] == "Wand" then
-			local distance = GetDistanceTo(target, instigator)
-			--Ext.Print("[LXDGM_DamageControl.DamageControl] Distance :",distance)
-			if distance <= Ext.ExtraData.DGM_RangedCQBPenaltyRange and CharacterHasTalent(instigator, "RangerLoreArrowRecover") == 0 then
-				globalMultiplier = globalMultiplier - (Ext.ExtraData.DGM_RangedCQBPenalty/100)
-			end
-		end
+		-- Apply CQB Penalty if necessary
+		globalMultiplier = globalMultiplier + ApplyCQBPenalty(weaponTypes, target, instigator)
+		-- Dual Wielding offhand damage boost
 		if sourceType == 7 then
 			local dualWielding = CharacterGetAbility(instigator, "DualWielding")
 			damageBonus = damageBonus + dualWielding*Ext.ExtraData.DGM_DualWieldingOffhandBonus
 		end
-		
 	end
+	-- DoT Wits bonus
 	if isDoT == 1 then
 		damageBonus = wits*Ext.ExtraData.DGM_WitsDotBonus
 		Ext.Print("Dot bonus",damageBonus)
 	end
+	-- Intelligence skill bonus
 	if skillID ~= "" then 
-		damageBonus = damageBonus + intelligence*Ext.ExtraData.DGM_IntelligenceSkillBonus
-		-- print("Bonus: skill")
-		-- Apply bonus from wand and staves
-		if weaponTypes[1] == "Wand" then
-			if weaponTypes[2] == "Wand" then
-				globalMultiplier = globalMultiplier + Ext.ExtraData.DGM_WandSkillMultiplier/100*2
-			else
-				globalMultiplier = globalMultiplier + Ext.ExtraData.DGM_WandSkillMultiplier/100
-			end
-		elseif weaponTypes[2] == "Wand" then -- Credits to lololice to spot that edge case
-			if weaponTypes[1] == "Wand" then
-				globalMultiplier = globalMultiplier + Ext.ExtraData.DGM_WandSkillMultiplier/100*2
-			else
-				globalMultiplier = globalMultiplier + Ext.ExtraData.DGM_WandSkillMultiplier/100
-			end
-		elseif weaponTypes[1] == "Staff" then
-			globalMultiplier = globalMultiplier + Ext.ExtraData.DGM_StaffSkillMultiplier/100
-		end
-		-- Apply Slingshot bonus if it's a grenade
-		local isGrenade = string.find(skillID, "Grenade")
-		local hasSlingshot = CharacterHasTalent(instigator, "WarriorLoreGrenadeRange")
-		if isGrenade ~= nil and hasSlingshot == 1 then
-			damageBonus = damageBonus + Ext.ExtraData.DGM_SlingshotBonus
-		end
+		local skillBonus, skillGlobalBonus = ScaleDamageFromSkill(instigator, skillID, intelligence, weaponTypes)
+		damageBonus = damageBonus + skillBonus
+		globalMultiplier = globalMultiplier + skillGlobalBonus
 	end
-	
 	-- Apply damage changes and side effects
 	if skillID == "Projectile_Talent_Unstable" or IsTagged(target, "DGM_GuardianAngelProtector") == 1 or isFromShacklesOfPain then 
 		ClearTag(target, "DGM_GuardianAngelProtector")
@@ -452,11 +478,21 @@ Ext.RegisterListener("GetHitChance", DGM_HitChanceFormula)
 --- @param target StatCharacter
 function DGM_CalculateHitChance(attacker, target)
     if attacker.TALENT_Haymaker then
-        return 100
+		local diff = 0
+		if attacker.MainWeapon then
+			diff = diff + math.max(0, (attacker.MainWeapon.Level - attacker.Level))
+		end
+		if attacker.OffHandWeapon then
+			diff = diff + math.max(0, (attacker.OffHandWeapon.Level - attacker.Level))
+		end
+        return 100 - diff * Ext.ExtraData.WeaponAccuracyPenaltyPerLevel
 	end
 	
     local accuracy = attacker.Accuracy
 	local dodge = target.Dodge
+	if target.Character:GetStatus("KNOCKED_DOWN") and dodge > 0 then
+		dodge = 0
+	end
 
 	local chanceToHit1 = accuracy - dodge
 	chanceToHit1 = math.max(0, math.min(100, chanceToHit1))
@@ -465,134 +501,6 @@ end
 
 Game.Math.CalculateHitChance = DGM_CalculateHitChance
 
-local function GetDamageMultipliers(skill, stealthed, attackerPos, targetPos)
-    local stealthDamageMultiplier = 1.0
-    if stealthed then
-        stealthDamageMultiplier = Ext.ExtraData.Stealth
-    end
-
-    local targetDistance = math.sqrt((attackerPos[1] - targetPos[1])^2 + (attackerPos[3] - targetPos[3])^2)
-    local distanceDamageMultiplier = 1.0
-    if targetDistance > 1.0 then
-        distanceDamageMultiplier = Ext.Round(targetDistance) * skill['Distance Damage Multiplier'] * 0.01 + 1
-    end
-
-    local damageMultiplier = skill['Damage Multiplier'] * 0.01
-    return stealthDamageMultiplier * distanceDamageMultiplier * damageMultiplier
-end
-
---- @param damageList DamageList
---- @param armor integer
-local function ComputeArmorDamage(damageList, armor)
-    local damage = damageList:GetByType("Corrosive") + damageList:GetByType("Physical") + damageList:GetByType("Sulfuric")
-    return math.min(armor, damage)
-end
-
---- @param damageList DamageList
---- @param magicArmor integer
-local function ComputeMagicArmorDamage(damageList, magicArmor)
-    local damage = damageList:GetByType("Magic") 
-        + damageList:GetByType("Fire") 
-        + damageList:GetByType("Water")
-        + damageList:GetByType("Air")
-        + damageList:GetByType("Earth")
-        + damageList:GetByType("Poison")
-    return math.min(magicArmor, damage)
-end
-
---- @param hit HitRequest
---- @param damageList DamageList
---- @param statusBonusDmgTypes DamageList
---- @param isDoT string HitType enumeration
---- @param target StatCharacter
---- @param attacker StatCharacter
-function DoHit(hit, damageList, statusBonusDmgTypes, isDoT, target, attacker)
-    hit.EffectFlags = hit.EffectFlags | Game.Math.HitFlag.Hit;
-    damageList:AggregateSameTypeDamages()
-    damageList:Multiply(hit.DamageMultiplier)
-
-    local totalDamage = 0
-    for i,damage in pairs(damageList:ToTable()) do
-        totalDamage = totalDamage + damage.Amount
-    end
-
-    if totalDamage < 0 then
-        damageList:Clear()
-    end
-
-    Game.Math.ApplyDamageCharacterBonuses(target, attacker, damageList)
-    damageList:AggregateSameTypeDamages()
-    hit.DamageList = Ext.NewDamageList()
-
-    for i,damageType in pairs(statusBonusDmgTypes) do
-        damageList.Add(damageType, math.ceil(totalDamage * 0.1))
-    end
-
-    Game.Math.ApplyDamagesToHitInfo(damageList, hit)
-    hit.ArmorAbsorption = hit.ArmorAbsorption + ComputeArmorDamage(damageList, target.CurrentArmor)
-    hit.ArmorAbsorption = hit.ArmorAbsorption + ComputeMagicArmorDamage(damageList, target.CurrentMagicArmor)
-
-    if hit.TotalDamageDone > 0 then
-        Game.Math.ApplyLifeSteal(hit, target, attacker, isDoT)
-    else
-        hit.EffectFlags = hit.EffectFlags | Game.Math.HitFlag.DontCreateBloodSurface
-    end
-
-    if isDoT == "Surface" then
-        hit.EffectFlags = hit.EffectFlags | Game.Math.HitFlag.Surface
-    end
-
-    if isDoT == "DoT" then
-        hit.EffectFlags = hit.EffectFlags | Game.Math.HitFlag.DoT
-    end
-end
-
---- @param character StatCharacter
---- @param damageList DamageList
---- @param attacker StatCharacter
-function ApplyHitResistances(character, damageList, attacker)
-	local strength = Ext.ExtraData.AttributeBaseValue
-	local intelligence = Ext.ExtraData.AttributeBaseValue
-	if attacker ~= nil then 
-		strength = attacker.Strength
-		intelligence = attacker.Intelligence
-	end
-	for i,damage in pairs(damageList:ToTable()) do
-		local originalResistance = Game.Math.GetResistance(character, damage.DamageType)
-		local resistance = originalResistance
-		local bypassValue = (strength - Ext.ExtraData.AttributeBaseValue) * Ext.ExtraData.DGM_StrengthResistanceIgnore * (intelligence - Ext.ExtraData.AttributeBaseValue)
-		if character.TALENT_Haymaker then
-			bypassValue = bypassValue + (character.Wits-Ext.ExtraData.AttributeBaseValue)*Ext.ExtraData.CriticalBonusFromWits
-		end
-		Ext.Print("Resistance bypass value:",bypassValue)
-		-- Ext.Print(resistance)
-		if originalResistance ~= nil and originalResistance > 0 and originalResistance < 100 and bypassValue > 0 then
-			resistance = originalResistance - bypassValue
-			if resistance < 0 then
-				resistance = 0
-			elseif resistance > originalResistance then
-				resistance = originalResistance
-			end
-		-- else
-			-- resistance = 1
-		end
-        damageList:Add(damage.DamageType, math.floor(damage.Amount * -resistance / 100.0))
-    end
-end
-
---- @param character StatCharacter
---- @param attacker StatCharacter
---- @param damageList DamageList
-function ApplyDamageCharacterBonuses(character, attacker, damageList)
-	-- Ext.Print("VANILLA PLUS ApplyDamageCharacterBonuses")
-    damageList:AggregateSameTypeDamages()
-    ApplyHitResistances(character, damageList, attacker)
-
-    Game.Math.ApplyDamageSkillAbilityBonuses(damageList, attacker)
-end
-
-Game.Math.ApplyDamageCharacterBonuses = ApplyDamageCharacterBonuses
-Game.Math.ApplyHitResistances = ApplyHitResistances
 Ext.RegisterListener("ComputeCharacterHit", Game.Math.ComputeCharacterHit)
 
 if Mods.LeaderLib ~= nil then

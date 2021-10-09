@@ -31,6 +31,10 @@ function CheckBoostTalents(character, talent, unlocked)
 		ManageMemory(character, unlocked)
 	elseif talent == "Perfectionist" then
 		CheckHothead(character)
+	elseif talent == "ViolentMagic" then
+		BoostFromTalentInt(character, "LX_SAVAGESORTILEGE", unlocked)
+	elseif talent == "Raistlin" then -- Glass Cannon
+		BoostFromTalentInt(character, "LX_GLASSCANNON", unlocked)
 	end
 end
 

@@ -1,4 +1,5 @@
 Ext.Require("Server/DamageControl.lua")
+Ext.Require("Server/Resistance.lua")
 Ext.Require("Server/ArmorSystem.lua")
 Ext.Require("Server/CCSystem.lua")
 Ext.Require("Server/Potions.lua")
@@ -11,6 +12,7 @@ Ext.Require("Server/Taunt.lua")
 Ext.Require("Server/CQBEffect.lua")
 Ext.Require("Server/CustomSkillPropertiesServer.lua")
 Ext.Require("Server/Miscelleanous.lua")
+Ext.Require("Server/UndeadFoodFix.lua")
 
 gameLevel = ""
 
@@ -144,6 +146,25 @@ Ext.RegisterOsirisListener("MessageBoxYesNoClosed", 3, "after", function(char, m
 		end
 	end
 end)
+
+Ext.RegisterNetListener("LXDGM_FlatScalingWarning", function(...)
+	OpenMessageBoxYesNo(CharacterGetHostCharacter(), "LXDGM_FlatScaling_Message1")
+end)
+
+Ext.RegisterNetListener("LXDGM_FlatScalingWarning2", function(...)
+	OpenMessageBoxYesNo(CharacterGetHostCharacter(), "LXDGM_FlatScaling_Message2")
+end)
+
+Ext.RegisterOsirisListener("MessageBoxYesNoClosed", 3, "after", function(char, message, result)
+	if message == "LXDGM_FlatScaling_Message1" then 
+		if result == 0 then return end
+		PersistentVars.FlatScaling = true
+	elseif message == "LXDGM_FlatScaling_Message2" then
+		if result == 0 then return end
+		PersistentVars.FlatScaling = false
+	end
+end)
+
 
 -- local function EnableStatsOverride(flag)
 --     if flag == "LXDGM_NPCStatsCorrectionCampaign" or "LXDGM_NPCStatsCorrectionGM" then

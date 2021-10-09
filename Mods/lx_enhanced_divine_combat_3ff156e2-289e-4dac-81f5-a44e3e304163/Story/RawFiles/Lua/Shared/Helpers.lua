@@ -126,7 +126,7 @@ function CharGetDGMAttributeBonus(char, next)
 		twoCrit = math.floor(Ext.ExtraData.CombatAbilityCritMultiplierBonus * (stats.TwoHanded+next)),
 		twoAcc = math.floor(Ext.ExtraData.DGM_TwoHandedCTHBonus * (stats.TwoHanded+next)),
 		persArm = math.floor(Ext.ExtraData.AbilityPerseveranceArmorPerPoint * (stats.Perseverance+next)),
-		persVit = math.floor(Ext.ExtraData.DGM_PerseveranceVitalityRecovery * (stats.Perseverance+next)),
+		persVit = math.floor(Ext.ExtraData.DGM_PerseveranceResistance * (stats.Perseverance+next)),
 		hydroDmg = math.floor(Ext.ExtraData.SkillAbilityWaterDamageBoostPerPoint * (stats.WaterSpecialist+next)),
 		hydroHeal = math.floor(Ext.ExtraData.SkillAbilityVitalityRestoredPerPoint * (stats.WaterSpecialist+next)),
 		hydroArmor = math.floor(Ext.ExtraData.SkillAbilityArmorRestoredPerPoint * (stats.WaterSpecialist+next))
@@ -249,13 +249,12 @@ function GetParentStat(entry, stat)
 end
 
 function HasParent(stat, value)
-	if stat.Using == value then
-		return true
-	elseif stat.Using ~= nil or stat.Using == "" then
-		HasParent(stat.Using, value)
-	else
-		return false
-	end
+    local using = stat.Using
+    while using ~= nil and using ~= "" and using ~= value do
+        using = Ext.GetStat(using).Using
+    end
+
+    return using == value
 end
 
 dmgTypeToSchool = {
@@ -357,3 +356,91 @@ function FindStatus(character, prefix)
 	end
 	return
 end
+
+--- @param character EsvCharacter | EclCharacter
+--- @param prefix string
+function FindTag(character, prefix)
+	for i,tag in pairs(character:GetTags()) do
+		if string.find(status, prefix) then
+			return tag
+		end
+	end
+	return
+end
+
+engineStatuses = {
+	HIT = true,
+	DYING = true,
+	HEAL = true,
+	MUTED = true,
+	CHARMED = true,
+	KNOCKED_DOWN = true,
+	SUMMONING = true,
+	HEALING = true,
+	THROWN = true,
+	TELEPORT_FALLING = true,
+	CONSUME = true,
+	COMBAT = true,
+	AOO = true,
+	STORY_FROZEN = true,
+	SNEAKING = true,
+	UNLOCK = true,
+	-- FEAR = true,
+	BOOST = true,
+	UNSHEATHED = true,
+	STANCE = true,
+	SITTING = true,
+	LYING = true,
+	BLIND = true,
+	SMELLY = true,
+	CLEAN = true,
+	INFECTIOUS_DISEASED = true,
+	INVISIBLE = true,
+	ROTATE = true,
+	ENCUMBERED = true,
+	IDENTIFY = true,
+	REPAIR = true,
+	MATERIAL = true,
+	LEADERSHIP = true,
+	EXPLODE = true,
+	ADRENALINE = true,
+	SHACKLES_OF_PAIN = true,
+	SHACKLES_OF_PAIN_CASTER = true,
+	WIND_WALKER = true,
+	DARK_AVENGER = true,
+	REMORSE = true,
+	DECAYING_TOUCH = true,
+	UNHEALABLE = true,
+	FLANKED = true,
+	CHANNELING = true,
+	DRAIN = true,
+	LINGERING_WOUNDS = true,
+	INFUSED = true,
+	SPIRIT_VISION = true,
+	SPIRIT = true,
+	DAMAGE = true,
+	FORCE_MOVE = true,
+	CLIMBING = true,
+	-- INCAPACITATED = true,
+	INSURFACE = true,
+	SOURCE_MUTED = true,
+	OVERPOWER = true,
+	COMBUSTION = true,
+	POLYMORPHED = true,
+	DAMAGE_ON_MOVE = true,
+	DEMONIC_BARGAIN = true,
+	GUARDIAN_ANGEL = true,
+	FLOATING = true,
+	CHALLENGE = true,
+	DISARMED = true,
+	HEAL_SHARING = true,
+	HEAL_SHARING_CASTER = true,
+	EXTRA_TURN = true,
+	ACTIVE_DEFENSE = true,
+	SPARK = true,
+	PLAY_DEAD = true,
+	CONSTRAINED = true,
+	EFFECT = true,
+	DEACTIVATED = true,
+	TUTORIAL_BED = true
+}

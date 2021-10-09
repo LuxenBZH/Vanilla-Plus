@@ -1,0 +1,5 @@
+new entry "LX_GLASSCANNON"
+type "StatusData"
+data "StatusType" "CONSUME"
+data "StatsId" "Stats_LX_GlassCannon"
+data "StackId" "Stack_LX_GlassCannon"
