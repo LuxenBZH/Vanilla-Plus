@@ -4,7 +4,7 @@ if Mods.LeaderLib then
 	local minor = (VersionInt >> 24) & 0x0F;
 	local revision = (VersionInt >> 16) & 0xFF;
 	local build = (VersionInt & 0xFFFF);
-	local ts = Classes.TranslatedString
+	local ts = Mods.LeaderLib.Classes.TranslatedString
 	Listeners = Mods.LeaderLib.Listeners
 
 	if ((minor == 7 and revision == 16 and build > 9) or (minor == 7 and revision > 16) or (minor > 7)) then

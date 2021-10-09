@@ -1,3 +1,4 @@
+// Overriding _Food makes undeads unable to receive bonuses from food !
 new entry "_Food"
 type "Potion"
 data "Duration" "300"

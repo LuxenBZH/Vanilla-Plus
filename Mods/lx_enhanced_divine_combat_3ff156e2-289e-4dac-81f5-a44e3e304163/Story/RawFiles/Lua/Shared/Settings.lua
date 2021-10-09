@@ -128,6 +128,7 @@ Ext.RegisterListener("SessionLoaded", function()
     settings.Global:AddLocalizedFlag("LXDGM_ModuleOriginalChameleonCloak", "Global", false, nil, nil, false)
     settings.Global:AddLocalizedFlag("LXDGM_ModuleDivineTalentsDisable", "Global", false, nil, nil, false)
     settings.Global:AddLocalizedFlag("LXDGM_ModuleCorrogicDisable", "Global", false, nil, nil, false)
+    settings.Global:AddLocalizedFlag("LXDGM_ModuleOriginalTeleport", "Global", false, nil, nil, false)
 
     -- settings.Global:AddLocalizedFlag("LXDGM_SettingsUseDefaultAttributeValues", "Global", true, nil, nil, false)
     settings.Global:AddLocalizedVariable("StrengthGloBonus", "LXDGM_StrengthGlobalDamageBonus", Ext.ExtraData.DGM_StrengthGlobalBonus, 0, 10, 0.5, "LXDGM_StrengthGlobalDamageBonus_Description")
@@ -146,6 +147,7 @@ Ext.RegisterListener("SessionLoaded", function()
     settings.Global:AddLocalizedVariable("ArmourDamagePass", "LXDGM_ArmourDamagePass", Ext.ExtraData.DGM_DamageThroughArmor, 0, 100, 1, "LXDGM_ArmourDamagePass_Description")
     settings.Global:AddLocalizedVariable("ArmourDamagePassDepleted", "LXDGM_ArmourDamagePassDepleted", Ext.ExtraData.DGM_DamageThroughArmorDepleted, 0, 100, 1, "LXDGM_ArmourDamagePassDepleted_Description")
 
+    settings.Global:AddLocalizedVariable("PotionFatigue", "LXDGM_PotionFatigue", Ext.ExtraData.DGM_PotionFatigue, -1, 6, 1, "LXDGM_PotionFatigue_Description")
     settings.Global:AddLocalizedVariable("CQBPenalty", "LXDGM_CQBPenalty", Ext.ExtraData.DGM_RangedCQBPenalty, 0, 100, 1, "LXDGM_CQBPenalty_Description")
     settings.Global:AddLocalizedVariable("CQBPenaltyRange", "LXDGM_CQBPenaltyRange", Ext.ExtraData.DGM_RangedCQBPenaltyRange, 0, 10, 1, "LXDGM_CQBPenaltyRange_Description")
     settings.Global:AddLocalizedVariable("StaffSkillMult", "LXDGM_StaffSkillMult", Ext.ExtraData.DGM_StaffSkillMultiplier, 0, 100, 0.5, "LXDGM_StaffSkillMult_Description")
@@ -187,6 +189,7 @@ Ext.RegisterListener("SessionLoaded", function()
                     "LXDGM_ModuleFallDamageClassic",
                     "LXDGM_ModuleFallDamageAlternate",
                     "LXDGM_ModuleOriginalChameleonCloak",
+                    "LXDGM_ModuleOriginalTeleport",
                 }},
                 {DisplayName = "Attributes",
                 Entries = {
@@ -210,6 +213,7 @@ Ext.RegisterListener("SessionLoaded", function()
                 }},
                 {DisplayName = "Miscellaneous",
                 Entries = {
+                    "PotionFatigue",
                     "CQBPenalty",
                     "CQBPenaltyRange",
                     "StaffSkillMult",

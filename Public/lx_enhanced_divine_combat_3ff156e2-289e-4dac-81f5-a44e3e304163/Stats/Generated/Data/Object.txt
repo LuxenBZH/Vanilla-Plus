@@ -409,7 +409,7 @@ data "ObjectCategory" "SkillbookEarthEarly"
 data "MinAmount" "1"
 data "MaxAmount" "1"
 data "Priority" "1"
-data "MinLevel" "9"
+data "MinLevel" "4"
 
 new entry "SKILLBOOK_Air_Tornado"
 type "Object"

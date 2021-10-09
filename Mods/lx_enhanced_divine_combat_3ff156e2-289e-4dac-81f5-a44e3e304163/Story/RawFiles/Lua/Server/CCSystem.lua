@@ -40,9 +40,10 @@ local correspondingStatus = {
 ---@param enterChance number
 ---@param baseHandle number
 local function RollStatusApplication(character, status, duration, force, enterChance, baseHandle)
+	if enterChance == 100 then return end
 	local roll = math.random(1, 100)
 	-- Ext.Print("[LXDGM_CCSystem.RollStatusApplication] Status",status,"has enter chance",enterChance,"roll:",roll)
-	if roll <= enterChance then 
+	if roll < enterChance then 
 		ApplyStatus(character, status, duration, force)
 	else 
 		NRD_StatusPreventApply(character, baseHandle, 1) 
@@ -101,12 +102,14 @@ end
 ---@param status string
 ---@param handle number
 local function BlockCCs(character, status, handle)
-	if ObjectIsCharacter(character) ~= 1 then return end
+	if ObjectIsCharacter(character) ~= 1 or engineStatuses[status] then return end
 	local lifetime = NRD_StatusGetInt(character, handle, "LifeTime")
 	local source = NRD_StatusGetInt(character, handle, "DamageSourceType") -- If 5 it's from an aura
 	local enterChance = NRD_StatusGetInt(character, handle, "CanEnterChance")
+	local isArmourStatus = false
 	for armour,statuses in pairs(blockedStatuses) do
 		if statuses[status] then
+			isArmourStatus = true
 			local armourValue = Ext.GetCharacter(character).Stats[correspondingArmor[armour]]
 			if armourValue ~= 0 and NRD_StatusGetInt(character, handle, "ForceStatus") == 0 then return end
 			if lifetime == -1 and source == 5 and armourValue == 0 then -- Fuck auras
@@ -123,6 +126,10 @@ local function BlockCCs(character, status, handle)
 				RollStatusApplication(character, correspondingStatus[armour][2], 6.0, 1, enterChance, handle)
 			end
 		end
+	end
+	-- Torturer fix
+	if not isArmourStatus and CharacterHasTalent(character, "Torturer") == 1 then
+		RollStatusApplication(character, status, lifetime, false, enterChance, handle)
 	end
 end
 

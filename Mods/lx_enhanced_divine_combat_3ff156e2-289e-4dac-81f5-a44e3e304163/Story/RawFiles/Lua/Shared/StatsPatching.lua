@@ -226,6 +226,17 @@ local function AttributeCap()
 	end
 end
 
+local function TeleportRevert()
+	local hardSaved = Ext.LoadFile("LeaderLib_GlobalSettings.json")
+	if hardSaved ~= nil then
+		local variables = Ext.JsonParse(hardSaved).Mods["3ff156e2-289e-4dac-81f5-a44e3e304163"].Global.Flags
+		if variables.LXDGM_ModuleOriginalTeleport.Enabled then
+			Ext.Print("Reverting Teleport and Nether Swap targetting conditions...")
+			Ext.AddPathOverride("Public/lx_enhanced_divine_combat_3ff156e2-289e-4dac-81f5-a44e3e304163/Stats/Generated/Data/LX_TeleportNS.txt", "Public/lx_enhanced_divine_combat_3ff156e2-289e-4dac-81f5-a44e3e304163/Stats/Generated/Data/LX_Empty.txt")
+		end
+	end
+end
+
 Ext.RegisterListener("GameStateChanged", FlatScaling)
 Ext.RegisterListener("StatsLoaded", AttributeCap)
 Ext.RegisterListener("StatsLoaded", AddDamageToDescription)
@@ -236,3 +247,4 @@ Ext.RegisterListener("StatsLoaded", ReplaceDescriptionParams)
 Ext.RegisterListener("StatsLoaded", AdjustNPCStats)
 Ext.RegisterListener("StatsLoaded", CustomScalings)
 Ext.RegisterListener("StatsLoaded", ChameleonCloakRevert)
+Ext.RegisterListener("ModuleLoadStarted", TeleportRevert)

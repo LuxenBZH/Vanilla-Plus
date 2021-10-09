@@ -37,7 +37,9 @@ local dynamicTooltips = {
     ["Target_TentacleLash"]     = "hddb00621g65ddg46acg89d2gfcf3efd8cd78",
     ["WpnCrossbow"]             = "h846daabdg90beg4ac9gb930g02e96dcdbd8d",
     ["CriticalChanceDescription"]= "h9df517d1gf64bg499dgb23fg462fd1f061bc",
-    ["Target_Condense"]         = "h5806fbdcgce18g421dg8affg316856abad0f"
+    ["Target_Condense"]         = "h5806fbdcgce18g421dg8affg316856abad0f",
+    ["Teleportation_FreeFall"]  = "h8afcfe4egf50fg402agbcc0g6ba95472ff53",
+    ["Teleportation_Netherswap"]= "h656cf1ffgd118g40b8g9b1bgaa270b84bec8",
 }
 
 ---@param str string
@@ -327,6 +329,14 @@ local function TalentTooltip(character, talent, tooltip)
     end
 end
 
+---@param character EsvCharacter
+---@param skill string
+---@param tooltip TooltipData
+local function TeleportTooltip(character, skill, tooltip)
+    local description = tooltip:GetElement("SkillDescription")
+    description.Label = description.Label.."<br>Enemies need to have Physical or Magic armour down to be targetable."
+end
+
 local function DGM_Tooltips_Init()
     Game.Tooltip.RegisterListener("Item", nil, WeaponTooltips)
     Game.Tooltip.RegisterListener("Stat", "Damage", SkillAttributeTooltipBonus)
@@ -335,6 +345,8 @@ local function DGM_Tooltips_Init()
     Game.Tooltip.RegisterListener("Stat", nil, FixCustomBonusesTranslationKeyBonus)
     Game.Tooltip.RegisterListener("Stat", nil, FixCustomBonusesTranslationKeyMalus)
     Game.Tooltip.RegisterListener("Talent", nil, TalentTooltip)
+    Game.Tooltip.RegisterListener("Skill", "Teleportation_FreeFall", TeleportTooltip)
+    Game.Tooltip.RegisterListener("Skill", "Teleportation_Netherswap", TeleportTooltip)
 end
 
 Ext.RegisterListener("SessionLoaded", DGM_Tooltips_Init)

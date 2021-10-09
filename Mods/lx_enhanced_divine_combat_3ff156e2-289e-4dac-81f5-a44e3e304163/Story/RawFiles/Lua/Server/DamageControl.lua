@@ -478,7 +478,14 @@ Ext.RegisterListener("GetHitChance", DGM_HitChanceFormula)
 --- @param target StatCharacter
 function DGM_CalculateHitChance(attacker, target)
     if attacker.TALENT_Haymaker then
-        return 100
+		local diff = 0
+		if attacker.MainWeapon then
+			diff = diff + math.max(0, (attacker.MainWeapon.Level - attacker.Level))
+		end
+		if attacker.OffHandWeapon then
+			diff = diff + math.max(0, (attacker.OffHandWeapon.Level - attacker.Level))
+		end
+        return 100 - diff * Ext.ExtraData.WeaponAccuracyPenaltyPerLevel
 	end
 	
     local accuracy = attacker.Accuracy
