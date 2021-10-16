@@ -740,3 +740,4 @@ Miscellaneous
 * Wits increase healings+
 * Polish Perseverance effect
 * Dodge fatigue rework
+* Grenadier talent % chance to give back base ingredients when crafting and % to give back a grenade after use (chance reverse proportional to the price of the grenade)

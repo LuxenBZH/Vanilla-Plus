@@ -1,3 +1,16 @@
+TalentManager = {
+	RegisteredTalents = {},
+	RegisteredCount = {},
+	---@type table<string, table<string, TalentRequirementCheckCallback>>
+	RequirementHandlers = {},
+	TalentState = TalentState,
+	---@type table<string, StatRequirement[]>
+	BuiltinRequirements = {},
+	HiddenTalents = {},
+	HiddenCount = {}
+}
+TalentManager.__index = TalentManager
+
 if Mods.LeaderLib then
 	local VersionInt = Ext.GetModInfo("543d653f-446c-43d8-8916-54670ce24dd9_7e737d2f-31d2-4751-963f-be6ccc59cd0c").Version
 	local major = (VersionInt >> 28);
@@ -22,19 +35,6 @@ if Mods.LeaderLib then
 			[TalentState.Selectable] = "<font color='#403625'>%s</font>",
 			[TalentState.Locked] = "<font color='#C80030'>%s</font>"
 		}
-
-		TalentManager = {
-			RegisteredTalents = {},
-			RegisteredCount = {},
-			---@type table<string, table<string, TalentRequirementCheckCallback>>
-			RequirementHandlers = {},
-			TalentState = TalentState,
-			---@type table<string, StatRequirement[]>
-			BuiltinRequirements = {},
-			HiddenTalents = {},
-			HiddenCount = {}
-		}
-		TalentManager.__index = TalentManager
 
 		local missingTalents = {
 			ItemMovement = "TALENT_ItemMovement",
