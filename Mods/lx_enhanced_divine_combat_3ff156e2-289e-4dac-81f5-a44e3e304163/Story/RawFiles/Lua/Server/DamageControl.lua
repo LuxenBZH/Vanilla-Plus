@@ -461,7 +461,7 @@ local function ManageDemiPerseverance(character, status, causee)
 	end
 end
 
-Ext.RegisterOsirisListener("CharacterStatusRemoved", 3, "before", ManageDemiPerseverance)
+-- Ext.RegisterOsirisListener("CharacterStatusRemoved", 3, "before", ManageDemiPerseverance)
 
 ---@param attacker EsvCharacter
 ---@param target EsvCharacter
