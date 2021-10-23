@@ -27,6 +27,20 @@
                     <attribute id="V2" value="0.124023" type="6" />
                 </node>
                 <node id="IconUV">
+                    <attribute id="MapKey" value="icon_confused_2" type="22" />
+                    <attribute id="U1" value="0.250977" type="6" />
+                    <attribute id="U2" value="0.374023" type="6" />
+                    <attribute id="V1" value="0.125977" type="6" />
+                    <attribute id="V2" value="0.249023" type="6" />
+                </node>
+                <node id="IconUV">
+                    <attribute id="MapKey" value="icon_confused_3" type="22" />
+                    <attribute id="U1" value="0.375977" type="6" />
+                    <attribute id="U2" value="0.499023" type="6" />
+                    <attribute id="V1" value="0.125977" type="6" />
+                    <attribute id="V2" value="0.249023" type="6" />
+                </node>
+                <node id="IconUV">
                     <attribute id="MapKey" value="icon_cqbpenalty" type="22" />
                     <attribute id="U1" value="0.500977" type="6" />
                     <attribute id="U2" value="0.624023" type="6" />
@@ -51,6 +65,27 @@
                     <attribute id="MapKey" value="icon_staggered" type="22" />
                     <attribute id="U1" value="0.250977" type="6" />
                     <attribute id="U2" value="0.374023" type="6" />
+                    <attribute id="V1" value="0.000976563" type="6" />
+                    <attribute id="V2" value="0.124023" type="6" />
+                </node>
+                <node id="IconUV">
+                    <attribute id="MapKey" value="icon_staggered_2" type="22" />
+                    <attribute id="U1" value="0.000976563" type="6" />
+                    <attribute id="U2" value="0.124023" type="6" />
+                    <attribute id="V1" value="0.125977" type="6" />
+                    <attribute id="V2" value="0.249023" type="6" />
+                </node>
+                <node id="IconUV">
+                    <attribute id="MapKey" value="icon_staggered_3" type="22" />
+                    <attribute id="U1" value="0.125977" type="6" />
+                    <attribute id="U2" value="0.249023" type="6" />
+                    <attribute id="V1" value="0.125977" type="6" />
+                    <attribute id="V2" value="0.249023" type="6" />
+                </node>
+                <node id="IconUV">
+                    <attribute id="MapKey" value="skill_aimedshot" type="22" />
+                    <attribute id="U1" value="0.875977" type="6" />
+                    <attribute id="U2" value="0.999023" type="6" />
                     <attribute id="V1" value="0.000976563" type="6" />
                     <attribute id="V2" value="0.124023" type="6" />
                 </node>

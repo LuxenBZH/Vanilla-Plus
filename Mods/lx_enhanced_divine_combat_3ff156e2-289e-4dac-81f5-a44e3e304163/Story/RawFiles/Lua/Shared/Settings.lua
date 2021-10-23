@@ -129,6 +129,7 @@ Ext.RegisterListener("SessionLoaded", function()
     settings.Global:AddLocalizedFlag("LXDGM_ModuleDivineTalentsDisable", "Global", false, nil, nil, false)
     settings.Global:AddLocalizedFlag("LXDGM_ModuleCorrogicDisable", "Global", false, nil, nil, false)
     settings.Global:AddLocalizedFlag("LXDGM_ModuleOriginalTeleport", "Global", false, nil, nil, false)
+    settings.Global:AddLocalizedFlag("LXDGM_ModuleLegacyDodge", "Global", false, nil, nil, false)
 
     -- settings.Global:AddLocalizedFlag("LXDGM_SettingsUseDefaultAttributeValues", "Global", true, nil, nil, false)
     settings.Global:AddLocalizedVariable("StrengthGloBonus", "LXDGM_StrengthGlobalDamageBonus", Ext.ExtraData.DGM_StrengthGlobalBonus, 0, 10, 0.5, "LXDGM_StrengthGlobalDamageBonus_Description")
@@ -190,6 +191,7 @@ Ext.RegisterListener("SessionLoaded", function()
                     "LXDGM_ModuleFallDamageAlternate",
                     "LXDGM_ModuleOriginalChameleonCloak",
                     "LXDGM_ModuleOriginalTeleport",
+                    "LXDGM_ModuleLegacyDodge"
                 }},
                 {DisplayName = "Attributes",
                 Entries = {

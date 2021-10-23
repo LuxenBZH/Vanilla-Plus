@@ -40,7 +40,10 @@ local correspondingStatus = {
 ---@param enterChance number
 ---@param baseHandle number
 local function RollStatusApplication(character, status, duration, force, enterChance, baseHandle)
-	if enterChance == 100 then return end
+	if enterChance == 100 then 
+		ApplyStatus(character, status, duration, force)
+		return 
+	end
 	local roll = math.random(1, 100)
 	-- Ext.Print("[LXDGM_CCSystem.RollStatusApplication] Status",status,"has enter chance",enterChance,"roll:",roll)
 	if roll < enterChance then 

@@ -735,9 +735,24 @@ Miscellaneous
 * Refactored damage code for more clarity
 * Performance should be improved in situations where there are a lot of hits done consecutively
 
+# 1.2.13.64
+Fixes
+* Crowd control effects shall now work as intended with Momentum/Lingering
+* Perseverance doesn't restore Vitality anymore
+
+Balance
+* Dodge fatigue is now gone to be replaced by another system : Warmup. Missing a character will now trigger Warmup on the attacker, increasing Accuracy by the intelligence value for 1 turn, stackable up to 4 times. When the status duration expires, you lose only one stack instead of all of them like Dodge fatigue was doing. Flurry and All-in now provide one stack of Warmup whatever is the outcome of the hit. Bows and XBows now provide a skill named "Aimed shot" : 1 AP, 1 CD - increase the Accuracy by 20+(intelligence-10)x3 and critical chance by the strength value for the next shot. You can restore the dodge fatigue behavior in the options.
+* Water balloon and Oil flask base AP cost reduced from 2 to 1
+
+Miscellaneous
+* Staggered and Confused different steps now have different icons
+
+Known issues
+* Last Rites doesn't behave correctly for undeads
+* Damage offhand penalty is incorrect if the Dual Wielding ability of the character is more than 10
+
 # TODO
 * Resistance caps rework : resistance has always been controversial since it's known to bloat at higher levels. The resistance bypass feature by itself is quite limited since you have to build your character around it to be effective and the corrogic module also require specific preparation. As a result, a mage at higher level can get stuck for a couple of turns before being effective whereas physical damage dealers can counter dodge in a single turn. V+ now propose by default to reduce the base cap of resistances to 50%, except if the base resistance is already higher (e.g. a fire slug will still be able to absorb fire attacks).
 * Wits increase healings+
 * Polish Perseverance effect
-* Dodge fatigue rework
 * Grenadier talent % chance to give back base ingredients when crafting and % to give back a grenade after use (chance reverse proportional to the price of the grenade)
