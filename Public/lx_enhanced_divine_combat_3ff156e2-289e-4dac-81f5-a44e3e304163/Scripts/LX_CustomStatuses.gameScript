@@ -53,3 +53,35 @@ ACTIONS
 		Set(_Result, LX_CONFUSED3)	
 	ENDIF
 	RETURN(_RemoveList,_Result,null)
+
+// EVENT CharacterSetWarmup
+// VARS
+// 	CHARACTER:_Character
+// 	LIST<STATUS>:_RemoveList
+// 	STATUS:_Result
+// ON 
+// 	FetchCharacterApplyStatusData(_Character, DGM_WARMUP)
+// ACTIONS
+// 	Set(_Result,DGM_WARMUP)
+// 	ListClear(_RemoveList)
+// 	IF "c1"
+// 		CharacterHasStatus(_Character, DGM_WARMUP)
+// 	THEN	
+// 		ListAdd(_RemoveList, DGM_WARMUP)
+// 		Set(_Result, DGM_WARMUP2)		
+// 	ELIF "c1"
+// 		CharacterHasStatus(_Character, DGM_WARMUP2)
+// 	THEN	
+// 		ListAdd(_RemoveList, DGM_WARMUP2)
+// 		Set(_Result, DGM_WARMUP3)	
+// 	ELIF "c1"
+// 		CharacterHasStatus(_Character, DGM_WARMUP3)
+// 	THEN	
+// 		ListAdd(_RemoveList, DGM_WARMUP3)
+// 		Set(_Result, DGM_WARMUP4)
+// 	ELIF "c1"
+// 		CharacterHasStatus(_Character, DGM_WARMUP4)
+// 	THEN
+// 		Set(_Result, DGM_WARMUP4)
+// 	ENDIF
+// 	RETURN(_RemoveList,_Result,null)

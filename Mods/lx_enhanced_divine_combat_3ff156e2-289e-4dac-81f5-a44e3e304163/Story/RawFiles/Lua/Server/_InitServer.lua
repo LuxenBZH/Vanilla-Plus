@@ -13,6 +13,8 @@ Ext.Require("Server/CQBEffect.lua")
 Ext.Require("Server/CustomSkillPropertiesServer.lua")
 Ext.Require("Server/Miscelleanous.lua")
 Ext.Require("Server/UndeadFoodFix.lua")
+Ext.Require("Server/Statuses.lua")
+-- Ext.Require("Server/Systems/SkillMutator.lua")
 
 gameLevel = ""
 

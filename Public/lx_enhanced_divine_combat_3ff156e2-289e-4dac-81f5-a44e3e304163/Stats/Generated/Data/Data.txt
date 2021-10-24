@@ -239,3 +239,5 @@ key "DGM_GB4Talents","0"
 key "DGM_Corrogic","1"
 
 key "DGM_PotionFatigue","1"
+
+key "DGM_LegacyDodge","0"
