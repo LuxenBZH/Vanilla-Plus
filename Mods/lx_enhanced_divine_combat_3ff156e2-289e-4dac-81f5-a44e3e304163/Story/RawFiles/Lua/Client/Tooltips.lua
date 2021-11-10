@@ -41,6 +41,7 @@ local dynamicTooltips = {
     ["Teleportation_FreeFall"]  = "h8afcfe4egf50fg402agbcc0g6ba95472ff53",
     ["Teleportation_Netherswap"]= "h656cf1ffgd118g40b8g9b1bgaa270b84bec8",
     ["Shout_LX_AimedShot_Description"]= "h02f12f9fg9a25g4a95gba27gd65217023ed9",
+    ["DualWieldingOffhandBonusTooltip"]= "h8b09bd1cg68deg4987g9494g540c9d948538"
 }
 
 ---@param str string
@@ -77,7 +78,7 @@ local function WeaponTooltips(item, tooltip)
 	if item.ItemType ~= "Weapon" then return end
     local requirements = tooltip:GetElements("ItemRequirement")
     for i,el in pairs(tooltip.Data) do
-        if string.match(el.Label, "Scales With") ~= nil then
+        if el.Label and string.match(el.Label, "Scales With") ~= nil then
             tooltip:RemoveElement(el)
         end
     end
@@ -157,6 +158,16 @@ local function SkillAttributeTooltipBonus(character, skill, tooltip)
             
             for _, offhandPenaltySub in pairs(offhandPenalty) do
                 offhandPenaltySub.Label = GetDynamicTranslationString("DualWieldingPenalty", finalPenalty, reducedBy)
+                if stats.DualWielding == 10 then
+                    tooltip:RemoveElement(offhandPenaltySub)
+                    break
+                elseif stats.DualWielding > 10 then
+                    tooltip:RemoveElement(offhandPenaltySub)
+                    offhandPenaltySub.Type = "StatsPercentageBoost"
+                    tooltip:AppendElementAfter(offhandPenaltySub, "StatsPercentageBoost")
+                    offhandPenaltySub.Label = GetDynamicTranslationString("DualWieldingOffhandBonusTooltip", -finalPenalty)
+                end
+                
             end
         end
     end
@@ -285,16 +296,16 @@ local function FixCustomBonusesTranslationKeyBonus(character, stat, tooltip)
         boosts = tooltip:GetElements("StatsTalentsBoost")
         if #boosts == nil then return end
     end
-    Ext.Dump(boosts)
+    -- Ext.Dump(boosts)
     for i,boost in pairs(boosts) do
         if string.find(boost.Label, "DGM_Potion_.*_.*:") ~= nil then
-            Ext.Print("STRING REPLACEMENT")
+            -- Ext.Print("STRING REPLACEMENT")
             local str = boost.Label:gsub("DGM_Potion_", "")
-            Ext.Print(str)
+            -- Ext.Print(str)
             str = str:gsub("_.*:", ":")
-            Ext.Print(str)
+            -- Ext.Print(str)
             local stat = str:gsub("^%a* ", "")
-            Ext.Print(stat)
+            -- Ext.Print(stat)
             stat = stat:gsub(":.*$", "")
             local final = Ext.GetTranslatedString(tooltipFix[stat], stat)
             str = str:gsub(" .*:", " "..final..":")

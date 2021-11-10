@@ -100,3 +100,11 @@ Ext.RegisterOsirisListener("ObjectTurnStarted", 1, "before", function(object)
     end
 end)
 ----------
+---------- Last Rites workaround
+Ext.RegisterOsirisListener("CharacterUsedSkill", 4, "before", function(character, skill, skillType, skillElement)
+    if skill == "Teleportation_LastRites" then
+        ---@type EsvCharacter
+        local char = Ext.GetCharacter(character)
+        char.Stats.CurrentVitality = 1
+    end
+end)

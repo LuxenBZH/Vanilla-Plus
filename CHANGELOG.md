@@ -755,6 +755,16 @@ Known issues
 Fixes
 * Fixed an issue with the hotbar behaving weirdly
 
+# 1.2.13.66
+Fixes
+* Fixed an issue where crossbows penalty wouldn't go away
+* Fixed Siphon Poison skill requirement being Geomancer 2 instead of Geomancer 1
+* Fixed characters Physical resistance when they have some from their character stat
+* Fixed various description mistakes
+
+Balance
+* Last Rites now reduce current vitality to 1
+
 # TODO
 * Resistance caps rework : resistance has always been controversial since it's known to bloat at higher levels. The resistance bypass feature by itself is quite limited since you have to build your character around it to be effective and the corrogic module also require specific preparation. As a result, a mage at higher level can get stuck for a couple of turns before being effective whereas physical damage dealers can counter dodge in a single turn. V+ now propose by default to reduce the base cap of resistances to 50%, except if the base resistance is already higher (e.g. a fire slug will still be able to absorb fire attacks).
 * Wits increase healings+

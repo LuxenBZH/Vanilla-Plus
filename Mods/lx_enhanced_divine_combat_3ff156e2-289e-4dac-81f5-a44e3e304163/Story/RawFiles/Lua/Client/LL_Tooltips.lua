@@ -1,9 +1,18 @@
+local notPotionStat = {}
+
+Ext.RegisterListener("SessionLoaded", function()
+    local objects = Ext.GetStatEntries("Object")
+    for i,object in pairs(objects) do
+        notPotionStat[object] = true
+    end
+end)
 
 local function ItemCanBeExtended(item)
     if item.StatsId ~= nil then
         local stat = Ext.GetStat(item.StatsId)
         local template = item.RootTemplate
-        if item.ItemType ~= "Weapon" and GetParentStat(stat, "IsConsumable") == "Yes" and GetParentStat(stat, "IsFood") ~= "Yes" then
+        if item.ItemType ~= "Weapon" and item.ItemType ~= "Shield" and item.ItemType ~= "Armor" and not(notPotionStat[stat.Name]) 
+          and GetParentStat(stat, "IsConsumable") == "Yes" and GetParentStat(stat, "IsFood") ~= "Yes" then
             return true
         end
         if stat.ExtraProperties == nil then return false end

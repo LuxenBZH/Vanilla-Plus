@@ -46,13 +46,15 @@
 	<content contentuid="h2e87e6cfg0183g4968g8ec1g325614c7d9fa">+[1] point(s) = +[2]% to all Damage, +[3]% Dodge, +[4]m of movement per AP and +[5]% Critical Chance.</content>
 	<content contentuid="h2e8803d0g3b27g470dgb836g26fcbeb60714">Activate Jump fall damage</content>
 	<content contentuid="h2ea5f141g4d43g49b8g8d6agd365b90a0d6d">Dodge Fatigue (4)</content>
+	<content contentuid="h2f00286fg98feg42abg84a5gb9d4fcce838e">Your chance to hit an enemy. On miss, you trigger Warmup which increase your Accuracy by your Intelligence attribute, stackable up to 4 times.</content>
 	<content contentuid="h2f904fe7g83d0g4d51g8bcfgd6b561ba92e3">Magnificent horns sprout from your forehead, making you see red. You can rush at your enemies and gore them. Increases Retribution ability by 2 for the duration.</content>
 	<content contentuid="h314ee256g43cdg4864ga519gd23e909ec63e">Increase all Skill damage by [1]%.&lt;br&gt;Wands attacks do [2]% more damage of the type of the surface and the cloud the character is standing in.</content>
 	<content contentuid="h31d2a547g005bg4ee3g8d2ag47720bd4fa1a">Gain 2 Action Points immediately, but lose 3 Action Points next turn. Any Action Points over your maximum are lost.</content>
 	<content contentuid="h3240460dgd250g435bg9ebegc1682089c5ed">Explode target corpse, dealing [1] in the area.</content>
+	<content contentuid="h32b3f391g84c8g4350gb6c1gc0577fd7372a">Inflict [1] each turn.</content>
 	<content contentuid="h32fcbbfbgec6bg4af4g894ag49fd997307fe">Any attempt to apply Stunned, Petrified, Frozen, Madness, Terrified or Charm will apply Confused instead.</content>
 	<content contentuid="h34fa90bdg6d1fg4ee8gb3e7g8c3694c70fae">At the start of an encounter, you gain one of two statuses: Cycle of Fire and Water or Cycle of Earth and Air. Cycle of Fire and Water increases your Pyrokinetic and Hydrosophist by 3. Cycle of Earth and Air increases your Geomancy and Aerotheurgy by 3. Statuses swap each turn.</content>
-	<content contentuid="h362a94a5g0b60g4be6g9998gd44214d4a78f">Sacrifice yourself to bring an ally back to life. Reduce your Vitality by [1]% and ressurrects target character with maximum Vitality.</content>
+	<content contentuid="h362a94a5g0b60g4be6g9998gd44214d4a78f">Sacrifice yourself to bring an ally back to life. Reduce your Vitality to 1 and ressurrects target character with maximum Vitality.</content>
 	<content contentuid="h36683e27ge1cag45f9gb7ddgdf954e865e33">Default : 2</content>
 	<content contentuid="h39ded39fg40a6g46a1gafe4gbaf448e4f20a">Last armour penetration</content>
 	<content contentuid="h3c306881g0106g4b61g931eg1e837bca6149">Walk It Off (5)</content>
@@ -145,6 +147,7 @@
 	<content contentuid="h878c02c0gc629g470dg955cg80dc2a125cb2">Stench decreases everyone&apos;s attitude towards you by [2], but melee opponents find you less attractive in combat. Increases your Poison resistance by 30% and makes you immune to Diseased and Infected.</content>
 	<content contentuid="h88ed61e9g4d7fg4eb7g81f1g9e7c48dde602">Multiply the base Vitality of all summons (ally and enemy). &lt;br&gt;Default : 100 &lt;br&gt;&lt;font color=#ff0000&gt;Require a game restart&lt;/font&gt;</content>
 	<content contentuid="h8afcfe4egf50fg402agbcc0g6ba95472ff53">Enemies can only be targeted if one of their armour is depleted.</content>
+	<content contentuid="h8b09bd1cg68deg4987g9494g540c9d948538">Offhand bonus: [1]% (high ability nullify the base penalty)</content>
 	<content contentuid="h8b1768fbgf8edg4ce6gab9dg617267af4852">Pers. Resistance Bonus</content>
 	<content contentuid="h8ddc8dd4ge8feg4420ga6dag0d87ce8ec743">[1] lets you evade attacks of opportunity. Increases your Dodge by 5% and Movement by 1m per AP.</content>
 	<content contentuid="h8fc505abgfadbg4481g8d79gb73e606117d7">When an allied character dies, a Zombie Crawler is raised at their corpse, under their control. Zombie Crawler lasts 3 turns or until character is resurrected. Range 12m. Does not affect summoned creatures. Can happen only once per turn.</content>
@@ -175,6 +178,7 @@
 	<content contentuid="hab342575gecacg4c17ga4dcg4d2c771f2a24">Change the vitality scaling to be linear instead of exponential. The difference of Vitality, Armours and Damage between levels are much lower, avoiding weapons fast obsolescence and making inter-levels combats more fair. &lt;br&gt;Default : off&lt;br&gt;&lt;font color=#ff0000&gt;Require a map reload. It is highly recommended to activate this option before starting a new game (during character creation), and deactivating it mid-playthrough will break all NPCs vitality.&lt;/font&gt;</content>
 	<content contentuid="hae2334ccg2f64g45aaga94dgf4ce0f03a7a6">Warmup (3)</content>
 	<content contentuid="hae29de3agcf14g44f7g9020g90e1fd77694d">If deactivated, you will be able to use custom attributes bonuses. Not recommended if you want to keep an overall balanced experience unless you really know what you are doing.&lt;br&gt;Default : on</content>
+	<content contentuid="hae68ba97g6072g46fagb9d3g7c289a0e7511">Magnificent horns sprout from your forehead, making you see red. You can rush at your enemies and gore them. Increases Retribution ability by 1 for the duration.</content>
 	<content contentuid="haee8a8d1g10e8g491ag83c8g833c3a4d0fbb">The damage bonus provided per Critical Chance percent when backstabbing. &lt;br&gt;Default : 0.5&lt;br&gt;</content>
 	<content contentuid="hb1fc6d8bg6bf6g4a3bg83f7g94177ced086a">Duelist</content>
 	<content contentuid="hb24edf38gd48ag477fgbf75g3bd3de8c6eec">Resistance Corrosion</content>
