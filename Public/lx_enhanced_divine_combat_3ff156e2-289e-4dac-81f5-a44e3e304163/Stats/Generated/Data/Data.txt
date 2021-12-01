@@ -241,3 +241,5 @@ key "DGM_Corrogic","1"
 key "DGM_PotionFatigue","1"
 
 key "DGM_LegacyDodge","0"
+
+key "DGM_BaseAccuracy","90"

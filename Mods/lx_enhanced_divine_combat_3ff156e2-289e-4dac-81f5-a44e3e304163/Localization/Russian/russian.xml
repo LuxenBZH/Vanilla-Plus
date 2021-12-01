@@ -127,6 +127,7 @@
 	<content contentuid="h753b1b3fgdfdfg428fg90e0g9e631beb1f06">Strength Global Damage Bonus</content>
 	<content contentuid="h75422cb0g14ccg4731g89a7gae632f7669a8">Str. Resistance Bypass Multiplier</content>
 	<content contentuid="h7579318fg2a13g4185g856bgad8960145220">Confused (2)</content>
+	<content contentuid="h757f2c61g6620g4134ga7efgd7db36630de5">Base Accuracy</content>
 	<content contentuid="h7583bee1g949cg433dg8b2ag94d9a47bef82">Bonus damage (%) from surface AND cloud the character stands in.&lt;br&gt;Default : 20</content>
 	<content contentuid="h76856ed3gf1cdg4c63g887fgb4c1fd40952b">This summon is weaker.</content>
 	<content contentuid="h768669d0g02adg48f7g901eg83068a96bf19">Dual-Wielding increases damage and Dodging when wielding two Single-Handed weapons and increases off-hand damage.</content>
@@ -178,7 +179,7 @@
 	<content contentuid="hab342575gecacg4c17ga4dcg4d2c771f2a24">Change the vitality scaling to be linear instead of exponential. The difference of Vitality, Armours and Damage between levels are much lower, avoiding weapons fast obsolescence and making inter-levels combats more fair. &lt;br&gt;Default : off&lt;br&gt;&lt;font color=#ff0000&gt;Require a map reload. It is highly recommended to activate this option before starting a new game (during character creation), and deactivating it mid-playthrough will break all NPCs vitality.&lt;/font&gt;</content>
 	<content contentuid="hae2334ccg2f64g45aaga94dgf4ce0f03a7a6">Warmup (3)</content>
 	<content contentuid="hae29de3agcf14g44f7g9020g90e1fd77694d">If deactivated, you will be able to use custom attributes bonuses. Not recommended if you want to keep an overall balanced experience unless you really know what you are doing.&lt;br&gt;Default : on</content>
-	<content contentuid="hae68ba97g6072g46fagb9d3g7c289a0e7511">Magnificent horns sprout from your forehead, making you see red. You can rush at your enemies and gore them. Increases Retribution ability by 1 for the duration.</content>
+	<content contentuid="hae68ba97g6072g46fagb9d3g7c289a0e7511">Magnificent horns sprout from your forehead, making you see red. You can rush at your enemies and gore them. Increases Retribution ability by 2 for the duration.</content>
 	<content contentuid="haee8a8d1g10e8g491ag83c8g833c3a4d0fbb">The damage bonus provided per Critical Chance percent when backstabbing. &lt;br&gt;Default : 0.5&lt;br&gt;</content>
 	<content contentuid="hb1fc6d8bg6bf6g4a3bg83f7g94177ced086a">Duelist</content>
 	<content contentuid="hb24edf38gd48ag477fgbf75g3bd3de8c6eec">Resistance Corrosion</content>
@@ -238,6 +239,7 @@
 	<content contentuid="he573ce38g6445g4975g8562ge97ea0a52c79">This module transforms Cloak and Dagger, Phoenix Dive and Tactical Retreat as projectile equivalents (like Fly with Spread your wings). It applies to everyone. If some NPC still have the classic version, deactivate and reactivate this module.</content>
 	<content contentuid="he5970b83g4f56g4348g8d23g39bce69f8c3c">Aimed Shot</content>
 	<content contentuid="he6c2c979gd7a7g4926g9180g5d69e9d79d62">Crossbow Penalty Per Level</content>
+	<content contentuid="he8315150gd40cg453dg911bgef5e2cd5ef74">Default : 90&lt;br&gt;&lt;font color=#ff0000&gt;Require a game restart&lt;/font&gt;</content>
 	<content contentuid="he86bfd28ge123g42a4g8c0cg2f9bcd7d9e05">Level [1]: +[2]% Damage, +[3]% Critical Chance and increase Range by [4]m.</content>
 	<content contentuid="he8ede611g2306g4bacga3aag78eccdf928fb">This characters dodging has become less effective.</content>
 	<content contentuid="he94327f7g293dg488eg9d25gcb4f7ae7be24">While above 75% Vitality, Hothead provides 10% Critical Chance and 10% Accuracy.</content>

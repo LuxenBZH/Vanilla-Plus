@@ -249,6 +249,22 @@ local function FixPhysicalResistance()
 	end
 end
 
+local function ChangeBaseAccuracy()
+	local hardSaved = Ext.LoadFile("LeaderLib_GlobalSettings.json")
+	if hardSaved ~= nil then
+		local variables = Ext.JsonParse(hardSaved).Mods["3ff156e2-289e-4dac-81f5-a44e3e304163"].Global.Variables
+		if variables.BaseAccuracy then
+			Ext.StatSetAttribute("_Base", "Accuracy", math.floor(tonumber(variables.BaseAccuracy.Value)))
+			for i,stat in pairs(Ext.GetStatEntries("Character")) do
+				stat = Ext.GetStat(stat)
+				if HasParent(stat, "_Base") then
+					Ext.StatSetAttribute(stat.Name, "Accuracy", math.floor(tonumber(variables.BaseAccuracy.Value)))
+				end
+			end
+		end
+	end
+end
+
 Ext.RegisterListener("GameStateChanged", FlatScaling)
 Ext.RegisterListener("StatsLoaded", AttributeCap)
 Ext.RegisterListener("StatsLoaded", AddDamageToDescription)
@@ -261,3 +277,4 @@ Ext.RegisterListener("StatsLoaded", CustomScalings)
 Ext.RegisterListener("StatsLoaded", ChameleonCloakRevert)
 Ext.RegisterListener("StatsLoaded", FixPhysicalResistance)
 Ext.RegisterListener("ModuleLoadStarted", TeleportRevert)
+Ext.RegisterListener("StatsLoaded", ChangeBaseAccuracy)

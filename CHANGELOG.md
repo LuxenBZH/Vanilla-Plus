@@ -765,6 +765,14 @@ Fixes
 Balance
 * Last Rites now reduce current vitality to 1
 
+# 1.2.14.67
+Fixes
+* Fixed an issue with Torturer causing infinite loops and potentially crashing the game in conjunction with other mods
+* Fixed an issue with the legacy Teleportation option where enabling it would crash the game on load
+
+New
+* You can now change the base accuracy in the options
+
 # TODO
 * Resistance caps rework : resistance has always been controversial since it's known to bloat at higher levels. The resistance bypass feature by itself is quite limited since you have to build your character around it to be effective and the corrogic module also require specific preparation. As a result, a mage at higher level can get stuck for a couple of turns before being effective whereas physical damage dealers can counter dodge in a single turn. V+ now propose by default to reduce the base cap of resistances to 50%, except if the base resistance is already higher (e.g. a fire slug will still be able to absorb fire attacks).
 * Wits increase healings+

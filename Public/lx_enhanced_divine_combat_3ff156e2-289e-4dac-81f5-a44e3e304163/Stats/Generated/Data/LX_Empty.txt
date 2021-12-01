@@ -1,0 +1,4 @@
+new entry "Stats_LX_EmptyDummy"
+type "Potion"
+data "Act" "1"
+data "Act part" "0"
