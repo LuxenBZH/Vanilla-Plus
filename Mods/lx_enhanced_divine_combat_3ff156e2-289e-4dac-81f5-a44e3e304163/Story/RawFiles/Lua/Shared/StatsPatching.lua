@@ -255,9 +255,10 @@ local function ChangeBaseAccuracy()
 		local variables = Ext.JsonParse(hardSaved).Mods["3ff156e2-289e-4dac-81f5-a44e3e304163"].Global.Variables
 		if variables.BaseAccuracy then
 			Ext.StatSetAttribute("_Base", "Accuracy", math.floor(tonumber(variables.BaseAccuracy.Value)))
+			Ext.StatSetAttribute("_Hero", "Accuracy", math.floor(tonumber(variables.BaseAccuracy.Value)))
 			for i,stat in pairs(Ext.GetStatEntries("Character")) do
 				stat = Ext.GetStat(stat)
-				if HasParent(stat, "_Base") then
+				if HasParent(stat, "_Base") or HasParent(stat, "_Hero") then
 					Ext.StatSetAttribute(stat.Name, "Accuracy", math.floor(tonumber(variables.BaseAccuracy.Value)))
 				end
 			end

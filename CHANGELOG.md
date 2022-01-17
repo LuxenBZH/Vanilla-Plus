@@ -773,6 +773,14 @@ Fixes
 New
 * You can now change the base accuracy in the options
 
+# 1.2.15.68
+Fixes
+* Explosion Arrows damage is now 70% as it's intended to be
+* Glass Canon armour nullifier and Savage sortilege critical chance boost are now correctly restored upon resurrection
+* Minor and Medium Strength potion stats aren't reversed anymore
+* The base Accuracy option now correctly change the base Accuracy of all player characters
+* Character sheet damage value and its tooltip is now correctly scaled
+
 # TODO
 * Resistance caps rework : resistance has always been controversial since it's known to bloat at higher levels. The resistance bypass feature by itself is quite limited since you have to build your character around it to be effective and the corrogic module also require specific preparation. As a result, a mage at higher level can get stuck for a couple of turns before being effective whereas physical damage dealers can counter dodge in a single turn. V+ now propose by default to reduce the base cap of resistances to 50%, except if the base resistance is already higher (e.g. a fire slug will still be able to absorb fire attacks).
 * Wits increase healings+

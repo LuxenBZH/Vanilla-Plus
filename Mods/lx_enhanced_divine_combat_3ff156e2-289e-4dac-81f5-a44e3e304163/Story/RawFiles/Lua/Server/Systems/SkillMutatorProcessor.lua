@@ -1,3 +1,5 @@
+
+
 SkillMutations = {}
 
 RegisterSkillListener({"Projectile_Fireball"}, function(skill, char, state, data)

@@ -64,7 +64,7 @@ end
 
 ---@param character StatCharacter
 ---@param skill StatEntrySkillData
-local function GetSkillDamageRange(character, skill, fromExpandedTooltip)
+function CustomGetSkillDamageRange(character, skill, mainWeapon, offHand, fromExpandedTooltip)
     skill = Ext.GetStat(skill.Name)
     local desc = skill.StatsDescriptionParams
 
@@ -108,7 +108,8 @@ local function GetSkillDamageRange(character, skill, fromExpandedTooltip)
 	if skill.UseWeaponDamage == "Yes" then
 		local mainWeapon = character.MainWeapon
         local mainDamageRange = Game.Math.CalculateWeaponScaledDamageRanges(character, mainWeapon)
-		local offHandWeapon = offHandWeapon or character.OffHandWeapon
+        -- Ext.Dump({Game.Math.ComputeBaseWeaponDamage(mainWeapon)})
+		local offHandWeapon = character.OffHandWeapon
 
         if offHandWeapon ~= nil and Game.Math.IsRangedWeapon(mainWeapon) == Game.Math.IsRangedWeapon(offHandWeapon) then
             local offHandDamageRange = Game.Math.CalculateWeaponScaledDamageRanges(character, offHandWeapon)
@@ -126,16 +127,25 @@ local function GetSkillDamageRange(character, skill, fromExpandedTooltip)
                 end
             end
         end
-		
-		local globalMult = 1 + (character.Strength-10) * (Ext.ExtraData.DGM_StrengthGlobalBonus*0.01 + Ext.ExtraData.DGM_StrengthWeaponBonus*0.01) +
-		(character.Finesse-10) * (Ext.ExtraData.DGM_FinesseGlobalBonus*0.01) +
-		(character.Intelligence-10) * (Ext.ExtraData.DGM_IntelligenceGlobalBonus*0.01 + Ext.ExtraData.DGM_IntelligenceSkillBonus*0.01)
+
+        local globalMult = 1 + (character.Strength-10) * (Ext.ExtraData.DGM_StrengthGlobalBonus*0.01 + Ext.ExtraData.DGM_StrengthWeaponBonus*0.01) +
+            (character.Finesse-10) * (Ext.ExtraData.DGM_FinesseGlobalBonus*0.01) +
+            (character.Intelligence-10) * (Ext.ExtraData.DGM_IntelligenceGlobalBonus*0.01 + Ext.ExtraData.DGM_IntelligenceSkillBonus*0.01)
+        
+        if skill.Name == "Target_LX_NormalAttack" then
+            globalMult = 1 + (character.Strength-10) * (Ext.ExtraData.DGM_StrengthGlobalBonus*0.01 + Ext.ExtraData.DGM_StrengthWeaponBonus*0.01) +
+            (character.Finesse-10) * (Ext.ExtraData.DGM_FinesseGlobalBonus*0.01) +
+            (character.Intelligence-10) * (Ext.ExtraData.DGM_IntelligenceGlobalBonus*0.01)
+        end
+        Ext.Print(globalMult, amplifierMult, damageMultiplier)
+        
         for damageType, range in pairs(mainDamageRange) do
             local min = Ext.Round(range.Min * damageMultiplier * globalMult * amplifierMult)
             local max = Ext.Round(range.Max * damageMultiplier * globalMult * amplifierMult + (globalMult *amplifierMult))
             range.Min = min + math.ceil(min * Game.Math.GetDamageBoostByType(character, damageType))
             range.Max = max + math.ceil(max * Game.Math.GetDamageBoostByType(character, damageType))
         end
+        Ext.Dump(mainDamageRange)
 
         local damageType = skill.DamageType
         if damageType ~= "None" and damageType ~= "Sentinel" then
@@ -231,7 +241,7 @@ local function GetSkillDamageRange(character, skill, fromExpandedTooltip)
 end
 
 -- Odinblade compatibility
-Game.Math.GetSkillDamageRange = GetSkillDamageRange
+Game.Math.GetSkillDamageRange = CustomGetSkillDamageRange
 
 local SkillGetDescriptionParamForbidden = {"Projectile_OdinHUN_HuntersTrap", "Target_ElementalArrowheads", "Projectile_OdinHUN_TheHunt"}
 
@@ -284,7 +294,7 @@ local function SkillGetDescriptionParam(skill, character, isFromItem, par, ...)
         else skill = Ext.GetStat(skill.Name, character.Level) end
         -- Ext.Print(par, skill.Name, skill.DamageType)
 		if skill.Damage ~= "BaseLevelDamage" and skill.Damage ~= "AverageLevelDamge" then return nil end
-		local dmg = GetSkillDamageRange(character, skill)
+		local dmg = CustomGetSkillDamageRange(character, skill, character.MainWeapon, character.OffHandWeapon, true)
 		local result = ""
 		local once = false
         if dmg == nil then return end

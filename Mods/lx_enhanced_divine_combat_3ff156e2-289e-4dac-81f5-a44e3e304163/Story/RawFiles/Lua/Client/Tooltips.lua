@@ -206,11 +206,19 @@ local function OnStatTooltip(character, stat, tooltip)
         
     elseif stat == "Damage" then
         local damageText = tooltip:GetElement("StatsTotalDamage")
-        local minDamage = damageText.Label:gsub("^.* ", ""):gsub("-[1-9]*", "")
-        local maxDamage = damageText.Label:gsub("^.*-", "")
+        -- local minDamage = damageText.Label:gsub("^.* ", ""):gsub("-[1-9]*", "")
+        -- local maxDamage = damageText.Label:gsub("^.*-", "")
         
-        minDamage = math.floor(tonumber(minDamage) * (100+attrBonus["strGlobal"]+attrBonus["strWeapon"]+attrBonus["finGlobal"]+attrBonus["intGlobal"])/100)
-        maxDamage = math.floor(tonumber(maxDamage) * (100+attrBonus["strGlobal"]+attrBonus["strWeapon"]+attrBonus["finGlobal"]+attrBonus["intGlobal"])/100)
+        -- minDamage = math.floor(tonumber(minDamage) * (100+attrBonus["strGlobal"]+attrBonus["strWeapon"]+attrBonus["finGlobal"]+attrBonus["intGlobal"])/100)
+        -- maxDamage = math.floor(tonumber(maxDamage) * (100+attrBonus["strGlobal"]+attrBonus["strWeapon"]+attrBonus["finGlobal"]+attrBonus["intGlobal"])/100)
+
+        local damage = CustomGetSkillDamageRange(character.Stats, Ext.GetStat("Target_LX_NormalAttack"),  character.Stats.MainWeapon, character.Stats.OffHandWeapon, true)
+        local minDamage = 0
+        local maxDamage = 0
+        for dtype,range in pairs(damage) do
+            minDamage = minDamage + range.Min
+            maxDamage = maxDamage + range.Max
+        end
         
         damageText.Label = GetDynamicTranslationString(stat, minDamage, maxDamage)
     end

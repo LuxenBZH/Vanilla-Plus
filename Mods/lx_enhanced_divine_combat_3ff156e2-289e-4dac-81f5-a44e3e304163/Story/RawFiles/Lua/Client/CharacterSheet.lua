@@ -7,22 +7,37 @@
 local function changeDamageValue(ui, call, state)
     if ui:GetValue("secStat_array", "string", 2) == nil then return end
 
-    local strength = ui:GetValue("primStat_array", "string", 2):gsub('<font color="#00547F">', ""):gsub("</font>", "")
-    strength = tonumber(strength) - Ext.ExtraData.AttributeBaseValue
-    local finesse = ui:GetValue("primStat_array", "string", 6):gsub('<font color="#00547F">', ""):gsub("</font>", "")
-    finesse = tonumber(finesse)  - Ext.ExtraData.AttributeBaseValue
-    local intelligence = ui:GetValue("primStat_array", "string", 10):gsub('<font color="#00547F">', ""):gsub("</font>", "")
-    intelligence = tonumber(intelligence) - Ext.ExtraData.AttributeBaseValue
+    local character = Ext.GetCharacter(Ext.DoubleToHandle(ui:GetRoot().charHandle))
 
-    local damage = ui:GetValue("secStat_array", "string", 24)
+    local strength = character.Stats.Strength - Ext.ExtraData.AttributeBaseValue
+    local finesse = character.Stats.Finesse - Ext.ExtraData.AttributeBaseValue
+    local intelligence = character.Stats.Intelligence - Ext.ExtraData.AttributeBaseValue
 
-    local minDamage = damage:gsub(" - .*", "")
-    local maxDamage = damage:gsub(".* - ", "")
-    local globalMult = 100 + strength * Ext.ExtraData.DGM_StrengthGlobalBonus + strength * Ext.ExtraData.DGM_StrengthWeaponBonus +
-        finesse * Ext.ExtraData.DGM_FinesseGlobalBonus + intelligence * Ext.ExtraData.DGM_IntelligenceGlobalBonus
+    -- local strength = ui:GetValue("primStat_array", "string", 2):gsub('<font color="#00547F">', ""):gsub("</font>", "")
+    -- strength = tonumber(strength) - Ext.ExtraData.AttributeBaseValue
+    -- local finesse = ui:GetValue("primStat_array", "string", 6):gsub('<font color="#00547F">', ""):gsub("</font>", "")
+    -- finesse = tonumber(finesse)  - Ext.ExtraData.AttributeBaseValue
+    -- local intelligence = ui:GetValue("primStat_array", "string", 10):gsub('<font color="#00547F">', ""):gsub("</font>", "")
+    -- intelligence = tonumber(intelligence) - Ext.ExtraData.AttributeBaseValue
 
-    minDamage = math.floor(tonumber(minDamage) * globalMult * 0.01)
-    maxDamage = math.floor(tonumber(maxDamage) * globalMult * 0.01)
+    local damage = CustomGetSkillDamageRange(character.Stats, Ext.GetStat("Target_LX_NormalAttack"),  character.Stats.MainWeapon, character.Stats.OffHandWeapon, true)
+    local minDamage = 0
+    local maxDamage = 0
+    for dtype,range in pairs(damage) do
+        minDamage = minDamage + range.Min
+        maxDamage = maxDamage + range.Max
+    end
+
+
+    -- local damage = ui:GetValue("secStat_array", "string", 24)
+
+    -- local minDamage = damage:gsub(" - .*", "")
+    -- local maxDamage = damage:gsub(".* - ", "")
+    -- local globalMult = 100 + strength * Ext.ExtraData.DGM_StrengthGlobalBonus + strength * Ext.ExtraData.DGM_StrengthWeaponBonus +
+    --     finesse * Ext.ExtraData.DGM_FinesseGlobalBonus + intelligence * Ext.ExtraData.DGM_IntelligenceGlobalBonus
+
+    -- minDamage = math.floor(tonumber(minDamage) * globalMult * 0.01)
+    -- maxDamage = math.floor(tonumber(maxDamage) * globalMult * 0.01)
 
     ui:SetValue("secStat_array", minDamage.." - "..maxDamage, 24)
 end
@@ -114,7 +129,7 @@ end
 local function DGM_SetupUI()
     local charSheet = Ext.GetBuiltinUI("Public/Game/GUI/characterSheet.swf")
     local tooltip = Ext.GetBuiltinUI("Public/Game/GUI/tooltip.swf")
-    -- Ext.RegisterUIInvokeListener(charSheet, "updateArraySystem", changeDamageValue)
+    Ext.RegisterUIInvokeListener(charSheet, "updateArraySystem", changeDamageValue)
     -- Overhaul bonus refresh on buttons click
     Ext.RegisterUICall(charSheet, "minusStat", sheetButtonPressed)
     Ext.RegisterUICall(charSheet, "plusStat", sheetButtonPressed)

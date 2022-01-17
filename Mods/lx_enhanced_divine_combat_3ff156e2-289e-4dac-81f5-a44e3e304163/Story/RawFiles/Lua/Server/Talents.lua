@@ -117,7 +117,10 @@ function CheckAllTalents(character)
 		"Leech",
 		"Stench",
 		"AnimalEmpathy",
-		"NoAttackOfOpportunity"
+		"NoAttackOfOpportunity",
+		"Perfectionist",
+		"ViolentMagic",
+		"Raistlin"
 	}
 	for i,talent in pairs(boostedTalents) do
 		local hasTalent = CharacterHasTalent(character, talent)

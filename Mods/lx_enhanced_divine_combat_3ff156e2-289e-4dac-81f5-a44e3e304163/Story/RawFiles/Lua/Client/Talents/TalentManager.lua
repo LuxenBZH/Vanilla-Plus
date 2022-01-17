@@ -733,9 +733,9 @@ if Mods.LeaderLib then
 
 			TalentManager.LoadRequirements()
 			---Divine Talents
-			if Ext.IsModLoaded("ca32a698-d63e-4d20-92a7-dd83cba7bc56") or GameSettings.Settings.Client.DivineTalentsEnabled then
-				TalentManager.ToggleDivineTalents(true)
-			end
+			-- if Ext.IsModLoaded("ca32a698-d63e-4d20-92a7-dd83cba7bc56") or GameSettings.Settings.Client.DivineTalentsEnabled then
+			-- 	TalentManager.ToggleDivineTalents(true)
+			-- end
 
 			TalentManager.Gamepad.RegisterListeners()
 

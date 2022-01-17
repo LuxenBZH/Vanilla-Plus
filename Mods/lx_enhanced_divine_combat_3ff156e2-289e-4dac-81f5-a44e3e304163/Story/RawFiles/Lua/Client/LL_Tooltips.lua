@@ -7,11 +7,12 @@ Ext.RegisterListener("SessionLoaded", function()
     end
 end)
 
+--- @param item EclItem
 local function ItemCanBeExtended(item)
     if item.StatsId ~= nil then
         local stat = Ext.GetStat(item.StatsId)
         local template = item.RootTemplate
-        if item.ItemType ~= "Weapon" and item.ItemType ~= "Shield" and item.ItemType ~= "Armor" and not(notPotionStat[stat.Name]) 
+        if not item.Stats and not(notPotionStat[stat.Name]) 
           and GetParentStat(stat, "IsConsumable") == "Yes" and GetParentStat(stat, "IsFood") ~= "Yes" then
             return true
         end
