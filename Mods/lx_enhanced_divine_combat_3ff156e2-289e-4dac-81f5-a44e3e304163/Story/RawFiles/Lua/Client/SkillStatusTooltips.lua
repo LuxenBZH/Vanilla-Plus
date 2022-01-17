@@ -137,7 +137,6 @@ function CustomGetSkillDamageRange(character, skill, mainWeapon, offHand, fromEx
             (character.Finesse-10) * (Ext.ExtraData.DGM_FinesseGlobalBonus*0.01) +
             (character.Intelligence-10) * (Ext.ExtraData.DGM_IntelligenceGlobalBonus*0.01)
         end
-        Ext.Print(globalMult, amplifierMult, damageMultiplier)
         
         for damageType, range in pairs(mainDamageRange) do
             local min = Ext.Round(range.Min * damageMultiplier * globalMult * amplifierMult)
@@ -145,7 +144,6 @@ function CustomGetSkillDamageRange(character, skill, mainWeapon, offHand, fromEx
             range.Min = min + math.ceil(min * Game.Math.GetDamageBoostByType(character, damageType))
             range.Max = max + math.ceil(max * Game.Math.GetDamageBoostByType(character, damageType))
         end
-        Ext.Dump(mainDamageRange)
 
         local damageType = skill.DamageType
         if damageType ~= "None" and damageType ~= "Sentinel" then
@@ -337,7 +335,6 @@ local function StatusGetDescriptionParam(status, statusSource, character, par)
 		end
         dmg = dmg*(dmgStat.DamageFromBase/100)
 		local dmgRange = dmg*(dmgStat["Damage Range"])*0.005
-        Ext.Print(statusSource.MyGuid, statusSource.NetID)
         local schoolBonus = 1
         local pass, characterSource = pcall(Ext.GetCharacter, statusSource.NetID)
         if pass then

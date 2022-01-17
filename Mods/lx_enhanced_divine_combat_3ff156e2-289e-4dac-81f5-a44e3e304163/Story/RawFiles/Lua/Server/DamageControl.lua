@@ -50,7 +50,6 @@ local function InflictResistanceDebuff(target, perc)
 		current = perc
 	else
 		current = string.gsub(current, "LX_CORROGIC_", "")
-		Ext.Print(current, perc)
 		current = tonumber(current) + perc
 	end
 	if NRD_StatExists("LX_CORROGIC_"..current) then

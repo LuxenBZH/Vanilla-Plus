@@ -15,7 +15,6 @@ local function CSBStatusDescriptionParam(status, statusSource, statCharacter, pa
 		if string.match(par, "WPN%-") then
 			field = string.gsub(par, "WPN%-", "")
 			statEntry = Ext.GetStat(status.StatsId).BonusWeapon
-			Ext.Print(statEntry)
 		end
 		local character = statCharacter.Character
 		for i, sts in pairs(character:GetStatuses()) do
