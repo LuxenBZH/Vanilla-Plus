@@ -324,6 +324,10 @@ function DamageControl(target, instigator, hitDamage, handle)
 	if sourceType == 1 or sourceType == 2 or sourceType == 3 then InitiatePassingDamage(target, damages); return end
 	if skillID == "" and sourceType == 0 and ObjectIsCharacter(target) == 1 then InitiatePassingDamage(target, damages); return end
 	if fixedValue ~= 0 and fixedValue ~= 1 and fixedValue ~= 2 then InitiatePassingDamage(target, damages); return end
+
+	if skillID == "Projectile_Talent_Unstable_-1" and IsTagged(instigator, "LX_UNSTABLE_COOLDOWN") then
+		NRD_HitStatusClearAllDamage(target, handle)
+	end
 	
 	if ObjectIsCharacter(target) == 1 then
 		TraceDamageSpreaders(Ext.GetCharacter(target))

@@ -1,3 +1,4 @@
+Ext.Require("Server/Mechanics.lua")
 Ext.Require("Server/DamageControl.lua")
 Ext.Require("Server/Resistance.lua")
 Ext.Require("Server/ArmorSystem.lua")

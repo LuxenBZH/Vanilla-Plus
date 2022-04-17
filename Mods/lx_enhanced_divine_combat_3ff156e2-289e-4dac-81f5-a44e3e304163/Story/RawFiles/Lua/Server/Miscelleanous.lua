@@ -108,3 +108,58 @@ Ext.RegisterOsirisListener("CharacterUsedSkill", 4, "before", function(character
         char.Stats.CurrentVitality = 1
     end
 end)
+
+----------
+---------- Unstable cooldown
+Ext.RegisterOsirisListener("CharacterResurrected", 1, "before", function(character)
+    if CharacterHasTalent(character, "Unstable") == 1 then
+        ApplyStatus(character, "LX_UNSTABLE_COOLDOWN", 12.0, 1, character)
+    end
+end)
+
+Ext.RegisterOsirisListener("CharacterStatusApplied", 3, "before", function(character, status, causee)
+    if status == "LX_UNSTABLE_COOLDOWN" then
+        SetTag(character, "LX_UNSTABLE_COOLDOWN")
+    end
+end)
+
+Ext.RegisterOsirisListener("CharacterStatusRemoved", 3, "before", function(character, status, causee)
+    if status == "LX_UNSTABLE_COOLDOWN" and CharacterIsDead(character) == 0 then
+        ClearTag(character, "LX_UNSTABLE_COOLDOWN")
+    end
+end)
+
+Ext.RegisterOsirisListener("CharacterDied", 1, "before", function(character)
+    if CharacterHasTalent(character, "Unstable") == 1 then
+        local pos = Ext.GetCharacter(character)
+		PlayEffectAtPosition("RS3_FX_GP_Combat_CorpseExplosion_Blood_01_Medium", pos[1], pos[2], pos[3])
+    end
+end)
+
+----------
+---------- Free Movement per turn
+RegisterTurnTrueStartListener(function(character)
+    local char = Ext.GetCharacter(character)
+    local movement = char.Stats.Movement
+    if movement >= char.Stats.BaseMovement then
+        char.PartialAP = char.PartialAP + 1/movement
+    else
+        char.PartialAP = char.PartialAP + movement/char.Stats.BaseMovement * 1/movement
+    end
+end)
+
+----------
+---------- Wits increase healings
+--- @param target string GUID
+--- @param instigator string GUID
+--- @param amount integer
+--- @param handle double StatusHandle
+Ext.RegisterOsirisListener("NRD_OnHeal", 4, "before", function(target, instigator, amount, handle)
+    -- Ext.Print(instigator, handle)
+    local heal = Ext.GetStatus(target, handle) ---@type EsvStatusHeal
+    local healer = Ext.GetCharacter(instigator)
+    local bonus = ((healer.Stats.Intelligence - Ext.ExtraData.AttributeBaseValue) * (healer.Stats.Wits - Ext.ExtraData.AttributeBaseValue)*Game.Math.GetLevelScaledDamage(healer.Stats.Level)*0.07)
+    if not heal.IsFromItem then
+        heal.HealAmount = heal.HealAmount + bonus
+    end
+end)

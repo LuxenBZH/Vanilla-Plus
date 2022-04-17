@@ -254,9 +254,7 @@ Ext.RegisterOsirisListener("ItemEquipped", 2, "before", function(item, char)
 	local character = Ext.GetCharacter(char) ---@type EsvCharacter
 	if character.Stats.TALENT_Ambidextrous and CharacterIsInCombat(char) == 1 then
 		item = Ext.GetItem(item) ---@type EsvItem
-		local swapCounter = GetVarInteger(char, "DGM_AmbidextrousCount")
-		if swapCounter > 0 and item.Stats.WeaponType ~= "Crossbow" then
-			SetVarInteger(char, "DGM_AmbidextrousCount", swapCounter-1)
+		if item.Stats.WeaponType and item.Stats.WeaponType ~= "Crossbow" then
 			CharacterAddActionPoints(char, 1)
 		end
 	end
@@ -373,5 +371,13 @@ Ext.RegisterOsirisListener("ObjectTurnStarted", 1, "before", function(object)
 			ClearTag(object, "MorningPersonRecovery")
 			CharacterAddActionPoints(object, 2)
 		end
+	end
+end)
+
+---- Guerilla invisibility effect
+RegisterTurnTrueEndListener(function(character)
+	if CharacterHasTalent(character, "Guerilla") == 1 and HasActiveStatus(character, "SNEAKING") == 1 and HasActiveStatus(character, "LX_GUERILLA_COOLDOWN") == 0 then
+		ApplyStatus(character, "INVISIBLE", 6.0, 1, character)
+		ApplyStatus(character, "LX_GUERILLA_COOLDOWN", 18.0, 1, character)
 	end
 end)

@@ -6,6 +6,13 @@
         <node id="root">
             <children>
                 <node id="IconUV">
+                    <attribute id="MapKey" value="Talent_Unstable_Cooldown" type="22" />
+                    <attribute id="U1" value="0.500977" type="6" />
+                    <attribute id="U2" value="0.624023" type="6" />
+                    <attribute id="V1" value="0.125977" type="6" />
+                    <attribute id="V2" value="0.249023" type="6" />
+                </node>
+                <node id="IconUV">
                     <attribute id="MapKey" value="grenade_acid" type="22" />
                     <attribute id="U1" value="0.625977" type="6" />
                     <attribute id="U2" value="0.749023" type="6" />
