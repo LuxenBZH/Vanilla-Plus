@@ -40,7 +40,10 @@ local correspondingStatus = {
 ---@param enterChance number
 ---@param baseHandle number
 local function RollStatusApplication(character, status, duration, force, enterChance, baseHandle)
-	if enterChance == 100 then return end
+	if enterChance == 100 then 
+		ApplyStatus(character, status, duration, force)
+		return 
+	end
 	local roll = math.random(1, 100)
 	-- Ext.Print("[LXDGM_CCSystem.RollStatusApplication] Status",status,"has enter chance",enterChance,"roll:",roll)
 	if roll < enterChance then 
@@ -101,7 +104,7 @@ end
 ---@param character EsvCharacter
 ---@param status string
 ---@param handle number
-local function BlockCCs(character, status, handle)
+local function BlockCCs(character, status, handle, instigator)
 	if ObjectIsCharacter(character) ~= 1 or engineStatuses[status] then return end
 	local lifetime = NRD_StatusGetInt(character, handle, "LifeTime")
 	local source = NRD_StatusGetInt(character, handle, "DamageSourceType") -- If 5 it's from an aura
@@ -124,12 +127,17 @@ local function BlockCCs(character, status, handle)
 			if HasActiveStatus(character, correspondingStatus[armour][1]) == 1 and not CheckImmunity(character, status) then -- if it's not from aura then apply the corresponding debuff
 				NRD_StatusPreventApply(character, handle, 1)
 				RollStatusApplication(character, correspondingStatus[armour][2], 6.0, 1, enterChance, handle)
+				return
 			end
 		end
 	end
 	-- Torturer fix
-	if not isArmourStatus and CharacterHasTalent(character, "Torturer") == 1 then
-		RollStatusApplication(character, status, lifetime, false, enterChance, handle)
+	if enterChance < 100 and not isArmourStatus and CharacterHasTalent(instigator, "Torturer") == 1 then
+		local roll = math.random(1, 100)
+		if roll > enterChance then 
+			NRD_StatusPreventApply(character, handle, 1) 
+		end
+		return
 	end
 end
 

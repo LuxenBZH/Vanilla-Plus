@@ -47,6 +47,14 @@ end
 
 Ext.RegisterOsirisListener("CharacterStatusRemoved", 3, "before", RemoveCrossbowSlow)
 
+Ext.RegisterOsirisListener("ItemUnequipped", 2, "before", function(item, character)
+    if ObjectExists(item) == 0 then return end
+    local item = Ext.GetItem(item)
+    if item.Stats.WeaponType == "Crossbow" then
+        ApplyStatus(character, "LX_CROSSBOWCLEAR", 6.0, 1)
+    end
+end)
+
 local function CheckCrossbowLevelUp(char)
     if HasActiveStatus(char, "LX_CROSSBOWINIT") == 1 then CreateCrossbowSlowdownStat(char) end
 end

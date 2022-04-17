@@ -50,7 +50,6 @@ local function InflictResistanceDebuff(target, perc)
 		current = perc
 	else
 		current = string.gsub(current, "LX_CORROGIC_", "")
-		Ext.Print(current, perc)
 		current = tonumber(current) + perc
 	end
 	if NRD_StatExists("LX_CORROGIC_"..current) then
@@ -154,6 +153,121 @@ local function ApplyCQBPenalty(weaponTypes, target, instigator)
 end
 ----------
 
+----------- Dodge control
+---@param character EsvCharacter
+local function HasHarmfulAccuracyStatus(character)
+	NRD_IterateCharacterStatuses(character, "LX_Iterate_Statuses_Accuracy")
+	local isHarmed = GetVarInteger(character, "LX_Accuracy_Harmed")
+	if isHarmed == 1 then return true end
+	return false
+end
+
+---@param target EsvCharacter
+---@param instigator EsvCharacter
+---@param weapon string
+local function DodgeControl(target, instigator, weapon)
+	if weapon == nil then weapon = "" end
+	local refunded = GetVarInteger(instigator, "LX_Miss_Refunded")
+	if CharacterGetEquippedWeapon(instigator) == weapon then 
+		if refunded == 1 then 
+			SetVarInteger(instigator, "LX_Miss_Refunded", 0)
+		else
+			CharacterAddActionPoints(instigator, 1)
+			SetVarInteger(instigator, "LX_Miss_Refunded", 1)
+		end
+		SetVarInteger(instigator, "LX_Miss_Main", 1)
+		TriggerDodgeFatigue(target, instigator)	
+	else
+		local hasMissedMain = GetVarInteger(instigator, "LX_Miss_Main")
+		if hasMissedMain ~= 1 then
+			TriggerDodgeFatigue(target, instigator)
+			if refunded == 1 then 
+				SetVarInteger(instigator, "LX_Miss_Refunded", 0)
+			else
+				CharacterAddActionPoints(instigator, 1)
+				SetVarInteger(instigator, "LX_Miss_Refunded", 1)
+			end
+		end
+	end
+	return
+end
+
+---@param target EsvCharacter
+---@param instigator EsvCharacter
+local function TriggerDodgeFatigue(target, instigator)
+	if CharacterIsInCombat(target) == 0 then return end
+	local accuracy = NRD_CharacterGetComputedStat(instigator, "Accuracy", 0)
+	local baseAccuracy = NRD_CharacterGetComputedStat(instigator, "Accuracy", 1)
+	local dodgeCounter = GetVarInteger(target, "LX_Dodge_Counter")
+	local dodge = NRD_CharacterGetComputedStat(target, "Dodge", 0)
+	--local isHarmed = HasHarmfulAccuracyStatus(instigator)
+	if dodgeCounter == nil then dodgeCounter = 0 end
+	-- Ext.Print("[LXDGM_DamageControl.DodgeControl] "..accuracy.." "..baseAccuracy)
+	-- Ext.Print("[LXDGM_DamageControl.DodgeControl] Dodge counter : "..dodgeCounter)
+	if HasActiveStatus(target, "EVADING") == 0 then
+		dodgeCounter = dodgeCounter + 1
+	end
+	if accuracy >= 90 and accuracy >= baseAccuracy then
+		SetVarInteger(target, "LX_Dodge_Counter", dodgeCounter)
+		if CharacterHasTalent(target, "DualWieldingDodging") == 1 then dodgeCounter = dodgeCounter - 1 end
+		if dodgeCounter == 1 then ApplyStatus(target, "LX_DODGE_FATIGUE1", 6.0, 1) end
+		if dodgeCounter == 2 then ApplyStatus(target, "LX_DODGE_FATIGUE2", 6.0, 1) end
+		if dodgeCounter == 3 then ApplyStatus(target, "LX_DODGE_FATIGUE3", 6.0, 1) end
+		if dodgeCounter == 4 then ApplyStatus(target, "LX_DODGE_FATIGUE4", 6.0, 1) end
+	end
+end
+
+---@param character string GUID
+local function ApplyWarmup(character, step)
+	local char = Ext.GetCharacter(character)
+	local warmup = FindStatus(char, "DGM_Warmup")
+	local stage
+	if warmup then
+		stage = tonumber(string.sub(warmup, 12, 12))
+	elseif step then
+		stage = step
+	else
+		stage = 0
+	end
+	if stage < 4 then
+		local intelligence = (char.Stats.Intelligence - Ext.ExtraData.AttributeBaseValue)
+		local accuracyBoost = math.min((10 * (stage+1) + intelligence * (stage+1)), 100)
+		local status = CreateNewStatus("Warmup_"..tostring(stage+1).."_i"..tostring(math.floor(intelligence)), "DGM_Potion_Base", {AccuracyBoost = accuracyBoost}, "DGM_WARMUP"..tostring(stage+1), {StackId = "Stack_LX_Warmup"}, false)
+		ApplyStatus(character, status, 6.0, 1)
+	elseif stage == 5 then
+		local status = CreateNewStatus("Warmup_"..tostring(stage+1).."_i"..tostring(math.floor(intelligence)), "DGM_Potion_Base", {AccuracyBoost = accuracyBoost}, "DGM_WARMUP"..tostring(stage+1), {StackId = "Stack_LX_Warmup"}, false)
+		ApplyStatus(character, status, 6.0, 1)
+	end
+end
+
+---@param character string GUID
+---@param status string
+---@param causee string
+local function OsirisApplyWarmup(character, status, causee)
+	if status == "DGM_WARMUP" then
+		ApplyWarmup(character)
+	end
+end
+
+Ext.RegisterOsirisListener("CharacterStatusApplied", 3, "before", OsirisApplyWarmup)
+
+local function OsirisReapplyWarmup(character, status, causee)
+	if not engineStatuses[status] and NRD_StatExists(status) then
+		if Ext.GetStat(status).Description == "DGM_WARMUP_Description" then
+			if not FindStatus(Ext.GetCharacter(character), "DGM_Warmup") then
+				local stage = tonumber(string.sub(status, 12, 12))
+				if stage > 1 then
+					ApplyWarmup(character, stage-2)
+				end
+			end
+		end
+	end
+end
+
+Ext.RegisterOsirisListener("CharacterStatusRemoved", 3, "before", OsirisReapplyWarmup)
+
+----------
+
 ---@param target EsvCharacter
 ---@param handle number
 ---@param instigator EsvCharacter
@@ -215,9 +329,21 @@ function DamageControl(target, instigator, hitDamage, handle)
 		TraceDamageSpreaders(Ext.GetCharacter(target))
 	end
 
+	if fromWeapon == 1 then
+		local instigChar = Ext.GetCharacter(instigator)
+		local aimedShot = FindStatus(instigChar, "DGM_AimedShot")
+		if aimedShot then
+			RemoveStatus(instigator, aimedShot)
+		end
+	end
+
 	-- Dodge mechanic override
 	if isMissed == 1 or isDodged == 1 then
-		TriggerDodgeFatigue(target, instigator)
+		if Ext.ExtraData.DGM_LegacyDodge == 1 then
+			TriggerDodgeFatigue(target, instigator)
+		elseif HasActiveStatus(target, "EVADING") == 0 then
+			ApplyWarmup(instigator)
+		end
 		return
 	end
 	
@@ -345,87 +471,6 @@ function ReplaceDamages(newDamages, handle, target)
 	end
 end
 
----@param character EsvCharacter
-function HasHarmfulAccuracyStatus(character)
-	NRD_IterateCharacterStatuses(character, "LX_Iterate_Statuses_Accuracy")
-	local isHarmed = GetVarInteger(character, "LX_Accuracy_Harmed")
-	if isHarmed == 1 then return true end
-	return false
-end
-
----@param target EsvCharacter
----@param instigator EsvCharacter
----@param weapon string
-function DodgeControl(target, instigator, weapon)
-	if weapon == nil then weapon = "" end
-	local refunded = GetVarInteger(instigator, "LX_Miss_Refunded")
-	if CharacterGetEquippedWeapon(instigator) == weapon then 
-		if refunded == 1 then 
-			SetVarInteger(instigator, "LX_Miss_Refunded", 0)
-		else
-			CharacterAddActionPoints(instigator, 1)
-			SetVarInteger(instigator, "LX_Miss_Refunded", 1)
-		end
-		SetVarInteger(instigator, "LX_Miss_Main", 1)
-		TriggerDodgeFatigue(target, instigator)	
-	else
-		local hasMissedMain = GetVarInteger(instigator, "LX_Miss_Main")
-		if hasMissedMain ~= 1 then
-			TriggerDodgeFatigue(target, instigator)
-			if refunded == 1 then 
-				SetVarInteger(instigator, "LX_Miss_Refunded", 0)
-			else
-				CharacterAddActionPoints(instigator, 1)
-				SetVarInteger(instigator, "LX_Miss_Refunded", 1)
-			end
-		end
-	end
-	return
-end
-
----@param target EsvCharacter
----@param instigator EsvCharacter
-function TriggerDodgeFatigue(target, instigator)
-	if CharacterIsInCombat(target) == 0 then return end
-	local accuracy = NRD_CharacterGetComputedStat(instigator, "Accuracy", 0)
-	local baseAccuracy = NRD_CharacterGetComputedStat(instigator, "Accuracy", 1)
-	local dodgeCounter = GetVarInteger(target, "LX_Dodge_Counter")
-	local dodge = NRD_CharacterGetComputedStat(target, "Dodge", 0)
-	--local isHarmed = HasHarmfulAccuracyStatus(instigator)
-	if dodgeCounter == nil then dodgeCounter = 0 end
-	-- Ext.Print("[LXDGM_DamageControl.DodgeControl] "..accuracy.." "..baseAccuracy)
-	-- Ext.Print("[LXDGM_DamageControl.DodgeControl] Dodge counter : "..dodgeCounter)
-	if HasActiveStatus(target, "EVADING") == 0 then
-		dodgeCounter = dodgeCounter + 1
-	end
-	if accuracy >= 90 and accuracy >= baseAccuracy then
-		SetVarInteger(target, "LX_Dodge_Counter", dodgeCounter)
-		if CharacterHasTalent(target, "DualWieldingDodging") == 1 then dodgeCounter = dodgeCounter - 1 end
-		if dodgeCounter == 1 then ApplyStatus(target, "LX_DODGE_FATIGUE1", 6.0, 1) end
-		if dodgeCounter == 2 then ApplyStatus(target, "LX_DODGE_FATIGUE2", 6.0, 1) end
-		if dodgeCounter == 3 then ApplyStatus(target, "LX_DODGE_FATIGUE3", 6.0, 1) end
-		if dodgeCounter == 4 then ApplyStatus(target, "LX_DODGE_FATIGUE4", 6.0, 1) end
-	end
-end
-
----@param character EsvCharacter
----@param perseverance number
----@param type string
-function ManagePerseverance(character, type)
-	local perseverance = Ext.GetCharacter(character).Stats.Perseverance
-	local charHP = NRD_CharacterGetStatInt(character, "MaxVitality")
-	if type == "Normal" then
-		NRD_CharacterSetStatInt(character, "CurrentVitality", NRD_CharacterGetStatInt(character, "CurrentVitality")+(perseverance*Ext.ExtraData.DGM_PerseveranceVitalityRecovery*0.01*charHP))
-	elseif type == "Demi-Physic" then
-		local charPA = NRD_CharacterGetStatInt(character, "MaxArmor")
-		NRD_CharacterSetStatInt(character, "CurrentArmor", NRD_CharacterGetStatInt(character, "CurrentArmor")+(perseverance*Ext.ExtraData.SkillAbilityArmorRestoredPerPoint*0.005*charPA))
-		NRD_CharacterSetStatInt(character, "CurrentVitality", NRD_CharacterGetStatInt(character, "CurrentVitality")+(perseverance*Ext.ExtraData.DGM_PerseveranceVitalityRecovery*0.005*charHP))
-	elseif type == "Demi-Magic" then
-		local charMA = NRD_CharacterGetStatInt(character, "MaxMagicArmor")
-		NRD_CharacterSetStatInt(character, "CurrentMagicArmor", NRD_CharacterGetStatInt(character, "CurrentMagicArmor")+(perseverance*Ext.ExtraData.SkillAbilityArmorRestoredPerPoint*0.005*charMA))
-		NRD_CharacterSetStatInt(character, "CurrentVitality", NRD_CharacterGetStatInt(character, "CurrentVitality")+(perseverance*Ext.ExtraData.DGM_PerseveranceVitalityRecovery*0.005*charHP))
-	end
-end
 
 local ccStatusesPhysical = {
 	"LX_STAGGERED",
@@ -441,27 +486,7 @@ local ccStatusesMagical = {
 	"DUMMY"
 }
 
-local function ManageDemiPerseverance(character, status, causee)
-	if status == "POST_PHYS_CONTROL" or status == "POST_MAGIC_CONTROL" then
-		ManagePerseverance(character, "Normal")
-	end
-	for i,cc in pairs(ccStatusesPhysical) do
-		if status == cc and HasActiveStatus(character, ccStatusesPhysical[i+1]) == 0 then
-			if i ~= GetTableSize(ccStatusesMagical) and HasActiveStatus(character, ccStatusesPhysical[i+1]) == 0 then
-				ManagePerseverance(character, "Demi-Physic")
-			end
-		end
-	end
-	for i,cc in pairs(ccStatusesMagical) do
-		if status == cc then
-			if i ~= GetTableSize(ccStatusesMagical) and HasActiveStatus(character, ccStatusesMagical[i+1]) == 0 then
-				ManagePerseverance(character, "Demi-Magic")
-			end
-		end
-	end
-end
-
-Ext.RegisterOsirisListener("CharacterStatusRemoved", 3, "before", ManageDemiPerseverance)
+-- Ext.RegisterOsirisListener("CharacterStatusRemoved", 3, "before", ManageDemiPerseverance)
 
 ---@param attacker EsvCharacter
 ---@param target EsvCharacter
@@ -501,13 +526,13 @@ end
 
 Game.Math.CalculateHitChance = DGM_CalculateHitChance
 
-Ext.RegisterListener("ComputeCharacterHit", Game.Math.ComputeCharacterHit)
+-- Ext.RegisterListener("ComputeCharacterHit", Game.Math.ComputeCharacterHit)
 
 if Mods.LeaderLib ~= nil then
 	-- local info = Ext.GetModInfo("7e737d2f-31d2-4751-963f-be6ccc59cd0c")
 	-- if info.Version <= 386465794 then
-		Mods.LeaderLib.HitOverrides.DoHitModified = DoHit
-		Mods.LeaderLib.HitOverrides.ApplyDamageCharacterBonusesModified = ApplyDamageCharacterBonuses
+		-- Mods.LeaderLib.HitOverrides.DoHitModified = DoHit
+		Mods.LeaderLib.HitOverrides.ApplyDamageCharacterBonusesModified = CustomApplyDamageCharacterBonuses
 	-- end
 end
 
@@ -525,4 +550,3 @@ end
 
 -- Ext.RegisterOsirisListener("NRD_OnStatusAttempt", 4, "before", HitCatch)
 Ext.RegisterOsirisListener("NRD_OnHit", 4, "before", DamageControl)
-

@@ -91,7 +91,6 @@ Ext.RegisterOsirisListener("CharacterUsedSkill", 4, "before", function(character
 				end
 			end
 		end
-		Ext.Print("tiles:",tiles)
         if CustomSBValues[skill] == nil then CustomSBValues[skill] = {} end
 		CustomSBValues[skill][char.MyGuid] = tiles
     end
@@ -116,7 +115,6 @@ Ext.RegisterSkillProperty("CUSTOMSURFACEBOOST", {
 			local statProperties = {} -- Usage: StatEntry, Field, Base, Growth, CellAggregate
 			index = 1
 			for value in string.gmatch(args[3], "(.-)|") do
-				Ext.Print(index, value)
 				statProperties[index] = value
 				index = index + 1
 			end
@@ -171,7 +169,6 @@ Ext.RegisterSkillProperty("CUSTOMSURFACEBOOST", {
 					elseif statEntry == "Weapon" then
 						newStatus["StatsId"] = "LXC_PotionProxy"..hiddenBoost
 					end
-					Ext.Print(status.Name)
 					newStatus["StackId"] = "DGM_Stack_"..status.Name
 					Ext.SyncStat(newStatus.Name, false)
 					ApplyStatus(attacker.MyGuid, newStatus.Name, duration*6.0, 1)

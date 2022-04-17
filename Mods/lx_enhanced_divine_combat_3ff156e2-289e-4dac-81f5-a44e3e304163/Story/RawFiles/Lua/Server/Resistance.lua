@@ -45,7 +45,7 @@ end
 --- @param character StatCharacter
 --- @param damageList DamageList
 --- @param attacker StatCharacter
-local function ApplyHitResistances(character, damageList, attacker)
+local function CustomApplyHitResistances(character, damageList, attacker)
 	for i,damage in pairs(damageList:ToTable()) do
 		local originalResistance = Game.Math.GetResistance(character, damage.DamageType)
 		local resistance = originalResistance
@@ -67,17 +67,17 @@ local function ApplyHitResistances(character, damageList, attacker)
     end
 end
 
-Game.Math.ApplyHitResistances = ApplyHitResistances
+Game.Math.ApplyHitResistances = CustomApplyHitResistances
 
 --- @param character StatCharacter
 --- @param attacker StatCharacter
 --- @param damageList DamageList
-function ApplyDamageCharacterBonuses(character, attacker, damageList)
+function CustomApplyDamageCharacterBonuses(character, attacker, damageList)
 	-- Ext.Print("VANILLA PLUS ApplyDamageCharacterBonuses")
     damageList:AggregateSameTypeDamages()
-    ApplyHitResistances(character, damageList, attacker)
+    CustomApplyHitResistances(character, damageList, attacker)
 
     Game.Math.ApplyDamageSkillAbilityBonuses(damageList, attacker)
 end
 
-Game.Math.ApplyDamageCharacterBonuses = ApplyDamageCharacterBonuses
+Game.Math.ApplyDamageCharacterBonuses = CustomApplyDamageCharacterBonuses

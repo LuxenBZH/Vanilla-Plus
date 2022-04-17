@@ -230,9 +230,38 @@ local function TeleportRevert()
 	local hardSaved = Ext.LoadFile("LeaderLib_GlobalSettings.json")
 	if hardSaved ~= nil then
 		local variables = Ext.JsonParse(hardSaved).Mods["3ff156e2-289e-4dac-81f5-a44e3e304163"].Global.Flags
-		if variables.LXDGM_ModuleOriginalTeleport.Enabled then
+		if variables.LXDGM_ModuleOriginalTeleport and variables.LXDGM_ModuleOriginalTeleport.Enabled then
 			Ext.Print("Reverting Teleport and Nether Swap targetting conditions...")
 			Ext.AddPathOverride("Public/lx_enhanced_divine_combat_3ff156e2-289e-4dac-81f5-a44e3e304163/Stats/Generated/Data/LX_TeleportNS.txt", "Public/lx_enhanced_divine_combat_3ff156e2-289e-4dac-81f5-a44e3e304163/Stats/Generated/Data/LX_Empty.txt")
+		end
+	end
+end
+
+local function FixPhysicalResistance()
+	if Ext.Version() <= 55 then
+		for i,stat in pairs(Ext.GetStatEntries("Character")) do
+			stat = Ext.GetStat(stat)
+			local physicalResistance = stat.PhysicalResistance
+			if physicalResistance > 0 then
+				Ext.StatSetAttribute(stat.Name, "PhysicalResistance", math.floor(physicalResistance/2))
+			end
+		end
+	end
+end
+
+local function ChangeBaseAccuracy()
+	local hardSaved = Ext.LoadFile("LeaderLib_GlobalSettings.json")
+	if hardSaved ~= nil then
+		local variables = Ext.JsonParse(hardSaved).Mods["3ff156e2-289e-4dac-81f5-a44e3e304163"].Global.Variables
+		if variables.BaseAccuracy then
+			Ext.StatSetAttribute("_Base", "Accuracy", math.floor(tonumber(variables.BaseAccuracy.Value)))
+			Ext.StatSetAttribute("_Hero", "Accuracy", math.floor(tonumber(variables.BaseAccuracy.Value)))
+			for i,stat in pairs(Ext.GetStatEntries("Character")) do
+				stat = Ext.GetStat(stat)
+				if HasParent(stat, "_Base") or HasParent(stat, "_Hero") then
+					Ext.StatSetAttribute(stat.Name, "Accuracy", math.floor(tonumber(variables.BaseAccuracy.Value)))
+				end
+			end
 		end
 	end
 end
@@ -247,4 +276,6 @@ Ext.RegisterListener("StatsLoaded", ReplaceDescriptionParams)
 Ext.RegisterListener("StatsLoaded", AdjustNPCStats)
 Ext.RegisterListener("StatsLoaded", CustomScalings)
 Ext.RegisterListener("StatsLoaded", ChameleonCloakRevert)
+Ext.RegisterListener("StatsLoaded", FixPhysicalResistance)
 Ext.RegisterListener("ModuleLoadStarted", TeleportRevert)
+Ext.RegisterListener("StatsLoaded", ChangeBaseAccuracy)

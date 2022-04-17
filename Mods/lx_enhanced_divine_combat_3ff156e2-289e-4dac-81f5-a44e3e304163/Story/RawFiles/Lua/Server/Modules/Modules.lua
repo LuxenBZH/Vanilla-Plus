@@ -52,6 +52,8 @@ local function ActivateModule(flag)
         Ext.ExtraData.DGM_EnableDualCCParry = 1
     elseif flag == "LXDGM_ModuleCorrogicDisable" then
         Ext.ExtraData.DGM_Corrogic = 0
+    elseif flag == "LXDGM_ModuleLegacyDodge" then
+        Ext.ExtraData.DGM_LegacyDodge = 1
     end
 end
 Ext.RegisterOsirisListener("GlobalFlagSet", 1, "after", ActivateModule)
@@ -67,6 +69,8 @@ local function DeactivateModule(flag)
         Ext.ExtraData.DGM_EnableDualCCParry = 0
     elseif flag == "LXDGM_ModuleCorrogicDisable" then
         Ext.ExtraData.DGM_Corrogic = 1
+    elseif flag == "LXDGM_ModuleLegacyDodge" then
+        Ext.ExtraData.DGM_LegacyDodge = 0
     end
 end
 Ext.RegisterOsirisListener("GlobalFlagCleared", 1, "after", DeactivateModule)

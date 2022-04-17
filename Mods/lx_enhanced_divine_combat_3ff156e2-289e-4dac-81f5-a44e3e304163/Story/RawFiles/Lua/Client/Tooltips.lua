@@ -40,6 +40,8 @@ local dynamicTooltips = {
     ["Target_Condense"]         = "h5806fbdcgce18g421dg8affg316856abad0f",
     ["Teleportation_FreeFall"]  = "h8afcfe4egf50fg402agbcc0g6ba95472ff53",
     ["Teleportation_Netherswap"]= "h656cf1ffgd118g40b8g9b1bgaa270b84bec8",
+    ["Shout_LX_AimedShot_Description"]= "h02f12f9fg9a25g4a95gba27gd65217023ed9",
+    ["DualWieldingOffhandBonusTooltip"]= "h8b09bd1cg68deg4987g9494g540c9d948538"
 }
 
 ---@param str string
@@ -76,7 +78,7 @@ local function WeaponTooltips(item, tooltip)
 	if item.ItemType ~= "Weapon" then return end
     local requirements = tooltip:GetElements("ItemRequirement")
     for i,el in pairs(tooltip.Data) do
-        if string.match(el.Label, "Scales With") ~= nil then
+        if el.Label and string.match(el.Label, "Scales With") ~= nil then
             tooltip:RemoveElement(el)
         end
     end
@@ -156,6 +158,16 @@ local function SkillAttributeTooltipBonus(character, skill, tooltip)
             
             for _, offhandPenaltySub in pairs(offhandPenalty) do
                 offhandPenaltySub.Label = GetDynamicTranslationString("DualWieldingPenalty", finalPenalty, reducedBy)
+                if stats.DualWielding == 10 then
+                    tooltip:RemoveElement(offhandPenaltySub)
+                    break
+                elseif stats.DualWielding > 10 then
+                    tooltip:RemoveElement(offhandPenaltySub)
+                    offhandPenaltySub.Type = "StatsPercentageBoost"
+                    tooltip:AppendElementAfter(offhandPenaltySub, "StatsPercentageBoost")
+                    offhandPenaltySub.Label = GetDynamicTranslationString("DualWieldingOffhandBonusTooltip", -finalPenalty)
+                end
+                
             end
         end
     end
@@ -194,11 +206,19 @@ local function OnStatTooltip(character, stat, tooltip)
         
     elseif stat == "Damage" then
         local damageText = tooltip:GetElement("StatsTotalDamage")
-        local minDamage = damageText.Label:gsub("^.* ", ""):gsub("-[1-9]*", "")
-        local maxDamage = damageText.Label:gsub("^.*-", "")
+        -- local minDamage = damageText.Label:gsub("^.* ", ""):gsub("-[1-9]*", "")
+        -- local maxDamage = damageText.Label:gsub("^.*-", "")
         
-        minDamage = math.floor(tonumber(minDamage) * (100+attrBonus["strGlobal"]+attrBonus["strWeapon"]+attrBonus["finGlobal"]+attrBonus["intGlobal"])/100)
-        maxDamage = math.floor(tonumber(maxDamage) * (100+attrBonus["strGlobal"]+attrBonus["strWeapon"]+attrBonus["finGlobal"]+attrBonus["intGlobal"])/100)
+        -- minDamage = math.floor(tonumber(minDamage) * (100+attrBonus["strGlobal"]+attrBonus["strWeapon"]+attrBonus["finGlobal"]+attrBonus["intGlobal"])/100)
+        -- maxDamage = math.floor(tonumber(maxDamage) * (100+attrBonus["strGlobal"]+attrBonus["strWeapon"]+attrBonus["finGlobal"]+attrBonus["intGlobal"])/100)
+
+        local damage = CustomGetSkillDamageRange(character.Stats, Ext.GetStat("Target_LX_NormalAttack"),  character.Stats.MainWeapon, character.Stats.OffHandWeapon, true)
+        local minDamage = 0
+        local maxDamage = 0
+        for dtype,range in pairs(damage) do
+            minDamage = minDamage + range.Min
+            maxDamage = maxDamage + range.Max
+        end
         
         damageText.Label = GetDynamicTranslationString(stat, minDamage, maxDamage)
     end
@@ -269,6 +289,8 @@ local tooltipFix = {
     CrossbowSlow = "h52ee27b1g46a7g4a0dg95b3gf519d1072d3b",
     Perseverance = "h5b61fccfg5d2ag4a81g9cacg068403d61b5c",
     Corrogic = "hb24edf38gd48ag477fgbf75g3bd3de8c6eec",
+    Warmup = "h565877e2g71eag43aag928fgfee5ca4f0c4f",
+    AimedShot = "he5970b83g4f56g4348g8d23g39bce69f8c3c"
 }
 
 -- Tooltip here is the fix for not being able to put a translation key on generated statuses for custom bonuses
@@ -282,11 +304,16 @@ local function FixCustomBonusesTranslationKeyBonus(character, stat, tooltip)
         boosts = tooltip:GetElements("StatsTalentsBoost")
         if #boosts == nil then return end
     end
+    -- Ext.Dump(boosts)
     for i,boost in pairs(boosts) do
-        if string.find(boost.Label, "DGM_Potion_.*_[0-9]+:") ~= nil then
+        if string.find(boost.Label, "DGM_Potion_.*_.*:") ~= nil then
+            -- Ext.Print("STRING REPLACEMENT")
             local str = boost.Label:gsub("DGM_Potion_", "")
-            str = str:gsub("_[0-9]*", "")
+            -- Ext.Print(str)
+            str = str:gsub("_.*:", ":")
+            -- Ext.Print(str)
             local stat = str:gsub("^%a* ", "")
+            -- Ext.Print(stat)
             stat = stat:gsub(":.*$", "")
             local final = Ext.GetTranslatedString(tooltipFix[stat], stat)
             str = str:gsub(" .*:", " "..final..":")
@@ -337,6 +364,15 @@ local function TeleportTooltip(character, skill, tooltip)
     description.Label = description.Label.."<br>Enemies need to have Physical or Magic armour down to be targetable."
 end
 
+---@param character EsvCharacter
+---@param skill string
+---@param tooltip TooltipData
+local function AimedShotTooltip(character, skill, tooltip)
+    local description = tooltip:GetElement("SkillDescription")
+    local accuracy = math.floor(20 + (character.Stats.Intelligence - Ext.ExtraData.AttributeBaseValue) * 3)
+    description.Label = GetDynamicTranslationString("Shout_LX_AimedShot_Description", accuracy, math.floor(character.Stats.Strength))
+end
+
 local function DGM_Tooltips_Init()
     Game.Tooltip.RegisterListener("Item", nil, WeaponTooltips)
     Game.Tooltip.RegisterListener("Stat", "Damage", SkillAttributeTooltipBonus)
@@ -347,6 +383,7 @@ local function DGM_Tooltips_Init()
     Game.Tooltip.RegisterListener("Talent", nil, TalentTooltip)
     Game.Tooltip.RegisterListener("Skill", "Teleportation_FreeFall", TeleportTooltip)
     Game.Tooltip.RegisterListener("Skill", "Teleportation_Netherswap", TeleportTooltip)
+    Game.Tooltip.RegisterListener("Skill", "Shout_LX_AimedShot", AimedShotTooltip)
 end
 
 Ext.RegisterListener("SessionLoaded", DGM_Tooltips_Init)
