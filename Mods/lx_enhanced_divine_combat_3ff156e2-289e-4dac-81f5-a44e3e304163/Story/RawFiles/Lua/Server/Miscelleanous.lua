@@ -138,13 +138,28 @@ end)
 
 ----------
 ---------- Free Movement per turn
+--- @param character EsvCharacter
+function GetCharacterMovement(character)
+    local stats = character.Stats.DynamicStats
+    local movement = 0
+    for i,ds in pairs(stats) do
+        movement = movement + ds.Movement
+    end
+    return {
+        Movement = movement,
+        BaseMovement = stats[1].Movement
+    }
+end
+
+
 RegisterTurnTrueStartListener(function(character)
     local char = Ext.GetCharacter(character)
-    local movement = char.Stats.Movement
-    if movement >= char.Stats.BaseMovement then
-        char.PartialAP = char.PartialAP + 1/movement
+    local movement = GetCharacterMovement(char)
+    Ext.Dump(movement)
+    if movement.Movement >= movement.BaseMovement then
+        char.PartialAP = char.PartialAP + 100/movement.Movement
     else
-        char.PartialAP = char.PartialAP + movement/char.Stats.BaseMovement * 1/movement
+        char.PartialAP = char.PartialAP + movement.Movement/movement.BaseMovement * 100/movement.Movement
     end
 end)
 
