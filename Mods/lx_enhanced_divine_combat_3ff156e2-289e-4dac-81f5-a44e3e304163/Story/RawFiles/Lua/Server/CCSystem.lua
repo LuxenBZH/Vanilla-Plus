@@ -77,6 +77,7 @@ end
 -- 	end
 -- end
 local function RecoverFromCCs(character, status, ...)
+	local char = Ext.GetCharacter(character)
 	for armour,statuses in pairs(blockedStatuses) do
 		if statuses[status] then
 			local duration = Ext.ExtraData.DGM_CCParryDuration
@@ -84,9 +85,9 @@ local function RecoverFromCCs(character, status, ...)
 				duration = duration + 1
 			end
 			if armour == "PhysicalArmor" then
-				ApplyStatus(character, "LX_MOMENTUM", duration*6, 1)
+				ApplyStatus(character, "LX_MOMENTUM", duration*6  + (char.Stats.TALENT_Indomitable and 6.0 or 0), 1)
 			elseif armour == "MagicArmor" then
-				ApplyStatus(character, "LX_LINGERING", duration*6, 1)
+				ApplyStatus(character, "LX_LINGERING", duration*6 + (char.Stats.TALENT_Indomitable and 6.0 or 0), 1)
 			end
 		end
 	end
@@ -119,6 +120,11 @@ local function BlockCCs(character, status, handle, instigator)
 				NRD_StatusPreventApply(character, handle, 1)
 				return
 			end 
+			--- Game Master
+			if armourValue ~= 0 and source == 0 and CheckImmunity(character, status) then
+				NRD_StatusPreventApply(character, handle, 1)
+			end
+			--- Surface
 			if armourValue ~= 0 and source == 3 and HasActiveStatus(character, correspondingStatus[armour][1]) == 1 and not CheckImmunity(character, status) then
 				NRD_StatusPreventApply(character, handle, 1)
 				RollStatusApplication(character, correspondingStatus[armour][2], 6.0, 1, enterChance, handle)
@@ -131,7 +137,7 @@ local function BlockCCs(character, status, handle, instigator)
 			end
 		end
 	end
-	-- Torturer fix
+	-- Torturer weapons fix
 	if enterChance < 100 and not isArmourStatus and CharacterHasTalent(instigator, "Torturer") == 1 then
 		local roll = math.random(1, 100)
 		if roll > enterChance then 

@@ -186,7 +186,6 @@ end)
 -- end)
 
 Ext.RegisterOsirisListener("NRD_OnStatusAttempt", 4, "before", function(target, status, handle, instigator)
-    Ext.Print(target, status, handle, instigator)
     local s = Ext.GetStatus(target, handle)
     local healer = Ext.GetCharacter(instigator)
     if status == "HEAL" and s.HealEffect == "HealSharing" then
@@ -203,7 +202,6 @@ Ext.RegisterOsirisListener("NRD_OnStatusAttempt", 4, "before", function(target, 
         local stat = Ext.GetStat(s.StatusId)
         if stat.HealType ~= "Qualifier" then return end
         local bonus = math.floor(((1+(healer.Stats.Intelligence - Ext.ExtraData.AttributeBaseValue)*0.3) * (healer.Stats.Wits - Ext.ExtraData.AttributeBaseValue)*Game.Math.GetAverageLevelDamage(healer.Stats.Level)*0.01)*(math.min(1, stat.HealValue/100)))
-        Ext.Print(GetHealScaledValue(stat, healer), bonus, (1+(healer.Stats.Intelligence - Ext.ExtraData.AttributeBaseValue)*0.3) * (healer.Stats.Wits - Ext.ExtraData.AttributeBaseValue))
         if s.StatusType == "HEALING" then
             if s.HealStat == "PhysicalArmor" then
                 bonus = bonus / (1 + healer.Stats.EarthSpecialist * Ext.ExtraData.SkillAbilityArmorRestoredPerPoint / 100)
