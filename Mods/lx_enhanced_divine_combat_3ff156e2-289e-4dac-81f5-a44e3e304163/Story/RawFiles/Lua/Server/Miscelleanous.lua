@@ -169,12 +169,52 @@ end)
 --- @param instigator string GUID
 --- @param amount integer
 --- @param handle double StatusHandle
-Ext.RegisterOsirisListener("NRD_OnHeal", 4, "before", function(target, instigator, amount, handle)
-    -- Ext.Print(instigator, handle)
-    local heal = Ext.GetStatus(target, handle) ---@type EsvStatusHeal
+-- Ext.RegisterOsirisListener("NRD_OnHeal", 4, "before", function(target, instigator, amount, handle)
+--     -- Ext.Print(instigator, handle)
+--     local heal = Ext.GetStatus(target, handle) ---@type EsvStatusHeal
+--     local healer = Ext.GetCharacter(instigator)
+--     local bonus = math.floor((healer.Stats.Intelligence - Ext.ExtraData.AttributeBaseValue) * (healer.Stats.Wits - Ext.ExtraData.AttributeBaseValue)*Game.Math.GetLevelScaledDamage(healer.Stats.Level)*0.07)
+--     local amount = heal.HealAmount
+--     Ext.Print("Healing bonus",bonus)
+--     if not heal.IsFromItem then
+--         heal.HealAmount = -9999
+--         Ext.Print(amount, bonus)
+--         amount = amount + bonus
+--         heal.HealAmount = amount
+--     end
+--     -- Ext.Dump(heal)
+-- end)
+
+Ext.RegisterOsirisListener("NRD_OnStatusAttempt", 4, "before", function(target, status, handle, instigator)
+    Ext.Print(target, status, handle, instigator)
+    local s = Ext.GetStatus(target, handle)
     local healer = Ext.GetCharacter(instigator)
-    local bonus = ((healer.Stats.Intelligence - Ext.ExtraData.AttributeBaseValue) * (healer.Stats.Wits - Ext.ExtraData.AttributeBaseValue)*Game.Math.GetLevelScaledDamage(healer.Stats.Level)*0.07)
-    if not heal.IsFromItem then
-        heal.HealAmount = heal.HealAmount + bonus
+    if status == "HEAL" and s.HealEffect == "HealSharing" then
+        if s.HealType == "PhysicalArmor" then
+            s.HealAmount = Ext.Round(s.HealAmount / (1 + healer.Stats.EarthSpecialist * Ext.ExtraData.SkillAbilityArmorRestoredPerPoint / 100))
+        elseif s.HealType == "MagicArmor" then
+            s.HealAmount = Ext.Round(s.HealAmount / (1 + healer.Stats.WaterSpecialist * Ext.ExtraData.SkillAbilityArmorRestoredPerPoint / 100))
+        else
+            s.HealAmount = Ext.Round(s.HealAmount / (1 + healer.Stats.WaterSpecialist * Ext.ExtraData.SkillAbilityVitalityRestoredPerPoint / 100))
+        end
+    end
+    if (s.StatusType == "HEAL" or s.StatusType == "HEALING") and status ~= "HEAL" and status ~= "LIFESTEAL" then
+        local s = Ext.GetStatus(target, handle)
+        local stat = Ext.GetStat(s.StatusId)
+        if stat.HealType ~= "Qualifier" then return end
+        local bonus = math.floor(((1+(healer.Stats.Intelligence - Ext.ExtraData.AttributeBaseValue)*0.3) * (healer.Stats.Wits - Ext.ExtraData.AttributeBaseValue)*Game.Math.GetAverageLevelDamage(healer.Stats.Level)*0.01)*(math.min(1, stat.HealValue/100)))
+        Ext.Print(GetHealScaledValue(stat, healer), bonus, (1+(healer.Stats.Intelligence - Ext.ExtraData.AttributeBaseValue)*0.3) * (healer.Stats.Wits - Ext.ExtraData.AttributeBaseValue))
+        if s.StatusType == "HEALING" then
+            if s.HealStat == "PhysicalArmor" then
+                bonus = bonus / (1 + healer.Stats.EarthSpecialist * Ext.ExtraData.SkillAbilityArmorRestoredPerPoint / 100)
+            elseif s.HealStat == "MagicArmor" then
+                bonus = bonus / (1 + healer.Stats.WaterSpecialist * Ext.ExtraData.SkillAbilityArmorRestoredPerPoint / 100)
+            else
+                bonus = bonus / (1 + healer.Stats.WaterSpecialist * Ext.ExtraData.SkillAbilityVitalityRestoredPerPoint / 100)
+            end
+        end
+        s.HealAmount = GetHealScaledValue(stat, healer) + Ext.Round(bonus)
+    elseif status == "LIFESTEAL" then
+        s.HealAmount = Ext.Round(s.HealAmount / (1 + healer.Stats.WaterSpecialist * Ext.ExtraData.SkillAbilityVitalityRestoredPerPoint / 100))
     end
 end)

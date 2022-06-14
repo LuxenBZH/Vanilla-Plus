@@ -444,3 +444,16 @@ engineStatuses = {
 	DEACTIVATED = true,
 	TUTORIAL_BED = true
 }
+
+function GetHealScaledValue(stat, healer)
+	local HealTypeSkillData = healer.Stats.WaterSpecialist * Ext.ExtraData.SkillAbilityVitalityRestoredPerPoint
+	-- When the status type is HEALING, the initial value is copied over to the next HEAL ticks and automatically apply the Hydro/Geo bonus
+	if stat.StatusType == "HEALING" then
+		HealTypeSkillData = 0
+	elseif stat.HealStat == "PhysicalArmor" then
+		HealTypeSkillData = healer.Stats.EarthSpecialist * Ext.ExtraData.SkillAbilityArmorRestoredPerPoint
+	elseif stat.HealStat == "MagicArmor" then
+		HealTypeSkillData = healer.Stats.WaterSpecialist * Ext.ExtraData.SkillAbilityArmorRestoredPerPoint
+	end
+	return Ext.Round(stat.HealValue * Game.Math.GetAverageLevelDamage(healer.Stats.Level) * Ext.ExtraData.HealToDamageRatio / 100 * (1 + HealTypeSkillData/100))
+end
