@@ -307,27 +307,28 @@ function ChangeDamage(damages, multiplier, value, instigator, target, handle, do
 	local lifesteal = NRD_StatusGetInt(target, handle, "LifeSteal")
 	instigator = Ext.GetCharacter(instigator)
 	for dmgType,amount in pairs(damages) do
+		local mult = 0 + multiplier
 		-- Ice king water damage bonus
 		if dmgType == "Water" and CharacterHasTalent(instigator.MyGuid, "IceKing") == 1 then
-			multiplier = multiplier + Ext.ExtraData.DGM_IceKingDamageBonus/100
+			mult = mult + Ext.ExtraData.DGM_IceKingDamageBonus/100
 			-- print("Bonus: IceKing")
 		end
 		if dmgType == "Corrosive" or dmgType == "Magic" then
-			multiplier = multiplier*(Ext.ExtraData.DGM_ArmourReductionMultiplier/100)
+			amount = amount*(Ext.ExtraData.DGM_ArmourReductionMultiplier/100)
 		end
 		local rangeFix = math.random()
 		if amount > 0 then amount = amount + rangeFix end
 		if dmgType ~= "Corrosive" and dmgType ~= "Magic" then
 			lifesteal = lifesteal - amount * (instigator.Stats.LifeSteal/100)
 		end
-		amount = amount * multiplier
+		amount = amount * mult
 		amount = amount + value
 		if dmgType ~= "Corrosive" and dmgType ~= "Magic" then
 			if lifesteal ~= 0 then
 				lifesteal = lifesteal + Ext.Round(amount * (instigator.Stats.LifeSteal/100)) 
 			end
 		end
-		if amount ~= 0 then Ext.Print("Changed "..dmgType.." to "..amount.." (Multiplier = "..multiplier..")") end
+		if amount ~= 0 then Ext.Print("Changed "..dmgType.." to "..amount.." (Multiplier = "..mult..")") end
 		damages[dmgType] = amount
 	end
 	if ObjectIsCharacter(target) ~= 1 or dot == 1 then lifesteal = 0 end
