@@ -130,8 +130,8 @@ Ext.RegisterOsirisListener("CharacterStatusRemoved", 3, "before", function(chara
 end)
 
 Ext.RegisterOsirisListener("CharacterDied", 1, "before", function(character)
-    if CharacterHasTalent(character, "Unstable") == 1 then
-        local pos = Ext.GetCharacter(character)
+    if CharacterHasTalent(character, "Unstable") == 1 and IsTagged(character, "LX_UNSTABLE_COOLDOWN") == 0 then
+        local pos = Ext.GetCharacter(character).WorldPos
 		PlayEffectAtPosition("RS3_FX_GP_Combat_CorpseExplosion_Blood_01_Medium", pos[1], pos[2], pos[3])
     end
 end)
@@ -186,6 +186,7 @@ end)
 -- end)
 
 Ext.RegisterOsirisListener("NRD_OnStatusAttempt", 4, "before", function(target, status, handle, instigator)
+    if instigator == "NULL_00000000-0000-0000-0000-000000000000" then return end -- Spams the console in few cases otherwise
     local s = Ext.GetStatus(target, handle)
     local healer = Ext.GetCharacter(instigator)
     if status == "HEAL" and s.HealEffect == "HealSharing" then

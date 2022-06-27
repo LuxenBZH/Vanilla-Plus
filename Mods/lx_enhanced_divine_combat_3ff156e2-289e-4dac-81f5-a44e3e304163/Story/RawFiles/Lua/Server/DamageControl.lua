@@ -295,7 +295,7 @@ function DamageControl(target, instigator, hitDamage, handle)
 	local backstab = NRD_StatusGetInt(target, handle, "Backstab")
 	local fixedValue = 0
 	local isFromShacklesOfPain = false
-
+	
 	if fromReflection == 1 then return end
 	if NRD_StatusGetInt(target, handle, "HitReason") == 0 then
 		fromWeapon = 1
@@ -306,6 +306,9 @@ function DamageControl(target, instigator, hitDamage, handle)
 		and HasActiveStatus(target, "SHACKLES_OF_PAIN") == 1 and HasActiveStatus(instigator, "SHACKLES_OF_PAIN_CASTER") == 1 then
 		isFromShacklesOfPain = true
 		Ext.Print("Shackles of Pain hit!")
+	end
+	if skillID == "Projectile_Talent_Unstable" and IsTagged(instigator, "LX_UNSTABLE_COOLDOWN") == 1 then
+		NRD_HitStatusClearAllDamage(target, handle)
 	end
 	
 	local weaponTypes = GetWeaponsType(instigator)
@@ -324,10 +327,6 @@ function DamageControl(target, instigator, hitDamage, handle)
 	if sourceType == 1 or sourceType == 2 or sourceType == 3 then InitiatePassingDamage(target, damages); return end
 	if skillID == "" and sourceType == 0 and ObjectIsCharacter(target) == 1 then InitiatePassingDamage(target, damages); return end
 	if fixedValue ~= 0 and fixedValue ~= 1 and fixedValue ~= 2 then InitiatePassingDamage(target, damages); return end
-
-	if skillID == "Projectile_Talent_Unstable_-1" and IsTagged(instigator, "LX_UNSTABLE_COOLDOWN") then
-		NRD_HitStatusClearAllDamage(target, handle)
-	end
 	
 	if ObjectIsCharacter(target) == 1 then
 		TraceDamageSpreaders(Ext.GetCharacter(target))
