@@ -28,6 +28,7 @@ local defaultDataValues = {
     DGM_NpcVitalityMultiplier = 100,
     DGM_WandSurfaceBonus = 15,
     DGM_PerseveranceResistance = 5,
+    DGM_BaseAccuracy = 90
 }
 
 local idToVariable = {
@@ -60,6 +61,7 @@ local idToVariable = {
     NpcVitalityMultiplier = "DGM_NpcVitalityMultiplier",
     SummonsVitalityMultiplier = "DGM_SummonsVitalityMultiplier",
     SummonsDamageBoost = "DGM_SummonsDamageBoost",
+    BaseAccuracy = "DGM_BaseAccuracy"
     -- LXDGM_ModuleDivineTalents = "DGM_GB4Talents"
 }
 
@@ -96,12 +98,15 @@ Ext.RegisterListener("StatsLoaded", function()
     Ext.Print("Loading stored vars...")
     local json = Ext.LoadFile("LeaderLib_GlobalSettings.json", "user")
     if json == nil or json == "" then return end
-    for var,value in pairs(Ext.JsonParse(json).Mods["3ff156e2-289e-4dac-81f5-a44e3e304163"].Global.Variables) do
-        Ext.Print("Set Data var",var,value.Value)
-        if requireRestart[var] then
-            Ext.ExtraData[idToVariable[var]] = value.Value
+    local data = Ext.JsonParse(json).Mods["3ff156e2-289e-4dac-81f5-a44e3e304163"]
+    if data then
+        for var,value in pairs(data.Global.Variables) do
+            Ext.Print("Set Data var",var,value.Value)
+            if requireRestart[var] then
+                Ext.ExtraData[idToVariable[var]] = value.Value
+            end
         end
-	end
+    end
     -- for var,value in pairs(Ext.JsonParse(json).Mods["3ff156e2-289e-4dac-81f5-a44e3e304163"].Global.Flags) do
     --     Ext.Print("Set Data flag",var,value.Enabled)
     --     if requireRestart[var] then
@@ -129,6 +134,7 @@ Ext.RegisterListener("SessionLoaded", function()
     settings.Global:AddLocalizedFlag("LXDGM_ModuleDivineTalentsDisable", "Global", false, nil, nil, false)
     settings.Global:AddLocalizedFlag("LXDGM_ModuleCorrogicDisable", "Global", false, nil, nil, false)
     settings.Global:AddLocalizedFlag("LXDGM_ModuleOriginalTeleport", "Global", false, nil, nil, false)
+    settings.Global:AddLocalizedFlag("LXDGM_ModuleLegacyDodge", "Global", false, nil, nil, false)
 
     -- settings.Global:AddLocalizedFlag("LXDGM_SettingsUseDefaultAttributeValues", "Global", true, nil, nil, false)
     settings.Global:AddLocalizedVariable("StrengthGloBonus", "LXDGM_StrengthGlobalDamageBonus", Ext.ExtraData.DGM_StrengthGlobalBonus, 0, 10, 0.5, "LXDGM_StrengthGlobalDamageBonus_Description")
@@ -143,6 +149,7 @@ Ext.RegisterListener("SessionLoaded", function()
     settings.Global:AddLocalizedVariable("WitsDotBonus", "LXDGM_WitsDotBonus", Ext.ExtraData.DGM_WitsDotBonus, 0, 50, 1, "LXDGM_WitsDotBonus_Description")
     settings.Global:AddLocalizedVariable("CritChanceBackstabBonus", "LXDGM_BackstabCritChanceBonus", Ext.ExtraData.DGM_BackstabCritChanceBonus, 0, 3, 0.25, "LXDGM_BackstabCritChanceBonus_Description")
     settings.Global:AddLocalizedVariable("AttributeCap", "LXDGM_AttributeCap", Ext.ExtraData.AttributeSoftCap, Ext.ExtraData.AttributeBaseValue, 80, 1, "LXDGM_AttributeCap_Description")
+    settings.Global:AddLocalizedVariable("BaseAccuracy", "LXDGM_BaseAccuracy", Ext.ExtraData.DGM_BaseAccuracy, 50, 150, 1, "LXDGM_BaseAccuracy_Description")
 
     settings.Global:AddLocalizedVariable("ArmourDamagePass", "LXDGM_ArmourDamagePass", Ext.ExtraData.DGM_DamageThroughArmor, 0, 100, 1, "LXDGM_ArmourDamagePass_Description")
     settings.Global:AddLocalizedVariable("ArmourDamagePassDepleted", "LXDGM_ArmourDamagePassDepleted", Ext.ExtraData.DGM_DamageThroughArmorDepleted, 0, 100, 1, "LXDGM_ArmourDamagePassDepleted_Description")
@@ -190,6 +197,7 @@ Ext.RegisterListener("SessionLoaded", function()
                     "LXDGM_ModuleFallDamageAlternate",
                     "LXDGM_ModuleOriginalChameleonCloak",
                     "LXDGM_ModuleOriginalTeleport",
+                    "LXDGM_ModuleLegacyDodge"
                 }},
                 {DisplayName = "Attributes",
                 Entries = {
@@ -204,7 +212,8 @@ Ext.RegisterListener("SessionLoaded", function()
                     "IntelligenceAccuracyBonus",
                     "WitsDotBonus",
                     "CritChanceBackstabBonus",
-                    "AttributeCap"
+                    "AttributeCap",
+                    "BaseAccuracy"
                 }},
                 {DisplayName = "Armour System",
                 Entries = {
