@@ -150,10 +150,11 @@ local function ExtendStatusDamage(status, element, stats, statusName, isWeaponBo
     if status ~= nil then
         local min = tostring(status.DamageFromBase - status["Damage Range"]/2):gsub("%.0", "")
         local max = tostring(status.DamageFromBase + status["Damage Range"]/2):gsub("%.0", "")
-        element.Label=element.Label .. "<br><font color='#e60000'>• "..status["Damage Type"].." Damage: "..min.."% - "..max.."%</font>"
+        element.Label=element.Label .. "<br><font color='#e60000'>• "..status["Damage Type"]..": "..min.."% - "..max.."%</font>"
         local witsBonus = (stats.Wits-Ext.ExtraData.AttributeBaseValue) * Ext.ExtraData.DGM_WitsDotBonus / 100
         if witsBonus > 0 and not isWeaponBonus then
-            element.Label=element.Label .. "<br><font color='#e60000'>• Wits Multiplier: "..1+witsBonus.."</font>"
+            -- element.Label=element.Label .. "<br><font color='#e60000'>• Wits Multiplier: "..1+witsBonus.."</font>"
+            element.Label=element.Label .. "<font color='#e60000'> (x"..1+witsBonus.." from Wits)</font>"
         end
     end
 end
