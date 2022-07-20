@@ -155,7 +155,6 @@ end
 RegisterTurnTrueStartListener(function(character)
     local char = Ext.GetCharacter(character)
     local movement = GetCharacterMovement(char)
-    Ext.Dump(movement)
     if movement.Movement >= movement.BaseMovement then
         char.PartialAP = char.PartialAP + 100/movement.Movement
     else

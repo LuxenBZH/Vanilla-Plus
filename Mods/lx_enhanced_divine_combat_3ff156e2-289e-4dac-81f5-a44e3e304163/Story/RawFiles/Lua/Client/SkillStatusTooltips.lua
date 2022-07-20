@@ -363,5 +363,7 @@ local DamageTypes = {
     Water = 8,
     Earth = 9,
     Poison = 10,
-    Shadow = 11
+    Shadow = 11,
+    Sulfuric = 12,
+    Sentinel = 13
 }
