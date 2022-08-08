@@ -219,25 +219,20 @@ end
 
 ---@param character string GUID
 local function ApplyWarmup(character, step)
-	local char = Ext.GetCharacter(character)
-	local warmup = FindStatus(char, "DGM_Warmup")
+	local char = Ext.ServerEntity.GetCharacter(character)
+	local warmup = FindStatus(char, "DGM_WARMUP")
 	local stage
-	if warmup then
-		stage = tonumber(string.sub(warmup, 12, 12))
-	elseif step then
+	if step then
 		stage = step
+	elseif warmup then
+		stage = math.min(tonumber(string.sub(warmup, 11, 11))+1, 4)
+		ObjectSetFlag(character, "DGM_WarmupReapply", 0)
 	else
-		stage = 0
+		stage = 1
 	end
-	if stage < 4 then
-		local intelligence = (char.Stats.Intelligence - Ext.ExtraData.AttributeBaseValue)
-		local accuracyBoost = math.min((10 * (stage+1) + intelligence * (stage+1)), 100)
-		local status = CreateNewStatus("Warmup_"..tostring(stage+1).."_i"..tostring(math.floor(intelligence)), "DGM_Potion_Base", {AccuracyBoost = accuracyBoost}, "DGM_WARMUP"..tostring(stage+1), {StackId = "Stack_LX_Warmup"}, false)
-		ApplyStatus(character, status, 6.0, 1)
-	elseif stage == 5 then
-		local status = CreateNewStatus("Warmup_"..tostring(stage+1).."_i"..tostring(math.floor(intelligence)), "DGM_Potion_Base", {AccuracyBoost = accuracyBoost}, "DGM_WARMUP"..tostring(stage+1), {StackId = "Stack_LX_Warmup"}, false)
-		ApplyStatus(character, status, 6.0, 1)
-	end
+	local status = Ext.PrepareStatus(char.MyGuid, "DGM_WARMUP"..tostring(stage), 6.0)
+	status.StatsMultiplier = 1.0 + 0.1 * char.Stats.WarriorLore
+	Ext.ApplyStatus(status)
 end
 
 ---@param character string GUID
@@ -254,11 +249,13 @@ Ext.RegisterOsirisListener("CharacterStatusApplied", 3, "before", OsirisApplyWar
 local function OsirisReapplyWarmup(character, status, causee)
 	if not engineStatuses[status] and NRD_StatExists(status) then
 		if Ext.GetStat(status).Description == "DGM_WARMUP_Description" then
-			if not FindStatus(Ext.GetCharacter(character), "DGM_Warmup") then
-				local stage = tonumber(string.sub(status, 12, 12))
-				if stage > 1 then
-					ApplyWarmup(character, stage-2)
-				end
+			if ObjectGetFlag(character, "DGM_WarmupReapply") == 1 then
+				ObjectClearFlag(character, "DGM_WarmupReapply", 0)
+				return
+			end
+			local stage = tonumber(string.sub(status, 11, 11))
+			if stage > 1 then
+				ApplyWarmup(character, stage-1)
 			end
 		end
 	end
