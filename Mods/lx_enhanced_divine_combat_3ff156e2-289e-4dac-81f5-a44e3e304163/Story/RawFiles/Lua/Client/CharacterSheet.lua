@@ -88,6 +88,82 @@ local function AddResistances(ui, call, state)
     end
 end
 
+abilityButtonLock = {}
+abilityButtonLock.CS = {}
+abilityButtonLock.CC = {}
+
+local function HidePlusButtonCharacterSheet(e)
+    local ui = Ext.UI.GetByPath("Public/Game/GUI/characterSheet.swf")
+    local root = ui:GetRoot()
+    for ability, infos in pairs(abilityButtonLock.CS) do
+        root.stats_mc.combatAbilityHolder_mc.list.content_array[1].list.content_array[infos.ID].texts_mc.plus_mc.visible = false
+        root.stats_mc.combatAbilityHolder_mc.list.content_array[1].list.content_array[infos.ID].texts_mc.plus_mc.scaleX = 1
+        abilityButtonLock.CS[ability] = nil
+    end
+end
+
+local function HidePlusButtonCC(e)
+    local ui = Ext.UI.GetByPath("Public/Game/GUI/characterCreation.swf")
+    local root = ui:GetRoot()
+    for ability, infos in pairs(abilityButtonLock.CC) do
+        if root.CCPanel_mc.abilities_mc.abilityGroupList.content_array[2].abilities.content_array[infos.Index].plus_mc.scaleX == 0 then
+            root.CCPanel_mc.abilities_mc.abilityGroupList.content_array[2].abilities.content_array[infos.Index].plus_mc.visible = false
+            root.CCPanel_mc.abilities_mc.abilityGroupList.content_array[2].abilities.content_array[infos.Index].plus_mc.scaleX = 1
+        end
+        abilityButtonLock.CC[ability] = nil
+    end
+end
+
+Ext.Events.UIInvoke:Subscribe(function(e)
+    if e.Function == "updateArraySystem" and e.When == "After" then
+        local i = 0
+        local root = e.UI:GetRoot()
+        local perseverance = Ext.L10N.GetTranslatedString("hfc4ae314g920ag4fdagbc50ge73b91cfa7c7", "Perseverance")
+        local leadership = Ext.L10N.GetTranslatedString("h7c65fe39g1526g427bg8a2dgab7e74c66202", "Leadership")
+        local retribution = Ext.L10N.GetTranslatedString("h19487a02g5b86g4129ga879g0ec268a9f50b", "Retribution")
+        local character = Ext.ClientEntity.GetCharacter(Ext.UI.DoubleToHandle(root.charHandle))
+        if root.isGameMasterChar then return end
+        while i < tonumber(#root.stats_mc.combatAbilityHolder_mc.list.content_array[1].list.content_array) do
+            local stat = root.stats_mc.combatAbilityHolder_mc.list.content_array[1].list.content_array[i].texts_mc.label_txt.htmlText
+            if string.find(stat, perseverance) and character.Stats.DynamicStats[1].Perseverance >= 5 then
+                abilityButtonLock.CS.Perseverance = {ID = i}
+                root.stats_mc.combatAbilityHolder_mc.list.content_array[1].list.content_array[i].texts_mc.plus_mc.scaleX = 0
+            elseif string.find(stat,leadership) and character.Stats.DynamicStats[1].Leadership >= 5 then
+                abilityButtonLock.CS.Leadership = {ID = i}
+                root.stats_mc.combatAbilityHolder_mc.list.content_array[1].list.content_array[i].texts_mc.plus_mc.scaleX = 0
+            elseif string.find(stat,retribution) and character.Stats.DynamicStats[1].PainReflection >= 5 then
+                abilityButtonLock.CS.Retribution = {ID = i}
+                root.stats_mc.combatAbilityHolder_mc.list.content_array[1].list.content_array[i].texts_mc.plus_mc.scaleX = 0
+            end
+            i = i + 1
+        end
+        Ext.OnNextTick(HidePlusButtonCharacterSheet)
+    end
+    if e.Function == "updateAbilities" and e.When == "After" then
+        local root = e.UI:GetRoot()
+        local i = 0
+        local perseverance = Ext.L10N.GetTranslatedString("hfc4ae314g920ag4fdagbc50ge73b91cfa7c7", "Perseverance")
+        local leadership = Ext.L10N.GetTranslatedString("h7c65fe39g1526g427bg8a2dgab7e74c66202", "Leadership")
+        local retribution = Ext.L10N.GetTranslatedString("h19487a02g5b86g4129ga879g0ec268a9f50b", "Retribution")
+        local character = Ext.ClientEntity.GetCharacter(Ext.UI.DoubleToHandle(root.characterHandle))
+        while i < tonumber(#root.CCPanel_mc.abilities_mc.abilityGroupList.content_array[2].abilities.content_array) do
+            local ability = root.CCPanel_mc.abilities_mc.abilityGroupList.content_array[2].abilities.content_array[i]
+            if (ability.label_txt.htmlText == perseverance and character.Stats.DynamicStats[1].Perseverance >= 5) then
+                abilityButtonLock.CC.Perseverance = {Index = i, Group = 2, Stat = "Perseverance"}
+                ability.plus_mc.scaleX = 0
+            elseif (ability.label_txt.htmlText == leadership and character.Stats.DynamicStats[1].Leadership >= 5) then
+                abilityButtonLock.CC.Leadership = {Index = i, Group = 2, Stat = "Leadership"}
+                ability.plus_mc.scaleX = 0
+            elseif (ability.label_txt.htmlText == retribution and character.Stats.DynamicStats[1].PainReflection >= 5) then
+                abilityButtonLock.CC.Retribution = {Index = i, Group = 2, Stat = "PainReflection"}
+                ability.plus_mc.scaleX = 0
+            end
+            i = i + 1
+        end
+        Ext.OnNextTick(HidePlusButtonCC)
+    end
+end)
+
 local function DGM_SetupUI()
     local charSheet = Ext.GetBuiltinUI("Public/Game/GUI/characterSheet.swf")
     local tooltip = Ext.GetBuiltinUI("Public/Game/GUI/tooltip.swf")
