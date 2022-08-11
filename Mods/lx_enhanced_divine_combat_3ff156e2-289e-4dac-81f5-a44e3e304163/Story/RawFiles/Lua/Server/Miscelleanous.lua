@@ -50,8 +50,6 @@ Ext.RegisterOsirisListener("ObjectLeftCombat", 2, "before", function(object, com
     end
 end)
 
-
-
 ---------- Perseverance effect
 local incapacitatedTypes = {
     INCAPACITATED = true,
