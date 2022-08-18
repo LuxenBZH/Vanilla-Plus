@@ -500,7 +500,9 @@ end
 
 Ext.RegisterListener("GetHitChance", DGM_HitChanceFormula)
 
+--- Trigger lua ComputeCharacterHit for the Sadist fix to work if LLib isn't active
 if not Mods.LeaderLib then
+	--- Fix the original DoHit that is broken
 	local function DoHit(hit, damageList, statusBonusDmgTypes, hitType, target, attacker, ctx)
 		hit.Hit = true;
 		damageList:AggregateSameTypeDamages()
@@ -544,13 +546,8 @@ if not Mods.LeaderLib then
 
 	Game.Math.DoHit = DoHit
 
-	local function ComputeCharacterHit(target, attacker, weapon, damageList, hitType, noHitRoll, forceReduceDurability, hit, alwaysBackstab, highGroundFlag, criticalRoll)
-		Game.Math.ComputeCharacterHit(target, attacker, weapon, damageList, hitType, noHitRoll, forceReduceDurability, hit, alwaysBackstab, highGroundFlag, criticalRoll)
-		return hit
-	end
-
 	Ext.Events.ComputeCharacterHit:Subscribe(function(event)
-		local hit = ComputeCharacterHit(event.Target, event.Attacker, event.Weapon, event.DamageList, event.HitType, event.NoHitRoll, event.ForceReduceDurability, event.Hit, event.AlwaysBackstab, event.HighGround, event.CriticalRoll)
+		local hit = Game.Math.ComputeCharacterHit(event.Target, event.Attacker, event.Weapon, event.DamageList, event.HitType, event.NoHitRoll, event.ForceReduceDurability, event.Hit, event.AlwaysBackstab, event.HighGround, event.CriticalRoll)
 		if hit then
 			event.Handled = true
 		end
@@ -581,7 +578,6 @@ Ext.Events.ComputeCharacterHit:Subscribe(function(e)
 			end
         end
 	end
-	return e
 end)
 
 --- @param attacker StatCharacter
