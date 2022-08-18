@@ -500,6 +500,33 @@ end
 
 Ext.RegisterListener("GetHitChance", DGM_HitChanceFormula)
 
+--- Fix Sadist
+Ext.Events.ComputeCharacterHit:Subscribe(function(e)
+	if e.Attacker and e.HitType == "WeaponDamage" and not Game.Math.IsRangedWeapon(e.Attacker.MainWeapon) then
+		-- Apply Sadist talent
+        if e.Attacker.TALENT_Sadist then
+			local totalDamage = 0
+			for i,damage in pairs(e.DamageList:ToTable()) do
+				totalDamage = totalDamage + damage.Amount
+			end
+			local statusBonusDmgTypes = {}
+            if e.Hit.Poisoned then
+                table.insert(statusBonusDmgTypes, "Poison")
+            end
+            if e.Hit.Burning then
+                table.insert(statusBonusDmgTypes, "Fire")
+            end
+            if e.Hit.Bleeding then
+                table.insert(statusBonusDmgTypes, "Physical")
+            end
+			for i,damageType in pairs(statusBonusDmgTypes) do
+				e.Hit.DamageList:Add(damageType, math.ceil(totalDamage * 0.1))
+			end
+        end
+	end
+	return e
+end)
+
 --- @param attacker StatCharacter
 --- @param target StatCharacter
 function DGM_CalculateHitChance(attacker, target)
@@ -526,8 +553,6 @@ function DGM_CalculateHitChance(attacker, target)
 end
 
 Game.Math.CalculateHitChance = DGM_CalculateHitChance
-
--- Ext.RegisterListener("ComputeCharacterHit", Game.Math.ComputeCharacterHit)
 
 if Mods.LeaderLib ~= nil then
 	-- local info = Ext.GetModInfo("7e737d2f-31d2-4751-963f-be6ccc59cd0c")
