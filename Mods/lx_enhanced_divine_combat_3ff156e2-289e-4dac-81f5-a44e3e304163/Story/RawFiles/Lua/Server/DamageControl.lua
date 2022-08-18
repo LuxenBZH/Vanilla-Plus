@@ -500,6 +500,63 @@ end
 
 Ext.RegisterListener("GetHitChance", DGM_HitChanceFormula)
 
+if not Mods.LeaderLib then
+	local function DoHit(hit, damageList, statusBonusDmgTypes, hitType, target, attacker, ctx)
+		hit.Hit = true;
+		damageList:AggregateSameTypeDamages()
+		damageList:Multiply(ctx.DamageMultiplier)
+	
+		local totalDamage = 0
+		for i,damage in pairs(damageList:ToTable()) do
+			totalDamage = totalDamage + damage.Amount
+		end
+	
+		if totalDamage < 0 then
+			damageList:Clear()
+		end
+	
+		Game.Math.ApplyDamageCharacterBonuses(target, attacker, damageList)
+		damageList:AggregateSameTypeDamages()
+		hit.DamageList:CopyFrom(Ext.NewDamageList())
+	
+		for i,damageType in pairs(statusBonusDmgTypes) do
+			damageList:Add(damageType, math.ceil(totalDamage * 0.1))
+		end
+	
+		Game.Math.ApplyDamagesToHitInfo(damageList, hit)
+		hit.ArmorAbsorption = hit.ArmorAbsorption + Game.Math.ComputeArmorDamage(damageList, target.CurrentArmor)
+		hit.ArmorAbsorption = hit.ArmorAbsorption + Game.Math.ComputeMagicArmorDamage(damageList, target.CurrentMagicArmor)
+	
+		if hit.TotalDamageDone > 0 then
+			Game.Math.ApplyLifeSteal(hit, target, attacker, hitType)
+		else
+			hit.DontCreateBloodSurface = true
+		end
+	
+		if hitType == "Surface" then
+			hit.Surface = true
+		end
+	
+		if hitType == "DoT" then
+			hit.DoT = true
+		end
+	end
+
+	Game.Math.DoHit = DoHit
+
+	local function ComputeCharacterHit(target, attacker, weapon, damageList, hitType, noHitRoll, forceReduceDurability, hit, alwaysBackstab, highGroundFlag, criticalRoll)
+		Game.Math.ComputeCharacterHit(target, attacker, weapon, damageList, hitType, noHitRoll, forceReduceDurability, hit, alwaysBackstab, highGroundFlag, criticalRoll)
+		return hit
+	end
+
+	Ext.Events.ComputeCharacterHit:Subscribe(function(event)
+		local hit = ComputeCharacterHit(event.Target, event.Attacker, event.Weapon, event.DamageList, event.HitType, event.NoHitRoll, event.ForceReduceDurability, event.Hit, event.AlwaysBackstab, event.HighGround, event.CriticalRoll)
+		if hit then
+			event.Handled = true
+		end
+	end)
+end
+
 --- Fix Sadist
 Ext.Events.ComputeCharacterHit:Subscribe(function(e)
 	if e.Attacker and e.HitType == "WeaponDamage" and not Game.Math.IsRangedWeapon(e.Attacker.MainWeapon) then
