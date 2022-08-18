@@ -502,7 +502,7 @@ Ext.RegisterListener("GetHitChance", DGM_HitChanceFormula)
 
 --- Trigger lua ComputeCharacterHit for the Sadist fix to work if LLib isn't active
 if not Mods.LeaderLib then
-	--- Fix the original DoHit that is broken
+	--- Fix the original DoHit that is
 	local function DoHit(hit, damageList, statusBonusDmgTypes, hitType, target, attacker, ctx)
 		hit.Hit = true;
 		damageList:AggregateSameTypeDamages()
@@ -519,7 +519,7 @@ if not Mods.LeaderLib then
 	
 		Game.Math.ApplyDamageCharacterBonuses(target, attacker, damageList)
 		damageList:AggregateSameTypeDamages()
-		hit.DamageList:CopyFrom(Ext.NewDamageList())
+		hit.DamageList:Clear()
 	
 		for i,damageType in pairs(statusBonusDmgTypes) do
 			damageList:Add(damageType, math.ceil(totalDamage * 0.1))
