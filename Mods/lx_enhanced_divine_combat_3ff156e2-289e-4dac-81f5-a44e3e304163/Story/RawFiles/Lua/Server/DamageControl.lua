@@ -230,9 +230,7 @@ local function ApplyWarmup(character, step)
 	else
 		stage = 1
 	end
-	local status = Ext.PrepareStatus(char.MyGuid, "DGM_WARMUP"..tostring(stage), 6.0)
-	status.StatsMultiplier = 1.0 + 0.1 * char.Stats.WarriorLore
-	Ext.ApplyStatus(status)
+	CustomStatusManager:CharacterApplyMultipliedStatus(char, "DGM_WARMUP"..tostring(stage), 6.0, 1.0 + 0.1 * char.Stats.WarriorLore)
 end
 
 ---@param character string GUID
