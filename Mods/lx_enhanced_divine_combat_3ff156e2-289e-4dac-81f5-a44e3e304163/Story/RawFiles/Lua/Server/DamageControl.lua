@@ -360,20 +360,14 @@ function DamageControl(target, instigator, hitDamage, handle)
 
 	-- Get damage type bonus
 	if fromWeapon == 1 or skillID == "Target_TentacleLash_-1" then 
-		damageBonus = damageBonus + strength*Ext.ExtraData.DGM_StrengthWeaponBonus
-		-- Siphon Poison effect
-		SiphonPoisonBoost(instigator, target)
 		-- Wands bonus
 		if weaponTypes[1] == "Wand" then
-			local groundSurface = string.gsub(GetSurfaceGroundAt(instigator), "Surface", "")
-			local cloudSurface = string.gsub(GetSurfaceCloudAt(instigator), "Surface", "")
-			if surfaceToType[groundSurface] ~= nil then
-				damages[surfaceToType[groundSurface]] = damages[surfaceToType[groundSurface]] + (totalDamage * Ext.ExtraData.DGM_WandSurfaceBonus/100)
-			end
-			if surfaceToType[cloudSurface] ~= nil then
-				damages[surfaceToType[cloudSurface]] = damages[surfaceToType[cloudSurface]] + (totalDamage * Ext.ExtraData.DGM_WandSurfaceBonus/100)
-			end
+			damageBonus = damageBonus + intelligence*Ext.ExtraData.DGM_IntelligenceSkillBonus
+		else
+			damageBonus = damageBonus + strength*Ext.ExtraData.DGM_StrengthWeaponBonus
 		end
+		-- Siphon Poison effect
+		SiphonPoisonBoost(instigator, target)
 		-- Apply CQB Penalty if necessary
 		globalMultiplier = globalMultiplier + ApplyCQBPenalty(weaponTypes, target, instigator)
 		-- Dual Wielding offhand damage boost
