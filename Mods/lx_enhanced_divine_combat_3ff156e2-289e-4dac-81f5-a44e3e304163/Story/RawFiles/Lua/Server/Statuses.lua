@@ -19,3 +19,26 @@ local function ScaleAimedShot(character, status, causee)
 end
 
 Ext.RegisterOsirisListener("CharacterStatusApplied", 3, "before", ScaleAimedShot)
+
+-- Ext.Events.BeforeStatusApply:Subscribe(function (e)
+--     local status = e.Status --- @type EsvStatus
+--     local target = Ext.ServerEntity.GetGameObject(e.Status.TargetHandle).MyGuid
+--     if Ext.Stats.Get(e.Status.StatusId).IsResistingDeath and HasActiveStatus(target, "LX_FORBEARANCE") == 1 then
+--         _P("PREVENT RESIST DEATH")
+--         Osi.NRD_StatusPreventApply(target, e.Status.StatusHandle, 1)
+--     end
+-- end)
+
+Ext.Osiris.RegisterListener("NRD_OnStatusAttempt", 4, "before", function(target, status, handle, instigator)
+    local stat = Ext.Stats.Get(status, nil, false)
+    if stat and stat.IsResistingDeath and HasActiveStatus(target, "LX_FORBEARANCE") == 1 then
+        Osi.NRD_StatusPreventApply(target, handle, 1)
+        Osi.CharacterStatusText(target, "Forbearance is active!")
+    end
+end)
+
+Ext.Events.StatusDelete:Subscribe(function(e)
+    if e.Status.IsResistingDeath then
+        ApplyStatus(Ext.ServerEntity.GetGameObject(e.Status.TargetHandle).MyGuid, "LX_FORBEARANCE", 12.0, 1)
+    end
+end)
