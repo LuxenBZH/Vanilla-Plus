@@ -28,21 +28,29 @@ end
 
 Game.Math.GetResistance = GetResistance
 
---- @param character StatCharacter
+--- @param character CDivinityStatsCharacter
 local function GetResistanceBypassValue(character)
 	if not character then
 		return 0
 	end
 	local strength = character.Strength
 	local intelligence = character.Intelligence
-	local bypassValue = (strength - Ext.ExtraData.AttributeBaseValue) * Ext.ExtraData.DGM_StrengthResistanceIgnore * (intelligence - Ext.ExtraData.AttributeBaseValue)
+	local bypassValue = math.min(intelligence - Ext.ExtraData.AttributeBaseValue, (strength - Ext.ExtraData.AttributeBaseValue) * Ext.ExtraData.DGM_StrengthResistanceIgnore)
+	if character.MainWeapon.WeaponType == "Staff" then
+		bypassValue = bypassValue + 10
+	elseif character.MainWeapon.WeaponType == "Wand" then
+		bypassValue = bypassValue + 5
+	end
+	if character.OffHandWeapon.WeaponType == "Wand" then
+		bypassValue = bypassValue + 5
+	end
 	if character.TALENT_Haymaker then
 		bypassValue = bypassValue + (character.Wits-Ext.ExtraData.AttributeBaseValue)*Ext.ExtraData.CriticalBonusFromWits
 	end
 	return bypassValue
 end
 
---- @param character StatCharacter
+--- @param character CDivinityStatsCharacter
 --- @param damageList DamageList
 --- @param attacker StatCharacter
 local function CustomApplyHitResistances(character, damageList, attacker)
@@ -69,8 +77,8 @@ end
 
 Game.Math.ApplyHitResistances = CustomApplyHitResistances
 
---- @param character StatCharacter
---- @param attacker StatCharacter
+--- @param character CDivinityStatsCharacter
+--- @param attacker CDivinityStatsCharacter
 --- @param damageList DamageList
 function CustomApplyDamageCharacterBonuses(character, attacker, damageList)
 	-- Ext.Print("VANILLA PLUS ApplyDamageCharacterBonuses")
