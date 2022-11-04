@@ -31,7 +31,7 @@ Ext.RegisterOsirisListener("CharacterStatusApplied", 3, "before", ScaleAimedShot
 
 Ext.Osiris.RegisterListener("NRD_OnStatusAttempt", 4, "before", function(target, status, handle, instigator)
     local stat = Ext.Stats.Get(status, nil, false)
-    if stat and stat.IsResistingDeath and HasActiveStatus(target, "LX_FORBEARANCE") == 1 then
+    if stat and stat.IsResistingDeath == "Yes" and HasActiveStatus(target, "LX_FORBEARANCE") == 1 then
         Osi.NRD_StatusPreventApply(target, handle, 1)
         Osi.CharacterStatusText(target, "Forbearance is active!")
     end
