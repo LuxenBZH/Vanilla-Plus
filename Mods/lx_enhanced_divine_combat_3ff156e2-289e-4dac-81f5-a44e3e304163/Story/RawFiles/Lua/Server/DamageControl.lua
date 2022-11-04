@@ -297,7 +297,7 @@ function DamageControl(target, instigator, hitDamage, handle)
 	elseif skillID ~= "" then
 		fromWeapon = NRD_StatGetInt(string.gsub(skillID, "%_%-1", ""), "UseWeaponDamage")
 		fixedValue = NRD_StatGetInt(string.gsub(skillID, "%_%-1", ""), "Damage")
-	elseif NRD_StatusGetInt(target, handle, "HitReason") == 1 and skillID == "" and isDoT == 0 
+	elseif NRD_StatusGetInt(target, handle, "HitReason") == 1 and skillID == ""
 		and HasActiveStatus(target, "SHACKLES_OF_PAIN") == 1 and HasActiveStatus(instigator, "SHACKLES_OF_PAIN_CASTER") == 1 then
 		isFromShacklesOfPain = true
 		Ext.Print("Shackles of Pain hit!")
