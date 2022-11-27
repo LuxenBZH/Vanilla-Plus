@@ -457,3 +457,10 @@ function GetHealScaledValue(stat, healer)
 	end
 	return Ext.Round(stat.HealValue * Game.Math.GetAverageLevelDamage(healer.Stats.Level) * Ext.ExtraData.HealToDamageRatio / 100 * (1 + HealTypeSkillData/100))
 end
+
+DamageScalingFormulas = {
+	ALD = Game.Math.GetAverageLevelDamage,
+	BLD = Game.Math.GetLevelScaledDamage,
+	BWD = Game.Math.GetLevelScaledWeaponDamage,
+	BMD = Game.Math.GetLevelScaledMonsterWeaponDamage
+}

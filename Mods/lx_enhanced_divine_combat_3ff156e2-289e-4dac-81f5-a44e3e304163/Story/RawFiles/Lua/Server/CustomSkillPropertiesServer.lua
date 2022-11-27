@@ -96,6 +96,35 @@ Ext.RegisterOsirisListener("CharacterUsedSkill", 4, "before", function(character
     end
 end)
 
+Ext.RegisterSkillProperty("LX_SHIELD", {
+	ExecuteOnTarget = function(property, attacker, target, position, isFromItem, skill, hit)
+		local statProperties = {} -- Usage: StatEntry, Field, Base, Growth, CellAggregate
+		local index = 1
+		for value in string.gmatch(property.Arg3, "(.-)/") do
+			statProperties[index] = value
+			index = index + 1
+		end
+		-- 1: Type, 2: Damage scaling, 3: Amount, 4: Duration, 5: Can reinforce existing shield
+		local scaledAmount = Ext.Utils.Round(DamageScalingFormulas[statProperties[2]](attacker.Stats.Level))
+		_P("Scaled bonus:",scaledAmount)
+		-- SetTag(target.MyGuid, "LX_SHIELD_"..statProperties[1].."_")
+		-- SetVarInteger(target.MyGuid, "LX_SHIELD_"..statProperties[1], (GetVarInteger(target, "LX_SHIELD_"..statProperties[1]) or 0) + scaledAmount)
+		local statusName = "LX_SHIELD_"..string.upper(statProperties[1])
+		local status = target:GetStatus(statusName)
+		_D(statProperties)
+		if statProperties[5] == "1" and status then
+			status.StatsMultiplier = status.StatsMultiplier + scaledAmount
+		else
+			status = Ext.PrepareStatus(target.MyGuid, "LX_SHIELD_"..string.upper(statProperties[1]), statProperties[4]*6.0)
+			-- The StatsMultiplier of the shield status is used to store the absorbed amount information
+			status.StatsMultiplier = scaledAmount
+			Ext.ApplyStatus(status)
+		end
+	end,
+	ExecuteOnPosition = function(property, attacker, position, areaRadius, isFromItem, skill, hit)
+	end
+})
+
 
 Ext.RegisterSkillProperty("CUSTOMSURFACEBOOST", {
 	ExecuteOnTarget = function(property, attacker, target, position, isFromItem, skill, hit)

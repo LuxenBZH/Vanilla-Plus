@@ -263,6 +263,29 @@ Ext.RegisterOsirisListener("CharacterStatusRemoved", 3, "before", OsirisReapplyW
 
 ----------
 
+local function AbsorbDamageFromShieldStatus(target, damage)
+	local target = Ext.ServerEntity.GetGameObject(target)
+	_D(damage)
+	for dmgType, amount in pairs(damage) do
+		local absorbStatus = target:GetStatus("LX_SHIELD_"..string.upper(dmgType))
+		if absorbStatus then
+			local absorbAmount = absorbStatus.StatsMultiplier
+			if absorbAmount > 0 then
+				damage[dmgType] = math.max(amount-absorbAmount, 0)
+				_P(dmgType, damage[dmgType])
+				local newAbsorbAmount = math.max(absorbAmount-amount, 0)
+				if newAbsorbAmount > 0 then
+					absorbStatus.StatsMultiplier = newAbsorbAmount
+				else
+					RemoveStatus(target.MyGuid, absorbStatus.StatusId)
+				end
+			end
+		end
+	end
+	_D(damage)
+	return damage
+end
+
 ---@param target EsvCharacter
 ---@param handle number
 ---@param instigator EsvCharacter
@@ -319,9 +342,11 @@ function DamageControl(target, instigator, hitDamage, handle)
 	TagShadowCorrosiveDifference(damages)
 	
 	if isBlocked == 1 then return end
-	if sourceType == 1 or sourceType == 2 or sourceType == 3 then InitiatePassingDamage(target, damages); return end
-	if skillID == "" and sourceType == 0 and ObjectIsCharacter(target) == 1 then InitiatePassingDamage(target, damages); return end
-	if fixedValue ~= 0 and fixedValue ~= 1 and fixedValue ~= 2 then InitiatePassingDamage(target, damages); return end
+	if (sourceType == 1 or sourceType == 2 or sourceType == 3) or (skillID == "" and sourceType == 0 and ObjectIsCharacter(target) == 1) or (fixedValue ~= 0 and fixedValue ~= 1 and fixedValue ~= 2) then 
+		damages = AbsorbDamageFromShieldStatus(target, damages)
+		InitiatePassingDamage(target, damages)
+		return 
+	end
 	
 	if ObjectIsCharacter(target) == 1 then
 		TraceDamageSpreaders(Ext.GetCharacter(target))
@@ -394,10 +419,11 @@ function DamageControl(target, instigator, hitDamage, handle)
 		globalMultiplier = 1
 	end
 	damages = ChangeDamage(damages, (damageBonus/100+1)*globalMultiplier, 0, instigator, target, handle, isDoT)
+	damages = AbsorbDamageFromShieldStatus(target, damages)
 	ReplaceDamages(damages, handle, target)
 	TagShadowCorrosiveDifference(damages)
 	if ObjectIsCharacter(target) == 1 then SetWalkItOff(target, handle) end
-	
+
 	-- Armor passing damages
 	if ObjectIsCharacter(target) == 1 then InitiatePassingDamage(target, damages) end
 	if Ext.ExtraData.DGM_Corrogic == 1 then

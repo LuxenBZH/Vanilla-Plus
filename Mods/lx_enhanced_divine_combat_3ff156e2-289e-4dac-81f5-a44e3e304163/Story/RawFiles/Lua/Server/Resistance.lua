@@ -36,12 +36,14 @@ local function GetResistanceBypassValue(character)
 	local strength = character.Strength
 	local intelligence = character.Intelligence
 	local bypassValue = math.min(intelligence - Ext.ExtraData.AttributeBaseValue, (strength - Ext.ExtraData.AttributeBaseValue) * Ext.ExtraData.DGM_StrengthResistanceIgnore)
-	if character.MainWeapon.WeaponType == "Staff" then
-		bypassValue = bypassValue + 10
-	elseif character.MainWeapon.WeaponType == "Wand" then
-		bypassValue = bypassValue + 5
+	if character.MainWeapon then
+		if character.MainWeapon.WeaponType == "Staff" then
+			bypassValue = bypassValue + 10
+		elseif character.MainWeapon.WeaponType == "Wand" then
+			bypassValue = bypassValue + 5
+		end
 	end
-	if character.OffHandWeapon.WeaponType == "Wand" then
+	if character.OffHandWeapon and character.OffHandWeapon.WeaponType == "Wand" then
 		bypassValue = bypassValue + 5
 	end
 	if character.TALENT_Haymaker then

@@ -4,6 +4,35 @@ Ext.RegisterSkillProperty("CUSTOMSURFACEBOOST", {
     end
 })
 
+Ext.RegisterSkillProperty("LX_SHIELD", {
+	GetDescription = function(property)
+		local statProperties = {}
+		local index = 1
+		for value in string.gmatch(property.Arg3, "(.-)/") do
+			statProperties[index] = value
+			index = index + 1
+		end
+		-- 1: Type, 2: Damage scaling, 3: Amount, 4: Duration, 5: Can reinforce existing shield
+		local scaledAmount = Ext.Utils.Round(DamageScalingFormulas[statProperties[2]](Ext.ClientEntity.GetCharacter(Ext.UI.DoubleToHandle(Ext.GetUIByType(40):GetRoot().hotbar_mc.characterHandle)).Stats.Level))
+		if statProperties[5] == "1" then
+			return "Creates or reinforce a shield absorbing "..tostring(scaledAmount).." "..statProperties[1].." damage."
+		else
+			_P("Creates a shield absorbing "..tostring(scaledAmount).." "..statProperties[1].." damage.")
+			return "Creates a shield absorbing "..tostring(scaledAmount).." "..statProperties[1].." damage."
+		end
+	end
+})
+
+---@param e EclLuaStatusGetDescriptionParamEvent
+local function ShieldDescription(e)
+    if e.Params[1] == "LX_Absorption" then
+		_P("Remaining power: "..Ext.Utils.Round(e.Owner.Character:GetStatus("LX_SHIELD_AIR").StatsMultiplier))
+        e.Description = tostring(Ext.Utils.Round(e.Owner.Character:GetStatus("LX_SHIELD_AIR").StatsMultiplier))
+	end
+end
+
+Ext.Events.StatusGetDescriptionParam:Subscribe(ShieldDescription)
+
 --- @param status EsvStatus
 --- @param statusSource EsvGameObject
 --- @param character StatCharacter
