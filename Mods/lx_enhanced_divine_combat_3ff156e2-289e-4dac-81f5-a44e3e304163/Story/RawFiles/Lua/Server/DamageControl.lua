@@ -286,12 +286,142 @@ local function AbsorbDamageFromShieldStatus(target, damage)
 	return damage
 end
 
+---@param target EsvCharacter | EsvItem
+---@param damages table
+function InitiatePassingDamage(target, damages)
+	if ObjectIsCharacter(target) ~= 1 then return end
+	for dmgType,amount  in pairs(damages) do
+		if amount ~= 0 then
+			local piercing = CalculatePassingDamage(target, amount, dmgType)
+			ApplyPassingDamage(target, piercing)
+		end
+	end
+end
+
+---@param damages table
+---@param multiplier number
+---@param value number
+---@param instigator EsvCharacter
+function ChangeDamage(damages, multiplier, value, instigator, target, handle, dot)
+	local lifesteal = NRD_StatusGetInt(target, handle, "LifeSteal")
+	instigator = Ext.GetCharacter(instigator)
+	for dmgType,amount in pairs(damages) do
+		local mult = 0 + multiplier
+		-- Ice king water damage bonus
+		if dmgType == "Water" and CharacterHasTalent(instigator.MyGuid, "IceKing") == 1 then
+			mult = mult + Ext.ExtraData.DGM_IceKingDamageBonus/100
+			-- print("Bonus: IceKing")
+		end
+		if dmgType == "Corrosive" or dmgType == "Magic" then
+			amount = amount*(Ext.ExtraData.DGM_ArmourReductionMultiplier/100)
+		end
+		local rangeFix = math.random()
+		if amount > 0 then amount = amount + rangeFix end
+		if dmgType ~= "Corrosive" and dmgType ~= "Magic" then
+			lifesteal = lifesteal - amount * (instigator.Stats.LifeSteal/100)
+		end
+		amount = amount * mult
+		amount = amount + value
+		if dmgType ~= "Corrosive" and dmgType ~= "Magic" then
+			if lifesteal ~= 0 then
+				lifesteal = lifesteal + Ext.Round(amount * (instigator.Stats.LifeSteal/100)) 
+			end
+		end
+		if amount ~= 0 then Ext.Print("Changed "..dmgType.." to "..amount.." (Multiplier = "..mult..")") end
+		damages[dmgType] = amount
+	end
+	if ObjectIsCharacter(target) ~= 1 or dot == 1 then lifesteal = 0 end
+	NRD_StatusSetInt(target, handle, "LifeSteal", lifesteal)
+	return damages
+end
+
+---@param newDamages table
+---@param handle number
+---@param target EsvCharacter
+function ReplaceDamages(newDamages, handle, target)
+	NRD_HitStatusClearAllDamage(target, handle)
+	for dmgType,amount in pairs(newDamages) do
+		NRD_HitStatusAddDamage(target, handle, dmgType, amount)
+	end
+end
+
+
+local ccStatusesPhysical = {
+	"LX_STAGGERED",
+	"LX_STAGGERED2",
+	"LX_STAGGERED3",
+	"DUMMY"
+}
+
+local ccStatusesMagical = {
+	"LX_CONFUSED",
+	"LX_CONFUSED2",
+	"LX_CONFUSED3",
+	"DUMMY"
+}
+
+-- Ext.RegisterOsirisListener("CharacterStatusRemoved", 3, "before", ManageDemiPerseverance)
+
+---@param attacker EsvCharacter
+---@param target EsvCharacter
+local function DGM_HitChanceFormula(attacker, target)
+	local hitChance = attacker.Accuracy - target.Dodge + attacker.ChanceToHitBoost
+    -- Make sure that we return a value in the range (0% .. 100%)
+	hitChance = math.max(math.min(hitChance, 100), 0)
+    return hitChance
+end
+
+Ext.RegisterListener("GetHitChance", DGM_HitChanceFormula)
+
+--- @param attacker StatCharacter
+--- @param target StatCharacter
+function DGM_CalculateHitChance(attacker, target)
+    if attacker.TALENT_Haymaker then
+		local diff = 0
+		if attacker.MainWeapon then
+			diff = diff + math.max(0, (attacker.MainWeapon.Level - attacker.Level))
+		end
+		if attacker.OffHandWeapon then
+			diff = diff + math.max(0, (attacker.OffHandWeapon.Level - attacker.Level))
+		end
+        return 100 - diff * Ext.ExtraData.WeaponAccuracyPenaltyPerLevel
+	end
+	
+    local accuracy = attacker.Accuracy
+	local dodge = target.Dodge
+	if target.Character:GetStatus("KNOCKED_DOWN") and dodge > 0 then
+		dodge = 0
+	end
+
+	local chanceToHit1 = accuracy - dodge
+	chanceToHit1 = math.max(0, math.min(100, chanceToHit1))
+    return chanceToHit1 + attacker.ChanceToHitBoost
+end
+
+Game.Math.CalculateHitChance = DGM_CalculateHitChance
+
+if Mods.LeaderLib ~= nil then
+	-- local info = Ext.GetModInfo("7e737d2f-31d2-4751-963f-be6ccc59cd0c")
+	-- if info.Version <= 386465794 then
+		-- Mods.LeaderLib.HitOverrides.DoHitModified = DoHit
+		Mods.LeaderLib.HitOverrides.ApplyDamageCharacterBonusesModified = CustomApplyDamageCharacterBonuses
+	-- end
+end
+
+---- Total lx_damage script conversion
+local function SetDodgeCounter(object)
+	SetVarInteger(object, "LX_Dodge_Counter", 0)
+end
+
+Ext.RegisterOsirisListener("ObjectTurnStarted", 1, "before", SetDodgeCounter)
+
+
 ---@param target EsvCharacter
 ---@param handle number
 ---@param instigator EsvCharacter
 ---@param status EsvStatusHit
 ---@param context HitContext
-function DamageControl(target, instigator, hitDamage, handle)
+local function DamageControl(target, instigator, hitDamage, handle)
 -- function DamageControl(status, context)
 	--[[
 		Main damage control : damages are teared down to the original formula and apply custom
@@ -431,219 +561,11 @@ function DamageControl(target, instigator, hitDamage, handle)
 	end
 end
 
----@param target EsvCharacter
----@param damages table
-function InitiatePassingDamage(target, damages)
-	if ObjectIsCharacter(target) ~= 1 then return end
-	for dmgType,amount  in pairs(damages) do
-		if amount ~= 0 then
-			local piercing = CalculatePassingDamage(target, amount, dmgType)
-			ApplyPassingDamage(target, piercing)
-		end
-	end
-end
-
----@param damages table
----@param multiplier number
----@param value number
----@param instigator EsvCharacter
-function ChangeDamage(damages, multiplier, value, instigator, target, handle, dot)
-	local lifesteal = NRD_StatusGetInt(target, handle, "LifeSteal")
-	instigator = Ext.GetCharacter(instigator)
-	for dmgType,amount in pairs(damages) do
-		local mult = 0 + multiplier
-		-- Ice king water damage bonus
-		if dmgType == "Water" and CharacterHasTalent(instigator.MyGuid, "IceKing") == 1 then
-			mult = mult + Ext.ExtraData.DGM_IceKingDamageBonus/100
-			-- print("Bonus: IceKing")
-		end
-		if dmgType == "Corrosive" or dmgType == "Magic" then
-			amount = amount*(Ext.ExtraData.DGM_ArmourReductionMultiplier/100)
-		end
-		local rangeFix = math.random()
-		if amount > 0 then amount = amount + rangeFix end
-		if dmgType ~= "Corrosive" and dmgType ~= "Magic" then
-			lifesteal = lifesteal - amount * (instigator.Stats.LifeSteal/100)
-		end
-		amount = amount * mult
-		amount = amount + value
-		if dmgType ~= "Corrosive" and dmgType ~= "Magic" then
-			if lifesteal ~= 0 then
-				lifesteal = lifesteal + Ext.Round(amount * (instigator.Stats.LifeSteal/100)) 
-			end
-		end
-		if amount ~= 0 then Ext.Print("Changed "..dmgType.." to "..amount.." (Multiplier = "..mult..")") end
-		damages[dmgType] = amount
-	end
-	if ObjectIsCharacter(target) ~= 1 or dot == 1 then lifesteal = 0 end
-	NRD_StatusSetInt(target, handle, "LifeSteal", lifesteal)
-	return damages
-end
-
----@param newDamages table
----@param handle number
----@param target EsvCharacter
-function ReplaceDamages(newDamages, handle, target)
-	NRD_HitStatusClearAllDamage(target, handle)
-	for dmgType,amount in pairs(newDamages) do
-		NRD_HitStatusAddDamage(target, handle, dmgType, amount)
-	end
-end
-
-
-local ccStatusesPhysical = {
-	"LX_STAGGERED",
-	"LX_STAGGERED2",
-	"LX_STAGGERED3",
-	"DUMMY"
-}
-
-local ccStatusesMagical = {
-	"LX_CONFUSED",
-	"LX_CONFUSED2",
-	"LX_CONFUSED3",
-	"DUMMY"
-}
-
--- Ext.RegisterOsirisListener("CharacterStatusRemoved", 3, "before", ManageDemiPerseverance)
-
----@param attacker EsvCharacter
----@param target EsvCharacter
-local function DGM_HitChanceFormula(attacker, target)
-	local hitChance = attacker.Accuracy - target.Dodge + attacker.ChanceToHitBoost
-    -- Make sure that we return a value in the range (0% .. 100%)
-	hitChance = math.max(math.min(hitChance, 100), 0)
-    return hitChance
-end
-
-Ext.RegisterListener("GetHitChance", DGM_HitChanceFormula)
-
---- Trigger lua ComputeCharacterHit for the Sadist fix to work if LLib isn't active
-if not Mods.LeaderLib then
-	--- Fix the original DoHit that is
-	local function DoHit(hit, damageList, statusBonusDmgTypes, hitType, target, attacker, ctx)
-		hit.Hit = true;
-		damageList:AggregateSameTypeDamages()
-		damageList:Multiply(ctx.DamageMultiplier)
-	
-		local totalDamage = 0
-		for i,damage in pairs(damageList:ToTable()) do
-			totalDamage = totalDamage + damage.Amount
-		end
-	
-		if totalDamage < 0 then
-			damageList:Clear()
-		end
-	
-		Game.Math.ApplyDamageCharacterBonuses(target, attacker, damageList)
-		damageList:AggregateSameTypeDamages()
-		hit.DamageList:Clear()
-	
-		for i,damageType in pairs(statusBonusDmgTypes) do
-			damageList:Add(damageType, math.ceil(totalDamage * 0.1))
-		end
-	
-		Game.Math.ApplyDamagesToHitInfo(damageList, hit)
-		hit.ArmorAbsorption = hit.ArmorAbsorption + Game.Math.ComputeArmorDamage(damageList, target.CurrentArmor)
-		hit.ArmorAbsorption = hit.ArmorAbsorption + Game.Math.ComputeMagicArmorDamage(damageList, target.CurrentMagicArmor)
-	
-		if hit.TotalDamageDone > 0 then
-			Game.Math.ApplyLifeSteal(hit, target, attacker, hitType)
-		else
-			hit.DontCreateBloodSurface = true
-		end
-	
-		if hitType == "Surface" then
-			hit.Surface = true
-		end
-	
-		if hitType == "DoT" then
-			hit.DoT = true
-		end
-	end
-
-	Game.Math.DoHit = DoHit
-
-	Ext.Events.ComputeCharacterHit:Subscribe(function(event)
-		local hit = Game.Math.ComputeCharacterHit(event.Target, event.Attacker, event.Weapon, event.DamageList, event.HitType, event.NoHitRoll, event.ForceReduceDurability, event.Hit, event.AlwaysBackstab, event.HighGround, event.CriticalRoll)
-		if hit then
-			event.Handled = true
-		end
-	end)
-end
-
---- Fix Sadist
-Ext.Events.ComputeCharacterHit:Subscribe(function(e)
-	if e.Attacker and e.HitType == "WeaponDamage" and not Game.Math.IsRangedWeapon(e.Attacker.MainWeapon) then
-		-- Apply Sadist talent
-        if e.Attacker.TALENT_Sadist then
-			local totalDamage = 0
-			for i,damage in pairs(e.DamageList:ToTable()) do
-				totalDamage = totalDamage + damage.Amount
-			end
-			local statusBonusDmgTypes = {}
-            if e.Hit.Poisoned then
-                table.insert(statusBonusDmgTypes, "Poison")
-            end
-            if e.Hit.Burning then
-                table.insert(statusBonusDmgTypes, "Fire")
-            end
-            if e.Hit.Bleeding then
-                table.insert(statusBonusDmgTypes, "Physical")
-            end
-			for i,damageType in pairs(statusBonusDmgTypes) do
-				e.Hit.DamageList:Add(damageType, math.ceil(totalDamage * 0.1))
-			end
-        end
-	end
-end)
-
---- @param attacker StatCharacter
---- @param target StatCharacter
-function DGM_CalculateHitChance(attacker, target)
-    if attacker.TALENT_Haymaker then
-		local diff = 0
-		if attacker.MainWeapon then
-			diff = diff + math.max(0, (attacker.MainWeapon.Level - attacker.Level))
-		end
-		if attacker.OffHandWeapon then
-			diff = diff + math.max(0, (attacker.OffHandWeapon.Level - attacker.Level))
-		end
-        return 100 - diff * Ext.ExtraData.WeaponAccuracyPenaltyPerLevel
-	end
-	
-    local accuracy = attacker.Accuracy
-	local dodge = target.Dodge
-	if target.Character:GetStatus("KNOCKED_DOWN") and dodge > 0 then
-		dodge = 0
-	end
-
-	local chanceToHit1 = accuracy - dodge
-	chanceToHit1 = math.max(0, math.min(100, chanceToHit1))
-    return chanceToHit1 + attacker.ChanceToHitBoost
-end
-
-Game.Math.CalculateHitChance = DGM_CalculateHitChance
-
-if Mods.LeaderLib ~= nil then
-	-- local info = Ext.GetModInfo("7e737d2f-31d2-4751-963f-be6ccc59cd0c")
-	-- if info.Version <= 386465794 then
-		-- Mods.LeaderLib.HitOverrides.DoHitModified = DoHit
-		Mods.LeaderLib.HitOverrides.ApplyDamageCharacterBonusesModified = CustomApplyDamageCharacterBonuses
-	-- end
-end
-
----- Total lx_damage script conversion
-local function SetDodgeCounter(object)
-	SetVarInteger(object, "LX_Dodge_Counter", 0)
-end
-
-Ext.RegisterOsirisListener("ObjectTurnStarted", 1, "before", SetDodgeCounter)
-
 local function HitCatch(target, status, handle, instigator)
 	if status ~= "HIT" then return end
 	DamageControl(target, handle, instigator)
 end
 
 -- Ext.RegisterOsirisListener("NRD_OnStatusAttempt", 4, "before", HitCatch)
-Ext.RegisterOsirisListener("NRD_OnHit", 4, "before", DamageControl)
+-- Ext.RegisterOsirisListener("NRD_OnHit", 4, "before", DamageControl)
+

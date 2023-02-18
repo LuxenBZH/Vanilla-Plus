@@ -1,5 +1,6 @@
 Ext.Require("Server/Mechanics.lua")
 Ext.Require("Server/DamageControl.lua")
+Ext.Require("Server/Systems/DamageControl_NG.lua")
 Ext.Require("Server/Resistance.lua")
 Ext.Require("Server/ArmorSystem.lua")
 Ext.Require("Server/CCSystem.lua")
@@ -16,6 +17,8 @@ Ext.Require("Server/Miscelleanous.lua")
 Ext.Require("Server/UndeadFoodFix.lua")
 Ext.Require("Server/Statuses.lua")
 -- Ext.Require("Server/Systems/SkillMutator.lua")
+-- Ext.Require("Server/SP_DiminishingReturn.lua")
+-- Ext.Utils.Include("3ff156e2-289e-4dac-81f5-a44e3e304163", "Server/SP_DiminishingReturn.lua")
 
 gameLevel = ""
 
