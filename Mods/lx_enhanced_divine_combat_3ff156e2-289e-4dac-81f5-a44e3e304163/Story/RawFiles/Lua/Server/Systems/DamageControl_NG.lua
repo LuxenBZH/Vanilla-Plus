@@ -237,50 +237,54 @@ end
 -- Ext.RegisterOsirisListener("NRD_OnStatusAttempt", 4, "before", HitCatch)
 -- Ext.RegisterOsirisListener("NRD_OnHit", 4, "before", DamageControl)
 
---- Trigger lua ComputeCharacterHit for the Sadist fix to work if LLib isn't active
-if not Mods.LeaderLib then
-	--- Fix the original DoHit that is
-	local function DoHit(hit, damageList, statusBonusDmgTypes, hitType, target, attacker, ctx)
-		hit.Hit = true;
-		damageList:AggregateSameTypeDamages()
+--- Fix the original DoHit that is
+local function DoHit(hit, damageList, statusBonusDmgTypes, hitType, target, attacker, ctx)
+	hit.Hit = true;
+	damageList:AggregateSameTypeDamages()
+	if type(ctx) == "number" then
+		damageList:Multiply(ctx)
+	else
 		damageList:Multiply(ctx.DamageMultiplier)
-
-		local totalDamage = 0
-		for i,damage in pairs(damageList:ToTable()) do
-			totalDamage = totalDamage + damage.Amount
-		end
-	
-		if totalDamage < 0 then
-			damageList:Clear()
-		end
-	
-		Game.Math.ApplyDamageCharacterBonuses(target, attacker, damageList)
-		damageList:AggregateSameTypeDamages()
-		hit.DamageList:Clear()
-	
-		for i,damageType in pairs(statusBonusDmgTypes) do
-			damageList:Add(damageType, math.ceil(totalDamage * 0.1))
-		end
-	
-		Game.Math.ApplyDamagesToHitInfo(damageList, hit)
-		hit.ArmorAbsorption = hit.ArmorAbsorption + Game.Math.ComputeArmorDamage(damageList, target.CurrentArmor)
-		hit.ArmorAbsorption = hit.ArmorAbsorption + Game.Math.ComputeMagicArmorDamage(damageList, target.CurrentMagicArmor)
-	
-		if hit.TotalDamageDone > 0 then
-			Game.Math.ApplyLifeSteal(hit, target, attacker, hitType)
-		else
-			hit.DontCreateBloodSurface = true
-		end
-	
-		if hitType == "Surface" then
-			hit.Surface = true
-		end
-	
-		if hitType == "DoT" then
-			hit.DoT = true
-		end
 	end
 
+	local totalDamage = 0
+	for i,damage in pairs(damageList:ToTable()) do
+		totalDamage = totalDamage + damage.Amount
+	end
+
+	if totalDamage < 0 then
+		damageList:Clear()
+	end
+
+	Game.Math.ApplyDamageCharacterBonuses(target, attacker, damageList)
+	damageList:AggregateSameTypeDamages()
+	hit.DamageList:Clear()
+
+	for i,damageType in pairs(statusBonusDmgTypes) do
+		damageList:Add(damageType, math.ceil(totalDamage * 0.1))
+	end
+
+	Game.Math.ApplyDamagesToHitInfo(damageList, hit)
+	hit.ArmorAbsorption = hit.ArmorAbsorption + Game.Math.ComputeArmorDamage(damageList, target.CurrentArmor)
+	hit.ArmorAbsorption = hit.ArmorAbsorption + Game.Math.ComputeMagicArmorDamage(damageList, target.CurrentMagicArmor)
+
+	if hit.TotalDamageDone > 0 then
+		Game.Math.ApplyLifeSteal(hit, target, attacker, hitType)
+	else
+		hit.DontCreateBloodSurface = true
+	end
+
+	if hitType == "Surface" then
+		hit.Surface = true
+	end
+
+	if hitType == "DoT" then
+		hit.DoT = true
+	end
+end
+
+--- Trigger lua ComputeCharacterHit for the Sadist fix to work if LLib isn't active
+if not Mods.LeaderLib then
 	Game.Math.DoHit = DoHit
 
 	--- Fix Sadist when LeaderLib is not active
@@ -307,7 +311,7 @@ if not Mods.LeaderLib then
 		end
 		e.DamageList:Merge(damageList)
 		e.Hit.ArmorAbsorption = Game.Math.ComputeArmorDamage(damageList, e.Target.CurrentArmor)
-			e.Hit.ArmorAbsorption = e.Hit.ArmorAbsorption + Game.Math.ComputeMagicArmorDamage(damageList, e.Target.CurrentMagicArmor)
+		e.Hit.ArmorAbsorption = e.Hit.ArmorAbsorption + Game.Math.ComputeMagicArmorDamage(damageList, e.Target.CurrentMagicArmor)
 		return e
 	end
 
@@ -327,24 +331,45 @@ if not Mods.LeaderLib then
 			Game.Math.ComputeCharacterHit(e.Target, e.Attacker, e.Weapon, e.DamageList, e.HitType, e.NoHitRoll, e.ForceReduceDurability, e.Hit, e.AlwaysBackstab, e.HighGround, e.CriticalRoll)
 		end
 	end)
+else
+	Mods.LeaderLib.HitOverrides.DoHit = DoHit
 end
 
----- Elemental Ranger fix
+
+---- Elemental Ranger and Gladiator fix
 local surfaceDamageMapping = {
 	SurfaceFire = "Fire",
-	SurfaceWater = "Water",
-	SurfaceWaterFrozen = "Water",
-	SurfaceWaterElectrified = "Air",
-	SurfaceBlood = "Physical",
-	SurfaceBloodElectrified = "Air",
-	SurfaceBloodFrozen = "Water",
-	SurfacePoison = "Poison",
-	SurfaceOil = "Earth",
-	SurfaceLava = "Fire"
+    SurfaceWater = "Water",
+    SurfaceWaterFrozen = "Water",
+    SurfaceWaterElectrified = "Air",
+    SurfaceBlood = "Physical",
+    SurfaceBloodElectrified = "Air",
+    SurfaceBloodFrozen = "Physical",
+    SurfacePoison = "Poison",
+    SurfaceOil = "Earth",
+    SurfaceLava = "Fire",
+	SurfaceFireCursed = "Fire",
+	SurfacePoisonCursed = "Poison",
+	SurfaceWaterCursed = "Water",
+	SurfacePoisonBlessed = "Poison",
+	SurfaceWaterBlessed = "Water",
+	SurfaceFireBlessed = "Fire",
+	SurfaceOilBlessed = "Earth",
+	SurfaceWaterFrozenCursed = "Water",
+	SurfaceWaterElectrifiedCursed = "Air",
+	SurfaceWaterElectrifiedBlessed = "Air",
+	SurfaceWaterFrozenBlessed = "Water",
+	SurfaceBloodCursed = "Physical",
+	SurfaceBloodElectrifiedBlessed = "Air",
+    SurfaceBloodFrozenCursed = "Physical",
+	SurfaceBloodElectrifiedCursed = "Air",
+	SurfaceOilCursed = "Earth",
+	SurfaceBloodFrozenBlessed = "Physical"
 }
 
 ---@param e EsvLuaComputeCharacterHitEvent
 Ext.Events.ComputeCharacterHit:Subscribe(function(e)
+	--- Elemental Ranger
 	if e.Attacker and e.Attacker.TALENT_ElementalRanger and e.HitType == "WeaponDamage" and Game.Math.IsRangedWeapon(e.Attacker.MainWeapon) then
 		local surface = GetSurfaceGroundAt(e.Target.Character.MyGuid)
 		local dmgType = surfaceDamageMapping[surface]
@@ -364,6 +389,25 @@ Ext.Events.ComputeCharacterHit:Subscribe(function(e)
 		if not e.Handled then
 			e.Handled = true
 		end
+		e.Hit.Missed = true
 		Game.Math.ComputeCharacterHit(e.Target, e.Attacker, e.Weapon, e.DamageList, e.HitType, e.NoHitRoll, e.ForceReduceDurability, e.Hit, e.AlwaysBackstab, e.HighGround, e.CriticalRoll)
+	--- Gladiator
+	elseif e.Target.TALENT_Gladiator and (e.HitType == "WeaponDamage"and e.Hit.HitWithWeapon) and not Game.Math.IsRangedWeapon(e.Attacker.MainWeapon) and e.Target:GetItemBySlot("Shield") then
+		local counterAttacked = Helpers.HasCounterAttacked(e.Target.Character)
+		if not counterAttacked and GetDistanceTo(e.Target.Character.MyGuid, e.Attacker.Character.MyGuid) <= 5.0 then
+			CharacterUseSkill(e.Target.Character.MyGuid, "Target_LX_GladiatorHit", e.Attacker.Character.MyGuid, 1, 1, 1)
+			Helpers.SetHasCounterAttacked(e.Target.Character, true)
+		end
+	elseif e.Attacker and e.Attacker.TALENT_Gladiator and e.NoHitRoll and e.HitType == "Melee" and not e.Hit.HitWithWeapon then
+		e.NoHitRoll = false
+		local hit = Game.Math.ComputeCharacterHit(e.Target, e.Attacker, e.Weapon, e.DamageList, e.HitType, e.NoHitRoll, e.ForceReduceDurability, e.Hit, e.AlwaysBackstab, e.HighGround, e.CriticalRoll) ---@type EsvStatusHit
+		if hit.Missed then
+			e.Hit.Hit = false
+			e.Hit.DontCreateBloodSurface = true
+		end
+		e.Hit.CounterAttack = true
+		if not e.Handled and hit then
+			e.Handled = true
+		end
 	end
 end)

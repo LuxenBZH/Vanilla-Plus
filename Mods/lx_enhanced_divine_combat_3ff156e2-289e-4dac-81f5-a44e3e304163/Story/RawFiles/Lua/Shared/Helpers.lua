@@ -20,6 +20,26 @@ Helpers.IsItem = function(object)
 	end
 end
 
+--- @param character EsvCharacter
+Helpers.HasCounterAttacked = function(character)
+	local combat = Ext.ServerEntity.GetCombat(CombatGetIDForCharacter(character.MyGuid))
+	for i, team in pairs(combat:GetNextTurnOrder()) do
+		if team.Character.MyGuid == character.MyGuid then
+			return team.EntityWrapper.CombatComponentPtr.CounterAttacked
+		end
+	end
+end
+
+--- @param character EsvCharacter
+--- @param flag bool
+Helpers.SetHasCounterAttacked = function(character, flag)
+	local combat = Ext.ServerEntity.GetCombat(CombatGetIDForCharacter(character.MyGuid))
+	for i, team in pairs(combat:GetNextTurnOrder()) do
+		if team and team.Character.MyGuid == character.MyGuid then
+			team.EntityWrapper.CombatComponentPtr.CounterAttacked = flag
+		end
+	end
+end
 
 function DamageTypeEnum()
 	local enum = {
