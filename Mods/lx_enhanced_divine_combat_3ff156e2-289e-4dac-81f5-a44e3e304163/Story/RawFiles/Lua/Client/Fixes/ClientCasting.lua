@@ -4,6 +4,7 @@ Ext.Events.UIInvoke:Subscribe(function (e)
   if e.UI.Type == Ext.UI.TypeID.textDisplay and e.Function == "addText" and e.When == "Before" then
     local character = Helpers.GetPlayerManagerCharacter()
     if character and character.SkillManager.CurrentSkill ~= null then
+      --- Vertcasting check
       local position = Ext.ClientUI.GetPickingState().WalkablePosition
       if math.abs(Ext.GetAiGrid():GetCellInfo(position[1], position[3]).Height - position[2]) > 2 then
         IsVertcasting = true
@@ -29,5 +30,35 @@ Ext.Events.InputEvent:Subscribe(function(e)
   if e.Event.Release and e.Event.EventId == 4 and character and character.SkillManager.CurrentSkill ~= null and IsVertcasting then
     Ext.Net.PostMessageToServer("LX_VertcastingDecast", tostring(character.NetID))
     IsVertcasting = false
+    if PreviousLadder then
+      local ladder = Ext.Entity.GetItem(PreviousLadder)
+      ladder.CurrentTemplate.CanClickThrough = false
+      ladder.CanUse = true
   end
+  end
+end)
+
+Ladders = {}
+CastWatcher = 0
+
+---- Ladder casting fixes
+Ext.RegisterNetListener("LX_LaddercastFixEnter", function(channel, payload)
+  local ladders = Ext.Json.Parse(payload)
+  for i, netID in pairs(ladders) do
+    local ladder = Ext.Entity.GetItem(netID)
+    ladder.CurrentTemplate.CanClickThrough = true
+    ladder.CanUse = false
+    table.insert(Ladders, netID)
+  end
+  CastWatcher = Ext.Events.Tick:Subscribe(function(e)
+    local character = Helpers.GetPlayerManagerCharacter()
+    if character and character.SkillManager.CurrentSkill == null then
+      for i, netID in pairs(Ladders) do
+        local ladder = Ext.Entity.GetItem(netID)
+        ladder.CurrentTemplate.CanClickThrough = false
+        ladder.CanUse = true
+      end
+      Ext.Events.Tick:Unsubscribe(CastWatcher)
+    end
+  end)
 end)
