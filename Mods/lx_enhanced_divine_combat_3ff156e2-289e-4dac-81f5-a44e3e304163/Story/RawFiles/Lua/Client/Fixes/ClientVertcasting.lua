@@ -25,7 +25,9 @@ end)
 
 ---@param e EclLuaInputEvent
 Ext.Events.InputEvent:Subscribe(function(e)
-  if e.Event.Release and e.Event.EventId == 4 and IsVertcasting then
-    Ext.Net.PostMessageToServer("LX_VertcastingDecast", tostring(Helpers.GetPlayerManagerCharacter().NetID))
+  local character = Helpers.GetPlayerManagerCharacter()
+  if e.Event.Release and e.Event.EventId == 4 and character and character.SkillManager.CurrentSkill ~= null and IsVertcasting then
+    Ext.Net.PostMessageToServer("LX_VertcastingDecast", tostring(character.NetID))
+    IsVertcasting = false
   end
 end)
