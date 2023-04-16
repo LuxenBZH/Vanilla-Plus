@@ -41,6 +41,31 @@ Helpers.SetHasCounterAttacked = function(character, flag)
 	end
 end
 
+---@param prioritizeSecondPlayer boolean|nil
+---@return EclCharacter|nil
+--- Credits to LaughingLeader
+Helpers.GetPlayerManagerCharacter = function(prioritizeSecondPlayer)
+    local playerManager = Ext.Entity.GetPlayerManager()
+    if playerManager then
+        if prioritizeSecondPlayer then
+            local player2Data = playerManager.ClientPlayerData[2]
+            if player2Data then
+                local client = Ext.Entity.GetCharacter(player2Data.CharacterNetId)
+                if client then
+                    return client
+                end
+            end
+        end
+        for id,data in pairs(playerManager.ClientPlayerData) do
+            local client = Ext.Entity.GetCharacter(data.CharacterNetId)
+            if client then
+                return client
+            end
+        end
+    end
+    return nil
+end
+
 function DamageTypeEnum()
 	local enum = {
 		"Physical",

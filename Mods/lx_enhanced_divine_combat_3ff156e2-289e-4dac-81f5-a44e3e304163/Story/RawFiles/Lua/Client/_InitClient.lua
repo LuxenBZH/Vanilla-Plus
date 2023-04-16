@@ -9,6 +9,8 @@ Ext.Require("Client/Talents/TalentManager.lua")
 Ext.Require("Client/Talents/GamepadSupport.lua")
 Ext.Require("Client/Modules/DivineTalentsClient.lua")
 
+Ext.Require("Client/Fixes/ClientVertcasting.lua")
+
 -- Ext.Require("Client/Systems/SkillCastManager.lua")
 
 tooltipStatusDmgHelper = {}
