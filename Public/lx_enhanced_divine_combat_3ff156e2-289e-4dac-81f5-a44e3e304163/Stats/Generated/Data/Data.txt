@@ -102,7 +102,9 @@ key "DGM_StrengthWeaponBonus","3"
 
 key "DGM_FinesseGlobalBonus","3"
 
-key "DGM_FinesseMovementBonus","20"
+key "DGM_FinesseMovementBonus","10"
+
+key "DGM_FinesseMovementCap","300"
 
 key "DGM_FinesseCritChance","1"
 
@@ -186,9 +188,9 @@ key "VitalityLinearGrowth","0"
 
 key "SkillAbilityMovementSpeedPerPoint","15"
 
-key "DGM_CrossbowBasePenalty","-88"
+key "DGM_CrossbowBasePenalty","-58"
 
-key "DGM_CrossbowLevelGrowthPenalty","-12"
+key "DGM_CrossbowLevelGrowthPenalty","-8"
 
 
 
