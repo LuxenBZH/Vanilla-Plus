@@ -1,5 +1,3 @@
-IsVertcasting = false
-
 Ext.Events.UIInvoke:Subscribe(function (e)
   if e.UI.Type == Ext.UI.TypeID.textDisplay and e.Function == "addText" and e.When == "Before" then
     local character = Helpers.GetPlayerManagerCharacter()
@@ -7,7 +5,6 @@ Ext.Events.UIInvoke:Subscribe(function (e)
       --- Vertcasting check
       local position = Ext.ClientUI.GetPickingState().WalkablePosition
       if math.abs(Ext.GetAiGrid():GetCellInfo(position[1], position[3]).Height - position[2]) > 2 then
-        IsVertcasting = true
         local cc = Ext.UI.GetCursorControl()
         local td = Ext.UI.GetByHandle(cc.TextDisplayUIHandle)
         local ui = e.UI --[[@as EclUICursorInfo]]
@@ -18,8 +15,6 @@ Ext.Events.UIInvoke:Subscribe(function (e)
           ui:GetRoot().addText('<font color=\"#C80030\">'..Ext.L10N.GetTranslatedString("hdfbc0f44g7f3dg4985g9621g25cba41922e0")..'!</font><br>'..distance, e.Args[2], e.Args[3])
         end 
       end
-    elseif character then
-      IsVertcasting = false
     end
   end
 end)
@@ -27,14 +22,14 @@ end)
 ---@param e EclLuaInputEvent
 Ext.Events.InputEvent:Subscribe(function(e)
   local character = Helpers.GetPlayerManagerCharacter()
-  if e.Event.Release and e.Event.EventId == 4 and character and character.SkillManager.CurrentSkill ~= null and IsVertcasting then
+  local position = Ext.ClientUI.GetPickingState().WalkablePosition
+  if e.Event.Release and e.Event.EventId == 4 and character and character.SkillManager.CurrentSkill ~= null and math.abs(Ext.GetAiGrid():GetCellInfo(position[1], position[3]).Height - position[2]) > 2 then
     Ext.Net.PostMessageToServer("LX_VertcastingDecast", tostring(character.NetID))
-    IsVertcasting = false
     if PreviousLadder then
       local ladder = Ext.Entity.GetItem(PreviousLadder)
       ladder.CurrentTemplate.CanClickThrough = false
       ladder.CanUse = true
-  end
+    end
   end
 end)
 
@@ -52,7 +47,7 @@ Ext.RegisterNetListener("LX_LaddercastFixEnter", function(channel, payload)
   end
   CastWatcher = Ext.Events.Tick:Subscribe(function(e)
     local character = Helpers.GetPlayerManagerCharacter()
-    if character and character.SkillManager.CurrentSkill == null then
+    if character and character.SkillManager and character.SkillManager.CurrentSkill == null then
       for i, netID in pairs(Ladders) do
         local ladder = Ext.Entity.GetItem(netID)
         ladder.CurrentTemplate.CanClickThrough = false
