@@ -52,7 +52,7 @@ key "LeadershipDodgingBonus","2"
 
 key "LeadershipAllResBonus","3"
 
-key "SkillAbilityVitalityRestoredPerPoint","8"
+key "SkillAbilityVitalityRestoredPerPoint","4"
 
 key "SkillAbilityLifeStealPerPoint","10"
 
@@ -70,7 +70,7 @@ key "SkillAbilityFireDamageBoostPerPoint","5"
 
 key "SkillAbilityHighGroundBonusPerPoint","5"
 
-key "SkillAbilityArmorRestoredPerPoint","8"
+key "SkillAbilityArmorRestoredPerPoint","4"
 
 key "TalentAttributePointsBonus","0"
 
@@ -104,7 +104,7 @@ key "DGM_FinesseGlobalBonus","3"
 
 key "DGM_FinesseMovementBonus","10"
 
-key "DGM_FinesseMovementCap","300"
+key "DGM_FinesseMovementCap","30"
 
 key "DGM_FinesseCritChance","1"
 
@@ -114,7 +114,13 @@ key "DGM_IntelligenceSkillBonus","3"
 
 key "DGM_IntelligenceAccuracyBonus","2"
 
+key "DGM_IntelligenceAccuracyCap","30"
+
+key "DGM_IntelligenceWisdomFromWitsCap","4"
+
 key "DGM_WitsDotBonus","10"
+
+key "DGM_WitsWisdomBonus","4"
 
 key "DGM_DamageThroughArmor","50"
 
@@ -126,7 +132,7 @@ key "DGM_SingleHandedArmorBonus","6"
 
 key "DGM_SingleHandedResistanceBonus","2"
 
-key "DGM_RangedRangeBonus","30"
+key "DGM_RangedRangeBonus","20"
 
 key "DGM_DualWieldingOffhandBonus","10"
 
@@ -200,7 +206,7 @@ key "SkillAbilityCritMultiplierPerPoint","4"
 
 key "Surface Distance Evaluation","2"
 
-key "HealToDamageRatio","1.4"
+key "HealToDamageRatio","1.3"
 
 key "DGM_NpcScalingMainAttributeCorrection","50"
 
