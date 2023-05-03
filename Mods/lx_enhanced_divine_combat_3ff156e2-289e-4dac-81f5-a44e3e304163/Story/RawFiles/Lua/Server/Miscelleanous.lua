@@ -182,35 +182,32 @@ end)
 --     -- Ext.Dump(heal)
 -- end)
 
-Ext.RegisterOsirisListener("NRD_OnStatusAttempt", 4, "before", function(target, status, handle, instigator)
+Ext.Osiris.RegisterListener("NRD_OnStatusAttempt", 4, "before", function(target, status, handle, instigator)
     if instigator == "NULL_00000000-0000-0000-0000-000000000000" then return end -- Spams the console in few cases otherwise
-    local s = Ext.GetStatus(target, handle)
-    local healer = Ext.GetCharacter(instigator)
+    local s = Ext.ServerEntity.GetStatus(target, handle) --- @type EsvStatus|EsvStatusHeal|EsvStatusHealing
+    local healer = Ext.ServerEntity.GetCharacter(instigator)
+    -- Fix the double bonus from shared healings
     if status == "HEAL" and s.HealEffect == "HealSharing" then
         if s.HealType == "PhysicalArmor" then
-            s.HealAmount = Ext.Round(s.HealAmount / (1 + healer.Stats.EarthSpecialist * Ext.ExtraData.SkillAbilityArmorRestoredPerPoint / 100))
+            s.HealAmount = Ext.Utils.Round(s.HealAmount / (1 + healer.Stats.EarthSpecialist * Ext.ExtraData.SkillAbilityArmorRestoredPerPoint / 100))
         elseif s.HealType == "MagicArmor" then
-            s.HealAmount = Ext.Round(s.HealAmount / (1 + healer.Stats.WaterSpecialist * Ext.ExtraData.SkillAbilityArmorRestoredPerPoint / 100))
+            s.HealAmount = Ext.Utils.Round(s.HealAmount / (1 + healer.Stats.WaterSpecialist * Ext.ExtraData.SkillAbilityArmorRestoredPerPoint / 100))
         else
-            s.HealAmount = Ext.Round(s.HealAmount / (1 + healer.Stats.WaterSpecialist * Ext.ExtraData.SkillAbilityVitalityRestoredPerPoint / 100))
+            s.HealAmount = Ext.Utils.Round(s.HealAmount / (1 + healer.Stats.WaterSpecialist * Ext.ExtraData.SkillAbilityVitalityRestoredPerPoint / 100))
         end
     end
+    -- Wisdom bonus to any other heal that isn't LIFESTEAL
+    -- HEAL is the proxy status used for the healing value, the original status will have a healing value equal to 0
+    -- You need to recalculate the healing value manually, and the following HEAL proxies will duplicate that value
+    -- Note : you cannot track the origin of HEAL proxies. In case where a custom value would be needed for each tick, applying a new status each tick could be a workaround.
     if (s.StatusType == "HEAL" or s.StatusType == "HEALING") and status ~= "HEAL" and status ~= "LIFESTEAL" then
-        local s = Ext.GetStatus(target, handle)
-        local stat = Ext.GetStat(s.StatusId)
+        local stat = Ext.Stats.Get(s.StatusId)
         if stat.HealType ~= "Qualifier" then return end
-        local bonus = math.floor(((1+(healer.Stats.Intelligence - Ext.ExtraData.AttributeBaseValue)*0.3) * (healer.Stats.Wits - Ext.ExtraData.AttributeBaseValue)*Game.Math.GetAverageLevelDamage(healer.Stats.Level)*0.01)*(math.min(1, stat.HealValue/100)))
-        if s.StatusType == "HEALING" then
-            if s.HealStat == "PhysicalArmor" then
-                bonus = bonus / (1 + healer.Stats.EarthSpecialist * Ext.ExtraData.SkillAbilityArmorRestoredPerPoint / 100)
-            elseif s.HealStat == "MagicArmor" then
-                bonus = bonus / (1 + healer.Stats.WaterSpecialist * Ext.ExtraData.SkillAbilityArmorRestoredPerPoint / 100)
-            else
-                bonus = bonus / (1 + healer.Stats.WaterSpecialist * Ext.ExtraData.SkillAbilityVitalityRestoredPerPoint / 100)
-            end
-        end
-        s.HealAmount = GetHealScaledValue(stat, healer) + Ext.Round(bonus)
+        local bonus = Data.Stats.HealType[stat.HealStat](healer)
+        _P("HealAmount", Data.Math.GetHealValue(stat, healer), bonus)
+        s.HealAmount = Ext.Utils.Round(Data.Math.GetHealValue(stat, healer) * bonus)
+        _P("ScaledAmount", s.HealAmount)
     elseif status == "LIFESTEAL" then
-        s.HealAmount = Ext.Round(s.HealAmount / (1 + healer.Stats.WaterSpecialist * Ext.ExtraData.SkillAbilityVitalityRestoredPerPoint / 100))
+        s.HealAmount = Ext.Utils.Round(s.HealAmount / (1 + healer.Stats.WaterSpecialist * Ext.ExtraData.SkillAbilityVitalityRestoredPerPoint / 100))
     end
 end)
