@@ -1,3 +1,81 @@
+--- @alias HookEvent string | "StatusHitEnter" | "ComputeCharacterHit" | "BeforeCharacterApplyDamage" | "NRD_OnHit" | "DGM_Hit"
+--- @alias HitEvent string | "OnMelee" | "OnRanged" | "OnWeaponHit" | "OnHit" | "BeforeDamageScaling" | "AfterDamageScaling"
+--- @alias HitConditionCallback fun(status:EsvStatusHit, instigator:EsvCharacter, target:EsvCharacter, flags:HitFlags, instigatorDGMStats:table):void
+
+--- @class HitHooks
+--- @field StatusHitEnter table
+--- @field ComputeCharacterHit table
+HitHooks = {
+    StatusHitEnter = {
+        OnMelee = {},
+        OnRanged = {},
+        OnWeaponHit = {},
+        OnHit = {},
+    },
+    ComputeCharacterHit = {},
+	DGM_Hit = {
+		OnMelee = {},
+        OnRanged = {},
+        OnWeaponHit = {},
+        OnHit = {},
+		BeforeDamageScaling = {},
+		AfterDamageScaling = {},
+	},
+}
+
+--- @param hook HookEvent
+--- @param event HitEvent
+--- @param func HitConditionCallback
+function RegisterHitConditionListener(hook, event, func)
+    table.insert(HitHooks[hook][event], {
+        Name = "",
+        Handle = func
+    })
+end
+
+--- @param hook HookEvent
+--- @param event HitEvent
+function TriggerHitHooks(hook, event, ...)
+    local params = {...}
+    if HitHooks[hook] then
+        for i,j in pairs(HitHooks[hook][event]) do
+            j.Handle(table.unpack(params))
+        end
+    end
+end
+
+--- @class HitFlags
+--- @field Dodged boolean
+--- @field Missed boolean
+--- @field Critical boolean
+--- @field Backstab boolean
+--- @field DamageSourceType CauseType
+--- @field Blocked boolean
+--- @field IsDirectAttack boolean
+--- @field IsWeaponAttack boolean
+--- @field IsStatusDamage boolean
+--- @field FromReflection boolean
+HitFlags = {
+    Dodged = false,
+    Missed = false,
+    Critical = false,
+    Backstab = false,
+    DamageSourceType = "",
+    Blocked = false,
+    IsDirectAttack = false,
+    IsWeaponAttack = false,
+	IsStatusDamage = false,
+	FromReflection = false
+}
+
+HitFlags.__index = HitFlags
+
+function HitFlags:Create()
+    local this = {}
+    setmetatable(this, self)
+    return this
+end
+
 ---@param target EsvCharacter
 local function TraceDamageSpreaders(target)
 	local statuses = target:GetStatuses()
@@ -32,23 +110,11 @@ local function AbsorbDamageFromShieldStatus(target, damage)
 	end
 end
 
----@param target EsvCharacter | EsvItem
----@param damages StatsDamagePairList
-local function InitiatePassingDamage(target, damages)
-    if Helpers.IsItem(target) then return end
-	for dmgType,amount  in pairs(damages) do
-		if amount ~= 0 then
-			local piercing = ArmorSystem.CalculatePassingDamage(target.MyGuid, amount, dmgType)
-			ArmorSystem.ApplyPassingDamage(target.MyGuid, piercing)
-		end
-	end
-end
-
 ---@param target EsvCharacter
 ---@param instigator EsvCharacter
 local function ApplyCQBPenalty(target, instigator)
 	local globalMultiplierBonus = 0
-	local weaponTypes = {instigator.Stats.MainWeapon.WeaponType, instigator.Stats.OffHandWeapon.WeaponType}
+	local weaponTypes = {instigator.Stats.MainWeapon.WeaponType, instigator.Stats.OffHandWeapon and instigator.Stats.OffHandWeapon.WeaponType or nil}
 	if weaponTypes[1] == "Bow" or weaponTypes[1] == "Crossbow" or weaponTypes[1] == "Rifle" or weaponTypes[1] == "Wand" then
 		local distance = Ext.Math.Distance(target.WorldPos, instigator.WorldPos)
 		--Ext.Print("[LXDGM_DamageControl.DamageControl] Distance :",distance)
@@ -60,40 +126,9 @@ local function ApplyCQBPenalty(target, instigator)
 end
 
 ---@param character EsvCharacter
----@param step number|nil
-local function ApplyWarmup(character, step)
-	local warmup = FindStatus(character, "DGM_WARMUP")
-	local stage
-	if step then
-		stage = step
-	elseif warmup then
-		stage = math.min(tonumber(string.sub(warmup, 11, 11))+1, 4)
-		ObjectSetFlag(character.MyGuid, "DGM_WarmupReapply", 0)
-	else
-		stage = 1
-	end
-	CustomStatusManager:CharacterApplyMultipliedStatus(char, "DGM_WARMUP"..tostring(stage), 6.0, 1.0 + 0.1 * char.Stats.WarriorLore)
-end
-
----@param instigator string GUID
----@param target string GUID
-local function SiphonPoisonBoost(instigator, target)
-	if HasActiveStatus(instigator, "SIPHON_POISON") == 1 then
-		local seconds = 12.0
-		if HasActiveStatus(instigator, "VENOM_COATING") == 1 or HasActiveStatus(instigator, "VENOM_AURA") == 1 then
-			seconds = seconds + 12.0
-		end
-		if CharacterHasTalent(instigator, "Torturer") == 1 then
-			seconds = seconds + 6.0
-		end
-		ApplyStatus(target, "ACID", seconds, 1)
-	end
-end
-
----@param character EsvCharacter
 ---@param target EsvCharacter
 ---@param flags HitFlags
----@param hit StatEntrySkillData | nil
+---@param skill StatEntrySkillData | nil
 local function GetCharacterComputedDamageBonus(character, target, flags, skill)
     local strength = character.Stats.Strength - Ext.ExtraData.AttributeBaseValue
     local finesse = character.Stats.Finesse - Ext.ExtraData.AttributeBaseValue
@@ -117,7 +152,6 @@ local function GetCharacterComputedDamageBonus(character, target, flags, skill)
 			attributes.DamageBonus = attributes.DamageBonus + attributes.Strength * Ext.ExtraData.DGM_StrengthWeaponBonus
 		end
 		attributes.GlobalMultiplier = attributes.GlobalMultiplier + ApplyCQBPenalty(target, character)
-		-- TODO: Dual Wielding offhand status chance increase
 	-- DoT Boost
 	elseif flags.IsStatusDamage then
 		attributes.DamageBonus = attributes.Wits * Ext.ExtraData.DGM_WitsDotBonus
@@ -179,6 +213,7 @@ local function DamageControl(target, instigator, hitDamage, handle)
 	 and Ext.ServerEntity.GetGameObject(target:GetStatus("SHACKLES_OF_PAIN").StatusSourceHandle).MyGuid == instigator.MyGuid then
 		flags.IsFromShackles = true
 	end
+
 	-- Don't scale damage from surfaces, GM, scriting , reflection, or if the damage type doesn't fit scaling
 	if flags.FromReflection
 	 or (flags.DamageSourceType > 0 and flags.DamageSourceType < 4) 
@@ -188,54 +223,42 @@ local function DamageControl(target, instigator, hitDamage, handle)
 		InitiatePassingDamage(target, hit.Hit.DamageList)
         return
 	end
+
     -- Trace Guardian Angel statuses
     if Helpers.IsCharacter(target) then TraceDamageSpreaders(target) end
-    -- Aimed shot
-    if flags.IsWeaponAttack and instigator.Stats.MainWeapon.WeaponType == "Crossbow" then
-        local aimedShot = FindStatus(instigator, "DMG_AimedShot")
-        if aimedShot then RemoveStatus(instigator.MyGuid, aimedShot) end
-    end
-    -- Dodge Mechanics
-    if (flags.Missed or flags.Dodged) and not target:GetStatus("EVADING") and Helpers.IsCharacter(instigator) then
-        ApplyWarmup(instigator)
-    end
+
     -- Bonuses
 	local attacker = GetCharacterComputedDamageBonus(instigator, target, flags, skill)
-	--TODO: move specifics in a listener
-    if flags.IsWeaponAttack or (skill and skill.Name == "Target_TentacleLash") then
-		SiphonPoisonBoost(character.MyGuid, target.MyGuid)
-	end
+
     if (skill and skill.Name == "Projectile_Talent_Unstable") or IsTagged(target.MyGuid, "DGM_GuardianAngelProtector") == 1 or flags.IsFromShackles then
 		ClearTag(target.MyGuid, "DGM_GuardianAngelProtector")
 		attacker.DamageBonus = 0
 		attacker.GlobalMultiplier = 1
 	end
 	local lifesteal = instigator.Stats.LifeSteal
-	-- hit.Hit.DamageList:Multiply((attacker.DamageBonus/100+1)*attacker.GlobalMultiplier)
 	local damageTable = hit.Hit.DamageList:ToTable()
-	-- hit.Hit.DamageList:Clear()
+	
 	NRD_HitStatusClearAllDamage(target.MyGuid, handle)
-	-- _D(damageTable)
-
+	TriggerHitHooks("DGM_Hit", "BeforeDamageScaling", hit, instigator, target, flags, attacker)
 	for i,element in pairs(damageTable) do
-		local multiplier = attacker.DamageBonus/100
+		local multiplier = 1 + attacker.DamageBonus/100
 		if element.DamageType == "Water" and instigator.Stats.TALENT_IceKing then
 			multiplier = multiplier + 1/Ext.ExtraData.DGM_IceKingDamageBonus
 		elseif element.DamageType == "Corrosive" or element.DamageType == "Magic" then
 			element.Amount = element.Amount * Ext.ExtraData.DGM_ArmourReductionMultiplier / 100
 		end
 		element.Amount = (element.Amount * multiplier) * attacker.GlobalMultiplier + math.random(0,1) -- Range somewhat of a fix
-		-- hit.Hit.DamageList:Add(element.DamageType, math.ceil(element.Amount))
 		NRD_HitStatusAddDamage(target.MyGuid, handle, element.DamageType, element.Amount)
 	end
-	-- _D(hit.Hit.DamageList:ToTable())
 	HitHelpers.HitRecalculateAbsorb(hit.Hit, target)
 	HitHelpers.HitRecalculateLifesteal(hit.Hit, instigator)
+	TriggerHitHooks("DGM_Hit", "AfterDamageScaling", hit, instigator, target, flags, attacker)
 	InitiatePassingDamage(target, damageTable)
+	AbsorbDamageFromShieldStatus(target, hit.Hit.DamageList)
 end
 
 -- Ext.RegisterOsirisListener("NRD_OnStatusAttempt", 4, "before", HitCatch)
--- Ext.RegisterOsirisListener("NRD_OnHit", 4, "before", DamageControl)
+Ext.RegisterOsirisListener("NRD_OnHit", 4, "before", DamageControl)
 
 --- Fix the original DoHit that is
 local function DoHit(hit, damageList, statusBonusDmgTypes, hitType, target, attacker, ctx)
@@ -410,4 +433,56 @@ Ext.Events.ComputeCharacterHit:Subscribe(function(e)
 			e.Handled = true
 		end
 	end
+end)
+-- Mods.LeaderLib.Testing
+
+--[[
+	Listeners part:
+	All features that can potentially influence damage output individually or not.
+--]]
+
+---@param character EsvCharacter
+---@param step number|nil
+function ApplyWarmup(character, step)
+	local warmup = FindStatus(character, "DGM_WARMUP")
+	local stage
+	if step then
+		stage = step
+	elseif warmup then
+		stage = math.min(tonumber(string.sub(warmup, 11, 11))+1, 4)
+		ObjectSetFlag(character.MyGuid, "DGM_WarmupReapply", 0)
+	else
+		stage = 1
+	end
+	CustomStatusManager:CharacterApplyMultipliedStatus(char, "DGM_WARMUP"..tostring(stage), 6.0, 1.0 + 0.1 * char.Stats.WarriorLore)
+end
+
+--- @param hit EsvStatusHit
+--- @param instigator EsvCharacter
+--- @param target EsvItem|EsvCharacter
+--- @param flags HitFlags
+--- @param instigatorDGMStats table
+RegisterHitConditionListener("DGM_Hit", "BeforeDamageScaling", function(hit, instigator, target, flags, instigatorDGMStats)
+	--- SIPHON_POISON feature
+	if HasActiveStatus(instigator.MyGuid, "SIPHON_POISON") == 1 then
+		local seconds = 12.0
+		if HasActiveStatus(instigator.MyGuid, "VENOM_COATING") == 1 or HasActiveStatus(instigator.MyGuid, "VENOM_AURA") == 1 then
+			seconds = seconds + 12.0
+		end
+		if CharacterHasTalent(instigator.MyGuid, "Torturer") == 1 then
+			seconds = seconds + 6.0
+		end
+		ApplyStatus(target.MyGuid, "ACID", seconds, 1, instigator.MyGuid)
+	end
+
+	--- WARMUP application
+	if (flags.Missed or flags.Dodged) and not target:GetStatus("EVADING") and Helpers.IsCharacter(instigator) then
+		ApplyWarmup(instigator)
+	end
+
+	--- Aimed Shot
+	if flags.IsWeaponAttack and instigator.Stats.MainWeapon.WeaponType == "Crossbow" then
+        local aimedShot = FindStatus(instigator, "DMG_AimedShot")
+        if aimedShot then RemoveStatus(instigator.MyGuid, aimedShot) end
+    end
 end)
