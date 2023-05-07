@@ -649,6 +649,8 @@ end
 --- @field Blocked boolean
 --- @field IsDirectAttack boolean
 --- @field IsWeaponAttack boolean
+--- @field IsStatusDamage boolean
+--- @field FromReflection boolean
 HitFlags = {
     Dodged = false,
     Missed = false,
@@ -658,8 +660,8 @@ HitFlags = {
     Blocked = false,
     IsDirectAttack = false,
     IsWeaponAttack = false,
-	FromReflection = false,
-	IsStatusDamage = false
+	IsStatusDamage = false,
+	FromReflection = false
 }
 
 HitFlags.__index = HitFlags
