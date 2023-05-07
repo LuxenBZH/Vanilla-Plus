@@ -54,7 +54,7 @@ Ext.RegisterOsirisListener("CharacterUsedSkill", 4, "before", function(character
         for i, properties in pairs(stat.SkillProperties) do
             if properties.SurfaceBoosts ~= nil then
                 for i,surface in pairs(properties.SurfaceBoosts) do
-                    table.insert(surfaces, surface)
+                    table.insert(surfaces, tostring(surface))
                 end
             end
         end
