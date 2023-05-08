@@ -1,9 +1,8 @@
 --- @param character StatCharacter
 --- @param type string DamageType enumeration
-local function GetResistance(character, damageType, ...)
+local function GetResistance(character, damageType)
 	local cap = character.MaxResistance
-	local pen = {...} -- Resistance - penetration value
-	pen = pen[1]
+	local pen = Data.Math.ComputeCharacterIngress(character.Character) -- Resistance - penetration value
 	if damageType == "None" or damageType == "Chaos" then
 		damageType = "Custom" 
 	end

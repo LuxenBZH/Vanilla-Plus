@@ -36,7 +36,7 @@ end
 
 ---@param name string
 ---@param func function
-function CustomStatusManager:RegisterSyncListener(name, func)
+function CustomStatusManager:RegisterCharacterSyncListener(name, func)
     table.insert(self.SyncListener, {
         Name = name,
         Handle = func
@@ -122,17 +122,6 @@ function CustomStatusManager:SynchronizeDGMBonuses(character)
         ApplyStatus(character.MyGuid, "LX_CROSSBOWCLEAR", 0.0, 1, character.MyGuid)
     end
     self:TriggerSyncListeners(character)
-end
-
---- @param EsvCharacter
---- @param status string
-function CustomStatusManager:ModifyStatusMultiplier(character, status)
-    local translationKey = Ext.Stats.Get(status).StatsId
-    for i,statArray in pairs(character.Stats.DynamicStats) do
-        if statArray.TranslationKey == translationKey then
-            -- statArray 
-        end
-    end
 end
 
 --- @param character GUID

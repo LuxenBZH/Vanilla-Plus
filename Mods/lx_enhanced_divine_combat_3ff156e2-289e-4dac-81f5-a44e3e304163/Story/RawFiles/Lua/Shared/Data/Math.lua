@@ -50,3 +50,11 @@ end
 Data.Math.GetHealValue = function(stat, healer)
 	return Ext.Utils.Round(stat.HealValue * Game.Math.GetAverageLevelDamage(healer.Stats.Level) * Ext.ExtraData.HealToDamageRatio / 100)
 end
+
+--- @param character EsvCharacter | EclCharacter
+Data.Math.ComputeCharacterIngress = function(character)
+    local ingressFromAttributes = math.min((character.Stats.Intelligence - Ext.ExtraData.AttributeBaseValue) * Ext.ExtraData.DGM_IntelligenceIngressBonus, (character.Stats.Strength - Ext.ExtraData.AttributeBaseValue) * Ext.ExtraData.DGM_StrengthIngressCap)
+    local ingressFromHuntsman = character.Stats.RangerLore * Ext.ExtraData.DGM_RangerLoreIngressBonus
+    local ingressFromEquipment = 0 --TODO: Equipment Ingress stat and deltamods
+    return ingressFromAttributes + ingressFromHuntsman + ingressFromEquipment
+end
