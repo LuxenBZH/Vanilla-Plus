@@ -422,7 +422,7 @@ function ApplyWarmup(character, step)
 	else
 		stage = 1
 	end
-	CustomStatusManager:CharacterApplyMultipliedStatus(char, "DGM_WARMUP"..tostring(stage), 6.0, 1.0 + 0.1 * char.Stats.WarriorLore)
+	CustomStatusManager:CharacterApplyMultipliedStatus(character, "DGM_WARMUP"..tostring(stage), 6.0, 1.0 + 0.1 * character.Stats.WarriorLore)
 end
 
 --- @param hit EsvStatusHit
