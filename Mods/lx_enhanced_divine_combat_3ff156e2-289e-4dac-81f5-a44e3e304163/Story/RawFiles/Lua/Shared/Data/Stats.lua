@@ -16,10 +16,10 @@ Data.Stats.CustomAbilityBonuses = {
             AirResistance=Ext.ExtraData.DGM_SingleHandedResistanceBonus
         }, Status = {StackId = "DGM_SingleHanded"}
     },
-    TwoHanded = {},
+    -- TwoHanded = {},
     Ranged = {Potion = {RangeBoost=Ext.ExtraData.DGM_RangedRangeBonus}, Status = {StackId = "DGM_Ranged"}, Cap = 10},
-    DualWielding = {},
-    None = {}
+    -- DualWielding = {},
+    -- None = {}
 }
 
 Data.Stats.CrossbowMovementPenalty = {

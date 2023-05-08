@@ -11,7 +11,7 @@ CustomStatusManager = {}
 ---@param statusID string
 ---@param duration number
 ---@param multiplier number
----@param fallback StatusFallbackArray
+---@param fallback StatusFallbackArray|nil
 function CustomStatusManager:CharacterApplyMultipliedStatus(target, statusID, duration, multiplier, fallback)
     if type(target) ~= "string" then
         target = target.MyGuid
