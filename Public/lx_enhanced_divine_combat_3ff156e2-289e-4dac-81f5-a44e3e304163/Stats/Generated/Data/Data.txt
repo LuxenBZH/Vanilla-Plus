@@ -108,6 +108,8 @@ key "DGM_FinesseMovementCap","30"
 
 key "DGM_FinesseCritChance","1"
 
+key "DGM_FinesseAccuracyFromIntelligenceCap","1.5"
+
 key "DGM_IntelligenceGlobalBonus","2"
 
 key "DGM_IntelligenceSkillBonus","3"

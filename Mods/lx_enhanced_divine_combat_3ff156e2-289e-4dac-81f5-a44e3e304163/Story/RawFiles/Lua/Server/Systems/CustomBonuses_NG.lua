@@ -58,7 +58,6 @@ function CustomStatusManager:Create(name, stats, template, sync)
     if NRD_StatExists(name) then
         return Ext.Stats.Get(name)
     end
-    _DS(stats)
     local newPotion
     if not NRD_StatExists(name.."Potion") then
         newPotion = Ext.Stats.Create(name.."_Potion", "Potion", template)
