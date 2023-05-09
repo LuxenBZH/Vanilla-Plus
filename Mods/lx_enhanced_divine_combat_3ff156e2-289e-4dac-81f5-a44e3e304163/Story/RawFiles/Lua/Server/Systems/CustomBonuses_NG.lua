@@ -36,8 +36,9 @@ end
 
 ---@param name string
 ---@param func function
-function CustomStatusManager:RegisterCharacterSyncListener(name, func)
-    table.insert(self.SyncListeners, {
+---@param priority integer|nil Default: 100
+function CustomStatusManager:RegisterCharacterSyncListener(name, func, priority)
+    table.insert(self.SyncListeners, priority or 100, {
         Name = name,
         Handle = func
     })

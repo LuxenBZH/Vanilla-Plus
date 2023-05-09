@@ -2,40 +2,42 @@
 --- @alias HitEvent string | "OnMelee" | "OnRanged" | "OnWeaponHit" | "OnHit" | "BeforeDamageScaling" | "AfterDamageScaling"
 --- @alias HitConditionCallback fun(status:EsvStatusHit, instigator:EsvCharacter, target:EsvCharacter, flags:HitFlags, instigatorDGMStats:table):void
 
---- @class HitHooks
---- @field StatusHitEnter table
---- @field ComputeCharacterHit table
-HitHooks = {
-    StatusHitEnter = {
-        OnMelee = {},
-        OnRanged = {},
-        OnWeaponHit = {},
-        OnHit = {},
-    },
-    ComputeCharacterHit = {},
-	DGM_Hit = {
-		OnMelee = {},
-        OnRanged = {},
-        OnWeaponHit = {},
-        OnHit = {},
-		BeforeDamageScaling = {},
-		AfterDamageScaling = {},
-	},
+---@class HitManager
+---@field HitHooks table
+HitManager = {
+	HitHooks = {
+		StatusHitEnter = {
+			OnMelee = {},
+			OnRanged = {},
+			OnWeaponHit = {},
+			OnHit = {},
+		},
+		ComputeCharacterHit = {},
+		DGM_Hit = {
+			OnMelee = {},
+			OnRanged = {},
+			OnWeaponHit = {},
+			OnHit = {},
+			BeforeDamageScaling = {},
+			AfterDamageScaling = {},
+		},
+	}
 }
 
 --- @param hook HookEvent
 --- @param event HitEvent
 --- @param func HitConditionCallback
-function RegisterHitConditionListener(hook, event, func)
-    table.insert(HitHooks[hook][event], {
-        Name = "",
+--- @param priority integer|nil Default: 100
+function HitManager:RegisterHitListener(hook, event, name, func, priority)
+    table.insert(HitHooks[hook][event], priority or 100, {
+        Name = name,
         Handle = func
     })
 end
 
 --- @param hook HookEvent
 --- @param event HitEvent
-function TriggerHitHooks(hook, event, ...)
+function HitManager:TriggerHitListeners(hook, event, ...)
     local params = {...}
     if HitHooks[hook] then
         for i,j in pairs(HitHooks[hook][event]) do
@@ -44,8 +46,9 @@ function TriggerHitHooks(hook, event, ...)
     end
 end
 
+--- Important function to track if the target is currently protected by a shared damage status to avoid double scaling
 ---@param target EsvCharacter
-local function TraceDamageSpreaders(target)
+function HitManager:TagCharacterWithSharedDamage(target)
 	local statuses = target:GetStatuses()
 	for i,status in pairs(statuses) do
 		if target:GetStatus(status).StatusType == "GUARDIAN_ANGEL" then
@@ -57,9 +60,10 @@ local function TraceDamageSpreaders(target)
 	end
 end
 
+--- Calculate and reduce the potential damage shielding statuses a character can have
 --- @param target EsvCharacter | EsvItem
 --- @param damage StatsDamagePairList
-local function AbsorbDamageFromShieldStatus(target, damage)
+function HitManager:ShieldStatusesAbsorbDamage(target, damage)
 	for dmgType, amount in pairs(damage:ToTable()) do
 		local absorbStatus = target:GetStatus("LX_SHIELD_"..string.upper(dmgType))
 		if absorbStatus then
@@ -78,65 +82,10 @@ local function AbsorbDamageFromShieldStatus(target, damage)
 	end
 end
 
----@param target EsvCharacter
----@param instigator EsvCharacter
-local function ApplyCQBPenalty(target, instigator)
-	local globalMultiplierBonus = 0
-	local weaponTypes = {instigator.Stats.MainWeapon.WeaponType, instigator.Stats.OffHandWeapon and instigator.Stats.OffHandWeapon.WeaponType or nil}
-	if weaponTypes[1] == "Bow" or weaponTypes[1] == "Crossbow" or weaponTypes[1] == "Rifle" or weaponTypes[1] == "Wand" then
-		local distance = Ext.Math.Distance(target.WorldPos, instigator.WorldPos)
-		--Ext.Print("[LXDGM_DamageControl.DamageControl] Distance :",distance)
-		if distance <= Ext.ExtraData.DGM_RangedCQBPenaltyRange and instigator.Stats.TALENT_RangerLoreArrowRecover then
-			globalMultiplierBonus = (Ext.ExtraData.DGM_RangedCQBPenalty/100)
-		end
-	end
-	return globalMultiplierBonus
-end
-
----@param character EsvCharacter
----@param target EsvCharacter
----@param flags HitFlags
----@param skill StatEntrySkillData | nil
-local function GetCharacterComputedDamageBonus(character, target, flags, skill)
-    local strength = character.Stats.Strength - Ext.ExtraData.AttributeBaseValue
-    local finesse = character.Stats.Finesse - Ext.ExtraData.AttributeBaseValue
-    local intelligence = character.Stats.Intelligence - Ext.ExtraData.AttributeBaseValue
-	local attributes = {
-        Strength = strength,
-        Finesse = finesse,
-        Intelligence = intelligence,
-		Wits = character.Stats.Wits - Ext.ExtraData.AttributeBaseValue,
-        DamageBonus = strength*Ext.ExtraData.DGM_StrengthGlobalBonus+finesse*Ext.ExtraData.DGM_FinesseGlobalBonus+intelligence*Ext.ExtraData.DGM_IntelligenceGlobalBonus, -- /!\ Remember that 1=1% in this variable
-        GlobalMultiplier = 1.0
-    }
-	if flags.Backstab then
-        attributes.DamageBonus = attributes.DamageBonus + character.Stats.CriticalChance * Ext.ExtraData.DGM_BackstabCritChanceBonus
-    end
-	-- Weapon Boost
-	if flags.IsWeaponAttack or (skill and skill.Name == "Target_TentacleLash") then
-		if (flags.DamageSourceType == "Offhand" and character.Stats.OffHandWeapon.WeaponType == "Wand") or character.Stats.MainWeapon.WeaponType == "Wand" then
-			attributes.DamageBonus = attributes.DamageBonus + attributes.Intelligence * Ext.ExtraData.DGM_IntelligenceSkillBonus
-		else
-			attributes.DamageBonus = attributes.DamageBonus + attributes.Strength * Ext.ExtraData.DGM_StrengthWeaponBonus
-		end
-		attributes.GlobalMultiplier = attributes.GlobalMultiplier + ApplyCQBPenalty(target, character)
-	-- DoT Boost
-	elseif flags.IsStatusDamage then
-		attributes.DamageBonus = attributes.Wits * Ext.ExtraData.DGM_WitsDotBonus
-	end
-	-- Intelligence Boost
-	if skill then 
-		attributes.DamageBonus = attributes.DamageBonus + attributes.Intelligence * Ext.ExtraData.DGM_IntelligenceSkillBonus
-		if string.find(skill.Name, "Grenade") and character.Stats.TALENT_WarriorLoreGrenadeRange then
-			attributes.DamageBonus = attributes.DamageBonus + Ext.ExtraData.DGM_SlingshotBonus
-		end
-	end
-    return attributes
-end
-
+--- Calculate and apply the damage going through armors and hit Vitality
 ---@param target EsvCharacter
 ---@param damages table
-local function InitiatePassingDamage(target, damages)
+function HitManager:InitiatePassingDamage(target, damages)
 	if getmetatable(target) ~= "esv::Character" then
 		return
 	end
@@ -187,16 +136,16 @@ local function DamageControl(target, instigator, hitDamage, handle)
 	 or (flags.DamageSourceType > 0 and flags.DamageSourceType < 4) 
 	 or (flags.DamageSourceType == 0 and hit.SkillId == "" and Helpers.IsCharacter(target))
 	 or skill and (skill.Damage ~= "AverageLevelDamge" and skill.Damage ~= "BaseLevelDamage")  then
-		AbsorbDamageFromShieldStatus(target, hit.Hit.DamageList)
-		InitiatePassingDamage(target, hit.Hit.DamageList)
+		HitManager:ShieldStatusesAbsorbDamage(target, hit.Hit.DamageList)
+		HitManager:InitiatePassingDamage(target, hit.Hit.DamageList)
         return
 	end
 
     -- Trace Guardian Angel statuses
-    if Helpers.IsCharacter(target) then TraceDamageSpreaders(target) end
+    if Helpers.IsCharacter(target) then HitManager:TagCharacterWithSharedDamage(target) end
 
     -- Bonuses
-	local attacker = GetCharacterComputedDamageBonus(instigator, target, flags, skill)
+	local attacker = Data.Math.GetCharacterComputedDamageBonus(instigator, target, flags, skill)
 
     if (skill and skill.Name == "Projectile_Talent_Unstable") or IsTagged(target.MyGuid, "DGM_GuardianAngelProtector") == 1 or flags.IsFromShackles then
 		ClearTag(target.MyGuid, "DGM_GuardianAngelProtector")
@@ -207,7 +156,7 @@ local function DamageControl(target, instigator, hitDamage, handle)
 	local damageTable = hit.Hit.DamageList:ToTable()
 	
 	NRD_HitStatusClearAllDamage(target.MyGuid, handle)
-	TriggerHitHooks("DGM_Hit", "BeforeDamageScaling", hit, instigator, target, flags, attacker)
+	HitManager:TriggerHitListeners("DGM_Hit", "BeforeDamageScaling", hit, instigator, target, flags, attacker)
 	for i,element in pairs(damageTable) do
 		local multiplier = 1 + attacker.DamageBonus/100
 		if element.DamageType == "Water" and instigator.Stats.TALENT_IceKing then
@@ -220,9 +169,9 @@ local function DamageControl(target, instigator, hitDamage, handle)
 	end
 	HitHelpers.HitRecalculateAbsorb(hit.Hit, target)
 	HitHelpers.HitRecalculateLifesteal(hit.Hit, instigator)
-	TriggerHitHooks("DGM_Hit", "AfterDamageScaling", hit, instigator, target, flags, attacker)
-	InitiatePassingDamage(target, damageTable)
-	AbsorbDamageFromShieldStatus(target, hit.Hit.DamageList)
+	HitManager:TriggerHitListeners("DGM_Hit", "AfterDamageScaling", hit, instigator, target, flags, attacker)
+	HitManager:InitiatePassingDamage(target, damageTable)
+	HitManager:ShieldStatusesAbsorbDamage(target, hit.Hit.DamageList)
 end
 
 -- Ext.RegisterOsirisListener("NRD_OnStatusAttempt", 4, "before", HitCatch)
@@ -430,7 +379,7 @@ end
 --- @param target EsvItem|EsvCharacter
 --- @param flags HitFlags
 --- @param instigatorDGMStats table
-RegisterHitConditionListener("DGM_Hit", "BeforeDamageScaling", function(hit, instigator, target, flags, instigatorDGMStats)
+HitManager:RegisterHitListener("DGM_Hit", "BeforeDamageScaling", function(hit, instigator, target, flags, instigatorDGMStats)
 	--- SIPHON_POISON feature
 	if HasActiveStatus(instigator.MyGuid, "SIPHON_POISON") == 1 then
 		local seconds = 12.0

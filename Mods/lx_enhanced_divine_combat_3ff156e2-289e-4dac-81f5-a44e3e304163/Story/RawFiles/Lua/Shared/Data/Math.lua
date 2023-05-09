@@ -1,5 +1,8 @@
 Data.Math = {}
 
+--[[
+    Character stats related formulas
+]]
 --- @param character EsvCharacter|EclCharacter
 Data.Math.ComputeCharacterWisdom = function(character)
     return (math.min(
@@ -30,6 +33,18 @@ Data.Stats.HealType = {
     MagicArmor = Data.Math.ComputeCharacterWisdomMagicArmor
 }
 
+--- @param character EsvCharacter | EclCharacter
+Data.Math.ComputeCharacterIngress = function(character)
+    local ingressFromAttributes = math.min((character.Stats.Intelligence - Ext.ExtraData.AttributeBaseValue) * Ext.ExtraData.DGM_IntelligenceIngressBonus, (character.Stats.Strength - Ext.ExtraData.AttributeBaseValue) * Ext.ExtraData.DGM_StrengthIngressCap)
+    local ingressFromHuntsman = character.Stats.RangerLore * Ext.ExtraData.DGM_RangerLoreIngressBonus
+    local ingressFromEquipment = 0 --TODO: Equipment Ingress stat and deltamods
+    return ingressFromAttributes + ingressFromHuntsman + ingressFromEquipment
+end
+
+--[[
+    Heal related formulas
+]]
+
 --- @param stat StatEntryType
 --- @param healer EsvCharacter|EclCharacter
 Data.Math.GetHealScaledValue = function(stat, healer)
@@ -51,10 +66,62 @@ Data.Math.GetHealValue = function(stat, healer)
 	return Ext.Utils.Round(stat.HealValue * Game.Math.GetAverageLevelDamage(healer.Stats.Level) * Ext.ExtraData.HealToDamageRatio / 100)
 end
 
---- @param character EsvCharacter | EclCharacter
-Data.Math.ComputeCharacterIngress = function(character)
-    local ingressFromAttributes = math.min((character.Stats.Intelligence - Ext.ExtraData.AttributeBaseValue) * Ext.ExtraData.DGM_IntelligenceIngressBonus, (character.Stats.Strength - Ext.ExtraData.AttributeBaseValue) * Ext.ExtraData.DGM_StrengthIngressCap)
-    local ingressFromHuntsman = character.Stats.RangerLore * Ext.ExtraData.DGM_RangerLoreIngressBonus
-    local ingressFromEquipment = 0 --TODO: Equipment Ingress stat and deltamods
-    return ingressFromAttributes + ingressFromHuntsman + ingressFromEquipment
+--[[
+    Damage related formulas
+]]
+
+---@param target EsvCharacter|EclCharacter
+---@param instigator EsvCharacter|EclCharacter
+Data.Math.ApplyCQBPenalty = function(target, instigator)
+	local globalMultiplierBonus = 0
+	local weaponTypes = {instigator.Stats.MainWeapon.WeaponType, instigator.Stats.OffHandWeapon and instigator.Stats.OffHandWeapon.WeaponType or nil}
+	if weaponTypes[1] == "Bow" or weaponTypes[1] == "Crossbow" or weaponTypes[1] == "Rifle" or weaponTypes[1] == "Wand" then
+		local distance = Ext.Math.Distance(target.WorldPos, instigator.WorldPos)
+		--Ext.Print("[LXDGM_DamageControl.DamageControl] Distance :",distance)
+		if distance <= Ext.ExtraData.DGM_RangedCQBPenaltyRange and instigator.Stats.TALENT_RangerLoreArrowRecover then
+			globalMultiplierBonus = (Ext.ExtraData.DGM_RangedCQBPenalty/100)
+		end
+	end
+	return globalMultiplierBonus
+end
+
+---@param character EsvCharacter|EclCharacter
+---@param target EsvCharacter|EclCharacter
+---@param flags HitFlags
+---@param skill StatEntrySkillData|nil
+Data.Math.GetCharacterComputedDamageBonus = function(character, target, flags, skill)
+    local strength = character.Stats.Strength - Ext.ExtraData.AttributeBaseValue
+    local finesse = character.Stats.Finesse - Ext.ExtraData.AttributeBaseValue
+    local intelligence = character.Stats.Intelligence - Ext.ExtraData.AttributeBaseValue
+	local attributes = {
+        Strength = strength,
+        Finesse = finesse,
+        Intelligence = intelligence,
+		Wits = character.Stats.Wits - Ext.ExtraData.AttributeBaseValue,
+        DamageBonus = strength*Ext.ExtraData.DGM_StrengthGlobalBonus+finesse*Ext.ExtraData.DGM_FinesseGlobalBonus+intelligence*Ext.ExtraData.DGM_IntelligenceGlobalBonus, -- /!\ Remember that 1=1% in this variable
+        GlobalMultiplier = 1.0
+    }
+	if flags.Backstab then
+        attributes.DamageBonus = attributes.DamageBonus + character.Stats.CriticalChance * Ext.ExtraData.DGM_BackstabCritChanceBonus
+    end
+	-- Weapon Boost
+	if flags.IsWeaponAttack or (skill and skill.Name == "Target_TentacleLash") then
+		if (flags.DamageSourceType == "Offhand" and character.Stats.OffHandWeapon.WeaponType == "Wand") or character.Stats.MainWeapon.WeaponType == "Wand" then
+			attributes.DamageBonus = attributes.DamageBonus + attributes.Intelligence * Ext.ExtraData.DGM_IntelligenceSkillBonus
+		else
+			attributes.DamageBonus = attributes.DamageBonus + attributes.Strength * Ext.ExtraData.DGM_StrengthWeaponBonus
+		end
+		attributes.GlobalMultiplier = attributes.GlobalMultiplier + Data.Math.ApplyCQBPenalty(target, character)
+	-- DoT Boost
+	elseif flags.IsStatusDamage then
+		attributes.DamageBonus = attributes.Wits * Ext.ExtraData.DGM_WitsDotBonus
+	end
+	-- Intelligence Boost
+	if skill then 
+		attributes.DamageBonus = attributes.DamageBonus + attributes.Intelligence * Ext.ExtraData.DGM_IntelligenceSkillBonus
+		if string.find(skill.Name, "Grenade") and character.Stats.TALENT_WarriorLoreGrenadeRange then
+			attributes.DamageBonus = attributes.DamageBonus + Ext.ExtraData.DGM_SlingshotBonus
+		end
+	end
+    return attributes
 end
