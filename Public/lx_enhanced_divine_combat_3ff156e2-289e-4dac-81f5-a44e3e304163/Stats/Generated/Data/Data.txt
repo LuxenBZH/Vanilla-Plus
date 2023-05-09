@@ -98,6 +98,8 @@ key "DGM_StrengthGlobalBonus","2"
 
 key "DGM_StrengthResistanceIgnore","0.15"
 
+key "DGM_StrengthIngressCap","1"
+
 key "DGM_StrengthWeaponBonus","3"
 
 key "DGM_FinesseGlobalBonus","3"
@@ -108,7 +110,7 @@ key "DGM_FinesseMovementCap","30"
 
 key "DGM_FinesseCritChance","1"
 
-key "DGM_FinesseAccuracyFromIntelligenceCap","1.5"
+key "DGM_FinesseAccuracyFromIntelligenceCap","3"
 
 key "DGM_IntelligenceGlobalBonus","2"
 
@@ -120,9 +122,13 @@ key "DGM_IntelligenceAccuracyCap","30"
 
 key "DGM_IntelligenceWisdomFromWitsCap","4"
 
+key "DGM_IntelligenceIngressBonus","1"
+
 key "DGM_WitsDotBonus","10"
 
 key "DGM_WitsWisdomBonus","4"
+
+key "DGM_RangerLoreIngressBonus","2"
 
 key "DGM_DamageThroughArmor","50"
 

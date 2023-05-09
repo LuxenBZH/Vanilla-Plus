@@ -37,16 +37,28 @@ end
 ---@param name string
 ---@param func function
 function CustomStatusManager:RegisterCharacterSyncListener(name, func)
-    table.insert(self.SyncListener, {
+    table.insert(self.SyncListeners, {
         Name = name,
         Handle = func
     })
 end
 
+---@param name string
+---@return boolean
+function CustomStatusManager:UnregisterCharacterSyncListener(name)
+    for i,listener in pairs(self.SyncListeners) do
+        if listener.Name == name then
+            table.remove(self.SyncListeners, i)
+            return true
+        end
+    end
+    return false
+end
+
 ---@param character EsvCharacter
 function CustomStatusManager:TriggerSyncListeners(character)
     for i,listener in pairs(self.SyncListeners) do
-        listener.Handle(table.unpack(character))
+        listener.Handle(character)
     end
 end
 
@@ -89,7 +101,7 @@ function CustomStatusManager:Apply(character, name, duration, multiplier, cap)
         character = Ext.Entity.GetCharacter(character)
     end
     local exists = character:GetStatus(name)
-    if exists and exists.StatsMultiplier == multiplier then
+    if exists and multiplier <= cap and exists.StatsMultiplier == multiplier then
         return
     end
     local status = Ext.PrepareStatus(character.MyGuid, name, duration)
@@ -102,27 +114,12 @@ end
 
 --- @param character EsvCharacter
 function CustomStatusManager:SynchronizeDGMBonuses(character)
-    for attribute, bonuses in pairs(Data.Stats.CustomAttributeBonuses) do
-        local attributeValue = character.Stats[attribute] - Ext.ExtraData.AttributeBaseValue
-        local status = self:Create("DGM_"..attribute, bonuses)
-        self:Apply(character, status.Name, -1.0, attributeValue, bonuses.Cap)
-    end
-    local currentAbility = GetWeaponAbility(character.Stats, character.Stats.MainWeapon)
-    if currentAbility and Data.Stats.CustomAbilityBonuses[currentAbility] then
-        local abilityValue = character.Stats[currentAbility]
-        local status = self:Create("DGM_"..currentAbility, Data.Stats.CustomAbilityBonuses[currentAbility])
-        self:Apply(character, status.Name, -1.0, abilityValue, Data.Stats.CustomAbilityBonuses[currentAbility].Cap)
-    end
-    if character:GetStatus("LX_CROSSBOWINIT") and character.Stats.MainWeapon and character.Stats.MainWeapon.WeaponType == "Crossbow" then
-        local weapon = character.Stats.MainWeapon
-        local scaledPenalty = weapon.Level * Ext.ExtraData.DGM_CrossbowLevelGrowthPenalty + Ext.ExtraData.DGM_CrossbowBasePenalty
-        local status = self:Create("DGM_CrossbowSlow", {Potion = {Movement = -1}, Status = {StackId = "DGM_CrossbowSlow"}})
-        self:Apply(character, status.Name, -1.0, scaledPenalty)
-    elseif character.Stats.MainWeapon and character.Stats.MainWeapon.WeaponType == "Crossbow" then
-        ApplyStatus(character.MyGuid, "LX_CROSSBOWCLEAR", 0.0, 1, character.MyGuid)
-    end
     self:TriggerSyncListeners(character)
 end
+
+--[[
+    Synchronisation hooks
+]]
 
 --- @param character GUID
 --- @param event string
@@ -131,8 +128,10 @@ Ext.Osiris.RegisterListener("StoryEvent", 2, "before", function(character, event
     CustomStatusManager:SynchronizeDGMBonuses(Ext.ServerEntity.GetCharacter(character))
 end)
 
+--- @param character GUID
+--- @param event string
 Ext.Osiris.RegisterListener("ProcObjectTimerFinished", 2, "after", function(character, event)
-    if event ~= "DGM_GlobalStatCheck" or character == "NULL_00000000-0000-0000-0000-000000000000" or ObjectExists(character) == 0 then return end
+    if event ~= "DGM_GlobalStatCheck" or character == "00000000-0000-0000-0000-000000000000" or ObjectExists(character) == 0 then return end
     CustomStatusManager:SynchronizeDGMBonuses(Ext.ServerEntity.GetCharacter(character))
 end)
 
@@ -167,4 +166,43 @@ end)
 
 Ext.Osiris.RegisterListener("CharacterResurrected", 1, "before", function(character)
     CustomStatusManager:SynchronizeDGMBonuses(Ext.ServerEntity.GetCharacter(character))
+end)
+
+--[[
+    Custom V++ features
+]]
+
+--- @param character EsvCharacter
+CustomStatusManager:RegisterCharacterSyncListener("DGM_AttributeSync", function(character)
+    for attribute, bonuses in pairs(Data.Stats.CustomAttributeBonuses) do
+        local attributeValue = character.Stats[attribute] - Ext.ExtraData.AttributeBaseValue
+        local status = CustomStatusManager:Create("DGM_"..attribute, bonuses)
+        if attribute == "Intelligence" then
+            CustomStatusManager:Apply(character, status.Name, -1.0, attributeValue, math.min(bonuses.Cap, (character.Stats.Finesse - Ext.ExtraData.AttributeBaseValue) * Ext.ExtraData.DGM_FinesseAccuracyFromIntelligenceCap))
+        else
+            CustomStatusManager:Apply(character, status.Name, -1.0, attributeValue, bonuses.Cap)
+        end
+    end
+end)
+
+--- @param character EsvCharacter
+CustomStatusManager:RegisterCharacterSyncListener("DGM_AbilitiesSync", function(character)
+    local currentAbility = GetWeaponAbility(character.Stats, character.Stats.MainWeapon)
+    if currentAbility and Data.Stats.CustomAbilityBonuses[currentAbility] then
+        local abilityValue = character.Stats[currentAbility]
+        local status = CustomStatusManager:Create("DGM_"..currentAbility, Data.Stats.CustomAbilityBonuses[currentAbility])
+        CustomStatusManager:Apply(character, status.Name, -1.0, abilityValue, Data.Stats.CustomAbilityBonuses[currentAbility].Cap)
+    end
+end)
+
+--- @param character EsvCharacter
+CustomStatusManager:RegisterCharacterSyncListener("DGM_CrossbowPenalty", function(character)
+    if character:GetStatus("LX_CROSSBOWINIT") and character.Stats.MainWeapon and character.Stats.MainWeapon.WeaponType == "Crossbow" then
+        local weapon = character.Stats.MainWeapon
+        local scaledPenalty = weapon.Level * Ext.ExtraData.DGM_CrossbowLevelGrowthPenalty + Ext.ExtraData.DGM_CrossbowBasePenalty
+        local status = CustomStatusManager:Create("DGM_CrossbowSlow", {Potion = {Movement = -1}, Status = {StackId = "DGM_CrossbowSlow"}})
+        CustomStatusManager:Apply(character, status.Name, -1.0, scaledPenalty)
+    elseif character.Stats.MainWeapon and character.Stats.MainWeapon.WeaponType == "Crossbow" then
+        ApplyStatus(character.MyGuid, "LX_CROSSBOWCLEAR", 0.0, 1, character.MyGuid)
+    end
 end)

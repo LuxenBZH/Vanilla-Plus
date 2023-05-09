@@ -1,7 +1,7 @@
 Data.Math = {}
 
 --- @param character EsvCharacter|EclCharacter
-Data.Math.GetCharacterWisdom = function(character)
+Data.Math.ComputeCharacterWisdom = function(character)
     return (math.min(
         (character.Stats.Intelligence - Ext.ExtraData.AttributeBaseValue) * Ext.ExtraData.DGM_IntelligenceWisdomFromWitsCap,
         (character.Stats.Wits - Ext.ExtraData.AttributeBaseValue) * Ext.ExtraData.DGM_WitsWisdomBonus) +
@@ -9,7 +9,7 @@ Data.Math.GetCharacterWisdom = function(character)
 end
 
 --- @param character EsvCharacter|EclCharacter
-Data.Math.GetCharacterWisdomArmor = function(character)
+Data.Math.ComputeCharacterWisdomArmor = function(character)
     return (math.min(
         (character.Stats.Intelligence - Ext.ExtraData.AttributeBaseValue) * Ext.ExtraData.DGM_IntelligenceWisdomFromWitsCap,
         (character.Stats.Wits - Ext.ExtraData.AttributeBaseValue) * Ext.ExtraData.DGM_WitsWisdomBonus) +
@@ -17,7 +17,7 @@ Data.Math.GetCharacterWisdomArmor = function(character)
 end
 
 --- @param character EsvCharacter|EclCharacter
-Data.Math.GetCharacterWisdomMagicArmor = function(character)
+Data.Math.ComputeCharacterWisdomMagicArmor = function(character)
     return (math.min(
         (character.Stats.Intelligence - Ext.ExtraData.AttributeBaseValue) * Ext.ExtraData.DGM_IntelligenceWisdomFromWitsCap,
         (character.Stats.Wits - Ext.ExtraData.AttributeBaseValue) * Ext.ExtraData.DGM_WitsWisdomBonus) +
@@ -25,9 +25,9 @@ Data.Math.GetCharacterWisdomMagicArmor = function(character)
 end
 
 Data.Stats.HealType = {
-    Vitality = Data.Math.GetCharacterWisdom,
-    PhysicalArmor = Data.Math.GetCharacterWisdomArmor,
-    MagicArmor = Data.Math.GetCharacterWisdomMagicArmor
+    Vitality = Data.Math.ComputeCharacterWisdom,
+    PhysicalArmor = Data.Math.ComputeCharacterWisdomArmor,
+    MagicArmor = Data.Math.ComputeCharacterWisdomMagicArmor
 }
 
 --- @param stat StatEntryType
