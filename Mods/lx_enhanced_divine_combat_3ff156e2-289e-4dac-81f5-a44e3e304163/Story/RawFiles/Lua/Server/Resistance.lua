@@ -8,12 +8,13 @@ local function GetResistance(character, damageType)
 	end
 	-- New V+ resistance cap behavior
 	if pen then
-		local typeCap = tonumber(string.gsub(FindTag(Ext.GetCharacter(character.MyGuid), "DGM_ResCap"..damageType), ".*_", ""))
+		local resCap = FindTag(Ext.GetCharacter(character.MyGuid), "DGM_ResCap"..tostring(damageType)) or "100"
+		local typeCap = tonumber(string.gsub(resCap, ".*_", "")[1])
 		if typeCap then
 			cap = cap + typeCap
 		end
-		if character["Base"..damageType.."Resistance"] > cap then
-			return character["Base"..damageType.."Resistance"]
+		if character["Base"..tostring(damageType).."Resistance"] > cap then
+			return character["Base"..tostring(damageType).."Resistance"]
 		elseif pen > cap then
 			return cap
 		else
@@ -21,7 +22,7 @@ local function GetResistance(character, damageType)
 		end
 	-- Old behavior, still available
 	else
-		return character[damageType.."Resistance"]
+		return character[tostring(damageType).."Resistance"]
 	end
 end
 

@@ -29,18 +29,22 @@ HitManager = {
 --- @param func HitConditionCallback
 --- @param priority integer|nil Default: 100
 function HitManager:RegisterHitListener(hook, event, name, func, priority)
-    table.insert(HitHooks[hook][event], priority or 100, {
+	local index = priority or 100
+	while self.HitHooks[hook][event][index] do
+		index = index + 1
+	end
+    self.HitHooks[hook][event][index] = {
         Name = name,
         Handle = func
-    })
+    }
 end
 
 --- @param hook HookEvent
 --- @param event HitEvent
 function HitManager:TriggerHitListeners(hook, event, ...)
     local params = {...}
-    if HitHooks[hook] then
-        for i,j in pairs(HitHooks[hook][event]) do
+    if self.HitHooks[hook] then
+        for i,j in pairs(self.HitHooks[hook][event]) do
             j.Handle(table.unpack(params))
         end
     end
@@ -307,6 +311,8 @@ local surfaceDamageMapping = {
 	SurfaceBloodFrozenBlessed = "Physical"
 }
 
+local GladiatorTargets = {}
+
 ---@param e EsvLuaComputeCharacterHitEvent
 Ext.Events.ComputeCharacterHit:Subscribe(function(e)
 	--- Elemental Ranger
@@ -332,11 +338,11 @@ Ext.Events.ComputeCharacterHit:Subscribe(function(e)
 		e.Hit.Missed = true
 		Game.Math.ComputeCharacterHit(e.Target, e.Attacker, e.Weapon, e.DamageList, e.HitType, e.NoHitRoll, e.ForceReduceDurability, e.Hit, e.AlwaysBackstab, e.HighGround, e.CriticalRoll)
 	--- Gladiator
-	elseif e.Target.TALENT_Gladiator and (e.HitType == "WeaponDamage"and e.Hit.HitWithWeapon) and not Game.Math.IsRangedWeapon(e.Attacker.MainWeapon) and e.Target:GetItemBySlot("Shield") then
+	elseif e.Target.TALENT_Gladiator and (e.HitType == "WeaponDamage"and e.Hit.HitWithWeapon) and not Game.Math.IsRangedWeapon(e.Attacker.MainWeapon) and e.Target:GetItemBySlot("Shield") and not e.Hit.CounterAttack and IsTagged(e.Target.MyGuid, "LX_IsCounterAttacking") == 0 and not (e.SkillProperties and e.SkillProperties.Name == "Target_LX_GladiatorHit_SkillProperties") then
 		local counterAttacked = Helpers.HasCounterAttacked(e.Target.Character)
 		if not counterAttacked and GetDistanceTo(e.Target.Character.MyGuid, e.Attacker.Character.MyGuid) <= 5.0 then
-			CharacterUseSkill(e.Target.Character.MyGuid, "Target_LX_GladiatorHit", e.Attacker.Character.MyGuid, 1, 1, 1)
-			Helpers.SetHasCounterAttacked(e.Target.Character, true)
+			GladiatorTargets[e.Target.Character.MyGuid] = e.Attacker.Character.MyGuid
+			Osi.ProcObjectTimer(e.Target.Character.MyGuid, "LX_GladiatorDelay", 30)
 		end
 	elseif e.Attacker and e.Attacker.TALENT_Gladiator and e.NoHitRoll and e.HitType == "Melee" and not e.Hit.HitWithWeapon then
 		e.NoHitRoll = false
@@ -349,6 +355,29 @@ Ext.Events.ComputeCharacterHit:Subscribe(function(e)
 		if not e.Handled and hit then
 			e.Handled = true
 		end
+		Osi.ProcObjectTimer(e.Attacker.Character.MyGuid, "LX_GladiatorFollowFix", 1000)
+	end
+	if IsTagged(e.Target.MyGuid, "LX_IsCounterAttacking") == 1 then
+		ClearTag(e.Target.MyGuid, "LX_IsCounterAttacking")
+	end
+end)
+
+--- @param character GUID
+--- @param event string
+Ext.Osiris.RegisterListener("ProcObjectTimerFinished", 2, "after", function(character, event)
+	if event == "LX_GladiatorDelay" and CharacterIsIncapacitated(character) ~= 1 then
+		SetTag(character, "LX_IsCounterAttacking")
+		Helpers.SetHasCounterAttacked(Ext.ServerEntity.GetCharacter(character), true)
+		CharacterUseSkill(character, "Target_LX_GladiatorHit", GladiatorTargets[character], 1, 1, 1)
+		GladiatorTargets[character] = nil
+	end
+end)
+
+--- @param character GUID
+--- @param event string
+Ext.Osiris.RegisterListener("ProcObjectTimerFinished", 2, "after", function(character, event)
+	if event == "LX_GladiatorFollowFix" then
+		PlayAnimation(character, "", "")
 	end
 end)
 -- Mods.LeaderLib.Testing
@@ -379,7 +408,7 @@ end
 --- @param target EsvItem|EsvCharacter
 --- @param flags HitFlags
 --- @param instigatorDGMStats table
-HitManager:RegisterHitListener("DGM_Hit", "BeforeDamageScaling", function(hit, instigator, target, flags, instigatorDGMStats)
+HitManager:RegisterHitListener("DGM_Hit", "BeforeDamageScaling", "DGM_Specifics", function(hit, instigator, target, flags, instigatorDGMStats)
 	--- SIPHON_POISON feature
 	if HasActiveStatus(instigator.MyGuid, "SIPHON_POISON") == 1 then
 		local seconds = 12.0
@@ -402,4 +431,4 @@ HitManager:RegisterHitListener("DGM_Hit", "BeforeDamageScaling", function(hit, i
         local aimedShot = FindStatus(instigator, "DMG_AimedShot")
         if aimedShot then RemoveStatus(instigator.MyGuid, aimedShot) end
     end
-end)
+end, 50)

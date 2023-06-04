@@ -38,10 +38,14 @@ end
 ---@param func function
 ---@param priority integer|nil Default: 100
 function CustomStatusManager:RegisterCharacterSyncListener(name, func, priority)
-    table.insert(self.SyncListeners, priority or 100, {
+    local index = priority or 100
+	while self.SyncListeners[index] do
+		index = index + 1
+	end
+    self.SyncListeners[priority or 100] = {
         Name = name,
         Handle = func
-    })
+    }
 end
 
 ---@param name string
@@ -207,3 +211,32 @@ CustomStatusManager:RegisterCharacterSyncListener("DGM_CrossbowPenalty", functio
         ApplyStatus(character.MyGuid, "LX_CROSSBOWCLEAR", 0.0, 1, character.MyGuid)
     end
 end)
+
+---@param target GUID|EsvCharacter
+---@param statusID string
+---@param duration number
+---@param multiplier number
+---@param fallback StatusFallbackArray|nil
+function CustomStatusManager:CharacterApplyMultipliedStatus(target, statusID, duration, multiplier, fallback)
+    if type(target) ~= "string" then
+        target = target.MyGuid
+    end
+    if not NRD_StatExists(statusID) then
+        self:CreateStatFromTemplate(statusID, "StatusData", fallback.Template, fallback.StatsArray, fallback.Persistance)
+    end
+    local status = Ext.PrepareStatus(target, statusID, duration)
+    status.StatsMultiplier = multiplier
+    Ext.ApplyStatus(status)
+end
+
+---@param statusID string
+---@param template string
+---@param statsArray table
+---@param persistance boolean|nil
+function CustomStatusManager:CreateStatFromTemplate(statID, statType, template, statsArray, persistance)
+    local status = Ext.Stats.Create(statID, statType, template)
+    for stat, value in pairs(statsArray) do
+        status[stat] = value
+    end
+    Ext.Stats.Sync(statID, persistance)
+end

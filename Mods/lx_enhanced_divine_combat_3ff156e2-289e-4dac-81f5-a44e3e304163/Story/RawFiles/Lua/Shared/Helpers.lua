@@ -31,7 +31,7 @@ Helpers.HasCounterAttacked = function(character)
 end
 
 --- @param character EsvCharacter
---- @param flag bool
+--- @param flag boolean
 Helpers.SetHasCounterAttacked = function(character, flag)
 	local combat = Ext.ServerEntity.GetCombat(CombatGetIDForCharacter(character.MyGuid))
 	for i, team in pairs(combat:GetNextTurnOrder()) do
