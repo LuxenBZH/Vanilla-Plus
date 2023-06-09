@@ -97,13 +97,13 @@ local flags = {
 
 Ext.RegisterListener("StatsLoaded", function()
     if Mods.LeaderLib == nil then return end
-    Ext.Print("Loading stored vars...")
+    Helpers.VPPrint("Loading stored vars...", "Settings")
     local json = Ext.LoadFile("LeaderLib_GlobalSettings.json", "user")
     if json == nil or json == "" then return end
     local data = Ext.JsonParse(json).Mods["3ff156e2-289e-4dac-81f5-a44e3e304163"]
     if data then
         for var,value in pairs(data.Global.Variables) do
-            Ext.Print("Set Data var",var,value.Value)
+            Helpers.VPPrint("Set Data var", "Settings",var,value.Value)
             if requireRestart[var] then
                 Ext.ExtraData[idToVariable[var]] = value.Value
             end

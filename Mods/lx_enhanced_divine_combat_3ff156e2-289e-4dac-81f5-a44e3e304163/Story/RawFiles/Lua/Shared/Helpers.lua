@@ -66,6 +66,40 @@ Helpers.GetPlayerManagerCharacter = function(prioritizeSecondPlayer)
     return nil
 end
 
+Helpers.VPPrint = function(text, module, ...)
+	if module then
+		module = "["..module.."]"
+	end
+	Ext.Utils.Print("[V++]"..(module or "").." "..text, table.unpack({...}))
+end
+
+Helpers.VPPrintWarning = function(text, module, ...)
+	if module then
+		module = "["..module.."]"
+	end
+	Ext.Utils.PrintWarning("[V++]"..(module or "").." "..text, table.unpack({...}))
+end
+
+Helpers.VPPrintError = function(text, module, ...)
+	if module then
+		module = "["..module.."]"
+	end
+	Ext.Utils.PrintError("[V++]"..(module or "").." "..text, table.unpack({...}))
+end
+
+Helpers.ScalingFunctions = {
+	ALD = Game.Math.GetAverageLevelDamage,
+	BLD = Game.Math.GetLevelScaledDamage,
+	WLD = Game.Math.GetLevelScaledWeaponDamage,
+	MLD = Game.Math.GetLevelScaledMonsterWeaponDamage,
+}
+
+--- @param character EsvCharacter|EclCharacter
+--- @param damageType DamageType
+Helpers.CharacterGetAbsorbShield = function(character, damageType)
+	return character:GetStatus("LX_SHIELD_"..string.upper(damageType))
+end
+
 function DamageTypeEnum()
 	local enum = {
 		"Physical",
