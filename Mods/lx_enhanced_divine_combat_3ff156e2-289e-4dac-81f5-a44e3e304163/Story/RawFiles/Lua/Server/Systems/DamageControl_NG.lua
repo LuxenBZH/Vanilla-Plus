@@ -169,13 +169,14 @@ local function DamageControl(target, instigator, hitDamage, handle)
 			element.Amount = element.Amount * Ext.ExtraData.DGM_ArmourReductionMultiplier / 100
 		end
 		element.Amount = (element.Amount * multiplier) * attacker.GlobalMultiplier + math.random(0,1) -- Range somewhat of a fix
-		NRD_HitStatusAddDamage(target.MyGuid, handle, element.DamageType, element.Amount)
+		HitHelpers.HitAddDamage(hit.Hit, target, instigator, tostring(element.DamageType), math.floor(element.Amount))
+		-- NRD_HitStatusAddDamage(target.MyGuid, handle, element.DamageType, element.Amount)
 	end
 	HitHelpers.HitRecalculateAbsorb(hit.Hit, target)
 	HitHelpers.HitRecalculateLifesteal(hit.Hit, instigator)
 	HitManager:TriggerHitListeners("DGM_Hit", "AfterDamageScaling", hit, instigator, target, flags, attacker)
-	HitManager:InitiatePassingDamage(target, damageTable)
-	HitManager:ShieldStatusesAbsorbDamage(target, hit.Hit.DamageList)
+	HitManager:InitiatePassingDamage(target, hit.Hit.DamageList:ToTable())
+	-- HitManager:ShieldStatusesAbsorbDamage(target, hit.Hit.DamageList)
 end
 
 -- Ext.RegisterOsirisListener("NRD_OnStatusAttempt", 4, "before", HitCatch)
@@ -432,3 +433,13 @@ HitManager:RegisterHitListener("DGM_Hit", "BeforeDamageScaling", "DGM_Specifics"
         if aimedShot then RemoveStatus(instigator.MyGuid, aimedShot) end
     end
 end, 50)
+
+--- @param hit EsvStatusHit
+--- @param instigator EsvCharacter
+--- @param target EsvItem|EsvCharacter
+--- @param flags HitFlags
+--- @param instigatorDGMStats table
+HitManager:RegisterHitListener("DGM_Hit", "AfterDamageScaling", "DGM_AbsorbShields", function(hit, instigator, target, flags, instigatorDGMStats)
+	Helpers.VPPrint("Check damage absorb...", "DamageControl:AbsorbShield")
+	AbsorbShieldProcessDamage(target, instigator, hit)
+end, 49)

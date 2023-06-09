@@ -26,8 +26,8 @@ Ext.RegisterSkillProperty("LX_SHIELD", {
 ---@param e EclLuaStatusGetDescriptionParamEvent
 local function ShieldDescription(e)
     if e.Params[1] == "LX_Absorption" then
-		_P("Remaining power: "..Ext.Utils.Round(e.Owner.Character:GetStatus("LX_SHIELD_AIR").StatsMultiplier))
-        e.Description = tostring(Ext.Utils.Round(e.Owner.Character:GetStatus("LX_SHIELD_AIR").StatsMultiplier))
+		Helpers.VPPrint("Shield remaining power: "..Ext.Utils.Round(e.Owner.Character:GetStatus(e.Status.StatusName).StatsMultiplier), "CustomSkillProperties")
+        e.Description = tostring(Ext.Utils.Round(e.Owner.Character:GetStatus(e.Status.StatusName).StatsMultiplier)).." Air damage"
 	end
 end
 

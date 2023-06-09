@@ -1,10 +1,11 @@
 Data = {}
 
+Ext.Require("Shared/Helpers.lua")
 Ext.Require("Shared/Settings.lua")
 Ext.Require("Shared/StatsPatching.lua")
-Ext.Require("Shared/Helpers.lua")
 Ext.Require("Shared/StatusWizard.lua")
 Ext.Require("Shared/Systems/StatusManager.lua")
+Ext.Require("Shared/Systems/StatsProperties.lua")
 Ext.Require("Shared/Data/Stats.lua")
 Ext.Require("Shared/Data/Math.lua")
 
