@@ -338,13 +338,6 @@ Ext.Events.ComputeCharacterHit:Subscribe(function(e)
 		end
 		e.Hit.Missed = true
 		Game.Math.ComputeCharacterHit(e.Target, e.Attacker, e.Weapon, e.DamageList, e.HitType, e.NoHitRoll, e.ForceReduceDurability, e.Hit, e.AlwaysBackstab, e.HighGround, e.CriticalRoll)
-	--- Gladiator
-	elseif e.Target.TALENT_Gladiator and (e.HitType == "WeaponDamage"and e.Hit.HitWithWeapon) and not Game.Math.IsRangedWeapon(e.Attacker.MainWeapon) and e.Target:GetItemBySlot("Shield") and not e.Hit.CounterAttack and IsTagged(e.Target.MyGuid, "LX_IsCounterAttacking") == 0 and not (e.SkillProperties and e.SkillProperties.Name == "Target_LX_GladiatorHit_SkillProperties") then
-		local counterAttacked = Helpers.HasCounterAttacked(e.Target.Character)
-		if not counterAttacked and GetDistanceTo(e.Target.Character.MyGuid, e.Attacker.Character.MyGuid) <= 5.0 then
-			GladiatorTargets[e.Target.Character.MyGuid] = e.Attacker.Character.MyGuid
-			Osi.ProcObjectTimer(e.Target.Character.MyGuid, "LX_GladiatorDelay", 30)
-		end
 	elseif e.Attacker and e.Attacker.TALENT_Gladiator and e.NoHitRoll and e.HitType == "Melee" and not e.Hit.HitWithWeapon then
 		e.NoHitRoll = false
 		local hit = Game.Math.ComputeCharacterHit(e.Target, e.Attacker, e.Weapon, e.DamageList, e.HitType, e.NoHitRoll, e.ForceReduceDurability, e.Hit, e.AlwaysBackstab, e.HighGround, e.CriticalRoll) ---@type EsvStatusHit
@@ -363,11 +356,26 @@ Ext.Events.ComputeCharacterHit:Subscribe(function(e)
 	end
 end)
 
+---@param e EsvLuaStatusHitEnterEvent
+Ext.Events.StatusHitEnter:Subscribe(function(e)
+	--- Gladiator
+	local target = Ext.Entity.GetCharacter(e.Context.TargetHandle)
+	local attacker = Ext.Entity.GetCharacter(e.Context.AttackerHandle)
+	_DS(e.Hit)
+	if target.Stats.TALENT_Gladiator and (e.Hit.Hit.HitWithWeapon) and not Game.Math.IsRangedWeapon(attacker.Stats.MainWeapon) and target.Stats:GetItemBySlot("Shield") and not e.Hit.Hit.CounterAttack and IsTagged(target.MyGuid, "LX_IsCounterAttacking") == 0 and e.Hit.SkillId ~= "Target_LX_GladiatorHit_-1" and not (e.Hit.Hit.Dodged or e.Hit.Hit.Missed) then
+		local counterAttacked = Helpers.HasCounterAttacked(target)
+		if not counterAttacked and GetDistanceTo(target.MyGuid, attacker.MyGuid) <= 5.0 then
+			GladiatorTargets[target.MyGuid] = attacker.MyGuid
+			SetTag(attacker.MyGuid, "LX_IsCounterAttacking")
+			Osi.ProcObjectTimer(target.MyGuid, "LX_GladiatorDelay", 30)
+		end
+	end
+end)
+
 --- @param character GUID
 --- @param event string
 Ext.Osiris.RegisterListener("ProcObjectTimerFinished", 2, "after", function(character, event)
 	if event == "LX_GladiatorDelay" and CharacterIsIncapacitated(character) ~= 1 then
-		SetTag(character, "LX_IsCounterAttacking")
 		Helpers.SetHasCounterAttacked(Ext.ServerEntity.GetCharacter(character), true)
 		CharacterUseSkill(character, "Target_LX_GladiatorHit", GladiatorTargets[character], 1, 1, 1)
 		GladiatorTargets[character] = nil

@@ -29,7 +29,6 @@ Data.Stats.StatsCustomAttributes = {
         VP_WisdomBoost = "ConstantInt",
         VP_ArmorRegenBoost = "ConstantInt",
         VP_MagicArmorRegenBoost = "ConstantInt",
-        VP_CriticalMultiplierBoost = "ConstantInt",
         VP_CustomImmunity = "FixedString",
     },
     Shield = {

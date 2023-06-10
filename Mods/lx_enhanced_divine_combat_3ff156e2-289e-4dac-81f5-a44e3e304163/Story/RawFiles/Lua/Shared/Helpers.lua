@@ -70,21 +70,21 @@ Helpers.VPPrint = function(text, module, ...)
 	if module then
 		module = "["..module.."]"
 	end
-	Ext.Utils.Print("[V++]"..(module or "").." "..text, table.unpack({...}))
+	Ext.Utils.Print("[V++]"..(module or "").." "..tostring(text), table.unpack({...}))
 end
 
 Helpers.VPPrintWarning = function(text, module, ...)
 	if module then
 		module = "["..module.."]"
 	end
-	Ext.Utils.PrintWarning("[V++]"..(module or "").." "..text, table.unpack({...}))
+	Ext.Utils.PrintWarning("[V++]"..(module or "").." "..tostring(text), table.unpack({...}))
 end
 
 Helpers.VPPrintError = function(text, module, ...)
 	if module then
 		module = "["..module.."]"
 	end
-	Ext.Utils.PrintError("[V++]"..(module or "").." "..text, table.unpack({...}))
+	Ext.Utils.PrintError("[V++]"..(module or "").." "..tostring(text), table.unpack({...}))
 end
 
 Helpers.ScalingFunctions = {
