@@ -94,6 +94,32 @@ Helpers.ScalingFunctions = {
 	MLD = Game.Math.GetLevelScaledMonsterWeaponDamage,
 }
 
+--- @param scaling string
+--- @param character EclCharacter|EsvCharacter|EsvItem|nil
+--- @param instigator EclCharacter|EsvCharacter|nil
+Helpers.ScalingValues = function(scaling, character, instigator)
+	if scaling == "SourceMaximumPhysicalArmor" then
+		return instigator.Stats.MaxArmor
+	elseif scaling == "SourceMaximumMagicArmor" then
+		return instigator.Stats.MaxMagicArmor
+	elseif scaling == "SourceCurrentPhysicalArmor" then
+		return instigator.Stats.CurrentArmor
+	elseif scaling == "SourceCurrentMagicArmor" then
+		return instigator.Stats.CurrentMagicArmor
+	end
+end
+
+---@param scaling string
+---@param character EsvCharacter|EclCharacter|EsvItem|nil
+---@param instigator EsvCharacter|EclCharacter|nil
+Helpers.GetScaledValue = function(scaling, character, instigator)
+	if Helpers.ScalingFunctions[scaling] then
+		return Helpers.ScalingFunctions[scaling](instigator.Stats.Level)
+	else
+		return Helpers.ScalingValues(scaling, character, instigator)
+	end
+end
+
 --- @param character EsvCharacter|EclCharacter
 --- @param damageType DamageType
 Helpers.CharacterGetAbsorbShield = function(character, damageType)

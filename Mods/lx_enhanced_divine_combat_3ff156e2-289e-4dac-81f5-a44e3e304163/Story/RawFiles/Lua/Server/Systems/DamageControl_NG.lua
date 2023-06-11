@@ -1,6 +1,6 @@
 --- @alias HookEvent string | "StatusHitEnter" | "ComputeCharacterHit" | "BeforeCharacterApplyDamage" | "NRD_OnHit" | "DGM_Hit"
 --- @alias HitEvent string | "OnMelee" | "OnRanged" | "OnWeaponHit" | "OnHit" | "BeforeDamageScaling" | "AfterDamageScaling"
---- @alias HitConditionCallback fun(status:EsvStatusHit, instigator:EsvCharacter, target:EsvCharacter, flags:HitFlags, instigatorDGMStats:table):void
+--- @alias HitConditionCallback fun(status:EsvStatusHit, instigator:EsvCharacter, target:EsvCharacter, flags:HitFlags):nil
 
 ---@class HitManager
 ---@field HitHooks table
@@ -64,32 +64,11 @@ function HitManager:TagCharacterWithSharedDamage(target)
 	end
 end
 
---- Calculate and reduce the potential damage shielding statuses a character can have
---- @param target EsvCharacter | EsvItem
---- @param damage StatsDamagePairList
-function HitManager:ShieldStatusesAbsorbDamage(target, damage)
-	for dmgType, amount in pairs(damage:ToTable()) do
-		local absorbStatus = target:GetStatus("LX_SHIELD_"..string.upper(dmgType))
-		if absorbStatus then
-			local absorbAmount = absorbStatus.StatsMultiplier
-			if absorbAmount > 0 then
-				damage:Clear(dmgType) 
-                damage:Add(dmgType, math.max(amount-absorbAmount, 0))
-				local newAbsorbAmount = math.max(absorbAmount-amount, 0)
-				if newAbsorbAmount > 0 then
-					absorbStatus.StatsMultiplier = newAbsorbAmount
-				else
-					RemoveStatus(target.MyGuid, absorbStatus.StatusId)
-				end
-			end
-		end
-	end
-end
-
 --- Calculate and apply the damage going through armors and hit Vitality
 ---@param target EsvCharacter
 ---@param damages table
 function HitManager:InitiatePassingDamage(target, damages)
+	_P(target, damages)
 	if getmetatable(target) ~= "esv::Character" then
 		return
 	end
@@ -140,8 +119,8 @@ local function DamageControl(target, instigator, hitDamage, handle)
 	 or (flags.DamageSourceType > 0 and flags.DamageSourceType < 4) 
 	 or (flags.DamageSourceType == 0 and hit.SkillId == "" and Helpers.IsCharacter(target))
 	 or skill and (skill.Damage ~= "AverageLevelDamge" and skill.Damage ~= "BaseLevelDamage")  then
-		HitManager:ShieldStatusesAbsorbDamage(target, hit.Hit.DamageList)
-		HitManager:InitiatePassingDamage(target, hit.Hit.DamageList)
+		HitManager:TriggerHitListeners("DGM_Hit", "AfterDamageScaling", hit, instigator, target, flags)
+		HitManager:InitiatePassingDamage(target, hit.Hit.DamageList:ToTable())
         return
 	end
 
@@ -160,7 +139,7 @@ local function DamageControl(target, instigator, hitDamage, handle)
 	local damageTable = hit.Hit.DamageList:ToTable()
 	
 	NRD_HitStatusClearAllDamage(target.MyGuid, handle)
-	HitManager:TriggerHitListeners("DGM_Hit", "BeforeDamageScaling", hit, instigator, target, flags, attacker)
+	HitManager:TriggerHitListeners("DGM_Hit", "BeforeDamageScaling", hit, instigator, target, flags)
 	for i,element in pairs(damageTable) do
 		local multiplier = 1 + attacker.DamageBonus/100
 		if element.DamageType == "Water" and instigator.Stats.TALENT_IceKing then
@@ -174,7 +153,7 @@ local function DamageControl(target, instigator, hitDamage, handle)
 	end
 	HitHelpers.HitRecalculateAbsorb(hit.Hit, target)
 	HitHelpers.HitRecalculateLifesteal(hit.Hit, instigator)
-	HitManager:TriggerHitListeners("DGM_Hit", "AfterDamageScaling", hit, instigator, target, flags, attacker)
+	HitManager:TriggerHitListeners("DGM_Hit", "AfterDamageScaling", hit, instigator, target, flags)
 	HitManager:InitiatePassingDamage(target, hit.Hit.DamageList:ToTable())
 	-- HitManager:ShieldStatusesAbsorbDamage(target, hit.Hit.DamageList)
 end
@@ -361,7 +340,6 @@ Ext.Events.StatusHitEnter:Subscribe(function(e)
 	--- Gladiator
 	local target = Ext.Entity.GetCharacter(e.Context.TargetHandle)
 	local attacker = Ext.Entity.GetCharacter(e.Context.AttackerHandle)
-	_DS(e.Hit)
 	if target.Stats.TALENT_Gladiator and (e.Hit.Hit.HitWithWeapon) and not Game.Math.IsRangedWeapon(attacker.Stats.MainWeapon) and target.Stats:GetItemBySlot("Shield") and not e.Hit.Hit.CounterAttack and IsTagged(target.MyGuid, "LX_IsCounterAttacking") == 0 and e.Hit.SkillId ~= "Target_LX_GladiatorHit_-1" and not (e.Hit.Hit.Dodged or e.Hit.Hit.Missed) then
 		local counterAttacked = Helpers.HasCounterAttacked(target)
 		if not counterAttacked and GetDistanceTo(target.MyGuid, attacker.MyGuid) <= 5.0 then
@@ -417,7 +395,7 @@ end
 --- @param target EsvItem|EsvCharacter
 --- @param flags HitFlags
 --- @param instigatorDGMStats table
-HitManager:RegisterHitListener("DGM_Hit", "BeforeDamageScaling", "DGM_Specifics", function(hit, instigator, target, flags, instigatorDGMStats)
+HitManager:RegisterHitListener("DGM_Hit", "BeforeDamageScaling", "DGM_Specifics", function(hit, instigator, target, flags)
 	--- SIPHON_POISON feature
 	if HasActiveStatus(instigator.MyGuid, "SIPHON_POISON") == 1 then
 		local seconds = 12.0
@@ -447,7 +425,23 @@ end, 50)
 --- @param target EsvItem|EsvCharacter
 --- @param flags HitFlags
 --- @param instigatorDGMStats table
-HitManager:RegisterHitListener("DGM_Hit", "AfterDamageScaling", "DGM_AbsorbShields", function(hit, instigator, target, flags, instigatorDGMStats)
-	Helpers.VPPrint("Check damage absorb...", "DamageControl:AbsorbShield")
+HitManager:RegisterHitListener("DGM_Hit", "AfterDamageScaling", "DGM_AbsorbShields", function(hit, instigator, target, flags)
+	--- Absorb shields
 	AbsorbShieldProcessDamage(target, instigator, hit)
+	--- Skill damage cap
+	if hit.SkillId ~= "" then
+		local stat = Ext.Stats.Get(string.sub(hit.SkillId, 1, string.len(hit.SkillId)-3))
+		if stat.VP_DamageCapValue ~= 0 then
+			local cap = stat.VP_DamageCapValue / 100 * Helpers.GetScaledValue(stat.VP_DamageCapScaling, target, instigator)
+			local damageTable = hit.Hit.DamageList:ToTable()
+			local totalAmount = 0
+			for i,element in pairs(damageTable) do
+				totalAmount = totalAmount + element.Amount
+				if totalAmount > cap then
+					HitHelpers.HitAddDamage(hit, target, instigator, tostring(element.DamageType), cap - totalAmount)
+					totalAmount = cap
+				end
+			end
+		end
+	end
 end, 49)
