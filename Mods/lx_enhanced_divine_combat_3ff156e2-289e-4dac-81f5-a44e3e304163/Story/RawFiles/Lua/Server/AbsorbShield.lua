@@ -8,11 +8,18 @@ Ext.Osiris.RegisterListener("NRD_OnStatusAttempt", 4, "before", function(target,
             potion = Ext.Stats.Get(entry.StatsId)
         end
     end 
+    local target = Ext.Entity.GetCharacter(target)
     if potion and potion.VP_AbsorbShieldValue ~= 0 then
-        local shield = Ext.PrepareStatus(target, "LX_SHIELD_"..string.upper(potion.VP_AbsorbShieldType), potion.Duration * 6.0)
-        shield.StatsMultiplier = Helpers.ScalingFunctions[potion.VP_AbsorbShieldScaling](Ext.Entity.GetCharacter(target).Stats.Level) * (potion.VP_AbsorbShieldValue / 100)
-        Helpers.VPPrint(shield.StatsMultiplier, "AbsorbShield")
-        Ext.ApplyStatus(shield)
+        local shield = target:GetStatus("LX_SHIELD_"..string.upper(potion.VP_AbsorbShieldType))
+        if shield then
+            shield.StatsMultiplier = shield.StatsMultiplier + Helpers.ScalingFunctions[potion.VP_AbsorbShieldScaling](Ext.Entity.GetCharacter(target).Stats.Level) * (potion.VP_AbsorbShieldValue / 100)
+            shield.LifeTime = shield.LifeTime + potion.Duration * 6.0
+        else
+            local shield = Ext.PrepareStatus(target, "LX_SHIELD_"..string.upper(potion.VP_AbsorbShieldType), potion.Duration * 6.0)
+            shield.StatsMultiplier = Helpers.ScalingFunctions[potion.VP_AbsorbShieldScaling](Ext.Entity.GetCharacter(target).Stats.Level) * (potion.VP_AbsorbShieldValue / 100)
+            Helpers.VPPrint(shield.StatsMultiplier, "AbsorbShield")
+            Ext.ApplyStatus(shield)
+        end
     end
 end)
 
