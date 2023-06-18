@@ -3,6 +3,7 @@ Data.Math = {}
 --[[
     Character stats related formulas
 ]]
+
 --- @param character EsvCharacter|EclCharacter
 Data.Math.ComputeCharacterWisdom = function(character)
 	local equipmentWisdom = 0
