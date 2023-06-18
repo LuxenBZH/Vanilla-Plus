@@ -5,26 +5,68 @@ Data.Math = {}
 ]]
 --- @param character EsvCharacter|EclCharacter
 Data.Math.ComputeCharacterWisdom = function(character)
+	local equipmentWisdom = 0
+	for i,j in pairs(Helpers.EquipmentSlots) do
+		local item = character.Stats:GetItemBySlot(j)
+		if item then
+			equipmentWisdom = equipmentWisdom + tonumber(item.VP_WisdomBoost)
+		end
+	end
+	local statusesWisdom = 0
+	for i,j in pairs(character:GetStatuses()) do
+		local statsId = Ext.Stats.Get(j).StatsId
+		if statsId ~= "" then
+			statusesWisdom = statusesWisdom + tonumber(Ext.Stats.Get(statsId).VP_WisdomBoost)
+		end
+	end
     return (math.min(
         (character.Stats.Intelligence - Ext.ExtraData.AttributeBaseValue) * Ext.ExtraData.DGM_IntelligenceWisdomFromWitsCap,
         (character.Stats.Wits - Ext.ExtraData.AttributeBaseValue) * Ext.ExtraData.DGM_WitsWisdomBonus) +
-        character.Stats.WaterSpecialist * Ext.ExtraData.SkillAbilityVitalityRestoredPerPoint) / 100 + 1
+        character.Stats.WaterSpecialist * Ext.ExtraData.SkillAbilityVitalityRestoredPerPoint + equipmentWisdom + statusesWisdom) / 100 + 1
 end
 
 --- @param character EsvCharacter|EclCharacter
 Data.Math.ComputeCharacterWisdomArmor = function(character)
+	local equipmentWisdom = 0
+	for i,j in pairs(Helpers.EquipmentSlots) do
+		local item = character.Stats:GetItemBySlot(j)
+		if item then
+			equipmentWisdom = equipmentWisdom + tonumber(item.VP_ArmorRegenBoost)
+		end
+	end
+	local statusesWisdom = 0
+	for i,j in pairs(character:GetStatuses()) do
+		local statsId = Ext.Stats.Get(j).StatsId
+		if statsId ~= "" then
+			statusesWisdom = statusesWisdom + tonumber(Ext.Stats.Get(statsId).VP_ArmorRegenBoost)
+		end
+	end
     return (math.min(
         (character.Stats.Intelligence - Ext.ExtraData.AttributeBaseValue) * Ext.ExtraData.DGM_IntelligenceWisdomFromWitsCap,
         (character.Stats.Wits - Ext.ExtraData.AttributeBaseValue) * Ext.ExtraData.DGM_WitsWisdomBonus) +
-        character.Stats.EarthSpecialist * Ext.ExtraData.SkillAbilityArmorRestoredPerPoint) / 100 + 1
+        character.Stats.EarthSpecialist * Ext.ExtraData.SkillAbilityArmorRestoredPerPoint + equipmentWisdom + statusesWisdom) / 100 + 1
 end
 
 --- @param character EsvCharacter|EclCharacter
 Data.Math.ComputeCharacterWisdomMagicArmor = function(character)
+	local equipmentWisdom = 0
+	for i,j in pairs(Helpers.EquipmentSlots) do
+		local item = character.Stats:GetItemBySlot(j)
+		if item then
+			equipmentWisdom = equipmentWisdom + tonumber(item.VP_MagicArmorRegenBoost)
+		end
+	end
+	local statusesWisdom = 0
+	for i,j in pairs(character:GetStatuses()) do
+		local statsId = Ext.Stats.Get(j).StatsId
+		if statsId ~= "" then
+			statusesWisdom = statusesWisdom + tonumber(Ext.Stats.Get(statsId).VP_MagicArmorRegenBoost)
+		end
+	end
     return (math.min(
         (character.Stats.Intelligence - Ext.ExtraData.AttributeBaseValue) * Ext.ExtraData.DGM_IntelligenceWisdomFromWitsCap,
         (character.Stats.Wits - Ext.ExtraData.AttributeBaseValue) * Ext.ExtraData.DGM_WitsWisdomBonus) +
-        character.Stats.WaterSpecialist * Ext.ExtraData.SkillAbilityArmorRestoredPerPoint) / 100 + 1
+        character.Stats.WaterSpecialist * Ext.ExtraData.SkillAbilityArmorRestoredPerPoint + equipmentWisdom + statusesWisdom) / 100 + 1
 end
 
 Data.Stats.HealType = {

@@ -126,6 +126,23 @@ Helpers.CharacterGetAbsorbShield = function(character, damageType)
 	return character:GetStatus("LX_SHIELD_"..string.upper(damageType))
 end
 
+Helpers.EquipmentSlots = {
+	 "Helmet",
+	 "Breast",
+	 "Leggings",
+	 "Weapon",
+	 "Shield",
+	 "Ring",
+	 "Belt",
+	 "Boots",
+	 "Gloves",
+	 "Amulet",
+	 "Ring2",
+	 "Wings",
+	 "Horns",
+	 "Overhead",
+}
+
 function DamageTypeEnum()
 	local enum = {
 		"Physical",
