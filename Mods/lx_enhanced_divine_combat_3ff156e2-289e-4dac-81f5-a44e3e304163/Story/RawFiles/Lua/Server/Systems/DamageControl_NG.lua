@@ -259,6 +259,47 @@ else
 	Mods.LeaderLib.HitOverrides.DoHit = DoHit
 end
 
+---@param attacker CDivinityStatsCharacter
+---@param target CDivinityStatsCharacter
+local function DGM_HitChanceFormula(attacker, target)
+	local hitChance = attacker.Accuracy - target.Dodge + attacker.ChanceToHitBoost
+    -- Make sure that we return a value in the range (0% .. 100%)
+	hitChance = math.max(math.min(hitChance, 100), 0)
+    return hitChance
+end
+
+--- @param e LuaGetHitChanceEvent
+Ext.Events.GetHitChance:Subscribe(function(e)
+	DGM_HitChanceFormula(e.Attacker, e.Target)
+end)
+
+--- @param attacker StatCharacter
+--- @param target StatCharacter
+function DGM_CalculateHitChance(attacker, target)
+    if attacker.TALENT_Haymaker then
+		local diff = 0
+		if attacker.MainWeapon then
+			diff = diff + math.max(0, (attacker.MainWeapon.Level - attacker.Level))
+		end
+		if attacker.OffHandWeapon then
+			diff = diff + math.max(0, (attacker.OffHandWeapon.Level - attacker.Level))
+		end
+        return 100 - diff * Ext.ExtraData.WeaponAccuracyPenaltyPerLevel
+	end
+	
+    local accuracy = attacker.Accuracy
+	local dodge = target.Dodge
+	if target.Character:GetStatus("KNOCKED_DOWN") and dodge > 0 then
+		dodge = 0
+	end
+
+	local chanceToHit1 = accuracy - dodge
+	chanceToHit1 = math.max(0, math.min(100, chanceToHit1))
+    return chanceToHit1 + attacker.ChanceToHitBoost
+end
+
+Game.Math.CalculateHitChance = DGM_CalculateHitChance
+
 
 ---- Elemental Ranger and Gladiator fix
 local surfaceDamageMapping = {
@@ -317,6 +358,7 @@ Ext.Events.ComputeCharacterHit:Subscribe(function(e)
 		end
 		e.Hit.Missed = true
 		Game.Math.ComputeCharacterHit(e.Target, e.Attacker, e.Weapon, e.DamageList, e.HitType, e.NoHitRoll, e.ForceReduceDurability, e.Hit, e.AlwaysBackstab, e.HighGround, e.CriticalRoll)
+	--- Gladiator
 	elseif e.Attacker and e.Attacker.TALENT_Gladiator and e.NoHitRoll and e.HitType == "Melee" and not e.Hit.HitWithWeapon then
 		e.NoHitRoll = false
 		local hit = Game.Math.ComputeCharacterHit(e.Target, e.Attacker, e.Weapon, e.DamageList, e.HitType, e.NoHitRoll, e.ForceReduceDurability, e.Hit, e.AlwaysBackstab, e.HighGround, e.CriticalRoll) ---@type EsvStatusHit
@@ -329,6 +371,23 @@ Ext.Events.ComputeCharacterHit:Subscribe(function(e)
 			e.Handled = true
 		end
 		Osi.ProcObjectTimer(e.Attacker.Character.MyGuid, "LX_GladiatorFollowFix", 1000)
+	--- Source Target hit chance roll fix
+	elseif e.Attacker and string.starts(e.SkillProperties.Name, "Target_") then
+		local skill = string.gsub(e.SkillProperties.Name, "_SkillProperties", "")
+		local stat = Ext.Stats.Get(skill)
+		if stat['Magic Cost'] > 0 then
+			e.NoHitRoll = false
+			local isDodged = Game.Math.CalculateHitChance(e.Attacker, e.Target)
+			local hit = Game.Math.ComputeCharacterHit(e.Target, e.Attacker, e.Weapon, e.DamageList, e.HitType, e.NoHitRoll, e.ForceReduceDurability, e.Hit, e.AlwaysBackstab, e.HighGround, e.CriticalRoll) ---@type EsvStatusHit
+			if isDodged then
+				e.Hit.Missed = true
+				e.Hit.Hit = false
+				e.Hit.DontCreateBloodSurface = true
+			end
+			if not e.Handled and hit then
+				e.Handled = true
+			end
+		end
 	end
 	if IsTagged(e.Target.MyGuid, "LX_IsCounterAttacking") == 1 then
 		ClearTag(e.Target.MyGuid, "LX_IsCounterAttacking")
