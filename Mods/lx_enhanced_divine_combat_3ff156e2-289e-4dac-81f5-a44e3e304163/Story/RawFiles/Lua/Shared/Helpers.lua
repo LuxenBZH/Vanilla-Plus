@@ -23,9 +23,11 @@ end
 --- @param character EsvCharacter
 Helpers.HasCounterAttacked = function(character)
 	local combat = Ext.ServerEntity.GetCombat(CombatGetIDForCharacter(character.MyGuid))
-	for i, team in pairs(combat:GetNextTurnOrder()) do
-		if team.Character.MyGuid == character.MyGuid then
-			return team.EntityWrapper.CombatComponentPtr.CounterAttacked
+	if combat then
+		for i, team in pairs(combat:GetNextTurnOrder()) do
+			if team.Character.MyGuid == character.MyGuid then
+				return team.EntityWrapper.CombatComponentPtr.CounterAttacked
+			end
 		end
 	end
 end
@@ -34,9 +36,11 @@ end
 --- @param flag boolean
 Helpers.SetHasCounterAttacked = function(character, flag)
 	local combat = Ext.ServerEntity.GetCombat(CombatGetIDForCharacter(character.MyGuid))
-	for i, team in pairs(combat:GetNextTurnOrder()) do
-		if team and team.Character.MyGuid == character.MyGuid then
-			team.EntityWrapper.CombatComponentPtr.CounterAttacked = flag
+	if combat then
+		for i, team in pairs(combat:GetNextTurnOrder()) do
+			if team and team.Character.MyGuid == character.MyGuid then
+				team.EntityWrapper.CombatComponentPtr.CounterAttacked = flag
+			end
 		end
 	end
 end

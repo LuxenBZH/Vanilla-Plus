@@ -68,7 +68,6 @@ end
 ---@param target EsvCharacter
 ---@param damages table
 function HitManager:InitiatePassingDamage(target, damages)
-	_P(target, damages)
 	if getmetatable(target) ~= "esv::Character" then
 		return
 	end
@@ -104,7 +103,7 @@ local function DamageControl(target, instigator, hitDamage, handle)
     flags.IsWeaponAttack = hit.Hit.HitWithWeapon
 	flags.IsStatusDamage = NRD_StatusGetInt(target.MyGuid, handle, "DoT")
 
-	if (hit.SkillId == "Projectile_Talent_Unstable" and IsTagged(instigator.MyGuid, "LX_UNSTABLE_COOLDOWN") == 1) 
+	if (skill.Name == "Projectile_Talent_Unstable" and IsTagged(instigator.MyGuid, "LX_UNSTABLE_COOLDOWN") == 1) 
 	 or flags.Blocked then
 		return 
 	end
@@ -162,6 +161,13 @@ end
 Ext.RegisterOsirisListener("NRD_OnHit", 4, "before", DamageControl)
 
 --- Fix the original DoHit that is
+--- @param hit HitRequest
+--- @param damageList DamageList
+--- @param statusBonusDmgTypes DamageList
+--- @param hitType string HitType enumeration
+--- @param target StatCharacter
+--- @param attacker StatCharacter
+--- @param ctx HitCalculationContext
 local function DoHit(hit, damageList, statusBonusDmgTypes, hitType, target, attacker, ctx)
 	hit.Hit = true;
 	damageList:AggregateSameTypeDamages()
@@ -352,12 +358,11 @@ Ext.Events.ComputeCharacterHit:Subscribe(function(e)
 			e.DamageList:CopyFrom(damageList)
 			e.Hit.ArmorAbsorption = Game.Math.ComputeArmorDamage(damageList, e.Target.CurrentArmor)
 			e.Hit.ArmorAbsorption = e.Hit.ArmorAbsorption + Game.Math.ComputeMagicArmorDamage(damageList, e.Target.CurrentMagicArmor)
+			if not e.Handled then
+				e.Handled = true
+			end
+			Game.Math.ComputeCharacterHit(e.Target, e.Attacker, e.Weapon, e.DamageList, e.HitType, e.NoHitRoll, e.ForceReduceDurability, e.Hit, e.AlwaysBackstab, e.HighGround, e.CriticalRoll)
 		end
-		if not e.Handled then
-			e.Handled = true
-		end
-		e.Hit.Missed = true
-		Game.Math.ComputeCharacterHit(e.Target, e.Attacker, e.Weapon, e.DamageList, e.HitType, e.NoHitRoll, e.ForceReduceDurability, e.Hit, e.AlwaysBackstab, e.HighGround, e.CriticalRoll)
 	--- Gladiator
 	elseif e.Attacker and e.Attacker.TALENT_Gladiator and e.NoHitRoll and e.HitType == "Melee" and not e.Hit.HitWithWeapon then
 		e.NoHitRoll = false
@@ -372,17 +377,19 @@ Ext.Events.ComputeCharacterHit:Subscribe(function(e)
 		end
 		Osi.ProcObjectTimer(e.Attacker.Character.MyGuid, "LX_GladiatorFollowFix", 1000)
 	--- Source Target hit chance roll fix
-	elseif e.Attacker and string.starts(e.SkillProperties.Name, "Target_") then
+	elseif e.Attacker and e.SkillProperties and string.match(e.SkillProperties.Name, "Target_") == "Target_" then
 		local skill = string.gsub(e.SkillProperties.Name, "_SkillProperties", "")
 		local stat = Ext.Stats.Get(skill)
-		if stat['Magic Cost'] > 0 then
+		if stat['Magic Cost'] > 0 and stat.UseWeaponDamage == "Yes" then
 			e.NoHitRoll = false
-			local isDodged = Game.Math.CalculateHitChance(e.Attacker, e.Target)
+			local isDodged = Game.Math.CalculateHitChance(e.Attacker, e.Target) < math.random(0, 99)
 			local hit = Game.Math.ComputeCharacterHit(e.Target, e.Attacker, e.Weapon, e.DamageList, e.HitType, e.NoHitRoll, e.ForceReduceDurability, e.Hit, e.AlwaysBackstab, e.HighGround, e.CriticalRoll) ---@type EsvStatusHit
 			if isDodged then
 				e.Hit.Missed = true
 				e.Hit.Hit = false
 				e.Hit.DontCreateBloodSurface = true
+			else
+				e.Hit.Hit = true
 			end
 			if not e.Handled and hit then
 				e.Handled = true
