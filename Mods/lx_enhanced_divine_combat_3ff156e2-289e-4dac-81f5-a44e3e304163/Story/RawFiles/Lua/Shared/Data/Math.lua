@@ -15,9 +15,11 @@ Data.Math.ComputeCharacterWisdom = function(character)
 	end
 	local statusesWisdom = 0
 	for i,j in pairs(character:GetStatuses()) do
-		local statsId = Ext.Stats.Get(j).StatsId
-		if statsId ~= "" then
-			statusesWisdom = statusesWisdom + tonumber(Ext.Stats.Get(statsId).VP_WisdomBoost)
+		if NRD_StatExists(j) then
+			local statsId = Ext.Stats.Get(j).StatsId
+			if statsId ~= "" then
+				statusesWisdom = statusesWisdom + tonumber(Ext.Stats.Get(statsId).VP_WisdomBoost)
+			end
 		end
 	end
     return (math.min(
@@ -37,9 +39,11 @@ Data.Math.ComputeCharacterWisdomArmor = function(character)
 	end
 	local statusesWisdom = 0
 	for i,j in pairs(character:GetStatuses()) do
-		local statsId = Ext.Stats.Get(j).StatsId
-		if statsId ~= "" then
-			statusesWisdom = statusesWisdom + tonumber(Ext.Stats.Get(statsId).VP_ArmorRegenBoost)
+		if NRD_StatExists(j) then
+			local statsId = Ext.Stats.Get(j).StatsId
+			if statsId ~= "" then
+				statusesWisdom = statusesWisdom + tonumber(Ext.Stats.Get(statsId).VP_ArmorRegenBoost)
+			end
 		end
 	end
     return (math.min(
@@ -59,9 +63,11 @@ Data.Math.ComputeCharacterWisdomMagicArmor = function(character)
 	end
 	local statusesWisdom = 0
 	for i,j in pairs(character:GetStatuses()) do
-		local statsId = Ext.Stats.Get(j).StatsId
-		if statsId ~= "" then
-			statusesWisdom = statusesWisdom + tonumber(Ext.Stats.Get(statsId).VP_MagicArmorRegenBoost)
+		if NRD_StatExists(j) then
+			local statsId = Ext.Stats.Get(j).StatsId
+			if statsId ~= "" then
+				statusesWisdom = statusesWisdom + tonumber(Ext.Stats.Get(statsId).VP_MagicArmorRegenBoost)
+			end
 		end
 	end
     return (math.min(

@@ -204,9 +204,9 @@ Ext.Osiris.RegisterListener("NRD_OnStatusAttempt", 4, "before", function(target,
         local stat = Ext.Stats.Get(s.StatusId)
         if stat.HealType ~= "Qualifier" then return end
         local bonus = Data.Stats.HealType[stat.HealStat](healer)
-        _P("HealAmount", Data.Math.GetHealValue(stat, healer), bonus)
+        -- _P("HealAmount", Data.Math.GetHealValue(stat, healer), bonus)
         s.HealAmount = Ext.Utils.Round(Data.Math.GetHealValue(stat, healer) * bonus)
-        _P("ScaledAmount", s.HealAmount)
+        -- _P("ScaledAmount", s.HealAmount)
     elseif status == "LIFESTEAL" then
         s.HealAmount = Ext.Utils.Round(s.HealAmount / (1 + healer.Stats.WaterSpecialist * Ext.ExtraData.SkillAbilityVitalityRestoredPerPoint / 100))
     end

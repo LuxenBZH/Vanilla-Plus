@@ -3,7 +3,7 @@
 --- @param character EclCharacter
 --- @param status EclStatus
 local function OnStatusTooltip(e, tooltip, character, status)
-    if status and status.StatsId and status.StatsId ~= "" and NRD_StatExists(status.StatsId) == 1 then
+    if status and status.StatsId and status.StatsId ~= "" and Ext.Stats.Get(status.StatsId, nil, false) then
         local potion = Ext.Stats.Get(status.StatsId)
         if potion.VP_WisdomBoost ~= 0 then
             local bonusType = potion.VP_WisdomBoost > 0 and "StatusBonus" or "StatusMalus"
