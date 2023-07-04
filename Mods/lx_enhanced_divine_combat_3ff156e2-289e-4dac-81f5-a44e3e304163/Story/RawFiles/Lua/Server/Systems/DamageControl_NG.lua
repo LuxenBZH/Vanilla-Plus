@@ -510,4 +510,41 @@ HitManager:RegisterHitListener("DGM_Hit", "AfterDamageScaling", "DGM_AbsorbShiel
 			end
 		end
 	end
+	--- Consecutive hit damage multiplier
+	if hit.SkillId ~= "" then
+		local stat = Ext.Stats.Get(string.sub(hit.SkillId, 1, string.len(hit.SkillId)-3))
+		if stat.VP_ConsecutiveDamageReductionPercent ~= 0 then
+			if stat.VP_ConsecutiveDamageReductionHitAmount > 0 then
+				if not target.UserVars.VP_ConsecutiveHitFromSkill then
+					target.UserVars.VP_ConsecutiveHitFromSkill = {ID = instigator.UserVars.VP_LastSkillID.ID, Amount = 1, OnGoing = true}
+				else
+					if target.UserVars.VP_ConsecutiveHitFromSkill.ID ~= instigator.UserVars.VP_LastSkillID.ID then
+						target.UserVars.VP_ConsecutiveHitFromSkill = {ID = instigator.UserVars.VP_LastSkillID.ID, Amount = 1, OnGoing = true}
+					else
+						target.UserVars.VP_ConsecutiveHitFromSkill.Amount = target.UserVars.VP_ConsecutiveHitFromSkill.Amount + 1
+						target.UserVars.VP_ConsecutiveHitFromSkill.OnGoing = true
+					end
+				end
+				Osi.ProcObjectTimer(target.MyGuid, "VP_ConsecutiveHit_"..tostring(target.UserVars.VP_ConsecutiveHitFromSkill.ID), 500)
+			end
+			local hits = target.UserVars.VP_ConsecutiveHitFromSkill.Amount
+			if hits >= stat.VP_ConsecutiveDamageReductionHitAmount then
+				Helpers.VPPrint("Combo detected! Current multiplier:", "DamageControl:ComboDamageMultiplier", math.max(1 - (hits - math.max(stat.VP_ConsecutiveDamageReductionHitAmount, 0))*(stat.VP_ConsecutiveDamageReductionPercent/100), 0))
+				HitHelpers.HitMultiplyDamage(hit.Hit, target, instigator, math.max(1 - (hits - math.max(stat.VP_ConsecutiveDamageReductionHitAmount, 0))*(stat.VP_ConsecutiveDamageReductionPercent/100), 0))
+			end
+		end
+	end
 end, 49)
+
+--- @param character GUID
+--- @param event string
+Ext.Osiris.RegisterListener("ProcObjectTimerFinished", 2, "after", function(character, event)
+    if string.gmatch(event, "VP_ConsecutiveHit_") ~= "VP_ConsecutiveHit_" or character == "00000000-0000-0000-0000-000000000000" or ObjectExists(character) == 0 then return end
+    local character = Ext.Entity.GetCharacter(character)
+	if character.UserVars.VP_ConsecutiveHitFromSkill.OnGoing then
+		character.UserVars.VP_ConsecutiveHitFromSkill.OnGoing = false
+		Osi.ProcObjectTimer(target.MyGuid, "VP_ConsecutiveHit_"..tostring(target.VP_ConsecutiveHitFromSkill.ID), 500)
+	else
+		character.UserVars.VP_ConsecutiveHitFromSkill = nil
+	end
+end)
