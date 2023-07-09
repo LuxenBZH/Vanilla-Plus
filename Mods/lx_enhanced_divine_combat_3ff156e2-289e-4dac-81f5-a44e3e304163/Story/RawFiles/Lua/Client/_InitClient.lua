@@ -7,6 +7,7 @@ Ext.Require("Client/LL_Tooltips.lua")
 
 Ext.Require("Client/Talents/TalentManager.lua")
 Ext.Require("Client/Talents/GamepadSupport.lua")
+Ext.Require("Client/Talents/TalentMechanics.lua")
 Ext.Require("Client/Modules/DivineTalentsClient.lua")
 
 Ext.Require("Client/Fixes/ClientCasting.lua")

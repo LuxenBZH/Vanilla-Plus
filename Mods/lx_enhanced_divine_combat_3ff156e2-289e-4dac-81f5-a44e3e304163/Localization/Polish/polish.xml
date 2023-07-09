@@ -20,7 +20,7 @@
 	<content contentuid="h0f9a9124g20a8g430egaaaege3de06266056">Walk It Off (2)</content>
 	<content contentuid="h0fe63523g3caeg4e46g8152geabd390080af">Receive Sparkstriker status. This causes your melee attacks to create a Spark projectile that bounces off the initial target to hit the closest enemy, dealing [1].</content>
 	<content contentuid="h169eda41gad02g4143g997eg29c0cee15c14">Walk It Off (3)</content>
-	<content contentuid="h18f97d5bg9a79g4917g809dgb0ac7a5ec302">Increases all damage by [1]% per point. Damage dealt with weapons are further increased by [2]% (including weapon-based skills). Each point invested increase the resistance bypass multiplier by [3]%. Allows you to lift and carry heavier items.</content>
+	<content contentuid="h18f97d5bg9a79g4917g809dgb0ac7a5ec302">Increases all damage by [1]% per point. Damage dealt with weapons (except wands) are further increased by [2]%. Increases the maximum Ingress bonus from Intelligence by 1. Allows you to lift and carry heavier items.</content>
 	<content contentuid="h19525dddg3cadg4699g94d2g342b1192a332">Set the target distance threshold which defines when do ranged weapons gets a penalty.&lt;br&gt;Default : 2&lt;br&gt;</content>
 	<content contentuid="h195e0642ge46ag4d02g85ecg20a8a0012104">Each ally consumes oil surfaces around them, converting the oil surfaces to Physical Armour. If they are Slowed or Petrified, they restore an additional 30% Physical Armour. Removes Slowed, Petrified and Stunned.</content>
 	<content contentuid="h19eab510gec8cg4d4fg92fag5918044ab001">Default : 3</content>
@@ -33,6 +33,7 @@
 	<content contentuid="h1e5caa33g4d5dg4f42g91edg9f546d42f56b">Increases all Skill damage by [1]%.</content>
 	<content contentuid="h206ce4abg4f84g4b2dg934aga0d96a602f2c">Two-Handed increases damage and Critical Multiplier when using two-handed melee weapons (swords, axe, mace, spear or staff).</content>
 	<content contentuid="h22a39843gf968g4212g851dg6e121235fa85">Bless target character or surface. Prevent Diseased, Decaying, Petrified, Stunned, increase Dodge by [1]%, Accuracy by [2]% and elemental resistances by [3].</content>
+	<content contentuid="h2443a42egd7abg4116g95b4g8036050c3bd3">Next Level [1]: Physical attacks deal +[2]% more damage, Warmup accuracy bonus increased by [3]% and movement bonus is increased by [4]% per stack.</content>
 	<content contentuid="h2512e452g4bdcg4631g9f32g67f9b6e5fc99">Divine Talents Plus</content>
 	<content contentuid="h278b2bccg1afcg4314gbfcbgb10105ebc12b">When resurrected, you resurrect to full health. When your turn is skipped because of incapacitating effect(s), you start your next turn with 2 additional AP.</content>
 	<content contentuid="h278d3a4fg4dceg4362g9b35g9c3685c93268">The damage you inflict when successfully hitting an enemy or object.</content>
@@ -46,7 +47,7 @@
 	<content contentuid="h2e87e6cfg0183g4968g8ec1g325614c7d9fa">+[1] point(s) = +[2]% to all Damage, +[3]% Dodge, +[4]m of movement per AP and +[5]% Critical Chance.</content>
 	<content contentuid="h2e8803d0g3b27g470dgb836g26fcbeb60714">Activate Jump fall damage</content>
 	<content contentuid="h2ea5f141g4d43g49b8g8d6agd365b90a0d6d">Dodge Fatigue (4)</content>
-	<content contentuid="h2f00286fg98feg42abg84a5gb9d4fcce838e">Your chance to hit an enemy. On miss, you trigger Warmup which increase your Accuracy by your Intelligence attribute, stackable up to 4 times.</content>
+	<content contentuid="h2f00286fg98feg42abg84a5gb9d4fcce838e">Your chance to hit an enemy. On miss, you trigger Warmup which increase your Accuracy and Movement (improved by Warfare), stackable up to 4 times.</content>
 	<content contentuid="h2f904fe7g83d0g4d51g8bcfgd6b561ba92e3">Magnificent horns sprout from your forehead, making you see red. You can rush at your enemies and gore them. Increases Retribution ability by 2 for the duration.</content>
 	<content contentuid="h314ee256g43cdg4864ga519gd23e909ec63e">Increase all Skill damage by [1]%.&lt;br&gt;Wands attacks do [2]% more damage of the type of the surface and the cloud the character is standing in.</content>
 	<content contentuid="h31d2a547g005bg4ee3g8d2ag47720bd4fa1a">Gain 2 Action Points immediately, but lose 3 Action Points next turn. Any Action Points over your maximum are lost.</content>
@@ -56,6 +57,7 @@
 	<content contentuid="h34fa90bdg6d1fg4ee8gb3e7g8c3694c70fae">At the start of an encounter, you gain one of two statuses: Cycle of Fire and Water or Cycle of Earth and Air. Cycle of Fire and Water increases your Pyrokinetic and Hydrosophist by 3. Cycle of Earth and Air increases your Geomancy and Aerotheurgy by 3. Statuses swap each turn.</content>
 	<content contentuid="h362a94a5g0b60g4be6g9998gd44214d4a78f">Sacrifice yourself to bring an ally back to life. Reduce your Vitality to 1 and ressurrects target character with maximum Vitality.</content>
 	<content contentuid="h36683e27ge1cag45f9gb7ddgdf954e865e33">Default : 2</content>
+	<content contentuid="h3886606fg0cc0g49b9g9bbcg3ea8baa4c040">[1] lowers the Action Point cost of spells by [2] when standing in a surface or cloud of the same element, once per turn.</content>
 	<content contentuid="h39ded39fg40a6g46a1gafe4gbaf448e4f20a">Last armour penetration</content>
 	<content contentuid="h3c306881g0106g4b61g931eg1e837bca6149">Walk It Off (5)</content>
 	<content contentuid="h3d077707gcc2cg4b6eg808agda8c3a0384a8">Demon (Bonus)</content>
@@ -109,10 +111,10 @@
 	<content contentuid="h656cf1ffgd118g40b8g9b1bgaa270b84bec8">Enemies can only be targeted if one of their armour is depleted.</content>
 	<content contentuid="h69b87598gf85eg4c63g9533ga0aa699de1ce">Warning ! Changing the vitality scaling will break the vitality of the characters on the current map (in story mode) or on all scenes (in GM mode). It is highly recommended that you enable this option during the character creation before starting the game, or if you are in GM mode before creating your scenes. Proceed ?</content>
 	<content contentuid="h6a4d6da0g29cfg44ecg8913g5a0a76cf1bbd">Arrow Recovery provides a 33% chance to recover a special arrow after shooting it, and removes the close-quarters damage penalty of ranged weapons.</content>
-	<content contentuid="h6b67efcagf943g43a1g959eg36f9ecc42e7e">Increases all damage by [1]% per point. Damage dealt by skills is further increased by [2]% (including weapon-based skills) and Accuracy by [3]% per point. Each point also makes attacks ignore resistance by the multiplier set by your Strength as long as the target resistance is under 100%. Each point also increase the Accuracy given by Warmup by 1%</content>
+	<content contentuid="h6b67efcagf943g43a1g959eg36f9ecc42e7e">Increases all damage by [1]% per point. Damage dealt by skills is further increased by [2]% (but also wands) and Accuracy by [3]% per point. Each point also increase Ingress by 1, up to the limit set by Strength (currently [4]).</content>
 	<content contentuid="h6c5806e8g7bccg4ecdg959eg254d17edbd71">This character has already drunk one potion during their turn. Drinking another potion before the end of the turn will have side effects.</content>
 	<content contentuid="h6d219e8ag59abg4adegbf53g2f73649ee312">The correction indice for damaging attribute if there is a tie between two or all three damaging attributes for NPCs. The higher it is, the lower will be the final result.&lt;br&gt;Default : 60&lt;br&gt;&lt;font color=#ff0000&gt;Require a game restart&lt;/font&gt;</content>
-	<content contentuid="h6d2cd8aeg4e09g4003ga57cg3fea3a0f5502">Wits increase your Critical Chance by [1]%, Initiative by [2], increase damages dealt by damaging statuses by [3]% per point and your ability to detect traps and find hidden treasures.</content>
+	<content contentuid="h6d2cd8aeg4e09g4003ga57cg3fea3a0f5502">Wits increase your Critical Chance by [1]%, Initiative by [2], increase damages dealt by damaging statuses by [3]% per point and your ability to detect traps and find hidden treasures. Increases Healing power by [4]%.</content>
 	<content contentuid="h6d523ea5g116eg4380g816fg72079d80f321">Set the skill damage multplier pencetage when a wand is equipped (can be doubled when dual-wielding).&lt;br&gt;Default : 5</content>
 	<content contentuid="h6d76eb15gdb1ag4ebeg8001g58173516a923">Walk It Off reduces all status durations by 1 turn, including positive statuses. Does not affect statuses with a duration of 1 turn. Also increases elemental resistances by 8% and Physical and Piercing resistances by 4% each time you are directly hit by a character, up to a maximum of 3 times until the next turn.</content>
 	<content contentuid="h6e9ec88dgcbb7g426bgb1d9g69df0240825a">Level [1]: +[2]% Damage, +[3]% Critical Multiplier.</content>
@@ -123,7 +125,7 @@
 	<content contentuid="h730eb29cgf6a6g4efcg8625g1b7d95925932">Perseverance Resistance Bonus per point.&lt;br&gt;Default : 5&lt;br&gt;</content>
 	<content contentuid="h74f2f4d1gb916g4bccgb635g264d3444d84b">Perseverance Vitality Restoration</content>
 	<content contentuid="h751cb9fcgcc15g485fg80dag96d013bb5fff">Single-Handed increases damage and Accuracy when using a single-handed weapon (dagger, sword, axe, mace or wand) with a shield or empty off-hand. Also increases armours and resistances.</content>
-	<content contentuid="h75391bafg8744g4441g9b1egf52f182f96fc">Increases all damage by [1]% per point. Dodge is increased by [2]%, Critical Chance by [3]% and Movement by [4]m per AP per point.</content>
+	<content contentuid="h75391bafg8744g4441g9b1egf52f182f96fc">Increases all damage by [1]% per point. Dodge is increased by [2]%, Critical Multiplier by [3]% and Movement by [4]m per AP per point.</content>
 	<content contentuid="h753b1b3fgdfdfg428fg90e0g9e631beb1f06">Strength Global Damage Bonus</content>
 	<content contentuid="h75422cb0g14ccg4731g89a7gae632f7669a8">Str. Resistance Bypass Multiplier</content>
 	<content contentuid="h7579318fg2a13g4185g856bgad8960145220">Confused (2)</content>
@@ -139,6 +141,8 @@
 	<content contentuid="h7e7b669dged21g4b8ag8a44g32bede9e51ae">Consume frozen surfaces around you and convert them to Magic Armour. If you are Chilled or Frozen, you restore an additional 30% Magic Armour. Remove Chilled, Frozen, Burning and Necrofire.</content>
 	<content contentuid="h7fec5db8g58d3g4abbgab7ag03e19b542bef">Total damage: [1]-[2]</content>
 	<content contentuid="h80149363gb072g4531gae22gf187147b9c44">CC Recover Duration</content>
+	<content contentuid="h8071c537g81a0g4ba8g989dg148af4e03af8">Absorb the next incoming [2].</content>
+	<content contentuid="h8124ee04g9685g465ag99f3g2f8043bd74db">Prevent statuses which grants a death resist effect to be applied.</content>
 	<content contentuid="h81ca938fg5ef4g452agb093g1294e2f0718b">Leech heals you when standing in blood. Also increases Lifesteal by 25%.</content>
 	<content contentuid="h8256bf13gb4cag4662gaafegb5724b210c92">[1] grants Dodging and Resistance bonuses to all allies in a 16m radius.</content>
 	<content contentuid="h8271feceg6b6cg470cg8c8fg5de1ee77a76b">Set the percentage of damage going through armours.&lt;br&gt;Default : 50</content>
@@ -170,6 +174,7 @@
 	<content contentuid="ha418e064g2d69g4407gadc2gf2f590f0e895">From Strength weapon bonus : [1]%</content>
 	<content contentuid="ha422c4f4ge2bbg4cbcgbbf3g505c7ce673d1">+[1] point(s) = +[2]% Critical Chance, +[3] Initiative and +[4]% to statuses inflicting damages.</content>
 	<content contentuid="ha4a2351eg24cdg4f68g8ef6gb7ee91c0c08e">Default : 2&lt;br&gt;&lt;font color=#ff0000&gt;Require a game restart&lt;/font&gt;</content>
+	<content contentuid="ha4b72525g51d5g434cgbdf9g3a4ec57319aa">Level [1]: Physical attacks deal +[2]% more damage, Warmup accuracy bonus increased by [3]% and movement bonus is increased by [4]% per stack.</content>
 	<content contentuid="ha4cfd852g52f1g4079g8919gd392ac8ade1a">Damage is based on your basic attack and trigger the additional bonus from both Strength and Intelligence.</content>
 	<content contentuid="ha6375589ga989g4860g8d73g58af60e32ce9">The number of potions you need to drink in the same turn before receiving a warning of dizziness. Set to 0 to immediatly get a penalty after the first potion, and -1 to make potions usage brutally punishing. Default : 1.</content>
 	<content contentuid="ha6f17eacgbfdbg4cc2g9734g87d7801fe648">Revert Chameleon Cloak ability requirements to Polymorph 1 only.&lt;br&gt;Default : off&lt;br&gt;&lt;font color=#ff0000&gt;Require a game restart&lt;/font&gt;</content>
@@ -180,7 +185,9 @@
 	<content contentuid="hae2334ccg2f64g45aaga94dgf4ce0f03a7a6">Warmup (3)</content>
 	<content contentuid="hae29de3agcf14g44f7g9020g90e1fd77694d">If deactivated, you will be able to use custom attributes bonuses. Not recommended if you want to keep an overall balanced experience unless you really know what you are doing.&lt;br&gt;Default : on</content>
 	<content contentuid="hae68ba97g6072g46fagb9d3g7c289a0e7511">Magnificent horns sprout from your forehead, making you see red. You can rush at your enemies and gore them. Increases Retribution ability by 2 for the duration.</content>
+	<content contentuid="hae8649cfg3688g43b4gb137gdae29b32492e">[1] increases all Physical damage you deal and improve your Warmup status.</content>
 	<content contentuid="haee8a8d1g10e8g491ag83c8g833c3a4d0fbb">The damage bonus provided per Critical Chance percent when backstabbing. &lt;br&gt;Default : 0.5&lt;br&gt;</content>
+	<content contentuid="hb0408ca4g5c61g4e89g91d0gcb14ef6da93f">Deal [1] damage to enemies in the area. Caster receives an aura that sets Silence and Suffocating on enemies.</content>
 	<content contentuid="hb1fc6d8bg6bf6g4a3bg83f7g94177ced086a">Duelist</content>
 	<content contentuid="hb24edf38gd48ag477fgbf75g3bd3de8c6eec">Resistance Corrosion</content>
 	<content contentuid="hb4d441e2g0d7cg45f5g8917g5fa55696a431">Hothead</content>
@@ -239,6 +246,7 @@
 	<content contentuid="he573ce38g6445g4975g8562ge97ea0a52c79">This module transforms Cloak and Dagger, Phoenix Dive and Tactical Retreat as projectile equivalents (like Fly with Spread your wings). It applies to everyone. If some NPC still have the classic version, deactivate and reactivate this module.</content>
 	<content contentuid="he5970b83g4f56g4348g8d23g39bce69f8c3c">Aimed Shot</content>
 	<content contentuid="he6c2c979gd7a7g4926g9180g5d69e9d79d62">Crossbow Penalty Per Level</content>
+	<content contentuid="he72efc5fg2dddg459dgb224gd0f0f97fdd0a">Vacuum Aura</content>
 	<content contentuid="he8315150gd40cg453dg911bgef5e2cd5ef74">Default : 90&lt;br&gt;&lt;font color=#ff0000&gt;Require a game restart&lt;/font&gt;</content>
 	<content contentuid="he86bfd28ge123g42a4g8c0cg2f9bcd7d9e05">Level [1]: +[2]% Damage, +[3]% Critical Chance and increase Range by [4]m.</content>
 	<content contentuid="he8ede611g2306g4bacga3aag78eccdf928fb">This characters dodging has become less effective.</content>
@@ -256,9 +264,12 @@
 	<content contentuid="hf338b2c0gd158g49b4ga2ceg15a7099a4b7b">Skills gets a bonus of +[1]% from Intelligence</content>
 	<content contentuid="hf3893f8fg20c5g4078ga83cgef8783082103">The first skill used each turn has its cooldown reduced by one turn (minimum 1).</content>
 	<content contentuid="hf3cd8067g36c0g4b48ga4dfg361f33579b43">Ambidextrous reduces the cost of using grenades and scrolls by 1 AP when your off-hand is free. Refund the AP cost for 2 equipment switches per turn (except for Crossbows).</content>
+	<content contentuid="hf4b8b267gc763g481bgbd5bga9b7b3aa1b54">Forbearance</content>
 	<content contentuid="hf69fc03eg0a46g4ed6g80e4ga325a7ffe659">Fix Vitality Gap</content>
 	<content contentuid="hf7a19975gea84g44a3g8fffg5b4f063b88b4">Reduce damage going through Physical and Magic Armour by [1]%</content>
 	<content contentuid="hf7f34763g19feg4018gb6f6g4cc298dc512d">Int. Global Damage Bonus</content>
+	<content contentuid="hf827c53ege83cg44afgaaacge92cb957fdf4">For 2 turns, your target character&apos;s Vitality cannot be reduced below 1 point, keeping them alive against all odds. If the target is a summon, their lifetime will be prolonged for the duration. Once the effect expires, the character receive Forbearance for 2 turns, preventing any other death resist effect to be applied while it is active.</content>
+	<content contentuid="hf83ad08bg0071g4e56ga59cgb20a7582487d">Air Absorption</content>
 	<content contentuid="hf859c7e8g7e30g48e3ga24aga943a18f0c5c">Set the percentage of damage penalty when using a ranged weapon on a target within the CQB range limit.&lt;br&gt;Default : 35</content>
 	<content contentuid="hfb851683g738cg4b48g8fd8g478d375c030a">Incarnate learns a teleport skill, and a skill to swap places with its master. Increases damage by [1]% and maximum Vitality by 15%.</content>
 	<content contentuid="hfb8eec35g3339g4762g8382g712e74a2ac0b">[1] adds an extra [2]m range to your grenade throws and increase their damage by 30%.</content>

@@ -147,6 +147,16 @@ Helpers.EquipmentSlots = {
 	 "Overhead",
 }
 
+--- @param object EsvCharacter|EclCharacter|EsvItem|EclItem
+Helpers.EntityHasTag = function(object, tag)
+	for _,j in ipairs(object:GetTags()) do
+		if tag == j then
+			return true
+		end
+	end
+	return false
+end
+
 function DamageTypeEnum()
 	local enum = {
 		"Physical",
