@@ -20,6 +20,7 @@
 	<content contentuid="h0f9a9124g20a8g430egaaaege3de06266056">Walk It Off (2)</content>
 	<content contentuid="h0fe63523g3caeg4e46g8152geabd390080af">Receive Sparkstriker status. This causes your melee attacks to create a Spark projectile that bounces off the initial target to hit the closest enemy, dealing [1].</content>
 	<content contentuid="h169eda41gad02g4143g997eg29c0cee15c14">Walk It Off (3)</content>
+	<content contentuid="h1852216fgb397g409ag9dcfg50b29ba87da0">| Living Wall |</content>
 	<content contentuid="h18f97d5bg9a79g4917g809dgb0ac7a5ec302">Increases all damage by [1]% per point. Damage dealt with weapons (except wands) are further increased by [2]%. Increases the maximum Ingress bonus from Intelligence by 1. Allows you to lift and carry heavier items.</content>
 	<content contentuid="h19525dddg3cadg4699g94d2g342b1192a332">Set the target distance threshold which defines when do ranged weapons gets a penalty.&lt;br&gt;Default : 2&lt;br&gt;</content>
 	<content contentuid="h195e0642ge46ag4d02g85ecg20a8a0012104">Each ally consumes oil surfaces around them, converting the oil surfaces to Physical Armour. If they are Slowed or Petrified, they restore an additional 30% Physical Armour. Removes Slowed, Petrified and Stunned.</content>
@@ -35,7 +36,7 @@
 	<content contentuid="h22a39843gf968g4212g851dg6e121235fa85">Bless target character or surface. Prevent Diseased, Decaying, Petrified, Stunned, increase Dodge by [1]%, Accuracy by [2]% and elemental resistances by [3].</content>
 	<content contentuid="h2443a42egd7abg4116g95b4g8036050c3bd3">Next Level [1]: Physical attacks deal +[2]% more damage, Warmup accuracy bonus increased by [3]% and movement bonus is increased by [4]% per stack.</content>
 	<content contentuid="h2512e452g4bdcg4631g9f32g67f9b6e5fc99">Divine Talents Plus</content>
-	<content contentuid="h278b2bccg1afcg4314gbfcbgb10105ebc12b">When resurrected, you resurrect to full health. When your turn is skipped because of incapacitating effect(s), you start your next turn with 2 additional AP.</content>
+	<content contentuid="h278b2bccg1afcg4314gbfcbgb10105ebc12b">When resurrected, you resurrect to full health. When your turn is skipped because of incapacitating effect(s), you start your next turn with 2 additional AP. You also start combat with 2 stacks of Warmup.</content>
 	<content contentuid="h278d3a4fg4dceg4362g9b35g9c3685c93268">The damage you inflict when successfully hitting an enemy or object.</content>
 	<content contentuid="h2802446bg3159g4290g9154g8cac4a93eaf1">Main Attribute Correction</content>
 	<content contentuid="h285f26a1g0683g4a86gae3eg0c69934433b8">Strength Weapon Damage Bonus</content>
@@ -54,10 +55,11 @@
 	<content contentuid="h3240460dgd250g435bg9ebegc1682089c5ed">Explode target corpse, dealing [1] in the area.</content>
 	<content contentuid="h32b3f391g84c8g4350gb6c1gc0577fd7372a">Inflict [1] each turn.</content>
 	<content contentuid="h32fcbbfbgec6bg4af4g894ag49fd997307fe">Any attempt to apply Stunned, Petrified, Frozen, Madness, Terrified or Charm will apply Confused instead.</content>
+	<content contentuid="h344c6011g9e49g44a2ga410gafdb828dba07">Bone Widow</content>
 	<content contentuid="h34fa90bdg6d1fg4ee8gb3e7g8c3694c70fae">At the start of an encounter, you gain one of two statuses: Cycle of Fire and Water or Cycle of Earth and Air. Cycle of Fire and Water increases your Pyrokinetic and Hydrosophist by 3. Cycle of Earth and Air increases your Geomancy and Aerotheurgy by 3. Statuses swap each turn.</content>
 	<content contentuid="h362a94a5g0b60g4be6g9998gd44214d4a78f">Sacrifice yourself to bring an ally back to life. Reduce your Vitality to 1 and ressurrects target character with maximum Vitality.</content>
 	<content contentuid="h36683e27ge1cag45f9gb7ddgdf954e865e33">Default : 2</content>
-	<content contentuid="h3886606fg0cc0g49b9g9bbcg3ea8baa4c040">[1] lowers the Action Point cost of spells by [2] when standing in a surface or cloud of the same element, once per turn.</content>
+	<content contentuid="h3886606fg0cc0g49b9g9bbcg3ea8baa4c040"></content>
 	<content contentuid="h39ded39fg40a6g46a1gafe4gbaf448e4f20a">Last armour penetration</content>
 	<content contentuid="h3c306881g0106g4b61g931eg1e837bca6149">Walk It Off (5)</content>
 	<content contentuid="h3d077707gcc2cg4b6eg808agda8c3a0384a8">Demon (Bonus)</content>
@@ -68,6 +70,7 @@
 	<content contentuid="h42f0b1b6gd786g46ebga04egf56b57d92048">Incarnate learns how to go invisible and strike foes with a corrosive slash. Increases damage by [1]% and maximum Vitality by 15%.</content>
 	<content contentuid="h43401d61ga5dfg4282ga423gc4a5b78ff7ac">Leech</content>
 	<content contentuid="h443a51dcgbd6fg46c2g8988gbfe93a3123a5">Next Level [1]: +[2]% Armour restored after a hard Crowd Control effect recovery and +[3]% on all Resistances when incapacitated.</content>
+	<content contentuid="h45221235g7b29g4bdegb758gebf6e378573b">A very, very large-sized potion that restores your vitality. It makes a soft, tinkling sound when you shake it.</content>
 	<content contentuid="h4542353bg043cg4964ga401g7a80dd267e5b">Target a surface in melee radius. Elemental damage matching that surface is added to your weapon attacks and weapon-based skills.</content>
 	<content contentuid="h456b2bf0gf693g41e8gb01cg42e3548814a2">Prevent the attacker to Warmup when you dodge.</content>
 	<content contentuid="h4641ef2eg741ag408bg95adg2fe65094c8b6">This character has been magically affected during recovery.</content>
@@ -79,10 +82,12 @@
 	<content contentuid="h4be1f455g2614g43e1gbe42g7636850e7749">Burning Weapons</content>
 	<content contentuid="h4e021a63g8d27g4cf2g865agf52e17ae50c2">General Attribute Correction</content>
 	<content contentuid="h50e9548eg61f2g4aedg8a3eg570a7ffee6d3">Reduce damage going through Physical Armour by [1]%</content>
+	<content contentuid="h512982bbgf22bg4604gb41bg6503586ee1ab">Food Poisoning</content>
 	<content contentuid="h51631525ga7c5g4ff3gbf10ga04307fcdf7e">When recovering from a hard crowd control effect, both Momentum and Lingering will always be triggered together whatever the crowd control effect it was. &lt;br&gt;Default : off&lt;br&gt;</content>
 	<content contentuid="h5181573egec45g4adcgb6d2g6b8d856c3b4f">Crit. Chance Backstab Bonus</content>
 	<content contentuid="h5340847eg5242g4a5bgb0dcg581a25c167ce">Default : 2</content>
 	<content contentuid="h54f2ea13g97dbg4b86g9d13geeb81186faca">Ranged increases damage and Critical Chance when using bows and crossbows. Also increases the range when wielding a bow, crossbow or wand(s).</content>
+	<content contentuid="h5525b96fg1a36g41a8gbf58gb9279050aa32">Zombie</content>
 	<content contentuid="h552b479bg3e56g4ea1gb01fg96d986de5e5f">Activate the stats correction formula for GM mode. This is up to your preferences, but if you already created and balanced encounters, you might need to rebalance them.&lt;br&gt;Default : off&lt;br&gt;&lt;font color=#ff0000&gt;Require a game restart&lt;/font&gt;</content>
 	<content contentuid="h562bb140gab7bg4f78gba75g5aaf2cd7f27b">Default : 3</content>
 	<content contentuid="h565877e2g71eag43aag928fgfee5ca4f0c4f">Warmup</content>
@@ -176,6 +181,7 @@
 	<content contentuid="ha4a2351eg24cdg4f68g8ef6gb7ee91c0c08e">Default : 2&lt;br&gt;&lt;font color=#ff0000&gt;Require a game restart&lt;/font&gt;</content>
 	<content contentuid="ha4b72525g51d5g434cgbdf9g3a4ec57319aa">Level [1]: Physical attacks deal +[2]% more damage, Warmup accuracy bonus increased by [3]% and movement bonus is increased by [4]% per stack.</content>
 	<content contentuid="ha4cfd852g52f1g4079g8919gd392ac8ade1a">Damage is based on your basic attack and trigger the additional bonus from both Strength and Intelligence.</content>
+	<content contentuid="ha556dc68g617dg45c0g8307g392dcb022e7c">Explosive Mine</content>
 	<content contentuid="ha6375589ga989g4860g8d73g58af60e32ce9">The number of potions you need to drink in the same turn before receiving a warning of dizziness. Set to 0 to immediatly get a penalty after the first potion, and -1 to make potions usage brutally punishing. Default : 1.</content>
 	<content contentuid="ha6f17eacgbfdbg4cc2g9734g87d7801fe648">Revert Chameleon Cloak ability requirements to Polymorph 1 only.&lt;br&gt;Default : off&lt;br&gt;&lt;font color=#ff0000&gt;Require a game restart&lt;/font&gt;</content>
 	<content contentuid="ha742cf9eg80e6g4b43g8106ga4b83bd5e241">Cause target character to teleport in a random direction each time they are attacked. Increases Dodge by [1]% and Air Resistance by [2]%.</content>
@@ -187,6 +193,7 @@
 	<content contentuid="hae68ba97g6072g46fagb9d3g7c289a0e7511">Magnificent horns sprout from your forehead, making you see red. You can rush at your enemies and gore them. Increases Retribution ability by 2 for the duration.</content>
 	<content contentuid="hae8649cfg3688g43b4gb137gdae29b32492e">[1] increases all Physical damage you deal and improve your Warmup status.</content>
 	<content contentuid="haee8a8d1g10e8g491ag83c8g833c3a4d0fbb">The damage bonus provided per Critical Chance percent when backstabbing. &lt;br&gt;Default : 0.5&lt;br&gt;</content>
+	<content contentuid="haf2e28f8gb3cdg49d0g8c8cg5b602a7e2e26">Crate</content>
 	<content contentuid="hb0408ca4g5c61g4e89g91d0gcb14ef6da93f">Deal [1] damage to enemies in the area. Caster receives an aura that sets Silence and Suffocating on enemies.</content>
 	<content contentuid="hb1fc6d8bg6bf6g4a3bg83f7g94177ced086a">Duelist</content>
 	<content contentuid="hb24edf38gd48ag477fgbf75g3bd3de8c6eec">Resistance Corrosion</content>
@@ -206,11 +213,13 @@
 	<content contentuid="hbf9f6f92g699ag47b3gb967g5bfa164a0612">Bloody Weapons</content>
 	<content contentuid="hc13534c0gc9e9g453dgab9bg194a3f41689b">Multiply the base vitality of the player characters and summons. &lt;br&gt;Default : 100 &lt;br&gt;&lt;font color=#ff0000&gt;Require a game restart&lt;/font&gt;</content>
 	<content contentuid="hc13ac1f2ge15eg4791ga4bcgca5508715345">Activate for GM mode</content>
+	<content contentuid="hc32234efg6d48g461egb2b3g9a0b823b170c">Undeployed Explosive Mine</content>
 	<content contentuid="hc385872cge252g4da0gbc7agf774df831f28">Electric Weapons</content>
 	<content contentuid="hc4400964gcf4bg429cg882cg9e90ba8cf0ce">Level [1]: Water attacks deal +[2]% more damage, +[3]% Vitality healed, +[4]% Magic Armour from skills and potions.</content>
 	<content contentuid="hc453e399ge1f5g41f1gaeabgcdd4de833c63">A character with [1] has an extra 20% [3], but takes a [4]% penalty to [5]. Additionally, the maximum [3] is raised by [6]. Demon grants immunity to Burning and Necrofire. Ice King increases all Water damage you deal by 20% and grants immunity to Chilled.</content>
 	<content contentuid="hc5574731g874ag4d82gb4a0gba70af698168">Crossbow Base Penalty</content>
 	<content contentuid="hc5d5552bg6b33g44c1gbb0cg8d55a101f081">Level [1]: +[2]% Damage, +[3]% Dodging and increase Offhand damage by [4]%.</content>
+	<content contentuid="hc6e506e1ga2e7g40c0g81c2g297ed840e37d">Use to read and learn about crafting.</content>
 	<content contentuid="hc7851209gc2d8g4332g865dgae162ed9708b">Warmup (2)</content>
 	<content contentuid="hc82cf98agdf5dg41d5gac1bg325ac645fb79">The correction indice for the highest damaging attribute for NPCs. The higher it is, the lower will be the final result.&lt;br&gt;Default : 50&lt;br&gt;&lt;font color=#ff0000&gt;Require a game restart&lt;/font&gt;</content>
 	<content contentuid="hc8901962g28ceg4fd9g82c2ge28ef16abd5b">Finesse Critical Chance Bonus</content>
@@ -245,6 +254,7 @@
 	<content contentuid="he53d3385g125cg49ddgaacegce01ebea865f">Dual CC Resistance</content>
 	<content contentuid="he573ce38g6445g4975g8562ge97ea0a52c79">This module transforms Cloak and Dagger, Phoenix Dive and Tactical Retreat as projectile equivalents (like Fly with Spread your wings). It applies to everyone. If some NPC still have the classic version, deactivate and reactivate this module.</content>
 	<content contentuid="he5970b83g4f56g4348g8d23g39bce69f8c3c">Aimed Shot</content>
+	<content contentuid="he5dbd78fg9fa1g4ac0g950ag843cb94c1f61">Dummy</content>
 	<content contentuid="he6c2c979gd7a7g4926g9180g5d69e9d79d62">Crossbow Penalty Per Level</content>
 	<content contentuid="he72efc5fg2dddg459dgb224gd0f0f97fdd0a">Vacuum Aura</content>
 	<content contentuid="he8315150gd40cg453dg911bgef5e2cd5ef74">Default : 90&lt;br&gt;&lt;font color=#ff0000&gt;Require a game restart&lt;/font&gt;</content>

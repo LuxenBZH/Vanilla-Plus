@@ -361,9 +361,10 @@ Ext.RegisterOsirisListener("CharacterUsedSkill", 4, "before", function(character
 end)
 
 ---- Morning Person AP recovery
+--- @param object GUID
 Ext.Osiris.RegisterListener("ObjectTurnStarted", 1, "before", function(object)
 	if ObjectIsCharacter(object) == 0 then return end
-	local char = Ext.GetCharacter(object)
+	local char = Ext.ServerEntity.GetCharacter(object)
 	if char.Stats.TALENT_ResurrectToFullHealth then
 		if char.Stats.CurrentAP == 0 then
 			SetTag(object, "MorningPersonRecovery")
@@ -371,6 +372,13 @@ Ext.Osiris.RegisterListener("ObjectTurnStarted", 1, "before", function(object)
 			ClearTag(object, "MorningPersonRecovery")
 			CharacterAddActionPoints(object, 2)
 		end
+	end
+end)
+
+Ext.Osiris.RegisterListener("ObjectEnteredCombat", 2, "before", function(object, combatID)
+	if ObjectIsCharacter(object) == 0 then return end
+	if Ext.ServerEntity.GetCharacter(object).Stats.TALENT_ResurrectToFullHealth then
+		ApplyWarmup(Ext.ServerEntity.GetCharacter(object), 2)
 	end
 end)
 
