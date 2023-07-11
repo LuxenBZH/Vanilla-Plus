@@ -217,3 +217,53 @@ Ext.RegisterSkillProperty("CUSTOMSURFACEBOOST", {
 		-- Ext.Print(property, attacker, position, areaRadius, isFromItem, skill, hit)
 	end
 })
+
+Ext.RegisterSkillProperty("VP_TryKill", {
+	---@param property StatsPropertyExtender
+	---@param attacker EsvCharacter|EsvItem
+	---@param target EsvCharacter|EsvItem
+	---@param position number[]
+	---@param isFromItem boolean
+	---@param skill StatEntrySkillData|StatsSkillPrototype|nil
+	---@param hit StatsHitDamageInfo|nil
+	ExecuteOnTarget = function(property, attacker, target, position, isFromItem, skill, hit)
+		if getmetatable(target) == "esv::Item" or not hit then return end
+		local args = {}
+		local index = 1
+		for value in string.gmatch(property.Arg3, "(.-)/") do
+			args[index] = value
+			-- Ext.Print(index, value)
+			index = index + 1
+		end
+		local value = args[1]
+		local scaling = args[2]
+		local chance = args[3]
+		local bonusStatuses = args[4]
+		local statusesArray = {}
+		for status in string.gmatch(bonusStatuses, "([^|]+)") do
+			table.insert(statusesArray, status)
+		end
+		local statusBonusValue = tonumber(args[5])
+		local SPDamageBonus = tonumber(args[6])
+		local SPConsumptionCap = tonumber(args[7])
+		local computedStatusBonus = 0
+		for i,status in pairs(statusesArray) do
+			if target:GetStatus(status) then
+				computedStatusBonus = computedStatusBonus + statusBonusValue
+			end
+		end
+		local computedSPBonusValue = 0
+		local source = Osi.CharacterGetSourcePoints(attacker.MyGuid)
+		if source > SPConsumptionCap then
+			computedSPBonusValue = SPConsumptionCap * SPDamageBonus
+			Osi.CharacterAddSourcePoints(attacker.MyGuid, -SPConsumptionCap)
+		else
+			computedSPBonusValue = source * SPDamageBonus
+			Osi.CharacterAddSourcePoints(attacker.MyGuid, -source)
+		end
+		local computedThreshold = math.floor(Helpers.GetScaledValue(scaling, target, attacker) * (value + computedStatusBonus + computedSPBonusValue) / 100)
+		if target.Stats.CurrentVitality < computedThreshold then
+			CharacterDie(target.MyGuid, 1, hit.DeathType, attacker.MyGuid)
+		end
+	end
+})

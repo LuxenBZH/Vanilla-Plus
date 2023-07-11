@@ -103,7 +103,7 @@ local function DamageControl(target, instigator, hitDamage, handle)
     flags.IsWeaponAttack = hit.Hit.HitWithWeapon
 	flags.IsStatusDamage = NRD_StatusGetInt(target.MyGuid, handle, "DoT")
 
-	if (skill.Name == "Projectile_Talent_Unstable" and IsTagged(instigator.MyGuid, "LX_UNSTABLE_COOLDOWN") == 1) 
+	if ((skill and skill.Name == "Projectile_Talent_Unstable") and IsTagged(instigator.MyGuid, "LX_UNSTABLE_COOLDOWN") == 1) 
 	 or flags.Blocked then
 		return 
 	end

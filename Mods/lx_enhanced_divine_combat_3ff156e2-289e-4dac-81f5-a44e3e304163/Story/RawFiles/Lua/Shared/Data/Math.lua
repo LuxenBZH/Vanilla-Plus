@@ -174,3 +174,15 @@ Data.Math.GetCharacterComputedDamageBonus = function(character, target, flags, s
 	end
     return attributes
 end
+
+---Get the amount of damage that will be absorbed by physical armor
+---@param character EsvCharacter | EclCharacter
+Data.Math.CharacterGetEffectivePhysicalArmor = function(character)
+	return character.Stats.CurrentArmor * (Ext.ExtraData.DGM_DamageThroughArmor + (character.Stats.CurrentMagicArmor > 0 and Ext.ExtraData.DGM_DamageThroughArmorDepleted or 0) /100)
+end
+
+---Get the amount of damage that will be absorbed by magic armor
+---@param character EsvCharacter | EclCharacter
+Data.Math.CharacterGetEffectiveMagicArmor = function(character)
+	return character.Stats.CurrentMagicArmor * (Ext.ExtraData.DGM_DamageThroughArmor + (character.Stats.CurrentArmor > 0 and Ext.ExtraData.DGM_DamageThroughArmorDepleted or 0) /100)
+end

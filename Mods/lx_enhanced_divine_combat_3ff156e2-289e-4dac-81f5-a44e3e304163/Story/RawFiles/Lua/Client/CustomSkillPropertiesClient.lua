@@ -78,3 +78,55 @@ local function CSBStatusDescriptionParam(status, statusSource, statCharacter, pa
 end
 
 Ext.RegisterListener("StatusGetDescriptionParam", CSBStatusDescriptionParam)
+
+
+Ext.RegisterSkillProperty("VP_TryKill", {
+	---@param property StatsPropertyExtender
+	GetDescription = function(property)
+		if getmetatable(target) == "esv::Item" then return end
+		local args = {}
+		local index = 1
+		for value in string.gmatch(property.Arg3, "(.-)/") do
+			args[index] = value
+			-- Ext.Print(index, value)
+			index = index + 1
+		end
+		local value = args[1]
+		local scaling = args[2]
+		local chance = args[3]
+		local bonusStatuses = args[4]
+		local statusesArray = {}
+		for status in string.gmatch(bonusStatuses, "([^|]+)") do
+			table.insert(statusesArray, status)
+		end
+		local statusBonusValue = tonumber(args[5])
+		local SPDamageBonus = tonumber(args[6])
+		local SPConsumptionCap = tonumber(args[7])
+		local attacker = Ext.ClientEntity.GetCharacter(Ext.UI.DoubleToHandle(Ext.UI.GetByType(40):GetRoot().hotbar_mc.characterHandle))
+		local baseDamage = Helpers.GetScaledValue(scaling, nil, attacker)
+		local computedThreshold = Ext.Utils.Round(baseDamage * value / 100)
+		local additionalSPDamage = ""
+		if SPDamageBonus ~= 0 then
+			local source = attacker.Stats.MPStart
+			local computedSPBonusValue = 0
+			if source > SPConsumptionCap then
+				computedSPBonusValue = SPConsumptionCap * SPDamageBonus
+			else
+				computedSPBonusValue = source * SPDamageBonus
+			end
+			additionalSPDamage = ". Consume up to "..tostring(SPConsumptionCap).." Source points to increase the execution threshold by "..tostring(Ext.Utils.Round(baseDamage*SPDamageBonus/100)).." per SP. (current threshold: "..tostring(Ext.Utils.Round(baseDamage * (value + computedSPBonusValue)/ 100))..")"
+		end
+		local additionalStatusDamage = ""
+		if #statusesArray > 0 then
+			additionalStatusDamage = ". Increase the execution threshold by "..tostring(Ext.Utils.Round(baseDamage*statusBonusValue/100)).. " if the target is under the influence of "
+			for i,status in pairs(statusesArray) do
+				if i == 1 then
+					additionalStatusDamage = additionalStatusDamage..Ext.L10N.GetTranslatedStringFromKey(Ext.Stats.Get(status).DisplayName)
+				else
+					additionalStatusDamage = additionalStatusDamage..", "..Ext.L10N.GetTranslatedStringFromKey(Ext.Stats.Get(status).DisplayName)
+				end
+			end
+		end
+		return "<font size='18'>Attempt to execute the target if their Vitality falls under "..tostring(computedThreshold).." HP after the hit"..additionalSPDamage..additionalStatusDamage..".</font>"
+	end
+})
