@@ -257,6 +257,7 @@ end
 --- @param stat string
 --- @param tooltip TooltipData
 local function OnStatTooltip(character, stat, tooltip)
+    if not tooltip or tooltip:GetElement("StatName") == nil then return end
     local stat = tooltip:GetElement("StatName").Label
     if stat == "Damage" then
         tooltip:MarkDirty()

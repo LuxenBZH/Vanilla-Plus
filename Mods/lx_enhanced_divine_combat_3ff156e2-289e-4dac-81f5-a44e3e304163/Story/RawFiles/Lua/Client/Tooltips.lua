@@ -179,7 +179,7 @@ end
 ---@param stat string
 ---@param tooltip TooltipData
 local function OnStatTooltip(character, stat, tooltip)
-    if tooltip == nil then return end
+    if tooltip == nil or tooltip:GetElement("StatName") == nil then return end
     -- Ext.Dump(tooltip:GetElement("StatName"))
     local stat = tooltip:GetElement("StatName").Label
     local statsDescription = tooltip:GetElement("StatsDescription")
@@ -256,7 +256,7 @@ Ext.Events.UICall:Subscribe(function(e)
     if e.Function == "setTooltipSize" then
         Ext.OnNextTick(function(e)          
             local tooltip = Ext.UI.GetByType(44):GetRoot()
-            if tooltip.tf ~= "null" and tooltip.tf.tooltip_mc then
+            if tooltip.tf and tooltip.tf.tooltip_mc then
                 local character = Ext.ClientEntity.GetCharacter(Ext.UI.DoubleToHandle(Ext.UI.GetByType(119):GetRoot().charHandle))
                 local attrBonus = CharGetDGMAttributeBonus(character, 0)
                 local baseValue = Ext.ExtraData.AttributeBaseValue
