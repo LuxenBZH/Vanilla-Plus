@@ -256,7 +256,7 @@ Ext.Events.UICall:Subscribe(function(e)
     if e.Function == "setTooltipSize" then
         Ext.OnNextTick(function(e)          
             local tooltip = Ext.UI.GetByType(44):GetRoot()
-            if tooltip.tf ~= "null" then
+            if tooltip.tf ~= "null" and tooltip.tf.tooltip_mc then
                 local character = Ext.ClientEntity.GetCharacter(Ext.UI.DoubleToHandle(Ext.UI.GetByType(119):GetRoot().charHandle))
                 local attrBonus = CharGetDGMAttributeBonus(character, 0)
                 local baseValue = Ext.ExtraData.AttributeBaseValue
