@@ -62,7 +62,7 @@ function CustomCalculateBaseDamage(skillDamageType, attacker, target, level)
     return DamageSourceCalcTable[skillDamageType](attacker, target, level)
 end
 
----@param character StatCharacter
+---@param character CDivinityStatsCharacter
 ---@param skill StatEntrySkillData
 function CustomGetSkillDamageRange(character, skill, mainWeapon, offHand, fromExpandedTooltip)
     skill = Ext.GetStat(skill.Name)

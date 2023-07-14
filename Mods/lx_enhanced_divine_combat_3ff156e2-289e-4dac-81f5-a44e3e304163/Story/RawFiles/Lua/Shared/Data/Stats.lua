@@ -28,7 +28,7 @@ Data.Stats.CrossbowMovementPenalty = {
 }
 
 ---@type Enum
-Data.Talents = {
+Data.TalentEnum = {
 	ItemMovement = 1,
 	ItemCreation = 2,
 	Flanking = 3,

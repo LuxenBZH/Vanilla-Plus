@@ -77,6 +77,8 @@ Helpers.VPPrint = function(text, module, ...)
 	Ext.Utils.Print("[V++]"..(module or "").." "..tostring(text), table.unpack({...}))
 end
 
+_VPrint = Helpers.VPPrint
+
 Helpers.VPPrintWarning = function(text, module, ...)
 	if module then
 		module = "["..module.."]"
@@ -84,12 +86,16 @@ Helpers.VPPrintWarning = function(text, module, ...)
 	Ext.Utils.PrintWarning("[V++]"..(module or "").." "..tostring(text), table.unpack({...}))
 end
 
+_VWarning = Helpers.VPPrintWarning
+
 Helpers.VPPrintError = function(text, module, ...)
 	if module then
 		module = "["..module.."]"
 	end
 	Ext.Utils.PrintError("[V++]"..(module or "").." "..tostring(text), table.unpack({...}))
 end
+
+_VError = Helpers.VPPrintError
 
 Helpers.ScalingFunctions = {
 	ALD = Game.Math.GetAverageLevelDamage,
@@ -242,7 +248,7 @@ function dump(o)
 	end
  end
 
----@param char EsvCharacter
+---@param char EsvCharacter|EclCharacter
 ---@param next integer
 function CharGetDGMAttributeBonus(char, next)
 	if char == nil then return end
@@ -256,16 +262,19 @@ function CharGetDGMAttributeBonus(char, next)
 		str = math.floor(strength+next),
 		strGlobal = math.floor((strength+next) * Ext.ExtraData.DGM_StrengthGlobalBonus),
 		strWeapon = math.floor((strength+next) * Ext.ExtraData.DGM_StrengthWeaponBonus),
-		strRes = math.floor(Ext.Round((strength+next) * Ext.ExtraData.DGM_StrengthResistanceIgnore * 100))/100,
+		-- strRes = math.floor(Ext.Utils.Round((strength+next) * Ext.ExtraData.DGM_StrengthResistanceIgnore * 100))/100, -- Old Ingress multiplier behavior
+		strIngCap = math.floor((strength+next) * Ext.ExtraData.DGM_StrengthIngressCap),
 		fin = math.floor(finesse+next),
 		finGlobal = math.floor((finesse+next) * Ext.ExtraData.DGM_FinesseGlobalBonus),
 		finDodge = round((finesse+next) * Ext.ExtraData.DodgingBoostFromAttribute * 100, 0),
 		finMovement = round((finesse+next) * Ext.ExtraData.DGM_FinesseMovementBonus / 100, 2),
 		finCrit = math.floor((finesse+next) * Ext.ExtraData.DGM_FinesseCritChance),
+		finAccCap = math.floor((finesse+next) * Ext.ExtraData.DGM_FinesseAccuracyFromIntelligenceCap),
 		int = math.floor(intelligence+next),
 		intGlobal = math.floor((intelligence+next) * Ext.ExtraData.DGM_IntelligenceGlobalBonus),
 		intSkill = math.floor((intelligence+next) * Ext.ExtraData.DGM_IntelligenceSkillBonus),
 		intAcc = math.floor((intelligence+next) * Ext.ExtraData.DGM_IntelligenceAccuracyBonus),
+		intWisCap = math.floor((intelligence+next) * Ext.ExtraData.DGM_IntelligenceWisdomFromWitsCap),
 		wits = math.floor(wits+next),
 		witsCrit = math.floor((wits+next) * Ext.ExtraData.CriticalBonusFromWits),
 		witsIni = math.floor((wits+next) * Ext.ExtraData.InitiativeBonusFromWits),
