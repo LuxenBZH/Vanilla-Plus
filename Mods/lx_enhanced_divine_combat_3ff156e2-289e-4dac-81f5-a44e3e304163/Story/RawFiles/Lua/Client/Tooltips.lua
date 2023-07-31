@@ -441,7 +441,18 @@ local function AimedShotTooltip(character, skill, tooltip)
     description.Label = GetDynamicTranslationString("Shout_LX_AimedShot_Description", accuracy, math.floor(character.Stats.Strength))
 end
 
-local function DGM_Tooltips_Init()
+---@param character EsvCharacter
+---@param skill string
+---@param tooltip TooltipData
+local function AdrenalineTooltip(character, skill, tooltip)
+    local property = tooltip:GetElement("SkillProperties").Properties[1]
+    local label = string.gsub(string.reverse(property.Label), "%d+", "3", 1)
+    property.Label = string.reverse(label)
+end
+
+---comment
+---@param e LuaEmptyEvent
+local function DGM_Tooltips_Init(e)
     Game.Tooltip.RegisterListener("Item", nil, WeaponTooltips)
     Game.Tooltip.RegisterListener("Stat", "Damage", SkillAttributeTooltipBonus)
     Game.Tooltip.RegisterListener("Stat", nil, OnStatTooltip)
@@ -452,6 +463,7 @@ local function DGM_Tooltips_Init()
     Game.Tooltip.RegisterListener("Skill", "Teleportation_FreeFall", TeleportTooltip)
     Game.Tooltip.RegisterListener("Skill", "Teleportation_Netherswap", TeleportTooltip)
     Game.Tooltip.RegisterListener("Skill", "Shout_LX_AimedShot", AimedShotTooltip)
+    Game.Tooltip.RegisterListener("Skill", "Shout_Adrenaline", AdrenalineTooltip)
 end
 
-Ext.RegisterListener("SessionLoaded", DGM_Tooltips_Init)
+Ext.Events.SessionLoaded:Subscribe(DGM_Tooltips_Init)
