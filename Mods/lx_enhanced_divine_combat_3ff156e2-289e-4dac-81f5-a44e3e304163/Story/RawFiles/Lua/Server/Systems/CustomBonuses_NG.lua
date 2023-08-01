@@ -106,7 +106,7 @@ function CustomStatusManager:Apply(character, name, duration, multiplier, cap)
         character = Ext.Entity.GetCharacter(character)
     end
     local exists = character:GetStatus(name)
-    if exists and multiplier <= cap and exists.StatsMultiplier == multiplier then
+    if exists and cap and multiplier <= cap and exists.StatsMultiplier == multiplier then
         return
     end
     local status = Ext.PrepareStatus(character.MyGuid, name, duration)
