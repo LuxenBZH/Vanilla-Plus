@@ -85,6 +85,7 @@ end
 ---@param handle number
 local function DamageControl(target, instigator, hitDamage, handle)
 	local target = Ext.ServerEntity.GetGameObject(target) --- @type EsvItem | EsvCharacter
+	if instigator == 'NULL_00000000-0000-0000-0000-000000000000' then return end
 	local instigator = Ext.ServerEntity.GetGameObject(instigator) --- @type EsvCharacter
 	if getmetatable(instigator) ~= "esv::Character" then
 		return
@@ -406,7 +407,7 @@ Ext.Events.StatusHitEnter:Subscribe(function(e)
 	--- Gladiator
 	local target = Ext.Entity.GetCharacter(e.Context.TargetHandle)
 	local attacker = Ext.Entity.GetCharacter(e.Context.AttackerHandle)
-	if target.Stats.TALENT_Gladiator and (e.Hit.Hit.HitWithWeapon) and not Game.Math.IsRangedWeapon(attacker.Stats.MainWeapon) and target.Stats:GetItemBySlot("Shield") and not e.Hit.Hit.CounterAttack and IsTagged(target.MyGuid, "LX_IsCounterAttacking") == 0 and e.Hit.SkillId ~= "Target_LX_GladiatorHit_-1" and not (e.Hit.Hit.Dodged or e.Hit.Hit.Missed) then
+	if target and target.Stats.TALENT_Gladiator and (e.Hit.Hit.HitWithWeapon) and not Game.Math.IsRangedWeapon(attacker.Stats.MainWeapon) and target.Stats:GetItemBySlot("Shield") and not e.Hit.Hit.CounterAttack and IsTagged(target.MyGuid, "LX_IsCounterAttacking") == 0 and e.Hit.SkillId ~= "Target_LX_GladiatorHit_-1" and not (e.Hit.Hit.Dodged or e.Hit.Hit.Missed) then
 		local counterAttacked = Helpers.HasCounterAttacked(target)
 		if not counterAttacked and GetDistanceTo(target.MyGuid, attacker.MyGuid) <= 5.0 then
 			GladiatorTargets[target.MyGuid] = attacker.MyGuid
