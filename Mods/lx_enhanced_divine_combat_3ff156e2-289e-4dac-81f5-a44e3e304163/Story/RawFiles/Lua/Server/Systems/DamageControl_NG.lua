@@ -383,17 +383,15 @@ Ext.Events.ComputeCharacterHit:Subscribe(function(e)
 		local stat = Ext.Stats.Get(skill)
 		if stat['Magic Cost'] > 0 and stat.UseWeaponDamage == "Yes" then
 			e.NoHitRoll = false
-			local isDodged = Game.Math.CalculateHitChance(e.Attacker, e.Target) < math.random(0, 99)
-			local hit = Game.Math.ComputeCharacterHit(e.Target, e.Attacker, e.Weapon, e.DamageList, e.HitType, e.NoHitRoll, e.ForceReduceDurability, e.Hit, e.AlwaysBackstab, e.HighGround, e.CriticalRoll) ---@type EsvStatusHit
+			local isDodged = Game.Math.CalculateHitChance(e.Attacker, e.Target) <= math.random(0, 99)
 			if isDodged then
+				local hit = Game.Math.ComputeCharacterHit(e.Target, e.Attacker, e.Weapon, e.DamageList, e.HitType, e.NoHitRoll, e.ForceReduceDurability, e.Hit, e.AlwaysBackstab, e.HighGround, e.CriticalRoll) ---@type EsvStatusHit
 				e.Hit.Missed = true
 				e.Hit.Hit = false
 				e.Hit.DontCreateBloodSurface = true
-			else
-				e.Hit.Hit = true
-			end
-			if not e.Handled and hit then
-				e.Handled = true
+				if not e.Handled and hit then
+					e.Handled = true
+				end
 			end
 		end
 	end
