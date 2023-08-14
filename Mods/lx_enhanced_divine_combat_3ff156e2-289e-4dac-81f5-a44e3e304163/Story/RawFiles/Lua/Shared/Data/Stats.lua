@@ -158,3 +158,9 @@ Data.TalentEnum = {
 	GreedyVessel = 127,
 	MagicCycles = 128,
 }
+
+Data.Stats.WisdomTypes = {
+	VP_WisdomBoost = "Vitality healings",
+	VP_ArmorRegenBoost = "Physical armour healings",
+	VP_MagicArmorRegenBoost = "Magic armour healings"
+}

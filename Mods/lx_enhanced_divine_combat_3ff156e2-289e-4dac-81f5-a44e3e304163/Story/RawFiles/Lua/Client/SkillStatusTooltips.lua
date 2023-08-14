@@ -322,7 +322,7 @@ Ext.RegisterListener("SkillGetDescriptionParam", SkillGetDescriptionParam)
 ---@param par string
 local function StatusGetDescriptionParam(status, statusSource, character, par)
     if par == "Damage" then
-        local dmgStat = Ext.GetStat(status.DamageStats)
+        local dmgStat = Ext.Stats.Get(status.DamageStats, nil, false)
         if statusSource == nil then return end
         local globalMult = 1 + (statusSource.Wits-Ext.ExtraData.AttributeBaseValue) * (Ext.ExtraData.DGM_WitsDotBonus*0.01) --From the overhaul
         local dmg = 0
@@ -336,15 +336,21 @@ local function StatusGetDescriptionParam(status, statusSource, character, par)
         dmg = dmg*(dmgStat.DamageFromBase/100)
 		local dmgRange = dmg*(dmgStat["Damage Range"])*0.005
         local schoolBonus = 1
-        local pass, characterSource = pcall(Ext.GetCharacter, statusSource.NetID)
+        local pass, characterSource = pcall(Ext.ClientEntity.GetCharacter, statusSource.NetID)
         if pass then
             schoolBonus = schoolBonus + Game.Math.GetDamageBoostByType(characterSource.Stats, dmgStat["Damage Type"])
         end
-		local minDmg = math.floor(Ext.Round(dmg - dmgRange)* globalMult * schoolBonus)
-        local maxDmg = math.ceil(Ext.Round(dmg + dmgRange)* globalMult * schoolBonus)
+		local minDmg = math.floor(Ext.Utils.Round(dmg - dmgRange)* globalMult * schoolBonus)
+        local maxDmg = math.ceil(Ext.Utils.Round(dmg + dmgRange)* globalMult * schoolBonus)
         if maxDmg <= minDmg then maxDmg = maxDmg+1 end
 		local color = getDamageColor(dmgStat["Damage Type"])
-		return "<font color="..color..">"..tostring(minDmg).."-"..tostring(maxDmg).." "..dmgStat["Damage Type"].." damage".."</font>"
+		return "<font color="..color..">"..tostring(minDmg).."-"..tostring(maxDmg).." "..dmgStat["Damage Type"].." "..Ext.L10N.GetTranslatedString("h9531fd22g6366g4e93g9b08g11763cac0d86", "damage").."</font>"
+    elseif par == "HealAmount" then
+        local stat = Ext.Stats.Get(status.StatusName, nil, false)
+        if stat.HealType == "Qualifier" then
+            local computedValue = Data.Math.GetHealScaledWisdomValue(stat, character.Character)
+            return "<font color=\"#97FBFF\">"..computedValue.." "..Ext.L10N.GetTranslatedString("h67a4c781g589ag4872g8c46g870e336074bd", "Vitality").."</font>"
+        end
 	end
 	return nil
 end

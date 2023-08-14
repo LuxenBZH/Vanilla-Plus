@@ -4,8 +4,7 @@ Data.Math = {}
     Character stats related formulas
 ]]
 
---- @param character EsvCharacter|EclCharacter
-Data.Math.ComputeCharacterWisdom = function(character)
+Data.Math.ComputeCharacterWisdomFromEquipment = function(character)
 	local equipmentWisdom = 0
 	for i,j in pairs(Helpers.EquipmentSlots) do
 		local item = character.Stats:GetItemBySlot(j)
@@ -13,14 +12,34 @@ Data.Math.ComputeCharacterWisdom = function(character)
 			equipmentWisdom = equipmentWisdom + tonumber(item.VP_WisdomBoost)
 		end
 	end
-	local statusesWisdom = 0
+	return equipmentWisdom
+end
+
+Data.Math.ComputeCharacterWisdomFromStatuses = function(character)
+	local statusesWisdom = {}
 	for i,j in pairs(character:GetStatuses()) do
-		if NRD_StatExists(j) then
-			local statsId = Ext.Stats.Get(j).StatsId
+		local stat = Ext.Stats.Get(j, nil, false)
+		if stat then
+			local statsId = stat.StatsId
 			if statsId ~= "" then
-				statusesWisdom = statusesWisdom + tonumber(Ext.Stats.Get(statsId).VP_WisdomBoost)
+				table.insert(statusesWisdom, {
+					Status = stat.StatsId,
+					Value = tonumber(Ext.Stats.Get(statsId).VP_WisdomBoost),
+					Type = "VP_WisdomBoost"
+				})
 			end
 		end
+	end
+	return statusesWisdom
+end
+
+--- @param character EsvCharacter|EclCharacter
+Data.Math.ComputeCharacterWisdom = function(character)
+	local equipmentWisdom = Data.Math.ComputeCharacterWisdomFromEquipment(character)
+	local statusesInfo = Data.Math.ComputeCharacterWisdomFromStatuses(character)
+	local statusesWisdom = 0
+	for i,statusInfo in pairs(statusesInfo) do
+		statusesWisdom = statusesWisdom + statusInfo.Value
 	end
     return (math.min(
         (character.Stats.Intelligence - Ext.ExtraData.AttributeBaseValue) * Ext.ExtraData.DGM_IntelligenceWisdomFromWitsCap,
@@ -28,8 +47,7 @@ Data.Math.ComputeCharacterWisdom = function(character)
         character.Stats.WaterSpecialist * Ext.ExtraData.SkillAbilityVitalityRestoredPerPoint + equipmentWisdom + statusesWisdom) / 100 + 1
 end
 
---- @param character EsvCharacter|EclCharacter
-Data.Math.ComputeCharacterWisdomArmor = function(character)
+Data.Math.ComputeCharacterWisdomArmorFromEquipment = function(character)
 	local equipmentWisdom = 0
 	for i,j in pairs(Helpers.EquipmentSlots) do
 		local item = character.Stats:GetItemBySlot(j)
@@ -37,14 +55,34 @@ Data.Math.ComputeCharacterWisdomArmor = function(character)
 			equipmentWisdom = equipmentWisdom + tonumber(item.VP_ArmorRegenBoost)
 		end
 	end
-	local statusesWisdom = 0
+	return equipmentWisdom
+end
+
+Data.Math.ComputeCharacterWisdomArmorFromStatuses = function(character)
+	local statusesWisdom = {}
 	for i,j in pairs(character:GetStatuses()) do
-		if NRD_StatExists(j) then
-			local statsId = Ext.Stats.Get(j).StatsId
+		local stat = Ext.Stats.Get(j, nil, false)
+		if stat then
+			local statsId = stat.StatsId
 			if statsId ~= "" then
-				statusesWisdom = statusesWisdom + tonumber(Ext.Stats.Get(statsId).VP_ArmorRegenBoost)
+				table.insert(statusesWisdom, {
+					Status = stat.StatsId,
+					Value = tonumber(Ext.Stats.Get(statsId).VP_ArmorRegenBoost),
+					Type = "VP_ArmorRegenBoost"
+				})
 			end
 		end
+	end
+	return statusesWisdom
+end
+
+--- @param character EsvCharacter|EclCharacter
+Data.Math.ComputeCharacterWisdomArmor = function(character)
+	local equipmentWisdom = Data.Math.ComputeCharacterWisdomArmorFromEquipment(character)
+	local statusesInfo = Data.Math.ComputeCharacterWisdomArmorFromStatuses(character)
+	local statusesWisdom = 0
+	for i,statusInfo in pairs(statusesInfo) do
+		statusesWisdom = statusesWisdom + statusInfo.Value
 	end
     return (math.min(
         (character.Stats.Intelligence - Ext.ExtraData.AttributeBaseValue) * Ext.ExtraData.DGM_IntelligenceWisdomFromWitsCap,
@@ -52,8 +90,7 @@ Data.Math.ComputeCharacterWisdomArmor = function(character)
         character.Stats.EarthSpecialist * Ext.ExtraData.SkillAbilityArmorRestoredPerPoint + equipmentWisdom + statusesWisdom) / 100 + 1
 end
 
---- @param character EsvCharacter|EclCharacter
-Data.Math.ComputeCharacterWisdomMagicArmor = function(character)
+Data.Math.ComputeCharacterWisdomMagicArmorFromEquipment = function(character)
 	local equipmentWisdom = 0
 	for i,j in pairs(Helpers.EquipmentSlots) do
 		local item = character.Stats:GetItemBySlot(j)
@@ -61,14 +98,34 @@ Data.Math.ComputeCharacterWisdomMagicArmor = function(character)
 			equipmentWisdom = equipmentWisdom + tonumber(item.VP_MagicArmorRegenBoost)
 		end
 	end
-	local statusesWisdom = 0
+	return equipmentWisdom
+end
+
+Data.Math.ComputeCharacterWisdomMagicArmorFromStatuses = function(character)
+	local statusesWisdom = {}
 	for i,j in pairs(character:GetStatuses()) do
-		if NRD_StatExists(j) then
-			local statsId = Ext.Stats.Get(j).StatsId
+		local stat = Ext.Stats.Get(j, nil, false)
+		if stat then
+			local statsId = stat.StatsId
 			if statsId ~= "" then
-				statusesWisdom = statusesWisdom + tonumber(Ext.Stats.Get(statsId).VP_MagicArmorRegenBoost)
+				table.insert(statusesWisdom, {
+					Status = stat.StatsId,
+					Value = tonumber(Ext.Stats.Get(statsId).VP_MagicArmorRegenBoost),
+					Type = "VP_MagicArmorRegenBoost"
+				})
 			end
 		end
+	end
+	return statusesWisdom
+end
+
+--- @param character EsvCharacter|EclCharacter
+Data.Math.ComputeCharacterWisdomMagicArmor = function(character)
+	local equipmentWisdom = Data.Math.ComputeCharacterWisdomMagicArmorFromEquipment(character)
+	local statusesInfo = Data.Math.ComputeCharacterWisdomMagicArmorFromStatuses(character)
+	local statusesWisdom = 0
+	for i,statusInfo in pairs(statusesInfo) do
+		statusesWisdom = statusesWisdom + statusInfo.Value
 	end
     return (math.min(
         (character.Stats.Intelligence - Ext.ExtraData.AttributeBaseValue) * Ext.ExtraData.DGM_IntelligenceWisdomFromWitsCap,
@@ -113,6 +170,12 @@ end
 --- @param healer EsvCharacter|EclCharacter
 Data.Math.GetHealValue = function(stat, healer)
 	return Ext.Utils.Round(stat.HealValue * Game.Math.GetAverageLevelDamage(healer.Stats.Level) * Ext.ExtraData.HealToDamageRatio / 100)
+end
+
+Data.Math.GetHealScaledWisdomValue = function(stat, healer)
+	local bonus = Data.Stats.HealType[stat.HealStat](healer)
+	local hydrosophistBonus = math.max(1, 1 + (healer.Stats.WaterSpecialist*Ext.ExtraData.SkillAbilityVitalityRestoredPerPoint/100))
+    return Ext.Utils.Round(Ext.Utils.Round(Data.Math.GetHealValue(stat, healer) * bonus / hydrosophistBonus)*hydrosophistBonus)
 end
 
 --[[

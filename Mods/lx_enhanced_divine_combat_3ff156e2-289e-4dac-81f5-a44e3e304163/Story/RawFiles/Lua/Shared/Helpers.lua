@@ -163,6 +163,10 @@ Helpers.EntityHasTag = function(object, tag)
 	return false
 end
 
+Helpers.Sign = function(number)
+	return number > 0 and "+" or ""
+end
+
 function DamageTypeEnum()
 	local enum = {
 		"Physical",
