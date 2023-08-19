@@ -399,8 +399,10 @@ local function OnStatTooltip(character, stat, tooltip)
                 wisdomEl.Label = wisdomEl.Label.."<br>    <img src=\'Icon_BulletPoint\'>"..CreateTooltipElement(value, element).Label
             elseif type(value) == "table" then
                 for k,statusInfo in pairs(value) do
-                    element.Label = Ext.L10N.GetTranslatedStringFromKey(statusInfo.Status)
-                    wisdomEl.Label = wisdomEl.Label.."<br>    <img src=\'Icon_BulletPoint\'>"..CreateTooltipElement(statusInfo.Value, element).Label
+                    if statusInfo.Value ~= 0 then
+                        element.Label = Ext.L10N.GetTranslatedStringFromKey(statusInfo.Status)
+                        wisdomEl.Label = wisdomEl.Label.."<br>    <img src=\'Icon_BulletPoint\'>"..CreateTooltipElement(statusInfo.Value, element).Label
+                    end
                 end
             end
         end
@@ -416,8 +418,10 @@ local function OnStatTooltip(character, stat, tooltip)
                 wisdomPAEl.Label = wisdomPAEl.Label.."<br>    <img src=\'Icon_BulletPoint\'>"..CreateTooltipElement(value, element).Label
             elseif type(value) == "table" then
                 for k,statusInfo in pairs(value) do
-                    element.Label = Ext.L10N.GetTranslatedStringFromKey(statusInfo.Status)
-                    wisdomPAEl.Label = wisdomPAEl.Label.."<br>    <img src=\'Icon_BulletPoint\'>"..CreateTooltipElement(statusInfo.Value, element).Label
+                    if statusInfo.Value ~= 0 then
+                        element.Label = Ext.L10N.GetTranslatedStringFromKey(statusInfo.Status)
+                        wisdomPAEl.Label = wisdomPAEl.Label.."<br>    <img src=\'Icon_BulletPoint\'>"..CreateTooltipElement(statusInfo.Value, element).Label
+                    end
                 end
             end
         end
@@ -433,14 +437,16 @@ local function OnStatTooltip(character, stat, tooltip)
                 wisdomMAEl.Label = wisdomMAEl.Label.."<br>    <img src=\'Icon_BulletPoint\'>"..CreateTooltipElement(value, element).Label
             elseif type(value) == "table" then
                 for k,statusInfo in pairs(value) do
-                    element.Label = Ext.L10N.GetTranslatedStringFromKey(statusInfo.Status)
-                    wisdomMAEl.Label = wisdomMAEl.Label.."<br>    <img src=\'Icon_BulletPoint\'>"..CreateTooltipElement(statusInfo.Value, element).Label
+                    if statusInfo.Value ~= 0 then
+                        element.Label = Ext.L10N.GetTranslatedStringFromKey(statusInfo.Status)
+                        wisdomMAEl.Label = wisdomMAEl.Label.."<br>    <img src=\'Icon_BulletPoint\'>"..CreateTooltipElement(statusInfo.Value, element).Label
+                    end
                 end
             end
         end
         local previousEl
         for i,element in pairs(WisdomTooltipArray) do
-            _P(element.Label)
+            -- _P(element.Label)
             -- Helpers.VPPrint(i, "CharacterSheet", element.Label)
             -- if previousEl then
             --     -- Helpers.VPPrint(previousEl.Label, "CharacterSheet")
