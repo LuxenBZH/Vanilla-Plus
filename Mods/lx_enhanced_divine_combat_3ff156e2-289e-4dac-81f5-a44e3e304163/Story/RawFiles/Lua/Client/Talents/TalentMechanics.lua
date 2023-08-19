@@ -32,7 +32,7 @@ Ext.Events.GetSkillAPCost:Subscribe(function(e)
     end
 
     local characterAP = 1
-    if skill.Requirement ~= "None" and skill.OverrideMinAP == "No" then
+    if skill.Requirement > 0 and skill.OverrideMinAP == "No" then
         characterAP = Game.Math.GetCharacterWeaponAPCost(character)
     end
 

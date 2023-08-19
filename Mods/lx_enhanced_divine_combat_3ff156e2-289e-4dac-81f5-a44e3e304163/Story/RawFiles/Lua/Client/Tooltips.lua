@@ -455,12 +455,12 @@ end
 ---@param tooltip TooltipData
 local function ComputeTooltipHealings(character, skill, tooltip)
     -- _D(tooltip)
-    local stat = Ext.Stats.Get(skill)
+    local stat = Ext.Stats.Get(skill, nil, false)
     if stat.SkillProperties then
         for i,property in pairs(stat.SkillProperties) do
             if property.Type == "Status" then
                 local status = Ext.Stats.Get(property.Action, nil, false) --- @type EclStatusHealing|EclStatusHeal
-                if status.HealValue > 0 and status.HealType == "Qualifier" then
+                if status and status.HealValue > 0 and status.HealType == "Qualifier" then
                     local properties = tooltip:GetElement("SkillProperties")
                     for j,tooltipProperty in pairs(properties.Properties) do
                         if string.match(tooltipProperty.Label, '<font color=\"#97FBFF\">') then

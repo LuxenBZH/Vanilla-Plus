@@ -402,6 +402,7 @@ local ElementalAffinityAiFlags = {
 ---- Elemental Affinity rework
 --- @param e LuaGetSkillAPCostEvent
 Ext.Events.GetSkillAPCost:Subscribe(function(e)
+	if not e.Character.TALENT_ElementalAffinity then return end
 	local skill = e.Skill
 	local character = e.Character
 	local grid = e.AiGrid
@@ -425,7 +426,7 @@ Ext.Events.GetSkillAPCost:Subscribe(function(e)
     end
 
     local characterAP = 1
-    if skill.Requirement ~= "None" and skill.OverrideMinAP == "No" then
+    if skill.Requirement > 0 and skill.OverrideMinAP == "No" then
         characterAP = Game.Math.GetCharacterWeaponAPCost(character)
     end
 
