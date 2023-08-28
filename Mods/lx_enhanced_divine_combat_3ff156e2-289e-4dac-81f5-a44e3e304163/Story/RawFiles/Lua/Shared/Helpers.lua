@@ -296,7 +296,7 @@ function CharGetDGMAttributeBonus(char, next)
 		two = math.floor(Ext.ExtraData.CombatAbilityDamageBonus * (stats.TwoHanded+next)),
 		twoCrit = math.floor(Ext.ExtraData.CombatAbilityCritMultiplierBonus * (stats.TwoHanded+next)),
 		twoAcc = math.floor(Ext.ExtraData.DGM_TwoHandedCTHBonus * (stats.TwoHanded+next)),
-		persArm = math.floor(Ext.ExtraData.AbilityPerseveranceArmorPerPoint * (stats.Perseverance+next)),
+		persArm = math.floor(Data.Math.GetHealValue(Ext.Stats.Get("POST_PHYS_CONTROL"), char) * (stats.Perseverance+next)),
 		persVit = math.floor(Ext.ExtraData.DGM_PerseveranceResistance * (stats.Perseverance+next)),
 		hydroDmg = math.floor(Ext.ExtraData.SkillAbilityWaterDamageBoostPerPoint * (stats.WaterSpecialist+next)),
 		hydroHeal = math.floor(Ext.ExtraData.SkillAbilityVitalityRestoredPerPoint * (stats.WaterSpecialist+next)),

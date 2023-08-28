@@ -495,7 +495,7 @@ HitManager:RegisterHitListener("DGM_Hit", "AfterDamageScaling", "DGM_AbsorbShiel
 	AbsorbShieldProcessDamage(target, instigator, hit)
 	--- Skill damage cap
 	if hit.SkillId ~= "" then
-		local stat = Ext.Stats.Get(string.sub(hit.SkillId, 1, string.len(hit.SkillId)-3))
+		local stat = hit.SkillId ~= "" and Ext.Stats.Get(string.sub(hit.SkillId, 1, string.len(hit.SkillId)-3)) or nil
 		if stat.VP_DamageCapValue ~= 0 then
 			local cap = stat.VP_DamageCapValue / 100 * Helpers.GetScaledValue(stat.VP_DamageCapScaling, target, instigator)
 			local damageTable = hit.Hit.DamageList:ToTable()
