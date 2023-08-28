@@ -1,0 +1,20 @@
+Key	Content	Handle
+AcidDescription	Inflict [1] each turn.	h32b3f391g84c8g4350gb6c1gc0577fd7372a
+BloodyArrowsDescription	Bloody Weapons	hbf9f6f92g699ag47b3gb967g5bfa164a0612
+BullHornsDescription	Magnificent horns sprout from your forehead, making you see red. You can rush at your enemies and gore them. Increases Retribution ability by 2 for the duration.	hae68ba97g6072g46fagb9d3g7c289a0e7511
+BurningArrowsDescription	Burning Weapons	h4be1f455g2614g43e1gbe42g7636850e7749
+DGM_AIMEDSHOT_Description	Increase Accuracy and Critical Chance for the next weapon attack.	he3d3ef27gc4e2g4271ga838ge227b9193ef7
+DGM_AIMEDSHOT_DisplayName	Aimed Shot	he5970b83g4f56g4348g8d23g39bce69f8c3c
+DGM_WARMUP_Description	The character adapt their blows to the moving targets.	cc455ag0c8cg4c80g9cd9gacb18c6420ba
+DGM_WARMUP_DisplayName	Warmup	h565877e2g71eag43aag928fgfee5ca4f0c4f
+DGM_WARMUP2_DisplayName	Warmup (2)	hc7851209gc2d8g4332g865dgae162ed9708b
+DGM_WARMUP3_DisplayName	Warmup (3)	hae2334ccg2f64g45aaga94dgf4ce0f03a7a6
+DGM_WARMUP4_DisplayName	Warmup (4)	h1c89538dg51d5g451dgac1agaf4de9de70bf
+ElectricArrowsDescription	Electric Weapons	hc385872cge252g4da0gbc7agf774df831f28
+LX_FORBEARANCE_Description	Prevent statuses which grants a death resist effect to be applied.	h8124ee04g9685g465ag99f3g2f8043bd74db
+LX_FORBEARANCE_DisplayName	Forbearance	hf4b8b267gc763g481bgbd5bga9b7b3aa1b54
+LX_SHIELD_AIR_Description	Absorb the next incoming [2].	h8071c537g81a0g4ba8g989dg148af4e03af8
+LX_SHIELD_AIR_DisplayName	Air Absorption	hf83ad08bg0071g4e56ga59cgb20a7582487d
+OilyArrowsDescription	Oily Weapons	h6138efe4ge000g4a7dga5e8g479f54f1234a
+PoisonArrowsDescription	Poison Weapons	h606e89bdgce80g4bcag99f3g914af3e4baae
+WaterArrowsDescription	Water Weapons	h944c3db5gc792g4cdcg923cg9471f4cb0969
