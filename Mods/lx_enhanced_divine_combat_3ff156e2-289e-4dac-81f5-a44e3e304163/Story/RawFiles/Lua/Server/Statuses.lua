@@ -20,15 +20,12 @@ end
 
 Ext.RegisterOsirisListener("CharacterStatusApplied", 3, "before", ScaleAimedShot)
 
--- Ext.Events.BeforeStatusApply:Subscribe(function (e)
---     local status = e.Status --- @type EsvStatus
---     local target = Ext.ServerEntity.GetGameObject(e.Status.TargetHandle).MyGuid
---     if Ext.Stats.Get(e.Status.StatusId).IsResistingDeath and HasActiveStatus(target, "LX_FORBEARANCE") == 1 then
---         _P("PREVENT RESIST DEATH")
---         Osi.NRD_StatusPreventApply(target, e.Status.StatusHandle, 1)
---     end
--- end)
 
+---Forbearance mechanic
+---@param target string|number
+---@param status any
+---@param handle any
+---@param instigator any
 Ext.Osiris.RegisterListener("NRD_OnStatusAttempt", 4, "before", function(target, status, handle, instigator)
     local stat = Ext.Stats.Get(status, nil, false)
     if stat and stat.IsResistingDeath == "Yes" and HasActiveStatus(target, "LX_FORBEARANCE") == 1 then
@@ -40,5 +37,16 @@ end)
 Ext.Events.StatusDelete:Subscribe(function(e)
     if e.Status.IsResistingDeath then
         ApplyStatus(Ext.ServerEntity.GetGameObject(e.Status.TargetHandle).MyGuid, "LX_FORBEARANCE", 12.0, 1)
+    end
+end)
+---END Forbearance
+
+---Perseverance on Staggered or Confused expiration
+Ext.Events.StatusDelete:Subscribe(function(e)
+    local entity = Ext.ServerEntity.GetGameObject(e.Status.TargetHandle)
+    if (e.Status.StatusId == "LX_STAGGERED" or e.Status.StatusId == "LX_STAGGERED2" or e.Status.StatusId == "LX_STAGGERED3") and e.Status.CurrentLifeTime == 0.0 then
+        ApplyStatus(entity.MyGuid, "POST_PHYS_CONTROL_HALF", 0, 1)
+    elseif e.Status.StatusId == "LX_CONFUSED" or e.Status.StatusId == "LX_CONFUSED2" or e.Status.StatusId == "LX_CONFUSED3" and e.Status.CurrentLifeTime == 0.0 then
+        ApplyStatus(entity.MyGuid, "POST_MAGIC_CONTROL_HALF", 0, 1)
     end
 end)

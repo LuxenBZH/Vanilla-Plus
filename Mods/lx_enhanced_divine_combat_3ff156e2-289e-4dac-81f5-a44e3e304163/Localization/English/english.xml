@@ -68,7 +68,7 @@
 	<content contentuid="h42b4c1e3g7c07g400dg8924g2807a024e6bb">Pet Pal enables you to talk to animals. Also increases your maximum number of summons by 1, but reduces their damage and Vitality by 50%.</content>
 	<content contentuid="h42f0b1b6gd786g46ebga04egf56b57d92048">Incarnate learns how to go invisible and strike foes with a corrosive slash. Increases damage by [1]% and maximum Vitality by 15%.</content>
 	<content contentuid="h43401d61ga5dfg4282ga423gc4a5b78ff7ac">Leech</content>
-	<content contentuid="h443a51dcgbd6fg46c2g8988gbfe93a3123a5">Next Level [1]: +[2]% Armour restored after a hard Crowd Control effect recovery and +[3]% on all Resistances when incapacitated.</content>
+	<content contentuid="h443a51dcgbd6fg46c2g8988gbfe93a3123a5">Next Level [1]: Recover [2] Armour when a hard crowd control effect expires and +[3]% on all Resistances when incapacitated.</content>
 	<content contentuid="h4542353bg043cg4964ga401g7a80dd267e5b">Target a surface in melee radius. Elemental damage matching that surface is added to your weapon attacks and weapon-based skills.</content>
 	<content contentuid="h456b2bf0gf693g41e8gb01cg42e3548814a2">Prevent the attacker to Warmup when you dodge.</content>
 	<content contentuid="h4641ef2eg741ag408bg95adg2fe65094c8b6">This character has been magically affected during recovery.</content>
@@ -96,7 +96,7 @@
 	<content contentuid="h5ad5ffbeg192cg47b3gbebag87252e71f246">Confused (3)</content>
 	<content contentuid="h5c90bf4dg4c11g4bb3gaf93g2caf0bb5c4c0">Use recommended attribute values</content>
 	<content contentuid="h5cb3da10g4cddg44eegbefeg72ffb21118ee">Wits Damage Over Time Bonus</content>
-	<content contentuid="h5d0c3ad0g3d9dg4cf1g92b7g20d6d7d26344">Level [1]: +[2]% Armour after a hard Crowd Control effect recovery and +[3]% on all Resistances when incapacitated.</content>
+	<content contentuid="h5d0c3ad0g3d9dg4cf1g92b7g20d6d7d26344">Level [1]: Recover [2] Armour when a hard crowd control effect expires and +[3]% on all Resistances when incapacitated.</content>
 	<content contentuid="h5d124a78g6932g4f5egb844gf9569ec4d2ba">Your inner demon actively watches over you. When an enemy approaches in melee range, they will be pummelled by a demonic fist dealing [1].</content>
 	<content contentuid="h5d420a72gb8cag4a08gb9ffg774da57dd2f7">Set the base Movement penalty of Crossbows when they are equipped.&lt;br&gt;Default : -92&lt;br&gt;&lt;font color=#ff0000&gt;Require a game restart&lt;/font&gt;</content>
 	<content contentuid="h5e0c2cf9g042ag4803gb01bg6128e1246fc9">Real Jump</content>
