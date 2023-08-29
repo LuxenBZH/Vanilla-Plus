@@ -1759,8 +1759,7 @@ data "CriticalChance" "10"
 
 new entry "Stats_LX_GlassCannon"
 type "Potion"
-data "ArmorBoost" "-100"
-data "MagicArmorBoost" "-100"
+data "VitalityBoost" "-35"
 
 new entry "Stats_LX_Warmup"
 type "Potion"
