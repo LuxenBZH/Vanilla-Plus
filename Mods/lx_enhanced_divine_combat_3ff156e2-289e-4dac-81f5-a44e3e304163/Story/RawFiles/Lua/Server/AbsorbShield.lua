@@ -23,9 +23,9 @@ Ext.Osiris.RegisterListener("NRD_OnStatusAttempt", 4, "before", function(target,
     end
 end)
 
----@param target EsvCharacter
+---@param target EsvCharacter | EsvItem
+---@param instigator EsvCharacter
 ---@param hit EsvStatusHit
----@param handle integer
 function AbsorbShieldProcessDamage(target, instigator, hit)
     local damageList = hit.Hit.DamageList:ToTable()
     for index, array in pairs(damageList) do

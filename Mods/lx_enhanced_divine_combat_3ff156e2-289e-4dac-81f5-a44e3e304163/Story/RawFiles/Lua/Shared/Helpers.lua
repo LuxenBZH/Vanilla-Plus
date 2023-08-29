@@ -1,3 +1,4 @@
+---@diagnostic disable: duplicate-set-field
 -- Helpers
 --- @class Helpers
 Helpers = {}
@@ -694,7 +695,7 @@ HitHelpers.HitGetTotalDamage = function(hit)
 end
 
 --- @param hit StatsHitDamageInfo
---- @param target EsvCharacter
+--- @param target EsvCharacter | EsvItem
 HitHelpers.HitRecalculateAbsorb = function(hit, target)
     if Helpers.IsCharacter(target) then
         local physDmg = HitHelpers.HitGetPhysicalDamage(hit)
@@ -708,11 +709,10 @@ HitHelpers.HitRecalculateAbsorb = function(hit, target)
 end
 
 --- @param hit StatsHitDamageInfo
---- @param target EsvCharacter
 --- @param instigator EsvCharacter
 HitHelpers.HitRecalculateLifesteal = function(hit, instigator)
     if hit.DoT or hit.Surface then return end
-    hit.LifeSteal = math.floor(Ext.Round((instigator.Stats.LifeSteal / 100) * (hit.TotalDamageDone - hit.ArmorAbsorption)))
+    hit.LifeSteal = math.floor(Ext.Utils.Round((instigator.Stats.LifeSteal / 100) * (hit.TotalDamageDone - hit.ArmorAbsorption)))
 end
 
 --- @param hit StatsHitDamageInfo
@@ -734,7 +734,7 @@ HitHelpers.HitAddDamage = function(hit, target, instigator, damageType, amount)
 end
 
 --- @param hit StatsHitDamageInfo
---- @param target EsvCharacter
+--- @param target EsvCharacter | EsvItem
 HitHelpers.HitMultiplyDamage = function(hit, target, instigator, multiplier)
     hit.DamageList:Multiply(multiplier)
     hit.TotalDamageDone = HitHelpers.HitGetTotalDamage(hit)
