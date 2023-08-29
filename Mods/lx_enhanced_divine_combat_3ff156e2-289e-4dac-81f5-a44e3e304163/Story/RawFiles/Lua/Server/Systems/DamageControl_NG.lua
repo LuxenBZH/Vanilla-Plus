@@ -85,11 +85,11 @@ end
 ---@param handle number
 local function DamageControl(target, instigator, hitDamage, handle)
 	local target = Ext.ServerEntity.GetGameObject(target) --- @type EsvItem | EsvCharacter
-	if instigator == 'NULL_00000000-0000-0000-0000-000000000000' then return end
-	local instigator = Ext.ServerEntity.GetGameObject(instigator) --- @type EsvCharacter
-	if getmetatable(instigator) ~= "esv::Character" then
-		return
-	end
+	-- if instigator == 'NULL_00000000-0000-0000-0000-000000000000' then return end
+	local instigator = instigator ~= "NULL_00000000-0000-0000-0000-000000000000" and Ext.ServerEntity.GetGameObject(instigator) or {MyGuid = "NULL_00000000-0000-0000-0000-000000000000"} --- @type EsvCharacter
+	-- if getmetatable(instigator) ~= "esv::Character" then
+	-- 	return
+	-- end
 	local hit = Ext.ServerEntity.GetStatus(target.MyGuid, handle) --- @type EsvStatusHit
 	local skill = hit.SkillId ~= "" and Ext.Stats.Get(string.sub(hit.SkillId, 1, string.len(hit.SkillId)-3)) or nil --- @type StatEntrySkillData | nil
 	local flags = HitFlags:Create()
@@ -118,7 +118,7 @@ local function DamageControl(target, instigator, hitDamage, handle)
 	if flags.FromReflection
 	 or (flags.DamageSourceType > 0 and flags.DamageSourceType < 4) 
 	 or (flags.DamageSourceType == 0 and hit.SkillId == "" and Helpers.IsCharacter(target))
-	 or skill and (skill.Damage ~= "AverageLevelDamge" and skill.Damage ~= "BaseLevelDamage")  then
+	 or (skill and (skill.Damage ~= "AverageLevelDamge" and skill.Damage ~= "BaseLevelDamage"))  then
 		HitManager:TriggerHitListeners("DGM_Hit", "AfterDamageScaling", hit, instigator, target, flags)
 		HitManager:InitiatePassingDamage(target, hit.Hit.DamageList:ToTable())
         return
@@ -126,6 +126,8 @@ local function DamageControl(target, instigator, hitDamage, handle)
 
     -- Trace Guardian Angel statuses
     if Helpers.IsCharacter(target) then HitManager:TagCharacterWithSharedDamage(target) end
+
+	if instigator.MyGuid == 'NULL_00000000-0000-0000-0000-000000000000' then return end
 
     -- Bonuses
 	local attacker = Data.Math.GetCharacterComputedDamageBonus(instigator, target, flags, skill)
@@ -489,8 +491,11 @@ end, 50)
 --- @param instigator EsvCharacter
 --- @param target EsvItem|EsvCharacter
 --- @param flags HitFlags
---- @param instigatorDGMStats table
 HitManager:RegisterHitListener("DGM_Hit", "AfterDamageScaling", "DGM_AbsorbShields", function(hit, instigator, target, flags)
+	--- Retribution indirect damage reduction
+	-- if flags.FromReflection or (hit.DamageSourceType ~= "Attack" and hit.DamageSourceType ~= "Offhand" and hit.DamageSourceType ~= "GM") then
+	-- 	HitHelpers.HitMultiplyDamage(hit.Hit, target, instigator, 1 - (target.Stats.PainReflection * (Ext.ExtraData.DGM_PainReflectionDamageReduction/100)))
+	-- end
 	--- Absorb shields
 	AbsorbShieldProcessDamage(target, instigator, hit)
 	--- Skill damage cap
@@ -503,7 +508,7 @@ HitManager:RegisterHitListener("DGM_Hit", "AfterDamageScaling", "DGM_AbsorbShiel
 			for i,element in pairs(damageTable) do
 				totalAmount = totalAmount + element.Amount
 				if totalAmount > cap then
-					HitHelpers.HitAddDamage(hit, target, instigator, tostring(element.DamageType), cap - totalAmount)
+					HitHelpers.HitAddDamage(hit.Hit, target, instigator, tostring(element.DamageType), cap - totalAmount)
 					totalAmount = cap
 				end
 			end

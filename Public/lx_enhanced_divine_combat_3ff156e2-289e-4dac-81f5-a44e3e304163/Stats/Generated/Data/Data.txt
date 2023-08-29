@@ -259,3 +259,5 @@ key "DGM_PotionFatigue","1"
 key "DGM_LegacyDodge","0"
 
 key "DGM_BaseAccuracy","90"
+
+key "DGM_PainReflectionDamageReduction","2"
