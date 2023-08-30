@@ -164,3 +164,14 @@ Data.Stats.WisdomTypes = {
 	VP_ArmorRegenBoost = "Physical armour healings",
 	VP_MagicArmorRegenBoost = "Magic armour healings"
 }
+
+Data.Stats.Warmup = {
+	[1] = "DGM_WARMUP1",
+	[2] = "DGM_WARMUP2",
+	[3] = "DGM_WARMUP3",
+	[4] = "DGM_WARMUP4",
+	DGM_WARMUP1 = 1,
+	DGM_WARMUP2 = 2,
+	DGM_WARMUP3 = 3,
+	DGM_WARMUP4 = 4,
+}
