@@ -61,7 +61,7 @@ Ext.Events.BeforeStatusDelete:Subscribe(function(e)
             e:PreventAction()
             ClearTag(object.MyGuid, "LX_Warmup")
         else
-            ApplyStatus(object.MyGuid, Data.Stats.Warmup[Data.Stats.Warmup[e.Status.StatusId]-1], 6.0, 1, object.MyGuid)
+            ApplyStatus(object.MyGuid, Data.Stats.Warmup[Data.Stats.Warmup[e.Status.StatusId]-1] or "", 6.0, 1, object.MyGuid)
         end
     end
 end)
