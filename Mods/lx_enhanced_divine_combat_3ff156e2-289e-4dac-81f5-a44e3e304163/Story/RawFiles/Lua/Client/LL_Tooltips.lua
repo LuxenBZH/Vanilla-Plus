@@ -1,7 +1,7 @@
 local notPotionStat = {}
 
 Ext.RegisterListener("SessionLoaded", function()
-    local objects = Ext.GetStatEntries("Object")
+    local objects = Ext.Stats.GetStats("Object")
     for i,object in pairs(objects) do
         notPotionStat[object] = true
     end
@@ -9,14 +9,15 @@ end)
 
 --- @param item EclItem
 local function ItemCanBeExtended(item)
-    if item.StatsId ~= nil then
-        local stat = Ext.GetStat(item.StatsId)
+    if item.StatsId then
+        local stat = Ext.Stats.Get(item.StatsId)
         local template = item.RootTemplate
-        if not item.Stats and not(notPotionStat[stat.Name]) 
+        local entryType = Helpers.Stats.GetEntryType(stat)
+        if not item.Stats and entryType == "Potion"
           and GetParentStat(stat, "IsConsumable") == "Yes" and GetParentStat(stat, "IsFood") ~= "Yes" then
             return true
         end
-        if stat.ExtraProperties == nil then return false end
+        if entryType ~= "Potion" or not stat.ExtraProperties then return false end
         for i,property in pairs(stat.ExtraProperties) do
             if property.Action == "HEALING_ELIXIR" then
                 return true
@@ -32,7 +33,7 @@ end
 local function OnItemTooltip(item, tooltip)
     if item.StatsId ~= nil then
         local element = tooltip:GetElement("ItemDescription")
-        local stat = Ext.GetStat(item.StatsId)
+        local stat = Ext.Stats.Get(item.StatsId)
         if ItemCanBeExtended(item) then
             tooltip:MarkDirty()
         end
@@ -66,12 +67,12 @@ local function SkillCanBeExtended(skill)
             if property.Action == "EXPLODE" then
                 hasStatusApplied = true
             elseif property.Type == "Status" then
-                local status = Ext.GetStat(property.Action)
+                local status = Ext.Stats.Get(property.Action)
                 if status ~= nil then
                     if status.StatusType == "DAMAGE" or status.LeaveAction ~= ""  or status.StatusType == "SPARK" or status.StatusType == "ACTIVE_DEFENSE" then
                         hasStatusApplied = true
                     end
-                    local statsId = Ext.GetStat(status.StatsId)
+                    local statsId = Ext.Stats.Get(status.StatsId)
                     if status.StatusType == "CONSUME" and status.StatsId ~= "" and statsId ~= nil and  statsId.BonusWeapon ~= "" then
                         hasStatusApplied = true
                     end
@@ -176,27 +177,27 @@ local function ExtendStatus(status, element, stats)
     -- end
     if status.StatusType == "DAMAGE" then
         if status.DamageStats ~= "" then
-            ExtendStatusDamage(Ext.GetStat(status.DamageStats), element, stats, status.DisplayName)
+            ExtendStatusDamage(Ext.Stats.Get(status.DamageStats), element, stats, status.DisplayName)
         end
     elseif status.StatusType == "ACTIVE_DEFENSE" then
         if status.Projectile ~= "" then
             element.Label=element.Label .. "<br><font color='#e60000'>On Activation: "..Mods.LeaderLib.GameHelpers.GetStringKeyText(status.DisplayName).."</font>"
-            local damageStat = Ext.GetStat(status.Projectile)
+            local damageStat = Ext.Stats.Get(status.Projectile)
             ExtendDamage(element, damageStat, stats, "", "    ")
         end
     elseif status.LeaveAction ~= "" then
         element.Label=element.Label .. "<br><font color='#e60000'>On "..Mods.LeaderLib.GameHelpers.GetStringKeyText(status.DisplayName).." expiration:</font>"
-        local subStatus = Ext.GetStat(status.LeaveAction)
+        local subStatus = Ext.Stats.Get(status.LeaveAction)
         ExtendDamage(element, subStatus, stats, "", "    ", true)
     elseif status.StatusType == "SPARK" then
         element.Label=element.Label .. "<br><font color='#e60000'>Each hit will throw a projectile to the nearest target in a "..status.Radius.."m radius:</font>"
-        local subStatus = Ext.GetStat(status.Projectile)
+        local subStatus = Ext.Stats.Get(status.Projectile)
         ExtendDamage(element, subStatus, stats, "", "    ")
     elseif status.StatusType == "CONSUME" then
         if status.StatsId ~= "" then
-            local potion = Ext.GetStat(status.StatsId)
+            local potion = Ext.Stats.Get(status.StatsId)
             if potion.BonusWeapon ~= "" then
-                ExtendStatusDamage(Ext.GetStat(potion.BonusWeapon), element, stats, status.DisplayName, true)
+                ExtendStatusDamage(Ext.Stats.Get(potion.BonusWeapon), element, stats, status.DisplayName, true)
             end
         end
     end
@@ -207,7 +208,7 @@ end
 --- @param tooltip TooltipData
 local function OnSkillTooltip(character, skill, tooltip)
     --- @type StatEntrySkillData
-    local skillStat = Ext.GetStat(skill)
+    local skillStat = Ext.Stats.Get(skill)
     local stats = character.Stats
     if SkillCanBeExtended(skillStat) then
         tooltip:MarkDirty()
@@ -215,7 +216,7 @@ local function OnSkillTooltip(character, skill, tooltip)
             local element = tooltip:GetElement("SkillDescription")
             local isProjectile = ""
             if skillStat.SkillType == "Storm" then
-                skillStat = Ext.GetStat(skillStat.ProjectileSkills:gsub(";.*", ""))
+                skillStat = Ext.Stats.Get(skillStat.ProjectileSkills:gsub(";.*", ""))
             end
             if skillStat.SkillType == "Projectile" or skillStat.SkillType == "ProjectileStrike" then
                 isProjectile = "per hit"
@@ -225,14 +226,14 @@ local function OnSkillTooltip(character, skill, tooltip)
             if skillStat.SkillProperties == nil then return end
             for i,property in pairs(skillStat.SkillProperties) do
                 if property.Action == "EXPLODE" then
-                    local status = Ext.GetStat(property.StatsId)
+                    local status = Ext.Stats.Get(property.StatsId)
                     if status ~= nil then
                         element.Label=element.Label .. "<br><font color='#e60000'>Explode target, causing in a "..skillStat.AreaRadius.."m radius:</font>"
                         ExtendDamage(element, status, stats, "", "    ")
                     end
                 elseif property.Type == "Status" then
                     ---@type StatEntryStatusData
-                    local status = Ext.GetStat(property.Action)
+                    local status = Ext.Stats.Get(property.Action)
                     if status ~= nil then
                         ExtendStatus(status, element, stats)
                     end
@@ -240,13 +241,13 @@ local function OnSkillTooltip(character, skill, tooltip)
             end
             if skillStat.SkillType == "Dome" then
                 if skillStat.AuraSelf ~= "" then
-                    ExtendStatus(Ext.GetStat(skillStat.AuraSelf), element, stats)
+                    ExtendStatus(Ext.Stats.Get(skillStat.AuraSelf), element, stats)
                 end
                 if skillStat.AuraAllies ~= skillStat.AuraSelf and skillStat.AuraAllies ~= "" then
-                    ExtendStatus(Ext.GetStat(skillStat.AuraAllies), element, stats)
+                    ExtendStatus(Ext.Stats.Get(skillStat.AuraAllies), element, stats)
                 end
                 if skillStat.AuraEnemies ~= skillStat.AuraAllies and skillStat.AuraEnemies ~= skillStat.AuraSelf and skillStat.AuraEnemies ~= "" then
-                    ExtendStatus(Ext.GetStat(skillStat.AuraEnemies), element, stats)
+                    ExtendStatus(Ext.Stats.Get(skillStat.AuraEnemies), element, stats)
                 end
             end
         end
