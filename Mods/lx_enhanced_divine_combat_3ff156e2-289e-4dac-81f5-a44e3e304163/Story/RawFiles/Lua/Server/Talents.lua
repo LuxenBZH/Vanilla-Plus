@@ -456,3 +456,38 @@ Ext.Osiris.RegisterListener("CharacterUsedSkill", 4, "before", function(characte
 		SetTag(character, "VP_UsedElementalAffinity")
 	end
 end)
+
+---------
+---@param e EsvLuaBeforeStatusApplyEvent
+-- Ext.Events.Status:Subscribe(function(e)
+-- 	if e.Status.StatusId == "CONSUME" then
+-- 		if not e.Status.StatsIds then return end
+-- 		local entry = Ext.Stats.Get(e.Status.StatsIds[1].StatsId) ---@type StatEntryPotion
+-- 		_DS(e.Status)
+-- 		e.Status.StatsMultiplier = 0.5
+-- 		-- if entry.IsConsumable == "Yes" or entry.IsFood == "Yes" then
+
+-- 		-- end
+-- 	end
+-- end)
+
+Ext.Osiris.RegisterListener("NRD_OnStatusAttempt", 4, "before", function(target, statusId, handle, instigator)
+	if statusId == "CONSUME" then
+		local status = Ext.GetStatus(target, handle)
+		if status.StatsIds then
+			local potion = Ext.Stats.Get(status.StatsIds[1].StatsId)
+			if (potion.IsConsumable == "Yes" or potion.IsFood == "Yes") and Ext.ServerEntity.GetCharacter(target).Stats.TALENT_FiveStarRestaurant then
+				status.StatsMultiplier = 0
+				if potion.IsFood == "Yes" then
+					status.CurrentLifeTime = -1.0
+				end
+				if potion.Vitality or potion.PhysicalArmor or potion.MagicArmor or potion.VitalityPercentage then
+					SetTag(target, "LX_FSDHealHack")
+				end
+			end
+		end
+	elseif statusId == "HEAL" and IsTagged(target, "LX_FSDHealHack") == 1 then
+		Ext.GetStatus(target, handle).StatsMultiplier = 0.5
+		ClearTag(target, "LX_FSDHealHack")
+	end
+end)

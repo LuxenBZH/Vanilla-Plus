@@ -35,7 +35,7 @@ end
 ---@param character EsvCharacter
 ---@param potion string
 function ManagePotionFatigue(character, potion)
-	local item = Ext.GetItem(potion)
+	local item = Ext.ServerEntity.GetItem(potion)
 	if NRD_StatGetType(item.StatsId) ~= "Potion" then return end
 	local isConsumable = NRD_StatGetInt(item.StatsId, "IsConsumable")
 	local isFood = NRD_StatGetInt(item.StatsId, "IsFood")
@@ -51,3 +51,19 @@ function ManagePotionFatigue(character, potion)
 		SetVarInteger(character, "DGM_PotionFatigue", fatigue)
 	end
 end
+
+Ext.Osiris.RegisterListener("CharacterUsedItem", 2, "before", function(character, item)
+	if CharacterIsInCombat(character) == 1 then
+		ManagePotionFatigue(character, item)
+	end
+end)
+
+Ext.Osiris.RegisterListener("ObjectTurnStarted", 1, "before", function(object)
+	if ObjectIsCharacter(object) == 1 then
+		if Ext.ServerEntity.GetCharacter(object).Stats.TALENT_FiveStarRestaurant then
+			SetVarInteger(object, "DGM_PotionFatigue", -1)
+		else
+			SetVarInteger(object, "DGM_PotionFatigue", 0)
+		end
+	end
+end)
