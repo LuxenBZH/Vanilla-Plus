@@ -22,6 +22,7 @@ Data.Stats.StatsCustomAttributes = {
         VP_ArmorBypassType = "FixedString",
         VP_MagicArmorBypassValue = "ConstantInt",
         VP_MagicArmorBypassType = "FixedString",
+        VP_VitalityMinimum = "ConstantInt"
     },
     Weapon = {
         VP_IngressBoost = "ConstantInt",

@@ -12,6 +12,7 @@ Ext.Require("Client/Modules/DivineTalentsClient.lua")
 
 Ext.Require("Client/Fixes/ClientCasting.lua")
 Ext.Require("Client/Systems/CustomStatusAttributes.lua")
+Ext.Require("Client/Tooltips/CustomAttributes.lua")
 
 -- Ext.Require("Client/Systems/SkillCastManager.lua")
 

@@ -67,3 +67,30 @@ Ext.Osiris.RegisterListener("ObjectTurnStarted", 1, "before", function(object)
 		end
 	end
 end)
+
+
+Ext.Osiris.RegisterListener("NRD_OnStatusAttempt", 4, "before", function(target, statusId, handle, instigator)
+	if statusId == "CONSUME" then
+		local status = Ext.GetStatus(target, handle)
+		if status.StatsIds then
+			local potion = Ext.Stats.Get(status.StatsIds[1].StatsId)
+			if potion.VP_VitalityMinimum ~= 0 and potion.IsConsumable == "Yes" and potion.IsFood ~= "Yes" then
+				local character = Ext.ServerEntity.GetCharacter(target)
+				character.UserVars.VP_PotionVitalityMinimum = Game.Math.GetAverageLevelDamage(character.Stats.Level)*potion.VP_VitalityMinimum/100
+			end
+		end
+	elseif statusId == "HEAL" then
+		local object = Ext.ServerEntity.GetGameObject(target)
+		if Helpers.IsCharacter(object) and object.UserVars.VP_PotionVitalityMinimum and object.UserVars.VP_PotionVitalityMinimum > 0 then
+			local status = Ext.ServerEntity.GetStatus(target, handle) ---@type EsvStatusHeal
+			local amount = status.HealAmount
+			if object.Stats.TALENT_FiveStarRestaurant then
+				amount = amount/2
+			end
+			if amount < object.UserVars.VP_PotionVitalityMinimum then
+				status.HealAmount = Ext.Utils.Round(object.UserVars.VP_PotionVitalityMinimum) * (object.Stats.TALENT_FiveStarRestaurant and 2 or 1)
+			end
+			object.UserVars.VP_PotionVitalityMinimum = 0
+		end
+	end
+end)

@@ -11,6 +11,15 @@ Ext.Vars.RegisterUserVariable("VP_LastSkillID", {
     SyncOnTick = false
 })
 
+Ext.Vars.RegisterUserVariable("VP_PotionVitalityMinimum", {
+    Server = true,
+    Client = false, 
+    SyncToClient = false,
+    Persistent = false,
+    SyncOnWrite = false,
+    SyncOnTick = false
+})
+
 Ext.Vars.RegisterUserVariable("VP_ConsecutiveHitFromSkill", {
     Server = true,
     Client = false, 
