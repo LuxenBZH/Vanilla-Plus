@@ -150,4 +150,13 @@ Data.UIType = {
 	worldTooltip = 48,
 }
 
+Ext.Vars.RegisterUserVariable("LX_StatusConsumeMultiplier", {
+    Server = true,
+    Client = true, 
+    SyncToClient = true,
+    Persistent = false,
+    SyncOnWrite = true,
+    SyncOnTick = false,
+})
+
 Ext.Require("Client/_InitClient.lua")

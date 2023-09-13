@@ -79,3 +79,49 @@ end)
 Ext.Osiris.RegisterListener("ObjectLeftCombat", 2, "before", function(object, combatID)
     ClearTag(object, "LX_Warmup")
 end)
+
+--- Challenge scaling
+---@param character string
+---@param statusId string
+---@param causee string
+Ext.Osiris.RegisterListener("NRD_OnStatusAttempt", 4, "before", function(target, statusId, handle, instigator)
+    if instigator ~= 'NULL_00000000-0000-0000-0000-000000000000' and not Data.Stats.EngineStatuses[statusId] then
+        local statEntry = Ext.Stats.Get(statusId)
+        if statEntry.VP_ChallengeVitalityStep > 0 then
+            local character = Ext.ServerEntity.GetCharacter(instigator)
+            local value = math.min((Ext.ServerEntity.GetCharacter(target).Stats.CurrentVitality / (Game.Math.CalculateBaseDamage(statEntry.VP_ChallengeVitalityScaling, nil, nil, character.Stats.Level) * (statEntry.VP_ChallengeVitalityStep/100))), statEntry.VP_ChallengeMultiplierCap)
+            if not character.UserVars.VP_ChallengeMultiplier then
+                character.UserVars.VP_ChallengeMultiplier = {}
+            end
+            character.UserVars.VP_ChallengeMultiplier[target] = {
+                Status = statusId,
+                [statEntry.WinBoost[1].Action] = value,
+                [statEntry.LoseBoost[1].Action] = value
+            }
+            for i,boost in pairs(statEntry.WinBoost) do
+                character.UserVars.VP_ChallengeMultiplier[target][boost.Action] = value
+            end
+            for i,boost in pairs(statEntry.LoseBoost) do
+                character.UserVars.VP_ChallengeMultiplier[target][boost.Action] = value
+            end
+        end
+        local character = Ext.ServerEntity.GetCharacter(target)
+        if character.UserVars.VP_ChallengeMultiplier and character.UserVars.VP_ChallengeMultiplier[instigator] and character.UserVars.VP_ChallengeMultiplier[instigator][statusId] then
+            -- _P(character.DisplayName, statusId, character.UserVars.VP_ChallengeMultiplier[instigator][statusId])
+            -- _D(character.UserVars.VP_ChallengeMultiplier)
+            local status = Ext.GetStatus(target, handle)
+            
+            Helpers.Status.Multiply(status, tonumber(Ext.Utils.Round(character.UserVars.VP_ChallengeMultiplier[instigator][statusId])))
+            -- status.StatsMultiplier = tonumber(Ext.Utils.Round(character.UserVars.VP_ChallengeMultiplier[instigator][statusId]))
+            character.UserVars.VP_ChallengeMultiplier[instigator] = nil
+        end
+    end
+end)
+
+-- Ext.Osiris.RegisterListener("CharacterStatusApplied", 3, "before", function(target, status, instigator)
+--     if status == "CHALLENGE_LOSS" then
+--         local s = Ext.ServerEntity.GetCharacter(target):GetStatus("CHALLENGE_LOSS")
+--         Helpers.Status.Multiply(s, 100)
+--         -- _D(s)
+--     end
+-- end)

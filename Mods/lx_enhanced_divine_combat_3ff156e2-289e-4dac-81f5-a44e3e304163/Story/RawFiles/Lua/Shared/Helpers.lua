@@ -195,6 +195,46 @@ Helpers.Stats.GetEntryType = function(entry)
 	end
 end
 
+Helpers.Status = {}
+
+Helpers.Status.MultipliedStats = {}
+
+---Multiply a status, including damage if there is a damage entry
+---@param status EsvStatus
+Helpers.Status.Multiply = function(status, multiplier)
+	status.StatsMultiplier = multiplier
+	if status.StatusType == "CONSUME" then
+		local stat = Ext.Stats.Get(Ext.Stats.Get(status.StatusId).StatsId)
+		if stat["Damage Multiplier"] > 0 then
+			local character = Ext.ServerEntity.GetCharacter(status.TargetHandle)
+			character.UserVars.LX_StatusConsumeMultiplier = multiplier
+		end
+		-- local newStatName = stat.Name.."_x"..Ext.Utils.Round(multiplier)
+		-- Ext.Stats.Create(newStatName, "Potion", stat.Name)
+		-- local multipliedStat = Ext.Stats.Get(newStatName) ---@type StatEntryPotion
+		-- multipliedStat["Damage Multiplier"] = Ext.Utils.Round(multipliedStat.Damage * multiplier)
+		-- status.StatsIds[1].StatsId = newStatName
+		-- status.StatsId = newStatName
+		-- Ext.Stats.Sync(newStatName, true)
+		-- Helpers.Status.MultipliedStats[status] = newStatName
+	elseif status.StatusType == "DAMAGE" then
+		local stat = Ext.Stats.Get(status.DamageStats)
+		local newStatName = stat.Name.."_x"..Ext.Utils.Round(multiplier)
+		Ext.Stats.Create(newStatName, "Weapon", stat.Name)
+		local multipliedStat = Ext.Stats.Get(newStatName) ---@type StatEntryWeapon
+		multipliedStat.Damage = Ext.Utils.Round(multipliedStat.DamageFromBase * multiplier)
+		Ext.Stats.Sync(newStatName, true)
+		stat.DamageStats = newStatName
+		Helpers.Status.MultipliedStats[status] = newStatName
+	end
+end
+
+Ext.Osiris.RegisterListener("CharacterStatusRemoved", 3, "before", function(target, status, instigator)
+	if Helpers.Status.MultipliedStats[status] then
+		Ext.Stats.Sync(Helpers.Status.MultipliedStats[status], false)
+	end
+end)
+
 function DamageTypeEnum()
 	local enum = {
 		"Physical",
@@ -663,6 +703,8 @@ DamageScalingFormulas = {
 	BWD = Game.Math.GetLevelScaledWeaponDamage,
 	BMD = Game.Math.GetLevelScaledMonsterWeaponDamage
 }
+
+Helpers.NullGUID = "NULL_00000000-0000-0000-0000-000000000000"
 
 --- @class HitHelpers
 HitHelpers = {}

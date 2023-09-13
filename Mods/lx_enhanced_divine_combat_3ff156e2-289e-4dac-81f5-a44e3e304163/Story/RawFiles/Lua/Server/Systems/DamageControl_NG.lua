@@ -114,6 +114,16 @@ local function DamageControl(target, instigator, hitDamage, handle)
 		flags.IsFromShackles = true
 	end
 
+	--- CONSUME status multiplier
+	if target.UserVars.LX_StatusConsumeMultiplier and target.UserVars.LX_StatusConsumeMultiplier ~= 0 then
+		if instigator.MyGuid == Helpers.NullGUID then
+			HitHelpers.HitMultiplyDamage(hit.Hit, target, target, target.UserVars.LX_StatusConsumeMultiplier)
+		else
+			HitHelpers.HitMultiplyDamage(hit.Hit, target, instigator, target.UserVars.LX_StatusConsumeMultiplier)
+		end
+		target.UserVars.LX_StatusConsumeMultiplier = nil
+	end
+
 	-- Don't scale damage from surfaces, GM, scriting , reflection, or if the damage type doesn't fit scaling
 	if flags.FromReflection
 	 or (flags.DamageSourceType > 0 and flags.DamageSourceType < 4) 

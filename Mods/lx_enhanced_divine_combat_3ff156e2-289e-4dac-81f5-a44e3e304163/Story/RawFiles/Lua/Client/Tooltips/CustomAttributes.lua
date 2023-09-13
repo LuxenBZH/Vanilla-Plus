@@ -2,9 +2,8 @@
 ---@param item EclItem
 ---@param tooltip TooltipData
 Game.Tooltip.RegisterListener("Item", nil, function(item, tooltip)
-    if item.StatsFromName and Helpers.Stats.GetEntryType(item.StatsFromName.StatsEntry) == "Potion" and item.StatsFromName.StatsEntry.VP_VitalityMinimum > 0 then
+    if item.StatsFromName and Helpers.Stats.GetEntryType(item.StatsFromName.StatsEntry) == "Potion" and item.StatsFromName.StatsEntry.VP_VitalityMinimum > 0 and Ext.UI.GetByType(Data.UIType.hotBar):GetRoot().hotbar_mc.characterHandle then
         local level = Ext.ClientEntity.GetCharacter(Ext.UI.DoubleToHandle(Ext.UI.GetByType(Data.UIType.hotBar):GetRoot().hotbar_mc.characterHandle)).Stats.Level
-        -- local level = Ext.ClientEntity.GetCharacter(Ext.UI.DoubleToHandle(Ext.UI.GetByType(Data.UIType.characterSheet):GetPlayerHandle())).Stats.Level
         local vitalityAmount = Ext.Utils.Round(Game.Math.GetAverageLevelDamage(level)*item.StatsFromName.StatsEntry.VP_VitalityMinimum/100)  
         tooltip:AppendElement({
             Type = "ConsumableEffect",
