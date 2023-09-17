@@ -229,11 +229,13 @@ Helpers.Status.Multiply = function(status, multiplier)
 	end
 end
 
-Ext.Osiris.RegisterListener("CharacterStatusRemoved", 3, "before", function(target, status, instigator)
-	if Helpers.Status.MultipliedStats[status] then
-		Ext.Stats.Sync(Helpers.Status.MultipliedStats[status], false)
-	end
-end)
+if Ext.IsServer() then
+	Ext.Osiris.RegisterListener("CharacterStatusRemoved", 3, "before", function(target, status, instigator)
+		if Helpers.Status.MultipliedStats[status] then
+			Ext.Stats.Sync(Helpers.Status.MultipliedStats[status], false)
+		end
+	end)
+end
 
 function DamageTypeEnum()
 	local enum = {

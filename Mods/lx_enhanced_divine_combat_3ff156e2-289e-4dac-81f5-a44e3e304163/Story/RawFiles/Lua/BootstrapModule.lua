@@ -56,7 +56,11 @@ Data.Stats.StatsCustomAttributes = {
         VP_ConsecutiveDamageReductionPercent = "ConstantInt",
         VP_ConsecutiveDamageReductionHitAmount = "ConstantInt"
     },
-    StatusData = {},
+    StatusData = {
+        VP_ChallengeVitalityStep = "ConstantInt",
+        VP_ChallengeVitalityScaling = "FixedString",
+        VP_ChallengeMultiplierCap = "ConstantInt"
+    },
     Object = {}
 }
 

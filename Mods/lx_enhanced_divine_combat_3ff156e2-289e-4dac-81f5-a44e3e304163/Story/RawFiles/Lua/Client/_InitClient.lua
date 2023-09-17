@@ -13,6 +13,7 @@ Ext.Require("Client/Modules/DivineTalentsClient.lua")
 Ext.Require("Client/Fixes/ClientCasting.lua")
 Ext.Require("Client/Systems/CustomStatusAttributes.lua")
 Ext.Require("Client/Tooltips/CustomAttributes.lua")
+Ext.Require("Client/Tooltips/CursorText.lua")
 
 -- Ext.Require("Client/Systems/SkillCastManager.lua")
 
@@ -36,3 +37,5 @@ end)
 --     local statusConsole = Ext.GetBuiltinUI("Public/Game/GUI/statusConsole.swf")
 --     statusConsole:ExternalInterfaceCall("BackToGMPressed")
 -- end)
+
+Helpers.UI = {}
