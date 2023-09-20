@@ -151,19 +151,26 @@ end
     Heal related formulas
 ]]
 
---- @param stat StatEntryType
+---@alias PotionHealQualifier "Vitality"|"Armor"|"MagicArmor"
+
+--- @param stat StatEntryType|string
 --- @param healer EsvCharacter|EclCharacter
-Data.Math.GetHealScaledValue = function(stat, healer)
+--- @param field PotionHealQualifier|nil
+Data.Math.GetHealScaledValue = function(stat, healer, field)
+	if type(stat) == "string" then
+		stat = Ext.Stats.Get(stat)
+	end
     local HealTypeSkillData = healer.Stats.WaterSpecialist * Ext.ExtraData.SkillAbilityVitalityRestoredPerPoint
+	local entryType = Helpers.Stats.GetEntryType(stat)
 	-- When the status type is HEALING, the initial value is copied over to the next HEAL ticks and automatically apply the Hydro/Geo bonus
-	if stat.StatusType == "HEALING" then
+	if entryType == "StatusData" and stat.StatusType == "HEALING" then
 		HealTypeSkillData = 0
-	elseif stat.HealStat == "PhysicalArmor" then
+	elseif (entryType == "StatusData" and stat.HealStat == "PhysicalArmor") or (entryType == "Potion" and field == "Armor") then
 		HealTypeSkillData = healer.Stats.EarthSpecialist * Ext.ExtraData.SkillAbilityArmorRestoredPerPoint
-	elseif stat.HealStat == "MagicArmor" then
+	elseif (entryType == "StatusData" and stat.HealStat == "MagicArmor") or (entryType == "Potion" and field == "MagicArmor") then
 		HealTypeSkillData = healer.Stats.WaterSpecialist * Ext.ExtraData.SkillAbilityArmorRestoredPerPoint
 	end
-	return Ext.Utils.Round(stat.HealValue * Game.Math.GetAverageLevelDamage(healer.Stats.Level) * Ext.ExtraData.HealToDamageRatio / 100 * (1 + HealTypeSkillData/100))
+	return Ext.Utils.Round((entryType == "StatusData" and stat.HealValue or stat[field]) * Game.Math.GetAverageLevelDamage(healer.Stats.Level) * Ext.ExtraData.HealToDamageRatio / 100 * (1 + HealTypeSkillData/100))
 end
 
 --- @param stat StatEntryType
@@ -172,10 +179,35 @@ Data.Math.GetHealValue = function(stat, healer)
 	return Ext.Utils.Round(stat.HealValue * Game.Math.GetAverageLevelDamage(healer.Stats.Level) * Ext.ExtraData.HealToDamageRatio / 100)
 end
 
+--- @param stat StatEntryType
+--- @param healer EsvCharacter|EclCharacter
 Data.Math.GetHealScaledWisdomValue = function(stat, healer)
 	local bonus = Data.Stats.HealType[stat.HealStat](healer)
 	local hydrosophistBonus = math.max(1, 1 + (healer.Stats.WaterSpecialist*Ext.ExtraData.SkillAbilityVitalityRestoredPerPoint/100))
     return Ext.Utils.Round(Ext.Utils.Round(Data.Math.GetHealValue(stat, healer) * bonus / hydrosophistBonus)*hydrosophistBonus)
+end
+
+--[[
+	Armor
+]]
+
+---@param level number
+Data.Math.GetArmorScaledValue = function(level)
+	return Game.Math.GetVitalityBoostByLevel(level) * ((level * Ext.ExtraData.ExpectedConGrowthForArmorCalculation) * Ext.ExtraData.VitalityBoostFromAttribute + 1.0) * Ext.ExtraData.ArmorToVitalityRatio
+end
+
+---@param level number
+---@param healer EsvCharacter|EclCharacter
+---@param armorType PotionHealQualifier
+---@param potion StatEntryPotion
+Data.Math.GetArmorRegenScaledValue = function(level, healer, armorType, potion)
+	local multiplier = 1
+	if armorType == "Armor" then
+		multiplier = 1 + (healer.Stats.EarthSpecialist * Ext.ExtraData.SkillAbilityArmorRestoredPerPoint)/100
+	else
+		multiplier = 1 + (healer.Stats.WaterSpecialist * Ext.ExtraData.SkillAbilityArmorRestoredPerPoint)/100
+	end
+	return Ext.Utils.Round(Data.Math.GetArmorScaledValue(level) * potion[armorType] / 100) * multiplier
 end
 
 --[[

@@ -100,6 +100,7 @@ Ext.Osiris.RegisterListener("NRD_OnStatusAttempt", 4, "before", function(target,
             }
             for i,boost in pairs(statEntry.WinBoost) do
                 character.UserVars.VP_ChallengeMultiplier[target][boost.Action] = value
+                
             end
             for i,boost in pairs(statEntry.LoseBoost) do
                 character.UserVars.VP_ChallengeMultiplier[target][boost.Action] = value
@@ -107,21 +108,17 @@ Ext.Osiris.RegisterListener("NRD_OnStatusAttempt", 4, "before", function(target,
         end
         local character = Ext.ServerEntity.GetCharacter(target)
         if character.UserVars.VP_ChallengeMultiplier and character.UserVars.VP_ChallengeMultiplier[instigator] and character.UserVars.VP_ChallengeMultiplier[instigator][statusId] then
-            -- _P(character.DisplayName, statusId, character.UserVars.VP_ChallengeMultiplier[instigator][statusId])
-            -- _D(character.UserVars.VP_ChallengeMultiplier)
             local status = Ext.GetStatus(target, handle)
-            
-            Helpers.Status.Multiply(status, tonumber(Ext.Utils.Round(character.UserVars.VP_ChallengeMultiplier[instigator][statusId])))
+            -- Fix reverse status attribution from vanilla
+            status.StatusSourceHandle = status.TargetHandle
+            -- Have to manually override the heal since it has VERY weird interactions with the target Hydrosophist value...
+            if status.StatusType == "HEAL" then
+                status.HealAmount = Ext.Utils.Round(Data.Math.GetHealScaledWisdomValue(Ext.Stats.Get(statusId), character) * character.UserVars.VP_ChallengeMultiplier[instigator][statusId])
+            else
+                Helpers.Status.Multiply(status, tonumber(Ext.Utils.Round(character.UserVars.VP_ChallengeMultiplier[instigator][statusId])))
+            end
             -- status.StatsMultiplier = tonumber(Ext.Utils.Round(character.UserVars.VP_ChallengeMultiplier[instigator][statusId]))
-            character.UserVars.VP_ChallengeMultiplier[instigator] = nil
+            character.UserVars.VP_ChallengeMultiplier[instigator][statusId] = nil
         end
     end
 end)
-
--- Ext.Osiris.RegisterListener("CharacterStatusApplied", 3, "before", function(target, status, instigator)
---     if status == "CHALLENGE_LOSS" then
---         local s = Ext.ServerEntity.GetCharacter(target):GetStatus("CHALLENGE_LOSS")
---         Helpers.Status.Multiply(s, 100)
---         -- _D(s)
---     end
--- end)

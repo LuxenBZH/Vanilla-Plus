@@ -21,10 +21,10 @@ function UICursorTooltipManager:CheckTooltips(e, character, pickingState)
         local text = tooltip.Callback(character, pickingState)
         if text then
             if first then
-                cursorText = cursorText..text
+                cursorText = cursorText..'<font size="15">'..text..'</font>'
                 first = false
             else
-                cursorText = cursorText.."<br>"..text
+                cursorText = cursorText.."<br>"..'<font size="15">'..text..'</font>'
             end
             e:PreventAction()
         end
@@ -44,9 +44,16 @@ end)
 ---@param character EclCharacter
 ---@param pickingState EclPickingState
 UICursorTooltipManager:AddConditionalTooltip(function(character, pickingState)
-    if character.SkillManager.CurrentSkill.SkillId == "Target_Challenge_-1" and pickingState.HoverCharacter then
+    if character.SkillManager.CurrentSkill and character.SkillManager.CurrentSkill.SkillId == "Target_Challenge_-1" and pickingState.HoverCharacter then
         local statEntry = Ext.Stats.Get("CHALLENGE")
         local multiplier = math.min(Ext.ClientEntity.GetCharacter(pickingState.HoverCharacter).Stats.CurrentVitality / (Game.Math.CalculateBaseDamage(statEntry.VP_ChallengeVitalityScaling, nil, nil, character.Stats.Level) * (statEntry.VP_ChallengeVitalityStep/100)), statEntry.VP_ChallengeMultiplierCap)
-        return "Multiplier: "..tostring(Ext.Utils.Round(multiplier))
+        local potion = Ext.Stats.Get("Stats_Challenge_Win")
+        return Helpers.GetDynamicTranslationStringFromHandle("h7650995bg0673g4ccfg82eeg66ad641811e8", 
+                Ext.Utils.Round(multiplier), 
+                Ext.Utils.Round(multiplier*Data.Math.GetArmorRegenScaledValue(character.Stats.Level, character, "Armor", potion)),
+                Ext.Utils.Round(multiplier*Data.Math.GetArmorRegenScaledValue(character.Stats.Level, character, "MagicArmor", potion)),
+                Ext.Utils.Round(multiplier*Data.Math.GetHealScaledValue("CHALLENGE_WIN_HEAL", character)), 
+                Ext.Utils.Round(multiplier*Ext.Utils.Round(Game.Math.GetAverageLevelDamage(character.Stats.Level)*((Ext.Stats.Get("Stats_Challenge_Loss")["Damage Multiplier"])/100)))
+            )
     end
 end)

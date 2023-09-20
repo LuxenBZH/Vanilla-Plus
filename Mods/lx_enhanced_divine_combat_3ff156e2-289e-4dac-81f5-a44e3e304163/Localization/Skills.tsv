@@ -41,3 +41,4 @@ ThrowExplosiveTrapDescription	Throw an explosive trap at target location. Trap t
 TooltipBonusLevel	Damage is based on your level and trigger the additional skill bonus from Intelligence.	h71b09f9fg285fg4532gab16g1c7640864141
 TooltipBonusWeapon	Damage is based on your basic attack and trigger the additional bonus from both Strength and Intelligence.	ha4cfd852g52f1g4079g8919gd392ac8ade1a
 WarpInfusionDescription	Incarnate learns a teleport skill, and a skill to swap places with its master. Increases damage by [1]% and maximum Vitality by 15%.	hfb851683g738cg4b48g8fd8g478d375c030a
+Target_Challenge_CursorTooltip	Challenge:<br>+[1] % Damage<br>+[2] Physical Armour<br>+[3]Magic Armour<br>[4] Vitality heal<br>If failure: [4] damage received.	

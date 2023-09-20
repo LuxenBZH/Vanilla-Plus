@@ -237,6 +237,34 @@ if Ext.IsServer() then
 	end)
 end
 
+---@param str string
+Helpers.SubstituteString = function(str, ...)
+	local args = {...}
+	local result = str
+
+	for k, v in pairs(args) do
+		if type(v) == "number" then
+			if v == math.floor(v) then v = math.floor(v) end -- Formatting integers to not show .0
+		end
+			result = result:gsub("%["..tostring(k).."%]", v)
+	end
+	return result
+end
+	
+---@param handle string
+---@return string
+Helpers.GetDynamicTranslationStringFromHandle = function(handle, ...)
+	local args = {...}
+	if handle == nil then return "" end
+
+	local str = Ext.GetTranslatedString(handle, "Handle Error!")
+	if str == "Handle Error!" then
+		Helpers.VPPrint("Tooltip handle error:", "Tooltips", handle)
+	end
+	str = Helpers.SubstituteString(str, table.unpack(args))
+	return str
+end
+
 function DamageTypeEnum()
 	local enum = {
 		"Physical",
