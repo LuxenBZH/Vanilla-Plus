@@ -12,6 +12,7 @@ end
 ---@param character EclCharacter
 ---@param pickingState EclPickingState
 function UICursorTooltipManager:CheckTooltips(e, character, pickingState)
+    _P("Check Tooltip")
     local ui = e.UI
     local cc = Ext.UI.GetCursorControl()
     local td = Ext.UI.GetByHandle(cc.TextDisplayUIHandle)
@@ -29,7 +30,7 @@ function UICursorTooltipManager:CheckTooltips(e, character, pickingState)
             e:PreventAction()
         end
     end
-    ui:GetRoot().addText(cursorText)
+    ui:GetRoot().tf.text_txt.htmlText = cursorText
 end
 
 Ext.Events.SessionLoaded:Subscribe(function(e)
