@@ -16,10 +16,12 @@ end)
 ---@param item EclItem
 ---@param tooltip TooltipData
 Game.Tooltip.RegisterListener("Item", nil, function(item, tooltip)
-    if item.StatsFromName and Helpers.Stats.GetEntryType(item.StatsFromName.StatsEntry) == "Potion" then
+    if item.StatsFromName and Helpers.Stats.GetEntryType(item.StatsFromName.StatsEntry) == "Potion" and item.StatsFromName.StatsEntry.VP_VitalityMinimum > 0 then
         local percentage = item.StatsFromName.StatsEntry.VitalityPercentage
         local character = Ext.ClientEntity.GetCharacter(Ext.UI.DoubleToHandle(Ext.UI.GetByType(Data.UIType.hotBar):GetRoot().hotbar_mc.characterHandle))
         local element = tooltip:GetElement("ConsumableEffect")
-        element.Label = element.Label.." ("..Ext.Utils.Round(character.Stats.MaxVitality*percentage/100).." HP)"
+        if element then
+            element.Label = element.Label.." ("..Ext.Utils.Round(character.Stats.MaxVitality*percentage/100).." HP)"
+        end
     end
 end)
