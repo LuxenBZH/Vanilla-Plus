@@ -395,6 +395,7 @@ local function OnStatTooltip(character, stat, tooltip)
         table.insert(WisdomTooltipArray, wisdomEl)
         for i,element in pairs(WisdomStatChecks) do
             local value = element.Value(character)
+            _P(element.Label, value)
             if type(value) == "number" and value ~= 0 then
                 wisdomEl.Label = wisdomEl.Label.."<br>    <img src=\'Icon_BulletPoint\'>"..CreateTooltipElement(value, element).Label
             elseif type(value) == "table" then

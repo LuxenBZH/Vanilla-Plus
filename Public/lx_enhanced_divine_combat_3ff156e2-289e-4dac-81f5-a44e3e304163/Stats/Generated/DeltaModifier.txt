@@ -1,0 +1,23 @@
+new deltamod "LX_Boost_Armor_Ring_Special_Wisdom"
+param "BoostType" "Normal"
+param "MinLevel" "1"
+param "Frequency" "1"
+param "ModifierType" "Armor"
+param "SlotType" "Ring"
+new boost "_LX_Boost_Armor_Ring_Special_Wisdom",1
+
+new deltamod "LX_Boost_Armor_Ring_Special_Wisdom_Medium"
+param "BoostType" "Normal"
+param "MinLevel" "9"
+param "Frequency" "1"
+param "ModifierType" "Armor"
+param "SlotType" "Ring"
+new boost "_LX_Boost_Armor_Ring_Special_Wisdom_Medium",1
+
+new deltamod "LX_Boost_Armor_Ring_Special_Wisdom_Large"
+param "BoostType" "Normal"
+param "MinLevel" "16"
+param "Frequency" "1"
+param "ModifierType" "Armor"
+param "SlotType" "Ring"
+new boost "_LX_Boost_Armor_Ring_Special_Wisdom_Large",1

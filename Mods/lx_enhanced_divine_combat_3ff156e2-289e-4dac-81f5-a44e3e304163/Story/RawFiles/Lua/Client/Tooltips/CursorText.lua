@@ -12,7 +12,6 @@ end
 ---@param character EclCharacter
 ---@param pickingState EclPickingState
 function UICursorTooltipManager:CheckTooltips(e, character, pickingState)
-    _P("Check Tooltip")
     local ui = e.UI
     local cc = Ext.UI.GetCursorControl()
     local td = Ext.UI.GetByHandle(cc.TextDisplayUIHandle)

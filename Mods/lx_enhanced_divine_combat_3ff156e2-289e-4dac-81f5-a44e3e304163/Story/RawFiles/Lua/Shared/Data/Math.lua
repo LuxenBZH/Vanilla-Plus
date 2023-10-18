@@ -7,8 +7,13 @@ Data.Math = {}
 Data.Math.ComputeCharacterWisdomFromEquipment = function(character)
 	local equipmentWisdom = 0
 	for i,j in pairs(Helpers.EquipmentSlots) do
-		local item = character.Stats:GetItemBySlot(j)
+		local item = character:GetItemObjectBySlot(j)
 		if item then
+			for i, dynamicStat in pairs(item.Stats.DynamicStats) do
+				if dynamicStat.ObjectInstanceName ~= "" then
+					equipmentWisdom = equipmentWisdom + Ext.Stats.Get(dynamicStat.ObjectInstanceName).VP_WisdomBoost
+				end
+			end
 			equipmentWisdom = equipmentWisdom + tonumber(item.VP_WisdomBoost)
 		end
 	end

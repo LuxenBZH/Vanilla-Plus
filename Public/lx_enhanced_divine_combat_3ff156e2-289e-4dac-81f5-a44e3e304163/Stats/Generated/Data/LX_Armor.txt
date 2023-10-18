@@ -1,0 +1,17 @@
+new entry "_LX_Boost_Armor_Ring_Special_Wisdom"
+type "Armor"
+using "_BOOSTS_Armor"
+data "Value" "8"
+data "VP_WisdomBoost" "3"
+
+new entry "_LX_Boost_Armor_Ring_Special_Wisdom_Medium"
+type "Armor"
+using "_BOOSTS_Armor"
+data "Value" "12"
+data "VP_WisdomBoost" "4"
+
+new entry "_LX_Boost_Armor_Ring_Special_Wisdom_Large"
+type "Armor"
+using "_BOOSTS_Armor"
+data "Value" "16"
+data "VP_WisdomBoost" "5"
