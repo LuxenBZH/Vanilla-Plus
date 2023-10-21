@@ -144,7 +144,7 @@ end)
 --- @param status string
 --- @param instigator GUID
 local function CharacterStatusEventSynchronize(character, status, instigator)
-    if not CustomStatusManager.Banned[status] and not character == "NULL_00000000-0000-0000-0000-000000000000" and ObjectExists(character) == 1 then
+    if not CustomStatusManager.Banned[status] and character ~= "NULL_00000000-0000-0000-0000-000000000000" and ObjectExists(character) == 1 then
         CustomStatusManager:SynchronizeDGMBonuses(Ext.ServerEntity.GetCharacter(character))
     end
 end
