@@ -188,7 +188,7 @@ CustomStatusManager:RegisterCharacterSyncListener("DGM_AttributeSync", function(
             CustomStatusManager:Apply(character, status.Name, -1.0, attributeValue, bonuses.Cap)
         end
     end
-end)
+end, 1)
 
 --- @param character EsvCharacter
 CustomStatusManager:RegisterCharacterSyncListener("DGM_AbilitiesSync", function(character)
@@ -198,7 +198,7 @@ CustomStatusManager:RegisterCharacterSyncListener("DGM_AbilitiesSync", function(
         local status = CustomStatusManager:Create("DGM_"..currentAbility, Data.Stats.CustomAbilityBonuses[currentAbility])
         CustomStatusManager:Apply(character, status.Name, -1.0, abilityValue, Data.Stats.CustomAbilityBonuses[currentAbility].Cap)
     end
-end)
+end, 2)
 
 --- @param character EsvCharacter
 CustomStatusManager:RegisterCharacterSyncListener("DGM_CrossbowPenalty", function(character)
@@ -210,7 +210,7 @@ CustomStatusManager:RegisterCharacterSyncListener("DGM_CrossbowPenalty", functio
     elseif character.Stats.MainWeapon and character.Stats.MainWeapon.WeaponType == "Crossbow" then
         ApplyStatus(character.MyGuid, "LX_CROSSBOWCLEAR", 0.0, 1, character.MyGuid)
     end
-end)
+end, 3)
 
 ---@param target GUID|EsvCharacter
 ---@param statusID string
