@@ -47,6 +47,15 @@ Ext.Vars.RegisterUserVariable("LX_StatusConsumeMultiplier", {
     SyncOnTick = false,
 })
 
+Ext.Vars.RegisterUserVariable("LX_WarmupCounter", {
+    Server = true,
+    Client = true, 
+    SyncToClient = true,
+    Persistent = true,
+    SyncOnWrite = true,
+    SyncOnTick = false,
+})
+
 
 
 Ext.Osiris.RegisterListener("CharacterUsedSkill", 4, "before", function(character, skill, skillType, skillElement)

@@ -451,6 +451,7 @@ end)
 	All features that can potentially influence damage output individually or not.
 --]]
 
+
 ---@param character EsvCharacter
 ---@param step number|nil
 function ApplyWarmup(character, step)
@@ -459,13 +460,24 @@ function ApplyWarmup(character, step)
 	if step then
 		stage = step
 	elseif warmup then
-		stage = math.min(tonumber(string.sub(warmup, 11, 11))+1, 4)
+		stage = string.sub(warmup, 11, 11)
+		stage = math.min(tonumber(stage)+1, 4)
 		ObjectSetFlag(character.MyGuid, "DGM_WarmupReapply", 0)
 	else
 		stage = 1
 	end
 	CustomStatusManager:CharacterApplyMultipliedStatus(character, "DGM_WARMUP"..tostring(stage), 6.0, 1.0 + 0.1 * character.Stats.WarriorLore)
 end
+
+---@param character string
+---@param status string
+---@param causee string
+Ext.Osiris.RegisterListener("NRD_OnStatusAttempt", 4, "before", function(target, statusId, handle, instigator)
+	if statusId == "DGM_WARMUP" then
+		NRD_StatusPreventApply(target, handle, 1)
+		ApplyWarmup(Ext.ServerEntity.GetCharacter(target))
+	end
+end)
 
 --- @param hit EsvStatusHit
 --- @param instigator EsvCharacter
@@ -552,6 +564,21 @@ HitManager:RegisterHitListener("DGM_Hit", "AfterDamageScaling", "DGM_AbsorbShiel
 			end
 		end
 	end
+	--- Warmup after 3 hits
+	if instigator:GetStatus("COMBAT") and flags.IsWeaponAttack and not Game.Math.IsRangedWeapon(instigator.Stats.MainWeapon) then
+		if not hit.Hit.Dodged and not hit.Hit.Missed then
+			if not instigator.UserVars.LX_WarmupCounter then
+				instigator.UserVars.LX_WarmupCounter = 1
+			elseif instigator.UserVars.LX_WarmupCounter == 2 then
+				instigator.UserVars.LX_WarmupCounter = 0
+				ApplyWarmup(instigator)
+			else
+				instigator.UserVars.LX_WarmupCounter = instigator.UserVars.LX_WarmupCounter + 1
+			end
+		else
+			instigator.UserVars.LX_WarmupCounter = 0
+		end
+	end
 end, 49)
 
 --- @param character GUID
@@ -564,5 +591,11 @@ Ext.Osiris.RegisterListener("ProcObjectTimerFinished", 2, "after", function(char
 		Osi.ProcObjectTimer(target.MyGuid, "VP_ConsecutiveHit_"..tostring(target.VP_ConsecutiveHitFromSkill.ID), 500)
 	else
 		character.UserVars.VP_ConsecutiveHitFromSkill = nil
+	end
+end)
+
+Ext.Osiris.RegisterListener("ObjectLeftCombat", 2, "before", function(object, combatID)
+	if ObjectIsCharacter(object) == 1 then
+		Ext.ServerEntity.GetCharacter(object).UserVars.LX_WarmupCounter = 0
 	end
 end)

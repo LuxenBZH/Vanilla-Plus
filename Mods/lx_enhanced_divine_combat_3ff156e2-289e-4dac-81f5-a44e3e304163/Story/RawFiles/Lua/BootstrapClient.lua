@@ -159,4 +159,13 @@ Ext.Vars.RegisterUserVariable("LX_StatusConsumeMultiplier", {
     SyncOnTick = false,
 })
 
+Ext.Vars.RegisterUserVariable("LX_WarmupCounter", {
+    Server = true,
+    Client = true, 
+    SyncToClient = true,
+    Persistent = true,
+    SyncOnWrite = true,
+    SyncOnTick = false,
+})
+
 Ext.Require("Client/_InitClient.lua")
