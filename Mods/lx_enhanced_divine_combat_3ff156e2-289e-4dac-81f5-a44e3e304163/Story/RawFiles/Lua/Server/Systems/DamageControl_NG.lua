@@ -579,6 +579,16 @@ HitManager:RegisterHitListener("DGM_Hit", "AfterDamageScaling", "DGM_AbsorbShiel
 			instigator.UserVars.LX_WarmupCounter = 0
 		end
 	end
+	--- Refresh Warmup status if the character attack while it's at 0 turn left
+	local warmup = FindStatus(instigator, "DGM_WARMUP")
+	if instigator:GetStatus("COMBAT") and warmup then
+		local status = instigator:GetStatus(warmup)
+		status.CurrentLifeTime = 6.0
+		Ext.Net.BroadcastMessage("DGM_RefreshWarmup", Ext.JsonStringify({
+			Character = instigator.NetID,
+			Status = warmup
+		}))
+	end
 end, 49)
 
 --- @param character GUID
