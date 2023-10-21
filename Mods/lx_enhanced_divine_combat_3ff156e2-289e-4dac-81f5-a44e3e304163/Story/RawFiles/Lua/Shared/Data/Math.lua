@@ -4,10 +4,17 @@ Data.Math = {}
     Character stats related formulas
 ]]
 
+---@param character EclCharacter|EsvCharacter
+---@return number
 Data.Math.ComputeCharacterWisdomFromEquipment = function(character)
 	local equipmentWisdom = 0
 	for i,j in pairs(Helpers.EquipmentSlots) do
-		local item = character:GetItemObjectBySlot(j)
+		local item
+		if getmetatable(character) == "esv::Character" then
+			item = Ext.ServerEntity.GetItem(CharacterGetEquippedItem(character.MyGuid, j))
+		else
+			item = character:GetItemObjectBySlot(j)
+		end
 		if item then
 			for i, dynamicStat in pairs(item.Stats.DynamicStats) do
 				if dynamicStat.ObjectInstanceName ~= "" then
