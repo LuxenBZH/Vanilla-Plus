@@ -348,7 +348,7 @@ local function StatusGetDescriptionParam(status, statusSource, character, par)
     elseif par == "HealAmount" then
         local stat = Ext.Stats.Get(status.StatusName, nil, false)
         if stat.HealType == "Qualifier" then
-            local computedValue = Data.Math.GetHealScaledWisdomValue(stat, character.Character)
+            local computedValue = Data.Math.GetHealScaledWisdomValue(stat, statusSource.Character)
             return "<font color=\"#97FBFF\">"..computedValue.." "..Ext.L10N.GetTranslatedString("h67a4c781g589ag4872g8c46g870e336074bd", "Vitality").."</font>"
         end
 	end
