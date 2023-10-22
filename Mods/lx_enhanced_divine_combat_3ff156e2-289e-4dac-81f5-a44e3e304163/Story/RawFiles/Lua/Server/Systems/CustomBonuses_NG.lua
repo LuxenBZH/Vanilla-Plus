@@ -90,6 +90,7 @@ function CustomStatusManager:Create(name, stats, template, sync)
     end
     newStatus.StatsId = newPotion.Name
     Ext.Stats.Sync(name, sync)
+    Ext.Stats.Sync(newPotion.Name, sync)
     return newStatus
 end
 
@@ -236,7 +237,7 @@ end
 function CustomStatusManager:CreateStatFromTemplate(statID, statType, template, statsArray, persistance)
     local status = Ext.Stats.Create(statID, statType, template)
     for stat, value in pairs(statsArray) do
-        status[stat] = value
+        status[stat] = value    
     end
     Ext.Stats.Sync(statID, persistance)
 end
