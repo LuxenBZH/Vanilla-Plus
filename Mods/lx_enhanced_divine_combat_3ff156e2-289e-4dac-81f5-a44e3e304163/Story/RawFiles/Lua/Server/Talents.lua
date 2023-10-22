@@ -438,6 +438,10 @@ Ext.Events.GetSkillAPCost:Subscribe(function(e)
     end
 end)
 
+Ext.Osiris.RegisterListener("ObjectLeftCombat", 2, "before", function(object, combatID)
+	ClearTag(object, "VP_UsedElementalAffinity")
+end)
+
 ---@param object GUID
 Ext.Osiris.RegisterListener("ObjectTurnStarted", 1, "before", function(object)
     ClearTag(object, "VP_UsedElementalAffinity")
@@ -452,7 +456,7 @@ Ext.Osiris.RegisterListener("CharacterUsedSkill", 4, "before", function(characte
 	local char = Ext.ServerEntity.GetCharacter(character)
 	local grid = Ext.ServerEntity.GetAiGrid()
 	local aiFlags = ElementalAffinityAiFlags[skillElement]
-	if aiFlags and char.Stats.TALENT_ElementalAffinity and not char:HasTag("VP_UsedElementalAffinity") and grid:SearchForCell(char.WorldPos[1], char.WorldPos[3], char.RootTemplate.AIBoundsRadius, aiFlags, -1.0) then
+	if Ext.ServerEntity.GetCharacter(character):GetStatus("COMBAT") and aiFlags and char.Stats.TALENT_ElementalAffinity and not char:HasTag("VP_UsedElementalAffinity") and grid:SearchForCell(char.WorldPos[1], char.WorldPos[3], char.RootTemplate.AIBoundsRadius, aiFlags, -1.0) then
 		SetTag(character, "VP_UsedElementalAffinity")
 	end
 end)
