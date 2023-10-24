@@ -47,7 +47,7 @@ Ext.Vars.RegisterUserVariable("LX_StatusConsumeMultiplier", {
     SyncOnTick = false,
 })
 
-Ext.Vars.RegisterUserVariable("LX_WarmupCounter", {
+Ext.Vars.RegisterUserVariable("LX_WarmupManager", {
     Server = true,
     Client = true, 
     SyncToClient = true,

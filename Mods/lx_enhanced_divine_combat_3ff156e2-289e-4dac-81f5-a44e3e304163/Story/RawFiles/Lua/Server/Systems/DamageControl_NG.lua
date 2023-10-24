@@ -566,17 +566,34 @@ HitManager:RegisterHitListener("DGM_Hit", "AfterDamageScaling", "DGM_AbsorbShiel
 	end
 	--- Warmup after 3 hits
 	if instigator:GetStatus("COMBAT") and flags.IsWeaponAttack and not Game.Math.IsRangedWeapon(instigator.Stats.MainWeapon) then
+		if not instigator.UserVars.LX_WarmupManager or type(instigator.UserVars.LX_WarmupManager) == "number" then
+			instigator.UserVars.LX_WarmupManager = {
+				Counter = 0,
+				LastSkillHitID = 0,
+				LastTarget = ""
+			}
+		end
 		if not hit.Hit.Dodged and not hit.Hit.Missed then
-			if not instigator.UserVars.LX_WarmupCounter then
-				instigator.UserVars.LX_WarmupCounter = 1
-			elseif instigator.UserVars.LX_WarmupCounter == 2 then
-				instigator.UserVars.LX_WarmupCounter = 0
-				ApplyWarmup(instigator)
+			if hit.SkillId ~= "" then
+				local skill = Ext.Stats.Get(Helpers.GetFormattedSkillID(hit.SkillId))
+				---Make sure a character can get a warmup count only once for AoE skills, but can still get as many count as there are hits for a single target skill
+				if ((instigator.UserVars.LX_WarmupManager.LastSkillHitID ~= instigator.UserVars.VP_LastSkillID.ID) or
+				(instigator.UserVars.LX_WarmupManager.LastSkillHitID == instigator.UserVars.VP_LastSkillID.ID and instigator.UserVars.LX_WarmupManager.LastTarget == target.MyGuid)) or
+				(instigator.UserVars.LX_WarmupManager.LastSkillHitID == instigator.UserVars.VP_LastSkillID.ID and instigator.UserVars.LX_WarmupManager.LastTarget ~= target.MyGuid and skill.SkillType == "MultiStrike") and
+				skill.UseWeaponDamage == "Yes" then
+					instigator.UserVars.LX_WarmupManager.Counter = instigator.UserVars.LX_WarmupManager.Counter + 1
+				end
+				instigator.UserVars.LX_WarmupManager.LastSkillHitID = instigator.UserVars.VP_LastSkillID.ID
+				instigator.UserVars.LX_WarmupManager.LastTarget = target.MyGuid
 			else
-				instigator.UserVars.LX_WarmupCounter = instigator.UserVars.LX_WarmupCounter + 1
+				instigator.UserVars.LX_WarmupManager.Counter = instigator.UserVars.LX_WarmupManager.Counter + 1
+			end
+			if instigator.UserVars.LX_WarmupManager.Counter >= 3 then
+				instigator.UserVars.LX_WarmupManager.Counter = 0
+				ApplyWarmup(instigator)
 			end
 		else
-			instigator.UserVars.LX_WarmupCounter = 0
+			instigator.UserVars.LX_WarmupManager.Counter = 0
 		end
 	end
 	--- Refresh Warmup status if the character attack while it's at 0 turn left
@@ -606,6 +623,6 @@ end)
 
 Ext.Osiris.RegisterListener("ObjectLeftCombat", 2, "before", function(object, combatID)
 	if ObjectIsCharacter(object) == 1 then
-		Ext.ServerEntity.GetCharacter(object).UserVars.LX_WarmupCounter = 0
+		Ext.ServerEntity.GetCharacter(object).UserVars.LX_WarmupManager = 0
 	end
 end)

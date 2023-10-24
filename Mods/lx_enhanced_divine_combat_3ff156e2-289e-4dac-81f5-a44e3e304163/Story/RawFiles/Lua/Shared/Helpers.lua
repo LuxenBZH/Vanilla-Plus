@@ -265,6 +265,13 @@ Helpers.GetDynamicTranslationStringFromHandle = function(handle, ...)
 	return str
 end
 
+--- Removes the _-1 at the end
+---@param skillID string
+---@return string
+Helpers.GetFormattedSkillID = function(skillID)
+	return string.sub(skillID, 1, string.len(skillID)-3)
+end
+
 function DamageTypeEnum()
 	local enum = {
 		"Physical",
