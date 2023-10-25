@@ -817,7 +817,7 @@ end
 --- @param hit StatsHitDamageInfo
 --- @param instigator EsvCharacter
 HitHelpers.HitRecalculateLifesteal = function(hit, instigator)
-    if hit.DoT or hit.Surface then return end
+    if hit.DoT or hit.Surface or getmetatable(instigator) ~= "esv::Character" then return end
     hit.LifeSteal = math.floor(Ext.Utils.Round((instigator.Stats.LifeSteal / 100) * (hit.TotalDamageDone - hit.ArmorAbsorption)))
 end
 

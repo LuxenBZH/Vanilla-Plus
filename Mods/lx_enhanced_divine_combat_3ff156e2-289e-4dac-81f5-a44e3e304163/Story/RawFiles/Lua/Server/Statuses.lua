@@ -106,9 +106,10 @@ Ext.Osiris.RegisterListener("NRD_OnStatusAttempt", 4, "before", function(target,
                 character.UserVars.VP_ChallengeMultiplier[target][boost.Action] = value
             end
         end
-        local character = Ext.ServerEntity.GetCharacter(target)
+        local character = Ext.ServerEntity.GetGameObject(target) ---@type EsvCharacter
+        if getmetatable(character) ~= "esv::Character" then return end
         if character.UserVars.VP_ChallengeMultiplier and character.UserVars.VP_ChallengeMultiplier[instigator] and character.UserVars.VP_ChallengeMultiplier[instigator][statusId] then
-            local status = Ext.GetStatus(target, handle)
+            local status = Ext.ServerEntity.GetStatus(target, handle)
             -- Fix reverse status attribution from vanilla
             status.StatusSourceHandle = status.TargetHandle
             -- Have to manually override the heal since it has VERY weird interactions with the target Hydrosophist value...

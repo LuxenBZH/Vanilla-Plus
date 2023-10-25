@@ -8,7 +8,7 @@ Ext.Osiris.RegisterListener("NRD_OnStatusAttempt", 4, "before", function(target,
             potion = Ext.Stats.Get(entry.StatsId)
         end
     end 
-    local target = Ext.Entity.GetCharacter(target)
+    local target = Ext.Entity.GetGameObject(target)
     if potion and potion.VP_AbsorbShieldValue ~= 0 then
         local shield = target:GetStatus("LX_SHIELD_"..string.upper(potion.VP_AbsorbShieldType))
         if shield then

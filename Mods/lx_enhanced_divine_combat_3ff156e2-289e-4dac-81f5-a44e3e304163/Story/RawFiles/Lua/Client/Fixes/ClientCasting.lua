@@ -23,7 +23,9 @@ Ext.Events.SessionLoaded:Subscribe(function(e)
   ---@param e EclLuaInputEvent
   Ext.Events.InputEvent:Subscribe(function(e)
     local character = Helpers.GetPlayerManagerCharacter()
-    local position = Ext.ClientUI.GetPickingState().WalkablePosition
+    local state = Ext.ClientUI.GetPickingState()
+    if not state then return end
+    local position = state.WalkablePosition
     if e.Event.Release and e.Event.EventId == 4 and character and character.SkillManager.CurrentSkill ~= null and math.abs(Ext.GetAiGrid():GetCellInfo(position[1], position[3]).Height - position[2]) > 2 then
       Ext.Net.PostMessageToServer("LX_VertcastingDecast", tostring(character.NetID))
       if PreviousLadder then

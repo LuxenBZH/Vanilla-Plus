@@ -185,6 +185,7 @@ end)
 Ext.Osiris.RegisterListener("NRD_OnStatusAttempt", 4, "before", function(target, status, handle, instigator)
     if instigator == "NULL_00000000-0000-0000-0000-000000000000" then return end -- Spams the console in few cases otherwise
     local s = Ext.ServerEntity.GetStatus(target, handle) --- @type EsvStatus|EsvStatusHeal|EsvStatusHealing
+    if ObjectIsCharacter(instigator) == 0 then return end
     local healer = Ext.ServerEntity.GetCharacter(instigator)
     -- Fix the double bonus from shared healings
     if status == "HEAL" and s.HealEffect == "HealSharing" then

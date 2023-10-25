@@ -246,6 +246,14 @@ end
 ---@param flags HitFlags
 ---@param skill StatEntrySkillData|nil
 Data.Math.GetCharacterComputedDamageBonus = function(character, target, flags, skill)
+	if not character or getmetatable(character) ~= "esv::Character" then return {
+		Strength = 0,
+		Finesse = 0,
+		Intelligence = 0,
+		Wits = 0,
+		DamageBonus = 0,
+		GlobalMultiplier = 1.0
+	} end
     local strength = character.Stats.Strength - Ext.ExtraData.AttributeBaseValue
     local finesse = character.Stats.Finesse - Ext.ExtraData.AttributeBaseValue
     local intelligence = character.Stats.Intelligence - Ext.ExtraData.AttributeBaseValue

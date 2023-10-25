@@ -86,12 +86,12 @@ end
 local function DamageControl(target, instigator, hitDamage, handle)
 	local target = Ext.ServerEntity.GetGameObject(target) --- @type EsvItem | EsvCharacter
 	-- if instigator == 'NULL_00000000-0000-0000-0000-000000000000' then return end
-	local instigator = instigator ~= "NULL_00000000-0000-0000-0000-000000000000" and Ext.ServerEntity.GetGameObject(instigator) or {MyGuid = "NULL_00000000-0000-0000-0000-000000000000"} --- @type EsvCharacter
+	local instigator = instigator ~= "NULL_00000000-0000-0000-0000-000000000000" and Ext.ServerEntity.GetGameObject(instigator) or {MyGuid = "NULL_00000000-0000-0000-0000-000000000000"} --- @type EsvCharacter|EsvItem
 	-- if getmetatable(instigator) ~= "esv::Character" then
 	-- 	return
 	-- end
 	local hit = Ext.ServerEntity.GetStatus(target.MyGuid, handle) --- @type EsvStatusHit
-	local skill = hit.SkillId ~= "" and Ext.Stats.Get(string.sub(hit.SkillId, 1, string.len(hit.SkillId)-3)) or nil --- @type StatEntrySkillData | nil
+	local skill = hit.SkillId ~= "" and Ext.Stats.Get(hit.SkillId:gsub("(.*).+-1$", "%1")) or nil --- @type StatEntrySkillData | nil
 	local flags = HitFlags:Create()
     flags.Dodged = NRD_StatusGetInt(target.MyGuid, hit.StatusHandle, "Dodged") == 1
     flags.Missed = NRD_StatusGetInt(target.MyGuid, hit.StatusHandle, "Missed") == 1
@@ -147,7 +147,6 @@ local function DamageControl(target, instigator, hitDamage, handle)
 		attacker.DamageBonus = 0
 		attacker.GlobalMultiplier = 1
 	end
-	local lifesteal = instigator.Stats.LifeSteal
 	local damageTable = hit.Hit.DamageList:ToTable()
 	
 	NRD_HitStatusClearAllDamage(target.MyGuid, handle)
@@ -415,9 +414,9 @@ end)
 ---@param e EsvLuaStatusHitEnterEvent
 Ext.Events.StatusHitEnter:Subscribe(function(e)
 	--- Gladiator
-	local target = Ext.Entity.GetCharacter(e.Context.TargetHandle)
-	local attacker = Ext.Entity.GetCharacter(e.Context.AttackerHandle)
-	if target and target.Stats.TALENT_Gladiator and (e.Hit.Hit.HitWithWeapon) and not Game.Math.IsRangedWeapon(attacker.Stats.MainWeapon) and target.Stats:GetItemBySlot("Shield") and not e.Hit.Hit.CounterAttack and IsTagged(target.MyGuid, "LX_IsCounterAttacking") == 0 and e.Hit.SkillId ~= "Target_LX_GladiatorHit_-1" and not (e.Hit.Hit.Dodged or e.Hit.Hit.Missed) then
+	local target = Ext.Entity.GetGameObject(e.Context.TargetHandle)
+	local attacker = Ext.Entity.GetGameObject(e.Context.AttackerHandle)
+	if target and getmetatable(target) == "esv::Character" and target.Stats.TALENT_Gladiator and (e.Hit.Hit.HitWithWeapon) and not Game.Math.IsRangedWeapon(attacker.Stats.MainWeapon) and target.Stats:GetItemBySlot("Shield") and not e.Hit.Hit.CounterAttack and IsTagged(target.MyGuid, "LX_IsCounterAttacking") == 0 and e.Hit.SkillId ~= "Target_LX_GladiatorHit_-1" and not (e.Hit.Hit.Dodged or e.Hit.Hit.Missed) then
 		local counterAttacked = Helpers.HasCounterAttacked(target)
 		if not counterAttacked and GetDistanceTo(target.MyGuid, attacker.MyGuid) <= 5.0 then
 			GladiatorTargets[target.MyGuid] = attacker.MyGuid
@@ -478,7 +477,7 @@ end
 ---@param status string
 ---@param causee string
 Ext.Osiris.RegisterListener("NRD_OnStatusAttempt", 4, "before", function(target, statusId, handle, instigator)
-	if statusId == "DGM_WARMUP" then
+	if statusId == "DGM_WARMUP" and ObjectIsCharacter(target) == 1 then
 		NRD_StatusPreventApply(target, handle, 1)
 		ApplyWarmup(Ext.ServerEntity.GetCharacter(target))
 	end
@@ -531,7 +530,7 @@ HitManager:RegisterHitListener("DGM_Hit", "AfterDamageScaling", "DGM_AbsorbShiel
 	AbsorbShieldProcessDamage(target, instigator, hit)
 	--- Skill damage cap
 	if hit.SkillId ~= "" then
-		local stat = hit.SkillId ~= "" and Ext.Stats.Get(string.sub(hit.SkillId, 1, string.len(hit.SkillId)-3)) or nil
+		local stat = hit.SkillId ~= "" and Ext.Stats.Get(hit.SkillId:gsub("(.*).+-1$", "%1")) or nil
 		if stat.VP_DamageCapValue ~= 0 then
 			local cap = stat.VP_DamageCapValue / 100 * Helpers.GetScaledValue(stat.VP_DamageCapScaling, target, instigator)
 			local damageTable = hit.Hit.DamageList:ToTable()
@@ -547,7 +546,7 @@ HitManager:RegisterHitListener("DGM_Hit", "AfterDamageScaling", "DGM_AbsorbShiel
 	end
 	--- Consecutive hit damage multiplier
 	if hit.SkillId ~= "" then
-		local stat = Ext.Stats.Get(string.sub(hit.SkillId, 1, string.len(hit.SkillId)-3))
+		local stat = Ext.Stats.Get(hit.SkillId:gsub("(.*).+-1$", "%1"))
 		if stat.VP_ConsecutiveDamageReductionPercent ~= 0 then
 			if stat.VP_ConsecutiveDamageReductionHitAmount > 0 then
 				if not target.UserVars.VP_ConsecutiveHitFromSkill then
@@ -570,7 +569,7 @@ HitManager:RegisterHitListener("DGM_Hit", "AfterDamageScaling", "DGM_AbsorbShiel
 		end
 	end
 	--- Warmup after 3 hits
-	if instigator:GetStatus("COMBAT") and flags.IsWeaponAttack and not Game.Math.IsRangedWeapon(instigator.Stats.MainWeapon) then
+	if getmetatable(instigator) == "esv::Character" and instigator:GetStatus("COMBAT") and flags.IsWeaponAttack and not Game.Math.IsRangedWeapon(instigator.Stats.MainWeapon) then
 		if not instigator.UserVars.LX_WarmupManager or type(instigator.UserVars.LX_WarmupManager) == "number" then
 			instigator.UserVars.LX_WarmupManager = {
 				Counter = 0,
@@ -602,14 +601,16 @@ HitManager:RegisterHitListener("DGM_Hit", "AfterDamageScaling", "DGM_AbsorbShiel
 		end
 	end
 	--- Refresh Warmup status if the character attack while it's at 0 turn left
-	local warmup = FindStatus(instigator, "DGM_WARMUP")
-	if instigator:GetStatus("COMBAT") and warmup then
-		local status = instigator:GetStatus(warmup)
-		status.CurrentLifeTime = 6.0
-		Ext.Net.BroadcastMessage("DGM_RefreshWarmup", Ext.JsonStringify({
-			Character = instigator.NetID,
-			Status = warmup
-		}))
+	if getmetatable(instigator) == "esv::Character" then
+		local warmup = FindStatus(instigator, "DGM_WARMUP")
+		if instigator:GetStatus("COMBAT") and warmup then
+			local status = instigator:GetStatus(warmup)
+			status.CurrentLifeTime = 6.0
+			Ext.Net.BroadcastMessage("DGM_RefreshWarmup", Ext.JsonStringify({
+				Character = instigator.NetID,
+				Status = warmup
+			}))
+		end
 	end
 end, 49)
 
