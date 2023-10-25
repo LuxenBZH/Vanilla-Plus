@@ -454,8 +454,10 @@ end)
 
 ---@param character EsvCharacter
 ---@param step number|nil
-function ApplyWarmup(character, step)
+---@param fromMiss boolean|nil
+function ApplyWarmup(character, step, fromMiss)
 	local warmup = FindStatus(character, "DGM_WARMUP")
+	local isMeleeTwoHanded = character.Stats.MainWeapon.IsTwoHanded & not Game.Math.IsRangedWeapon(character.Stats.MainWeapon)
 	local stage
 	if step then
 		stage = step
@@ -465,6 +467,9 @@ function ApplyWarmup(character, step)
 		ObjectSetFlag(character.MyGuid, "DGM_WarmupReapply", 0)
 	else
 		stage = 1
+	end
+	if fromMiss and isMeleeTwoHanded then
+		stage = math.min(stage + 1, 4)
 	end
 	CustomStatusManager:CharacterApplyMultipliedStatus(character, "DGM_WARMUP"..tostring(stage), 6.0, 1.0 + 0.1 * character.Stats.WarriorLore)
 end
@@ -499,7 +504,7 @@ HitManager:RegisterHitListener("DGM_Hit", "BeforeDamageScaling", "DGM_Specifics"
 
 	--- WARMUP application
 	if (flags.Missed or flags.Dodged) and not target:GetStatus("EVADING") and Helpers.IsCharacter(instigator) then
-		ApplyWarmup(instigator)
+		ApplyWarmup(instigator, nil, true)
 	end
 
 	--- Aimed Shot
