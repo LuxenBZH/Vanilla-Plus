@@ -29,7 +29,9 @@ function UICursorTooltipManager:CheckTooltips(e, character, pickingState)
             e:PreventAction()
         end
     end
-    ui:GetRoot().tf.text_txt.htmlText = cursorText
+    if ui:GetRoot().tf then
+        ui:GetRoot().tf.text_txt.htmlText = cursorText
+    end
 end
 
 Ext.Events.SessionLoaded:Subscribe(function(e)
