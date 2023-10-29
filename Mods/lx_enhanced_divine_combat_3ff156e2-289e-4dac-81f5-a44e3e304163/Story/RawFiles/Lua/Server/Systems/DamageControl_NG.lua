@@ -102,7 +102,7 @@ local function DamageControl(target, instigator, hitDamage, handle)
     flags.IsDirectAttack = hit.DamageSourceType == "Attack" or hit.SkillId ~= ""
 	flags.FromReflection = NRD_StatusGetInt(target.MyGuid, handle, "Reflection") == 1
     flags.IsWeaponAttack = hit.Hit.HitWithWeapon
-	flags.IsStatusDamage = NRD_StatusGetInt(target.MyGuid, handle, "DoT")
+	flags.IsStatusDamage = NRD_StatusGetInt(target.MyGuid, handle, "DoT") == 1
 
 	if ((skill and skill.Name == "Projectile_Talent_Unstable") and IsTagged(instigator.MyGuid, "LX_UNSTABLE_COOLDOWN") == 1) 
 	 or flags.Blocked then
@@ -126,7 +126,7 @@ local function DamageControl(target, instigator, hitDamage, handle)
 
 	-- Don't scale damage from surfaces, GM, scriting , reflection, or if the damage type doesn't fit scaling
 	if flags.FromReflection
-	 or (flags.DamageSourceType > 0 and flags.DamageSourceType < 4) 
+	 or (flags.DamageSourceType > 0 and flags.DamageSourceType < 4)
 	 or (flags.DamageSourceType == 0 and hit.SkillId == "" and Helpers.IsCharacter(target))
 	 or (skill and (skill.Damage ~= "AverageLevelDamge" and skill.Damage ~= "BaseLevelDamage"))  then
 		HitManager:TriggerHitListeners("DGM_Hit", "AfterDamageScaling", hit, instigator, target, flags)
@@ -141,6 +141,7 @@ local function DamageControl(target, instigator, hitDamage, handle)
 
     -- Bonuses
 	local attacker = Data.Math.GetCharacterComputedDamageBonus(instigator, target, flags, skill)
+	_D(attacker)
 
     if (skill and skill.Name == "Projectile_Talent_Unstable") or IsTagged(target.MyGuid, "DGM_GuardianAngelProtector") == 1 or flags.IsFromShackles then
 		ClearTag(target.MyGuid, "DGM_GuardianAngelProtector")
@@ -443,6 +444,19 @@ Ext.Osiris.RegisterListener("ProcObjectTimerFinished", 2, "after", function(char
 		PlayAnimation(character, "", "")
 	end
 end)
+
+--- @param character StatCharacter
+--- @param weapon StatItem
+local function VP_ComputeWeaponCombatAbilityBoost(character, weapon)
+    local abilityType = GetWeaponAbility(character, weapon)
+
+    if abilityType == "SingleHanded" or abilityType == "TwoHanded" or abilityType == "Ranged" or abilityType == "DualWielding" then
+        local abilityLevel = character[abilityType]
+        return abilityLevel * Ext.ExtraData.CombatAbilityDamageBonus
+    else
+        return 0
+    end
+end
 -- Mods.LeaderLib.Testing
 
 --[[
@@ -450,36 +464,19 @@ end)
 	All features that can potentially influence damage output individually or not.
 --]]
 
-
----@param character EsvCharacter
----@param step number|nil
----@param fromMiss boolean|nil
-function ApplyWarmup(character, step, fromMiss)
-	local warmup = FindStatus(character, "DGM_WARMUP")
-	local isMeleeTwoHanded = character.Stats.MainWeapon.IsTwoHanded & not Game.Math.IsRangedWeapon(character.Stats.MainWeapon)
-	local stage
-	if step then
-		stage = step
-	elseif warmup then
-		stage = string.sub(warmup, 11, 11)
-		stage = math.min(tonumber(stage)+1, 4)
-		ObjectSetFlag(character.MyGuid, "DGM_WarmupReapply", 0)
-	else
-		stage = 1
+---@param object string
+---@param combatID any
+Ext.Osiris.RegisterListener("ObjectLeftCombat", 2, "before", function(object, combatID)
+	if Helpers.CheckEntityExistence(object) then
+		RemoveStatus(object, "VP_DW_ATTACK")
 	end
-	if fromMiss and isMeleeTwoHanded then
-		stage = math.min(stage + 1, 4)
-	end
-	CustomStatusManager:CharacterApplyMultipliedStatus(character, "DGM_WARMUP"..tostring(stage), 6.0, 1.0 + 0.1 * character.Stats.WarriorLore)
-end
+end)
 
----@param character string
----@param status string
----@param causee string
-Ext.Osiris.RegisterListener("NRD_OnStatusAttempt", 4, "before", function(target, statusId, handle, instigator)
-	if statusId == "DGM_WARMUP" and ObjectIsCharacter(target) == 1 then
-		NRD_StatusPreventApply(target, handle, 1)
-		ApplyWarmup(Ext.ServerEntity.GetCharacter(target))
+---@param object string
+---@param combatID any
+Ext.Osiris.RegisterListener("ObjectEnteredCombat", 2, "before", function(object, combatID)
+	if Helpers.CheckEntityExistence(object) then
+		RemoveStatus(object, "VP_DW_ATTACK")
 	end
 end)
 
@@ -512,6 +509,80 @@ HitManager:RegisterHitListener("DGM_Hit", "BeforeDamageScaling", "DGM_Specifics"
         if aimedShot then RemoveStatus(instigator.MyGuid, aimedShot) end
     end
 end, 50)
+
+DWAttackBonus = {}
+local AllowedDWBonusAnim = {
+	skill_attack_power_01_cast = true,
+	skill_attack_precision_01_cast = true
+}
+
+--- @param hit EsvStatusHit
+--- @param instigator EsvCharacter
+--- @param target EsvItem|EsvCharacter
+--- @param flags HitFlags
+HitManager:RegisterHitListener("DGM_Hit", "AfterDamageScaling", "DGM_AbsorbShields", function(hit, instigator, target, flags)
+	if flags.IsWeaponAttack and (NRD_StatusGetInt(target.MyGuid, hit.StatusHandle, "DamageSourceType") == 7 or (hit.SkillId ~= "" and instigator.Stats.OffHandWeapon ~= null)) and instigator.Stats.DualWielding > 0 and instigator:GetStatus("VP_DW_ATTACK") then
+		local newHit = NRD_HitPrepare(target.MyGuid, instigator.MyGuid)
+		NRD_HitSetInt(newHit, "SimulateHit", 1)
+		NRD_HitSetInt(newHit, "HitType", 3)
+		NRD_HitSetInt(newHit, "Backstab", flags.Backstab and 1 or 0)
+		local offhandWeaponDamage = Game.Math.ComputeBaseWeaponDamage(instigator.Stats.OffHandWeapon)
+		local totalDamage = 0
+		local damageList = Ext.Stats.NewDamageList()
+		for dmgType, amounts in pairs(offhandWeaponDamage) do
+			local roll = math.random(Ext.Utils.Round(amounts.Min*100), Ext.Utils.Round(amounts.Max*100))/100
+			local damageDone = Ext.Utils.Round(roll * Ext.ExtraData.DualWieldingDamagePenalty * (1 + instigator.Stats.DualWielding * Ext.ExtraData.DGM_DualWieldingOffhandBonus*2 / 100))
+			NRD_HitAddDamage(newHit, dmgType, damageDone)
+			totalDamage = totalDamage + damageDone
+			damageList:Add(dmgType, damageDone)
+		end
+		local properties = {LifeSteal = 0, TotalDamageDone = totalDamage, ArmorAbsorption = 0, DamageList = damageList}
+		HitHelpers.HitRecalculateLifesteal(properties)
+		NRD_HitSetInt(newHit, "LifeSteal", properties.LifeSteal)
+		if hit.SkillId == "" or AllowedDWBonusAnim[Ext.Stats.Get(hit.SkillId:gsub("(.*).+-1$", "%1")).CastAnimation] and not DWAttackBonus[instigator.MyGuid] then
+			DWAttackBonus[instigator.MyGuid] = newHit
+			Osi.ProcObjectTimer(instigator.MyGuid, "VP_DualWieldingAttackBonus", 200)
+		else
+			NRD_HitExecute(newHit)
+			Osi.ProcObjectTimer(instigator.MyGuid, "VP_ClearDWBonusAttack", 1500) --- Allow for proc on multiple hits
+			-- RemoveStatus(instigator.MyGuid, "VP_DW_ATTACK")
+		end
+	end
+end, 49)
+
+--- @param character GUID
+--- @param event string
+Ext.Osiris.RegisterListener("ProcObjectTimerFinished", 2, "after", function(character, event)
+    if event ~= "VP_DualWieldingAttackBonus" or character == "00000000-0000-0000-0000-000000000000" or ObjectExists(character) == 0 then return end
+	CharacterPurgeQueue(character)
+	CharacterSetAnimationOverride(character, "skill_attack_projectile_01_cast")
+	local instigator = Ext.ServerEntity.GetCharacter(character)
+	RemoveStatus(instigator.MyGuid, "VP_DW_ATTACK")
+	NRD_HitExecute(DWAttackBonus[character])
+	DWAttackBonus[character] = nil
+	Osi.ProcObjectTimer(character, "VP_DualWieldingAttackBonusClearAnim", 800)
+end)
+
+--- @param character GUID
+--- @param event string
+Ext.Osiris.RegisterListener("ProcObjectTimerFinished", 2, "after", function(character, event)
+    if event ~= "VP_DualWieldingAttackBonusClearAnim" or character == "00000000-0000-0000-0000-000000000000" or ObjectExists(character) == 0 then return end
+	CharacterSetAnimationOverride(character, "")
+end)
+
+--- @param character GUID
+--- @param event string
+Ext.Osiris.RegisterListener("ProcObjectTimerFinished", 2, "after", function(character, event)
+    if event ~= "VP_AddDWBonusAttack" or character == "00000000-0000-0000-0000-000000000000" or ObjectExists(character) == 0 then return end
+	ApplyStatus(character, "VP_DW_ATTACK", 12.0, 1, character)
+end)
+
+--- @param character GUID
+--- @param event string
+Ext.Osiris.RegisterListener("ProcObjectTimerFinished", 2, "after", function(character, event)
+    if event ~= "VP_ClearDWBonusAttack" or character == "00000000-0000-0000-0000-000000000000" or ObjectExists(character) == 0 then return end
+	RemoveStatus(character, "VP_DW_ATTACK")
+end)
 
 --- @param hit EsvStatusHit
 --- @param instigator EsvCharacter
@@ -566,50 +637,6 @@ HitManager:RegisterHitListener("DGM_Hit", "AfterDamageScaling", "DGM_AbsorbShiel
 				Helpers.VPPrint("Combo detected! Current multiplier:", "DamageControl:ComboDamageMultiplier", math.max(1 - (hits - math.max(stat.VP_ConsecutiveDamageReductionHitAmount, 0))*(stat.VP_ConsecutiveDamageReductionPercent/100), 0))
 				HitHelpers.HitMultiplyDamage(hit.Hit, target, instigator, math.max(1 - (hits - math.max(stat.VP_ConsecutiveDamageReductionHitAmount, 0))*(stat.VP_ConsecutiveDamageReductionPercent/100), 0))
 			end
-		end
-	end
-	--- Warmup after 3 hits
-	if getmetatable(instigator) == "esv::Character" and instigator:GetStatus("COMBAT") and flags.IsWeaponAttack and not Game.Math.IsRangedWeapon(instigator.Stats.MainWeapon) then
-		if not instigator.UserVars.LX_WarmupManager or type(instigator.UserVars.LX_WarmupManager) == "number" then
-			instigator.UserVars.LX_WarmupManager = {
-				Counter = 0,
-				LastSkillHitID = 0,
-				LastTarget = ""
-			}
-		end
-		if not hit.Hit.Dodged and not hit.Hit.Missed then
-			if hit.SkillId ~= "" then
-				local skill = Ext.Stats.Get(Helpers.GetFormattedSkillID(hit.SkillId))
-				---Make sure a character can get a warmup count only once for AoE skills, but can still get as many count as there are hits for a single target skill
-				if ((instigator.UserVars.LX_WarmupManager.LastSkillHitID ~= instigator.UserVars.VP_LastSkillID.ID) or
-				(instigator.UserVars.LX_WarmupManager.LastSkillHitID == instigator.UserVars.VP_LastSkillID.ID and instigator.UserVars.LX_WarmupManager.LastTarget == target.MyGuid)) or
-				(instigator.UserVars.LX_WarmupManager.LastSkillHitID == instigator.UserVars.VP_LastSkillID.ID and instigator.UserVars.LX_WarmupManager.LastTarget ~= target.MyGuid and skill.SkillType == "MultiStrike") and
-				skill.UseWeaponDamage == "Yes" then
-					instigator.UserVars.LX_WarmupManager.Counter = instigator.UserVars.LX_WarmupManager.Counter + 1
-				end
-				instigator.UserVars.LX_WarmupManager.LastSkillHitID = instigator.UserVars.VP_LastSkillID.ID
-				instigator.UserVars.LX_WarmupManager.LastTarget = target.MyGuid
-			else
-				instigator.UserVars.LX_WarmupManager.Counter = instigator.UserVars.LX_WarmupManager.Counter + 1
-			end
-			if instigator.UserVars.LX_WarmupManager.Counter >= 3 then
-				instigator.UserVars.LX_WarmupManager.Counter = 0
-				ApplyWarmup(instigator)
-			end
-		else
-			instigator.UserVars.LX_WarmupManager.Counter = 0
-		end
-	end
-	--- Refresh Warmup status if the character attack while it's at 0 turn left
-	if getmetatable(instigator) == "esv::Character" then
-		local warmup = FindStatus(instigator, "DGM_WARMUP")
-		if instigator:GetStatus("COMBAT") and warmup then
-			local status = instigator:GetStatus(warmup)
-			status.CurrentLifeTime = 6.0
-			Ext.Net.BroadcastMessage("DGM_RefreshWarmup", Ext.JsonStringify({
-				Character = instigator.NetID,
-				Status = warmup
-			}))
 		end
 	end
 end, 49)
