@@ -272,6 +272,12 @@ Helpers.GetFormattedSkillID = function(skillID)
 	return string.sub(skillID, 1, string.len(skillID)-3)
 end
 
+---@param entity string
+---@return boolean
+Helpers.CheckEntityExistence = function(entity)
+	return ObjectExists(entity) == 1
+end
+
 function DamageTypeEnum()
 	local enum = {
 		"Physical",
@@ -391,14 +397,14 @@ function CharGetDGMAttributeBonus(char, next)
 		dual = math.floor(Ext.ExtraData.CombatAbilityDamageBonus * (stats.DualWielding+next)),
 		dualDodge = math.floor(Ext.ExtraData.CombatAbilityDodgingBonus * (stats.DualWielding+next)),
 		dualOff = math.floor(Ext.ExtraData.DGM_DualWieldingOffhandBonus * (stats.DualWielding+next)),
-		ranged = math.floor(Ext.ExtraData.CombatAbilityDamageBonus * (stats.Ranged+next)),
+		ranged = math.floor(Ext.ExtraData.DGM_RangedDamageBonus * (stats.Ranged+next)),
 		rangedCrit = math.floor(Ext.ExtraData.CombatAbilityCritBonus * (stats.Ranged+next)),
 		rangedRange = round(Ext.ExtraData.DGM_RangedRangeBonus * (stats.Ranged+next) * 0.01, 2),
-		single = math.floor(Ext.ExtraData.CombatAbilityDamageBonus * (stats.SingleHanded+next)),
+		single = math.floor(Ext.ExtraData.DGM_SingleHandedDamageBonus * (stats.SingleHanded+next)),
 		singleAcc = math.floor(Ext.ExtraData.CombatAbilityAccuracyBonus * (stats.SingleHanded+next)),
 		singleArm = math.floor(Ext.ExtraData.DGM_SingleHandedArmorBonus * (stats.SingleHanded+next)),
 		singleEle = math.floor(Ext.ExtraData.DGM_SingleHandedResistanceBonus * (stats.SingleHanded+next)),
-		two = math.floor(Ext.ExtraData.CombatAbilityDamageBonus * (stats.TwoHanded+next)),
+		two = math.floor(Ext.ExtraData.DGM_TwoHandedDamageBonus * (stats.TwoHanded+next)),
 		twoCrit = math.floor(Ext.ExtraData.CombatAbilityCritMultiplierBonus * (stats.TwoHanded+next)),
 		twoAcc = math.floor(Ext.ExtraData.DGM_TwoHandedCTHBonus * (stats.TwoHanded+next)),
 		persArm = math.floor(Data.Math.GetHealValue(Ext.Stats.Get("POST_PHYS_CONTROL"), char) * (stats.Perseverance+next)),

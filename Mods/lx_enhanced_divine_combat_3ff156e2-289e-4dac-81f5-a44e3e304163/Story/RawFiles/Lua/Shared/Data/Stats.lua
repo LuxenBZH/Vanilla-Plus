@@ -235,3 +235,10 @@ Data.Stats.EngineStatuses = {
 	UNSHEATHED = true,
 	WIND_WALKER = true,
 }
+
+Data.Stats.WeaponAbilitiesBonuses = {
+	SingleHanded = Ext.ExtraData.DGM_SingleHandedDamageBonus,
+	DualWielding = 0,
+	Ranged = Ext.ExtraData.DGM_RangedDamageBonus,
+	TwoHanded = Ext.ExtraData.DGM_TwoHandedDamageBonus
+}

@@ -6,12 +6,7 @@
 ---@param state any
 local function changeDamageValue(ui, call, state)
     if ui:GetValue("secStat_array", "string", 2) == nil then return end
-    local character = Ext.GetCharacter(Ext.DoubleToHandle(ui:GetRoot().charHandle))
-
-    local strength = character.Stats.Strength - Ext.ExtraData.AttributeBaseValue
-    local finesse = character.Stats.Finesse - Ext.ExtraData.AttributeBaseValue
-    local intelligence = character.Stats.Intelligence - Ext.ExtraData.AttributeBaseValue
-
+    local character = Ext.ClientEntity.GetCharacter(Ext.UI.DoubleToHandle(ui:GetRoot().charHandle))
     local damage = CustomGetSkillDamageRange(character.Stats, Ext.GetStat("Target_LX_NormalAttack"),  character.Stats.MainWeapon, character.Stats.OffHandWeapon, true)
     local minDamage = 0
     local maxDamage = 0

@@ -229,6 +229,7 @@ end
 ---@param target EsvCharacter|EclCharacter
 ---@param instigator EsvCharacter|EclCharacter
 Data.Math.ApplyCQBPenalty = function(target, instigator)
+	if not target or not instigator then return 0 end
 	local globalMultiplierBonus = 0
 	local weaponTypes = {instigator.Stats.MainWeapon.WeaponType, instigator.Stats.OffHandWeapon and instigator.Stats.OffHandWeapon.WeaponType or nil}
 	if weaponTypes[1] == "Bow" or weaponTypes[1] == "Crossbow" or weaponTypes[1] == "Rifle" or weaponTypes[1] == "Wand" then
@@ -246,7 +247,7 @@ end
 ---@param flags HitFlags
 ---@param skill StatEntrySkillData|nil
 Data.Math.GetCharacterComputedDamageBonus = function(character, target, flags, skill)
-	if not character or getmetatable(character) ~= "esv::Character" then return {
+	if not character or getmetatable(character) ~= "esv::Character" and getmetatable(character) ~= "ecl::Character" then return {
 		Strength = 0,
 		Finesse = 0,
 		Intelligence = 0,
@@ -269,11 +270,16 @@ Data.Math.GetCharacterComputedDamageBonus = function(character, target, flags, s
         attributes.DamageBonus = attributes.DamageBonus + character.Stats.CriticalChance * Ext.ExtraData.DGM_BackstabCritChanceBonus
     end
 	-- Weapon Boost
-	if flags.IsWeaponAttack or (skill and skill.Name == "Target_TentacleLash") then
+	if flags.IsWeaponAttack or (skill and (skill.Name == "Target_TentacleLash" or skill.UseWeaponDamage == "Yes")) then
 		if (flags.DamageSourceType == "Offhand" and character.Stats.OffHandWeapon.WeaponType == "Wand") or character.Stats.MainWeapon.WeaponType == "Wand" then
 			attributes.DamageBonus = attributes.DamageBonus + attributes.Intelligence * Ext.ExtraData.DGM_IntelligenceSkillBonus
 		else
 			attributes.DamageBonus = attributes.DamageBonus + attributes.Strength * Ext.ExtraData.DGM_StrengthWeaponBonus
+		end
+		-- Weapon ability boost (no DW)
+		if flags.DamageSourceType ~= "Offhand" and character.Stats.MainWeapon ~= null then
+			local weaponAbility = Game.Math.GetWeaponAbility(character.Stats, character.Stats.MainWeapon)
+			attributes.DamageBonus = attributes.DamageBonus * (1 + character.Stats[weaponAbility] * Data.Stats.WeaponAbilitiesBonuses[weaponAbility] / 100)
 		end
 		attributes.GlobalMultiplier = attributes.GlobalMultiplier + Data.Math.ApplyCQBPenalty(target, character)
 	-- DoT Boost
@@ -281,7 +287,7 @@ Data.Math.GetCharacterComputedDamageBonus = function(character, target, flags, s
 		attributes.DamageBonus = attributes.Wits * Ext.ExtraData.DGM_WitsDotBonus
 	end
 	-- Intelligence Boost
-	if skill then 
+	if skill and skill.Name ~= "Target_LX_NormalAttack" then 
 		attributes.DamageBonus = attributes.DamageBonus + attributes.Intelligence * Ext.ExtraData.DGM_IntelligenceSkillBonus
 		if string.find(skill.Name, "Grenade") and character.Stats.TALENT_WarriorLoreGrenadeRange then
 			attributes.DamageBonus = attributes.DamageBonus + Ext.ExtraData.DGM_SlingshotBonus
@@ -300,4 +306,24 @@ end
 ---@param character EsvCharacter | EclCharacter
 Data.Math.CharacterGetEffectiveMagicArmor = function(character)
 	return character.Stats.CurrentMagicArmor * (Ext.ExtraData.DGM_DamageThroughArmor + (character.Stats.CurrentArmor > 0 and Ext.ExtraData.DGM_DamageThroughArmorDepleted or 0) /100)
+end
+
+---@param character EsvCharacter | EclCharacter
+Data.Math.GetCharacterWeaponAbilityPoints = function(character)
+	local ability = Game.Math.GetWeaponAbility(character.Stats, character.Stats.MainWeapon)
+	if ability then
+		return character.Stats[ability]
+	else
+		return 0
+	end
+end
+
+---@param character EsvCharacter | EclCharacter
+Data.Math.GetCharacterWeaponAbilityBonus = function(character)
+	local ability = Game.Math.GetWeaponAbility(character.Stats, character.Stats.MainWeapon)
+	if ability then
+		return character.Stats[ability] * Data.Stats.WeaponAbilitiesBonuses[ability]
+	else
+		return 0
+	end
 end

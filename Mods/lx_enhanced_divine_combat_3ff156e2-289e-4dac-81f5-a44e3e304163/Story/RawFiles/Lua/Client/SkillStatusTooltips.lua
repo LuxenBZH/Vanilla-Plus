@@ -95,16 +95,6 @@ function CustomGetSkillDamageRange(character, skill, mainWeapon, offHand, fromEx
         if skillParams[paramsOrder[currentParam]]:gsub(".*:", "") ~= "Damage" then return end
     end
 
-    local amplifierMult = 1.0
-    if character.MainWeapon.WeaponType == "Staff" then
-        amplifierMult = amplifierMult + 0.1
-    elseif character.MainWeapon.WeaponType == "Wand" then
-        amplifierMult = amplifierMult + 0.025
-    end
-    if character.OffHandWeapon ~= nil then
-        if character.OffHandWeapon.WeaponType == "Wand" then amplifierMult = amplifierMult + 0.025 end
-    end
-
 	if skill.UseWeaponDamage == "Yes" then
 		local mainWeapon = character.MainWeapon
         local mainDamageRange = Game.Math.CalculateWeaponScaledDamageRanges(character, mainWeapon)
@@ -128,19 +118,17 @@ function CustomGetSkillDamageRange(character, skill, mainWeapon, offHand, fromEx
             end
         end
 
-        local globalMult = 1 + (character.Strength-10) * (Ext.ExtraData.DGM_StrengthGlobalBonus*0.01 + Ext.ExtraData.DGM_StrengthWeaponBonus*0.01) +
-            (character.Finesse-10) * (Ext.ExtraData.DGM_FinesseGlobalBonus*0.01) +
-            (character.Intelligence-10) * (Ext.ExtraData.DGM_IntelligenceGlobalBonus*0.01 + Ext.ExtraData.DGM_IntelligenceSkillBonus*0.01)
-        
-        if skill.Name == "Target_LX_NormalAttack" then
-            globalMult = 1 + (character.Strength-10) * (Ext.ExtraData.DGM_StrengthGlobalBonus*0.01 + Ext.ExtraData.DGM_StrengthWeaponBonus*0.01) +
-            (character.Finesse-10) * (Ext.ExtraData.DGM_FinesseGlobalBonus*0.01) +
-            (character.Intelligence-10) * (Ext.ExtraData.DGM_IntelligenceGlobalBonus*0.01)
-        end
+        -- local globalMult = 1 + (character.Strength-10) * (Ext.ExtraData.DGM_StrengthGlobalBonus*0.01 + Ext.ExtraData.DGM_StrengthWeaponBonus*0.01) +
+        --     (character.Finesse-10) * (Ext.ExtraData.DGM_FinesseGlobalBonus*0.01) +
+        --     (character.Intelligence-10) * (Ext.ExtraData.DGM_IntelligenceGlobalBonus*0.01 + Ext.ExtraData.DGM_IntelligenceSkillBonus*0.01)
+
+        local boosts = Data.Math.GetCharacterComputedDamageBonus(character.Character, nil, {}, skill)
+
+        local globalMult = boosts.DamageBonus / 100 + 1
         
         for damageType, range in pairs(mainDamageRange) do
-            local min = Ext.Round(range.Min * damageMultiplier * globalMult * amplifierMult)
-            local max = Ext.Round(range.Max * damageMultiplier * globalMult * amplifierMult + (globalMult *amplifierMult))
+            local min = Ext.Round(range.Min * damageMultiplier * globalMult)
+            local max = Ext.Round(range.Max * damageMultiplier * globalMult)
             range.Min = min + math.ceil(min * Game.Math.GetDamageBoostByType(character, damageType))
             range.Max = max + math.ceil(max * Game.Math.GetDamageBoostByType(character, damageType))
         end
@@ -231,8 +219,8 @@ function CustomGetSkillDamageRange(character, skill, mainWeapon, offHand, fromEx
         local damageBoost = 1.0 + (character.DamageBoost / 100.0)
         local damageRanges = {}
         damageRanges[damageType] = {
-            Min = math.ceil(math.ceil(Ext.Round(baseDamage - damageRange) * damageBoost) * damageTypeBoost * amplifierMult),
-            Max = math.ceil(math.ceil(Ext.Round(baseDamage + damageRange) * damageBoost) * damageTypeBoost * amplifierMult + (globalMult * amplifierMult))
+            Min = math.ceil(math.ceil(Ext.Round(baseDamage - damageRange) * damageBoost) * damageTypeBoost),
+            Max = math.ceil(math.ceil(Ext.Round(baseDamage + damageRange) * damageBoost) * damageTypeBoost + (globalMult))
         }
         return damageRanges
     end

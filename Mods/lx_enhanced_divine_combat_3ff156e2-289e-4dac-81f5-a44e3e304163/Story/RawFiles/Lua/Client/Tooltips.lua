@@ -41,7 +41,15 @@ local dynamicTooltips = {
     ["Teleportation_FreeFall"]  = "h8afcfe4egf50fg402agbcc0g6ba95472ff53",
     ["Teleportation_Netherswap"]= "h656cf1ffgd118g40b8g9b1bgaa270b84bec8",
     ["Shout_LX_AimedShot_Description"]= "h02f12f9fg9a25g4a95gba27gd65217023ed9",
-    ["DualWieldingOffhandBonusTooltip"]= "h8b09bd1cg68deg4987g9494g540c9d948538"
+    ["DualWieldingOffhandBonusTooltip"]= "h8b09bd1cg68deg4987g9494g540c9d948538",
+    ["WeaponAbilityBonus"] = "h2b23ff71g3f03g4ec6g83cagcbeeae126da7",
+}
+
+local weaponAbilitiesTK = {
+    ["TwoHanded"] = "h3fb5cd5ag9ec8g4746g8f9cg03100b26bd3a",
+    ["SingleHanded"] = "ha74334b1gd56bg49c2g8738g44da4decd00a",
+    ["Ranged"] = "hdda30cb9g17adg433ag9071g867e97c09c3a",
+    ["DualWielding"] = "h03d68693g35e7g4721ga1b3g9f9882f08b12"
 }
 
 ---@param str string
@@ -122,7 +130,7 @@ local function WeaponTooltips(item, tooltip)
     end
 end
 
----@param character EsvCharacter
+---@param character EclCharacter
 ---@param skill any
 ---@param tooltip TooltipData
 local function SkillAttributeTooltipBonus(character, skill, tooltip)
@@ -132,6 +140,8 @@ local function SkillAttributeTooltipBonus(character, skill, tooltip)
     (stats.Intelligence-Ext.ExtraData.AttributeBaseValue) * Ext.ExtraData.DGM_IntelligenceGlobalBonus)
     local strengthBonus = math.floor((stats.Strength-Ext.ExtraData.AttributeBaseValue) * Ext.ExtraData.DGM_StrengthWeaponBonus)
     local intelligenceBonus = math.floor((stats.Intelligence-Ext.ExtraData.AttributeBaseValue) * Ext.ExtraData.DGM_IntelligenceSkillBonus)
+    local weaponAbility = Game.Math.GetWeaponAbility(character.Stats, character.Stats.MainWeapon)
+    local abilityBonus = math.floor(Data.Math.GetCharacterWeaponAbilityBonus(character))
 
     local general = {
         Type = "StatsPercentageBoost",
@@ -146,9 +156,15 @@ local function SkillAttributeTooltipBonus(character, skill, tooltip)
         Label = GetDynamicTranslationString("IntSkillBonus", intelligenceBonus)
     }
 
+    local ability = {
+        Type = "StatsPercentageBoost",
+        Label = string.sub(GetDynamicTranslationString("WeaponAbilityBonus", Ext.L10N.GetTranslatedString(weaponAbilitiesTK[weaponAbility]), abilityBonus, ""), 5).."%"
+    }
+
     tooltip:AppendElementAfter(general, "StatsPercentageBoost")
     tooltip:AppendElementAfter(strength, "StatsPercentageBoost")
     tooltip:AppendElementAfter(intelligence, "StatsPercentageBoost")
+    tooltip:AppendElementAfter(ability, "StatsPercentageBoost")
 
     if not stats.MainWeapon.IsTwoHanded then
         if stats.OffHandWeapon ~= nil and stats.OffHandWeapon.WeaponType ~= "Shield" then
