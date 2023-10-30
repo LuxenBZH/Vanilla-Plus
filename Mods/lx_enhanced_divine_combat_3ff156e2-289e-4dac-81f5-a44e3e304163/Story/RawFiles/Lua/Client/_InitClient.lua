@@ -1,6 +1,19 @@
+---@param attacker EsvCharacter
+---@param target EsvCharacter
+local function DGM_HitChanceFormula(attacker, target)
+    local hitChance = attacker.Accuracy - target.Dodge + attacker.ChanceToHitBoost
+    -- Make sure that we return a value in the range (0% .. 100%)
+    hitChance = math.max(math.min(hitChance, 100), 0)
+    return hitChance
+end
+
+Ext.RegisterListener("GetHitChance", DGM_HitChanceFormula)
+
 Ext.Require("Client/SkillStatusTooltips.lua")
 Ext.Require("Client/Tooltips.lua")
-Ext.Require("Client/CharacterSheet.lua")
+Ext.Require("Client/CharacterSheet/CSMisc.lua")
+Ext.Require("Client/CharacterSheet/AbilitiesCap.lua")
+Ext.Require("Client/CharacterSheet/CustomStats.lua")
 Ext.Require("Client/DamageColour.lua")
 Ext.Require("Client/CustomSkillPropertiesClient.lua")
 Ext.Require("Client/LL_Tooltips.lua")

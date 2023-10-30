@@ -82,7 +82,7 @@ HitManager:RegisterHitListener("DGM_Hit", "AfterDamageScaling", "DGM_AbsorbShiel
 		else
 			instigator.UserVars.LX_WarmupManager.Counter = 0
 		end
-		_P(instigator.MyGuid, "Warmup counter:", instigator.UserVars.LX_WarmupManager.Counter)
+		-- _P(instigator.MyGuid, "Warmup counter:", instigator.UserVars.LX_WarmupManager.Counter)
 	end
 	--- Refresh Warmup status if the character attack while it's at 0 turn left
 	if getmetatable(instigator) == "esv::Character" then
