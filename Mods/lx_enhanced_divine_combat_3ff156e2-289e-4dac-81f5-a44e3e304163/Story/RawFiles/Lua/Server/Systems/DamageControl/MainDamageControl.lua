@@ -69,10 +69,11 @@ local AllowedDWBonusAnim = {
 --- @param target EsvItem|EsvCharacter
 --- @param flags HitFlags
 HitManager:RegisterHitListener("DGM_Hit", "AfterDamageScaling", "DGM_AbsorbShields", function(hit, instigator, target, flags)
+	--- Dual Wielding additional attack
 	if flags.IsWeaponAttack and (NRD_StatusGetInt(target.MyGuid, hit.StatusHandle, "DamageSourceType") == 7 or (hit.SkillId ~= "" and instigator.Stats.OffHandWeapon ~= null)) and instigator.Stats.DualWielding > 0 and instigator:GetStatus("VP_DW_ATTACK") then
 		local newHit = NRD_HitPrepare(target.MyGuid, instigator.MyGuid)
 		NRD_HitSetInt(newHit, "SimulateHit", 1)
-		NRD_HitSetInt(newHit, "HitType", 3)
+		NRD_HitSetInt(newHit, "HitType", 0)
 		NRD_HitSetInt(newHit, "Backstab", flags.Backstab and 1 or 0)
 		local offhandWeaponDamage = Game.Math.ComputeBaseWeaponDamage(instigator.Stats.OffHandWeapon)
 		local totalDamage = 0
