@@ -229,12 +229,63 @@ Helpers.Status.Multiply = function(status, multiplier)
 	end
 end
 
+Helpers.UI = {}
+
+Helpers.UI.GetTooltipNumberSign = function(number)
+	return {
+		Type = number > 0 and "StatusBonus" or "StatusMalus",
+		Sign = number > 0 and "+" or "-"
+	}
+end
+
 if Ext.IsServer() then
 	Ext.Osiris.RegisterListener("CharacterStatusRemoved", 3, "before", function(target, status, instigator)
 		if Helpers.Status.MultipliedStats[status] then
 			Ext.Stats.Sync(Helpers.Status.MultipliedStats[status], false)
 		end
 	end)
+
+		-------- Turn listeners (delay check)
+	local TurnListeners = {
+		Start = {},
+		End = {}
+	}
+
+	Ext.Osiris.RegisterListener("CharacterGuarded", 1, "before", function(character)
+		ObjectSetFlag(character, "HasDelayed")
+	end)
+
+	Ext.Osiris.RegisterListener("ObjectTurnEnded", 1, "before", function(character)
+		if ObjectGetFlag(character, "HasDelayed") == 0 then
+			for i, listener in pairs(TurnListeners.End) do
+				listener.Handle(character)
+			end
+		end
+	end)
+
+	Ext.Osiris.RegisterListener("ObjectTurnStarted", 1, "before", function(character)
+		if ObjectGetFlag(character, "HasDelayed") == 1 then
+			ObjectClearFlag(character, "HasDelayed")
+		else
+			for i, listener in pairs(TurnListeners.Start) do
+				listener.Handle(character)
+			end
+		end
+	end)
+
+	Helpers.RegisterTurnTrueStartListener = function(func)
+		table.insert(TurnListeners.Start, {
+			Name = "",
+			Handle = func
+		})
+	end
+
+	Helpers.RegisterTurnTrueEndListener = function(func)
+		table.insert(TurnListeners.End, {
+			Name = "",
+			Handle = func
+		})
+	end
 end
 
 ---@param str string

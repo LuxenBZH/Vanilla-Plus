@@ -242,3 +242,115 @@ Data.Stats.WeaponAbilitiesBonuses = {
 	Ranged = Ext.ExtraData.DGM_RangedDamageBonus,
 	TwoHanded = Ext.ExtraData.DGM_TwoHandedDamageBonus
 }
+
+Data.Stats.HardcodedStatuses = {
+	NONE = true,
+	HIT = true,
+	DYING = true,
+	HEAL = true,
+	MUTED = true,
+	CHARMED = true,
+	KNOCKED_DOWN = true,
+	SUMMONING = true,
+	HEALING = true,
+	THROWN = true,
+	SHIELD = true,
+	FALLING = true,
+	CONSUME = true,
+	COMBAT = true,
+	ATTACKOFOPP = true,
+	STORY_FROZEN = true,
+	SNEAKING = true,
+	UNLOCK = true,
+	FEAR = true,
+	BOOST = true,
+	UNSHEATHED = true,
+	STANCE = true,
+	SITTING = true,
+	LYING = true,
+	IDENTIFY = true,
+	REPAIR = true,
+	BLIND = true,
+	SMELLY = true,
+	CLEAN = true,
+	INFECTIOUS_DISEASED = true,
+	INVISIBLE = true,
+	ROTATE = true,
+	ENCUMBERED = true,
+	MATERIAL = true,
+	LEADERSHIP = true,
+	EXPLODE = true,
+	ADRENALINE = true,
+	SHACKLES_OF_PAIN = true,
+	SHACKLES_OF_PAIN_CASTER = true,
+	WIND_WALKER = true,
+	DARK_AVENGER = true,
+	REMORSE = true,
+	DECAYING_TOUCH = true,
+	UNHEALABLE = true,
+	FLANKED = true,
+	CHANNELING = true,
+	DRAIN = true,
+	LINGERING_WOUNDS = true,
+	INFUSED = true,
+	SPIRIT_VISION = true,
+	SPIRIT = true,
+	DAMAGE = true,
+	CLIMBING = true,
+	INCAPACITATED = true,
+	SOURCE_MUTED = true,
+	OVERPOWER = true,
+	COMBUSTION = true,
+	POLYMORPHED = true,
+	DAMAGE_ON_MOVE = true,
+	DEMONIC_BARGAIN = true,
+	GUARDIAN_ANGEL = true,
+	THICK_OF_THE_FIGHT = true,
+	WINGS = true,
+	CHALLENGE = true,
+	DISARMED = true,
+	HEAL_SHARING = true,
+	HEAL_SHARING_CASTER = true,
+	EXTRA_TURN = true,
+	ACTIVE_DEFENSE = true,
+	SPARK = true,
+	PLAY_DEAD = true,
+	CONSTRAINED = true,
+	EFFECT = true,
+	DEACTIVATED = true,
+	TUTORIAL_BED = true
+}
+
+Data.Stats.BannedStatusesFromChecks = {
+	DGM_Finesse = true,
+	DGM_Intelligence = true,
+	DGM_NoWeapon = true,
+	DGM_OneHanded = true,
+	DGM_Ranged = true,
+	DGM_CrossbowSlow = true,
+	GM_SELECTED = true,
+	GM_SELECTEDDISCREET = true,
+	GM_TARGETED = true,
+	HIT = true,
+	INSURFACE = true,
+	SHOCKWAVE = true,
+	UNSHEATHED = true,
+	THROWN = true,
+	HEAL = true,
+	LEADERSHIP = true,
+	LEADERLIB_RECALC = true,
+	DGM_RECALC = true
+}
+
+for status, i in pairs(Data.Stats.HardcodedStatuses) do
+    Data.Stats.BannedStatusesFromChecks[status] = i
+end
+
+Data.Stats.BannedStatusesFromChecks.CONSUME = nil
+Data.Stats.BannedStatusesFromChecks.BLIND = nil
+
+---@param status EsvStatus|EclStatus
+-- Data.Stats.GetStatEntryFromStatus = function(status)
+-- 	if status.StatusId == "CONSUME" then
+-- 		return Ext.Stats.Get(status.)
+-- end

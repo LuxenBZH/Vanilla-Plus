@@ -59,4 +59,4 @@ Ext.RegisterNetListener("DGM_RefreshWarmup", function(channel, payload)
 	end
 end)
 
-Helpers.UI = {}
+-- Helpers.UI = {}

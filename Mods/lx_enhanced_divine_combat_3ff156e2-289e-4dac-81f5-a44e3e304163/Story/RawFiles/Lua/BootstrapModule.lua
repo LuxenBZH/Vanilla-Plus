@@ -22,7 +22,9 @@ Data.Stats.StatsCustomAttributes = {
         VP_ArmorBypassType = "FixedString",
         VP_MagicArmorBypassValue = "ConstantInt",
         VP_MagicArmorBypassType = "FixedString",
-        VP_VitalityMinimum = "ConstantInt"
+        VP_VitalityMinimum = "ConstantInt",
+        VP_Celerity = "ConstantInt",
+        VP_CelerityFromMovement = "ConstantInt"
     },
     Weapon = {
         VP_IngressBoost = "ConstantInt",
@@ -31,6 +33,8 @@ Data.Stats.StatsCustomAttributes = {
         VP_ArmorRegenBoost = "ConstantInt",
         VP_MagicArmorRegenBoost = "ConstantInt",
         VP_CustomImmunity = "FixedString",
+        VP_Celerity = "ConstantInt",
+        VP_CelerityFromMovement = "ConstantInt"
     },
     Shield = {
         VP_IngressBoost = "ConstantInt",
@@ -40,6 +44,8 @@ Data.Stats.StatsCustomAttributes = {
         VP_MagicArmorRegenBoost = "ConstantInt",
         VP_CriticalMultiplierBoost = "ConstantInt",
         VP_CustomImmunity = "FixedString",
+        VP_Celerity = "ConstantInt",
+        VP_CelerityFromMovement = "ConstantInt"
     },
     Armor = {
         VP_IngressBoost = "ConstantInt",
@@ -49,6 +55,8 @@ Data.Stats.StatsCustomAttributes = {
         VP_MagicArmorRegenBoost = "ConstantInt",
         VP_CriticalMultiplierBoost = "ConstantInt",
         VP_CustomImmunity = "FixedString",
+        VP_Celerity = "ConstantInt",
+        VP_CelerityFromMovement = "ConstantInt"
     },
     SkillData = {
         VP_DamageCapValue = "ConstantInt",

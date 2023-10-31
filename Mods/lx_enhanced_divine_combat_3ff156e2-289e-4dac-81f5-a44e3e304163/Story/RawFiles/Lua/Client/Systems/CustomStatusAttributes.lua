@@ -6,15 +6,23 @@ local function OnStatusTooltip(e, tooltip, character, status)
     if status and type(status) ~= "number" and status.StatsId and status.StatsId ~= "" and Ext.Stats.Get(status.StatsId, nil, false) then
         local potion = Ext.Stats.Get(status.StatsId, nil, false)
         if potion.VP_WisdomBoost ~= 0 then
-            local bonusType = potion.VP_WisdomBoost > 0 and "StatusBonus" or "StatusMalus"
-            local sign = potion.VP_WisdomBoost > 0 and "+" or ""
+            local signInfo = Helpers.UI.GetTooltipNumberSign(tonumber(potion.VP_WisdomBoost))
             tooltip:AppendElement(
                 {
-                    Label = "Wisdom: "..sign..potion.VP_WisdomBoost,
-                    Type = bonusType
+                    Label = "Wisdom: "..signInfo.Sign..potion.VP_WisdomBoost,
+                    Type = signInfo.Type
                 }
             )
-        end     
+        end
+        if potion.VP_Celerity ~= 0 then
+            local signInfo = Helpers.UI.GetTooltipNumberSign(tonumber(potion.VP_Celerity))
+            tooltip:AppendElement(
+                {
+                    Label = "Celerity: "..signInfo.Sign..potion.VP_Celerity,
+                    Type = signInfo.Type
+                }
+            )
+        end
     end
 end
 

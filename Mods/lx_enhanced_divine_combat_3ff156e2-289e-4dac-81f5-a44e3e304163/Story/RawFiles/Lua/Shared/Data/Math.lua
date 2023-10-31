@@ -6,6 +6,51 @@ Data.Math = {}
 
 ---@param character EclCharacter|EsvCharacter
 ---@return number
+Data.Math.ComputeStatIntegerFromEquipment = function(character, statName)
+	local equipmentAttribute = 0
+	for i,j in pairs(Helpers.EquipmentSlots) do
+		local item
+		if getmetatable(character) == "esv::Character" then
+			local guid = CharacterGetEquippedItem(character.MyGuid, j)
+			if guid then
+				item = Ext.ServerEntity.GetItem(CharacterGetEquippedItem(character.MyGuid, j))
+			end
+		else
+			item = character:GetItemObjectBySlot(j)
+		end
+		if item then
+			for i, dynamicStat in pairs(item.Stats.DynamicStats) do
+				if dynamicStat.ObjectInstanceName ~= "" then
+					equipmentAttribute = equipmentAttribute + Ext.Stats.Get(dynamicStat.ObjectInstanceName)[statName]
+				end
+			end
+			-- equipmentAttribute = equipmentAttribute + tonumber(item[statName])
+		end
+	end
+	return equipmentAttribute
+end
+
+Data.Math.ComputeStatIntegerFromStatus = function(character, statName)
+	local statusesAttribute = {}
+	for i,j in pairs(character:GetStatuses()) do
+		local stat = Ext.Stats.Get(j, nil, false)
+		local status = character:GetStatus(j)
+		if stat then
+			local statsId = stat.StatsId
+			if statsId ~= "" then
+				table.insert(statusesAttribute, {
+					Status = stat.StatsId,
+					Value = tonumber(Ext.Stats.Get(statsId)[statName]) * status.StatsMultiplier,
+					Type = statName
+				})
+			end
+		end
+	end
+	return statusesAttribute
+end
+
+---@param character EclCharacter|EsvCharacter
+---@return number
 Data.Math.ComputeCharacterWisdomFromEquipment = function(character)
 	local equipmentWisdom = 0
 	for i,j in pairs(Helpers.EquipmentSlots) do
@@ -157,6 +202,17 @@ Data.Math.ComputeCharacterIngress = function(character)
     local ingressFromHuntsman = character.Stats.RangerLore * Ext.ExtraData.DGM_RangerLoreIngressBonus
     local ingressFromEquipment = 0 --TODO: Equipment Ingress stat and deltamods
     return ingressFromAttributes + ingressFromHuntsman + ingressFromEquipment
+end
+
+--- @param character EsvCharacter|EclCharacter
+Data.Math.ComputeCharacterCelerity = function(character)
+	local equipmentCelerity = Data.Math.ComputeStatIntegerFromEquipment(character, "VP_Celerity")
+	local statusesInfo = Data.Math.ComputeStatIntegerFromStatus(character, "VP_Celerity")
+	local statusesCelerity = 0
+	for i,statusInfo in pairs(statusesInfo) do
+		statusesCelerity = statusesCelerity + statusInfo.Value
+	end
+    return math.min(equipmentCelerity + statusesCelerity)
 end
 
 --[[
@@ -323,6 +379,33 @@ Data.Math.GetCharacterWeaponAbilityBonus = function(character)
 	local ability = Game.Math.GetWeaponAbility(character.Stats, character.Stats.MainWeapon)
 	if ability then
 		return character.Stats[ability] * Data.Stats.WeaponAbilitiesBonuses[ability]
+	else
+		return 0
+	end
+end
+
+--- @param character EsvCharacter
+Data.Math.GetCharacterMovement = function(character)
+    local stats = character.Stats.DynamicStats
+	local movementFromEquipment = Data.Math.ComputeStatIntegerFromEquipment(character, "Movement")
+	local movementFromStatuses = Data.Math.ComputeStatIntegerFromStatus(character, "Movement")
+	local movement = stats[1].Movement + movementFromEquipment + character.Stats.RogueLore * Ext.ExtraData.SkillAbilityMovementSpeedPerPoint
+	for i,statusInfo in pairs(movementFromStatuses) do
+		movement = movement + statusInfo.Value
+	end
+    return {
+        Movement = movement,
+        BaseMovement = stats[1].Movement
+    }
+end
+
+---@param distance integer Distance in centimeters
+---@param character EsvCharacter|EclCharacter
+---@return unknown
+Data.Math.ComputeCelerityValue = function(distance, character)
+	local movement = Data.Math.GetCharacterMovement(character)
+	if movement.Movement > 0 then
+		return distance/movement.Movement
 	else
 		return 0
 	end
