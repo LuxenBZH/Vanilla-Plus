@@ -34,8 +34,12 @@ Ext.RegisterOsirisListener("TimerFinished", 1, "before", function(timer)
     end
 end)
 
+if not PersistentVars.SPunchCooldown then
+    PersistentVars.SPunchCooldown = {}
+end
+
 Ext.RegisterOsirisListener("ObjectTurnStarted", 1, "before", function(object)
-    if PersistentVars.SPunchCooldown[object] ~= nil then
+    if PersistentVars.SPunchCooldown and PersistentVars.SPunchCooldown[object] ~= nil then
         if PersistentVars.SPunchCooldown[object] > 0 then
             PersistentVars.SPunchCooldown[object] = PersistentVars.SPunchCooldown[object] - 1
         else
@@ -131,82 +135,5 @@ Ext.RegisterOsirisListener("CharacterDied", 1, "before", function(character)
     if CharacterHasTalent(character, "Unstable") == 1 and IsTagged(character, "LX_UNSTABLE_COOLDOWN") == 0 then
         local pos = Ext.GetCharacter(character).WorldPos
 		PlayEffectAtPosition("RS3_FX_GP_Combat_CorpseExplosion_Blood_01_Medium", pos[1], pos[2], pos[3])
-    end
-end)
-
-----------
----------- Free Movement per turn
---- @param character EsvCharacter
-function GetCharacterMovement(character)
-    local stats = character.Stats.DynamicStats
-    local movement = 0
-    for i,ds in pairs(stats) do
-        movement = movement + ds.Movement
-    end
-    return {
-        Movement = movement,
-        BaseMovement = stats[1].Movement
-    }
-end
-
-
-RegisterTurnTrueStartListener(function(character)
-    local char = Ext.GetCharacter(character)
-    local movement = GetCharacterMovement(char)
-    if movement.Movement >= movement.BaseMovement then
-        char.PartialAP = char.PartialAP + 100/movement.Movement
-    else
-        char.PartialAP = char.PartialAP + movement.Movement/movement.BaseMovement * 100/movement.Movement
-    end
-end)
-
-----------
----------- Wits increase healings
---- @param target string GUID
---- @param instigator string GUID
---- @param amount integer
---- @param handle double StatusHandle
--- Ext.RegisterOsirisListener("NRD_OnHeal", 4, "before", function(target, instigator, amount, handle)
---     -- Ext.Print(instigator, handle)
---     local heal = Ext.GetStatus(target, handle) ---@type EsvStatusHeal
---     local healer = Ext.GetCharacter(instigator)
---     local bonus = math.floor((healer.Stats.Intelligence - Ext.ExtraData.AttributeBaseValue) * (healer.Stats.Wits - Ext.ExtraData.AttributeBaseValue)*Game.Math.GetLevelScaledDamage(healer.Stats.Level)*0.07)
---     local amount = heal.HealAmount
---     Ext.Print("Healing bonus",bonus)
---     if not heal.IsFromItem then
---         heal.HealAmount = -9999
---         Ext.Print(amount, bonus)
---         amount = amount + bonus
---         heal.HealAmount = amount
---     end
---     -- Ext.Dump(heal)
--- end)
-
-Ext.Osiris.RegisterListener("NRD_OnStatusAttempt", 4, "before", function(target, status, handle, instigator)
-    if instigator == "NULL_00000000-0000-0000-0000-000000000000" then return end -- Spams the console in few cases otherwise
-    local s = Ext.ServerEntity.GetStatus(target, handle) --- @type EsvStatus|EsvStatusHeal|EsvStatusHealing
-    if ObjectIsCharacter(instigator) == 0 then return end
-    local healer = Ext.ServerEntity.GetCharacter(instigator)
-    -- Fix the double bonus from shared healings
-    if status == "HEAL" and s.HealEffect == "HealSharing" then
-        if s.HealType == "PhysicalArmor" then
-            s.HealAmount = Ext.Utils.Round(s.HealAmount / (1 + healer.Stats.EarthSpecialist * Ext.ExtraData.SkillAbilityArmorRestoredPerPoint / 100))
-        elseif s.HealType == "MagicArmor" then
-            s.HealAmount = Ext.Utils.Round(s.HealAmount / (1 + healer.Stats.WaterSpecialist * Ext.ExtraData.SkillAbilityArmorRestoredPerPoint / 100))
-        else
-            s.HealAmount = Ext.Utils.Round(s.HealAmount / (1 + healer.Stats.WaterSpecialist * Ext.ExtraData.SkillAbilityVitalityRestoredPerPoint / 100))
-        end
-    end
-    -- Wisdom bonus to any other heal that isn't LIFESTEAL
-    -- HEAL is the proxy status used for the healing value, the original status will have a healing value equal to 0
-    -- You need to recalculate the healing value manually, and the following HEAL proxies will duplicate that value
-    -- Note : you cannot track the origin of HEAL proxies. In case where a custom value would be needed for each tick, applying a new status each tick could be a workaround.
-    if (s.StatusType == "HEAL" or s.StatusType == "HEALING") and status ~= "HEAL" and status ~= "LIFESTEAL" then
-        local stat = Ext.Stats.Get(s.StatusId)
-        if stat.HealType ~= "Qualifier" then return end
-        s.HealAmount = math.floor(Data.Math.GetHealScaledWisdomValue(stat, healer) / math.max(1, 1 + (healer.Stats.WaterSpecialist*Ext.ExtraData.SkillAbilityVitalityRestoredPerPoint/100)))
-        -- _P("ScaledAmount", s.HealAmount)
-    elseif status == "LIFESTEAL" then
-        s.HealAmount = Ext.Utils.Round(s.HealAmount / (1 + healer.Stats.WaterSpecialist * Ext.ExtraData.SkillAbilityVitalityRestoredPerPoint / 100))
     end
 end)

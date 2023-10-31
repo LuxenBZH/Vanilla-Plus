@@ -106,7 +106,7 @@ end
 ---@param status string
 ---@param handle number
 local function BlockCCs(character, status, handle, instigator)
-	if ObjectIsCharacter(character) ~= 1 or engineStatuses[status] then return end
+	if ObjectIsCharacter(character) ~= 1 or Data.Stats.EngineStatuses[status] then return end
 	local lifetime = NRD_StatusGetInt(character, handle, "LifeTime")
 	local source = NRD_StatusGetInt(character, handle, "DamageSourceType") -- If 5 it's from an aura
 	local enterChance = NRD_StatusGetInt(character, handle, "CanEnterChance")
