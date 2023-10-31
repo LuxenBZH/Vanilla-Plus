@@ -87,6 +87,15 @@ local function SetupCharacterSheetUI()
     local charSheet = Ext.GetBuiltinUI("Public/Game/GUI/characterSheet.swf")
     local tooltip = Ext.GetBuiltinUI("Public/Game/GUI/tooltip.swf")
     Ext.RegisterUIInvokeListener(charSheet, "updateArraySystem", changeDamageValue)
+    -- Overhaul bonus refresh on buttons click
+    Ext.RegisterUICall(charSheet, "minusStat", sheetButtonPressed)
+    Ext.RegisterUICall(charSheet, "plusStat", sheetButtonPressed)
+    Ext.RegisterUICall(charSheet, "minLevel", sheetButtonPressed)
+    Ext.RegisterUICall(charSheet, "plusLevel", sheetButtonPressed)
+    Ext.RegisterUICall(charSheet, "minusTalent", sheetButtonPressed)
+    Ext.RegisterUICall(charSheet, "plusTalent", sheetButtonPressed)
+    Ext.RegisterUICall(charSheet, "minusAbility", sheetButtonPressed)
+    Ext.RegisterUICall(charSheet, "plusAbility", sheetButtonPressed)
 end
 
 Ext.RegisterListener("SessionLoaded", SetupCharacterSheetUI)
