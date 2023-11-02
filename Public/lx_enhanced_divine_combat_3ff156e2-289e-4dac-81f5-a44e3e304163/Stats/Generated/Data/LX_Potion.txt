@@ -1740,7 +1740,7 @@ new entry "Stats_LX_Executioner"
 type "Potion"
 data "Act" "1"
 data "Act part" "0"
-data "MovementSpeed" "200"
+data "VP_Celerity" "400"
 
 new entry "Stats_LX_MagicCycleEarthAir"
 type "Potion"
