@@ -38,7 +38,7 @@ key "CombatAbilityCritMultiplierBonus","4"
 
 key "CombatAbilityCritBonus","1"
 
-key "CombatAbilityDamageBonus","5"
+key "CombatAbilityDamageBonus","0"
 
 key "CombatAbilityCap","10"
 
@@ -200,7 +200,7 @@ key "VitalityStartingAmount","100"
 
 key "VitalityLinearGrowth","0"
 
-key "SkillAbilityMovementSpeedPerPoint","15"
+key "SkillAbilityMovementSpeedPerPoint","20"
 
 key "DGM_CrossbowBasePenalty","-58"
 
@@ -261,3 +261,11 @@ key "DGM_LegacyDodge","0"
 key "DGM_BaseAccuracy","90"
 
 key "DGM_PainReflectionDamageReduction","2"
+
+key "DGM_DualWieldingOffhandAttackBonusDamage","10"
+
+key "DGM_TwoHandedDamageBonus","5"
+
+key "DGM_SingleHandedDamageBonus","5"
+
+key "DGM_RangedDamageBonus","5"
