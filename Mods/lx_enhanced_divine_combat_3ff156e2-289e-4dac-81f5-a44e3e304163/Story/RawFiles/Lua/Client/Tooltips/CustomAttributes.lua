@@ -39,12 +39,27 @@ Game.Tooltip.RegisterListener("Item", nil, function(item, tooltip)
                 wisdom = wisdom + Ext.Stats.Get(dynamicStat.ObjectInstanceName).VP_WisdomBoost
             end
         end
+        local celerity = item.Stats.VP_Celerity
+        for i, dynamicStat in pairs(item.Stats.DynamicStats) do
+            if dynamicStat.ObjectInstanceName ~= "" then
+                celerity = celerity + Ext.Stats.Get(dynamicStat.ObjectInstanceName).VP_Celerity
+            end
+        end
         if wisdom > 0 then
             local element = tooltip:GetElement("AbilityBoost")
             tooltip:AppendElement({
                 Label = "Wisdom",
                 Type = "AbilityBoost",
                 Value = wisdom
+            })
+        end
+        if celerity > 0 then
+            celerity = celerity / 100
+            local element = tooltip:GetElement("AbilityBoost")
+            tooltip:AppendElement({
+                Label = "Celerity",
+                Type = "AbilityBoost",
+                Value = celerity
             })
         end
     end
