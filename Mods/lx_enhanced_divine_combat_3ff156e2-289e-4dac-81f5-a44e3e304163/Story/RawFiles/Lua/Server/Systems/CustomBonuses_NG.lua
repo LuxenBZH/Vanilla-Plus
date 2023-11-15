@@ -19,7 +19,8 @@ CustomStatusManager = {
         HEAL = true,
         LEADERSHIP = true,
         LEADERLIB_RECALC = true,
-        DGM_RECALC = true
+        DGM_RECALC = true,
+        LX_CROSSBOWCLEAR = true
     },
     ExtendedBanList = {
         Data.Stats.CustomAttributeBonuses,
@@ -107,12 +108,12 @@ function CustomStatusManager:Apply(character, name, duration, multiplier, cap)
         character = Ext.Entity.GetCharacter(character)
     end
     local exists = character:GetStatus(name)
-    if exists and cap and multiplier <= cap and exists.StatsMultiplier == multiplier then
+    if exists and ((cap and multiplier <= cap) or not cap) and exists.StatsMultiplier == multiplier then
         return
     end
     local status = Ext.PrepareStatus(character.MyGuid, name, duration)
-    if multiplier ~= 1.0 and cap then
-        status.StatsMultiplier = math.min(multiplier, cap)
+    if multiplier ~= 1.0 then
+        status.StatsMultiplier = math.min(multiplier, cap or 9999999)
     end
     Ext.ApplyStatus(status)
     ApplyStatus(character.MyGuid, "DGM_RECALC", 0.0, 1)
