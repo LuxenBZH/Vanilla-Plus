@@ -226,7 +226,7 @@ local function ApplyWarmup(character, step)
 		stage = step
 	elseif warmup then
 		stage = math.min(tonumber(string.sub(warmup, 11, 11))+1, 4)
-		ObjectSetFlag(character, "DGM_WarmupReapply", 0)
+		ObjectClearFlag(character, "DGM_WarmupReapply", 0)
 	else
 		stage = 1
 	end

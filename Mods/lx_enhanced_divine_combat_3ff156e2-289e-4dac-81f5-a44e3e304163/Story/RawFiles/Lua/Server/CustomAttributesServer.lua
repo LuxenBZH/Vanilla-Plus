@@ -37,7 +37,7 @@ end)
 ---@param status string
 ---@param instigator GUID
 Ext.Osiris.RegisterListener("CharacterStatusApplied", 3, "before", function(character, status, instigator)
-    if not Data.Stats.BannedStatusesFromChecks[status] then
+    if not Data.Stats.BannedStatusesFromChecks[status] and status ~= "" and NRD_StatExists(status) == 1 then
         local character = Ext.ServerEntity.GetCharacter(character)
         local status = character:GetStatus(status)
         local statEntry = Ext.Stats.Get(status.StatsId)
