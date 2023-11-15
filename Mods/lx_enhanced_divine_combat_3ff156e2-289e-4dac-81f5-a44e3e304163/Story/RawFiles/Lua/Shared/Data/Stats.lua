@@ -1,31 +1,49 @@
 Data.Stats = {}
 
-Data.Stats.CustomAttributeBonuses = {
-    Finesse = {Potion = {Movement = Ext.ExtraData.DGM_FinesseMovementBonus}, Status = {StackId = "DGM_Finesse"}, Cap = Ext.ExtraData.DGM_FinesseMovementCap},
-    Intelligence = {Potion = {AccuracyBoost = Ext.ExtraData.DGM_IntelligenceAccuracyBonus}, Status = {StackId = "DGM_Intelligence"}, Cap = Ext.ExtraData.DGM_IntelligenceAccuracyCap}
-}
+local function DataLoadStatsInfo(e)
+	Helpers.VPPrint("Loading Stats Data...", "Stats:DataLoadStatsInfo", "Server:", Ext.IsServer())
+	Data.Stats.CustomAttributeBonuses = {
+		Finesse = {Potion = {Movement = Ext.ExtraData.DGM_FinesseMovementBonus}, Status = {StackId = "DGM_Finesse"}, Cap = Ext.ExtraData.DGM_FinesseMovementCap},
+		Intelligence = {Potion = {AccuracyBoost = Ext.ExtraData.DGM_IntelligenceAccuracyBonus}, Status = {StackId = "DGM_Intelligence"}, Cap = Ext.ExtraData.DGM_IntelligenceAccuracyCap}
+	}
 
-Data.Stats.CustomAbilityBonuses = {
-    SingleHanded = { Potion = {
-            ArmorBoost=Ext.ExtraData.DGM_SingleHandedArmorBonus,
-            MagicArmorBoost=Ext.ExtraData.DGM_SingleHandedArmorBonus,
-            FireResistance=Ext.ExtraData.DGM_SingleHandedResistanceBonus,
-            EarthResistance=Ext.ExtraData.DGM_SingleHandedResistanceBonus,
-            PoisonResistance=Ext.ExtraData.DGM_SingleHandedResistanceBonus,
-            WaterResistance=Ext.ExtraData.DGM_SingleHandedResistanceBonus,
-            AirResistance=Ext.ExtraData.DGM_SingleHandedResistanceBonus
-        }, Status = {StackId = "DGM_SingleHanded"}
-    },
-    -- TwoHanded = {},
-    Ranged = {Potion = {RangeBoost=Ext.ExtraData.DGM_RangedRangeBonus}, Status = {StackId = "DGM_Ranged"}, Cap = 10},
-    -- DualWielding = {},
-    -- None = {}
-}
+	Data.Stats.CustomAbilityBonuses = {
+		SingleHanded = { Potion = {
+				ArmorBoost=Ext.ExtraData.DGM_SingleHandedArmorBonus,
+				MagicArmorBoost=Ext.ExtraData.DGM_SingleHandedArmorBonus,
+				FireResistance=Ext.ExtraData.DGM_SingleHandedResistanceBonus,
+				EarthResistance=Ext.ExtraData.DGM_SingleHandedResistanceBonus,
+				PoisonResistance=Ext.ExtraData.DGM_SingleHandedResistanceBonus,
+				WaterResistance=Ext.ExtraData.DGM_SingleHandedResistanceBonus,
+				AirResistance=Ext.ExtraData.DGM_SingleHandedResistanceBonus
+			}, Status = {StackId = "DGM_SingleHanded"}
+		},
+		-- TwoHanded = {},
+		Ranged = {Potion = {RangeBoost=Ext.ExtraData.DGM_RangedRangeBonus}, Status = {StackId = "DGM_Ranged"}, Cap = 10},
+		-- DualWielding = {},
+		-- None = {}
+	}
+	
+	Data.Stats.CrossbowMovementPenalty = {
+		Base = Ext.ExtraData.DGM_CrossbowBasePenalty,
+		Level = Ext.ExtraData.DGM_CrossbowLevelGrowthPenalty
+	}
 
-Data.Stats.CrossbowMovementPenalty = {
-    Base = Ext.ExtraData.DGM_CrossbowBasePenalty,
-    Level = Ext.ExtraData.DGM_CrossbowLevelGrowthPenalty
-}
+	Data.Stats.WeaponAbilitiesBonuses = {
+		SingleHanded = Ext.ExtraData.DGM_SingleHandedDamageBonus,
+		DualWielding = 0,
+		Ranged = Ext.ExtraData.DGM_RangedDamageBonus,
+		TwoHanded = Ext.ExtraData.DGM_TwoHandedDamageBonus
+	}
+end
+
+if Ext.IsServer() then
+	DataLoadStatsInfo(nil)
+else
+	Ext.Events.StatsLoaded:Subscribe(DataLoadStatsInfo)
+	Ext.Events.ResetCompleted:Subscribe(DataLoadStatsInfo)
+end
+
 
 ---@type Enum
 Data.TalentEnum = {
@@ -234,13 +252,6 @@ Data.Stats.EngineStatuses = {
 	UNLOCK = true,
 	UNSHEATHED = true,
 	WIND_WALKER = true,
-}
-
-Data.Stats.WeaponAbilitiesBonuses = {
-	SingleHanded = Ext.ExtraData.DGM_SingleHandedDamageBonus,
-	DualWielding = 0,
-	Ranged = Ext.ExtraData.DGM_RangedDamageBonus,
-	TwoHanded = Ext.ExtraData.DGM_TwoHandedDamageBonus
 }
 
 Data.Stats.HardcodedStatuses = {
