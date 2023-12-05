@@ -97,6 +97,7 @@ Ext.RegisterOsirisListener("CharacterUsedSkill", 4, "before", function(character
 end)
 
 Ext.RegisterSkillProperty("LX_SHIELD", {
+	GetDescription = function() end,
 	ExecuteOnTarget = function(property, attacker, target, position, isFromItem, skill, hit)
 		local statProperties = {} -- Usage: StatEntry, Field, Base, Growth, CellAggregate
 		local index = 1
@@ -127,6 +128,7 @@ Ext.RegisterSkillProperty("LX_SHIELD", {
 
 
 Ext.RegisterSkillProperty("CUSTOMSURFACEBOOST", {
+	GetDescription = function() end,
 	ExecuteOnTarget = function(property, attacker, target, position, isFromItem, skill, hit)
 		-- Ext.Print("SKILLPROPERTY on target")
 		-- Ext.Dump(property)
@@ -219,6 +221,7 @@ Ext.RegisterSkillProperty("CUSTOMSURFACEBOOST", {
 })
 
 Ext.RegisterSkillProperty("VP_TryKill", {
+	GetDescription = function() end,
 	---@param property StatsPropertyExtender
 	---@param attacker EsvCharacter|EsvItem
 	---@param target EsvCharacter|EsvItem
@@ -265,5 +268,36 @@ Ext.RegisterSkillProperty("VP_TryKill", {
 		if target.Stats.CurrentVitality < computedThreshold then
 			CharacterDie(target.MyGuid, 1, hit.DeathType, attacker.MyGuid)
 		end
+	end,
+	ExecuteOnPosition = function(property, attacker, position, areaRadius, isFromItem, skill, hit)
+	end
+})
+
+Ext.RegisterSkillProperty("LX_CustomVaporize", {
+	GetDescription = function()
+		return "Splash nearby characters with oil when targeting an oil surface, and explode ice on spot, dealing damage in the area."
+	end,
+	---@param property StatsPropertyExtender
+	---@param attacker EsvCharacter|EsvItem
+	---@param target EsvCharacter|EsvItem
+	---@param position number[]
+	---@param isFromItem boolean
+	---@param skill StatEntrySkillData|StatsSkillPrototype|nil
+	---@param hit StatsHitDamageInfo|nil
+	ExecuteOnTarget = function(property, attacker, target, position, isFromItem, skill, hit)
+	end,
+	ExecuteOnPosition = function(property, attacker, position, areaRadius, isFromItem, skill, hit)
+		local surface = Helpers.GetSurfaceTypeAtPosition(position[1], position[3])
+		if string.sub(surface, 1, 3) == "Oil" then
+            local modifier = string.gsub(surface, "Oil", "")
+            local targets = Ext.ServerEntity.GetCharacterGuidsAroundPosition(position[1], position[2], position[3], skill.AreaRadius*2)
+            for i,character in pairs(targets) do
+				if Ext.ServerEntity.GetCharacter(character).Stats.CurrentVitality > 0 then
+                	Helpers.LaunchProjectile(position, character, "LX_Projectile_OilGeyserSpit"..modifier)
+				end
+            end
+		elseif string.find(surface, "Frozen") ~= nil then
+            Ext.PropertyList.ExecuteSkillPropertiesOnPosition("Shout_IceBreaker", attacker.MyGuid, position, skill.AreaRadius, {"Target", "AoE"}, false)
+        end
 	end
 })

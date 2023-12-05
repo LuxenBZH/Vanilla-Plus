@@ -329,6 +329,41 @@ Helpers.CheckEntityExistence = function(entity)
 	return ObjectExists(entity) == 1
 end
 
+Helpers.GetSurfaceTypeAtPosition = function(x, z)
+	local cell = Ext.Entity.GetAiGrid():GetCellInfo(x, z)
+	return cell.GroundSurface and tostring(Ext.Entity.GetSurface(cell.GroundSurface).SurfaceType) or "None"
+end
+
+--- Helper for projectiles
+---@param from table|GUID
+---@param to table|GUID
+---@param skillId string
+---@param additionalProperties table|nil
+Helpers.LaunchProjectile = function(from, to, skillId, additionalProperties)
+	_P(from, to, skillId, additionalProperties)
+	NRD_ProjectilePrepareLaunch()
+	NRD_ProjectileSetInt("CasterLevel", 3);
+	if type(from) == "table" then
+		NRD_ProjectileSetVector3("SourcePosition", from[1], from[2]+1, from[3])
+	else
+		NRD_ProjectileSetGuidString("SourcePosition", from)
+	end
+	if type(to) == "table" then
+		NRD_ProjectileSetVector3("TargetPosition", to[1], to[2], to[3])
+	else
+		NRD_ProjectileSetGuidString("TargetPosition", to)
+	end
+	NRD_ProjectileSetString("SkillId", skillId)
+	if additionalProperties then
+		for propertyType,data in pairs(additionalProperties) do
+			for field,value in pairs(data) do
+				Data.OsirisProjectileFunctions[propertyType](field, value)
+			end
+		end
+	end
+	NRD_ProjectileLaunch()
+end
+
 function DamageTypeEnum()
 	local enum = {
 		"Physical",

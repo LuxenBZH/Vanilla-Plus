@@ -1,4 +1,5 @@
-Ext.Require("Shared/Data/Data.lua")
+Data = {}
+Data.IsServer = Ext.IsServer()
 Ext.Require("Shared/Helpers.lua")
 Helpers.VPPrint("Loaded", "BootstrapClient")
 

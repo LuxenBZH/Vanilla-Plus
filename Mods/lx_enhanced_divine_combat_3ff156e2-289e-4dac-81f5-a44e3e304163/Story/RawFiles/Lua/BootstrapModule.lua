@@ -1,4 +1,4 @@
-Ext.Require("Shared/Data/Data.lua")
+Data = {}
 Ext.Require("Shared/Helpers.lua")
 Ext.Require("Shared/Data/Stats.lua")
 Helpers.VPPrint("Loaded", "BootstrapModule")

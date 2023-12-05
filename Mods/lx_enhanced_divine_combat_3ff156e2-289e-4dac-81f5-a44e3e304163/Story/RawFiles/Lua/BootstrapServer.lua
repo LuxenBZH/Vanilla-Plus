@@ -1,4 +1,3 @@
-Ext.Require("Shared/Data/Data.lua")
 Ext.Require("Shared/Helpers.lua")
 Helpers.VPPrint("Loaded", "BootstrapServer")
 

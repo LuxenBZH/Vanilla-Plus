@@ -1,4 +1,5 @@
 Data = {}
+Data.IsServer = Ext.IsServer() -- Can be useful to know the variable context
 
 Ext.Require("Shared/Helpers.lua")
 Ext.Require("Shared/Settings.lua")
