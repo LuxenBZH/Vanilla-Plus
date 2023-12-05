@@ -31,7 +31,7 @@ local function DataLoadStatsInfo(e)
 
 	Data.Stats.WeaponAbilitiesBonuses = {
 		SingleHanded = Ext.ExtraData.DGM_SingleHandedDamageBonus,
-		DualWielding = 0,
+		DualWielding = Ext.ExtraData.DGM_DualWieldingDamageBonus,
 		Ranged = Ext.ExtraData.DGM_RangedDamageBonus,
 		TwoHanded = Ext.ExtraData.DGM_TwoHandedDamageBonus
 	}

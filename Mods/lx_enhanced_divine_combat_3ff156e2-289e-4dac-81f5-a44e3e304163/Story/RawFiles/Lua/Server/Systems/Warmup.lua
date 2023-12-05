@@ -4,10 +4,6 @@
 function ApplyWarmup(character, step, fromMiss)
 	local warmup = FindStatus(character, "DGM_WARMUP")
 	local isMeleeTwoHanded = character.Stats.MainWeapon.IsTwoHanded and not Game.Math.IsRangedWeapon(character.Stats.MainWeapon)
-	if character.Stats.MainWeapon ~= null and character.Stats.OffHandWeapon ~= null then
-		-- ApplyStatus(character.MyGuid, "VP_DW_ATTACK", 12.0, 1, character.MyGuid)
-		Osi.ProcObjectTimer(character.MyGuid, "VP_AddDWBonusAttack", 1000) --- Delay a bit to avoid consuming it directly when it's been gained
-	end
 	local stage
 	if step then
 		stage = step

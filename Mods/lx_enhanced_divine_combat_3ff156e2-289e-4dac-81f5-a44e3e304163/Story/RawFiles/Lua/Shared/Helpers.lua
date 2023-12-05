@@ -480,7 +480,7 @@ function CharGetDGMAttributeBonus(char, next)
 		witsCrit = math.floor((wits+next) * Ext.ExtraData.CriticalBonusFromWits),
 		witsIni = math.floor((wits+next) * Ext.ExtraData.InitiativeBonusFromWits),
 		witsDot = math.floor((wits+next) * Ext.ExtraData.DGM_WitsDotBonus),
-		dual = math.floor(Ext.ExtraData.CombatAbilityDamageBonus * (stats.DualWielding+next)),
+		dual = math.floor(Ext.ExtraData.DGM_DualWieldingDamageBonus * (stats.DualWielding+next)),
 		dualDodge = math.floor(Ext.ExtraData.CombatAbilityDodgingBonus * (stats.DualWielding+next)),
 		dualOff = math.floor(Ext.ExtraData.DGM_DualWieldingOffhandBonus * (stats.DualWielding+next)),
 		ranged = math.floor(Ext.ExtraData.DGM_RangedDamageBonus * (stats.Ranged+next)),

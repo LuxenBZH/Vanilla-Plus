@@ -222,7 +222,7 @@ key "DGM_NpcScalingSecondaryAttributeCorrection","70"
 
 key "DGM_NpcScalingNoArchetypeCorrection","60"
 
-key "DGM_OilyCarapacePassingReduction","1"
+key "DGM_OilyPassingReduction","1"
 
 key "DGM_CryotherapyPassingMagicReduction","1"
 
@@ -269,3 +269,5 @@ key "DGM_TwoHandedDamageBonus","5"
 key "DGM_SingleHandedDamageBonus","5"
 
 key "DGM_RangedDamageBonus","5"
+
+key "DGM_DualWieldingDamageBonus","5"

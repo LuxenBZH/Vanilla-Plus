@@ -332,8 +332,8 @@ Data.Math.GetCharacterComputedDamageBonus = function(character, target, flags, s
 		else
 			attributes.DamageBonus = attributes.DamageBonus + attributes.Strength * Ext.ExtraData.DGM_StrengthWeaponBonus
 		end
-		-- Weapon ability boost (no DW)
-		if flags.DamageSourceType ~= "Offhand" and character.Stats.MainWeapon ~= null then
+		-- Weapon ability boost
+		if character.Stats.MainWeapon ~= null then
 			local weaponAbility = Game.Math.GetWeaponAbility(character.Stats, character.Stats.MainWeapon)
 			attributes.DamageBonus = attributes.DamageBonus * (1 + character.Stats[weaponAbility] * Data.Stats.WeaponAbilitiesBonuses[weaponAbility] / 100)
 		end
