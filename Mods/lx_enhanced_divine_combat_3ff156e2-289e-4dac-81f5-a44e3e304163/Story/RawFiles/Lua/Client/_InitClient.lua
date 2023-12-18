@@ -28,6 +28,8 @@ Ext.Require("Client/Systems/CustomStatusAttributes.lua")
 Ext.Require("Client/Tooltips/CustomAttributes.lua")
 Ext.Require("Client/Tooltips/CursorText.lua")
 
+Ext.Require("Client/SkillAPCost.lua")
+
 -- Ext.Require("Client/Systems/SkillCastManager.lua")
 
 tooltipStatusDmgHelper = {}

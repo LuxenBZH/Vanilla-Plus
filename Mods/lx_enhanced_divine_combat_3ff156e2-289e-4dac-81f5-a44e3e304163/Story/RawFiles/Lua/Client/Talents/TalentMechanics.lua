@@ -7,10 +7,8 @@ local ElementalAffinityAiFlags = {
     Sulfurology = { "Sulfurium" }
 }
 
----- Elemental Affinity rework
---- @param e LuaGetSkillAPCostEvent
-Ext.Events.GetSkillAPCost:Subscribe(function(e)
-	local skill = e.Skill
+function ClientElementalAffinityRework(e, epip)
+    local skill = e.Skill
 	local character = e.Character
 	local grid = e.AiGrid
 	local position = e.Position
@@ -19,7 +17,12 @@ Ext.Events.GetSkillAPCost:Subscribe(function(e)
     if character == nil or baseAP <= 0 then
         return baseAP, false
     end
-    local ability = skill.StatsObject.StatsEntry.Ability
+    local ability
+    if epip then
+        ability = skill.Ability
+    else
+        ability = skill.StatsObject.StatsEntry.Ability
+    end
     local elementalAffinity = false
     if character.TALENT_ElementalAffinity then
         if ability ~= "None" and baseAP > 1 and  grid ~= nil and position ~= nil and radius ~= nil then
@@ -33,7 +36,7 @@ Ext.Events.GetSkillAPCost:Subscribe(function(e)
         end
 
         local characterAP = 1
-        if skill.Requirement > 0 and skill.OverrideMinAP == "No" then
+        if ((epip and skill.Requirement ~= "None") or (not epip and skill.Requirement > 0)) and skill.OverrideMinAP == "No" then
             characterAP = Game.Math.GetCharacterWeaponAPCost(character)
         end
 
@@ -48,4 +51,4 @@ Ext.Events.GetSkillAPCost:Subscribe(function(e)
             e.ElementalAffinity = false
         end
     end
-end)
+end
