@@ -331,7 +331,90 @@ end
 
 Helpers.GetSurfaceTypeAtPosition = function(x, z)
 	local cell = Ext.Entity.GetAiGrid():GetCellInfo(x, z)
-	return cell.GroundSurface and tostring(Ext.Entity.GetSurface(cell.GroundSurface).SurfaceType) or "None"
+	if Ext.IsServer() then
+		return cell.GroundSurface and tostring(Ext.Entity.GetSurface(cell.GroundSurface).SurfaceType) or "None"
+	else
+		return cell.GroundSurfaceType
+	end
+end
+
+Helpers.GetCloudTypeAtPosition = function(x, z)
+	local cell = Ext.Entity.GetAiGrid():GetCellInfo(x, z)
+	if Ext.IsServer() then
+		return cell.CloudSurface and tostring(Ext.Entity.GetSurface(cell.CloudSurface).SurfaceType) or "None"
+	else
+		return cell.CloudSurfaceType
+	end
+end
+
+Helpers.GetSurfaceLayersAtPosition = function(x,z)
+	local cell = Ext.Entity.GetAiGrid():GetCellInfo(x, z)
+	if Ext.IsServer() then
+		return {
+			Ground = cell.GroundSurface and tostring(Ext.Entity.GetSurface(cell.GroundSurface).SurfaceType) or "None",
+			Cloud = cell.CloudSurface and tostring(Ext.Entity.GetSurface(cell.CloudSurface).SurfaceType) or "None"
+		}
+	else
+		return {
+			Ground = cell.GroundSurfaceType,
+			Cloud = cell.CloudSurfaceType
+		}
+	end
+end
+
+---Get SurfaceTypes in the radius
+---@param x float
+---@param z float
+---@param radius integer
+Helpers.GetSurfaceLayersInArea = function(x,z,radius)
+	local grid = Ext.Entity.GetAiGrid()
+	local layers = {
+		Ground = {},
+		Cloud = {}
+	}
+	for posx = x-radius,x+radius,0.5 do
+		for posz = z-radius,z+radius,0.5 do
+			local cell = grid:GetCellInfo(posx, posz)
+			if Ext.IsServer() then
+				-- _DS(cell)
+				if cell.GroundSurface then
+					for i,flag in pairs(cell.AiFlags) do
+						layers.Ground[Data.SurfacesGround["Surface"..flag] and flag or "None"] = true
+					end
+				end
+				if cell.CloudSurface then
+					for i,flag in pairs(cell.AiFlags) do
+						layers.Cloud[Data.SurfacesCloud["Surface"..flag] and flag or "None"] = true
+					end
+				end
+				-- layers.Ground[cell.GroundSurface and tostring(Ext.Entity.GetSurface(cell.GroundSurface).SurfaceType) or "None"] = true
+				-- layers.Cloud[cell.CloudSurface and tostring(Ext.Entity.GetSurface(cell.CloudSurface).SurfaceType) or "None"] = true
+			else
+				-- local ground = cell.GroundSurfaceType or "None"
+				-- local cloud = cell.CloudSurfaceType or "None"
+				layers.Ground[cell.GroundSurfaceType or "None"] = true
+				layers.Cloud[cell.CloudSurfaceType or "None"] = true
+			end
+		end
+	end
+	return layers
+end
+
+Helpers.GetCharactersAroundPosition = function(x,y,z,radius)
+	local grid = Ext.Entity.GetAiGrid()
+	local characters = {}
+	for posx = x-radius,x+radius,1 do
+		for posz = z-radius,z+radius,1 do
+			local cell = grid:GetCellInfo(posx, posz)
+			for i,object in pairs(cell.Objects) do
+				local entity = Ext.Entity.GetGameObject(object)
+				if Ext.Types.GetObjectType(entity) == "ecl::Character" and entity.WorldPos[2] < y+radius and entity.WorldPos[2] > y-radius then
+					table.insert(characters, entity)
+				end
+			end
+		end
+	end
+	return characters
 end
 
 --- Helper for projectiles

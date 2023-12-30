@@ -390,18 +390,19 @@ RegisterTurnTrueEndListener(function(character)
 	end
 end)
 
-local ElementalAffinityAiFlags = {
+Data.ElementalAffinityAiFlags = {
     Fire = { "Lava", "Fire", "FireCloud" },
     Water = { "Water", "WaterCloud" },
     Air = { "Electrified" },
     Earth = { "Oil", "Poison", "PoisonCloud" },
     Death = { "Blood", "BloodCloud" },
+	Necromancy = { "Blood", "BloodCloud" },
     Sulfurology = { "Sulfurium" }
 }
 
 ---- Elemental Affinity rework
 --- @param e LuaGetSkillAPCostEvent
-Ext.Events.GetSkillAPCost:Subscribe(function(e)
+local function ServerElementalAffinityRework(e)
 	local skill = e.Skill
 	local character = e.Character
 	local grid = e.AiGrid
@@ -415,7 +416,7 @@ Ext.Events.GetSkillAPCost:Subscribe(function(e)
     local elementalAffinity = false
 	if character.TALENT_ElementalAffinity then
         if ability ~= "None" and baseAP > 1 and  grid ~= nil and position ~= nil and radius ~= nil then
-            local aiFlags = ElementalAffinityAiFlags[ability]
+            local aiFlags = Data.ElementalAffinityAiFlags[ability]
             if aiFlags ~= nil then
                 elementalAffinity = grid:SearchForCell(position[1], position[3], radius, aiFlags, -1.0)
                 if elementalAffinity then
@@ -440,7 +441,7 @@ Ext.Events.GetSkillAPCost:Subscribe(function(e)
             e.ElementalAffinity = false
         end
     end
-end)
+end
 
 Ext.Osiris.RegisterListener("ObjectLeftCombat", 2, "before", function(object, combatID)
 	ClearTag(object, "VP_UsedElementalAffinity")
@@ -459,11 +460,13 @@ Ext.Osiris.RegisterListener("CharacterUsedSkill", 4, "before", function(characte
 	if ObjectExists(character) == 0 then return end
 	local char = Ext.ServerEntity.GetCharacter(character)
 	local grid = Ext.ServerEntity.GetAiGrid()
-	local aiFlags = ElementalAffinityAiFlags[skillElement]
+	local aiFlags = Data.ElementalAffinityAiFlags[skillElement]
 	if Ext.ServerEntity.GetCharacter(character):GetStatus("COMBAT") and aiFlags and char.Stats.TALENT_ElementalAffinity and not char:HasTag("VP_UsedElementalAffinity") and grid:SearchForCell(char.WorldPos[1], char.WorldPos[3], char.RootTemplate.AIBoundsRadius, aiFlags, -1.0) then
 		SetTag(character, "VP_UsedElementalAffinity")
 	end
 end)
+
+Data.APCostManager.RegisterGlobalSkillAPFormula(ServerElementalAffinityRework, "ServerElementalAffinityRework")
 
 ---------
 ---@param e EsvLuaBeforeStatusApplyEvent

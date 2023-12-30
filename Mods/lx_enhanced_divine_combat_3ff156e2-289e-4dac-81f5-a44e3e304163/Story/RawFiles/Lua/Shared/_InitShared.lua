@@ -10,6 +10,7 @@ Ext.Require("Shared/Systems/StatsProperties.lua")
 Ext.Require("Shared/Data/Data.lua")
 Ext.Require("Shared/Data/Stats.lua")
 Ext.Require("Shared/Data/Math.lua")
+Ext.Require("Shared/Data/APCostManagement.lua")
 
 tooltipStatusDmgHelper = {}
 

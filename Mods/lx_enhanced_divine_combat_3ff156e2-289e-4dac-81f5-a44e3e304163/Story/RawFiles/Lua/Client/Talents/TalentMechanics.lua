@@ -1,14 +1,18 @@
-local ElementalAffinityAiFlags = {
+Data.ElementalAffinityAiFlags = {
     Fire = { "Lava", "Fire", "FireCloud" },
     Water = { "Water", "WaterCloud" },
     Air = { "Electrified" },
     Earth = { "Oil", "Poison", "PoisonCloud" },
     Death = { "Blood", "BloodCloud" },
+    Necromancy = { "Blood", "BloodCloud" },
     Sulfurology = { "Sulfurium" }
 }
 
-function ClientElementalAffinityRework(e, epip)
-    local skill = e.Skill
+---@param e LuaGetSkillAPCostEvent
+---@return unknown
+---@return boolean
+function ClientElementalAffinityRework(e)
+    local skill = e.Skill.StatsObject.StatsEntry
 	local character = e.Character
 	local grid = e.AiGrid
 	local position = e.Position
@@ -17,16 +21,11 @@ function ClientElementalAffinityRework(e, epip)
     if character == nil or baseAP <= 0 then
         return baseAP, false
     end
-    local ability
-    if epip then
-        ability = skill.Ability
-    else
-        ability = skill.StatsObject.StatsEntry.Ability
-    end
+    local ability = skill.Ability
     local elementalAffinity = false
     if character.TALENT_ElementalAffinity then
         if ability ~= "None" and baseAP > 1 and  grid ~= nil and position ~= nil and radius ~= nil then
-            local aiFlags = ElementalAffinityAiFlags[ability]
+            local aiFlags = Data.ElementalAffinityAiFlags[ability]
             if aiFlags ~= nil then
                 elementalAffinity = grid:SearchForCell(position[1], position[3], radius, aiFlags, -1.0)
                 if elementalAffinity then
@@ -36,9 +35,10 @@ function ClientElementalAffinityRework(e, epip)
         end
 
         local characterAP = 1
-        if ((epip and skill.Requirement ~= "None") or (not epip and skill.Requirement > 0)) and skill.OverrideMinAP == "No" then
+        if skill.Requirement ~= "None" and skill.OverrideMinAP == "No" then
             characterAP = Game.Math.GetCharacterWeaponAPCost(character)
         end
+        -- _P(character.Character:HasTag("VP_UsedElementalAffinity"))
 
         if not character.Character:HasTag("VP_UsedElementalAffinity") then
             e.ElementalAffinity = elementalAffinity
@@ -52,3 +52,5 @@ function ClientElementalAffinityRework(e, epip)
         end
     end
 end
+
+Data.APCostManager.RegisterGlobalSkillAPFormula(ClientElementalAffinityRework, "VPElementalAffinity")
