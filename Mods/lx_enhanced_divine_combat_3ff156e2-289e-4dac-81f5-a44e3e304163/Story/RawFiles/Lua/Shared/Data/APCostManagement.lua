@@ -121,12 +121,12 @@ Ext.Events.SessionLoading:Subscribe(function (_)
         if epip.VERSION >= 1069 then -- GetSkillAPCost hook is only available in v1069+
             local CharacterLib = Mods.EpipEncounters.Character ---@type CharacterLib
 
-            CharacterLib.Hooks.GetSkillAPCost:Subscribe(function (ev)
+            CharacterLib.Hooks.GetSkillAPCost:Subscribe(function (e)
                 -- Replicate your GetSkillAPCost listener here
                 for i, info in pairs(Data.APCostManager.Globals) do
 					info.Callback(e)
 				end
-				local skill = e.Skill.StatsObject.StatsEntry.Name
+				local skill = e.Name
 				if Data.APCostManager.Skills[skill] then
 					Data.APCostManager.Skills[skill].Callback(e)
 				end

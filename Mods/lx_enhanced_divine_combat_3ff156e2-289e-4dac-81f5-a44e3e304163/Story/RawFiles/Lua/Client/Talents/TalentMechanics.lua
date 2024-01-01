@@ -12,7 +12,7 @@ Data.ElementalAffinityAiFlags = {
 ---@return unknown
 ---@return boolean
 function ClientElementalAffinityRework(e)
-    local skill = e.Skill.StatsObject.StatsEntry
+    local skill = getmetatable(e.Skill) ~= "StatsEntry"  and e.Skill.StatsObject.StatsEntry or e.Skill
 	local character = e.Character
 	local grid = e.AiGrid
 	local position = e.Position
