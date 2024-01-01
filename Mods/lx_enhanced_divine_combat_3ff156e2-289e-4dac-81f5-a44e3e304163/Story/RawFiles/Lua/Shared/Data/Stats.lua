@@ -37,9 +37,29 @@ local function DataLoadStatsInfo(e)
 	}
 end
 
+--- Stats doesn't load correctly sometimes for some reason. This metatable is a failsafe until the source of the problem is found
+local nilTableHandler = {
+    __index = function(table, key)
+		if table[key] == nil then
+			DataLoadStatsInfo(nil)
+		end
+        return nil
+    end
+}
+
+Data.Stats.WeaponAbilitiesBonuses = {}
+setmetatable(Data.Stats.WeaponAbilitiesBonuses, nilTableHandler)
+Data.Stats.CrossbowMovementPenalty = {}
+setmetatable(Data.Stats.CrossbowMovementPenalty, nilTableHandler)
+Data.Stats.CustomAbilityBonuses = {}
+setmetatable(Data.Stats.CustomAbilityBonuses, nilTableHandler)
+Data.Stats.CustomAttributeBonuses = {}
+setmetatable(Data.Stats.CustomAttributeBonuses, nilTableHandler)
+
 if Ext.IsServer() then
 	DataLoadStatsInfo(nil)
 else
+	Ext.Events.SessionLoaded:Subscribe(DataLoadStatsInfo)
 	Ext.Events.StatsLoaded:Subscribe(DataLoadStatsInfo)
 	Ext.Events.ResetCompleted:Subscribe(DataLoadStatsInfo)
 end
