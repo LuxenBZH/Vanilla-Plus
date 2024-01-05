@@ -53,7 +53,7 @@ HitManager:RegisterHitListener("DGM_Hit", "AfterDamageScaling", "DGM_AbsorbShiel
 	-- end
 	--- Perseverance incapacitated damage reduction
 	if CharacterIsIncapacitated(target.MyGuid) == 1 and target.Stats.Perseverance > 0 then
-		HitHelpers.HitMultiplyDamage(hit, target, instigator, target.Stats.Perseverance * (1 - 100/Ext.ExtraData.DGM_PerseveranceResistance))
+		HitHelpers.HitMultiplyDamage(hit, target, instigator, math.min(target.Stats.Perseverance * (1 - 100/Ext.ExtraData.DGM_PerseveranceResistance), 0.5))
 	end
 	--- Absorb shields
 	AbsorbShieldProcessDamage(target, instigator, hit)

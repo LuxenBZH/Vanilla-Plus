@@ -29,7 +29,7 @@ local defaultDataValues = {
     DGM_PlayerVitalityMultiplier = 100,
     DGM_NpcVitalityMultiplier = 100,
     DGM_WandSurfaceBonus = 15,
-    DGM_PerseveranceResistance = 5,
+    DGM_PerseveranceResistance = 10,
     DGM_BaseAccuracy = 90
 }
 
