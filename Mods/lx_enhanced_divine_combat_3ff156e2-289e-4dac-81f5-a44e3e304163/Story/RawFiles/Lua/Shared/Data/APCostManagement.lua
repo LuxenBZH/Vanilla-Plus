@@ -62,6 +62,27 @@ if Ext.IsClient() then
 	end)
 end
 
+Ext.Events.SessionLoading:Subscribe(function (_)
+    if Mods.EpipEncounters then
+        local epip = Mods.EpipEncounters.Epip ---@type Epip
+        if epip.VERSION >= 1069 then -- GetSkillAPCost hook is only available in v1069+
+            local CharacterLib = Mods.EpipEncounters.Character ---@type CharacterLib
+
+            CharacterLib.Hooks.GetSkillAPCost:Subscribe(function (e)
+                -- Replicate your GetSkillAPCost listener here
+                for i, info in pairs(Data.APCostManager.Globals) do
+					info.Callback(e)
+				end
+				local skill = e.Name
+				if Data.APCostManager.Skills[skill] then
+					Data.APCostManager.Skills[skill].Callback(e)
+				end
+            end)
+        end
+    end
+end)
+
+------- Skills specific AP costs
 ---Swap Surfaces anti-cheese
 ---@param e LuaGetSkillAPCostEvent
 Data.APCostManager.RegisterSkillAPFormula("Teleportation_SwapGround", function(e)
@@ -115,22 +136,36 @@ Data.APCostManager.RegisterSkillAPFormula("Teleportation_SwapGround", function(e
 	end
 end)
 
-Ext.Events.SessionLoading:Subscribe(function (_)
-    if Mods.EpipEncounters then
-        local epip = Mods.EpipEncounters.Epip ---@type Epip
-        if epip.VERSION >= 1069 then -- GetSkillAPCost hook is only available in v1069+
-            local CharacterLib = Mods.EpipEncounters.Character ---@type CharacterLib
 
-            CharacterLib.Hooks.GetSkillAPCost:Subscribe(function (e)
-                -- Replicate your GetSkillAPCost listener here
-                for i, info in pairs(Data.APCostManager.Globals) do
-					info.Callback(e)
-				end
-				local skill = e.Name
-				if Data.APCostManager.Skills[skill] then
-					Data.APCostManager.Skills[skill].Callback(e)
-				end
-            end)
-        end
-    end
+---@param e LuaGetSkillAPCostEvent
+Data.APCostManager.RegisterSkillAPFormula("Target_TerrifyingCruelty", function(e)
+	local skill = e.Skill.StatsObject.StatsEntry
+	local character = e.Character.Character ---@type EclCharacter|EsvCharacter
+	local radius = skill.HitRadius-0.5
+	e.AP = skill.ActionPoints
+	e.ElementalAffinity = e.ElementalAffinity or false
+
+	if Ext.IsClient() and character.SkillManager.CurrentSkill and character.SkillManager.CurrentSkill.State == "PickTargets" then
+		local target = Ext.UI.GetPickingState().HoverCharacter
+		if target then
+			target = Ext.ClientEntity.GetCharacter(target)
+			if target.Stats.CurrentArmor > 0 then
+				e.AP = e.AP - 1
+			end
+			if target.Stats.CurrentMagicArmor > 0 then
+				e.AP = e.AP - 1
+			end
+		end
+	elseif Ext.IsServer() then
+		local state = character.ActionMachine.Layers[1].State.OriginalSkill
+		local target = Ext.ServerEntity.GetGameObject(state.TargetHandle)
+		if target and Helpers.IsCharacter(target) then
+			if target.Stats.CurrentArmor > 0 then
+				e.AP = e.AP - 1
+			end
+			if target.Stats.CurrentMagicArmor > 0 then
+				e.AP = e.AP - 1
+			end
+		end
+	end
 end)
