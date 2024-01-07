@@ -168,6 +168,10 @@ Helpers.Sign = function(number)
 	return number > 0 and "+" or ""
 end
 
+Helpers.SignNumber = function(number)
+	return number > 0 and 1 or -1
+end
+
 Helpers.Stats = {}
 
 ---@param entry StatEntryPotion|StatEntryCharacter|StatEntryWeapon|StatEntrySkillData|StatEntryStatusData|StatEntryArmor|StatEntryShield|StatEntryObject
@@ -224,7 +228,7 @@ Helpers.Status.Multiply = function(status, multiplier)
 		local multipliedStat = Ext.Stats.Get(newStatName) ---@type StatEntryWeapon
 		multipliedStat.Damage = Ext.Utils.Round(multipliedStat.DamageFromBase * multiplier)
 		Ext.Stats.Sync(newStatName, true)
-		stat.DamageStats = newStatName
+		status.DamageStats = newStatName
 		Helpers.Status.MultipliedStats[status] = newStatName
 	end
 end
