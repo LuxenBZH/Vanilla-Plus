@@ -288,7 +288,7 @@ local function SkillGetDescriptionParam(skill, character, isFromItem, par, ...)
             if damages.Min == nil then return end
 			local minDmg = math.floor(damages.Min)
 			local maxDmg = math.floor(damages.Max)
-			local color = getDamageColor(dmgType)
+			local color = Helpers.GetDamageColor(dmgType)
 			if not once then
 				result = result.."<font color="..color..">"..tostring(minDmg).."-"..tostring(maxDmg).." "..dmgType.." damage".."</font>"
 				once = true
@@ -331,7 +331,7 @@ local function StatusGetDescriptionParam(status, statusSource, character, par)
 		local minDmg = math.floor(Ext.Utils.Round(dmg - dmgRange)* globalMult * schoolBonus)
         local maxDmg = math.ceil(Ext.Utils.Round(dmg + dmgRange)* globalMult * schoolBonus)
         if maxDmg <= minDmg then maxDmg = maxDmg+1 end
-		local color = getDamageColor(dmgStat["Damage Type"])
+		local color = Helpers.GetDamageColor(dmgStat["Damage Type"])
 		return "<font color="..color..">"..tostring(minDmg).."-"..tostring(maxDmg).." "..dmgStat["Damage Type"].." "..Ext.L10N.GetTranslatedString("h9531fd22g6366g4e93g9b08g11763cac0d86", "damage").."</font>"
     elseif par == "HealAmount" then
         local stat = Ext.Stats.Get(status.StatusName, nil, false)

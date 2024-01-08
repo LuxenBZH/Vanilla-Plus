@@ -137,6 +137,15 @@ Helpers.CharacterGetAbsorbShield = function(character, damageType)
 	return character:GetStatus("LX_SHIELD_"..string.upper(damageType))
 end
 
+Helpers.StatusGetAbsorbShieldElement = function(status)
+	if string.starts(status, "LX_SHIELD_") then
+		local dmgType = string.gsub(status, "LX_SHIELD_", "")
+		return Ext.L10N.GetTranslatedString(Data.Text.TranslatedKeys.DamageTypes[dmgType:sub(1, 1):upper() .. dmgType:sub(2):lower()], "")
+	else
+		return nil
+	end
+end
+
 Helpers.EquipmentSlots = {
 	 "Helmet",
 	 "Breast",
@@ -633,25 +642,8 @@ function string.split(inputStr, sep)
 end
 
 ---@param dmgType string
-function getDamageColor(dmgType)
-	local colorCode = ""
-	local types = {}
-	types["Physical"]="'#A8A8A8'"
-	types["Corrosive"]="'#cccc00'"
-	types["Magic"]="'#7F00FF'"
-	types["Fire"]="'#FE6E27'"
-	types["Water"]="'#4197E2'"
-	types["Earth"]="'#7F3D00'"
-	types["Poison"]="'#65C900'"
-	types["Air"]="'#7D71D9'"
-	types["Shadow"]="'#6600ff'"
-    types["Piercing"]="'#C80030'"
-    types["None"]="'#C80030'"
-	
-	for t,code in pairs(types) do
-		if dmgType == t then return code end
-	end
-	return "'#A8A8A8'"
+function Helpers.GetDamageColor(dmgType)
+	return Data.Text.DamageTypeColors[dmgType] or "'#A8A8A8'"
 end
 
 surfaceToType = {
