@@ -92,7 +92,7 @@ Data.APCostManager.RegisterSkillAPFormula("Teleportation_SwapGround", function(e
 	e.AP = 0
 	e.ElementalAffinity = e.ElementalAffinity or false
 
-	if Ext.IsClient() and character.SkillManager.CurrentSkill and character.SkillManager.CurrentSkill.State == "PickTargets" then
+	if Ext.IsClient() and character.SkillManager.CurrentSkill and character.SkillManager.CurrentSkill.SkillId == "Teleportation_SwapGround_-1" and character.SkillManager.CurrentSkill.State == "PickTargets" then
 		local position = Ext.UI.GetPickingState().WalkablePosition
 		local surface1 = Helpers.GetSurfaceLayersInArea(position[1], position[3], radius)
 		local disappear = character.SkillManager.CurrentSkill.DisappearPosition
@@ -101,7 +101,7 @@ Data.APCostManager.RegisterSkillAPFormula("Teleportation_SwapGround", function(e
 			e.AP = 6
 		else
 			local characters1 = Helpers.GetCharactersAroundPosition(position[1], position[2], position[3], radius)
-			local characters2 = character.SkillManager.CurrentSkill.TargetingState == 2 and Helpers.GetCharactersAroundPosition(disappear[1], disappear[2], position[3], radius) or {}
+			local characters2 = character.SkillManager.CurrentSkill.TargetingState == 2 and Helpers.GetCharactersAroundPosition(disappear[1], disappear[2], disappear[3], radius) or {}
 			for i,target in pairs(characters1) do
 				if target.NetID == character.NetID then
 					e.AP = 1
