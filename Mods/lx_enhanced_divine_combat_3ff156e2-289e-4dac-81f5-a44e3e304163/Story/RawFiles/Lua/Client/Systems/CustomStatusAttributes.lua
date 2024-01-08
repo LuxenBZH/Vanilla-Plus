@@ -23,6 +23,15 @@ local function OnStatusTooltip(e, tooltip, character, status)
                 }
             )
         end
+        if potion.VP_IngressBoost ~= 0 then
+            local signInfo = Helpers.UI.GetTooltipNumberSign(tonumber(potion.VP_IngressBoost))
+            tooltip:AppendElement(
+                {
+                    Label = "Ingress: "..signInfo.Sign..potion.VP_IngressBoost,
+                    Type = signInfo.Type
+                }
+            )
+        end
     end
 end
 
