@@ -460,6 +460,12 @@ Helpers.LaunchProjectile = function(from, to, skillId, additionalProperties)
 	NRD_ProjectileLaunch()
 end
 
+Helpers.Client = {}
+
+Helpers.Client.GetCurrentCharacter = function()
+	return Ext.ClientEntity.GetCharacter(Ext.UI.DoubleToHandle(Ext.UI.GetByType(Data.UIType.hotBar):GetRoot().hotbar_mc.characterHandle))
+end
+
 function DamageTypeEnum()
 	local enum = {
 		"Physical",

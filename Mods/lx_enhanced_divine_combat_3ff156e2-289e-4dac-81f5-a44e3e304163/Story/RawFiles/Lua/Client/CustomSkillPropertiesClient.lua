@@ -26,8 +26,9 @@ Ext.RegisterSkillProperty("LX_SHIELD", {
 ---@param e EclLuaStatusGetDescriptionParamEvent
 local function ShieldDescription(e)
     if e.Params[1] == "LX_Absorption" then
-		Helpers.VPPrint("Shield remaining power: "..Ext.Utils.Round(e.Owner.Character:GetStatus(e.Status.StatusName).StatsMultiplier), "CustomSkillProperties")
-        e.Description = tostring(Ext.Utils.Round(e.Owner.Character:GetStatus(e.Status.StatusName).StatsMultiplier)).." Air damage"
+		Helpers.VPPrint("Shield remaining power: "..Ext.Utils.Round(e.Owner.Character:GetStatus(e.Status.StatusName).StatsMultiplier), "CustomSkillProperties:ShieldDescription")
+		e.Description = Data.Text.GetFormattedDamageText(Helpers.StatusGetAbsorbShieldElement(e.Status.StatusName), Ext.Utils.Round(e.Owner.Character:GetStatus(e.Status.StatusName).StatsMultiplier))
+        -- e.Description = tostring(Ext.Utils.Round(e.Owner.Character:GetStatus(e.Status.StatusName).StatsMultiplier)).." "..(Helpers.StatusGetAbsorbShieldElement(e.Status.StatusName) or "").." damage"
 	end
 end
 
@@ -71,7 +72,7 @@ local function CSBStatusDescriptionParam(status, statusSource, statCharacter, pa
 			local minDmg = math.floor(Ext.Round((dmg - dmgRange)*globalMult))
 			local maxDmg = math.ceil((dmg + dmgRange)*globalMult)
 			if maxDmg <= minDmg then maxDmg = maxDmg+1 end
-			local color = getDamageColor(statEntry["Damage Type"])
+			local color = Helpers.GetDamageColor(statEntry["Damage Type"])
 			return "<font color="..color..">"..tostring(minDmg).."-"..tostring(maxDmg).." "..statEntry["Damage Type"].." damage".."</font>"
 		end
 	end
