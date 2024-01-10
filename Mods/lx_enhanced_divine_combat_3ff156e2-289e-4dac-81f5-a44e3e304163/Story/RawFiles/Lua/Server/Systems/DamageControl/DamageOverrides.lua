@@ -52,98 +52,57 @@ local function DoHit(hit, damageList, statusBonusDmgTypes, hitType, target, atta
 end
 
 --- Trigger lua ComputeCharacterHit for the Sadist fix
-Game.Math.DoHit = DoHit
+if not Mods.LeaderLib then
+	Game.Math.DoHit = DoHit
 
---- Fix Sadist
----@param e EsvLuaComputeCharacterHitEvent
-local function ApplySadist(e)
-	local totalDamage = 0
-	for i,damage in pairs(e.DamageList:ToTable()) do
-		totalDamage = totalDamage + damage.Amount
-	end
-	local statusBonusDmgTypes = {}
-	if e.Hit.Poisoned then
-		table.insert(statusBonusDmgTypes, "Poison")
-	end
-	if e.Hit.Burning or e.Target.Character:GetStatus("NECROFIRE") then
-		table.insert(statusBonusDmgTypes, "Fire")
-	end
-	if e.Hit.Bleeding then
-		table.insert(statusBonusDmgTypes, "Physical")
-	end
-	local damageList = e.Hit.DamageList
-	local damageBonus = math.ceil(totalDamage * 0.1)
-	for i,damageType in pairs(statusBonusDmgTypes) do
-		damageList:Add(damageType, damageBonus)
-	end
-	e.DamageList:Merge(damageList)
-	e.Hit.ArmorAbsorption = Game.Math.ComputeArmorDamage(damageList, e.Target.CurrentArmor)
-	e.Hit.ArmorAbsorption = e.Hit.ArmorAbsorption + Game.Math.ComputeMagicArmorDamage(damageList, e.Target.CurrentMagicArmor)
-	return e
-end
-
----@param e EsvLuaComputeCharacterHitEvent
-Ext.Events.ComputeCharacterHit:Subscribe(function(e)
-	if e.Attacker and e.Attacker.TALENT_Sadist then
-		-- Fix Sadist for melee skills that doesn't have UseCharacterStats = Yes
-		if e.HitType == "WeaponDamage" and not Game.Math.IsRangedWeapon(e.Attacker.MainWeapon) and e.Hit.HitWithWeapon then
-			ApplySadist(e)
-		-- Fix Sadist for Necrofire
-		elseif e.HitType == "Melee" and e.Target.Character:GetStatus("NECROFIRE") then
-			ApplySadist(e)
+	--- Fix Sadist
+	---@param e EsvLuaComputeCharacterHitEvent
+	local function ApplySadist(e)
+		local totalDamage = 0
+		for i,damage in pairs(e.DamageList:ToTable()) do
+			totalDamage = totalDamage + damage.Amount
 		end
-		if not e.Handled then
-			e.Handled = true
+		local statusBonusDmgTypes = {}
+		if e.Hit.Poisoned then
+			table.insert(statusBonusDmgTypes, "Poison")
 		end
-		Game.Math.ComputeCharacterHit(e.Target, e.Attacker, e.Weapon, e.DamageList, e.HitType, e.NoHitRoll, e.ForceReduceDurability, e.Hit, e.AlwaysBackstab, e.HighGround, e.CriticalRoll)
+		if e.Hit.Burning or e.Target.Character:GetStatus("NECROFIRE") then
+			table.insert(statusBonusDmgTypes, "Fire")
+		end
+		if e.Hit.Bleeding then
+			table.insert(statusBonusDmgTypes, "Physical")
+		end
+		local damageList = e.Hit.DamageList
+		local damageBonus = math.ceil(totalDamage * 0.1)
+		for i,damageType in pairs(statusBonusDmgTypes) do
+			damageList:Add(damageType, damageBonus)
+		end
+		e.DamageList:Merge(damageList)
+		e.Hit.ArmorAbsorption = Game.Math.ComputeArmorDamage(damageList, e.Target.CurrentArmor)
+		e.Hit.ArmorAbsorption = e.Hit.ArmorAbsorption + Game.Math.ComputeMagicArmorDamage(damageList, e.Target.CurrentMagicArmor)
+		return e
 	end
-end)
 
+	---@param e EsvLuaComputeCharacterHitEvent
+	Ext.Events.ComputeCharacterHit:Subscribe(function(e)
+		if e.Attacker and e.Attacker.TALENT_Sadist then
+			-- Fix Sadist for melee skills that doesn't have UseCharacterStats = Yes
+			if e.HitType == "WeaponDamage" and not Game.Math.IsRangedWeapon(e.Attacker.MainWeapon) and e.Hit.HitWithWeapon then
+				ApplySadist(e)
+			-- Fix Sadist for Necrofire
+			elseif e.HitType == "Melee" and e.Target.Character:GetStatus("NECROFIRE") then
+				ApplySadist(e)
+			end
+			if not e.Handled then
+				e.Handled = true
+			end
+			Game.Math.ComputeCharacterHit(e.Target, e.Attacker, e.Weapon, e.DamageList, e.HitType, e.NoHitRoll, e.ForceReduceDurability, e.Hit, e.AlwaysBackstab, e.HighGround, e.CriticalRoll)
+		end
+	end)
+else
 --- Make sure the process is controlled here entirely...
-if Mods.LeaderLib then
 	Mods.LeaderLib.HitOverrides.DoHit = DoHit
 end
-
----@param attacker CDivinityStatsCharacter
----@param target CDivinityStatsCharacter
-local function DGM_HitChanceFormula(attacker, target)
-	local hitChance = attacker.Accuracy - target.Dodge + attacker.ChanceToHitBoost
-    -- Make sure that we return a value in the range (0% .. 100%)
-	hitChance = math.max(math.min(hitChance, 100), 0)
-    return hitChance
-end
-
---- @param e LuaGetHitChanceEvent
-Ext.Events.GetHitChance:Subscribe(function(e)
-	DGM_HitChanceFormula(e.Attacker, e.Target)
-end)
-
---- @param attacker StatCharacter
---- @param target StatCharacter
-function DGM_CalculateHitChance(attacker, target)
-    if attacker.TALENT_Haymaker then
-		local diff = 0
-		if attacker.MainWeapon then
-			diff = diff + math.max(0, (attacker.MainWeapon.Level - attacker.Level))
-		end
-		if attacker.OffHandWeapon then
-			diff = diff + math.max(0, (attacker.OffHandWeapon.Level - attacker.Level))
-		end
-        return 100 - diff * Ext.ExtraData.WeaponAccuracyPenaltyPerLevel
-	end
-	
-    local accuracy = attacker.Accuracy
-	local dodge = target.Dodge
-	if target.Character:GetStatus("KNOCKED_DOWN") and dodge > 0 then
-		dodge = 0
-	end
-
-	local chanceToHit1 = accuracy - dodge
-	chanceToHit1 = math.max(0, math.min(100, chanceToHit1))
-    return chanceToHit1 + attacker.ChanceToHitBoost
-end
-
-Game.Math.CalculateHitChance = DGM_CalculateHitChance
 
 
 ---- Elemental Ranger and Gladiator fix
