@@ -52,57 +52,52 @@ local function DoHit(hit, damageList, statusBonusDmgTypes, hitType, target, atta
 end
 
 --- Trigger lua ComputeCharacterHit for the Sadist fix
-if not Mods.LeaderLib then
-	Game.Math.DoHit = DoHit
+Game.Math.DoHit = DoHit
 
-	--- Fix Sadist
-	---@param e EsvLuaComputeCharacterHitEvent
-	local function ApplySadist(e)
-		local totalDamage = 0
-		for i,damage in pairs(e.DamageList:ToTable()) do
-			totalDamage = totalDamage + damage.Amount
-		end
-		local statusBonusDmgTypes = {}
-		if e.Hit.Poisoned then
-			table.insert(statusBonusDmgTypes, "Poison")
-		end
-		if e.Hit.Burning or e.Target.Character:GetStatus("NECROFIRE") then
-			table.insert(statusBonusDmgTypes, "Fire")
-		end
-		if e.Hit.Bleeding then
-			table.insert(statusBonusDmgTypes, "Physical")
-		end
-		local damageList = e.Hit.DamageList
-		local damageBonus = math.ceil(totalDamage * 0.1)
-		for i,damageType in pairs(statusBonusDmgTypes) do
-			damageList:Add(damageType, damageBonus)
-		end
-		e.DamageList:Merge(damageList)
-		e.Hit.ArmorAbsorption = Game.Math.ComputeArmorDamage(damageList, e.Target.CurrentArmor)
-		e.Hit.ArmorAbsorption = e.Hit.ArmorAbsorption + Game.Math.ComputeMagicArmorDamage(damageList, e.Target.CurrentMagicArmor)
-		return e
+--- Fix Sadist
+---@param e EsvLuaComputeCharacterHitEvent
+local function ApplySadist(e)
+	local totalDamage = 0
+	for i,damage in pairs(e.DamageList:ToTable()) do
+		totalDamage = totalDamage + damage.Amount
 	end
-
-	---@param e EsvLuaComputeCharacterHitEvent
-	Ext.Events.ComputeCharacterHit:Subscribe(function(e)
-		if e.Attacker and e.Attacker.TALENT_Sadist then
-			-- Fix Sadist for melee skills that doesn't have UseCharacterStats = Yes
-			if e.HitType == "WeaponDamage" and not Game.Math.IsRangedWeapon(e.Attacker.MainWeapon) and e.Hit.HitWithWeapon then
-				ApplySadist(e)
-			-- Fix Sadist for Necrofire
-			elseif e.HitType == "Melee" and e.Target.Character:GetStatus("NECROFIRE") then
-				ApplySadist(e)
-			end
-			if not e.Handled then
-				e.Handled = true
-			end
-			Game.Math.ComputeCharacterHit(e.Target, e.Attacker, e.Weapon, e.DamageList, e.HitType, e.NoHitRoll, e.ForceReduceDurability, e.Hit, e.AlwaysBackstab, e.HighGround, e.CriticalRoll)
-		end
-	end)
-else
---- Make sure the process is controlled here entirely...
-	Mods.LeaderLib.HitOverrides.DoHit = DoHit
+	local statusBonusDmgTypes = {}
+	if e.Hit.Poisoned then
+		table.insert(statusBonusDmgTypes, "Poison")
+	end
+	if e.Hit.Burning or e.Target.Character:GetStatus("NECROFIRE") then
+		table.insert(statusBonusDmgTypes, "Fire")
+	end
+	if e.Hit.Bleeding then
+		table.insert(statusBonusDmgTypes, "Physical")
+	end
+	local damageList = e.Hit.DamageList
+	local damageBonus = math.ceil(totalDamage * 0.1)
+	for i,damageType in pairs(statusBonusDmgTypes) do
+		damageList:Add(damageType, damageBonus)
+	end
+	e.DamageList:Merge(damageList)
+	e.Hit.ArmorAbsorption = Game.Math.ComputeArmorDamage(damageList, e.Target.CurrentArmor)
+	e.Hit.ArmorAbsorption = e.Hit.ArmorAbsorption + Game.Math.ComputeMagicArmorDamage(damageList, e.Target.CurrentMagicArmor)
+	return e
 end
+
+---@param e EsvLuaComputeCharacterHitEvent
+Ext.Events.ComputeCharacterHit:Subscribe(function(e)
+	if not Mods.LeaderLib.HitOverrides.ComputeOverridesEnabled() and e.Attacker and e.Attacker.TALENT_Sadist then
+		-- Fix Sadist for melee skills that doesn't have UseCharacterStats = Yes
+		if e.HitType == "WeaponDamage" and not Game.Math.IsRangedWeapon(e.Attacker.MainWeapon) and e.Hit.HitWithWeapon then
+			ApplySadist(e)
+		-- Fix Sadist for Necrofire
+		elseif e.HitType == "Melee" and e.Target.Character:GetStatus("NECROFIRE") then
+			ApplySadist(e)
+		end
+		if not e.Handled then
+			e.Handled = true
+		end
+		Game.Math.ComputeCharacterHit(e.Target, e.Attacker, e.Weapon, e.DamageList, e.HitType, e.NoHitRoll, e.ForceReduceDurability, e.Hit, e.AlwaysBackstab, e.HighGround, e.CriticalRoll)
+	end
+end)
 
 
 ---- Elemental Ranger and Gladiator fix
