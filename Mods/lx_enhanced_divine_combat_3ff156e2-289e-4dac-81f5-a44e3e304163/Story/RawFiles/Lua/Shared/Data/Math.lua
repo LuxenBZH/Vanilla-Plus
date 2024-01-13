@@ -196,6 +196,12 @@ Data.Stats.HealType = {
     MagicArmor = Data.Math.ComputeCharacterWisdomMagicArmor
 }
 
+Data.Stats.HealAbilityBonus = {
+	Vitality = function(healer) return math.max(1, 1 + (healer.Stats.WaterSpecialist*Ext.ExtraData.SkillAbilityVitalityRestoredPerPoint/100)) end,
+	PhysicalArmor = function(healer) return math.max(1, 1 + (healer.Stats.EarthSpecialist*Ext.ExtraData.SkillAbilityArmorRestoredPerPoint/100)) end,
+	MagicArmor = function(healer) return math.max(1, 1 + (healer.Stats.WaterSpecialist*Ext.ExtraData.SkillAbilityArmorRestoredPerPoint/100)) end
+}
+
 --- @param character EsvCharacter | EclCharacter
 Data.Math.ComputeCharacterIngress = function(character)
     local ingressFromAttributes = math.min((character.Stats.Intelligence - Ext.ExtraData.AttributeBaseValue) * Ext.ExtraData.DGM_IntelligenceIngressBonus, (character.Stats.Strength - Ext.ExtraData.AttributeBaseValue) * Ext.ExtraData.DGM_StrengthIngressCap)
@@ -251,8 +257,9 @@ end
 --- @param healer EsvCharacter|EclCharacter
 Data.Math.GetHealScaledWisdomValue = function(stat, healer)
 	local bonus = Data.Stats.HealType[stat.HealStat](healer)
-	local hydrosophistBonus = math.max(1, 1 + (healer.Stats.WaterSpecialist*Ext.ExtraData.SkillAbilityVitalityRestoredPerPoint/100))
-    return Ext.Utils.Round(Ext.Utils.Round(Data.Math.GetHealValue(stat, healer) * bonus / hydrosophistBonus)*hydrosophistBonus)
+	-- Ability is Hydro if vitality/MA, otherwise Geo
+	local abilityBonus = Data.Stats.HealAbilityBonus[stat.HealStat](healer)
+    return Ext.Utils.Round(Ext.Utils.Round(Data.Math.GetHealValue(stat, healer) * bonus / abilityBonus)*abilityBonus)
 end
 
 --[[

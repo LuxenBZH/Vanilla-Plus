@@ -21,11 +21,11 @@ Ext.Osiris.RegisterListener("NRD_OnStatusAttempt", 4, "before", function(target,
     -- Wisdom bonus to any other heal that isn't LIFESTEAL
     -- HEAL is the proxy status used for the healing value, the original status will have a healing value equal to 0
     -- You need to recalculate the healing value manually, and the following HEAL proxies will duplicate that value
-    -- Note : you cannot track the origin of HEAL proxies. In case where a custom value would be needed for each tick, applying a new status each tick could be a workaround.
+    -- Note : you cannot track the origin of HEAL proxies. In case where a custom value would be needed for each tick, applying a new status each tick could be a workaround
     if (s.StatusType == "HEAL" or s.StatusType == "HEALING") and status ~= "HEAL" and status ~= "LIFESTEAL" then
         local stat = Ext.Stats.Get(s.StatusId)
         if stat.HealType ~= "Qualifier" then return end
-        s.HealAmount = math.floor(Data.Math.GetHealScaledWisdomValue(stat, healer) / math.max(1, 1 + (healer.Stats.WaterSpecialist*Ext.ExtraData.SkillAbilityVitalityRestoredPerPoint/100)))
+        s.HealAmount = Ext.Utils.Round(Data.Math.GetHealScaledWisdomValue(stat, healer) / Data.Stats.HealAbilityBonus[stat.HealStat](Ext.ServerEntity.GetCharacter(instigator)))
         -- _P("ScaledAmount", s.HealAmount)
     elseif status == "LIFESTEAL" then
         s.HealAmount = Ext.Utils.Round(s.HealAmount / (1 + healer.Stats.WaterSpecialist * Ext.ExtraData.SkillAbilityVitalityRestoredPerPoint / 100))
