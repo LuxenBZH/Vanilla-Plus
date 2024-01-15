@@ -1,3 +1,22 @@
+
+---comment
+---@param target EsvCharacter
+---@param healStatus EsvStatusHeal
+---@param amount integer
+local function HealToDamage(target, healStatus, amount, instigator)
+    if healStatus.StatusId ~= "HEAL" then
+        healStatus.HealAmount = 1
+    else
+        healStatus.HealAmount = -1
+    end
+    local hit = Ext.PrepareStatus(target.MyGuid, "HIT", 0) ---@type EsvStatusHit
+    hit.HitReason = 6
+    hit.Hit.DeathType = "DoT"
+    hit.Hit.EffectFlags = 1
+    HitHelpers.HitAddDamage(hit.Hit, target, healer, "Physical", (amount*Data.Math.GetCharacterComputedAbilityBonus(instigator, "WarriorLore"))+1)
+    Ext.ApplyStatus(hit)
+end
+
 ---------- Wisdom healing increase
 --- @param target string GUID
 --- @param instigator string GUID
@@ -7,9 +26,10 @@ Ext.Osiris.RegisterListener("NRD_OnStatusAttempt", 4, "before", function(target,
     if instigator == "NULL_00000000-0000-0000-0000-000000000000" then return end -- Spams the console in few cases otherwise
     local s = Ext.ServerEntity.GetStatus(target, handle) --- @type EsvStatus|EsvStatusHeal|EsvStatusHealing
     if ObjectIsCharacter(instigator) == 0 then return end
-    local healer = Ext.ServerEntity.GetCharacter(instigator)
+    local healer
     -- Fix the double bonus from shared healings
     if status == "HEAL" and s.HealEffect == "HealSharing" then
+        healer = Ext.ServerEntity.GetCharacter(instigator)
         if s.HealType == "PhysicalArmor" then
             s.HealAmount = Ext.Utils.Round(s.HealAmount / (1 + healer.Stats.EarthSpecialist * Ext.ExtraData.SkillAbilityArmorRestoredPerPoint / 100))
         elseif s.HealType == "MagicArmor" then
@@ -18,6 +38,8 @@ Ext.Osiris.RegisterListener("NRD_OnStatusAttempt", 4, "before", function(target,
             s.HealAmount = Ext.Utils.Round(s.HealAmount / (1 + healer.Stats.WaterSpecialist * Ext.ExtraData.SkillAbilityVitalityRestoredPerPoint / 100))
         end
     end
+    local target = Ext.ServerEntity.GetGameObject(target)
+    healer = Ext.ServerEntity.GetCharacter(instigator)
     -- Wisdom bonus to any other heal that isn't LIFESTEAL
     -- HEAL is the proxy status used for the healing value, the original status will have a healing value equal to 0
     -- You need to recalculate the healing value manually, and the following HEAL proxies will duplicate that value
@@ -25,8 +47,16 @@ Ext.Osiris.RegisterListener("NRD_OnStatusAttempt", 4, "before", function(target,
     if (s.StatusType == "HEAL" or s.StatusType == "HEALING") and status ~= "HEAL" and status ~= "LIFESTEAL" then
         local stat = Ext.Stats.Get(s.StatusId)
         if stat.HealType ~= "Qualifier" then return end
-        s.HealAmount = Ext.Utils.Round(Data.Math.GetHealScaledWisdomValue(stat, healer) / Data.Stats.HealAbilityBonus[stat.HealStat](Ext.ServerEntity.GetCharacter(instigator)))
-        -- _P("ScaledAmount", s.HealAmount)
+        local amount = Data.Math.GetHealScaledWisdomValue(stat, healer)
+        --- HEAL statuses with a s.HealAmount modified manually will heal undeads for some reason unless it is set to 0
+        --- HEALING statuses don't need this hack because they apply HEAL independently
+        if s.StatusType == "HEAL" and stat.HealStat == "Vitality" and Helpers.IsCharacter(target) and target.Stats.TALENT_Zombie then
+            HealToDamage(target, s, amount, healer)
+        else
+            --- HEALING statuses apply HEAL which needs to prune the ability bonus again because it's reapplied a second time
+            amount = s.StatusType == "HEALING" and math.floor(amount / Data.Stats.HealAbilityBonus[stat.HealStat](Ext.ServerEntity.GetCharacter(instigator))) or amount
+            s.HealAmount = amount
+        end
     elseif status == "LIFESTEAL" then
         s.HealAmount = Ext.Utils.Round(s.HealAmount / (1 + healer.Stats.WaterSpecialist * Ext.ExtraData.SkillAbilityVitalityRestoredPerPoint / 100))
     end

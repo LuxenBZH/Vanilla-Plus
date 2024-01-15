@@ -55,8 +55,11 @@ Data.Math.ComputeCharacterWisdomFromEquipment = function(character)
 	local equipmentWisdom = 0
 	for i,j in pairs(Helpers.EquipmentSlots) do
 		local item
-		if getmetatable(character) == "esv::Character" then
-			item = Ext.ServerEntity.GetItem(CharacterGetEquippedItem(character.MyGuid, j))
+		if Ext.IsServer() then
+			item = CharacterGetEquippedItem(character.MyGuid, j)
+			if item then
+				item = Ext.ServerEntity.GetItem(CharacterGetEquippedItem(character.MyGuid, j))
+			end
 		else
 			item = character:GetItemObjectBySlot(j)
 		end
@@ -256,10 +259,10 @@ end
 --- @param stat StatEntryType
 --- @param healer EsvCharacter|EclCharacter
 Data.Math.GetHealScaledWisdomValue = function(stat, healer)
-	local bonus = Data.Stats.HealType[stat.HealStat](healer)
+	local wisdomBonus = Data.Stats.HealType[stat.HealStat](healer)
 	-- Ability is Hydro if vitality/MA, otherwise Geo
 	local abilityBonus = Data.Stats.HealAbilityBonus[stat.HealStat](healer)
-    return Ext.Utils.Round(Ext.Utils.Round(Data.Math.GetHealValue(stat, healer) * bonus / abilityBonus)*abilityBonus)
+    return Ext.Utils.Round(Ext.Utils.Round(Data.Math.GetHealValue(stat, healer) * wisdomBonus / abilityBonus)*abilityBonus)
 end
 
 --[[
@@ -389,6 +392,12 @@ Data.Math.GetCharacterWeaponAbilityBonus = function(character)
 	else
 		return 0
 	end
+end
+
+---@param character EsvCharacter|EclCharacter
+Data.Math.GetCharacterComputedAbilityBonus = function(character, ability)
+	local abilityValue = character.Stats[ability]
+	return (Data.Stats.AbilityToDataValue[ability] / 100 * abilityValue) + 1
 end
 
 --- @param character EsvCharacter

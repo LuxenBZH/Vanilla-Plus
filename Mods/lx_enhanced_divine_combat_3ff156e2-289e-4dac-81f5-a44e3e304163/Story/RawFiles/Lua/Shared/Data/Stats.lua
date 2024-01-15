@@ -35,6 +35,17 @@ local function DataLoadStatsInfo(e)
 		Ranged = Ext.ExtraData.DGM_RangedDamageBonus,
 		TwoHanded = Ext.ExtraData.DGM_TwoHandedDamageBonus
 	}
+
+	Data.Stats.AbilityToDataValue = {
+		FireSpecialist = Ext.ExtraData.SkillAbilityFireDamageBoostPerPoint,
+		AirSpecialist = Ext.ExtraData.SkillAbilityAirDamageBoostPerPoint,
+		EarthSpecialist = Ext.ExtraData.SkillAbilityPoisonAndEarthDamageBoostPerPoint,
+		WaterSpecialist = Ext.ExtraData.SkillAbilityWaterDamageBoostPerPoint,
+		WarriorLore = Ext.ExtraData.SkillAbilityPhysicalDamageBoostPerPoint,
+		Necromancy = Ext.ExtraData.SkillAbilityLifeStealPerPoint,
+		RangerLore = Ext.ExtraData.SkillAbilityHighGroundBonusPerPoint,
+		RogueLore = Ext.ExtraData.SkillAbilityCritMultiplierPerPoint
+	}
 end
 
 --- Stats doesn't load correctly sometimes for some reason. This metatable is a failsafe until the source of the problem is found
@@ -63,7 +74,6 @@ else
 	Ext.Events.StatsLoaded:Subscribe(DataLoadStatsInfo)
 	Ext.Events.ResetCompleted:Subscribe(DataLoadStatsInfo)
 end
-
 
 ---@type Enum
 Data.TalentEnum = {
