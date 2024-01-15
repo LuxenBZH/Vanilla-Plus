@@ -51,10 +51,6 @@ HitManager:RegisterHitListener("DGM_Hit", "AfterDamageScaling", "DGM_AbsorbShiel
 	-- if flags.FromReflection or (hit.DamageSourceType ~= "Attack" and hit.DamageSourceType ~= "Offhand" and hit.DamageSourceType ~= "GM") then
 	-- 	HitHelpers.HitMultiplyDamage(hit.Hit, target, instigator, 1 - (target.Stats.PainReflection * (Ext.ExtraData.DGM_PainReflectionDamageReduction/100)))
 	-- end
-	--- Perseverance incapacitated damage reduction
-	if CharacterIsIncapacitated(target.MyGuid) == 1 and target.Stats.Perseverance > 0 then
-		HitHelpers.HitMultiplyDamage(hit, target, instigator, math.min(target.Stats.Perseverance * (1 - 100/Ext.ExtraData.DGM_PerseveranceResistance), 0.5))
-	end
 	--- Absorb shields
 	AbsorbShieldProcessDamage(target, instigator, hit)
 	--- Skill damage cap
@@ -96,6 +92,11 @@ HitManager:RegisterHitListener("DGM_Hit", "AfterDamageScaling", "DGM_AbsorbShiel
 				HitHelpers.HitMultiplyDamage(hit.Hit, target, instigator, math.max(1 - (hits - math.max(stat.VP_ConsecutiveDamageReductionHitAmount, 0))*(stat.VP_ConsecutiveDamageReductionPercent/100), 0))
 			end
 		end
+	end
+	--- Perseverance damage multiplier
+	if Helpers.IsCharacter(target) and CharacterIsIncapacitated(target.MyGuid) == 1 and target.Stats.Perseverance > 0 then
+		local multiplier = math.max((1 - target.Stats.Perseverance * (Ext.ExtraData.DGM_PerseveranceResistance/100)), 0.5)
+		HitHelpers.HitMultiplyDamage(hit.Hit, target, instigator, multiplier)
 	end
 end, 49)
 
