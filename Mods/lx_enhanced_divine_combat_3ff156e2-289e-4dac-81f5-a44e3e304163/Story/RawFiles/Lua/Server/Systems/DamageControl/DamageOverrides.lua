@@ -79,6 +79,8 @@ local function ApplySadist(e)
 	e.DamageList:Merge(damageList)
 	e.Hit.ArmorAbsorption = Game.Math.ComputeArmorDamage(damageList, e.Target.CurrentArmor)
 	e.Hit.ArmorAbsorption = e.Hit.ArmorAbsorption + Game.Math.ComputeMagicArmorDamage(damageList, e.Target.CurrentMagicArmor)
+	e.Handled = true
+	Game.Math.ComputeCharacterHit(e.Target, e.Attacker, e.Weapon, e.DamageList, e.HitType, e.NoHitRoll, e.ForceReduceDurability, e.Hit, e.AlwaysBackstab, e.HighGround, e.CriticalRoll)
 	return e
 end
 
@@ -92,10 +94,6 @@ Ext.Events.ComputeCharacterHit:Subscribe(function(e)
 		elseif e.HitType == "Melee" and e.Target.Character:GetStatus("NECROFIRE") then
 			ApplySadist(e)
 		end
-		if not e.Handled then
-			e.Handled = true
-		end
-		Game.Math.ComputeCharacterHit(e.Target, e.Attacker, e.Weapon, e.DamageList, e.HitType, e.NoHitRoll, e.ForceReduceDurability, e.Hit, e.AlwaysBackstab, e.HighGround, e.CriticalRoll)
 	end
 end)
 
