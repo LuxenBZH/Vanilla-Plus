@@ -84,7 +84,7 @@ end
 
 ---@param e EsvLuaComputeCharacterHitEvent
 Ext.Events.ComputeCharacterHit:Subscribe(function(e)
-	if not Mods.LeaderLib.HitOverrides.ComputeOverridesEnabled() and e.Attacker and e.Attacker.TALENT_Sadist then
+	if not (Mods.LeaderLib and Mods.LeaderLib.HitOverrides.ComputeOverridesEnabled()) and e.Attacker and e.Attacker.TALENT_Sadist then
 		-- Fix Sadist for melee skills that doesn't have UseCharacterStats = Yes
 		if e.HitType == "WeaponDamage" and not Game.Math.IsRangedWeapon(e.Attacker.MainWeapon) and e.Hit.HitWithWeapon then
 			ApplySadist(e)
