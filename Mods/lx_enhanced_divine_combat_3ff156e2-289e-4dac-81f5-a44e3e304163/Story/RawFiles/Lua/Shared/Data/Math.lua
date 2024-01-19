@@ -335,6 +335,7 @@ Data.Math.GetCharacterComputedDamageBonus = function(character, target, flags, s
 	if flags.Backstab then
         attributes.DamageBonus = attributes.DamageBonus + character.Stats.CriticalChance * Ext.ExtraData.DGM_BackstabCritChanceBonus
     end
+	if skill and not (skill.Damage == "BaseLevelDamage" or skill.Damage == "AverageLevelDamge" or skill.Damage == "MonsterWeaponDamage") then attributes.DamageBonus = 0; return end
 	-- Weapon Boost
 	if flags.IsWeaponAttack or (skill and (skill.Name == "Target_TentacleLash" or skill.UseWeaponDamage == "Yes")) then
 		if (flags.DamageSourceType == "Offhand" and character.Stats.OffHandWeapon.WeaponType == "Wand") or character.Stats.MainWeapon.WeaponType == "Wand" then
@@ -345,7 +346,7 @@ Data.Math.GetCharacterComputedDamageBonus = function(character, target, flags, s
 		-- Weapon ability boost
 		if character.Stats.MainWeapon ~= null then
 			local weaponAbility = Game.Math.GetWeaponAbility(character.Stats, character.Stats.MainWeapon)
-			attributes.DamageBonus = attributes.DamageBonus * (1 + character.Stats[weaponAbility] * Data.Stats.WeaponAbilitiesBonuses[weaponAbility] / 100)
+			attributes.DamageBonus = attributes.DamageBonus + (1 + character.Stats[weaponAbility] * Data.Stats.WeaponAbilitiesBonuses[weaponAbility] / 100)
 		end
 		attributes.GlobalMultiplier = attributes.GlobalMultiplier + Data.Math.ApplyCQBPenalty(target, character)
 	-- DoT Boost
@@ -397,8 +398,22 @@ end
 ---@param character EsvCharacter|EclCharacter
 Data.Math.GetCharacterComputedAbilityBonus = function(character, ability)
 	local abilityValue = character.Stats[ability]
-	return (Data.Stats.AbilityToDataValue[ability] / 100 * abilityValue) + 1
+	return (Data.Stats.AbilityToDataValue[ability] * abilityValue / 100)
 end
+
+---@param character StatCharacter
+---@param damageType DamageType
+Data.Math.GetDamageBoostByType = function(character, damageType)
+	local ability = Data.DamageTypeToAbility[damageType]
+	if ability then
+		return (Data.Stats.AbilityToDataValue[ability] * character[ability] / 100)
+	else
+		return Ext.Stats.Math.GetDamageBoostByType(character, damageType) / 100.0
+	end
+end
+
+Game.Math.GetDamageBoostByType = Data.Math.GetDamageBoostByType
+Game.Math.GetDamageBoostByTypeVanilla = Data.Math.GetDamageBoostByType
 
 --- @param character EsvCharacter
 Data.Math.GetCharacterMovement = function(character)

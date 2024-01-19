@@ -356,3 +356,12 @@ Data.PenaltyQualifier = {
     [20] = 9,
     [21] = 10
 }
+
+Data.DamageTypeToAbility = {
+	Physical = "WarriorLore",
+	Fire = "FireSpecialist",
+    Water = "WaterSpecialist",
+    Poison = "EarthSpecialist",
+    Earth = "EarthSpecialist",
+    Air = "AirSpecialist",
+}

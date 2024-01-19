@@ -37,15 +37,22 @@ local function DataLoadStatsInfo(e)
 	}
 
 	Data.Stats.AbilityToDataValue = {
-		FireSpecialist = Ext.ExtraData.SkillAbilityFireDamageBoostPerPoint,
-		AirSpecialist = Ext.ExtraData.SkillAbilityAirDamageBoostPerPoint,
-		EarthSpecialist = Ext.ExtraData.SkillAbilityPoisonAndEarthDamageBoostPerPoint,
-		WaterSpecialist = Ext.ExtraData.SkillAbilityWaterDamageBoostPerPoint,
-		WarriorLore = Ext.ExtraData.SkillAbilityPhysicalDamageBoostPerPoint,
+		-- FireSpecialist = Ext.ExtraData.SkillAbilityFireDamageBoostPerPoint,
+		-- AirSpecialist = Ext.ExtraData.SkillAbilityAirDamageBoostPerPoint,
+		-- EarthSpecialist = Ext.ExtraData.SkillAbilityPoisonAndEarthDamageBoostPerPoint,
+		-- WaterSpecialist = Ext.ExtraData.SkillAbilityWaterDamageBoostPerPoint,
+		-- WarriorLore = Ext.ExtraData.SkillAbilityPhysicalDamageBoostPerPoint,
+		FireSpecialist = 5,
+		AirSpecialist = 5,
+		EarthSpecialist = 5,
+		WaterSpecialist = 5,
+		WarriorLore = 5,
 		Necromancy = Ext.ExtraData.SkillAbilityLifeStealPerPoint,
 		RangerLore = Ext.ExtraData.SkillAbilityHighGroundBonusPerPoint,
 		RogueLore = Ext.ExtraData.SkillAbilityCritMultiplierPerPoint
 	}
+
+	
 end
 
 --- Stats doesn't load correctly sometimes for some reason. This metatable is a failsafe until the source of the problem is found

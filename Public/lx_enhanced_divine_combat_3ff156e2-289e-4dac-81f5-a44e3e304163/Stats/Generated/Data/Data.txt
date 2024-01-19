@@ -24,7 +24,7 @@ key "DamageBoostFromAttribute","0"
 
 key "MonsterDamageBoostPerLevel","0.03"
 
-key "CharacterBaseMemoryCapacity","4"
+key "CharacterBaseMemoryCapacity","7"
 
 key "CharacterBaseMemoryCapacityGrowth","0.5"
 
@@ -54,19 +54,19 @@ key "LeadershipAllResBonus","3"
 
 key "SkillAbilityVitalityRestoredPerPoint","4"
 
-key "SkillAbilityLifeStealPerPoint","10"
+key "SkillAbilityLifeStealPerPoint","6"
 
-key "SkillAbilitySulfuricDamageBoostPerPoint","5"
+key "SkillAbilitySulfuricDamageBoostPerPoint","0"
 
-key "SkillAbilityPhysicalDamageBoostPerPoint","4"
+key "SkillAbilityPhysicalDamageBoostPerPoint","0"
 
-key "SkillAbilityWaterDamageBoostPerPoint","5"
+key "SkillAbilityWaterDamageBoostPerPoint","0"
 
-key "SkillAbilityAirDamageBoostPerPoint","5"
+key "SkillAbilityAirDamageBoostPerPoint","0"
 
-key "SkillAbilityPoisonAndEarthDamageBoostPerPoint","5"
+key "SkillAbilityPoisonAndEarthDamageBoostPerPoint","0"
 
-key "SkillAbilityFireDamageBoostPerPoint","5"
+key "SkillAbilityFireDamageBoostPerPoint","0"
 
 key "SkillAbilityHighGroundBonusPerPoint","5"
 
@@ -248,7 +248,7 @@ key "DGM_WandSurfaceBonus","15"
 
 key "DGM_ChameleonCloakRevert","0"
 
-key "DGM_PerseveranceResistance","5"
+key "DGM_PerseveranceResistance","10"
 
 key "DGM_GB4Talents","0"
 
