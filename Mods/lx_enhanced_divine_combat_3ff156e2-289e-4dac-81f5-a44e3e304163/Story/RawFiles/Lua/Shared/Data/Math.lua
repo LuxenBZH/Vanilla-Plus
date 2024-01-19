@@ -346,7 +346,7 @@ Data.Math.GetCharacterComputedDamageBonus = function(character, target, flags, s
 		-- Weapon ability boost
 		if character.Stats.MainWeapon ~= null then
 			local weaponAbility = Game.Math.GetWeaponAbility(character.Stats, character.Stats.MainWeapon)
-			attributes.DamageBonus = attributes.DamageBonus + (1 + character.Stats[weaponAbility] * Data.Stats.WeaponAbilitiesBonuses[weaponAbility] / 100)
+			attributes.DamageBonus = attributes.DamageBonus + (1 + character.Stats[weaponAbility] * Data.Stats.WeaponAbilitiesBonuses[weaponAbility])
 		end
 		attributes.GlobalMultiplier = attributes.GlobalMultiplier + Data.Math.ApplyCQBPenalty(target, character)
 	-- DoT Boost

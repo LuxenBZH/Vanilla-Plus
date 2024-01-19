@@ -157,7 +157,7 @@ local function DamageControl(target, instigator, hitDamage, handle)
 		elseif element.DamageType == "Corrosive" or element.DamageType == "Magic" then
 			element.Amount = element.Amount * Ext.ExtraData.DGM_ArmourReductionMultiplier / 100
 		end
-		local schoolMultiplier = Data.DamageTypeToAbility[element.DamageType] and Game.Math.GetDamageBoostByType(instigator.Stats, element.DamageType) or 0
+		local schoolMultiplier = (instigator and Data.DamageTypeToAbility[element.DamageType]) and Game.Math.GetDamageBoostByType(instigator.Stats, element.DamageType) or 0
 		element.Amount = (element.Amount * (multiplier + schoolMultiplier)) * attacker.GlobalMultiplier + math.random(0,1) -- Range somewhat of a fix
 		HitHelpers.HitAddDamage(hit.Hit, target, instigator, tostring(element.DamageType), math.floor(element.Amount))
 		-- NRD_HitStatusAddDamage(target.MyGuid, handle, element.DamageType, element.Amount)
