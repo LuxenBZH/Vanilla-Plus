@@ -13,7 +13,7 @@ local function HealToDamage(target, healStatus, amount, instigator)
     hit.HitReason = 6
     hit.Hit.DeathType = "DoT"
     hit.Hit.EffectFlags = 1
-    HitHelpers.HitAddDamage(hit.Hit, target, healer, "Physical", (amount*Data.Math.GetCharacterComputedAbilityBonus(instigator, "WarriorLore"))+1)
+    HitHelpers.HitAddDamage(hit.Hit, target, healer, "Physical", Ext.Utils.Round(amount*(1+Game.Math.GetDamageBoostByType(instigator.Stats, "Physical"))))
     Ext.ApplyStatus(hit)
 end
 
@@ -59,6 +59,8 @@ Ext.Osiris.RegisterListener("NRD_OnStatusAttempt", 4, "before", function(target,
         end
     elseif status == "LIFESTEAL" then
         s.HealAmount = Ext.Utils.Round(s.HealAmount / (1 + healer.Stats.WaterSpecialist * Ext.ExtraData.SkillAbilityVitalityRestoredPerPoint / 100))
+    elseif status == "HEAL" and Helpers.IsCharacter(target) and target.Stats.TALENT_Zombie then
+        s.HealAmount = s.HealAmount * (1+Game.Math.GetDamageBoostByType(healer.Stats, "Physical"))
     end
 end)
 
