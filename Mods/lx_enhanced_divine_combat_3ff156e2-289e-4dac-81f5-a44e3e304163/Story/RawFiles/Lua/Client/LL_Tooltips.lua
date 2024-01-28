@@ -114,14 +114,23 @@ local function ExtendDamage(element, skill, characterStats, isProjectile, prefix
             if GetParentStat(skill, "UseWeaponDamage") == "Yes" or skill.Name == "Target_TentacleLash" then
                 strengthBonus = math.floor((characterStats.Strength-Ext.ExtraData.AttributeBaseValue) * Ext.ExtraData.DGM_StrengthWeaponBonus)
             end
-            local intelligenceBonus = math.floor((characterStats.Intelligence-Ext.ExtraData.AttributeBaseValue) * Ext.ExtraData.DGM_IntelligenceSkillBonus)
+            local intelligenceBonus = characterStats.Intelligence-Ext.ExtraData.AttributeBaseValue
+            local usesIntelligence = false
+            if GetParentStat(skill, "UseWeaponDamage") == "No" then
+                intelligenceBonus = math.floor(intelligenceBonus * (Ext.ExtraData.DGM_IntelligenceSkillBonus+Ext.ExtraData.DGM_IntelligenceGlobalBonus))
+                usesIntelligence = true
+            else
+                intelligenceBonus = math.floor(intelligenceBonus * Ext.ExtraData.DGM_IntelligenceGlobalBonus)
+            end
             element.Label=element.Label .. "<br><font color='#00cc00'>"..prefix.."Bonus from Attributes: "..generalBonus + strengthBonus + intelligenceBonus.."% </font>"
             element.Label=element.Label .. "<br><font color='#008000'>"..prefix.."• Global: "..generalBonus.."%"
             
             if GetParentStat(skill, "UseWeaponDamage") == "Yes" or skill.Name == "Target_TentacleLash" then
                 element.Label=element.Label .. "<br>"..prefix.."• Strength: "..strengthBonus.."%"
             end
-            element.Label=element.Label .. "<br>"..prefix.."• Intelligence: "..intelligenceBonus.."%</font>"
+            if usesIntelligence then
+                element.Label=element.Label .. "<br>"..prefix.."• Intelligence: "..intelligenceBonus.."%</font>"
+            end
             if GetParentStat(skill, "UseWeaponDamage") == "Yes" then
                 local ability = GetWeaponAbility(characterStats, characterStats.MainWeapon)
                 if ability ~= nil then

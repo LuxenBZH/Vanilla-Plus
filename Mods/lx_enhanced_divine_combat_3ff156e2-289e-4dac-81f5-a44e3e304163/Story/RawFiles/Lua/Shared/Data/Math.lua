@@ -321,6 +321,7 @@ Data.Math.GetCharacterComputedDamageBonus = function(character, target, flags, s
 		DamageBonus = 0,
 		GlobalMultiplier = 1.0
 	} end
+	_P(character.DisplayName)
     local strength = character.Stats.Strength - Ext.ExtraData.AttributeBaseValue
     local finesse = character.Stats.Finesse - Ext.ExtraData.AttributeBaseValue
     local intelligence = character.Stats.Intelligence - Ext.ExtraData.AttributeBaseValue
@@ -354,8 +355,10 @@ Data.Math.GetCharacterComputedDamageBonus = function(character, target, flags, s
 		attributes.DamageBonus = attributes.Wits * Ext.ExtraData.DGM_WitsDotBonus
 	end
 	-- Intelligence Boost
-	if skill and skill.Name ~= "Target_LX_NormalAttack" then 
-		attributes.DamageBonus = attributes.DamageBonus + attributes.Intelligence * Ext.ExtraData.DGM_IntelligenceSkillBonus
+	if skill and skill.Name ~= "Target_LX_NormalAttack" then
+		if skill.UseWeaponDamage == "No" then
+			attributes.DamageBonus = attributes.DamageBonus + attributes.Intelligence * Ext.ExtraData.DGM_IntelligenceSkillBonus
+		end
 		if string.find(skill.Name, "Grenade") and character.Stats.TALENT_WarriorLoreGrenadeRange then
 			attributes.DamageBonus = attributes.DamageBonus + Ext.ExtraData.DGM_SlingshotBonus
 		end
