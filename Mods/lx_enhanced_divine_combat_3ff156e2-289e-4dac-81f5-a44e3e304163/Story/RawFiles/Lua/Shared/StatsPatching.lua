@@ -23,14 +23,15 @@ local function AddDamageToDescription()
 end
 
 local function AdaptWeaponEnhancingSkills()
-	for i,name in pairs(Ext.GetStatEntries("Potion")) do
-		local bonusWeapon = Ext.StatGetAttribute(name, "BonusWeapon")
+	for i,name in pairs(Ext.Stats.GetStats("Potion")) do
+		local bonusWeapon = Ext.Stats.Get(name).BonusWeapon
 		if bonusWeapon ~= '' then
-			local weaponDamage = Ext.StatGetAttribute(bonusWeapon, "Damage")
-			local weaponMultiplier = Ext.StatGetAttribute(bonusWeapon, "DamageFromBase")
+			bonusWeapon = Ext.Stats.Get(bonusWeapon)
+			local weaponDamage = bonusWeapon.Damage
+			local weaponMultiplier = bonusWeapon.DamageFromBase
 			if weaponDamage == "AverageLevelDamge" or weaponDamage == 1 then
-				Ext.StatSetAttribute(bonusWeapon, "Damage", 0)
-				Ext.StatSetAttribute(bonusWeapon, "DamageFromBase", Ext.Round(weaponMultiplier*1.5))
+				bonusWeapon.Damage = 0
+				bonusWeapon.DamageFromBase = Ext.Utils.Round(weaponMultiplier*1.5)
 				--Ext.SyncStat(bonusWeapon, false)
 			end
 		end
@@ -265,6 +266,26 @@ local function ChangeBaseAccuracy()
 		end
 	end
 end
+
+Ext.Events.StatsLoaded:Subscribe(function(e)
+	local stats = {
+		Armor = true,
+		Weapon = true,
+		Shield = true,
+		Potion = true,
+		Character = true
+	}
+	for statType, b in pairs(stats) do
+		for i,stat in pairs(Ext.Stats.GetStats(statType)) do
+			local entry = Ext.Stats.Get(stat)
+			if entry.Leadership > 0 or entry.Perseverance > 0 or entry.Retribution > 0 then
+				entry.Leadership = Ext.Utils.Round(entry.Leadership / 2)
+				entry.Perseverance = Ext.Utils.Round(entry.Perseverance / 2)
+				entry.PainReflection = Ext.Utils.Round(entry.PainReflection / 2)
+			end
+		end
+	end
+end)
 
 Ext.RegisterListener("GameStateChanged", FlatScaling)
 Ext.RegisterListener("StatsLoaded", AttributeCap)
