@@ -2,9 +2,11 @@ key "ArmorToVitalityRatio","0.45"
 
 key "ExpectedConGrowthForArmorCalculation","1"
 
-key "VitalityToDamageRatio","6"
+key "ExpectedDamageBoostFromWeaponAbilityPerLevel","0.015"
 
-key "VitalityToDamageRatioGrowth","0.225"
+key "VitalityToDamageRatio","4.5"
+
+key "VitalityToDamageRatioGrowth","0.2"
 
 key "UnstableRadius","4"
 
