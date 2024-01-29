@@ -365,3 +365,13 @@ Data.DamageTypeToAbility = {
     Earth = "EarthSpecialist",
     Air = "AirSpecialist",
 }
+
+Data.DamageScalingFormulas = {
+	ALD = Game.Math.GetAverageLevelDamage,
+	BLD = Game.Math.GetLevelScaledDamage,
+	BWD = Game.Math.GetLevelScaledWeaponDamage,
+	BMD = Game.Math.GetLevelScaledMonsterWeaponDamage,
+    [0] = Game.Math.GetLevelScaledWeaponDamage,
+    [1] = Game.Math.GetAverageLevelDamage,
+    [2] = Game.Math.GetLevelScaledDamage,
+}

@@ -274,7 +274,7 @@ end
 
 Ext.RegisterListener("SkillGetDescriptionParam", SkillGetDescriptionParam)
 
----@param status EsvStatus
+---@param status StatsStatusPrototype
 ---@param statusSource EsvGameObject
 ---@param character StatCharacter
 ---@param par string
@@ -309,6 +309,11 @@ local function StatusGetDescriptionParam(status, statusSource, character, par)
             local computedValue = Data.Math.GetHealScaledWisdomValue(stat, statusSource.Character)
             return "<font color=\"#97FBFF\">"..computedValue.." "..Ext.L10N.GetTranslatedString("h67a4c781g589ag4872g8c46g870e336074bd", "Vitality").."</font>"
         end
+    elseif par == "WPN-DamageFromBase" then
+        local statEntry = Ext.Stats.Get(Ext.Stats.Get(status.StatsObject.StatsId).BonusWeapon)
+        local bonus = Data.Math.GetCharacterComputedDamageBonus(character.Character, nil, {}, Ext.Stats.Get("Target_LX_NormalAttack"))
+        local damage = Data.DamageScalingFormulas[tonumber(statEntry.Damage)](character.Level) * (statEntry.DamageFromBase/100) * (bonus.DamageBonus/100+Game.Math.GetDamageBoostByType(character, statEntry["Damage Type"]))*bonus.GlobalMultiplier 
+        return Data.Text.GetFormattedDamageRangeText(statEntry["Damage Type"], Ext.Utils.Round(damage*(1-statEntry['Damage Range']/2/100)), Ext.Utils.Round(damage*(1+statEntry['Damage Range']/2/100)))
 	end
 	return nil
 end

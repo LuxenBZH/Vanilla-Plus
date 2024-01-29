@@ -44,3 +44,7 @@ Data.Text.TranslatedKeys.Common = {
 Data.Text.GetFormattedDamageText = function(damageType, value)
     return "<font color="..Data.Text.GetDamageColor(damageType)..">"..tostring(Ext.Utils.Round(value)).." "..damageType.." "..string.lower(Ext.L10N.GetTranslatedString(Data.Text.TranslatedKeys.Common.Damage)).."</font>"
 end
+
+Data.Text.GetFormattedDamageRangeText = function(damageType, value1, value2)
+    return "<font color="..Data.Text.GetDamageColor(damageType)..">"..tostring(Ext.Utils.Round(value1)).."-"..tostring(Ext.Utils.Round(value2)).." "..damageType.." "..string.lower(Ext.L10N.GetTranslatedString(Data.Text.TranslatedKeys.Common.Damage)).."</font>"
+end

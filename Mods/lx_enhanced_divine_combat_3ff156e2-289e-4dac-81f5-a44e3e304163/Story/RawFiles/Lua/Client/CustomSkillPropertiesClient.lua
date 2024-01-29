@@ -39,7 +39,7 @@ Ext.Events.StatusGetDescriptionParam:Subscribe(ShieldDescription)
 --- @param character StatCharacter
 --- @param par string
 local function CSBStatusDescriptionParam(status, statusSource, statCharacter, par)
-	if string.match(par, "CSB%-") or string.match(par, "WPN%-") then
+	if string.match(par, "CSB%-") then
 		local field = string.gsub(par, "CSB%-", "")
 		local statEntry = status.Name.."_"..field.."_"
 		if string.match(par, "WPN%-") then
