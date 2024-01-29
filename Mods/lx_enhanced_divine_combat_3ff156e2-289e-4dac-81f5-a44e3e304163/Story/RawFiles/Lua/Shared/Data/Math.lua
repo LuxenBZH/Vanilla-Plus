@@ -321,7 +321,6 @@ Data.Math.GetCharacterComputedDamageBonus = function(character, target, flags, s
 		DamageBonus = 0,
 		GlobalMultiplier = 1.0
 	} end
-	_P(character.DisplayName)
     local strength = character.Stats.Strength - Ext.ExtraData.AttributeBaseValue
     local finesse = character.Stats.Finesse - Ext.ExtraData.AttributeBaseValue
     local intelligence = character.Stats.Intelligence - Ext.ExtraData.AttributeBaseValue
