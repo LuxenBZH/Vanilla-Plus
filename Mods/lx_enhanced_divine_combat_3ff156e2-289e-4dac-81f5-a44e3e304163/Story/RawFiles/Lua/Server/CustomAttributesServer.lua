@@ -60,7 +60,7 @@ Ext.Osiris.RegisterListener("NRD_OnStatusAttempt", 4, "before", function(target,
     elseif status == "LIFESTEAL" then
         s.HealAmount = Ext.Utils.Round(s.HealAmount / (1 + healer.Stats.WaterSpecialist * Ext.ExtraData.SkillAbilityVitalityRestoredPerPoint / 100))
     elseif status == "HEAL" and Helpers.IsCharacter(target) and target.Stats.TALENT_Zombie then
-        s.HealAmount = s.HealAmount * (1+Game.Math.GetDamageBoostByType(healer.Stats, "Physical"))
+        s.HealAmount = Ext.Utils.Round(s.HealAmount * (1+Game.Math.GetDamageBoostByType(healer.Stats, "Physical")))
     end
 end)
 
