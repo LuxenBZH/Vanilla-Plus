@@ -278,7 +278,7 @@ Ext.Events.StatsLoaded:Subscribe(function(e)
 	for statType, b in pairs(stats) do
 		for i,stat in pairs(Ext.Stats.GetStats(statType)) do
 			local entry = Ext.Stats.Get(stat)
-			if entry.Leadership > 0 or entry.Perseverance > 0 or entry.Retribution > 0 then
+			if entry.Leadership > 0 or entry.Perseverance > 0 or entry.PainReflection > 0 then
 				entry.Leadership = Ext.Utils.Round(entry.Leadership / 2)
 				entry.Perseverance = Ext.Utils.Round(entry.Perseverance / 2)
 				entry.PainReflection = Ext.Utils.Round(entry.PainReflection / 2)
