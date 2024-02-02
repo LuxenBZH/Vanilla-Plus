@@ -26,7 +26,7 @@ CustomStatusManager = {
         Data.Stats.CustomAttributeBonuses,
         Data.Stats.CustomAbilityBonuses,
     },
-    SyncListeners = {}
+    SyncListeners = {},
 }
 
 for i, banList in pairs(CustomStatusManager.ExtendedBanList) do
@@ -223,12 +223,20 @@ function CustomStatusManager:CharacterApplyMultipliedStatus(target, statusID, du
     if type(target) ~= "string" then
         target = target.MyGuid
     end
+    if HasActiveStatus(target, statusID) == 1 then
+        Helpers.Status.Multiply(Ext.ServerEntity.GetCharacter(target):GetStatus(statusID), multiplier)
+        return
+    end
     if not NRD_StatExists(statusID) then
         self:CreateStatFromTemplate(statusID, "StatusData", fallback.Template, fallback.StatsArray, fallback.Persistance)
     end
     local status = Ext.PrepareStatus(target, statusID, duration)
     status.StatsMultiplier = multiplier
     Ext.ApplyStatus(status)
+    Ext.Net.BroadcastMessage("VP_MultiplyStatus", Ext.Utils.JsonStringify({
+        Character = Ext.ServerEntity.GetCharacter(target).NetID,
+        Status = status.NetID
+    }))
 end
 
 ---@param statusID string

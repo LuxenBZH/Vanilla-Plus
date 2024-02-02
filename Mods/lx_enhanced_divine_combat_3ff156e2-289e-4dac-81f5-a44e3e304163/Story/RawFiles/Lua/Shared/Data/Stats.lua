@@ -3,7 +3,7 @@ Data.Stats = {}
 local function DataLoadStatsInfo(e)
 	Helpers.VPPrint("Loading Stats Data...", "Stats:DataLoadStatsInfo", "Server:", Ext.IsServer())
 	Data.Stats.CustomAttributeBonuses = {
-		Finesse = {Potion = {Movement = Ext.ExtraData.DGM_FinesseMovementBonus}, Status = {StackId = "DGM_Finesse"}, Cap = Ext.ExtraData.DGM_FinesseMovementCap},
+		Finesse = {Potion = {VP_Celerity = Ext.ExtraData.DGM_FinesseMovementBonus, VP_CriticalMultiplier = Ext.ExtraData.DGM_FinesseCritMultBonus}, Status = {StackId = "DGM_Finesse"}, Cap = Ext.ExtraData.DGM_FinesseMovementCap},
 		Intelligence = {Potion = {AccuracyBoost = Ext.ExtraData.DGM_IntelligenceAccuracyBonus}, Status = {StackId = "DGM_Intelligence"}, Cap = Ext.ExtraData.DGM_IntelligenceAccuracyCap}
 	}
 

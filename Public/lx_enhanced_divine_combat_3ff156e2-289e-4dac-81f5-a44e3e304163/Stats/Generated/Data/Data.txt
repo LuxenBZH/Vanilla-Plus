@@ -106,11 +106,13 @@ key "DGM_StrengthWeaponBonus","3"
 
 key "DGM_FinesseGlobalBonus","3"
 
-key "DGM_FinesseMovementBonus","10"
+key "DGM_FinesseMovementBonus","35"
 
 key "DGM_FinesseMovementCap","30"
 
 key "DGM_FinesseCritChance","1"
+
+key "DGM_FinesseCritMultBonus", "2"
 
 key "DGM_FinesseAccuracyFromIntelligenceCap","3"
 

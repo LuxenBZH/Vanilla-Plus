@@ -46,7 +46,11 @@ Data.Math.ComputeStatIntegerFromStatus = function(character, statName)
 			end
 		end
 	end
-	return statusesAttribute
+	local total = 0
+	for i, info in pairs(statusesAttribute) do
+		total = total + info.Value
+	end
+	return statusesAttribute, total
 end
 
 ---@param character EclCharacter|EsvCharacter

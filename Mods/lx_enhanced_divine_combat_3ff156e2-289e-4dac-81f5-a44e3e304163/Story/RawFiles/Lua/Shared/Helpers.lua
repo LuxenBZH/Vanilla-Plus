@@ -212,34 +212,82 @@ Helpers.Status = {}
 
 Helpers.Status.MultipliedStats = {}
 
----Multiply a status, including damage if there is a damage entry
----@param status EsvStatus
-Helpers.Status.Multiply = function(status, multiplier)
-	status.StatsMultiplier = multiplier
-	if status.StatusType == "CONSUME" then
-		local stat = Ext.Stats.Get(Ext.Stats.Get(status.StatusId).StatsId)
-		if stat["Damage Multiplier"] > 0 then
-			local character = Ext.ServerEntity.GetCharacter(status.TargetHandle)
-			character.UserVars.LX_StatusConsumeMultiplier = multiplier
+Helpers.Status.MultipliedStatusesListeners = {}
+
+
+if Ext.IsServer() then
+	function Helpers.Status.RegisterMultipliedStatus(statusID, func)
+		if not Helpers.Status.MultipliedStatusesListeners[statusID] then
+			Helpers.Status.MultipliedStatusesListeners[statusID] = {func}
+		else
+			table.insert(Helpers.Status.MultipliedStatusesListeners[statusID], func)
 		end
-		-- local newStatName = stat.Name.."_x"..Ext.Utils.Round(multiplier)
-		-- Ext.Stats.Create(newStatName, "Potion", stat.Name)
-		-- local multipliedStat = Ext.Stats.Get(newStatName) ---@type StatEntryPotion
-		-- multipliedStat["Damage Multiplier"] = Ext.Utils.Round(multipliedStat.Damage * multiplier)
-		-- status.StatsIds[1].StatsId = newStatName
-		-- status.StatsId = newStatName
-		-- Ext.Stats.Sync(newStatName, true)
-		-- Helpers.Status.MultipliedStats[status] = newStatName
-	elseif status.StatusType == "DAMAGE" then
-		local stat = Ext.Stats.Get(status.DamageStats)
-		local newStatName = stat.Name.."_x"..Ext.Utils.Round(multiplier)
-		Ext.Stats.Create(newStatName, "Weapon", stat.Name)
-		local multipliedStat = Ext.Stats.Get(newStatName) ---@type StatEntryWeapon
-		multipliedStat.Damage = Ext.Utils.Round(multipliedStat.DamageFromBase * multiplier)
-		Ext.Stats.Sync(newStatName, true)
-		status.DamageStats = newStatName
-		Helpers.Status.MultipliedStats[status] = newStatName
 	end
+
+	---@param status EsvStatus
+	---@param multiplier number
+	---@param previousMultiplier number
+	function Helpers.Status.TriggerMultipliedStatusesListeners(status, multiplier, previousMultiplier)
+		for i,func in pairs(Helpers.Status.MultipliedStatusesListeners[status.StatusId]) do
+			func(status, multiplier, previousMultiplier)
+		end
+		for i,func in pairs(Helpers.Status.MultipliedStatusesListeners.All) do
+			func(status, multiplier, previousMultiplier)
+		end
+	end
+
+	---Multiply a status, including damage if there is a damage entry
+	---@param status EsvStatus
+	Helpers.Status.Multiply = function(status, multiplier)
+		local previousMultiplier = status.StatsMultiplier
+		status.StatsMultiplier = multiplier
+		if status.StatusType == "CONSUME" then
+			local stat = Ext.Stats.Get(Ext.Stats.Get(status.StatusId).StatsId)
+			if stat["Damage Multiplier"] > 0 then
+				local character = Ext.ServerEntity.GetCharacter(status.TargetHandle)
+				character.UserVars.LX_StatusConsumeMultiplier = multiplier
+			end
+			-- local newStatName = stat.Name.."_x"..Ext.Utils.Round(multiplier)
+			-- Ext.Stats.Create(newStatName, "Potion", stat.Name)
+			-- local multipliedStat = Ext.Stats.Get(newStatName) ---@type StatEntryPotion
+			-- multipliedStat["Damage Multiplier"] = Ext.Utils.Round(multipliedStat.Damage * multiplier)
+			-- status.StatsIds[1].StatsId = newStatName
+			-- status.StatsId = newStatName
+			-- Ext.Stats.Sync(newStatName, true)
+			-- Helpers.Status.MultipliedStats[status] = newStatName
+		elseif status.StatusType == "DAMAGE" then
+			local stat = Ext.Stats.Get(status.DamageStats)
+			local newStatName = stat.Name.."_x"..Ext.Utils.Round(multiplier)
+			Ext.Stats.Create(newStatName, "Weapon", stat.Name)
+			local multipliedStat = Ext.Stats.Get(newStatName) ---@type StatEntryWeapon
+			multipliedStat.Damage = Ext.Utils.Round(multipliedStat.DamageFromBase * multiplier)
+			Ext.Stats.Sync(newStatName, true)
+			status.DamageStats = newStatName
+			Helpers.Status.MultipliedStats[status] = newStatName
+		end
+		Ext.Net.BroadcastMessage("VP_MultiplyStatus", Ext.Utils.JsonStringify({
+			Character = Ext.ServerEntity.GetCharacter(status.TargetHandle),
+			Status = status.NetID,
+		}))
+		Helpers.Status.TriggerMultipliedStatusesListeners(status, multiplier, previousMultiplier)
+	end
+
+	Helpers.Status.StatusAppliedListeners = {}
+	---Wrapper to the Osiris function to exclude automatically non-existing or banned statuses
+	---@param character any
+	---@param status any
+	---@param instigator any
+	Helpers.Status.RegisterCleanStatusAppliedListener = function(name, func)
+		Helpers.Status.StatusAppliedListeners[name] = func
+	end
+
+	Ext.Osiris.RegisterListener("CharacterStatusApplied", 3, "before", function(character, status, instigator)
+		if not Data.Stats.BannedStatusesFromChecks[status] or status == "DGM_Finesse" and status ~= "" then
+			for name, func in pairs(Helpers.Status.StatusAppliedListeners) do
+				func(character,status,instigator)
+			end
+		end
+	end)
 end
 
 Helpers.UI = {}
@@ -436,7 +484,6 @@ end
 ---@param skillId string
 ---@param additionalProperties table|nil
 Helpers.LaunchProjectile = function(from, to, skillId, additionalProperties)
-	_P(from, to, skillId, additionalProperties)
 	NRD_ProjectilePrepareLaunch()
 	NRD_ProjectileSetInt("CasterLevel", 3);
 	if type(from) == "table" then

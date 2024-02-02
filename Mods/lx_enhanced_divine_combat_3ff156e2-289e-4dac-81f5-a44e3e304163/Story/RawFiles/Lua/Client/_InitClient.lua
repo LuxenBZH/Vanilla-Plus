@@ -17,6 +17,10 @@ Ext.Require("Client/Systems/CustomStatusAttributes.lua")
 Ext.Require("Client/Tooltips/CustomAttributes.lua")
 Ext.Require("Client/Tooltips/CursorText.lua")
 Ext.Require("Client/Tooltips/Items.lua")
+Ext.Require("Client/Tooltips/CharacterSheet.lua")
+
+Ext.Require("Client/Sync/Statuses.lua")
+Ext.Require("Client/Sync/Equipment.lua")
 
 -- Ext.Require("Client/Systems/SkillCastManager.lua")
 
