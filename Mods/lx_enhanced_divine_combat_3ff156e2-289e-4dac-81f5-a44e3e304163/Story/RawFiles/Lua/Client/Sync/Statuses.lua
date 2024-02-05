@@ -16,9 +16,12 @@ Ext.RegisterNetListener("VP_MultiplyStatus", function(channel, payload, user)
 end)
 
 Ext.RegisterNetListener("VP_RecalculateStatusCritMultBonus", function(channel, payload, user)
-    local b,err = xpcall(function() Ext.ClientEntity.GetCharacter(tonumber(payload)) end, debug.traceback)
-    if not b then return end
     local character = Ext.ClientEntity.GetCharacter(tonumber(payload))
+    if not character then
+        _VWarning("Character with NetID", "Client/Sync/Statuses", payload, "is not properly sync on client side ! Forcing sync with CharacterForceSynch...")
+        Ext.Net.PostMessageToServer("VP_ForceSyncCharacter", payload)
+        return
+    end
     local _,critMult = Data.Math.ComputeStatIntegerFromStatus(character, "VP_CriticalMultiplier")
     -- _VPrint("Received CritMult net message", "Client/Sync/Statuses", character, character.Stats.MainWeapon.StatsEntry.CriticalDamage, character.Stats.MainWeapon.DynamicStats[1].CriticalDamage, critMult)
     character.Stats.MainWeapon.DynamicStats[1].CriticalDamage = character.Stats.MainWeapon.StatsEntry.CriticalDamage + critMult

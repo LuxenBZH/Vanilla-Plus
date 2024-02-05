@@ -30,6 +30,10 @@ Data.Math.ComputeStatIntegerFromEquipment = function(character, statName)
 	return equipmentAttribute
 end
 
+---@param character EsvCharacter|EclCharacter
+---@param statName string
+---@return table
+---@return number
 Data.Math.ComputeStatIntegerFromStatus = function(character, statName)
 	local statusesAttribute = {}
 	for i,j in pairs(character:GetStatuses()) do
