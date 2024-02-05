@@ -16,8 +16,10 @@ Ext.RegisterNetListener("VP_MultiplyStatus", function(channel, payload, user)
 end)
 
 Ext.RegisterNetListener("VP_RecalculateStatusCritMultBonus", function(channel, payload, user)
-    local character,err = xpcall(function() Ext.ClientEntity.GetCharacter(info.Character) end, debug.traceback)
-    if not character then return end
+    local b,err = xpcall(function() Ext.ClientEntity.GetCharacter(tonumber(payload)) end, debug.traceback)
+    if not b then return end
+    local character = Ext.ClientEntity.GetCharacter(tonumber(payload))
     local _,critMult = Data.Math.ComputeStatIntegerFromStatus(character, "VP_CriticalMultiplier")
+    -- _VPrint("Received CritMult net message", "Client/Sync/Statuses", character, character.Stats.MainWeapon.StatsEntry.CriticalDamage, character.Stats.MainWeapon.DynamicStats[1].CriticalDamage, critMult)
     character.Stats.MainWeapon.DynamicStats[1].CriticalDamage = character.Stats.MainWeapon.StatsEntry.CriticalDamage + critMult
 end)

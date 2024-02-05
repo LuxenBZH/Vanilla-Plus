@@ -97,6 +97,7 @@ end)
 --- The game does not support the usage of CriticalDamage field from Weapon stats to increase the critical multiplier from statuses
 --- This workaround uses the extender to set the current weapon critical multiplier as a proxy to the statuses bonuses
 Helpers.Status.RegisterCleanStatusAppliedListener("CriticalMultiplierProxy", function(character, status, instigator)
+    -- _VPrint("Clean status applied listener (ALL)", "CustomAttributesServer", status)
     local target = Ext.ServerEntity.GetCharacter(character)
     local status = target:GetStatus(status)
     local statEntry = status and Ext.Stats.Get(status.StatusId) or nil
@@ -117,6 +118,7 @@ end)
 ---@param status EsvStatus
 ---@param multiplier number
 Helpers.Status.RegisterMultipliedStatus("All", function(status, multiplier, previousMultiplier)
+    -- _VPrint("Multiplied status listener (ALL)", "CustomAttributesServer", status.StatusId)
     local statEntry = Ext.Stats.Get(status.StatusId)
     if statEntry.StatsId ~= "" then
         local potionEntry = Ext.Stats.Get(statEntry.StatsId)
@@ -132,6 +134,7 @@ end)
 ---@param e ExtenderBeforeStatusDeleteEventParams
 Ext.Events.StatusDelete:Subscribe(function(e)
     ---TODO: Deal with CONSUME
+    -- _VPrint("Status delete event (ALL)", "CustomAttributesServer", e.Status.StatusId)
     if not Data.Stats.BannedStatusesFromChecks[e.Status.StatusId] or e.Status.StatusId == "DGM_Finesse" then
         local statEntry = Ext.Stats.Get(e.Status.StatusId)
         if statEntry and statEntry.StatsId ~= "" then

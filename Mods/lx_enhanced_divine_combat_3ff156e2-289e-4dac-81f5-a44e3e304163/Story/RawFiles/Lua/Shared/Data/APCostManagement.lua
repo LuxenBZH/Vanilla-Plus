@@ -156,7 +156,7 @@ Data.APCostManager.RegisterSkillAPFormula("Target_TerrifyingCruelty", function(e
 				e.AP = e.AP - 1
 			end
 		end
-	elseif Ext.IsServer() then
+	elseif Ext.IsServer() and character.ActionMachine.Layers[1].State then
 		local state = character.ActionMachine.Layers[1].State.OriginalSkill
 		local target = Ext.ServerEntity.GetGameObject(state.TargetHandle)
 		if target and Helpers.IsCharacter(target) then
