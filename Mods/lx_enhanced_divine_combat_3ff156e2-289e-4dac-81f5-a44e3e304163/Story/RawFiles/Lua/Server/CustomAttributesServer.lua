@@ -50,7 +50,7 @@ Ext.Osiris.RegisterListener("NRD_OnStatusAttempt", 4, "before", function(target,
         local amount = Data.Math.GetHealScaledWisdomValue(stat, healer)
         --- HEAL statuses with a s.HealAmount modified manually will heal undeads for some reason unless it is set to 0
         --- HEALING statuses don't need this hack because they apply HEAL independently
-        if s.StatusType == "HEAL" and stat.HealStat == "Vitality" and Helpers.IsCharacter(target) and target.Stats.TALENT_Zombie then
+        if s.StatusType == "HEAL" and stat.HealStat == "Vitality" and Helpers.IsCharacter(target) and (target.Stats.TALENT_Zombie or target:GetStatus("DECAYING_TOUCH")) then
             HealToDamage(target, s, amount, healer)
         else
             --- HEALING statuses apply HEAL which needs to prune the ability bonus again because it's reapplied a second time
@@ -59,7 +59,7 @@ Ext.Osiris.RegisterListener("NRD_OnStatusAttempt", 4, "before", function(target,
         end
     elseif status == "LIFESTEAL" then
         s.HealAmount = Ext.Utils.Round(s.HealAmount / (1 + healer.Stats.WaterSpecialist * Ext.ExtraData.SkillAbilityVitalityRestoredPerPoint / 100))
-    elseif status == "HEAL" and Helpers.IsCharacter(target) and target.Stats.TALENT_Zombie then
+    elseif status == "HEAL" and Helpers.IsCharacter(target) and (target.Stats.TALENT_Zombie or target:GetStatus("DECAYING_TOUCH")) then
         s.HealAmount = Ext.Utils.Round(s.HealAmount * (1+Game.Math.GetDamageBoostByType(healer.Stats, "Physical")))
     end
 end)
@@ -99,8 +99,8 @@ end)
 Helpers.Status.RegisterCleanStatusAppliedListener("CriticalMultiplierProxy", function(character, status, instigator)
     local target = Ext.ServerEntity.GetCharacter(character)
     local status = target:GetStatus(status)
-    local statEntry = Ext.Stats.Get(status.StatusId)
-    if statEntry.StatsId ~= "" then
+    local statEntry = status and Ext.Stats.Get(status.StatusId) or nil
+    if statEntry and statEntry.StatsId ~= "" then
         local potionEntry = Ext.Stats.Get(statEntry.StatsId)
         if potionEntry.VP_CriticalMultiplier ~= 0 then
             local target = Ext.ServerEntity.GetGameObject(status.TargetHandle)
@@ -131,9 +131,10 @@ end)
 
 ---@param e ExtenderBeforeStatusDeleteEventParams
 Ext.Events.StatusDelete:Subscribe(function(e)
+    ---TODO: Deal with CONSUME
     if not Data.Stats.BannedStatusesFromChecks[e.Status.StatusId] or e.Status.StatusId == "DGM_Finesse" then
         local statEntry = Ext.Stats.Get(e.Status.StatusId)
-        if statEntry.StatsId ~= "" then
+        if statEntry and statEntry.StatsId ~= "" then
             local potionEntry = Ext.Stats.Get(statEntry.StatsId)
             if potionEntry.VP_CriticalMultiplier ~= 0 then
                 local target = Ext.ServerEntity.GetGameObject(e.Status.TargetHandle)
