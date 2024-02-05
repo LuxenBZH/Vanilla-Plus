@@ -43,7 +43,42 @@ end
 
 Game.Math.CalculateHitChance = DGM_CalculateHitChance
 
+Helpers = {}
+
+Helpers.VPPrint = function(text, module, ...)
+	if module then
+		module = "["..module.."]"
+	end
+	Ext.Utils.Print("[V++]"..(module or "").." "..tostring(text), table.unpack({...}))
+end
+
+_VPrint = Helpers.VPPrint
+
+Helpers.VPPrintWarning = function(text, module, ...)
+	if module then
+		module = "["..module.."]"
+	end
+	Ext.Utils.PrintWarning("[V++]"..(module or "").." "..tostring(text), table.unpack({...}))
+end
+
+_VWarning = Helpers.VPPrintWarning
+
+Helpers.VPPrintError = function(text, module, ...)
+	if module then
+		module = "["..module.."]"
+	end
+	Ext.Utils.PrintError("[V++]"..(module or "").." "..tostring(text), table.unpack({...}))
+end
+
+_VError = Helpers.VPPrintError
+
 Ext.Require("Shared/Helpers.lua")
+Ext.Require("Shared/Helpers/GeneralHelpers.lua")
+Ext.Require("Shared/Helpers/CharacterHelpers.lua")
+Ext.Require("Shared/Helpers/StatsHelpers.lua")
+Ext.Require("Shared/Helpers/StatusHelpers.lua")
+Ext.Require("Shared/Helpers/HitHelpers.lua")
+Ext.Require("Shared/Helpers/UIHelpers.lua")
 Ext.Require("Shared/Settings.lua")
 Ext.Require("Shared/StatsPatching.lua")
 Ext.Require("Shared/StatusWizard.lua")

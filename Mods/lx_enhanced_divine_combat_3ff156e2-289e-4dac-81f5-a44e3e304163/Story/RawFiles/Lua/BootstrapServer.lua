@@ -1,4 +1,5 @@
-Ext.Require("Shared/Helpers.lua")
+Ext.Require("BootstrapShared.lua")
+-- Ext.Require("Shared/Helpers.lua")
 Helpers.VPPrint("Loaded", "BootstrapServer")
 
 Ext.Vars.RegisterUserVariable("VP_LastSkillID", {
@@ -61,5 +62,4 @@ Ext.Osiris.RegisterListener("CharacterUsedSkill", 4, "before", function(characte
     Ext.Entity.GetCharacter(character).UserVars.VP_LastSkillID = {Name = skill, ID = math.random(0, 2147483647)}
 end)
 
-Ext.Require("BootstrapShared.lua")
 Ext.Require("Server/_InitServer.lua")

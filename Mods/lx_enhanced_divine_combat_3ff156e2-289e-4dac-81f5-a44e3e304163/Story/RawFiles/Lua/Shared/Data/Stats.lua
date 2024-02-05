@@ -1,5 +1,7 @@
 Data.Stats = {}
 
+Data.Stats.StatsCustomAttributes = BootstrapModule
+
 local function DataLoadStatsInfo(e)
 	Helpers.VPPrint("Loading Stats Data...", "Stats:DataLoadStatsInfo", "Server:", Ext.IsServer())
 	Data.Stats.CustomAttributeBonuses = {

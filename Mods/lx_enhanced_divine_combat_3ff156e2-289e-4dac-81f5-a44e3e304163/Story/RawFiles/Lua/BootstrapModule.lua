@@ -1,8 +1,8 @@
 Data = {}
-Ext.Require("Shared/Helpers.lua")
-Ext.Require("Shared/Data/Stats.lua")
-Helpers.VPPrint("Loaded", "BootstrapModule")
-Data.Stats.StatsCustomAttributes = {
+-- Ext.Require("Shared/Helpers.lua")
+-- Ext.Require("Shared/Data/Stats.lua")
+-- Helpers.VPPrint("Loaded", "BootstrapModule")
+BootstrapModule = {
     Potion = {
         VP_IngressBoost = "ConstantInt",
         VP_IngressBoostType = "FixedString",
@@ -73,7 +73,7 @@ Data.Stats.StatsCustomAttributes = {
 
 Ext.Events.StatsStructureLoaded:Subscribe(function(e)
     Ext.Utils.Print("[V++:BootstrapModule] Loaded stats structure", "StatsProperties")
-    for statType, attArray in pairs(Data.Stats.StatsCustomAttributes) do
+    for statType, attArray in pairs(BootstrapModule) do
         for customAttribute, dataType in pairs(attArray) do
             Ext.Stats.AddAttribute(statType, customAttribute, dataType)
         end

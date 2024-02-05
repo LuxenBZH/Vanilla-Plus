@@ -1,9 +1,10 @@
 Data = {}
 Data.IsServer = Ext.IsServer()
-Ext.Require("Shared/Helpers.lua")
+Ext.Require("BootstrapShared.lua")
+-- Ext.Require("Shared/Helpers.lua")
 Helpers.VPPrint("Loaded", "BootstrapClient")
 
-Ext.Require("BootstrapShared.lua")
+-- Ext.Require("BootstrapShared.lua")
 
 ---@overload fun(string:BuiltinUISWFName):integer
 Data.UIType = {
