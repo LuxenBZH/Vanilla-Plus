@@ -1,0 +1,9 @@
+new entry "Stats_LX_Escapist"
+type "Potion"
+data "DodgeBoost" "15"
+data "Flags" "CrippledImmunity;WebImmunity;SlowedImmunity"
+
+new entry "Stats_LX_Stench"
+type "Potion"
+data "PoisonResistance" "30"
+data "Flags" "DiseasedImmunity;PoisonContact"

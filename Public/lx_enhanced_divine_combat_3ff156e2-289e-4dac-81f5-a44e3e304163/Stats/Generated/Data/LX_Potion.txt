@@ -649,10 +649,6 @@ type "Potion"
 data "Movement" "100"
 data "DodgeBoost" "5"
 
-new entry "Stats_LX_Stench"
-type "Potion"
-data "PoisonResistance" "30"
-
 new entry "Stats_LX_Hothead"
 type "Potion"
 data "AccuracyBoost" "10"
