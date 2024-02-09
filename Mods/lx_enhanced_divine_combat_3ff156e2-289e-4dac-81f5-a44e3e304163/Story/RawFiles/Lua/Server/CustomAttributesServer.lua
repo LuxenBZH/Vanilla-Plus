@@ -102,8 +102,8 @@ Helpers.Status.RegisterCleanStatusAppliedListener("CriticalMultiplierProxy", fun
     local status = target:GetStatus(status)
     local statEntry = status and Ext.Stats.Get(status.StatusId) or nil
     if statEntry and statEntry.StatsId ~= "" then
-        local potionEntry = Ext.Stats.Get(statEntry.StatsId)
-        if potionEntry.VP_CriticalMultiplier ~= 0 then
+        local potionEntry = Ext.Stats.Get(statEntry.StatsId) or nil
+        if potionEntry and potionEntry.VP_CriticalMultiplier ~= 0 then
             local target = Ext.ServerEntity.GetGameObject(status.TargetHandle)
             if Helpers.IsCharacter(target) then
                 local _,critMult = Data.Math.ComputeStatIntegerFromStatus(target, "VP_CriticalMultiplier")
@@ -122,7 +122,7 @@ Helpers.Status.RegisterMultipliedStatus("All", function(status, multiplier, prev
     local statEntry = Ext.Stats.Get(status.StatusId)
     if statEntry.StatsId ~= "" then
         local potionEntry = Ext.Stats.Get(statEntry.StatsId)
-        if potionEntry.VP_CriticalMultiplier ~= 0 then
+        if potionEntry and potionEntry.VP_CriticalMultiplier ~= 0 then
             local _,critMult = Data.Math.ComputeStatIntegerFromStatus(target, "VP_CriticalMultiplier")
             local character = Ext.ServerEntity.GetCharacter(status.TargetHandle)
             character.Stats.MainWeapon.DynamicStats[1].CriticalDamage = character.Stats.MainWeapon.StatsEntry.CriticalDamage + critMult
@@ -139,7 +139,7 @@ Ext.Events.StatusDelete:Subscribe(function(e)
         local statEntry = Ext.Stats.Get(e.Status.StatusId)
         if statEntry and statEntry.StatsId ~= "" then
             local potionEntry = Ext.Stats.Get(statEntry.StatsId)
-            if potionEntry.VP_CriticalMultiplier ~= 0 then
+            if potionEntry and potionEntry.VP_CriticalMultiplier ~= 0 then
                 local target = Ext.ServerEntity.GetGameObject(e.Status.TargetHandle)
                 if Helpers.IsCharacter(target) then
                     local _,critMult = Data.Math.ComputeStatIntegerFromStatus(target, "VP_CriticalMultiplier")
