@@ -178,6 +178,20 @@ Helpers.GetDynamicTranslationStringFromHandle = function(handle, ...)
 	return str
 end
 
+---@param handle string
+---@return string
+Helpers.GetDynamicTranslationStringFromKey = function(key, ...)
+	local args = {...}
+	if key == nil then return "" end
+
+	local str = Ext.L10N.GetTranslatedStringFromKey(key)
+	if str == "" then
+		_VError("Tooltip key error:", "Tooltips", key)
+	end
+	str = Helpers.SubstituteString(str, table.unpack(args))
+	return str
+end
+
 --- Removes the _-1 at the end
 ---@param skillID string
 ---@return string

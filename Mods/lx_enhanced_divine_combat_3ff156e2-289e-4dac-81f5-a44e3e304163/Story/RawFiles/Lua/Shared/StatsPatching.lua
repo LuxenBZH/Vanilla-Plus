@@ -52,7 +52,7 @@ local function AddAdditionalDescription()
 	}
 
 	for skill, params in pairs(descriptions) do
-		local desc = GetDynamicTranslationString(skill, table.unpack(params))
+		local desc = Helpers.GetDynamicTranslationStringFromKey(skill.."_DisplayName", table.unpack(params))
 		if desc == nil then desc = params end
 		Ext.StatAddCustomDescription(skill, "SkillProperties", desc)
 	end
