@@ -3,6 +3,8 @@ Ext.RegisterNetListener("VP_MultiplyStatus", function(channel, payload, user)
     local character,err = xpcall(function() return Ext.ClientEntity.GetCharacter(info.Character) end, debug.traceback)
     if not character then return end
     local status = Ext.ClientEntity.GetStatus(character, info.Status)
+    _VWarning("Status", "Client/Sync/Statuses", info.Status, "could not be found for character", character.DisplayName, character.MyGuid, "on client side!")
+    if not status then return end
     status.StatsMultiplier = info.Multiplier
     --- Crit Multiplier particularity
     local statEntry = Ext.Stats.Get(status.StatusId)
