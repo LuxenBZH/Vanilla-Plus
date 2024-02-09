@@ -121,9 +121,15 @@ end
 
 --- @param target string GUID
 --- @param dmgList table
-local function TriggerCorrogicResistanceStrip(target, dmgList)
+local function TriggerCorrogicResistanceStrip(target, dmgListNew)
 	local character = Ext.GetCharacter(target)
-	_DS(dmgList)
+	local dmgList = {
+		Magic = 0,
+		Corrosive = 0
+	}
+	for i,j in pairs(dmgListNew) do
+		dmgList[j.DamageType] = dmgList[j.DamageType] + j.Amount
+	end
 	if dmgList.Corrosive > 0 or dmgList.Magic > 0 then
 		local perc = 0
 		if character.Stats.CurrentArmor == 0 then
@@ -207,6 +213,7 @@ local function DamageControl(target, instigator, hitDamage, handle)
 		attacker.DamageBonus = 0
 		attacker.GlobalMultiplier = 1
 	end
+	_VPrint("General multiplier:", "HitManager", attacker.DamageBonus, attacker.GlobalMultiplier)
 	local damageTable = hit.Hit.DamageList:ToTable()
 	-- _DS(damageTable)
 	NRD_HitStatusClearAllDamage(target.MyGuid, handle)
@@ -220,6 +227,7 @@ local function DamageControl(target, instigator, hitDamage, handle)
 		end
 		local schoolMultiplier = (instigator and Data.DamageTypeToAbility[element.DamageType]) and Game.Math.GetDamageBoostByType(instigator.Stats, element.DamageType) or 0
 		element.Amount = (element.Amount * (multiplier + schoolMultiplier)) * attacker.GlobalMultiplier + math.random(0,1) -- Range somewhat of a fix
+		_VPrint("Total Multiplier for", "HitManager", element.DamageType, ": ", tostring((multiplier + schoolMultiplier) * attacker.GlobalMultiplier))
 		HitHelpers.HitAddDamage(hit.Hit, target, instigator, tostring(element.DamageType), math.floor(element.Amount))
 		-- NRD_HitStatusAddDamage(target.MyGuid, handle, element.DamageType, element.Amount)
 	end
@@ -227,10 +235,10 @@ local function DamageControl(target, instigator, hitDamage, handle)
 	HitHelpers.HitRecalculateLifesteal(hit.Hit, instigator)
 	-- _DS(hit.Hit.DamageList:ToTable())
 	HitManager:TriggerHitListeners("DGM_Hit", "AfterDamageScaling", hit, instigator, target, flags)
-	-- if Ext.ExtraData.DGM_Corrogic == 1 then
-	-- 	_DS(hit.Hit.DamageList:ToTable())
-	-- 	TriggerCorrogicResistanceStrip(target.MyGuid, hit.Hit.DamageList:ToTable())
-	-- end
+	if Ext.ExtraData.DGM_Corrogic == 1 then
+		-- _DS(hit.Hit.DamageList:ToTable())
+		TriggerCorrogicResistanceStrip(target.MyGuid, hit.Hit.DamageList:ToTable())
+	end
 	HitManager:InitiatePassingDamage(target, hit.Hit.DamageList:ToTable())
 	-- HitManager:ShieldStatusesAbsorbDamage(target, hit.Hit.DamageList)
 end
