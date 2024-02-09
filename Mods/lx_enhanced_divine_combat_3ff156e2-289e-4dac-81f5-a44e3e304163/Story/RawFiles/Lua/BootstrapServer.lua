@@ -1,3 +1,4 @@
+PersistentVars = {}
 Ext.Require("BootstrapShared.lua")
 -- Ext.Require("Shared/Helpers.lua")
 Helpers.VPPrint("Loaded", "BootstrapServer")

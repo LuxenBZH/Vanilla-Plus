@@ -30,13 +30,14 @@ Ext.Require("Server/Skills.lua")
 -- Ext.Require("Server/SP_DMR.lua")
 -- Ext.Utils.Include("3ff156e2-289e-4dac-81f5-a44e3e304163", "Server/SP_DiminishingReturn.lua")
 
+if PersistentVars.SPunchCooldown == nil then
+	PersistentVars.SPunchCooldown = {}
+end
+
 gameLevel = ""
 
 Ext.RegisterOsirisListener("GameStarted", "2", "after", function(level, editor)
 	gameLevel = level
-	if PersistentVars.SPunchCooldown == nil then
-		PersistentVars.SPunchCooldown = {}
-	end
 end)
 
 if Mods.LeaderLib ~= nil then
