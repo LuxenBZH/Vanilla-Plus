@@ -110,7 +110,7 @@ function CustomGetSkillDamageRange(character, skill, mainWeapon, offHand, fromEx
 
         local boosts = Data.Math.GetCharacterComputedDamageBonus(character.Character, nil, {}, skill)
 
-        local globalMult = boosts.DamageBonus / 100
+        local globalMult = 1 + boosts.DamageBonus / 100
         
         for damageType, range in pairs(mainDamageRange) do
             range.Min = Ext.Utils.Round(range.Min * (damageMultiplier) * (globalMult + Game.Math.GetDamageBoostByType(character, damageType)))
@@ -179,7 +179,7 @@ function CustomGetSkillDamageRange(character, skill, mainWeapon, offHand, fromEx
             end
 		end
 		--Ext.Print("Global mult", globalMult, skillDamageType)
-        local globalMult = (Data.Math.GetCharacterComputedDamageBonus(character.Character, nil, flags, skill).DamageBonus/100)
+        local globalMult = 1 + (Data.Math.GetCharacterComputedDamageBonus(character.Character, nil, flags, skill).DamageBonus/100)
         local damageTypeBoost = Game.Math.GetDamageBoostByType(character, damageType)
         globalMult = globalMult + damageTypeBoost
         local baseDamage = CustomCalculateBaseDamage(skillDamageType, character, 0, level) * damageMultiplier * globalMult

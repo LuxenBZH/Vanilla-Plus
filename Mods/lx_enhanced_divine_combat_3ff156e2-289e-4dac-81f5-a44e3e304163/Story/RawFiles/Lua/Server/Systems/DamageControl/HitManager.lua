@@ -79,6 +79,66 @@ function HitManager:InitiatePassingDamage(target, damages)
 	end
 end
 
+---------- Corrogic Module
+--- @param instigator string GUID
+--- @param skill string
+local function IncreaseCorrosiveMagicFromSkill(instigator, skill, damageList)
+	local school = Ext.GetStat(skill).Ability
+	local stat = Ext.GetCharacter(instigator).Stats[skillAbilities[school]]
+	if stat then
+		if damageList["Corrosive"] ~= 0 then
+			damageList["Corrosive"] = damageList["Corrosive"] * 1.0+(0.05*stat)
+		end
+		if damageList["Magic"] ~= 0 then
+			damageList["Magic"] = damageList["Magic"] * 1.0+(0.05*stat)
+		end
+	end
+end
+
+local function InflictResistanceDebuff(target, perc)
+	local character = Ext.GetCharacter(target)
+	local current = FindStatus(character, "LX_CORROGIC_")
+	if not current then
+		current = perc
+	else
+		current = string.gsub(current, "LX_CORROGIC_", "")
+		current = tonumber(current) + perc
+	end
+	if NRD_StatExists("LX_CORROGIC_"..current) then
+		ApplyStatus(character.MyGuid, "LX_CORROGIC_"..current, 12.0, 1)
+	else
+		local newPotion = Ext.CreateStat("DGM_Potion_Corrogic_"..current, "Potion", "DGM_Potion_Base")
+		for i,res in pairs(resistances) do
+			newPotion[res] = -current
+		end
+		Ext.SyncStat(newPotion.Name, false)
+		local newStatus = Ext.CreateStat("LX_CORROGIC_"..current, "StatusData", "LX_CORROGIC")
+		newStatus.StatsId = newPotion.Name
+		Ext.SyncStat(newStatus.Name, false)
+		ApplyStatus(character.MyGuid, "LX_CORROGIC_"..current, 12.0, 1)
+	end
+end
+
+--- @param target string GUID
+--- @param dmgList table
+local function TriggerCorrogicResistanceStrip(target, dmgList)
+	local character = Ext.GetCharacter(target)
+	_DS(dmgList)
+	if dmgList.Corrosive > 0 or dmgList.Magic > 0 then
+		local perc = 0
+		if character.Stats.CurrentArmor == 0 then
+			perc = perc + math.floor(dmgList.Corrosive / character.Stats.MaxVitality * 100)
+		end
+		if character.Stats.CurrentMagicArmor == 0 then
+			perc = perc + math.floor(dmgList.Magic / character.Stats.MaxVitality * 100)
+		end
+		if perc > 0 then
+			InflictResistanceDebuff(target, perc)
+		end
+	end
+end
+-----------
+
 ---@param target Guid
 ---@param instigator Guid
 ---@param hitDamage number
@@ -148,10 +208,11 @@ local function DamageControl(target, instigator, hitDamage, handle)
 		attacker.GlobalMultiplier = 1
 	end
 	local damageTable = hit.Hit.DamageList:ToTable()
+	-- _DS(damageTable)
 	NRD_HitStatusClearAllDamage(target.MyGuid, handle)
 	HitManager:TriggerHitListeners("DGM_Hit", "BeforeDamageScaling", hit, instigator, target, flags)
 	for i,element in pairs(damageTable) do
-		local multiplier = attacker.DamageBonus/100
+		local multiplier = 1 + attacker.DamageBonus/100
 		if element.DamageType == "Water" and instigator.Stats.TALENT_IceKing then
 			multiplier = multiplier + 1/Ext.ExtraData.DGM_IceKingDamageBonus
 		elseif element.DamageType == "Corrosive" or element.DamageType == "Magic" then
@@ -164,7 +225,12 @@ local function DamageControl(target, instigator, hitDamage, handle)
 	end
 	HitHelpers.HitRecalculateAbsorb(hit.Hit, target)
 	HitHelpers.HitRecalculateLifesteal(hit.Hit, instigator)
+	-- _DS(hit.Hit.DamageList:ToTable())
 	HitManager:TriggerHitListeners("DGM_Hit", "AfterDamageScaling", hit, instigator, target, flags)
+	-- if Ext.ExtraData.DGM_Corrogic == 1 then
+	-- 	_DS(hit.Hit.DamageList:ToTable())
+	-- 	TriggerCorrogicResistanceStrip(target.MyGuid, hit.Hit.DamageList:ToTable())
+	-- end
 	HitManager:InitiatePassingDamage(target, hit.Hit.DamageList:ToTable())
 	-- HitManager:ShieldStatusesAbsorbDamage(target, hit.Hit.DamageList)
 end
