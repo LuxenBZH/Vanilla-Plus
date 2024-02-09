@@ -128,7 +128,7 @@ local function TriggerCorrogicResistanceStrip(target, dmgListNew)
 		Corrosive = 0
 	}
 	for i,j in pairs(dmgListNew) do
-		dmgList[j.DamageType] = dmgList[j.DamageType] + j.Amount
+		dmgList[j.DamageType] = (dmgList[j.DamageType] or 0) + j.Amount
 	end
 	if dmgList.Corrosive > 0 or dmgList.Magic > 0 then
 		local perc = 0
