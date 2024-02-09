@@ -3,6 +3,7 @@
 --- @param character EclCharacter
 --- @param status EclStatus
 local function OnStatusTooltip(e, tooltip, character, status)
+    if status == nil then return end
     local b,err = xpcall(function() return status.StatsId end, debug.traceback)
     if not b then return end
     if status and type(status) ~= "number" and status.StatsId and status.StatsId ~= "" and Ext.Stats.Get(status.StatsId, nil, false) then
