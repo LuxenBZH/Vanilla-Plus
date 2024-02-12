@@ -157,7 +157,7 @@ Data.APCostManager.RegisterSkillAPFormula("Target_TerrifyingCruelty", function(e
 			end
 		end
 	elseif Ext.IsServer() and character.ActionMachine.Layers[1].State then
-		local state = character.ActionMachine.Layers[1].State.OriginalSkill
+		local state = character.ActionMachine.Layers[1].State.OriginalSkill --TODO: OriginalSkill does not exists in all contexts. Make a check for that.
 		local target = Ext.ServerEntity.GetGameObject(state.TargetHandle)
 		if target and Helpers.IsCharacter(target) then
 			if target.Stats.CurrentArmor > 0 then

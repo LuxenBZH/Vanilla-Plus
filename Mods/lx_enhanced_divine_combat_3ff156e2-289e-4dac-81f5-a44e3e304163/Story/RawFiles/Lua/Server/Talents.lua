@@ -47,6 +47,7 @@ Ext.Osiris.RegisterListener("CharacterLockedTalent", 2, "before", function(chara
 	CheckBoostTalents(character, talent, 0)
 end)
 
+
 ---@param character string UUID
 ---@param unlocked boolean
 function ManageMemory(character, unlocked)
@@ -129,7 +130,8 @@ function CheckAllTalents(character)
 		"NoAttackOfOpportunity",
 		"Perfectionist",
 		"ViolentMagic",
-		"Raistlin"
+		"Raistlin",
+		
 	}
 	for i,talent in pairs(boostedTalents) do
 		local hasTalent = CharacterHasTalent(character, talent)
@@ -138,6 +140,8 @@ function CheckAllTalents(character)
 	end
 	if CharacterHasTalent(character, "ExtraStatPoints") == 1 then CheckDuelist(character) end
 end
+
+Ext.Osiris.RegisterListener("CharacterResurrected", 1, "before", CheckAllTalents)
 
 ---@param character EsvCharacter
 function CheckDuelist(_, character)
@@ -149,9 +153,9 @@ function CheckDuelist(_, character)
 			local offhand = character.Stats.OffHandWeapon
 			local shield = CharacterGetEquippedShield(character.MyGuid)
 			if offhand ~= nil or (mainHand ~= nil and mainHand.IsTwoHanded) or mainHand.WeaponType == "None" or shield ~= nil then
-				RemoveStatus(character, "LX_DUELIST")
+				RemoveStatus(character.MyGuid, "LX_DUELIST")
 			else
-				ApplyStatus(character, "LX_DUELIST", -1.0, 1)
+				ApplyStatus(character.MyGuid, "LX_DUELIST", -1.0, 1)
 			end
 		end
 	end
