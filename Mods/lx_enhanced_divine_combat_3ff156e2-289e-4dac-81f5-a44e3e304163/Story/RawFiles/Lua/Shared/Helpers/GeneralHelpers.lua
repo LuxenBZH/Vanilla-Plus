@@ -75,7 +75,7 @@ if Ext.IsServer() then
 			status.DamageStats = newStatName
 			Helpers.Status.MultipliedStats[status] = newStatName
 		end
-		Ext.Net.BroadcastMessage("VP_MultiplyStatus", Ext.Utils.JsonStringify({
+		Ext.Net.BroadcastMessage("VP_MultiplyStatus", Ext.Json.Stringify({
 			Character = Ext.ServerEntity.GetCharacter(status.TargetHandle),
 			Status = status.NetID,
 		}))
