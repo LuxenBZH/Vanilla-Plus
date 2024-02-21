@@ -213,11 +213,11 @@ local function DamageControl(target, instigator, hitDamage, handle)
 		attacker.DamageBonus = 0
 		attacker.GlobalMultiplier = 1
 	end
-	_VPrint("General multiplier:", "HitManager", attacker.DamageBonus, attacker.GlobalMultiplier)
+	-- _VPrint("General multiplier:", "HitManager", attacker.DamageBonus, attacker.GlobalMultiplier)
+	HitManager:TriggerHitListeners("DGM_Hit", "BeforeDamageScaling", hit, instigator, target, flags)
 	local damageTable = hit.Hit.DamageList:ToTable()
 	-- _DS(damageTable)
 	NRD_HitStatusClearAllDamage(target.MyGuid, handle)
-	HitManager:TriggerHitListeners("DGM_Hit", "BeforeDamageScaling", hit, instigator, target, flags)
 	for i,element in pairs(damageTable) do
 		local multiplier = 1 + attacker.DamageBonus/100
 		if element.DamageType == "Water" and instigator.Stats.TALENT_IceKing then
@@ -227,21 +227,18 @@ local function DamageControl(target, instigator, hitDamage, handle)
 		end
 		local schoolMultiplier = (instigator and Data.DamageTypeToAbility[element.DamageType]) and Game.Math.GetDamageBoostByType(instigator.Stats, element.DamageType) or 0
 		element.Amount = (element.Amount * (multiplier + schoolMultiplier)) * attacker.GlobalMultiplier + math.random(0,1) -- Range somewhat of a fix
-		_VPrint("Total Multiplier for", "HitManager", element.DamageType, ": ", tostring((multiplier + schoolMultiplier) * attacker.GlobalMultiplier))
+		-- _VPrint("Total Multiplier for", "HitManager", element.DamageType, ": ", tostring((multiplier + schoolMultiplier) * attacker.GlobalMultiplier), element.Amount)
 		HitHelpers.HitAddDamage(hit.Hit, target, instigator, tostring(element.DamageType), math.floor(element.Amount))
 		-- NRD_HitStatusAddDamage(target.MyGuid, handle, element.DamageType, element.Amount)
 	end
 	HitHelpers.HitRecalculateAbsorb(hit.Hit, target)
 	HitHelpers.HitRecalculateLifesteal(hit.Hit, instigator)
-	-- _DS(hit.Hit.DamageList:ToTable())
 	HitManager:TriggerHitListeners("DGM_Hit", "AfterDamageScaling", hit, instigator, target, flags)
 	if Ext.ExtraData.DGM_Corrogic == 1 then
-		-- _DS(hit.Hit.DamageList:ToTable())
 		TriggerCorrogicResistanceStrip(target.MyGuid, hit.Hit.DamageList:ToTable())
 	end
 	HitManager:InitiatePassingDamage(target, hit.Hit.DamageList:ToTable())
 	-- HitManager:ShieldStatusesAbsorbDamage(target, hit.Hit.DamageList)
 end
 
--- Ext.RegisterOsirisListener("NRD_OnStatusAttempt", 4, "before", HitCatch)
-Ext.RegisterOsirisListener("NRD_OnHit", 4, "before", DamageControl)
+Ext.Osiris.RegisterListener("NRD_OnHit", 4, "before", DamageControl)

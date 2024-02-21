@@ -2,6 +2,8 @@ _P("Loaded CharacterHelpers.lua")
 
 Helpers.NullGUID = "NULL_00000000-0000-0000-0000-000000000000"
 
+Helpers.Character = {}
+
 --- @param object IEoCServerObject | IEoCClientObject
 Helpers.IsCharacter = function(object)
 	if Ext.IsServer() then
@@ -87,8 +89,42 @@ Helpers.GetCharactersAroundPosition = function(x,y,z,radius)
 	return characters
 end
 
+---@param character EsvCharacter
+Helpers.Character.GetComputedCriticalMultiplier = function(character)
+	local result = 100
+	if character.Stats.MainWeapon then
+		result = character.Stats.MainWeapon.DynamicStats[1].CriticalDamage
+		if character.Stats.MainWeapon.IsTwoHanded then
+			result = result + character.Stats.TwoHanded * Ext.ExtraData.CombatAbilityCritMultiplierBonus
+		end
+	end
+	result = result + Ext.ExtraData.SkillAbilityCritMultiplierPerPoint * character.Stats.RogueLore
+	return result
+end
+
 Helpers.Client = {}
 
 Helpers.Client.GetCurrentCharacter = function()
 	return Ext.ClientEntity.GetCharacter(Ext.UI.DoubleToHandle(Ext.UI.GetByType(Data.UIType.hotBar):GetRoot().hotbar_mc.characterHandle))
+end
+
+if Ext.IsServer() then
+	--- A safe version of Ext.ServerEntity.GetCharacter to avoid errors spamming the console when the handle does not exists
+	---@param handle any
+	---@return EsvCharacter
+	Helpers.ServerSafeGetCharacter = function(handle)
+		if type(handle) == "number" then
+			return Ext.ServerEntity.GetCharacter(handle)
+		else
+			if ObjectExists(handle) == 1 then
+				return Ext.ServerEntity.GetCharacter(handle)
+			else
+				if Ext.Debug.IsDeveloperMode() then
+					_VWarning("Handle", "CharacterHelpers:ServerSafeGetCharacter", handle, "does not exists!")
+					return
+				end
+			end
+		end
+		_VError("Could not fetch character", "CharacterHelpers:ServerSafeGetCharacter", handle)
+	end
 end
