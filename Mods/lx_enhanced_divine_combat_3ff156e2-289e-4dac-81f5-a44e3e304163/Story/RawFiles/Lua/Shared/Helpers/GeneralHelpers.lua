@@ -1,5 +1,3 @@
-_P("Loaded GeneralHelpers.lua")
-
 --- @param object EsvCharacter|EclCharacter|EsvItem|EclItem
 Helpers.EntityHasTag = function(object, tag)
 	for _,j in ipairs(object:GetTags()) do
@@ -75,7 +73,7 @@ if Ext.IsServer() then
 			status.DamageStats = newStatName
 			Helpers.Status.MultipliedStats[status] = newStatName
 		end
-		Ext.Net.BroadcastMessage("VP_MultiplyStatus", Ext.Json.Stringify({
+		Ext.Net.BroadcastMessage("VP_MultiplyStatus", Ext.Utils.JsonStringify({
 			Character = Ext.ServerEntity.GetCharacter(status.TargetHandle),
 			Status = status.NetID,
 		}))
