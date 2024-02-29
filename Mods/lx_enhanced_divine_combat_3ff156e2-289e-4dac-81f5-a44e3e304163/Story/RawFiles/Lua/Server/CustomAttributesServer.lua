@@ -74,7 +74,7 @@ Ext.Osiris.RegisterListener("CharacterStatusApplied", 3, "before", function(char
         local status = character:GetStatus(status)
         local statEntry = Ext.Stats.Get(status.StatsId)
         if statEntry.VP_Celerity ~= 0 then
-            character.PartialAP = character.PartialAP + Data.Math.ComputeCelerityValue(statEntry.VP_Celerity, character)
+            character.PartialAP = character.PartialAP + statEntry.VP_Celerity / Data.Math.GetCharacterMovement(character).Movement
         end
     end
 end)
