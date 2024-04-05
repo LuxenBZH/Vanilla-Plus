@@ -98,6 +98,18 @@ if Ext.IsServer() then
 	end)
 end
 
+---@param entity EsvCharacter|EsvItem|EclCharacter|EclItem
+---@param tag string
+Helpers.GetVariableTag = function(entity, tag)
+	local tags = entity:GetTags()
+	for i,j in ipairs(tags) do
+		if string.starts(j, tag) then
+			local value = string.gsub(j, tag.."_value_", "")
+			return value
+		end
+	end
+end
+
 if Ext.IsServer() then
 	Ext.Osiris.RegisterListener("CharacterStatusRemoved", 3, "before", function(target, status, instigator)
 		if Helpers.Status.MultipliedStats[status] then
@@ -145,6 +157,26 @@ if Ext.IsServer() then
 			Name = "",
 			Handle = func
 		})
+	end
+
+	---@param entity EsvCharacter|EsvItem
+	---@param tag string
+	Helpers.ClearVariableTag = function(entity, tag)
+		local tags = entity:GetTags()
+		for i,j in ipairs(tags) do
+			if string.starts(tag, j) then
+				ClearTag(entity, tag)
+			end
+		end
+	end
+
+	---comment
+	---@param entity EsvCharacter|EsvItem
+	---@param tag string
+	---@param value string|number
+	Helpers.SetVariableTag = function(entity, tag, value)
+		Helpers.ClearVariableTag(entity, tag)
+		SetTag(entity.MyGuid, tag.."_value_"..tostring(value))
 	end
 end
 
@@ -317,3 +349,4 @@ Helpers.StatusGetAbsorbShieldElement = function(status)
 		return nil
 	end
 end
+

@@ -4,7 +4,7 @@ Ext.Events.SessionLoaded:Subscribe(function(e)
     ---@param tooltip TooltipData
     Game.Tooltip.RegisterListener("Item", nil, function(item, tooltip)
         if tooltip == nil then return end
-        if item.ItemType ~= "Weapon" then return end
+        if item.ItemSlot ~= "Weapon" then return end
         local requirements = tooltip:GetElements("ItemRequirement")
         for i,el in pairs(tooltip.Data) do
             if el.Label and string.match(el.Label, "Scales With") ~= nil then
@@ -27,7 +27,7 @@ Ext.Events.SessionLoaded:Subscribe(function(e)
             tooltip:AppendElementAfter(equipment, "ExtraProperties")
         end
         if Ext.ExtraData.DGM_RangedCQBPenalty > 0 then
-            if item.WeaponType == "Bow" or item.WeaponType == "Crossbow" or item.WeaponType == "Rifle" or item.WeaponType == "Wand" then
+            if item.WeaponType == "Bow" or item.WeaponType == "Crossbow" or item.WeaponType == "Rifle" or item.WeaponType == "Wand" or item.EquipmentType == "Shield" then
                 local equipment = {
                     Type = "ItemRequirement",
                     Label = "",
@@ -46,7 +46,20 @@ Ext.Events.SessionLoaded:Subscribe(function(e)
                 }
                 tooltip:AppendElementAfter(equipment, "ExtraProperties")
             end
-        end
+        end        
+    end)
+
+    --- Weapon and Shields level range adaptation
+    ---@param item CDivinityStatsItem
+    ---@param tooltip TooltipData
+    Game.Tooltip.RegisterListener("Item", nil, function(item, tooltip)
+        if tooltip == nil then return end
+        if item.ItemSlot ~= "Weapon" and item.ItemSlot ~= "Shield" then return end
+        -- _P(Helpers.GetVariableTag(item.GameObject, "VP_WeaponGenerationLevel"))
+        local originalLevel = Helpers.GetVariableTag(item.GameObject, "VP_WeaponGenerationLevel") or (item.GameObject.Level ~= 0 and item.GameObject.Level or item.Stats.Level)
+        local levelElement = tooltip:GetElement("ItemLevel")
+        levelElement.Label = levelElement.Label.." ("..tostring(item.Stats.Level)..") "..tostring(Ext.Utils.Round(originalLevel)).." -"
+        levelElement.Value = Ext.Utils.Round(originalLevel + Ext.ExtraData.DGM_WeaponDefaultLevelRange)
     end)
 
     --- Potion damage absorption shield tooltip
@@ -62,5 +75,25 @@ Ext.Events.SessionLoaded:Subscribe(function(e)
                 Label = "Absorb "..Data.Text.GetFormattedDamageText(potion.VP_AbsorbShieldType, value).." for "..potion.Duration.." turns."
             })
         end
-    end)
+    end)    
 end)
+
+-- Ext.Events.GameStateChanged:Subscribe(function(e)
+--     if e.FromState == "PrepareRunning" and e.ToState == "Running" then
+--         for i,j in pairs(Ext.Entity.GetPlayerManager().ClientPlayerData) do
+--             if object.IsPlayer then
+--                 _P(object.IsPlayer, object.DisplayName)
+--                 if object.Stats.MainWeapon then
+--                     object.Stats.MainWeapon.GameObject.Level = object.Stats.MainWeapon.Level
+--                     object.Stats.MainWeapon.DynamicStats[1].MinDamage = Ext.Utils.Round(Ext.Utils.Round(Game.Math.GetLevelScaledWeaponDamage(object.Stats.MainWeapon.Level))*(1-(object.Stats.MainWeapon.StatsEntry['Damage Range']/200)))
+--                     object.Stats.MainWeapon.DynamicStats[1].MaxDamage = math.ceil(Ext.Utils.Round(Game.Math.GetLevelScaledWeaponDamage(object.Stats.MainWeapon.Level))*(1-(object.Stats.MainWeapon.StatsEntry['Damage Range']/200)))
+--                 end
+--                 if object.Stats.OffHandWeapon then
+--                     object.Stats.OffHandWeapon.GameObject.Level = object.Stats.OffHandWeapon.Level
+--                     object.Stats.OffHandWeapon.DynamicStats[1].MinDamage = Ext.Utils.Round(Ext.Utils.Round(Game.Math.GetLevelScaledWeaponDamage(object.Stats.OffHandWeapon.Level))*(1-(object.Stats.OffHandWeapon.StatsEntry['Damage Range']/200)))
+--                     object.Stats.OffHandWeapon.DynamicStats[1].MaxDamage = math.ceil(Ext.Utils.Round(Game.Math.GetLevelScaledWeaponDamage(object.Stats.OffHandWeapon.Level))*(1-(object.Stats.OffHandWeapon.StatsEntry['Damage Range']/200)))
+--                 end
+--             end
+--         end
+--     end
+-- end)
