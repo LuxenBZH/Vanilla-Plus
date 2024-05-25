@@ -8,6 +8,9 @@ local VPlusSimpleSkillGroups = {
         end,
         Zone_LaserRay = function(character)
             return true
+        end,
+        Shout_InspireStart = function(character)
+            return true
         end
     }
 }

@@ -350,3 +350,19 @@ Helpers.StatusGetAbsorbShieldElement = function(status)
 	end
 end
 
+Helpers.SimpleHash16 = function(input)
+    local hash = 0
+    for i = 1, #input do
+        local char = string.byte(input, i)
+        hash = (hash * 31 + char) % 0xFFFFFFFF
+    end
+
+    -- Convert hash to hexadecimal string
+    local hex = string.format("%08x", hash)
+
+    -- Ensure the result is 16 characters long
+    -- by repeating or truncating as necessary
+    local digest = (hex .. hex):sub(1, 16)
+
+    return digest
+end

@@ -23,6 +23,21 @@ Ext.RegisterNetListener("LX_SkillGroupsTrigger", function(channel, payload)
         NRD_SkillBarClear(character.MyGuid, slot)
         slot = slot + 1
     end
+    local skills = "Target_LX_CancelGroupSkill"
+    for skill,valid in pairs(info.Skills) do
+        if valid then
+            skills = skills..";"..skill
+        end
+    end
+    --- Create a status that teach all skills temporarily instead of managing them manually.
+    local skillStatus = CustomStatusManager:Create("LX_SkillGroup_"..Helpers.SimpleHash16(skills), {
+        Potion = {},
+        Status = {
+            Skills = skills
+        }
+    })
+    ApplyStatus(character.MyGuid, skillStatus.Name, -1, 1, character.MyGuid)
+
     Ext.Net.PostMessageToClient(character.MyGuid, "LX_HotbarIndexSetText", "")
 end)
 
@@ -46,6 +61,12 @@ end)
 Ext.RegisterNetListener("LX_SkillGroupsRecover", function(_, payload)
     local info = Ext.Json.Parse(payload)
     local character = Ext.ServerEntity.GetCharacter(tonumber(info.Character))
+    local skillStatus = nil
+    for i,status in pairs(character:GetStatuses()) do
+        if string.starts(status, "LX_SkillGroup") then
+            RemoveStatus(character.MyGuid, status)
+        end
+    end
     if PersistentVars.SkillGroupSavedBars[character.MyGuid] then
         local slot = 0
         while slot < 29 do
