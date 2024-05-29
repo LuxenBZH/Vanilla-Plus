@@ -1,3 +1,4 @@
+Ext.Require("Client/Systems/ClientTimer.lua")
 Ext.Require("Client/SkillStatusTooltips.lua")
 Ext.Require("Client/Tooltips.lua")
 Ext.Require("Client/CharacterSheet/CSMisc.lua")
