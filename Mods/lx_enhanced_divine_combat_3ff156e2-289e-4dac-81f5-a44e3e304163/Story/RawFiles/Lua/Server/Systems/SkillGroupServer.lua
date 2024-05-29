@@ -7,7 +7,13 @@ Ext.RegisterNetListener("LX_SkillGroupsTrigger", function(channel, payload)
     local character = Ext.ServerEntity.GetCharacter(tonumber(info.Character))
     PersistentVars.SkillGroupSavedBars[character.MyGuid] = {}
     for i,j in pairs(character.PlayerData.SkillBar) do
-        PersistentVars.SkillGroupSavedBars[character.MyGuid][i] = {ItemHandle = j.ItemHandle, SkillOrStatId = j.SkillOrStatId, Type = j.Type}
+        if j.Type ~= "None" then
+            if j.Type == "Item" then
+                PersistentVars.SkillGroupSavedBars[character.MyGuid][i] = {ItemHandle = Ext.ServerEntity.GetItem(j.ItemHandle).MyGuid, SkillOrStatId = j.SkillOrStatId, Type = tostring(j.Type)}
+            else
+                PersistentVars.SkillGroupSavedBars[character.MyGuid][i] = {SkillOrStatId = j.SkillOrStatId, Type = tostring(j.Type)}
+            end
+        end
     end
     -- PersistentVars.SkillGroupSavedBars[character.MyGuid] = character.PlayerData.SkillBar --Needs manual parsing
     NRD_SkillBarSetSkill(character.MyGuid, 0, "Target_LX_CancelGroupSkill")
@@ -69,13 +75,13 @@ Ext.RegisterNetListener("LX_SkillGroupsRecover", function(_, payload)
     end
     if PersistentVars.SkillGroupSavedBars[character.MyGuid] then
         local slot = 0
-        while slot < 29 do
+        while slot < 30 do
             NRD_SkillBarClear(character.MyGuid, slot)
             if PersistentVars.SkillGroupSavedBars[character.MyGuid][slot] then
                 if PersistentVars.SkillGroupSavedBars[character.MyGuid][slot].Type == "Skill" then
                     NRD_SkillBarSetSkill(character.MyGuid, slot-1, PersistentVars.SkillGroupSavedBars[character.MyGuid][slot].SkillOrStatId)
                 else
-                    NRD_SkillBarSetItem(character.MyGuid, slot-1, PersistentVars.SkillGroupSavedBars[character.MyGuid][slot].SkillOrStatId)
+                    NRD_SkillBarSetItem(character.MyGuid, slot-1, PersistentVars.SkillGroupSavedBars[character.MyGuid][slot].ItemHandle)
                 end
             end
             slot = slot + 1
