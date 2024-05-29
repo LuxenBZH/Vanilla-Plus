@@ -4,7 +4,8 @@ SkillGroupManager = {
     SkillGroupList = {},
     SharedSkillGroupList = {},
     IsInAGroup = false,
-    CurrentCharacter = nil
+    CurrentCharacter = nil,
+    SavedBarIndex = 1
 }
 
 --- Store the player shortcuts while they are using a group
@@ -96,7 +97,6 @@ end
 
 Ext.Events.UICall:Subscribe(function(ev)
     if ev.UI:GetTypeId() == Ext.UI.TypeID.hotBar and (ev.Function == "SlotPressed" or ev.Function == "slotPressed") and ev.When == "Before" then
-        _P(Helpers.Client.GetCurrentCharacter().PlayerData.SkillBarItems, ev.Args[1])
         local root = ev.UI:GetRoot()
         local hotbarSlot = Helpers.Client.GetCurrentCharacter().PlayerData.SkillBarItems[SkillGroupManager:GetSlotNumber(ev.Args[1]+1)]
         local skillGroup = SkillGroupManager:SearchGroups(hotbarSlot.SkillOrStatId)
@@ -113,6 +113,7 @@ Ext.Events.UICall:Subscribe(function(ev)
         if not SkillGroupManager.IsInAGroup and skillGroup then
             ev:PreventAction()
             local currentHotbar = root.hotbar_mc.cycleHotBar_mc.currentHotBarIndex
+            SkillGroupManager.SavedBarIndex = currentHotbar
             while currentHotbar > 1 do
                 Ext.UI.GetByType(40):ExternalInterfaceCall("prevHotbar")
                 currentHotbar = currentHotbar - 1
@@ -137,6 +138,20 @@ Ext.Events.UICall:Subscribe(function(ev)
         -- Remove skills that were not memorized
         -- How to change the hotbar from lua: Ext.GetUIByType(40):ExternalInterfaceCall("nextHotbar")
         -- Cancel events: character change, unpossess, cancel prompt, successful skill cast
+    elseif SkillGroupManager.IsInAGroup and (ev.Function == "prevHotbar" or ev.Function == "nextHotbar") and ev.When == "Before" then
+        ev:PreventAction()
+        ev.UI:GetRoot().hotbar_mc.cycleHotBar_mc.currentHotBarIndex = 1
+        ev.UI:GetRoot().hotbar_mc.cycleHotBar_mc.text_txt.htmlText = "+"
+    elseif (ev.Function == "showNewSkill" or ev.Function == "ShowNewSkill") and ev.When == "Before" then
+    end
+end)
+
+Ext.Events.UIInvoke:Subscribe(function(ev)
+    if SkillGroupManager.IsInAGroup and ev.UI == Ext.UI.GetByType(36) and ev.Function == "showNewSkill" then
+        ClientTimer.Start(500, function()
+            Ext.UI.GetByType(36):ExternalInterfaceCall("notificationDone")
+        end)
+        ev:PreventAction()
     end
 end)
 
