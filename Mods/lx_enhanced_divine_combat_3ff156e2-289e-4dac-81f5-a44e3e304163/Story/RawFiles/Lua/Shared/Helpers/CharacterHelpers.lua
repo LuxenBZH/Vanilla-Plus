@@ -102,6 +102,18 @@ Helpers.Character.GetComputedCriticalMultiplier = function(character)
 	return result
 end
 
+---Returns a status if the text is part of the status name
+---@param character EsvCharacter|EclCharacter
+---@param text string
+Helpers.Character.GetStatus = function(character, text)
+	for i,j in pairs(character:GetStatuses()) do
+		if string.match(j, text) then
+			return j
+		end
+	end
+	return false
+end
+
 Helpers.Client = {}
 
 Helpers.Client.GetCurrentCharacter = function()
@@ -111,7 +123,7 @@ end
 if Ext.IsServer() then
 	--- A safe version of Ext.ServerEntity.GetCharacter to avoid errors spamming the console when the handle does not exists
 	---@param handle any
-	---@return EsvCharacter
+	---@return EsvCharacter|nil
 	Helpers.ServerSafeGetCharacter = function(handle)
 		if type(handle) == "number" then
 			return Ext.ServerEntity.GetCharacter(handle)
@@ -121,10 +133,28 @@ if Ext.IsServer() then
 			else
 				if Ext.Debug.IsDeveloperMode() then
 					_VWarning("Handle", "CharacterHelpers:ServerSafeGetCharacter", handle, "does not exists!")
-					return
+				end
+				
+			end
+		end
+		return
+	end
+
+	--- A safe version of Ext.ServerEntity.GetItem to avoid errors spamming the console when the handle does not exists
+	---@param handle any
+	---@return EsvItem|nil
+	Helpers.ServerSafeGetItem = function(handle)
+		if type(handle) == "number" then
+			return Ext.ServerEntity.GetItem(handle)
+		else
+			if ObjectExists(handle) == 1 then
+				return Ext.ServerEntity.GetItem(handle)
+			else
+				if Ext.Debug.IsDeveloperMode() then
+					_VWarning("Handle", "CharacterHelpers:ServerSafeGetItem", handle, "does not exists!")
 				end
 			end
 		end
-		_VError("Could not fetch character", "CharacterHelpers:ServerSafeGetCharacter", handle)
+		return
 	end
 end

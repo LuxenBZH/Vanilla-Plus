@@ -17,9 +17,11 @@ local function WeaponLevelUpInRange(item, character)
 end
 
 Ext.Osiris.RegisterListener("ItemEquipped", 2, "before", function(item, character)
-    local item = Ext.ServerEntity.GetItem(item)
-    if Data.EquipmentSlots[item.Slot] == "Weapon" or Data.EquipmentSlots[item.Slot] == "Shield" then
-        WeaponLevelUpInRange(item, Ext.ServerEntity.GetCharacter(character))
+    local item = Helpers.ServerSafeGetItem(item)
+    if item then
+        if Data.EquipmentSlots[item.Slot] == "Weapon" or Data.EquipmentSlots[item.Slot] == "Shield" then
+            WeaponLevelUpInRange(item, Ext.ServerEntity.GetCharacter(character))
+        end
     end
 end)
 
