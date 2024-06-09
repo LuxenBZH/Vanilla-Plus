@@ -98,7 +98,8 @@ end)
 --- This workaround uses the extender to set the current weapon critical multiplier as a proxy to the statuses bonuses
 Helpers.Status.RegisterCleanStatusAppliedListener("CriticalMultiplierProxy", function(character, status, instigator)
     -- _VPrint("Clean status applied listener (ALL)", "CustomAttributesServer", status)
-    local target = Ext.ServerEntity.GetCharacter(character)
+    local target = Helpers.ServerSafeGetCharacter(character)
+    if not target then return end
     local status = target:GetStatus(status)
     local statEntry = status and Ext.Stats.Get(status.StatusId) or nil
     if statEntry and statEntry.StatsId ~= "" then
