@@ -143,6 +143,12 @@ Ext.Events.UICall:Subscribe(function(ev)
         ev.UI:GetRoot().hotbar_mc.cycleHotBar_mc.currentHotBarIndex = 1
         ev.UI:GetRoot().hotbar_mc.cycleHotBar_mc.text_txt.htmlText = "+"
     elseif (ev.Function == "showNewSkill" or ev.Function == "ShowNewSkill") and ev.When == "Before" then
+    elseif ev.Function == "BackToGMPressed" and SkillGroupManager.IsInAGroup then
+        Ext.Net.PostMessageToServer("LX_SkillGroupsRecover", Ext.Json.Stringify({
+            Character = tostring(SkillGroupManager.CurrentCharacter),
+        }))
+        SkillGroupManager.IsInAGroup = false
+        SkillGroupManager.CurrentCharacter = nil
     end
 end)
 
@@ -165,5 +171,13 @@ Ext.RegisterNetListener("LX_CharacterUsedSkill", function(_, payload)
         SkillGroupManager.IsInAGroup = false
         SkillGroupManager.CurrentCharacter = nil
         Ext.Net.PostMessageToServer("LX_SkillGroupsRecover", payload)
+    end
+end)
+
+---@param e EsvLuaGameStateChangedEvent
+Ext.Events.GameStateChanged:Subscribe(function(e)
+    if e.ToState == "SwapLevel" then
+        SkillGroupManager.IsInAGroup = false
+        SkillGroupManager.CurrentCharacter = nil
     end
 end)
