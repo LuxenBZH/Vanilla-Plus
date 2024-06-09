@@ -1,3 +1,4 @@
+Ext.Require("Server/ServerHelpers.lua")
 Ext.Require("Server/Fixes/GeneralFixes.lua")
 Ext.Require("Server/Fixes/Taunt.lua")
 Ext.Require("Server/Fixes/UndeadFoodFix.lua")

@@ -75,7 +75,7 @@ Ext.RegisterNetListener("LX_SkillGroupsRecover", function(_, payload)
     end
     if PersistentVars.SkillGroupSavedBars[character.MyGuid] then
         local slot = 0
-        while slot < 30 do
+        while slot < 145 do
             NRD_SkillBarClear(character.MyGuid, slot)
             if PersistentVars.SkillGroupSavedBars[character.MyGuid][slot] then
                 if PersistentVars.SkillGroupSavedBars[character.MyGuid][slot].Type == "Skill" then
@@ -86,5 +86,41 @@ Ext.RegisterNetListener("LX_SkillGroupsRecover", function(_, payload)
             end
             slot = slot + 1
         end
+        PersistentVars.SkillGroupSavedBars[character.MyGuid] = nil
+    else
+        _VWarning("Tried to restore the skillbar of "..character.MyGuid.." but it was not saved !")
     end
+end)
+
+---@param e EsvLuaGameStateChangedEvent
+Ext.Events.GameStateChanged:Subscribe(function(e)
+    if e.FromState == "Sync" and e.ToState == "Running" then
+        local characters = Ext.ServerEntity.GetAllCharacterGuids()
+        for i,guid in pairs(characters) do
+            local character = Ext.ServerEntity.GetCharacter(guid)
+            if character.PlayerData then
+                local status = Helpers.Character.GetStatus(character, "LX_SkillGroup_")
+                if status then
+                    Ext.Net.PostMessageToServer("LX_SkillGroupsRecover", Ext.Json.Stringify({
+                        Character = character.NetID
+                    }))
+                end
+            end
+        end
+    end
+end)
+
+--- Remove the character data from vars to avoid bloating if it is deleted from the game
+---@param character string
+---@param event string
+Ext.Osiris.RegisterListener("StoryEvent", 2, "before", function(character, event)
+    -- Remove stuff only on Running, since shutdowns happening outside of it can be due to map switch or something else
+    if event == "CharacterShutdown" and Ext.ServerServer.GetGameState() == "Running" then
+        -- _VPrint("CharacterShutdown "..character.." "..tostring(Ext.GetGameState()), "SkillGroupServer")
+        local GUID = Helpers.GetCharacterCleanGUID(character)
+        if PersistentVars.SkillGroupSavedBars[GUID] then
+            PersistentVars.SkillGroupSavedBars[GUID] = nil
+        end
+    end
+
 end)
