@@ -54,7 +54,7 @@ function ManageMemory(character, unlocked)
 	if unlocked then
 		-- if CharacterGetHostCharacter() == character then Ext.Print("MEMORY UNLOCKED") end
 		local currentBoost = NRD_CharacterGetPermanentBoostInt(character, "Memory")
-		local mem = math.floor(Ext.GetCharacter(character).Stats.BaseMemory - currentBoost - Ext.ExtraData.AttributeBaseValue)
+		local mem = math.floor(Helpers.ServerSafeGetCharacter(character).Stats.BaseMemory - currentBoost - Ext.ExtraData.AttributeBaseValue)
 		local previousMem = GetVarInteger(character, "DGM_MemoryBoost")
 		-- if previousMem == nil or previousMem == 0 then
 		-- 	previousMem = mem
@@ -88,8 +88,8 @@ end
 local function MnemonicLocked(character, talent)
 	if talent ~= "Memory" then return end
 	local memBonus = NRD_CharacterGetPermanentBoostInt(character, "Memory")
-	local mem = math.floor(Ext.GetCharacter(character).Stats.BaseMemory - memBonus - Ext.ExtraData.AttributeBaseValue)
-	if not Ext.GetCharacter(character).CharacterCreationFinished and Ext.GetGameMode() == "Campaign" then
+	local mem = math.floor(Helpers.ServerSafeGetCharacter(character).Stats.BaseMemory - memBonus - Ext.ExtraData.AttributeBaseValue)
+	if not Helpers.ServerSafeGetCharacter(character).CharacterCreationFinished and Ext.GetGameMode() == "Campaign" then
 		SetTag(character, "DGM_MemoryManagement")
 		return
 	end
@@ -101,8 +101,8 @@ end
 Ext.RegisterOsirisListener("CharacterLockedTalent", 2, "before", MnemonicLocked)
 
 Ext.RegisterOsirisListener("CharacterCreationFinished", 1, "after", function(character)
-	if Ext.GetCharacter(character) == nil then return end
-	if Ext.GetCharacter(character).Stats.TALENT_Memory then
+	if Helpers.ServerSafeGetCharacter(character) == nil then return end
+	if Helpers.ServerSafeGetCharacter(character).Stats.TALENT_Memory then
 		ManageMemory(character, true)
 	elseif IsTagged(character, "DGM_MemoryManagement") then
 		TimerLaunch("MEMORY_"..character, 1000)
@@ -293,7 +293,7 @@ end
 
 local function ExecutionerHaste(defender, attackerOwner, attacker)
 	if ObjectIsCharacter(attacker) == 0 then return end
-	local attacker = Ext.GetCharacter(attacker)
+	local attacker = Helpers.ServerSafeGetCharacter(attacker)
 	if attacker.Stats.TALENT_Executioner and CharacterIsInCombat(attacker.MyGuid) == 1 then
 		ApplyStatus(attacker.MyGuid, "LX_EXECUTIONER", 6.0)
 	end
@@ -305,8 +305,8 @@ Ext.RegisterOsirisListener("CharacterKilledBy", 3, "before", ExecutionerHaste)
 ---@param item EsvItem
 ---@param char EsvCharacter
 Ext.RegisterOsirisListener("ItemEquipped", 2, "before", function(item, char)
-	local character = Ext.GetCharacter(char) ---@type EsvCharacter
-	if character.Stats.TALENT_Ambidextrous and CharacterIsInCombat(char) == 1 then
+	local character = Helpers.ServerSafeGetCharacter(char) ---@type EsvCharacter
+	if character and character.Stats.TALENT_Ambidextrous and CharacterIsInCombat(char) == 1 then
 		item = Ext.GetItem(item) ---@type EsvItem
 		if item.Stats.WeaponType and item.Stats.WeaponType ~= "Crossbow" then
 			CharacterAddActionPoints(char, 1)
@@ -317,7 +317,7 @@ end)
 ---- Ambidextrous counter reset
 ---@param char EsvCharacter
 Ext.RegisterOsirisListener("ObjectTurnStarted", 1, "before", function(char)
-	if Ext.GetCharacter(char).Stats.TALENT_Ambidextrous then
+	if Helpers.ServerSafeGetCharacter(char).Stats.TALENT_Ambidextrous then
 		SetVarInteger(char, "DGM_AmbidextrousCount", 2)
 	end
 end)
@@ -381,7 +381,7 @@ local surfaceTypeMap = {
 --- @param skillType string Type
 --- @param skillElement string Elements enum
 Ext.RegisterOsirisListener("CharacterUsedSkill", 4, "before", function(character, skill, skillType, skillElement)
-	if not Ext.GetCharacter(character).Stats.TALENT_ElementalRanger then return end
+	if not Helpers.ServerSafeGetCharacter(character).Stats.TALENT_ElementalRanger then return end
 	local skill = Ext.GetStat(skill)
 	if (skill.ProjectileType == "Grenade" and skill.Requirement == "None") or (skill.ProjectileType == "Arrow" and skill.Requirement == "RangedWeapon") and skill.IsEnemySkill == "Yes" and skill["Memory Cost"] == 0 then
 		if skill.DamageType == "Chaos" then
