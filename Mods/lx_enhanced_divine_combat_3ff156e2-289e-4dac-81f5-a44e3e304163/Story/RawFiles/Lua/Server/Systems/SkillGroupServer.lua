@@ -18,8 +18,8 @@ Ext.RegisterNetListener("LX_SkillGroupsTrigger", function(channel, payload)
     -- PersistentVars.SkillGroupSavedBars[character.MyGuid] = character.PlayerData.SkillBar --Needs manual parsing
     NRD_SkillBarSetSkill(character.MyGuid, 0, "Target_LX_CancelGroupSkill")
     local slot = 1 --Leave the first slot to cancel button
-    for skill,isAvailable in pairs(info.Skills) do
-        if isAvailable then
+    for skill,valid in pairs(info.Skills) do
+        if valid.Visible then
             NRD_SkillBarSetSkill(character.MyGuid, slot, skill)
             slot = slot + 1
         end
@@ -31,7 +31,7 @@ Ext.RegisterNetListener("LX_SkillGroupsTrigger", function(channel, payload)
     end
     local skills = "Target_LX_CancelGroupSkill"
     for skill,valid in pairs(info.Skills) do
-        if valid then
+        if valid.Memorized then
             skills = skills..";"..skill
         end
     end

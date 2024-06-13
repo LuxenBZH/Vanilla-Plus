@@ -121,7 +121,9 @@ Ext.Events.UICall:Subscribe(function(ev)
             Ext.UI.GetByType(40):GetRoot().hotbar_mc.cycleHotBar_mc.text_txt.htmlText = "+"
             local skills = {}
             for skill, condition in pairs(skillGroup.Children) do
-                skills[skill] = condition(Helpers.Client.GetCurrentCharacter())
+                --- A skill can show in the toolbar even if conditions are not met.
+                isMemorized, isVisible = condition(Helpers.Client.GetCurrentCharacter())
+                skills[skill] = {Memorized = isMemorized, Visible = isVisible}
             end
             Ext.Net.PostMessageToServer("LX_SkillGroupsTrigger", Ext.Json.Stringify({
                 Character = tostring(Helpers.Client.GetCurrentCharacter().NetID),

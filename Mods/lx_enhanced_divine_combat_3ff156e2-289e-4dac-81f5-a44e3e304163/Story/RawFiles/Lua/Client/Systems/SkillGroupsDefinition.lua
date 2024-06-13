@@ -1,16 +1,16 @@
 local VPlusSimpleSkillGroups = {
     Projectile_Fireball = {
         Projectile_Fireball = function(character)
-            return true
+            return true, true
         end,
         Projectile_FlamingDaggers = function(character)
-            return true
+            return true, true
         end,
         Zone_LaserRay = function(character)
-            return true
+            return true, true
         end,
         Shout_InspireStart = function(character)
-            return true
+            return false, true
         end
     }
 }
