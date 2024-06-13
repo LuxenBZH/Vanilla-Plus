@@ -90,6 +90,10 @@ Ext.Require("Shared/Data/Stats.lua")
 Ext.Require("Shared/Data/Math.lua")
 Ext.Require("Shared/Data/APCostManagement.lua")
 
+-- Skill Groups
+Ext.Require("Shared/Systems/SkillGroups.lua")
+Ext.Require("Shared/Data/SkillGroupsDefinition.lua")
+
 tooltipStatusDmgHelper = {}
 
 VPlusId = "3ff156e2-289e-4dac-81f5-a44e3e304163"

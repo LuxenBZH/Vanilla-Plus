@@ -36,7 +36,7 @@ Ext.RegisterNetListener("LX_SkillGroupsTrigger", function(channel, payload)
         end
     end
     --- Create a status that teach all skills temporarily instead of managing them manually.
-    local skillStatus = CustomStatusManager:Create("LX_SkillGroup_"..Helpers.SimpleHash16(skills), {
+    local skillStatus = CustomStatusManager:Create("LX_SkillGroup_"..info.Parent.."_"..Helpers.SimpleHash16(skills), {
         Potion = {},
         Status = {
             Skills = skills
@@ -47,23 +47,38 @@ Ext.RegisterNetListener("LX_SkillGroupsTrigger", function(channel, payload)
     Ext.Net.PostMessageToClient(character.MyGuid, "LX_HotbarIndexSetText", "")
 end)
 
----Used for restoring the hotbar
+
 ---@param character string|number
 ---@param skill string
 ---@param skillType striub
 ---@param skillElement any
 Ext.Osiris.RegisterListener("CharacterUsedSkill", 4, "before", function(character, skill, skillType, skillElement)
     local character = Ext.ServerEntity.GetCharacter(character)
-    if character.IsPlayer then
-        Ext.Net.PostMessageToClient(character.MyGuid, "LX_CharacterUsedSkill", Ext.Json.Stringify({
-            Character = character.NetID,
-            Skill = skill,
-            SkillType = skillType,
-            skillElement = skillElement
-        }))
+    local inSkillGroup = Helpers.Character.GetStatus(character, "LX_SkillGroup_")
+    if character.IsPlayer and inSkillGroup then
+        local skillGroup = SkillGroupManager:FindGroupFromStatus(inSkillGroup)
+        if skillGroup then
+            if skillGroup.ShareCooldowns then
+                local stat = Ext.Stats.Get(skill) ---@type StatEntrySkillData
+                local cooldown = stat.Cooldown * 6.0
+                for i,skillGroupChild in pairs(skillGroup.Children) do
+                    Helpers.Character.SetSkillCooldown(character, skillGroupChild.SkillName, cooldown, false)
+                end
+                Helpers.Character.SetSkillCooldown(character, skillGroup.Parent, cooldown)
+            end
+        end
     end
+    Ext.Net.PostMessageToClient(character.MyGuid, "LX_CharacterUsedSkill", Ext.Json.Stringify({
+        Character = character.NetID,
+        Skill = skill,
+        SkillType = skillType,
+        skillElement = skillElement
+    }))
 end)
 
+---Restores the hotbar shortcuts to its original state
+---@param _ string
+---@param payload string
 Ext.RegisterNetListener("LX_SkillGroupsRecover", function(_, payload)
     local info = Ext.Json.Parse(payload)
     local character = Ext.ServerEntity.GetCharacter(tonumber(info.Character))

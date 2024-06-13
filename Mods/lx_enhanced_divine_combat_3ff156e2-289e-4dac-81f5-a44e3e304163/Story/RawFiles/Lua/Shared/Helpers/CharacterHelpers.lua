@@ -157,4 +157,20 @@ if Ext.IsServer() then
 		end
 		return
 	end
+
+	---@param character EsvCharacter
+	---@param skill string
+	---@param cooldown number in seconds
+	---@param warning boolean|nil
+	Helpers.Character.SetSkillCooldown = function(character, skill, cooldown, warning)
+		warning = warning or true
+		if character.SkillManager.Skills[skill] then
+			character.SkillManager.Skills[skill].ActiveCooldown = 0 
+			character.SkillManager.Skills[skill].ActiveCooldown = cooldown
+		else
+			if warning then
+				_VWarning("Character "..character.MyGuid.." does not have the skill "..skill.." so its cooldown could not be changed!", "CharacterHelpers")
+			end
+		end
+	end
 end
