@@ -16,5 +16,5 @@ local VPlusSimpleSkillGroups = {
 }
 
 for parent, children in pairs(VPlusSimpleSkillGroups) do
-    SkillGroupManager:AddGroup(SkillGroup:Create(parent, children, false))
+    SkillGroupManager:AddGroup(SkillGroup:Create(parent, children, true))
 end

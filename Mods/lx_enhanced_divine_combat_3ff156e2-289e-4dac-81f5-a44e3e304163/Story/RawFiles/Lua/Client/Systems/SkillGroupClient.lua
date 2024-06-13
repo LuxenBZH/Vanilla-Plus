@@ -1,54 +1,10 @@
----@class SkillGroupManager
----@field SkillGroupList table
-SkillGroupManager = {
-    SkillGroupList = {},
-    SharedSkillGroupList = {},
-    IsInAGroup = false,
-    CurrentCharacter = nil,
-    SavedBarIndex = 1
-}
+SkillGroupManager.IsInAGroup = false
+SkillGroupManager.CurrentCharacter = nil
+SkillGroupManager.SavedBarIndex = 1
 
 --- Store the player shortcuts while they are using a group
 if not PersistentVars.SkillGroupSlotsBuffer then
     PersistentVars.SkillGroupSlotsBuffer = {}
-end
-
-function SkillGroupManager:AddGroup(skillGroup)
-    self.SkillGroupList[skillGroup.Parent] = skillGroup
-end
-
----comment
----@param skillName string
-function SkillGroupManager:RemoveGroups(skillName)
-    for i,group in pairs(self.SkillGroupList) do
-        if group.Parent == skillName and not shared then
-            table.remove(self.SkillGroupList, i)
-        end
-    end
-end
-
----comment
----@param skillName string
-function SkillGroupManager:RemoveSharedGroups(skillName)
-    for i,group in pairs(self.SharedSkillGroupList) do
-        if group.Children[skillName] then
-            table.remove(self.SharedSkillGroupList, i)
-        end
-    end
-end
-
-function SkillGroupManager:SearchGroups(skillName)
-    return self.SkillGroupList[skillName]
-end
-
-function SkillGroupManager:SearchSharedGroups(skillName)
-    local results = {}
-    for i,group in pairs(self.SharedSkillGroupList) do
-        if group.Children[skillName] then
-            table.insert(results)
-        end
-    end
-    return results
 end
 
 function SkillGroupManager:GetHotbarSlotLength()
@@ -73,27 +29,6 @@ function SkillGroupManager:GetSlotNumber(barSlotNumber)
     return (Ext.UI.GetByType(40):GetRoot().hotbar_mc.cycleHotBar_mc.currentHotBarIndex-1) * slots_per_bar + barSlotNumber
 end
 
-
----@class SkillGroup
----@field Parent string
----@field Shared boolean if true, that means there's no parent and having at least another child from the one selected returning true enables the group
----@field Children table skillName : function. At least one child must return true for the group to activate
-SkillGroup = {
-    Parent = "",
-    Shared = false,
-    Children = {}
-}
-
-SkillGroup.__index = SkillGroup
-
-function SkillGroup:Create(skillName, children, regroupChildren)
-    local this = {
-        Parent = skillName,
-        RegroupFromChildren = regroupChildren or false,
-        Children = children or {}
-    }
-    return this
-end
 
 Ext.Events.UICall:Subscribe(function(ev)
     if ev.UI:GetTypeId() == Ext.UI.TypeID.hotBar and (ev.Function == "SlotPressed" or ev.Function == "slotPressed") and ev.When == "Before" then
@@ -120,13 +55,14 @@ Ext.Events.UICall:Subscribe(function(ev)
             end
             Ext.UI.GetByType(40):GetRoot().hotbar_mc.cycleHotBar_mc.text_txt.htmlText = "+"
             local skills = {}
-            for skill, condition in pairs(skillGroup.Children) do
+            for i, child in pairs(skillGroup.Children) do
                 --- A skill can show in the toolbar even if conditions are not met.
-                isMemorized, isVisible = condition(Helpers.Client.GetCurrentCharacter())
-                skills[skill] = {Memorized = isMemorized, Visible = isVisible}
+                isMemorized, isVisible = child.Condition(Helpers.Client.GetCurrentCharacter())
+                skills[child.SkillName] = {Memorized = isMemorized, Visible = isVisible}
             end
             Ext.Net.PostMessageToServer("LX_SkillGroupsTrigger", Ext.Json.Stringify({
                 Character = tostring(Helpers.Client.GetCurrentCharacter().NetID),
+                Parent = hotbarSlot.SkillOrStatId,
                 Skills = skills
             }))
             SkillGroupManager.IsInAGroup = skillGroup

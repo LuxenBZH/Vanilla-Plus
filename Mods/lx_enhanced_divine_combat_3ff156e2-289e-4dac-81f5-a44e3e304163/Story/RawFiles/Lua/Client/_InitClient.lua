@@ -23,7 +23,6 @@ Ext.Require("Client/Tooltips/CharacterSheet.lua")
 Ext.Require("Client/Sync/Statuses.lua")
 Ext.Require("Client/Sync/Equipment.lua")
 Ext.Require("Client/Systems/SkillGroupClient.lua")
-Ext.Require("Client/Systems/SkillGroupsDefinition.lua")
 
 -- Ext.Require("Client/Systems/SkillCastManager.lua")
 
