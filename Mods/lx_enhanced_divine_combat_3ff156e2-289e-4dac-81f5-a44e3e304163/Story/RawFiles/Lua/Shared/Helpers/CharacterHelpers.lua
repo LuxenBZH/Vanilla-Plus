@@ -114,6 +114,22 @@ Helpers.Character.GetStatus = function(character, text)
 	return false
 end
 
+---Checks if the character has the necessary requirements to memorize the skill
+---@param character EsvCharacter|EclCharacter
+---@param skill StatEntrySkillData|string
+---@param base boolean|nil
+Helpers.Character.CheckSkillRequirements = function(character, skill, base)
+	local skill = type(skill) == "string" and Ext.Stats.Get(skill) or skill
+	for i,r in pairs(skill.MemorizationRequirements) do
+		local abilityScore = character.Stats[(base and "Base" or "")..tostring(r.Requirement)]
+		_P(abilityScore, r.Param)
+		if abilityScore < r.Param then
+			return false
+		end
+	end
+	return true
+end
+
 Helpers.Client = {}
 
 Helpers.Client.GetCurrentCharacter = function()

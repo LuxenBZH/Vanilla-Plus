@@ -230,6 +230,8 @@
 	<content contentuid="h42f0b1b6gd786g46ebga04egf56b57d92048" Source="Skills.lsb" Key="ShadowInfusionDescription">Incarnate learns how to go invisible and strike foes with a corrosive slash. Increases damage by [1]% and maximum Vitality by 15%.</content>
 	<content contentuid="h02f12f9fg9a25g4a95gba27gd65217023ed9" Source="Skills.lsb" Key="Shout_LX_AimedShot_Description">Increase Accuracy by [1] (improved by Intelligence) and Critical Chance by [2] (improved by Strength) for the next weapon attack.</content>
 	<content contentuid="h9f363adeg7345g487fg97f8ga61db7bdb460" Source="Skills.lsb" Key="Shout_LX_AimedShot_DisplayName">Aimed Shot</content>
+	<content contentuid="h9f10a6bdgfc4fg4af8gb213gb7081cb9eda2" Source="Skills.lsb" Key="Shout_LX_TransmuteSkin_Description">Transmute your skin with elements to gain new properties.</content>
+	<content contentuid="h8c8b69b0g710eg4ed6gb86fg3206130ea716" Source="Skills.lsb" Key="Shout_LX_TransmuteSkin_DisplayName">Transmute Skin</content>
 	<content contentuid="hb0408ca4g5c61g4e89g91d0gcb14ef6da93f" Source="Skills.lsb" Key="Shout_VacuumAura_Description">Deal [1] damage to enemies in the area. Caster receives an aura that sets Silence and Suffocating on enemies.</content>
 	<content contentuid="he72efc5fg2dddg459dgb224gd0f0f97fdd0a" Source="Skills.lsb" Key="Shout_VacuumAura_DisplayName">Vacuum Aura</content>
 	<content contentuid="hd4d51fddgb38cg4394ga485gf37cb37523d0" Source="Skills.lsb" Key="SiphonPoisonDescription">Remove poison surfaces and clouds. Gain poison damage bonus to weapon attacks and weapon-based skills (dependent upon size of poison area cleared) for 2 turns and your weapon attacks now also set Acid for 1 turn (3 turns if Venom Coating is also active).</content>

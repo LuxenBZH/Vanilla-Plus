@@ -12,6 +12,21 @@ local VPlusSimpleSkillGroups = {
         Shout_InspireStart = function(character)
             return false, true
         end
+    },
+    Shout_LX_TransmuteSkin = {
+        ---@param character EclCharacter
+        Shout_IceSkin = function(character)
+            return Helpers.Character.CheckSkillRequirements(character, "Shout_IceSkin", false), true
+        end,
+        Shout_PoisonousSkin = function(character)
+            return Helpers.Character.CheckSkillRequirements(character, "Shout_PoisonousSkin", false), true
+        end,
+        Shout_JellyfishSkin = function(character)
+            return Helpers.Character.CheckSkillRequirements(character, "Shout_JellyfishSkin", false), true
+        end,
+        Shout_FlamingSkin = function(character)
+            return Helpers.Character.CheckSkillRequirements(character, "Shout_FlamingSkin", false), true
+        end,
     }
 }
 
