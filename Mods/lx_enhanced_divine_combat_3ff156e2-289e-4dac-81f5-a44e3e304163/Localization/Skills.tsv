@@ -1,5 +1,5 @@
 Key	Content	Handle
-AdrenalineDescription	Gain 2 Action Points immediately, but lose 3 Action Points next turn. Any Action Points over your maximum are lost.	h31d2a547g005bg4ee3g8d2ag47720bd4fa1a
+Shout_Adrenaline_Description	Gain 2 Action Points immediately, but lose 3 Action Points next turn. Any Action Points over your maximum are lost.	h31d2a547g005bg4ee3g8d2ag47720bd4fa1a
 BlessDescription	Bless target character or surface. Prevent Diseased, Decaying, Petrified, Stunned, increase Dodge by [1]%, Accuracy by [2]% and elemental resistances by [3].	h22a39843gf968g4212g851dg6e121235fa85
 BullHornsDescription	Magnificent horns sprout from your forehead, making you see red. You can rush at your enemies and gore them. Increases Retribution ability by 2 for the duration.	h2f904fe7g83d0g4d51g8bcfgd6b561ba92e3
 Cone_Shatter_Description	Deal [1] and set Frozen to the characters in the cone.	hb1796f71g6c96g4c25g9c99gc089814d7494
@@ -9,7 +9,7 @@ DemonicTutelageDescription	Your inner demon actively watches over you. When an e
 DeployMassTrapDescription	Throw [1] explosive traps at target locations. Each trap takes a turn to activate. When active, trap will explode when a character approaches it, dealing [2].	hcf74a6efg1ab6g45ecgaa12g147f528975ee
 DimensionalBoltDescription	Shoot a volatile bolt that deals [1], and then creates a corresponding surface. Chaos trigger a random type of damage.	h7184b190ge934g49d4g9b5cg67ff537bd723
 ElementalArrowheadDescription	Target a surface in melee radius. Elemental damage matching that surface is added to your weapon attacks and weapon-based skills.	h4542353bg043cg4964ga401g7a80dd267e5b
-ElementalArrowheadDisplayname	Elemental Weapons	hbce8b81ag1259g4a30g99f9g1f99e9b74583
+Target_ElementalArrowheads_DisplayName	Elemental Weapons	hbce8b81ag1259g4a30g99f9g1f99e9b74583
 ErraticWispDescription	Cause target character to teleport in a random direction each time they are attacked. Increases Dodge by [1]% and Air Resistance by [2]%.	ha742cf9eg80e6g4b43g8106ga4b83bd5e241
 FarsightInfusionDescription	Unlock ranged attack for your Incarnate. Provides [1] (amount depends on your level). Increases damage by [2]% and increase maximum Vitality by 15%.	h9729b9ceg2860g4396g8b3fg9eef86106d4f
 FlamingTonguesDescription	Flaming Tongues protect you, immediately attacking approaching enemies and deals them [1].	h9e97f6cdg7b63g4603g9f25g7a515742c55d
@@ -27,7 +27,7 @@ PowerInfusionDescription	Unlock Whirlwind and Rush for your Incarnate. Provides 
 ReactiveShotDescription	Target a circular area. Until your next turn, you will reflexively shoot at the first three enemies moving within this area if you have sight on them.	h7c3dcbc3gb3f4g4746g9a94g00021c9c2930
 SabotageDescription	Deals [1] to the target character and set Atrophy. If target character is carrying grenades or arrows, a random one explodes in their inventory.	h004cd16fgf0e9g4216g9a3cg2dc6e16fe78a
 ShadowInfusionDescription	Incarnate learns how to go invisible and strike foes with a corrosive slash. Increases damage by [1]% and maximum Vitality by 15%.	h42f0b1b6gd786g46ebga04egf56b57d92048
-Shout_LX_AimedShot_Description	Increase Accuracy by [1] (improved by Intelligence) and Critical Chance by [2] (improved by Strength) for the next weapon attack.	h02f12f9fg9a25g4a95gba27gd65217023ed9
+Shout_LX_AimedShot_Description	Increase the Accuracy by [1]% (improved by Intelligence) and Critical Chance by [1]% (improved by Strength) for the next weapon attack.	h02f12f9fg9a25g4a95gba27gd65217023ed9
 Shout_LX_AimedShot_DisplayName	Aimed Shot	h9f363adeg7345g487fg97f8ga61db7bdb460
 Shout_VacuumAura_Description	Deal [1] damage to enemies in the area. Caster receives an aura that sets Silence and Suffocating on enemies.	hb0408ca4g5c61g4e89g91d0gcb14ef6da93f
 Shout_VacuumAura_DisplayName	Vacuum Aura	he72efc5fg2dddg459dgb224gd0f0f97fdd0a
@@ -44,3 +44,8 @@ WarpInfusionDescription	Incarnate learns a teleport skill, and a skill to swap p
 Target_Challenge_CursorTooltip	Challenge:<br>+[1] % Damage<br>+[2] Physical Armour<br>+[3]Magic Armour<br>[4] Vitality heal<br>If failure: [4] damage received.	h7650995bg0673g4ccfg82eeg66ad641811e8
 Shout_LX_TransmuteSkin_DisplayName	Transmute Skin	h8c8b69b0g710eg4ed6gb86fg3206130ea716
 Shout_LX_TransmuteSkin_Description	Transmute your skin with elements to gain new properties.	h9f10a6bdgfc4fg4af8gb213gb7081cb9eda2
+Shout_LX_RangedStances_DisplayName	Ranger Stances	
+Shout_LX_RangedStances_Description	Change the character stance to provide specific advantages with a bow or a crossbow.	
+Shout_LX_RangedReflexStance_DisplayName	Reflex Stance	
+Shout_LX_RangedReflexStance_Description	Accuracy is reduced by half when attacking targets beyond 8m but each successful hit grants 2 meters of free movement. Also provides Reloading and Rapid fire skills.	
+Projectile_EnemyOilSpit_DisplayName	Oil Spit	
