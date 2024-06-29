@@ -3,8 +3,6 @@ Ext.Require("Server/Modules/FallDamage.lua")
 Ext.Require("Server/Modules/GBTalents.lua")
 Ext.Require("Server/Modules/Corrogic.lua")
 
-PersistentVars = {}
-
 function EnableFallDamage(cmd)
     if cmd == "on" then
         print("Fall damage module activated")

@@ -219,25 +219,18 @@ end
 
 ---@param character string GUID
 local function ApplyWarmup(character, step)
-	local char = Ext.GetCharacter(character)
-	local warmup = FindStatus(char, "DGM_Warmup")
+	local char = Ext.ServerEntity.GetCharacter(character)
+	local warmup = FindStatus(char, "DGM_WARMUP")
 	local stage
-	if warmup then
-		stage = tonumber(string.sub(warmup, 12, 12))
-	elseif step then
+	if step then
 		stage = step
+	elseif warmup then
+		stage = math.min(tonumber(string.sub(warmup, 11, 11))+1, 4)
+		ObjectClearFlag(character, "DGM_WarmupReapply", 0)
 	else
-		stage = 0
+		stage = 1
 	end
-	if stage < 4 then
-		local intelligence = (char.Stats.Intelligence - Ext.ExtraData.AttributeBaseValue)
-		local accuracyBoost = math.min((10 * (stage+1) + intelligence * (stage+1)), 100)
-		local status = CreateNewStatus("Warmup_"..tostring(stage+1).."_i"..tostring(math.floor(intelligence)), "DGM_Potion_Base", {AccuracyBoost = accuracyBoost}, "DGM_WARMUP"..tostring(stage+1), {StackId = "Stack_LX_Warmup"}, false)
-		ApplyStatus(character, status, 6.0, 1)
-	elseif stage == 5 then
-		local status = CreateNewStatus("Warmup_"..tostring(stage+1).."_i"..tostring(math.floor(intelligence)), "DGM_Potion_Base", {AccuracyBoost = accuracyBoost}, "DGM_WARMUP"..tostring(stage+1), {StackId = "Stack_LX_Warmup"}, false)
-		ApplyStatus(character, status, 6.0, 1)
-	end
+	CustomStatusManager:CharacterApplyMultipliedStatus(char, "DGM_WARMUP"..tostring(stage), 6.0, 1.0 + 0.1 * char.Stats.WarriorLore)
 end
 
 ---@param character string GUID
@@ -254,11 +247,13 @@ Ext.RegisterOsirisListener("CharacterStatusApplied", 3, "before", OsirisApplyWar
 local function OsirisReapplyWarmup(character, status, causee)
 	if not engineStatuses[status] and NRD_StatExists(status) then
 		if Ext.GetStat(status).Description == "DGM_WARMUP_Description" then
-			if not FindStatus(Ext.GetCharacter(character), "DGM_Warmup") then
-				local stage = tonumber(string.sub(status, 12, 12))
-				if stage > 1 then
-					ApplyWarmup(character, stage-2)
-				end
+			if ObjectGetFlag(character, "DGM_WarmupReapply") == 1 then
+				ObjectClearFlag(character, "DGM_WarmupReapply", 0)
+				return
+			end
+			local stage = tonumber(string.sub(status, 11, 11))
+			if stage > 1 then
+				ApplyWarmup(character, stage-1)
 			end
 		end
 	end
@@ -268,152 +263,30 @@ Ext.RegisterOsirisListener("CharacterStatusRemoved", 3, "before", OsirisReapplyW
 
 ----------
 
----@param target EsvCharacter
----@param handle number
----@param instigator EsvCharacter
----@param status EsvStatusHit
----@param context HitContext
-function DamageControl(target, instigator, hitDamage, handle)
--- function DamageControl(status, context)
-	--[[
-		Main damage control : damages are teared down to the original formula and apply custom
-		bonuses from the overhaul
-	]]--
-	if ObjectIsCharacter(instigator) == 0 then return end
-	-- Get hit properties
-	local damages = {}
-	local types = DamageTypeEnum()
-	local isCrit = NRD_StatusGetInt(target, handle, "CriticalHit")
-	local isDodged = NRD_StatusGetInt(target, handle, "Dodged")
-	local isBlocked = NRD_StatusGetInt(target, handle, "Blocked")
-	local isMissed = NRD_StatusGetInt(target, handle, "Missed")
-	local fromWeapon = NRD_StatusGetInt(target, handle, "HitWithWeapon")
-	local fromReflection = NRD_StatusGetInt(target, handle, "Reflection")
-	local isDoT = NRD_StatusGetInt(target, handle, "DoT")
-	local sourceType = NRD_StatusGetInt(target, handle, "DamageSourceType")
-	local skillID = NRD_StatusGetString(target, handle, "SkillId")
-	local backstab = NRD_StatusGetInt(target, handle, "Backstab")
-	local fixedValue = 0
-	local isFromShacklesOfPain = false
-
-	if fromReflection == 1 then return end
-	if NRD_StatusGetInt(target, handle, "HitReason") == 0 then
-		fromWeapon = 1
-	elseif skillID ~= "" then
-		fromWeapon = NRD_StatGetInt(string.gsub(skillID, "%_%-1", ""), "UseWeaponDamage")
-		fixedValue = NRD_StatGetInt(string.gsub(skillID, "%_%-1", ""), "Damage")
-	elseif NRD_StatusGetInt(target, handle, "HitReason") == 1 and skillID == "" and isDoT == 0 
-		and HasActiveStatus(target, "SHACKLES_OF_PAIN") == 1 and HasActiveStatus(instigator, "SHACKLES_OF_PAIN_CASTER") == 1 then
-		isFromShacklesOfPain = true
-		Ext.Print("Shackles of Pain hit!")
-	end
-	
-	local weaponTypes = GetWeaponsType(instigator)
-	-- local hitStatus = Ext.GetStatus(target, handle)
-	
-	-- Get hit damages
-	local totalDamage = 0
-	for i,dmgType in pairs(types) do
-		damages[dmgType] = NRD_HitStatusGetDamage(target, handle, dmgType)
-		totalDamage = totalDamage + damages[dmgType]
-		if damages[dmgType] ~= 0 then Ext.Print("Damage "..dmgType..": "..damages[dmgType]) end
-	end
-	TagShadowCorrosiveDifference(damages)
-	
-	if isBlocked == 1 then return end
-	if sourceType == 1 or sourceType == 2 or sourceType == 3 then InitiatePassingDamage(target, damages); return end
-	if skillID == "" and sourceType == 0 and ObjectIsCharacter(target) == 1 then InitiatePassingDamage(target, damages); return end
-	if fixedValue ~= 0 and fixedValue ~= 1 and fixedValue ~= 2 then InitiatePassingDamage(target, damages); return end
-	
-	if ObjectIsCharacter(target) == 1 then
-		TraceDamageSpreaders(Ext.GetCharacter(target))
-	end
-
-	if fromWeapon == 1 then
-		local instigChar = Ext.GetCharacter(instigator)
-		local aimedShot = FindStatus(instigChar, "DGM_AimedShot")
-		if aimedShot then
-			RemoveStatus(instigator, aimedShot)
-		end
-	end
-
-	-- Dodge mechanic override
-	if isMissed == 1 or isDodged == 1 then
-		if Ext.ExtraData.DGM_LegacyDodge == 1 then
-			TriggerDodgeFatigue(target, instigator)
-		elseif HasActiveStatus(target, "EVADING") == 0 then
-			ApplyWarmup(instigator)
-		end
-		return
-	end
-	
-	-- Get instigator bonuses
-	local strength = CharacterGetAttribute(instigator, "Strength") - Ext.ExtraData.AttributeBaseValue
-	local finesse = CharacterGetAttribute(instigator, "Finesse") - Ext.ExtraData.AttributeBaseValue
-	local intelligence = CharacterGetAttribute(instigator, "Intelligence") - Ext.ExtraData.AttributeBaseValue
-	local wits = CharacterGetAttribute(instigator, "Wits") - Ext.ExtraData.AttributeBaseValue
-	local damageBonus = strength*Ext.ExtraData.DGM_StrengthGlobalBonus+finesse*Ext.ExtraData.DGM_FinesseGlobalBonus+intelligence*Ext.ExtraData.DGM_IntelligenceGlobalBonus -- /!\ Remember that 1=1% in this variable
-	local globalMultiplier = 1.0
-	
-	if backstab == 1 then
-		local criticalHit = NRD_CharacterGetComputedStat(instigator, "CriticalChance", 0)
-		damageBonus = damageBonus + criticalHit * Ext.ExtraData.DGM_BackstabCritChanceBonus
-	end
-
-	-- Get damage type bonus
-	if fromWeapon == 1 or skillID == "Target_TentacleLash_-1" then 
-		damageBonus = damageBonus + strength*Ext.ExtraData.DGM_StrengthWeaponBonus
-		-- Siphon Poison effect
-		SiphonPoisonBoost(instigator, target)
-		-- Wands bonus
-		if weaponTypes[1] == "Wand" then
-			local groundSurface = string.gsub(GetSurfaceGroundAt(instigator), "Surface", "")
-			local cloudSurface = string.gsub(GetSurfaceCloudAt(instigator), "Surface", "")
-			if surfaceToType[groundSurface] ~= nil then
-				damages[surfaceToType[groundSurface]] = damages[surfaceToType[groundSurface]] + (totalDamage * Ext.ExtraData.DGM_WandSurfaceBonus/100)
-			end
-			if surfaceToType[cloudSurface] ~= nil then
-				damages[surfaceToType[cloudSurface]] = damages[surfaceToType[cloudSurface]] + (totalDamage * Ext.ExtraData.DGM_WandSurfaceBonus/100)
+local function AbsorbDamageFromShieldStatus(target, damage)
+	local target = Ext.ServerEntity.GetGameObject(target)
+	_D(damage)
+	for dmgType, amount in pairs(damage) do
+		local absorbStatus = target:GetStatus("LX_SHIELD_"..string.upper(dmgType))
+		if absorbStatus then
+			local absorbAmount = absorbStatus.StatsMultiplier
+			if absorbAmount > 0 then
+				damage[dmgType] = math.max(amount-absorbAmount, 0)
+				_P(dmgType, damage[dmgType])
+				local newAbsorbAmount = math.max(absorbAmount-amount, 0)
+				if newAbsorbAmount > 0 then
+					absorbStatus.StatsMultiplier = newAbsorbAmount
+				else
+					RemoveStatus(target.MyGuid, absorbStatus.StatusId)
+				end
 			end
 		end
-		-- Apply CQB Penalty if necessary
-		globalMultiplier = globalMultiplier + ApplyCQBPenalty(weaponTypes, target, instigator)
-		-- Dual Wielding offhand damage boost
-		if sourceType == 7 then
-			local dualWielding = CharacterGetAbility(instigator, "DualWielding")
-			damageBonus = damageBonus + dualWielding*Ext.ExtraData.DGM_DualWieldingOffhandBonus
-		end
 	end
-	-- DoT Wits bonus
-	if isDoT == 1 then
-		damageBonus = wits*Ext.ExtraData.DGM_WitsDotBonus
-		Ext.Print("Dot bonus",damageBonus)
-	end
-	-- Intelligence skill bonus
-	if skillID ~= "" then 
-		local skillBonus, skillGlobalBonus = ScaleDamageFromSkill(instigator, skillID, intelligence, weaponTypes)
-		damageBonus = damageBonus + skillBonus
-		globalMultiplier = globalMultiplier + skillGlobalBonus
-	end
-	-- Apply damage changes and side effects
-	if skillID == "Projectile_Talent_Unstable" or IsTagged(target, "DGM_GuardianAngelProtector") == 1 or isFromShacklesOfPain then 
-		ClearTag(target, "DGM_GuardianAngelProtector")
-		damageBonus = 0
-		globalMultiplier = 1
-	end
-	damages = ChangeDamage(damages, (damageBonus/100+1)*globalMultiplier, 0, instigator, target, handle, isDoT)
-	ReplaceDamages(damages, handle, target)
-	TagShadowCorrosiveDifference(damages)
-	if ObjectIsCharacter(target) == 1 then SetWalkItOff(target, handle) end
-	
-	-- Armor passing damages
-	if ObjectIsCharacter(target) == 1 then InitiatePassingDamage(target, damages) end
-	if Ext.ExtraData.DGM_Corrogic == 1 then
-		TriggerCorrogicResistanceStrip(target, damages)
-	end
+	_D(damage)
+	return damage
 end
 
----@param target EsvCharacter
+---@param target EsvCharacter | EsvItem
 ---@param damages table
 function InitiatePassingDamage(target, damages)
 	if ObjectIsCharacter(target) ~= 1 then return end
@@ -527,8 +400,6 @@ end
 
 Game.Math.CalculateHitChance = DGM_CalculateHitChance
 
--- Ext.RegisterListener("ComputeCharacterHit", Game.Math.ComputeCharacterHit)
-
 if Mods.LeaderLib ~= nil then
 	-- local info = Ext.GetModInfo("7e737d2f-31d2-4751-963f-be6ccc59cd0c")
 	-- if info.Version <= 386465794 then
@@ -544,10 +415,157 @@ end
 
 Ext.RegisterOsirisListener("ObjectTurnStarted", 1, "before", SetDodgeCounter)
 
+
+---@param target EsvCharacter
+---@param handle number
+---@param instigator EsvCharacter
+---@param status EsvStatusHit
+---@param context HitContext
+local function DamageControl(target, instigator, hitDamage, handle)
+-- function DamageControl(status, context)
+	--[[
+		Main damage control : damages are teared down to the original formula and apply custom
+		bonuses from the overhaul
+	]]--
+	if ObjectIsCharacter(instigator) == 0 then return end
+	-- Get hit properties
+	local damages = {}
+	local types = DamageTypeEnum()
+	local isCrit = NRD_StatusGetInt(target, handle, "CriticalHit")
+	local isDodged = NRD_StatusGetInt(target, handle, "Dodged")
+	local isBlocked = NRD_StatusGetInt(target, handle, "Blocked")
+	local isMissed = NRD_StatusGetInt(target, handle, "Missed")
+	local fromWeapon = NRD_StatusGetInt(target, handle, "HitWithWeapon")
+	local fromReflection = NRD_StatusGetInt(target, handle, "Reflection")
+	local isDoT = NRD_StatusGetInt(target, handle, "DoT")
+	local sourceType = NRD_StatusGetInt(target, handle, "DamageSourceType")
+	local skillID = NRD_StatusGetString(target, handle, "SkillId")
+	local backstab = NRD_StatusGetInt(target, handle, "Backstab")
+	local fixedValue = 0
+	local isFromShacklesOfPain = false
+	
+	if fromReflection == 1 then return end
+	if NRD_StatusGetInt(target, handle, "HitReason") == 0 then
+		fromWeapon = 1
+	elseif skillID ~= "" then
+		fromWeapon = NRD_StatGetInt(string.gsub(skillID, "%_%-1", ""), "UseWeaponDamage")
+		fixedValue = NRD_StatGetInt(string.gsub(skillID, "%_%-1", ""), "Damage")
+	elseif NRD_StatusGetInt(target, handle, "HitReason") == 1 and skillID == ""
+		and HasActiveStatus(target, "SHACKLES_OF_PAIN") == 1 and HasActiveStatus(instigator, "SHACKLES_OF_PAIN_CASTER") == 1 then
+		isFromShacklesOfPain = true
+		Ext.Print("Shackles of Pain hit!")
+	end
+	if skillID == "Projectile_Talent_Unstable" and IsTagged(instigator, "LX_UNSTABLE_COOLDOWN") == 1 then
+		NRD_HitStatusClearAllDamage(target, handle)
+	end
+	
+	local weaponTypes = GetWeaponsType(instigator)
+	-- local hitStatus = Ext.GetStatus(target, handle)
+	
+	-- Get hit damages
+	local totalDamage = 0
+	for i,dmgType in pairs(types) do
+		damages[dmgType] = NRD_HitStatusGetDamage(target, handle, dmgType)
+		totalDamage = totalDamage + damages[dmgType]
+		if damages[dmgType] ~= 0 then Ext.Print("Damage "..dmgType..": "..damages[dmgType]) end
+	end
+	TagShadowCorrosiveDifference(damages)
+	
+	if isBlocked == 1 then return end
+	if (sourceType == 1 or sourceType == 2 or sourceType == 3) or (skillID == "" and sourceType == 0 and ObjectIsCharacter(target) == 1) or (fixedValue ~= 0 and fixedValue ~= 1 and fixedValue ~= 2) then 
+		damages = AbsorbDamageFromShieldStatus(target, damages)
+		InitiatePassingDamage(target, damages)
+		return 
+	end
+	
+	if ObjectIsCharacter(target) == 1 then
+		TraceDamageSpreaders(Ext.GetCharacter(target))
+	end
+
+	if fromWeapon == 1 then
+		local instigChar = Ext.GetCharacter(instigator)
+		local aimedShot = FindStatus(instigChar, "DGM_AimedShot")
+		if aimedShot then
+			RemoveStatus(instigator, aimedShot)
+		end
+	end
+
+	-- Dodge mechanic override
+	if isMissed == 1 or isDodged == 1 then
+		if Ext.ExtraData.DGM_LegacyDodge == 1 then
+			TriggerDodgeFatigue(target, instigator)
+		elseif HasActiveStatus(target, "EVADING") == 0 then
+			ApplyWarmup(instigator)
+		end
+		return
+	end
+	
+	-- Get instigator bonuses
+	local strength = CharacterGetAttribute(instigator, "Strength") - Ext.ExtraData.AttributeBaseValue
+	local finesse = CharacterGetAttribute(instigator, "Finesse") - Ext.ExtraData.AttributeBaseValue
+	local intelligence = CharacterGetAttribute(instigator, "Intelligence") - Ext.ExtraData.AttributeBaseValue
+	local wits = CharacterGetAttribute(instigator, "Wits") - Ext.ExtraData.AttributeBaseValue
+	local damageBonus = strength*Ext.ExtraData.DGM_StrengthGlobalBonus+finesse*Ext.ExtraData.DGM_FinesseGlobalBonus+intelligence*Ext.ExtraData.DGM_IntelligenceGlobalBonus -- /!\ Remember that 1=1% in this variable
+	local globalMultiplier = 1.0
+	
+	if backstab == 1 then
+		local criticalHit = NRD_CharacterGetComputedStat(instigator, "CriticalChance", 0)
+		damageBonus = damageBonus + criticalHit * Ext.ExtraData.DGM_BackstabCritChanceBonus
+	end
+
+	-- Get damage type bonus
+	if fromWeapon == 1 or skillID == "Target_TentacleLash_-1" then 
+		-- Wands bonus
+		if weaponTypes[1] == "Wand" then
+			damageBonus = damageBonus + intelligence*Ext.ExtraData.DGM_IntelligenceSkillBonus
+		else
+			damageBonus = damageBonus + strength*Ext.ExtraData.DGM_StrengthWeaponBonus
+		end
+		-- Siphon Poison effect
+		SiphonPoisonBoost(instigator, target)
+		-- Apply CQB Penalty if necessary
+		globalMultiplier = globalMultiplier + ApplyCQBPenalty(weaponTypes, target, instigator)
+		-- Dual Wielding offhand damage boost
+		if sourceType == 7 then
+			local dualWielding = CharacterGetAbility(instigator, "DualWielding")
+			damageBonus = damageBonus + dualWielding*Ext.ExtraData.DGM_DualWieldingOffhandBonus
+		end
+	end
+	-- DoT Wits bonus
+	if isDoT == 1 then
+		damageBonus = wits*Ext.ExtraData.DGM_WitsDotBonus
+		Ext.Print("Dot bonus",damageBonus)
+	end
+	-- Intelligence skill bonus
+	if skillID ~= "" then 
+		local skillBonus, skillGlobalBonus = ScaleDamageFromSkill(instigator, skillID, intelligence, weaponTypes)
+		damageBonus = damageBonus + skillBonus
+		globalMultiplier = globalMultiplier + skillGlobalBonus
+	end
+	-- Apply damage changes and side effects
+	if skillID == "Projectile_Talent_Unstable" or IsTagged(target, "DGM_GuardianAngelProtector") == 1 or isFromShacklesOfPain then 
+		ClearTag(target, "DGM_GuardianAngelProtector")
+		damageBonus = 0
+		globalMultiplier = 1
+	end
+	damages = ChangeDamage(damages, (damageBonus/100+1)*globalMultiplier, 0, instigator, target, handle, isDoT)
+	damages = AbsorbDamageFromShieldStatus(target, damages)
+	ReplaceDamages(damages, handle, target)
+	TagShadowCorrosiveDifference(damages)
+	if ObjectIsCharacter(target) == 1 then SetWalkItOff(target, handle) end
+
+	-- Armor passing damages
+	if ObjectIsCharacter(target) == 1 then InitiatePassingDamage(target, damages) end
+	if Ext.ExtraData.DGM_Corrogic == 1 then
+		TriggerCorrogicResistanceStrip(target, damages)
+	end
+end
+
 local function HitCatch(target, status, handle, instigator)
 	if status ~= "HIT" then return end
 	DamageControl(target, handle, instigator)
 end
 
 -- Ext.RegisterOsirisListener("NRD_OnStatusAttempt", 4, "before", HitCatch)
-Ext.RegisterOsirisListener("NRD_OnHit", 4, "before", DamageControl)
+-- Ext.RegisterOsirisListener("NRD_OnHit", 4, "before", DamageControl)
+

@@ -1,4 +1,62 @@
+_P("Loaded Helpers.lua")
+
+---@diagnostic disable: duplicate-set-field
 -- Helpers
+--- @class Helpers
+-- Helpers = {}
+
+Helpers.ScalingFunctions = {
+	ALD = Game.Math.GetAverageLevelDamage,
+	BLD = Game.Math.GetLevelScaledDamage,
+	WLD = Game.Math.GetLevelScaledWeaponDamage,
+	MLD = Game.Math.GetLevelScaledMonsterWeaponDamage,
+}
+
+--- @param scaling string
+--- @param character EclCharacter|EsvCharacter|EsvItem|nil
+--- @param instigator EclCharacter|EsvCharacter|nil
+Helpers.ScalingValues = function(scaling, character, instigator)
+	if scaling == "SourceMaximumPhysicalArmor" then
+		return instigator.Stats.MaxArmor
+	elseif scaling == "SourceMaximumMagicArmor" then
+		return instigator.Stats.MaxMagicArmor
+	elseif scaling == "SourceCurrentPhysicalArmor" then
+		return instigator.Stats.CurrentArmor
+	elseif scaling == "SourceCurrentMagicArmor" then
+		return instigator.Stats.CurrentMagicArmor
+	end
+end
+
+---@param scaling string
+---@param character EsvCharacter|EclCharacter|EsvItem|nil
+---@param instigator EsvCharacter|EclCharacter|nil
+Helpers.GetScaledValue = function(scaling, character, instigator)
+	if Helpers.ScalingFunctions[scaling] then
+		return Helpers.ScalingFunctions[scaling](instigator.Stats.Level)
+	else
+		return Helpers.ScalingValues(scaling, character, instigator)
+	end
+end
+
+
+
+Helpers.EquipmentSlots = {
+	 "Helmet",
+	 "Breast",
+	 "Leggings",
+	 "Weapon",
+	 "Shield",
+	 "Ring",
+	 "Belt",
+	 "Boots",
+	 "Gloves",
+	 "Amulet",
+	 "Ring2",
+	 "Wings",
+	 "Horns",
+	 "Overhead",
+}
+
 function DamageTypeEnum()
 	local enum = {
 		"Physical",
@@ -84,7 +142,7 @@ function dump(o)
 	end
  end
 
----@param char EsvCharacter
+---@param char EsvCharacter|EclCharacter
 ---@param next integer
 function CharGetDGMAttributeBonus(char, next)
 	if char == nil then return end
@@ -98,34 +156,37 @@ function CharGetDGMAttributeBonus(char, next)
 		str = math.floor(strength+next),
 		strGlobal = math.floor((strength+next) * Ext.ExtraData.DGM_StrengthGlobalBonus),
 		strWeapon = math.floor((strength+next) * Ext.ExtraData.DGM_StrengthWeaponBonus),
-		strRes = math.floor(Ext.Round((strength+next) * Ext.ExtraData.DGM_StrengthResistanceIgnore * 100))/100,
+		-- strRes = math.floor(Ext.Utils.Round((strength+next) * Ext.ExtraData.DGM_StrengthResistanceIgnore * 100))/100, -- Old Ingress multiplier behavior
+		strIngCap = math.floor((strength+next) * Ext.ExtraData.DGM_StrengthIngressCap),
 		fin = math.floor(finesse+next),
 		finGlobal = math.floor((finesse+next) * Ext.ExtraData.DGM_FinesseGlobalBonus),
 		finDodge = round((finesse+next) * Ext.ExtraData.DodgingBoostFromAttribute * 100, 0),
 		finMovement = round((finesse+next) * Ext.ExtraData.DGM_FinesseMovementBonus / 100, 2),
 		finCrit = math.floor((finesse+next) * Ext.ExtraData.DGM_FinesseCritChance),
+		finAccCap = math.floor((finesse+next) * Ext.ExtraData.DGM_FinesseAccuracyFromIntelligenceCap),
 		int = math.floor(intelligence+next),
 		intGlobal = math.floor((intelligence+next) * Ext.ExtraData.DGM_IntelligenceGlobalBonus),
 		intSkill = math.floor((intelligence+next) * Ext.ExtraData.DGM_IntelligenceSkillBonus),
 		intAcc = math.floor((intelligence+next) * Ext.ExtraData.DGM_IntelligenceAccuracyBonus),
+		intWisCap = math.floor((intelligence+next) * Ext.ExtraData.DGM_IntelligenceWisdomFromWitsCap),
 		wits = math.floor(wits+next),
 		witsCrit = math.floor((wits+next) * Ext.ExtraData.CriticalBonusFromWits),
 		witsIni = math.floor((wits+next) * Ext.ExtraData.InitiativeBonusFromWits),
 		witsDot = math.floor((wits+next) * Ext.ExtraData.DGM_WitsDotBonus),
-		dual = math.floor(Ext.ExtraData.CombatAbilityDamageBonus * (stats.DualWielding+next)),
+		dual = math.floor(Ext.ExtraData.DGM_DualWieldingDamageBonus * (stats.DualWielding+next)),
 		dualDodge = math.floor(Ext.ExtraData.CombatAbilityDodgingBonus * (stats.DualWielding+next)),
 		dualOff = math.floor(Ext.ExtraData.DGM_DualWieldingOffhandBonus * (stats.DualWielding+next)),
-		ranged = math.floor(Ext.ExtraData.CombatAbilityDamageBonus * (stats.Ranged+next)),
+		ranged = math.floor(Ext.ExtraData.DGM_RangedDamageBonus * (stats.Ranged+next)),
 		rangedCrit = math.floor(Ext.ExtraData.CombatAbilityCritBonus * (stats.Ranged+next)),
 		rangedRange = round(Ext.ExtraData.DGM_RangedRangeBonus * (stats.Ranged+next) * 0.01, 2),
-		single = math.floor(Ext.ExtraData.CombatAbilityDamageBonus * (stats.SingleHanded+next)),
+		single = math.floor(Ext.ExtraData.DGM_SingleHandedDamageBonus * (stats.SingleHanded+next)),
 		singleAcc = math.floor(Ext.ExtraData.CombatAbilityAccuracyBonus * (stats.SingleHanded+next)),
 		singleArm = math.floor(Ext.ExtraData.DGM_SingleHandedArmorBonus * (stats.SingleHanded+next)),
 		singleEle = math.floor(Ext.ExtraData.DGM_SingleHandedResistanceBonus * (stats.SingleHanded+next)),
-		two = math.floor(Ext.ExtraData.CombatAbilityDamageBonus * (stats.TwoHanded+next)),
+		two = math.floor(Ext.ExtraData.DGM_TwoHandedDamageBonus * (stats.TwoHanded+next)),
 		twoCrit = math.floor(Ext.ExtraData.CombatAbilityCritMultiplierBonus * (stats.TwoHanded+next)),
 		twoAcc = math.floor(Ext.ExtraData.DGM_TwoHandedCTHBonus * (stats.TwoHanded+next)),
-		persArm = math.floor(Ext.ExtraData.AbilityPerseveranceArmorPerPoint * (stats.Perseverance+next)),
+		persArm = math.floor(Data.Math.GetHealValue(Ext.Stats.Get("POST_PHYS_CONTROL"), char) * (stats.Perseverance+next)),
 		persVit = math.floor(Ext.ExtraData.DGM_PerseveranceResistance * (stats.Perseverance+next)),
 		hydroDmg = math.floor(Ext.ExtraData.SkillAbilityWaterDamageBoostPerPoint * (stats.WaterSpecialist+next)),
 		hydroHeal = math.floor(Ext.ExtraData.SkillAbilityVitalityRestoredPerPoint * (stats.WaterSpecialist+next)),
@@ -178,25 +239,8 @@ function string.split(inputStr, sep)
 end
 
 ---@param dmgType string
-function getDamageColor(dmgType)
-	local colorCode = ""
-	local types = {}
-	types["Physical"]="'#A8A8A8'"
-	types["Corrosive"]="'#cccc00'"
-	types["Magic"]="'#7F00FF'"
-	types["Fire"]="'#FE6E27'"
-	types["Water"]="'#4197E2'"
-	types["Earth"]="'#7F3D00'"
-	types["Poison"]="'#65C900'"
-	types["Air"]="'#7D71D9'"
-	types["Shadow"]="'#6600ff'"
-    types["Piercing"]="'#C80030'"
-    types["None"]="'#C80030'"
-	
-	for t,code in pairs(types) do
-		if dmgType == t then return code end
-	end
-	return "'#A8A8A8'"
+function Helpers.GetDamageColor(dmgType)
+	return Data.Text.DamageTypeColors[dmgType] or "'#A8A8A8'"
 end
 
 surfaceToType = {
@@ -444,3 +488,57 @@ engineStatuses = {
 	DEACTIVATED = true,
 	TUTORIAL_BED = true
 }
+
+function GetHealScaledValue(stat, healer)
+	local HealTypeSkillData = healer.Stats.WaterSpecialist * Ext.ExtraData.SkillAbilityVitalityRestoredPerPoint
+	-- When the status type is HEALING, the initial value is copied over to the next HEAL ticks and automatically apply the Hydro/Geo bonus
+	if stat.StatusType == "HEALING" then
+		HealTypeSkillData = 0
+	elseif stat.HealStat == "PhysicalArmor" then
+		HealTypeSkillData = healer.Stats.EarthSpecialist * Ext.ExtraData.SkillAbilityArmorRestoredPerPoint
+	elseif stat.HealStat == "MagicArmor" then
+		HealTypeSkillData = healer.Stats.WaterSpecialist * Ext.ExtraData.SkillAbilityArmorRestoredPerPoint
+	end
+	return Ext.Round(stat.HealValue * Game.Math.GetAverageLevelDamage(healer.Stats.Level) * Ext.ExtraData.HealToDamageRatio / 100 * (1 + HealTypeSkillData/100))
+end
+
+DamageScalingFormulas = {
+	ALD = Game.Math.GetAverageLevelDamage,
+	BLD = Game.Math.GetLevelScaledDamage,
+	BWD = Game.Math.GetLevelScaledWeaponDamage,
+	BMD = Game.Math.GetLevelScaledMonsterWeaponDamage
+}
+
+damageTypes = {
+    "Physical",
+    "Piercing",
+    "Fire",
+    "Air",
+    "Water",
+    "Earth",
+    "Poison",
+    "Shadow",
+    "Corrosive",
+    "Magic"
+}
+
+magicDamageTypes = {
+    "Fire",
+    "Air",
+    "Water",
+    "Earth",
+    "Poison",
+    "Magic"
+}
+
+physicalDamageTypes = {
+    "Physical",
+    "Corrosive"
+}
+
+-- Ext.Require("Shared/Helpers/GeneralHelpers.lua")
+-- Ext.Require("Shared/Helpers/CharacterHelpers.lua")
+-- Ext.Require("Shared/Helpers/StatsHelpers.lua")
+-- Ext.Require("Shared/Helpers/StatusHelpers.lua")
+-- Ext.Require("Shared/Helpers/HitHelpers.lua")
+-- Ext.Require("Shared/Helpers/UIHelpers.lua")

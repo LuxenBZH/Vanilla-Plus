@@ -1,0 +1,346 @@
+
+new itemtype "Common","ffffff","","1",Common,Common,0
+minlevel 1
+new boostgroup dropChance 9
+minlevel 9
+new boostgroup dropChance 9
+new boostgroup dropChance 1
+boost "RuneEmpty"
+
+new itemtype "Unique","c7a758","Item_Unique","1",Unique,Unique,4
+minlevel 1
+new boostgroup dropChance 1
+
+new itemtype "Uncommon","00a900","Item_Magical","1.2",Rare,Epic,2
+minlevel 1
+new boostgroup dropChance 1
+boost "Normal"
+boost "BaseUncommon"
+minlevel 5
+new boostgroup dropChance 4
+boost "Normal"
+boost "BaseUncommon"
+new boostgroup dropChance 1
+boost "RuneEmpty"
+boost "Normal"
+boost "BaseUncommon"
+minlevel 9
+new boostgroup dropChance 7
+boost "Normal"
+boost "Normal"
+boost "BaseUncommon"
+new boostgroup dropChance 3
+boost "RuneEmpty"
+boost "Normal"
+boost "Normal"
+boost "BaseUncommon"
+minlevel 16
+new boostgroup dropChance 6
+boost "Normal"
+boost "Normal"
+boost "Normal"
+boost "BaseUncommon"
+new boostgroup dropChance 2
+boost "RuneEmpty"
+boost "Normal"
+boost "Normal"
+boost "Normal"
+boost "BaseUncommon"
+new boostgroup dropChance 2
+boost "RuneEmpty"
+boost "Normal"
+boost "Normal"
+boost "Normal"
+boost "BaseUncommon"
+
+new itemtype "Rare","33ccff","Item_Rare","1.5",Epic,Legendary,1
+minlevel 1
+new boostgroup dropChance 1
+boost "Primary"
+boost "Normal"
+boost "BaseRare"
+minlevel 5
+new boostgroup dropChance 4
+boost "Primary"
+boost "Normal"
+boost "BaseRare"
+new boostgroup dropChance 2
+boost "Primary"
+boost "Normal"
+boost "BaseRare"
+boost "RuneEmpty"
+new boostgroup dropChance 1
+boost "RuneEmpty"
+boost "Primary"
+boost "Normal"
+boost "BaseRare"
+minlevel 9
+new boostgroup dropChance 3
+boost "Primary"
+boost "Normal"
+boost "Normal"
+boost "BaseRare"
+new boostgroup dropChance 1
+boost "RuneEmpty"
+boost "Primary"
+boost "Normal"
+boost "Normal"
+boost "BaseRare"
+new boostgroup dropChance 1
+boost "RuneEmpty"
+boost "Primary"
+boost "Normal"
+boost "Normal"
+boost "BaseRare"
+minlevel 16
+new boostgroup dropChance 3
+boost "Primary"
+boost "Normal"
+boost "Normal"
+boost "Normal"
+boost "BaseRare"
+new boostgroup dropChance 1
+boost "RuneEmpty"
+boost "Primary"
+boost "Normal"
+boost "Normal"
+boost "Normal"
+boost "BaseRare"
+new boostgroup dropChance 1
+boost "RuneEmpty"
+boost "Primary"
+boost "Normal"
+boost "Normal"
+boost "Normal"
+boost "BaseRare"
+new boostgroup dropChance 1
+boost "RuneEmpty"
+boost "Primary"
+boost "Normal"
+boost "Normal"
+boost "Normal"
+boost "BaseRare"
+
+new itemtype "Epic","a346e9","Item_Epic","1.5",Legendary,Divine,5
+minlevel 1
+new boostgroup dropChance 1
+boost "Legendary"
+boost "Primary"
+boost "Normal"
+boost "BaseEpic"
+minlevel 5
+new boostgroup dropChance 2
+boost "Legendary"
+boost "Primary"
+boost "Normal"
+boost "BaseEpic"
+new boostgroup dropChance 1
+boost "RuneEmpty"
+boost "Legendary"
+boost "Primary"
+boost "Normal"
+boost "BaseEpic"
+new boostgroup dropChance 2
+boost "RuneEmpty"
+boost "Legendary"
+boost "Primary"
+boost "Normal"
+boost "BaseEpic"
+minlevel 9
+new boostgroup dropChance 2
+boost "Legendary"
+boost "Primary"
+boost "Normal"
+boost "Normal"
+boost "BaseEpic"
+new boostgroup dropChance 1
+boost "RuneEmpty"
+boost "Legendary"
+boost "Primary"
+boost "Normal"
+boost "Normal"
+boost "BaseEpic"
+new boostgroup dropChance 1
+boost "RuneEmpty"
+boost "Legendary"
+boost "Primary"
+boost "Normal"
+boost "Normal"
+boost "BaseEpic"
+new boostgroup dropChance 1
+boost "RuneEmpty"
+boost "Legendary"
+boost "Primary"
+boost "Normal"
+boost "Normal"
+boost "BaseEpic"
+minlevel 16
+new boostgroup dropChance 2
+boost "Legendary"
+boost "Primary"
+boost "Normal"
+boost "Normal"
+boost "Normal"
+boost "BaseEpic"
+new boostgroup dropChance 1
+boost "RuneEmpty"
+boost "Legendary"
+boost "Primary"
+boost "Normal"
+boost "Normal"
+boost "Normal"
+boost "BaseEpic"
+new boostgroup dropChance 1
+boost "RuneEmpty"
+boost "Legendary"
+boost "Primary"
+boost "Normal"
+boost "Normal"
+boost "Normal"
+boost "BaseEpic"
+new boostgroup dropChance 1
+boost "RuneEmpty"
+boost "Legendary"
+boost "Primary"
+boost "Normal"
+boost "Normal"
+boost "Normal"
+boost "BaseEpic"
+
+new itemtype "Legendary","d1007c","Item_Legendary","2",Divine,Divine,6
+minlevel 1
+new boostgroup dropChance 1
+boost "Legendary"
+boost "Primary"
+boost "Large"
+boost "Normal"
+boost "Small"
+boost "Base"
+minlevel 5
+new boostgroup dropChance 2
+boost "Legendary"
+boost "Primary"
+boost "Large"
+boost "Normal"
+boost "Small"
+boost "Base"
+new boostgroup dropChance 2
+boost "Legendary"
+boost "Primary"
+boost "Large"
+boost "Normal"
+boost "RuneEmpty"
+boost "Base"
+new boostgroup dropChance 1
+boost "Legendary"
+boost "Primary"
+boost "Large"
+boost "RuneEmpty"
+boost "Small"
+boost "Base"
+minlevel 9
+new boostgroup dropChance 3
+boost "Legendary"
+boost "Primary"
+boost "Large"
+boost "Normal"
+boost "RuneEmpty"
+boost "RuneEmpty"
+boost "Base"
+new boostgroup dropChance 1
+boost "Legendary"
+boost "Primary"
+boost "Large"
+boost "RuneEmpty"
+boost "RuneEmpty"
+boost "Small"
+boost "Base"
+minlevel 16
+new boostgroup dropChance 3
+boost "Legendary"
+boost "Primary"
+boost "Large"
+boost "RuneEmpty"
+boost "RuneEmpty"
+boost "RuneEmpty"
+boost "Base"
+new boostgroup dropChance 1
+boost "Legendary"
+boost "Primary"
+boost "Large"
+boost "RuneEmpty"
+boost "RuneEmpty"
+boost "RuneEmpty"
+boost "Base"
+
+new itemtype "Divine","ebc808","Item_Divine","2",Divine,Divine,3
+minlevel 1
+new boostgroup dropChance 1
+boost "Legendary"
+boost "Legendary"
+boost "Primary"
+boost "Large"
+boost "Normal"
+boost "Small"
+boost "Base"
+minlevel 5
+new boostgroup dropChance 2
+boost "Legendary"
+boost "Legendary"
+boost "Primary"
+boost "Large"
+boost "Normal"
+boost "Small"
+boost "Base"
+new boostgroup dropChance 2
+boost "Legendary"
+boost "Legendary"
+boost "Primary"
+boost "Large"
+boost "Normal"
+boost "RuneEmpty"
+boost "Base"
+new boostgroup dropChance 1
+boost "Legendary"
+boost "Legendary"
+boost "Primary"
+boost "Large"
+boost "RuneEmpty"
+boost "Small"
+boost "Base"
+minlevel 9
+new boostgroup dropChance 3
+boost "Legendary"
+boost "Legendary"
+boost "Primary"
+boost "Large"
+boost "RuneEmpty"
+boost "RuneEmpty"
+boost "Base"
+new boostgroup dropChance 1
+boost "Legendary"
+boost "Legendary"
+boost "Primary"
+boost "Large"
+boost "RuneEmpty"
+boost "RuneEmpty"
+boost "Base"
+minlevel 16
+new boostgroup dropChance 3
+boost "Legendary"
+boost "Legendary"
+boost "Primary"
+boost "Large"
+boost "RuneEmpty"
+boost "RuneEmpty"
+boost "RuneEmpty"
+boost "Base"
+new boostgroup dropChance 1
+boost "Legendary"
+boost "Legendary"
+boost "Primary"
+boost "Large"
+boost "RuneEmpty"
+boost "RuneEmpty"
+boost "RuneEmpty"
+boost "Base"

@@ -77,16 +77,17 @@ end
 -- 	end
 -- end
 local function RecoverFromCCs(character, status, ...)
+	local char = Ext.Entity.GetCharacter(character)
 	for armour,statuses in pairs(blockedStatuses) do
 		if statuses[status] then
-			local duration = Ext.ExtraData.DGM_CCParryDuration
+			local duration = tonumber(Ext.ExtraData.DGM_CCParryDuration)
 			if CharacterHasTalent(character, "WalkItOff") == 1 or Ext.ExtraData.DGM_GB4Talents == 1 then
 				duration = duration + 1
 			end
 			if armour == "PhysicalArmor" then
-				ApplyStatus(character, "LX_MOMENTUM", duration*6, 1)
+				ApplyStatus(character, "LX_MOMENTUM", duration*6  + (char.Stats.TALENT_Indomitable and 6.0 or 0), 1, character)
 			elseif armour == "MagicArmor" then
-				ApplyStatus(character, "LX_LINGERING", duration*6, 1)
+				ApplyStatus(character, "LX_LINGERING", duration*6 + (char.Stats.TALENT_Indomitable and 6.0 or 0), 1, character)
 			end
 		end
 	end
@@ -105,7 +106,7 @@ end
 ---@param status string
 ---@param handle number
 local function BlockCCs(character, status, handle, instigator)
-	if ObjectIsCharacter(character) ~= 1 or engineStatuses[status] then return end
+	if ObjectIsCharacter(character) ~= 1 or Data.Stats.EngineStatuses[status] then return end
 	local lifetime = NRD_StatusGetInt(character, handle, "LifeTime")
 	local source = NRD_StatusGetInt(character, handle, "DamageSourceType") -- If 5 it's from an aura
 	local enterChance = NRD_StatusGetInt(character, handle, "CanEnterChance")
@@ -119,6 +120,11 @@ local function BlockCCs(character, status, handle, instigator)
 				NRD_StatusPreventApply(character, handle, 1)
 				return
 			end 
+			--- Game Master
+			if armourValue ~= 0 and source == 0 and CheckImmunity(character, status) then
+				NRD_StatusPreventApply(character, handle, 1)
+			end
+			--- Surface
 			if armourValue ~= 0 and source == 3 and HasActiveStatus(character, correspondingStatus[armour][1]) == 1 and not CheckImmunity(character, status) then
 				NRD_StatusPreventApply(character, handle, 1)
 				RollStatusApplication(character, correspondingStatus[armour][2], 6.0, 1, enterChance, handle)
@@ -131,7 +137,7 @@ local function BlockCCs(character, status, handle, instigator)
 			end
 		end
 	end
-	-- Torturer fix
+	-- Torturer weapons fix
 	if enterChance < 100 and not isArmourStatus and CharacterHasTalent(instigator, "Torturer") == 1 then
 		local roll = math.random(1, 100)
 		if roll > enterChance then 

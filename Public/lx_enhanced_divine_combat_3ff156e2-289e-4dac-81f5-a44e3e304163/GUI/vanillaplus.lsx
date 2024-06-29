@@ -6,6 +6,27 @@
         <node id="root">
             <children>
                 <node id="IconUV">
+                    <attribute id="MapKey" value="Skill_All_Shield" type="22" />
+                    <attribute id="U1" value="0.750977" type="6" />
+                    <attribute id="U2" value="0.874023" type="6" />
+                    <attribute id="V1" value="0.125977" type="6" />
+                    <attribute id="V2" value="0.249023" type="6" />
+                </node>
+                <node id="IconUV">
+                    <attribute id="MapKey" value="Skill_Poison_Shield" type="22" />
+                    <attribute id="U1" value="0.625977" type="6" />
+                    <attribute id="U2" value="0.749023" type="6" />
+                    <attribute id="V1" value="0.125977" type="6" />
+                    <attribute id="V2" value="0.249023" type="6" />
+                </node>
+                <node id="IconUV">
+                    <attribute id="MapKey" value="Talent_Unstable_Cooldown" type="22" />
+                    <attribute id="U1" value="0.500977" type="6" />
+                    <attribute id="U2" value="0.624023" type="6" />
+                    <attribute id="V1" value="0.125977" type="6" />
+                    <attribute id="V2" value="0.249023" type="6" />
+                </node>
+                <node id="IconUV">
                     <attribute id="MapKey" value="grenade_acid" type="22" />
                     <attribute id="U1" value="0.625977" type="6" />
                     <attribute id="U2" value="0.749023" type="6" />
@@ -88,6 +109,13 @@
                     <attribute id="U2" value="0.999023" type="6" />
                     <attribute id="V1" value="0.000976563" type="6" />
                     <attribute id="V2" value="0.124023" type="6" />
+                </node>
+                <node id="IconUV">
+                    <attribute id="MapKey" value="transmute_skin" type="22" />
+                    <attribute id="U1" value="0.875977" type="6" />
+                    <attribute id="U2" value="0.999023" type="6" />
+                    <attribute id="V1" value="0.125977" type="6" />
+                    <attribute id="V2" value="0.249023" type="6" />
                 </node>
             </children>
         </node>

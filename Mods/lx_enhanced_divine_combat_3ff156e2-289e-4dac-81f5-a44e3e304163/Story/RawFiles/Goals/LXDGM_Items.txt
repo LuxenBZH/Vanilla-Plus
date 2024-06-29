@@ -3,29 +3,29 @@ SubGoalCombiner SGC_AND
 INITSECTION
 
 KBSECTION
-IF
-CharacterUsedItem(_Char, _Item)
-THEN
-LX_EXT_PoisonedPotionManagement(_Char, _Item);
+// IF
+// CharacterUsedItem(_Char, _Item)
+// THEN
+// LX_EXT_PoisonedPotionManagement(_Char, _Item);
 
-IF
-CharacterStatusApplied(_Char, "HEALING_ELIXIR", _)
-THEN
-RemoveStatus(_Char, "DISARMED");
+// IF
+// CharacterStatusApplied(_Char, "HEALING_ELIXIR", _)
+// THEN
+// RemoveStatus(_Char, "DISARMED");
 
-IF
-CharacterUsedItem(_Char, _Item)
-AND
-CharacterIsInCombat(_Char, 1)
-THEN
-LX_EXT_ManagePotionFatigue(_Char, _Item);
+// IF
+// CharacterUsedItem(_Char, _Item)
+// AND
+// CharacterIsInCombat(_Char, 1)
+// THEN
+// LX_EXT_ManagePotionFatigue(_Char, _Item);
 
-IF
-ObjectTurnStarted(_Object)
-AND
-ObjectIsCharacter(_Object, 1)
-THEN
-SetVarInteger(_Object, "DGM_PotionFatigue", 0);
+// IF
+// ObjectTurnStarted(_Object)
+// AND
+// ObjectIsCharacter(_Object, 1)
+// THEN
+// SetVarInteger(_Object, "DGM_PotionFatigue", 0);
 
 //Weapons movement reduction
 // IF

@@ -41,7 +41,15 @@ local dynamicTooltips = {
     ["Teleportation_FreeFall"]  = "h8afcfe4egf50fg402agbcc0g6ba95472ff53",
     ["Teleportation_Netherswap"]= "h656cf1ffgd118g40b8g9b1bgaa270b84bec8",
     ["Shout_LX_AimedShot_Description"]= "h02f12f9fg9a25g4a95gba27gd65217023ed9",
-    ["DualWieldingOffhandBonusTooltip"]= "h8b09bd1cg68deg4987g9494g540c9d948538"
+    ["DualWieldingOffhandBonusTooltip"]= "h8b09bd1cg68deg4987g9494g540c9d948538",
+    ["WeaponAbilityBonus"] = "h2b23ff71g3f03g4ec6g83cagcbeeae126da7",
+}
+
+local weaponAbilitiesTK = {
+    ["TwoHanded"] = "h3fb5cd5ag9ec8g4746g8f9cg03100b26bd3a",
+    ["SingleHanded"] = "ha74334b1gd56bg49c2g8738g44da4decd00a",
+    ["Ranged"] = "hdda30cb9g17adg433ag9071g867e97c09c3a",
+    ["DualWielding"] = "h03d68693g35e7g4721ga1b3g9f9882f08b12"
 }
 
 ---@param str string
@@ -50,8 +58,10 @@ local function SubstituteString(str, ...)
     local result = str
 
     for k, v in pairs(args) do
-        if v == math.floor(v) then v = math.floor(v) end -- Formatting integers to not show .0
-        result = result:gsub("%["..tostring(k).."%]", v)
+        if type(v) == "number" then
+            if v == math.floor(v) then v = math.floor(v) end -- Formatting integers to not show .0
+        end
+            result = result:gsub("%["..tostring(k).."%]", v)
     end
     return result
 end
@@ -65,62 +75,13 @@ function GetDynamicTranslationString(dynamicKey, ...)
 
     local str = Ext.GetTranslatedString(handle, "Handle Error!")
     if str == "Handle Error!" then
-        Ext.Print("Tooltip handle error:", dynamicKey, handle)
+        Helpers.VPPrint("Tooltip handle error:", "Tooltips", dynamicKey, handle)
     end
     str = SubstituteString(str, table.unpack(args))
     return str
 end
 
----@param item StatItem
----@param tooltip TooltipData
-local function WeaponTooltips(item, tooltip)
-    if tooltip == nil then return end
-	if item.ItemType ~= "Weapon" then return end
-    local requirements = tooltip:GetElements("ItemRequirement")
-    for i,el in pairs(tooltip.Data) do
-        if el.Label and string.match(el.Label, "Scales With") ~= nil then
-            tooltip:RemoveElement(el)
-        end
-    end
-	local equipment = {
-		Type = "ItemRequirement",
-		Label = "",
-		RequirementMet = true
-    }
-
-    if item.WeaponType == "Staff" then
-        equipment["Label"] = GetDynamicTranslationString("WpnStaff", Ext.ExtraData.DGM_StaffSkillMultiplier)
-        tooltip:AppendElementAfter(equipment, "ExtraProperties")
-    end
-
-    if item.WeaponType == "Wand" then
-        equipment["Label"] = GetDynamicTranslationString("WpnWand", Ext.ExtraData.DGM_WandSkillMultiplier, Ext.ExtraData.DGM_WandSurfaceBonus)
-        tooltip:AppendElementAfter(equipment, "ExtraProperties")
-    end
-    if Ext.ExtraData.DGM_RangedCQBPenalty > 0 then
-        if item.WeaponType == "Bow" or item.WeaponType == "Crossbow" or item.WeaponType == "Rifle" or item.WeaponType == "Wand" then
-            local equipment = {
-                Type = "ItemRequirement",
-                Label = "",
-                RequirementMet = true
-            }
-            equipment["Label"] = GetDynamicTranslationString("WpnRanged", Ext.ExtraData.DGM_RangedCQBPenalty, Ext.ExtraData.DGM_RangedCQBPenaltyRange)
-            equipment["RequirementMet"] = false
-            tooltip:AppendElementAfter(equipment, "ExtraProperties")
-        end
-
-        if item.WeaponType == "Crossbow" then
-            local equipment = {
-                Type = "ItemRequirement",
-                Label = GetDynamicTranslationString("WpnCrossbow", -1*Ext.ExtraData.DGM_CrossbowBasePenalty/100+(-1*Ext.ExtraData.DGM_CrossbowLevelGrowthPenalty/100*item.Level)),
-                RequirementMet = false
-            }
-            tooltip:AppendElementAfter(equipment, "ExtraProperties")
-        end
-    end
-end
-
----@param character EsvCharacter
+---@param character EclCharacter
 ---@param skill any
 ---@param tooltip TooltipData
 local function SkillAttributeTooltipBonus(character, skill, tooltip)
@@ -130,6 +91,8 @@ local function SkillAttributeTooltipBonus(character, skill, tooltip)
     (stats.Intelligence-Ext.ExtraData.AttributeBaseValue) * Ext.ExtraData.DGM_IntelligenceGlobalBonus)
     local strengthBonus = math.floor((stats.Strength-Ext.ExtraData.AttributeBaseValue) * Ext.ExtraData.DGM_StrengthWeaponBonus)
     local intelligenceBonus = math.floor((stats.Intelligence-Ext.ExtraData.AttributeBaseValue) * Ext.ExtraData.DGM_IntelligenceSkillBonus)
+    local weaponAbility = Game.Math.GetWeaponAbility(character.Stats, character.Stats.MainWeapon)
+    local abilityBonus = math.floor(Data.Math.GetCharacterWeaponAbilityBonus(character))
 
     local general = {
         Type = "StatsPercentageBoost",
@@ -144,9 +107,15 @@ local function SkillAttributeTooltipBonus(character, skill, tooltip)
         Label = GetDynamicTranslationString("IntSkillBonus", intelligenceBonus)
     }
 
+    local ability = {
+        Type = "StatsPercentageBoost",
+        Label = string.sub(GetDynamicTranslationString("WeaponAbilityBonus", Ext.L10N.GetTranslatedString(weaponAbilitiesTK[weaponAbility]), abilityBonus, ""), 5).."%"
+    }
+
     tooltip:AppendElementAfter(general, "StatsPercentageBoost")
     tooltip:AppendElementAfter(strength, "StatsPercentageBoost")
     tooltip:AppendElementAfter(intelligence, "StatsPercentageBoost")
+    tooltip:AppendElementAfter(ability, "StatsPercentageBoost")
 
     if not stats.MainWeapon.IsTwoHanded then
         if stats.OffHandWeapon ~= nil and stats.OffHandWeapon.WeaponType ~= "Shield" then
@@ -173,33 +142,56 @@ local function SkillAttributeTooltipBonus(character, skill, tooltip)
     end
 end
 
----@param character EsvCharacter
----@param skill string
+---@param character EclCharacter
+---@param stat string
 ---@param tooltip TooltipData
 local function OnStatTooltip(character, stat, tooltip)
-    if tooltip == nil then return end
+    if tooltip == nil or tooltip:GetElement("StatName") == nil then return end
     -- Ext.Dump(tooltip:GetElement("StatName"))
     local stat = tooltip:GetElement("StatName").Label
     local statsDescription = tooltip:GetElement("StatsDescription")
     local statsPointValue = tooltip:GetElement("StatsPointValue")
+    local baseValue = Ext.ExtraData.AttributeBaseValue
+    -- local tooltip = Ext.UI.GetByType(44):GetRoot()
 
     local attrBonus = CharGetDGMAttributeBonus(character, 0)
 
     if stat == "Strength" then
-        statsDescription.Label = GetDynamicTranslationString(stat.."Description", Ext.ExtraData.DGM_StrengthGlobalBonus, Ext.ExtraData.DGM_StrengthWeaponBonus, math.floor(Ext.Round(Ext.ExtraData.DGM_StrengthResistanceIgnore*100))/100)
-        statsPointValue.Label = GetDynamicTranslationString(stat, attrBonus["str"], attrBonus["strGlobal"], attrBonus["strWeapon"], attrBonus["strRes"])
+        statsDescription.Label = GetDynamicTranslationString(stat.."Description", Ext.ExtraData.DGM_StrengthGlobalBonus, Ext.ExtraData.DGM_StrengthWeaponBonus, Ext.ExtraData.DGM_StrengthIngressCap)
+        statsPointValue.Label = GetDynamicTranslationString(stat, attrBonus["str"], attrBonus["strGlobal"], attrBonus["strWeapon"], attrBonus["strIngCap"])
 
     elseif stat == "Finesse" then
-        statsDescription.Label = GetDynamicTranslationString(stat.."Description", Ext.ExtraData.DGM_FinesseGlobalBonus, math.floor(Ext.Round(Ext.ExtraData.DodgingBoostFromAttribute*100)), Ext.ExtraData.DGM_FinesseCritChance, Ext.ExtraData.DGM_FinesseMovementBonus/100)
-        statsPointValue.Label = GetDynamicTranslationString(stat, attrBonus["fin"], attrBonus["finGlobal"], attrBonus["finDodge"], attrBonus["finMovement"], attrBonus["finCrit"])
+        statsDescription.Label = GetDynamicTranslationString(stat.."Description", Ext.ExtraData.DGM_FinesseGlobalBonus, math.floor(Ext.Utils.Round(Ext.ExtraData.DodgingBoostFromAttribute*100)), Ext.ExtraData.DGM_FinesseMovementBonus/100, Ext.ExtraData.DGM_FinesseAccuracyFromIntelligenceCap)
+        statsPointValue.Label = GetDynamicTranslationString(stat, attrBonus["fin"], attrBonus["finGlobal"], attrBonus["finDodge"], attrBonus["finMovement"], attrBonus["finAccCap"])
 
     elseif stat == "Intelligence" then
-        statsDescription.Label = GetDynamicTranslationString(stat.."Description", Ext.ExtraData.DGM_IntelligenceGlobalBonus, Ext.ExtraData.DGM_IntelligenceSkillBonus, Ext.ExtraData.DGM_IntelligenceAccuracyBonus)
-        statsPointValue.Label = GetDynamicTranslationString(stat, attrBonus["int"], attrBonus["intGlobal"], attrBonus["intSkill"], attrBonus["intAcc"], (character.Stats.Intelligence-Ext.ExtraData.AttributeBaseValue)*attrBonus["strRes"])
+        statsDescription.Label = GetDynamicTranslationString(stat.."Description", Ext.ExtraData.DGM_IntelligenceGlobalBonus, Ext.ExtraData.DGM_IntelligenceSkillBonus, Ext.ExtraData.DGM_IntelligenceAccuracyBonus, Ext.ExtraData.DGM_IntelligenceIngressBonus, Ext.ExtraData.DGM_IntelligenceWisdomFromWitsCap)
+        local ingBonus = math.floor((character.Stats.Intelligence - baseValue) * Ext.ExtraData.DGM_IntelligenceIngressBonus)
+        local ingCap = math.floor((character.Stats.Strength - baseValue) * Ext.ExtraData.DGM_StrengthIngressCap)
+        local ingCapWarning = ""
+        if ingBonus > ingCap then
+            ingBonus = "<font color='#FF9600'>"..tostring(ingCap)
+            ingCapWarning = "(require more Strength to unlock the full potential)</font>"
+        end
+        local accBonus = math.floor((character.Stats.Intelligence - baseValue) * Ext.ExtraData.DGM_IntelligenceAccuracyBonus)
+        local accCap = math.floor((character.Stats.Finesse - baseValue) * Ext.ExtraData.DGM_FinesseAccuracyFromIntelligenceCap)
+        local accCapWarning = ""
+        if accBonus > accCap then
+            accBonus = "<font color='#FF9600'>"..tostring(accCap)
+            accCapWarning = " (require more Finesse to unlock the full potential)</font>"
+        end
+        statsPointValue.Label = GetDynamicTranslationString(stat, attrBonus["int"], attrBonus["intGlobal"], attrBonus["intSkill"], accBonus, accCapWarning, ingBonus, ingCapWarning, attrBonus.intWisCap)
 
     elseif stat == "Wits" then
-        statsDescription.Label = GetDynamicTranslationString(stat.."Description", Ext.ExtraData.CriticalBonusFromWits, Ext.ExtraData.InitiativeBonusFromWits, Ext.ExtraData.DGM_WitsDotBonus)
-        statsPointValue.Label = GetDynamicTranslationString(stat, attrBonus["wits"], attrBonus["witsCrit"], attrBonus["witsIni"], attrBonus["witsDot"])
+        statsDescription.Label = GetDynamicTranslationString(stat.."Description", Ext.ExtraData.CriticalBonusFromWits, Ext.ExtraData.InitiativeBonusFromWits, Ext.ExtraData.DGM_WitsDotBonus, Ext.ExtraData.DGM_WitsWisdomBonus)
+        local wisBonus =  math.floor((character.Stats.Wits - baseValue) * Ext.ExtraData.DGM_WitsWisdomBonus)
+        local wisCap =  math.floor((character.Stats.Intelligence - baseValue) * Ext.ExtraData.DGM_IntelligenceWisdomFromWitsCap)
+        local wisCapWarning = ""
+        if wisBonus > wisCap then
+            wisBonus = "<font color='#FF9600'>"..tostring(wisCap)
+            wisCapWarning = " (require more Intelligence to unlock the full potential)</font>"
+        end
+        statsPointValue.Label = GetDynamicTranslationString(stat, attrBonus["wits"], attrBonus["witsCrit"], attrBonus["witsIni"], attrBonus["witsDot"], wisBonus, wisCapWarning)
 
     elseif stat == "Critical Chance" then
         statsDescription.Label = GetDynamicTranslationString("CriticalChanceDescription", Ext.ExtraData.DGM_BackstabCritChanceBonus)
@@ -212,7 +204,7 @@ local function OnStatTooltip(character, stat, tooltip)
         -- minDamage = math.floor(tonumber(minDamage) * (100+attrBonus["strGlobal"]+attrBonus["strWeapon"]+attrBonus["finGlobal"]+attrBonus["intGlobal"])/100)
         -- maxDamage = math.floor(tonumber(maxDamage) * (100+attrBonus["strGlobal"]+attrBonus["strWeapon"]+attrBonus["finGlobal"]+attrBonus["intGlobal"])/100)
 
-        local damage = CustomGetSkillDamageRange(character.Stats, Ext.GetStat("Target_LX_NormalAttack"),  character.Stats.MainWeapon, character.Stats.OffHandWeapon, true)
+        local damage = CustomGetSkillDamageRange(character.Stats, Ext.Stats.Get("Target_LX_NormalAttack"),  character.Stats.MainWeapon, character.Stats.OffHandWeapon, true)
         local minDamage = 0
         local maxDamage = 0
         for dtype,range in pairs(damage) do
@@ -222,8 +214,51 @@ local function OnStatTooltip(character, stat, tooltip)
         
         damageText.Label = GetDynamicTranslationString(stat, minDamage, maxDamage)
     end
-
 end
+
+--- Bonus values tooltips for attributes remove the font tags, so they have to be overriden directly.
+--- TODO: better handling of the process
+---@param e EclLuaUICallEvent
+Ext.Events.UICall:Subscribe(function(e)
+    if e.Function == "setTooltipSize" then
+        Ext.OnNextTick(function(e)          
+            local tooltip = Ext.UI.GetByType(44):GetRoot()
+            if tooltip.tf and tooltip.tf.tooltip_mc and tostring(Ext.UI.GetByType(119):GetRoot().charHandle) ~= "nan" then
+                local character = Ext.ClientEntity.GetCharacter(Ext.UI.DoubleToHandle(Ext.UI.GetByType(119):GetRoot().charHandle))
+                local attrBonus = CharGetDGMAttributeBonus(character, 0)
+                local baseValue = Ext.ExtraData.AttributeBaseValue
+
+                if string.lower(tooltip.tf.tooltip_mc.header_mc.title_txt.htmlText) == string.lower(Ext.L10N.GetTranslatedString("h8e8351e9gc40ag4e4cgaebfgc810a27ffff8", "Intelligence")) then
+                    local ingBonus = math.floor((character.Stats.Intelligence - baseValue) * Ext.ExtraData.DGM_IntelligenceIngressBonus)
+                    local ingCap = math.floor((character.Stats.Strength - baseValue) * Ext.ExtraData.DGM_StrengthIngressCap)
+                    local ingCapWarning = ""
+                    if ingBonus > ingCap then
+                        ingBonus = "<font color='#FF9600'>"..tostring(ingCap)
+                        ingCapWarning = " (require more Strength to unlock the full potential)</font>"
+                    end
+                    local accBonus = math.floor((character.Stats.Intelligence - baseValue) * Ext.ExtraData.DGM_IntelligenceAccuracyBonus)
+                    local accCap = math.floor((character.Stats.Finesse - baseValue) * Ext.ExtraData.DGM_FinesseAccuracyFromIntelligenceCap)
+                    local accCapWarning = ""
+                    if accBonus > accCap then
+                        accBonus = "<font color='#FF9600'>"..tostring(accCap)
+                        accCapWarning = " (require more Finesse to unlock the full potential)</font>"
+                    end
+                    tooltip.tf.tooltip_mc.list.content_array[1].list.content_array[0].label_txt.htmlText = GetDynamicTranslationString("Intelligence", attrBonus["int"], attrBonus["intGlobal"], attrBonus["intSkill"], accBonus, accCapWarning, ingBonus, ingCapWarning, attrBonus.intWisCap)
+
+                elseif string.lower(tooltip.tf.tooltip_mc.header_mc.title_txt.htmlText) == string.lower(Ext.L10N.GetTranslatedString("hb385d2f8gfb21g41a1gad09gefe0cbc67c6a", "Wits")) then
+                    local wisBonus =  math.floor((character.Stats.Wits - baseValue) * Ext.ExtraData.DGM_WitsWisdomBonus)
+                    local wisCap =  math.floor((character.Stats.Intelligence - baseValue) * Ext.ExtraData.DGM_IntelligenceWisdomFromWitsCap)
+                    local wisCapWarning = ""
+                    if wisBonus > wisCap then
+                        wisBonus = "<font color='#FF9600'>"..tostring(wisCap)
+                        wisCapWarning = " (require more Intelligence to unlock the full potential)</font>"
+                    end
+                    tooltip.tf.tooltip_mc.list.content_array[1].list.content_array[0].label_txt.htmlText = GetDynamicTranslationString("Wits", attrBonus["wits"], attrBonus["witsCrit"], attrBonus["witsIni"], attrBonus["witsDot"], wisBonus, wisCapWarning)
+                end
+            end
+        end)
+    end
+end)
 
 ---@param character EsvCharacter
 ---@param stat string
@@ -373,8 +408,42 @@ local function AimedShotTooltip(character, skill, tooltip)
     description.Label = GetDynamicTranslationString("Shout_LX_AimedShot_Description", accuracy, math.floor(character.Stats.Strength))
 end
 
-local function DGM_Tooltips_Init()
-    Game.Tooltip.RegisterListener("Item", nil, WeaponTooltips)
+---@param character EsvCharacter
+---@param skill string
+---@param tooltip TooltipData
+local function AdrenalineTooltip(character, skill, tooltip)
+    local property = tooltip:GetElement("SkillProperties").Properties[1]
+    local label = string.gsub(string.reverse(property.Label), "%d+", "3", 1)
+    property.Label = string.reverse(label)
+end
+
+---@param character EclCharacter
+---@param skill string
+---@param tooltip TooltipData
+local function ComputeTooltipHealings(character, skill, tooltip)
+    -- _D(tooltip)
+    local stat = Ext.Stats.Get(skill, nil, false)
+    if stat.SkillProperties then
+        for i,property in pairs(stat.SkillProperties) do
+            if property.Type == "Status" then
+                local status = Ext.Stats.Get(property.Action, nil, false) --- @type EclStatusHealing|EclStatusHeal
+                if status and status.HealValue > 0 and status.HealType == "Qualifier" then
+                    local properties = tooltip:GetElement("SkillProperties")
+                    for j,tooltipProperty in pairs(properties.Properties) do
+                        if string.match(tooltipProperty.Label, '<font color=\"#97FBFF\">') then
+                            local computedValue = Data.Math.GetHealScaledWisdomValue(status, character)
+                            tooltipProperty.Label = string.gsub(tooltipProperty.Label, ">%d+ ", ">"..tostring(computedValue).." ")
+                        end
+                    end
+                end
+            end
+        end
+    end
+end
+
+---comment
+---@param e LuaEmptyEvent
+local function DGM_Tooltips_Init(e)
     Game.Tooltip.RegisterListener("Stat", "Damage", SkillAttributeTooltipBonus)
     Game.Tooltip.RegisterListener("Stat", nil, OnStatTooltip)
     Game.Tooltip.RegisterListener("Ability", nil, OnAbilityTooltip)
@@ -384,6 +453,8 @@ local function DGM_Tooltips_Init()
     Game.Tooltip.RegisterListener("Skill", "Teleportation_FreeFall", TeleportTooltip)
     Game.Tooltip.RegisterListener("Skill", "Teleportation_Netherswap", TeleportTooltip)
     Game.Tooltip.RegisterListener("Skill", "Shout_LX_AimedShot", AimedShotTooltip)
+    Game.Tooltip.RegisterListener("Skill", "Shout_Adrenaline", AdrenalineTooltip)
+    Game.Tooltip.RegisterListener("Skill", nil, ComputeTooltipHealings)
 end
 
-Ext.RegisterListener("SessionLoaded", DGM_Tooltips_Init)
+Ext.Events.SessionLoaded:Subscribe(DGM_Tooltips_Init)

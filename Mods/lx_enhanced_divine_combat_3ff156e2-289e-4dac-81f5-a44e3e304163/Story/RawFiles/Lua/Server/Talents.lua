@@ -35,8 +35,18 @@ function CheckBoostTalents(character, talent, unlocked)
 		BoostFromTalentInt(character, "LX_SAVAGESORTILEGE", unlocked)
 	elseif talent == "Raistlin" then -- Glass Cannon
 		BoostFromTalentInt(character, "LX_GLASSCANNON", unlocked)
+	elseif talent == "Escapist" then
+		BoostFromTalentInt(character, "LX_ESCAPIST", unlocked)
 	end
 end
+
+Ext.Osiris.RegisterListener("CharacterUnlockedTalent", 2, "before", function(character, talent)
+	CheckBoostTalents(character, talent, 1)
+end)
+Ext.Osiris.RegisterListener("CharacterLockedTalent", 2, "before", function(character, talent)
+	CheckBoostTalents(character, talent, 0)
+end)
+
 
 ---@param character string UUID
 ---@param unlocked boolean
@@ -44,7 +54,7 @@ function ManageMemory(character, unlocked)
 	if unlocked then
 		-- if CharacterGetHostCharacter() == character then Ext.Print("MEMORY UNLOCKED") end
 		local currentBoost = NRD_CharacterGetPermanentBoostInt(character, "Memory")
-		local mem = math.floor(Ext.GetCharacter(character).Stats.BaseMemory - currentBoost - Ext.ExtraData.AttributeBaseValue)
+		local mem = math.floor(Helpers.ServerSafeGetCharacter(character).Stats.BaseMemory - currentBoost - Ext.ExtraData.AttributeBaseValue)
 		local previousMem = GetVarInteger(character, "DGM_MemoryBoost")
 		-- if previousMem == nil or previousMem == 0 then
 		-- 	previousMem = mem
@@ -78,8 +88,8 @@ end
 local function MnemonicLocked(character, talent)
 	if talent ~= "Memory" then return end
 	local memBonus = NRD_CharacterGetPermanentBoostInt(character, "Memory")
-	local mem = math.floor(Ext.GetCharacter(character).Stats.BaseMemory - memBonus - Ext.ExtraData.AttributeBaseValue)
-	if not Ext.GetCharacter(character).CharacterCreationFinished and Ext.GetGameMode() == "Campaign" then
+	local mem = math.floor(Helpers.ServerSafeGetCharacter(character).Stats.BaseMemory - memBonus - Ext.ExtraData.AttributeBaseValue)
+	if not Helpers.ServerSafeGetCharacter(character).CharacterCreationFinished and Ext.GetGameMode() == "Campaign" then
 		SetTag(character, "DGM_MemoryManagement")
 		return
 	end
@@ -91,8 +101,8 @@ end
 Ext.RegisterOsirisListener("CharacterLockedTalent", 2, "before", MnemonicLocked)
 
 Ext.RegisterOsirisListener("CharacterCreationFinished", 1, "after", function(character)
-	if Ext.GetCharacter(character) == nil then return end
-	if Ext.GetCharacter(character).Stats.TALENT_Memory then
+	if Helpers.ServerSafeGetCharacter(character) == nil then return end
+	if Helpers.ServerSafeGetCharacter(character).Stats.TALENT_Memory then
 		ManageMemory(character, true)
 	elseif IsTagged(character, "DGM_MemoryManagement") then
 		TimerLaunch("MEMORY_"..character, 1000)
@@ -120,7 +130,8 @@ function CheckAllTalents(character)
 		"NoAttackOfOpportunity",
 		"Perfectionist",
 		"ViolentMagic",
-		"Raistlin"
+		"Raistlin",
+		
 	}
 	for i,talent in pairs(boostedTalents) do
 		local hasTalent = CharacterHasTalent(character, talent)
@@ -130,18 +141,28 @@ function CheckAllTalents(character)
 	if CharacterHasTalent(character, "ExtraStatPoints") == 1 then CheckDuelist(character) end
 end
 
+Ext.Osiris.RegisterListener("CharacterResurrected", 1, "before", CheckAllTalents)
+
 ---@param character EsvCharacter
-function CheckDuelist(character)
-	local mainHand = Ext.GetCharacter(character).Stats.MainWeapon
-	--Ext.Print("[LXDGM_Talents.CheckDuelist] Main hand :",mainHand)
-	local offhand = Ext.GetCharacter(character).Stats.OffHandWeapon
-	local shield = CharacterGetEquippedShield(character)
-	if offhand ~= nil or (mainHand ~= nil and mainHand.IsTwoHanded) or mainHand.WeaponType == "None" or shield ~= nil then
-		RemoveStatus(character, "LX_DUELIST")
-	else
-		ApplyStatus(character, "LX_DUELIST", -1.0, 1)
+function CheckDuelist(_, character)
+	if ObjectExists(character) == 1 then
+		local character = Ext.ServerEntity.GetCharacter(character)
+		if character.Stats.TALENT_ExtraStatPoints then
+			local mainHand = character.Stats.MainWeapon
+			--Ext.Print("[LXDGM_Talents.CheckDuelist] Main hand :",mainHand)
+			local offhand = character.Stats.OffHandWeapon
+			local shield = CharacterGetEquippedShield(character.MyGuid)
+			if offhand ~= nil or (mainHand ~= nil and mainHand.IsTwoHanded) or mainHand.WeaponType == "None" or shield ~= nil then
+				RemoveStatus(character.MyGuid, "LX_DUELIST")
+			else
+				ApplyStatus(character.MyGuid, "LX_DUELIST", -1.0, 1)
+			end
+		end
 	end
 end
+
+Ext.Osiris.RegisterListener("ItemEquipped", 2, "before", CheckDuelist)
+Ext.Osiris.RegisterListener("ItemUnEquipped", 2, "before", CheckDuelist)
 
 ---@param character EsvCharacter
 ---@param status string
@@ -189,57 +210,90 @@ function WalkItOffReplacement(character)
 end
 
 ---@param character EsvCharacter
-function CheckHothead(character)
-	local HPperc = Ext.Round(NRD_CharacterGetStatInt(character, "CurrentVitality") / NRD_CharacterGetStatInt(character, "MaxVitality") * 100)
-	--Ext.Print(HPperc)
-	if HPperc > Ext.ExtraData.DGM_HotheadApplicationThreshold then 
-		ApplyStatus(character, "LX_HOTHEAD", -1.0, 1) 
-	else
+local function CheckHothead(character, remainingVitality)
+	if remainingVitality < Ext.ExtraData.DGM_HotheadApplicationThreshold then
 		RemoveStatus(character, "LX_HOTHEAD")
+	elseif remainingVitality >= Ext.ExtraData.DGM_HotheadApplicationThreshold and CharacterHasTalent(character, "Perfectionist") == 1 then
+		ApplyStatus(character, "LX_HOTHEAD", -1.0, 1) 
 	end
 end
+
+Ext.Osiris.RegisterListener("CharacterVitalityChanged", 2, "before", CheckHothead)
 
 ---@param character EsvCharacter
 ---@param skill string
 ---@param cooldown number
 function ManageAllSkilledUp(character, skill, cooldown)
-	local hasUsedSkill = GetVarInteger(character, "LX_AllSkilledUp_Counter")
-	if hasUsedSkill == 0 and cooldown > 6.0 then
-		NRD_SkillSetCooldown(character, skill, (cooldown-6.0))
-		SetVarInteger(character, "LX_AllSkilledUp_Counter", 1)
-	end
+	-- local hasUsedSkill = GetVarInteger(character, "LX_AllSkilledUp_Counter")
+	-- if hasUsedSkill == 0 and cooldown > 6.0 then
+	-- 	NRD_SkillSetCooldown(character, skill, (cooldown-6.0))
+	-- 	SetVarInteger(character, "LX_AllSkilledUp_Counter", 1)
+	-- end
 end
 
----@param character EsvCharacter
----@param summon any
-function ManagePetPal(character, summon)
-	local summons = Osi.DB_DGM_Available_Summons:Get(character, nil);
+
+
+---Pet Pal management
+if not PersistentVars.PetPalArray then
+	PersistentVars.PetPalArray = {}
+end
+
+---@param summon string
+---@param status any
+---@param instigator any
+Ext.Osiris.RegisterListener("CharacterStatusApplied", 3, "before", function(summonGUID, status, instigator)
+	if status == "SUMMONING_ABILITY" then
+		local summon = Ext.ServerEntity.GetCharacter(summonGUID)
+		local owner = Ext.ServerEntity.GetCharacter(CharacterGetOwner(summon.MyGuid))
+		if not summon.Totem and owner.Stats.TALENT_AnimalEmpathy then
+			PersistentVars.PetPalArray[summonGUID] = owner.MyGuid
+			ManagePetPal(owner.MyGuid)
+		end
+	end
+end)
+
+Ext.Osiris.RegisterListener("CharacterDied", 1, "before", function(summon)
+	if PersistentVars.PetPalArray[summon] then
+		local character = PersistentVars.PetPalArray[summon]
+		PersistentVars.PetPalArray[summon] = nil
+		RestorePetPalPower(character)
+	end
+end)
+
+---@param character GUID
+function ManagePetPal(character)
+	local summons = {}
+	for summon, owner in pairs(PersistentVars.PetPalArray) do
+		if owner == character then table.insert(summons, summon) end
+	end
 	if summons[1] ~= nil and summons[2] ~= nil then
 		for i,summon in pairs(summons) do
-			if ObjectExists(summon[2]) == 0 then 
-				Osi.DB_DGM_Available_Summons:Delete(character, summon[2])
-				RestorePetPalPower(character, nil)
+			if ObjectExists(summon) == 0 then 
+				PersistentVars.PetPalArray[summon] = nil
+				RestorePetPalPower(character)
 				return
 			end
-			ApplyStatus(summon[2], "LX_PETPAL", -1.0, 1)
+			ApplyStatus(summon, "LX_PETPAL", -1.0, 1)
 		end
 	end
 end
 
----@param character EsvCharacter
----@param summon any
-function RestorePetPalPower(character, summon)
+---@param character GUID
+function RestorePetPalPower(character)
 	-- Call this function on DB remove of the second summon
-	local summons = Osi.DB_DGM_Available_Summons:Get(character, nil)
-	if summons[1] == nil then return end
-	if GetTableSize(summons) < 2 then
-		RemoveStatus(summons[1][2], "LX_PETPAL")
+	local summons = {}
+	for summon, owner in pairs(PersistentVars.PetPalArray) do
+		if owner == character then table.insert(summons, summon) end
+	end
+	if #summons < 2 and summons[1] then
+		RemoveStatus(summons[1], "LX_PETPAL")
 	end
 end
 
+
 local function ExecutionerHaste(defender, attackerOwner, attacker)
 	if ObjectIsCharacter(attacker) == 0 then return end
-	local attacker = Ext.GetCharacter(attacker)
+	local attacker = Helpers.ServerSafeGetCharacter(attacker)
 	if attacker.Stats.TALENT_Executioner and CharacterIsInCombat(attacker.MyGuid) == 1 then
 		ApplyStatus(attacker.MyGuid, "LX_EXECUTIONER", 6.0)
 	end
@@ -251,12 +305,10 @@ Ext.RegisterOsirisListener("CharacterKilledBy", 3, "before", ExecutionerHaste)
 ---@param item EsvItem
 ---@param char EsvCharacter
 Ext.RegisterOsirisListener("ItemEquipped", 2, "before", function(item, char)
-	local character = Ext.GetCharacter(char) ---@type EsvCharacter
-	if character.Stats.TALENT_Ambidextrous and CharacterIsInCombat(char) == 1 then
+	local character = Helpers.ServerSafeGetCharacter(char) ---@type EsvCharacter
+	if character and character.Stats.TALENT_Ambidextrous and CharacterIsInCombat(char) == 1 then
 		item = Ext.GetItem(item) ---@type EsvItem
-		local swapCounter = GetVarInteger(char, "DGM_AmbidextrousCount")
-		if swapCounter > 0 and item.Stats.WeaponType ~= "Crossbow" then
-			SetVarInteger(char, "DGM_AmbidextrousCount", swapCounter-1)
+		if item.Stats.WeaponType and item.Stats.WeaponType ~= "Crossbow" then
 			CharacterAddActionPoints(char, 1)
 		end
 	end
@@ -265,7 +317,7 @@ end)
 ---- Ambidextrous counter reset
 ---@param char EsvCharacter
 Ext.RegisterOsirisListener("ObjectTurnStarted", 1, "before", function(char)
-	if Ext.GetCharacter(char).Stats.TALENT_Ambidextrous then
+	if Helpers.ServerSafeGetCharacter(char).Stats.TALENT_Ambidextrous then
 		SetVarInteger(char, "DGM_AmbidextrousCount", 2)
 	end
 end)
@@ -329,7 +381,7 @@ local surfaceTypeMap = {
 --- @param skillType string Type
 --- @param skillElement string Elements enum
 Ext.RegisterOsirisListener("CharacterUsedSkill", 4, "before", function(character, skill, skillType, skillElement)
-	if not Ext.GetCharacter(character).Stats.TALENT_ElementalRanger then return end
+	if not Helpers.ServerSafeGetCharacter(character).Stats.TALENT_ElementalRanger then return end
 	local skill = Ext.GetStat(skill)
 	if (skill.ProjectileType == "Grenade" and skill.Requirement == "None") or (skill.ProjectileType == "Arrow" and skill.Requirement == "RangedWeapon") and skill.IsEnemySkill == "Yes" and skill["Memory Cost"] == 0 then
 		if skill.DamageType == "Chaos" then
@@ -363,15 +415,170 @@ Ext.RegisterOsirisListener("CharacterUsedSkill", 4, "before", function(character
 end)
 
 ---- Morning Person AP recovery
-Ext.RegisterOsirisListener("ObjectTurnStarted", 1, "before", function(object)
+--- @param object GUID
+Ext.Osiris.RegisterListener("ObjectTurnStarted", 1, "before", function(object)
 	if ObjectIsCharacter(object) == 0 then return end
-	local char = Ext.GetCharacter(object)
+	local char = Ext.ServerEntity.GetCharacter(object)
 	if char.Stats.TALENT_ResurrectToFullHealth then
 		if char.Stats.CurrentAP == 0 then
 			SetTag(object, "MorningPersonRecovery")
 		elseif IsTagged(object, "MorningPersonRecovery") == 1 then
 			ClearTag(object, "MorningPersonRecovery")
 			CharacterAddActionPoints(object, 2)
+		end
+	end
+end)
+
+Ext.Osiris.RegisterListener("ObjectEnteredCombat", 2, "before", function(object, combatID)
+	if ObjectIsCharacter(object) == 0 then return end
+	if Ext.ServerEntity.GetCharacter(object).Stats.TALENT_ResurrectToFullHealth then
+		ApplyWarmup(Ext.ServerEntity.GetCharacter(object), 2)
+	end
+end)
+
+---- Guerilla invisibility effect
+RegisterTurnTrueEndListener(function(character)
+	if CharacterHasTalent(character, "Guerilla") == 1 and HasActiveStatus(character, "SNEAKING") == 1 and HasActiveStatus(character, "LX_GUERILLA_COOLDOWN") == 0 then
+		ApplyStatus(character, "INVISIBLE", 6.0, 1, character)
+		ApplyStatus(character, "LX_GUERILLA_COOLDOWN", 18.0, 1, character)
+	end
+end)
+
+Data.ElementalAffinityAiFlags = {
+    Fire = { "Lava", "Fire", "FireCloud" },
+    Water = { "Water", "WaterCloud" },
+    Air = { "Electrified" },
+    Earth = { "Oil", "Poison", "PoisonCloud" },
+    Death = { "Blood", "BloodCloud" },
+	Necromancy = { "Blood", "BloodCloud" },
+    Sulfurology = { "Sulfurium" }
+}
+
+---- Elemental Affinity rework
+--- @param e LuaGetSkillAPCostEvent
+local function ServerElementalAffinityRework(e)
+	local skill = e.Skill
+	local character = e.Character
+	local grid = e.AiGrid
+	local position = e.Position
+	local radius = e.Radius
+    local baseAP = skill.ActionPoints
+    if character == nil or baseAP <= 0 then
+        return baseAP, false
+    end
+    local ability = skill.StatsObject.StatsEntry.Ability
+    local elementalAffinity = false
+	if character.TALENT_ElementalAffinity then
+        if ability ~= "None" and baseAP > 1 and  grid ~= nil and position ~= nil and radius ~= nil then
+            local aiFlags = Data.ElementalAffinityAiFlags[ability]
+            if aiFlags ~= nil then
+                elementalAffinity = grid:SearchForCell(position[1], position[3], radius, aiFlags, -1.0)
+                if elementalAffinity then
+                    baseAP = baseAP - 1
+                end
+            end
+        end
+
+        local characterAP = 1
+        if skill.Requirement > 0 and skill.OverrideMinAP == "No" then
+            characterAP = Game.Math.GetCharacterWeaponAPCost(character)
+        end
+
+        if not character.Character:HasTag("VP_UsedElementalAffinity") then
+            e.ElementalAffinity = elementalAffinity
+            e.AP = math.max(characterAP, baseAP)
+        elseif elementalAffinity then
+            e.AP = baseAP + 1
+            e.ElementalAffinity = true
+        else
+            e.AP = baseAP
+            e.ElementalAffinity = false
+        end
+    end
+end
+
+Ext.Osiris.RegisterListener("ObjectLeftCombat", 2, "before", function(object, combatID)
+	ClearTag(object, "VP_UsedElementalAffinity")
+end)
+
+---@param object GUID
+Ext.Osiris.RegisterListener("ObjectTurnStarted", 1, "before", function(object)
+    ClearTag(object, "VP_UsedElementalAffinity")
+end)
+
+---@param character GUID
+---@param skill string
+---@param skillType SkillType
+---@param skillElement SkillAbility
+Ext.Osiris.RegisterListener("CharacterUsedSkill", 4, "before", function(character, skill, skillType, skillElement)
+	if ObjectExists(character) == 0 then return end
+	local char = Ext.ServerEntity.GetCharacter(character)
+	local grid = Ext.ServerEntity.GetAiGrid()
+	local aiFlags = Data.ElementalAffinityAiFlags[skillElement]
+	if Ext.ServerEntity.GetCharacter(character):GetStatus("COMBAT") and aiFlags and char.Stats.TALENT_ElementalAffinity and not char:HasTag("VP_UsedElementalAffinity") and grid:SearchForCell(char.WorldPos[1], char.WorldPos[3], char.RootTemplate.AIBoundsRadius, aiFlags, -1.0) then
+		SetTag(character, "VP_UsedElementalAffinity")
+	end
+end)
+
+Data.APCostManager.RegisterGlobalSkillAPFormula(ServerElementalAffinityRework, "ServerElementalAffinityRework")
+
+---------
+---@param e EsvLuaBeforeStatusApplyEvent
+-- Ext.Events.Status:Subscribe(function(e)
+-- 	if e.Status.StatusId == "CONSUME" then
+-- 		if not e.Status.StatsIds then return end
+-- 		local entry = Ext.Stats.Get(e.Status.StatsIds[1].StatsId) ---@type StatEntryPotion
+-- 		_DS(e.Status)
+-- 		e.Status.StatsMultiplier = 0.5
+-- 		-- if entry.IsConsumable == "Yes" or entry.IsFood == "Yes" then
+
+-- 		-- end
+-- 	end
+-- end)
+
+
+---Five Stars Diner double hack
+---@param target string
+---@param statusId string
+---@param handle string
+---@param instigator string
+Ext.Osiris.RegisterListener("NRD_OnStatusAttempt", 4, "before", function(target, statusId, handle, instigator)
+	if statusId == "CONSUME" then
+		local status = Ext.GetStatus(target, handle)
+		if status.StatsIds then
+			local potion = Ext.Stats.Get(status.StatsIds[1].StatsId)
+			if (potion.IsConsumable == "Yes" or potion.IsFood == "Yes") and Ext.ServerEntity.GetCharacter(target).Stats.TALENT_FiveStarRestaurant then
+				status.StatsMultiplier = 0
+				if potion.IsFood == "Yes" then
+					status.CurrentLifeTime = -1.0
+				end
+				if potion.Vitality or potion.PhysicalArmor or potion.MagicArmor or potion.VitalityPercentage then
+					SetTag(target, "LX_FSDHealHack")
+				end
+			end
+		end
+	elseif statusId == "HEAL" and IsTagged(target, "LX_FSDHealHack") == 1 then
+		Ext.GetStatus(target, handle).StatsMultiplier = 0.5
+		ClearTag(target, "LX_FSDHealHack")
+	end
+end)
+
+
+--- All Skill Up CD reduction
+Ext.Osiris.RegisterListener("ObjectTurnStarted", 1, "before", function(character)
+	if ObjectIsCharacter(character) == 1 and CharacterHasTalent(character, "ExtraSkillPoints") == 1 then
+		SetVarInteger(character, "LX_AllSkilledUp_Counter", 0)
+	end
+end)
+
+Ext.Osiris.RegisterListener("CharacterUsedSkill", 4, "before", function(character, skill, _, _)
+	local character = Ext.ServerEntity.GetCharacter(character)
+	if character.Stats.TALENT_ExtraSkillPoints then
+		local counter = GetVarInteger(character.MyGuid, "LX_AllSkilledUp_Counter")
+		if counter == 0 and character.SkillManager.Skills[skill].ActiveCooldown > 6.0 then
+			character.SkillManager.Skills[skill].ActiveCooldown = character.SkillManager.Skills[skill].ActiveCooldown - 6.0
+			character.SkillManager.Skills[skill].ShouldSyncCooldown = true
+			SetVarInteger(character.MyGuid, "LX_AllSkilledUp_Counter", 1)
 		end
 	end
 end)

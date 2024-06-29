@@ -1,28 +1,46 @@
-Ext.Require("Server/DamageControl.lua")
+Ext.Require("Server/ServerHelpers.lua")
+Ext.Require("Server/Fixes/GeneralFixes.lua")
+Ext.Require("Server/Fixes/Taunt.lua")
+Ext.Require("Server/Fixes/UndeadFoodFix.lua")
+Ext.Require("Server/Fixes/ServerCasting.lua")
+Ext.Require("Server/Systems/CustomBonuses_NG.lua")
+-- Ext.Require("Server/Systems/DamageControl_NG.lua")
+Ext.Require("Server/Systems/DamageControl/DamageOverrides.lua")
+Ext.Require("Server/Systems/DamageControl/HitManager.lua")
+Ext.Require("Server/Systems/DamageControl/MainDamageControl.lua")
+Ext.Require("Server/Systems/Warmup.lua")
+Ext.Require("Server/Systems/WeaponLevelRange.lua")
+Ext.Require("Server/CustomAttributesServer.lua")
+Ext.Require("Server/Mechanics.lua")
+-- Ext.Require("Server/DamageControl.lua")
 Ext.Require("Server/Resistance.lua")
+Ext.Require("Server/AbsorbShield.lua")
 Ext.Require("Server/ArmorSystem.lua")
 Ext.Require("Server/CCSystem.lua")
 Ext.Require("Server/Potions.lua")
 Ext.Require("Server/Talents.lua")
 Ext.Require("Server/Weapons.lua")
-Ext.Require("Server/CustomBonuses.lua")
+-- Ext.Require("Server/CustomBonuses.lua")
 Ext.Require("Server/Modules/Modules.lua")
 Ext.Require("Server/Consumables.lua")
-Ext.Require("Server/Taunt.lua")
 Ext.Require("Server/CQBEffect.lua")
 Ext.Require("Server/CustomSkillPropertiesServer.lua")
 Ext.Require("Server/Miscelleanous.lua")
-Ext.Require("Server/UndeadFoodFix.lua")
 Ext.Require("Server/Statuses.lua")
+Ext.Require("Server/Skills.lua")
+Ext.Require("Server/Systems/SkillGroupServer.lua")
 -- Ext.Require("Server/Systems/SkillMutator.lua")
+-- Ext.Require("Server/SP_DMR.lua")
+-- Ext.Utils.Include("3ff156e2-289e-4dac-81f5-a44e3e304163", "Server/SP_DiminishingReturn.lua")
+
+if PersistentVars.SPunchCooldown == nil then
+	PersistentVars.SPunchCooldown = {}
+end
 
 gameLevel = ""
 
 Ext.RegisterOsirisListener("GameStarted", "2", "after", function(level, editor)
 	gameLevel = level
-	if PersistentVars.SPunchCooldown == nil then
-		PersistentVars.SPunchCooldown = {}
-	end
 end)
 
 if Mods.LeaderLib ~= nil then
@@ -203,17 +221,3 @@ end)
 -- 	end
 -- end
 -- Ext.RegisterOsirisListener("GlobalFlagCleared", 1, "after", DisableStatsOverride)
-
-
----- Create calls and queries
-Ext.NewCall(CheckBoostTalents, "LX_EXT_CheckBoostTalents", "(CHARACTERGUID)_Character, (STRING)_Talent, (INTEGER)_Unlocked");
-Ext.NewCall(CheckDuelist, "LX_EXT_CheckDuelist", "(CHARACTERGUID)_Character");
-
--- Items Control
-Ext.NewCall(CharacterUsePoisonedPotion, "LX_EXT_PoisonedPotionManagement", "(GUIDSTRING)_Character, (ITEMGUID)_Potion");
-Ext.NewCall(ManagePotionFatigue, "LX_EXT_ManagePotionFatigue", "(CHARACTERGUID)_Character, (ITEMGUID)_Item");
-
--- Talents
-Ext.NewCall(ManageAllSkilledUp, "LX_EXT_ManageAllSkilledUp", "(CHARACTERGUID)_Character, (STRING)_Skill, (REAL)_Cooldown");
-Ext.NewCall(ManagePetPal, "LX_EXT_ManagePetPal", "(CHARACTERGUID)_Character, (CHARACTERGUID)_Summon");
-Ext.NewCall(RestorePetPalPower, "LX_EXT_RestorePetPalPower", "(CHARACTERGUID)_Character, (CHARACTERGUID)_Summon");

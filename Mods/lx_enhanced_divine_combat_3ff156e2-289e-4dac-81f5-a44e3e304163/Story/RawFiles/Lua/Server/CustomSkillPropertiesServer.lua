@@ -54,7 +54,7 @@ Ext.RegisterOsirisListener("CharacterUsedSkill", 4, "before", function(character
         for i, properties in pairs(stat.SkillProperties) do
             if properties.SurfaceBoosts ~= nil then
                 for i,surface in pairs(properties.SurfaceBoosts) do
-                    table.insert(surfaces, surface)
+                    table.insert(surfaces, tostring(surface))
                 end
             end
         end
@@ -96,8 +96,39 @@ Ext.RegisterOsirisListener("CharacterUsedSkill", 4, "before", function(character
     end
 end)
 
+Ext.RegisterSkillProperty("LX_SHIELD", {
+	GetDescription = function() end,
+	ExecuteOnTarget = function(property, attacker, target, position, isFromItem, skill, hit)
+		local statProperties = {} -- Usage: StatEntry, Field, Base, Growth, CellAggregate
+		local index = 1
+		for value in string.gmatch(property.Arg3, "(.-)/") do
+			statProperties[index] = value
+			index = index + 1
+		end
+		-- 1: Type, 2: Damage scaling, 3: Amount, 4: Duration, 5: Can reinforce existing shield
+		local scaledAmount = Ext.Utils.Round(DamageScalingFormulas[statProperties[2]](attacker.Stats.Level))
+		_P("Scaled bonus:",scaledAmount)
+		-- SetTag(target.MyGuid, "LX_SHIELD_"..statProperties[1].."_")
+		-- SetVarInteger(target.MyGuid, "LX_SHIELD_"..statProperties[1], (GetVarInteger(target, "LX_SHIELD_"..statProperties[1]) or 0) + scaledAmount)
+		local statusName = "LX_SHIELD_"..string.upper(statProperties[1])
+		local status = target:GetStatus(statusName)
+		_D(statProperties)
+		if statProperties[5] == "1" and status then
+			status.StatsMultiplier = status.StatsMultiplier + scaledAmount
+		else
+			status = Ext.PrepareStatus(target.MyGuid, "LX_SHIELD_"..string.upper(statProperties[1]), statProperties[4]*6.0)
+			-- The StatsMultiplier of the shield status is used to store the absorbed amount information
+			status.StatsMultiplier = scaledAmount
+			Ext.ApplyStatus(status)
+		end
+	end,
+	ExecuteOnPosition = function(property, attacker, position, areaRadius, isFromItem, skill, hit)
+	end
+})
+
 
 Ext.RegisterSkillProperty("CUSTOMSURFACEBOOST", {
+	GetDescription = function() end,
 	ExecuteOnTarget = function(property, attacker, target, position, isFromItem, skill, hit)
 		-- Ext.Print("SKILLPROPERTY on target")
 		-- Ext.Dump(property)
@@ -186,5 +217,87 @@ Ext.RegisterSkillProperty("CUSTOMSURFACEBOOST", {
 		-- Ext.Print("SKILLPROPERTY on position")
 		-- Ext.Dump(property)
 		-- Ext.Print(property, attacker, position, areaRadius, isFromItem, skill, hit)
+	end
+})
+
+Ext.RegisterSkillProperty("VP_TryKill", {
+	GetDescription = function() end,
+	---@param property StatsPropertyExtender
+	---@param attacker EsvCharacter|EsvItem
+	---@param target EsvCharacter|EsvItem
+	---@param position number[]
+	---@param isFromItem boolean
+	---@param skill StatEntrySkillData|StatsSkillPrototype|nil
+	---@param hit StatsHitDamageInfo|nil
+	ExecuteOnTarget = function(property, attacker, target, position, isFromItem, skill, hit)
+		if getmetatable(target) == "esv::Item" or not hit then return end
+		local args = {}
+		local index = 1
+		for value in string.gmatch(property.Arg3, "(.-)/") do
+			args[index] = value
+			-- Ext.Print(index, value)
+			index = index + 1
+		end
+		local value = args[1]
+		local scaling = args[2]
+		local chance = args[3]
+		local bonusStatuses = args[4]
+		local statusesArray = {}
+		for status in string.gmatch(bonusStatuses, "([^|]+)") do
+			table.insert(statusesArray, status)
+		end
+		local statusBonusValue = tonumber(args[5])
+		local SPDamageBonus = tonumber(args[6])
+		local SPConsumptionCap = tonumber(args[7])
+		local computedStatusBonus = 0
+		for i,status in pairs(statusesArray) do
+			if target:GetStatus(status) then
+				computedStatusBonus = computedStatusBonus + statusBonusValue
+			end
+		end
+		local computedSPBonusValue = 0
+		local source = Osi.CharacterGetSourcePoints(attacker.MyGuid)
+		if source > SPConsumptionCap then
+			computedSPBonusValue = SPConsumptionCap * SPDamageBonus
+			Osi.CharacterAddSourcePoints(attacker.MyGuid, -SPConsumptionCap)
+		else
+			computedSPBonusValue = source * SPDamageBonus
+			Osi.CharacterAddSourcePoints(attacker.MyGuid, -source)
+		end
+		local computedThreshold = math.floor(Helpers.GetScaledValue(scaling, target, attacker) * (value + computedStatusBonus + computedSPBonusValue) / 100)
+		if target.Stats.CurrentVitality < computedThreshold then
+			CharacterDie(target.MyGuid, 1, hit.DeathType, attacker.MyGuid)
+		end
+	end,
+	ExecuteOnPosition = function(property, attacker, position, areaRadius, isFromItem, skill, hit)
+	end
+})
+
+Ext.RegisterSkillProperty("LX_CustomVaporize", {
+	GetDescription = function()
+		return "Splash nearby characters with oil when targeting an oil surface, and explode ice on spot, dealing damage in the area."
+	end,
+	---@param property StatsPropertyExtender
+	---@param attacker EsvCharacter|EsvItem
+	---@param target EsvCharacter|EsvItem
+	---@param position number[]
+	---@param isFromItem boolean
+	---@param skill StatEntrySkillData|StatsSkillPrototype|nil
+	---@param hit StatsHitDamageInfo|nil
+	ExecuteOnTarget = function(property, attacker, target, position, isFromItem, skill, hit)
+	end,
+	ExecuteOnPosition = function(property, attacker, position, areaRadius, isFromItem, skill, hit)
+		local surface = Helpers.GetSurfaceTypeAtPosition(position[1], position[3])
+		if string.sub(surface, 1, 3) == "Oil" then
+            local modifier = string.gsub(surface, "Oil", "")
+            local targets = Ext.ServerEntity.GetCharacterGuidsAroundPosition(position[1], position[2], position[3], skill.AreaRadius*2)
+            for i,character in pairs(targets) do
+				if Ext.ServerEntity.GetCharacter(character).Stats.CurrentVitality > 0 then
+                	Helpers.LaunchProjectile(position, character, "LX_Projectile_OilGeyserSpit"..modifier)
+				end
+            end
+		elseif string.find(surface, "Frozen") ~= nil then
+            Ext.PropertyList.ExecuteSkillPropertiesOnPosition("Shout_IceBreaker", attacker.MyGuid, position, skill.AreaRadius, {"Target", "AoE"}, false)
+        end
 	end
 })

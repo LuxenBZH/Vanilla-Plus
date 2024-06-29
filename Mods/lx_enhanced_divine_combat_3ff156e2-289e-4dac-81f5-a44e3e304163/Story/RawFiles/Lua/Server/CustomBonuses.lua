@@ -7,29 +7,23 @@ local crossbowSlowdown = {
 --- @param character EsvCharacter
 local function CreateCrossbowSlowdownStat(char)
     if ObjectExists(char) == 0 then return end
-    char = Ext.GetCharacter(char)
+    char = Ext.ServerEntity.GetCharacter(char)
     if char == nil then return end
     local weapon = char.Stats.MainWeapon
     if weapon.WeaponType ~= "Crossbow" then return end
-    local leveledSlow = weapon.Level * crossbowSlowdown.Level
-    local statusName = "DGM_CrossbowSlow_"..weapon.Level
-    if NRD_StatExists(statusName) then
-        if HasActiveStatus(char.MyGuid, statusName) == 0 then
-            ApplyStatus(char.MyGuid, statusName, -1, 1)
-        end
-    else
-        local newPotion = {Name = "DGM_Potion_CrossbowSlow_"..weapon.Level}
-        if not NRD_StatExists(newPotion.Name) then
-            newPotion = Ext.CreateStat("DGM_Potion_CrossbowSlow_"..weapon.Level, "Potion", "DGM_Potion_Base")
-            newPotion.Movement = crossbowSlowdown.Base + leveledSlow
-            Ext.SyncStat(newPotion.Name, false)
-        end
-        local newStatus = Ext.CreateStat("DGM_CrossbowSlow_"..weapon.Level, "StatusData", "DGM_BASE")
-        newStatus["StatsId"] = newPotion.Name
-        newStatus["StackId"] = "DGM_CrossbowSlow"
-        Ext.SyncStat(newStatus.Name, false)
-        ApplyStatus(char.MyGuid, statusName, -1, 1)
+    local leveledSlow = weapon.Level * crossbowSlowdown.Level + crossbowSlowdown.Base
+    local name = "DGM_CrossbowSlow"
+    if not Ext.Stats.Get("DGM_Potion_CrossbowSlow", nil, false) then
+        CustomStatusManager:CreateStatFromTemplate("DGM_Potion_CrossbowSlow", "Potion", "DGM_Potion_Base", {Movement = 1}, false)
     end
+    CustomStatusManager:CharacterApplyMultipliedStatus(char, "DGM_CrossbowSlow", -1, leveledSlow, {
+        Template = "DGM_BASE",
+        StatsArray = {
+            StatsId = "DGM_Potion_CrossbowSlow",
+            StackId = "DGM_CrossbowSlow"
+        },
+        Persistance = false
+    })
 end
 
 local function ManageCrossbowMovement(char, status, causee)
@@ -68,30 +62,27 @@ local customBonuses = {
     Intelligence = {AccuracyBoost = Ext.ExtraData.DGM_IntelligenceAccuracyBonus}
 }
 
---- @param character EsvCharacter
+--- @param char GUID|EsvCharacter
 function SyncAttributeBonuses(char)
-    if ObjectExists(char) == 0 then return end
-    char = Ext.GetCharacter(char)
-    if char == nil then return end
+    if type(char) == "string" then
+        char = Ext.ServerEntity.GetCharacter(char)
+    end
+    if not char or ObjectExists(char.MyGuid) == 0 then return end
     for attribute, bonuses in pairs(customBonuses) do
         local charAttr = math.floor(char.Stats[attribute] - Ext.ExtraData.AttributeBaseValue)
-        local statusName = "DGM_"..attribute.."_"..charAttr
-        if NRD_StatExists(statusName) then
-            if HasActiveStatus(char.MyGuid, statusName) == 0 then
-                ApplyStatus(char.MyGuid, statusName, -1, 1)
+        local current = char:GetStatus("DGM_"..attribute)
+        if not char:GetStatus("DGM_"..attribute) or current.StatsMultiplier ~= charAttr then
+            if not Ext.Stats.Get("DGM_Potion_"..attribute, nil, false) then
+                CustomStatusManager:CreateStatFromTemplate("DGM_Potion_"..attribute, "Potion", "DGM_Potion_Base", bonuses, false)
             end
-        else
-            local newPotion = Ext.CreateStat("DGM_Potion_"..attribute.."_"..charAttr, "Potion", "DGM_Potion_Base")
-            for bonus,value in pairs(bonuses) do
-                newPotion[bonus] = charAttr * value
-            end
-            Ext.SyncStat(newPotion.Name, false)
-            local newStatus = Ext.CreateStat("DGM_"..attribute.."_"..charAttr, "StatusData", "DGM_BASE")
-            newStatus["StatsId"] = newPotion.Name
-            newStatus["StackId"] = "DGM_"..attribute
-            Ext.SyncStat(newStatus.Name, false)
-            --Ext.Print(newStatus.Name)
-            ApplyStatus(char.MyGuid, statusName, -1)
+            CustomStatusManager:CharacterApplyMultipliedStatus(char, "DGM_"..attribute, -1, charAttr, {
+                Template = "DGM_BASE",
+                StatsArray = {
+                    StatsId = "DGM_Potion_"..attribute,
+                    StackId = "DGM_"..attribute
+                },
+                Persistance = false
+            })
         end
     end
     local weapon = char.Stats.MainWeapon

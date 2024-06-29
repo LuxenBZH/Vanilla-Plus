@@ -1,272 +1,324 @@
 <contentList>
-	<content contentuid="h0045f23fgb529g49d5gb9f5gab8c0a6a4b17">Enable talents from Gift Bag 4, with effects slightly adapted to Vanilla Plus gameplay. &lt;br&gt;Default : on&lt;br&gt;&lt;font color=#ff0000&gt;Require a game restart&lt;/font&gt;</content>
-	<content contentuid="h004cd16fgf0e9g4216g9a3cg2dc6e16fe78a">Deals [1] to the target character and set Atrophy. If target character is carrying grenades or arrows, a random one explodes in their inventory.</content>
-	<content contentuid="h00f565c4g6178g424fgb031g41a2c12bf85d">[1] gives you [2]% Dodging while dual wielding.</content>
-	<content contentuid="h02f12f9fg9a25g4a95gba27gd65217023ed9">Increase Accuracy by [1] (improved by Intelligence) and Critical Chance by [2] (improved by Strength) for the next weapon attack.</content>
-	<content contentuid="h03d68693g35e7g4721ga1b3g9f9882f08b12">Dual-Wielding</content>
-	<content contentuid="h049f29acg76c5g4336ga831g3effd3b94d4e">Default : 1&lt;br&gt;&lt;font color=#ff0000&gt;Require a game restart&lt;/font&gt;</content>
-	<content contentuid="h055c33d3ge1f1g431eg8fd0gebd6da7eb962">Morning Person</content>
-	<content contentuid="h06098edfg8629g4f30gb6d4g45057f6622ce">Deals [1] damage each turn.</content>
-	<content contentuid="h06c77362g1304g4f81ga661g695dc6b814bc">A character with Demon has an extra 20% Fire Resistance, but takes a 15% penalty to Water Resistance. Additionally, the maximum Fire Resistance is raised by 10 and grants immunity to Burning and Necrofire.</content>
-	<content contentuid="h0897c725g76cbg4ab7ga0ceg31a5294abbf8">Reset all cooldowns but remove your armours for 2 turns. Removes Burning, Necrofire, Poisoned, Bleeding, Momentum and Lingering.</content>
-	<content contentuid="h08adfff4gbd75g4ee9g8070gf928d43a6302">Stench</content>
-	<content contentuid="h092684e6gbf69g4372g99f8g4743516b0efe">Offhand penalty: [1]% (penalty reduced by [2]% from Dual-Wielding)</content>
-	<content contentuid="h0a8b0b59g5da9g483fg86a3g59afce30dbb7">Next Level [1]: Water attacks deal +[2]% more damage, +[3]% Vitality healed, +[4]% Magic Armour from skills and potions.</content>
-	<content contentuid="h0b24b325g8818g4552g97ebgcb6a2481f573">Set the skill damage multiplier percentage when a staff is equipped.&lt;br&gt;Default : 10</content>
-	<content contentuid="h0bd1a48dg8f40g44b7g9229g826720785117">Activate stats correction</content>
-	<content contentuid="h0c972945g2320g4a0agbfebg86667bcf4c7b">CQB Ranged Combat Penalty</content>
-	<content contentuid="h0cf4ee90g8298g491eg9c31g396810cbce3b">Dodge Fatigue (2)</content>
-	<content contentuid="h0dd878f8g8f63g4c9ag86b2g2488d2a86c79">Potion Poisoning</content>
-	<content contentuid="h0f9a9124g20a8g430egaaaege3de06266056">Walk It Off (2)</content>
-	<content contentuid="h0fe63523g3caeg4e46g8152geabd390080af">Receive Sparkstriker status. This causes your melee attacks to create a Spark projectile that bounces off the initial target to hit the closest enemy, dealing [1].</content>
-	<content contentuid="h169eda41gad02g4143g997eg29c0cee15c14">Walk It Off (3)</content>
-	<content contentuid="h18f97d5bg9a79g4917g809dgb0ac7a5ec302">Increases all damage by [1]% per point. Damage dealt with weapons are further increased by [2]% (including weapon-based skills). Each point invested increase the resistance bypass multiplier by [3]%. Allows you to lift and carry heavier items.</content>
-	<content contentuid="h19525dddg3cadg4699g94d2g342b1192a332">Set the target distance threshold which defines when do ranged weapons gets a penalty.&lt;br&gt;Default : 2&lt;br&gt;</content>
-	<content contentuid="h195e0642ge46ag4d02g85ecg20a8a0012104">Each ally consumes oil surfaces around them, converting the oil surfaces to Physical Armour. If they are Slowed or Petrified, they restore an additional 30% Physical Armour. Removes Slowed, Petrified and Stunned.</content>
-	<content contentuid="h19eab510gec8cg4d4fg92fag5918044ab001">Default : 3</content>
-	<content contentuid="h1a6bf0edg47eeg4ee8gaa86g5a608e5dda7b">Explode all corpses around you, dealing [1] in the area.</content>
-	<content contentuid="h1b361ce1gd5d3g4c0eg8b8cg7d87658e755f">Activate the stats correction formula. Strongly recommended when playing Story mode or any Adventure mod that has not been balanced for Vanilla Plus.&lt;br&gt;Default : on&lt;br&gt;&lt;font color=#ff0000&gt;Require a game restart&lt;/font&gt;</content>
-	<content contentuid="h1bae56a9ga45fg431fg80bfg2afbef03c1d2">Perseverance restores Magic Armour on recovering from Frozen or Stunned, and restores Physical Armour on recovering from Knocked Down or Petrified. Additionally, when you&apos;re incapacitated (Knocked Down, Petrified, Stunned, Frozen or similar) your resistances are increased. When recovering from a Staggered or Confused status, Perseverance also triggers but its effect is halved.</content>
-	<content contentuid="h1c81462eg26ceg48a1g8828gdf9254cbdae0">Wands Surface Bonus</content>
-	<content contentuid="h1c89538dg51d5g451dgac1agaf4de9de70bf">Warmup (4)</content>
-	<content contentuid="h1cf47358gd399g486fg9401g6a12b06eb879">Disable Linear Vitality Scaling</content>
-	<content contentuid="h1e5caa33g4d5dg4f42g91edg9f546d42f56b">Increases all Skill damage by [1]%.</content>
-	<content contentuid="h206ce4abg4f84g4b2dg934aga0d96a602f2c">Two-Handed increases damage and Critical Multiplier when using two-handed melee weapons (swords, axe, mace, spear or staff).</content>
-	<content contentuid="h22a39843gf968g4212g851dg6e121235fa85">Bless target character or surface. Prevent Diseased, Decaying, Petrified, Stunned, increase Dodge by [1]%, Accuracy by [2]% and elemental resistances by [3].</content>
-	<content contentuid="h2512e452g4bdcg4631g9f32g67f9b6e5fc99">Divine Talents Plus</content>
-	<content contentuid="h278b2bccg1afcg4314gbfcbgb10105ebc12b">When resurrected, you resurrect to full health. When your turn is skipped because of incapacitating effect(s), you start your next turn with 2 additional AP.</content>
-	<content contentuid="h278d3a4fg4dceg4362g9b35g9c3685c93268">The damage you inflict when successfully hitting an enemy or object.</content>
-	<content contentuid="h2802446bg3159g4290g9154g8cac4a93eaf1">Main Attribute Correction</content>
-	<content contentuid="h285f26a1g0683g4a86gae3eg0c69934433b8">Strength Weapon Damage Bonus</content>
-	<content contentuid="h2afdc1f0g4650g4ea9gafb7gb0c042367766">Next Level [1]: +[2]% Damage, +[3]% accuracy, +[4]% armours and +[5]% to Elemental Resistances.</content>
-	<content contentuid="h2baa6ed9gdca0g4731gb999g098d9c2d90b0">Next Level [1]: +[2]% Damage, +[3]% Dodging and increase Offhand damage by [4]%.</content>
-	<content contentuid="h2ce13614gab6cg4878gb781gcb3186a8ead9">Reduce damage going through Magic Armour by [1]%</content>
-	<content contentuid="h2ceb4cffgfaf3g42b2g95c8g4fad6567f70d">Any attempt to apply Knocked Down or Chicken Form will apply Staggered instead.</content>
-	<content contentuid="h2cfe726egc70bg459cgb8b8gc2442ce7b9ea">CQB Range Threshold</content>
-	<content contentuid="h2e87e6cfg0183g4968g8ec1g325614c7d9fa">+[1] point(s) = +[2]% to all Damage, +[3]% Dodge, +[4]m of movement per AP and +[5]% Critical Chance.</content>
-	<content contentuid="h2e8803d0g3b27g470dgb836g26fcbeb60714">Activate Jump fall damage</content>
-	<content contentuid="h2ea5f141g4d43g49b8g8d6agd365b90a0d6d">Dodge Fatigue (4)</content>
-	<content contentuid="h2f00286fg98feg42abg84a5gb9d4fcce838e">Your chance to hit an enemy. On miss, you trigger Warmup which increase your Accuracy by your Intelligence attribute, stackable up to 4 times.</content>
-	<content contentuid="h2f904fe7g83d0g4d51g8bcfgd6b561ba92e3">Magnificent horns sprout from your forehead, making you see red. You can rush at your enemies and gore them. Increases Retribution ability by 2 for the duration.</content>
-	<content contentuid="h314ee256g43cdg4864ga519gd23e909ec63e">Increase all Skill damage by [1]%.&lt;br&gt;Wands attacks do [2]% more damage of the type of the surface and the cloud the character is standing in.</content>
-	<content contentuid="h31d2a547g005bg4ee3g8d2ag47720bd4fa1a">Gain 2 Action Points immediately, but lose 3 Action Points next turn. Any Action Points over your maximum are lost.</content>
-	<content contentuid="h3240460dgd250g435bg9ebegc1682089c5ed">Explode target corpse, dealing [1] in the area.</content>
-	<content contentuid="h32b3f391g84c8g4350gb6c1gc0577fd7372a">Inflict [1] each turn.</content>
-	<content contentuid="h32fcbbfbgec6bg4af4g894ag49fd997307fe">Any attempt to apply Stunned, Petrified, Frozen, Madness, Terrified or Charm will apply Confused instead.</content>
-	<content contentuid="h34fa90bdg6d1fg4ee8gb3e7g8c3694c70fae">At the start of an encounter, you gain one of two statuses: Cycle of Fire and Water or Cycle of Earth and Air. Cycle of Fire and Water increases your Pyrokinetic and Hydrosophist by 3. Cycle of Earth and Air increases your Geomancy and Aerotheurgy by 3. Statuses swap each turn.</content>
-	<content contentuid="h362a94a5g0b60g4be6g9998gd44214d4a78f">Sacrifice yourself to bring an ally back to life. Reduce your Vitality to 1 and ressurrects target character with maximum Vitality.</content>
-	<content contentuid="h36683e27ge1cag45f9gb7ddgdf954e865e33">Default : 2</content>
-	<content contentuid="h39ded39fg40a6g46a1gafe4gbaf448e4f20a">Last armour penetration</content>
-	<content contentuid="h3c306881g0106g4b61g931eg1e837bca6149">Walk It Off (5)</content>
-	<content contentuid="h3d077707gcc2cg4b6eg808agda8c3a0384a8">Demon (Bonus)</content>
-	<content contentuid="h3d6fb0f8g0419g4ed0g8f4eg5ecdedbedbad">Staff Skill Damage Multiplier</content>
-	<content contentuid="h3e8d0f43g5060g48d8g95cag541abe3a7c08">Receive a [1]% Damage penalty if the target is closer than [2] meters</content>
-	<content contentuid="h41b54dbagf949g40aagb148gd7c0b42eedfe">Walk It Off</content>
-	<content contentuid="h42b4c1e3g7c07g400dg8924g2807a024e6bb">Pet Pal enables you to talk to animals. Also increases your maximum number of summons by 1, but reduces their damage and Vitality by 50%.</content>
-	<content contentuid="h42f0b1b6gd786g46ebga04egf56b57d92048">Incarnate learns how to go invisible and strike foes with a corrosive slash. Increases damage by [1]% and maximum Vitality by 15%.</content>
-	<content contentuid="h43401d61ga5dfg4282ga423gc4a5b78ff7ac">Leech</content>
-	<content contentuid="h443a51dcgbd6fg46c2g8988gbfe93a3123a5">Next Level [1]: +[2]% Armour restored after a hard Crowd Control effect recovery and +[3]% on all Resistances when incapacitated.</content>
-	<content contentuid="h4542353bg043cg4964ga401g7a80dd267e5b">Target a surface in melee radius. Elemental damage matching that surface is added to your weapon attacks and weapon-based skills.</content>
-	<content contentuid="h456b2bf0gf693g41e8gb01cg42e3548814a2">Prevent the attacker to Warmup when you dodge.</content>
-	<content contentuid="h4641ef2eg741ag408bg95adg2fe65094c8b6">This character has been magically affected during recovery.</content>
-	<content contentuid="h46770f2agdbb8g47eag9e0eg65ac47bde918">With [1], you start every combat round with Maximum AP, but Magic and Physical Armour are nullified and do not protect you from statuses.</content>
-	<content contentuid="h49481882g278cg4223gb275g7758a42e9051">Potion Dizziness</content>
-	<content contentuid="h494e1e4egf5b8g4d00gb816g61bbd41a0dee">Set the percentage of vitality restored when Perseverance proc.&lt;br&gt;Default : 2</content>
-	<content contentuid="h4a738dd3gf483g4913gbc27g5e8eeff26c2b">Default : 0.15</content>
-	<content contentuid="h4b32fa34gdce0g4683g93aagf3c802c319d7">Default : 3</content>
-	<content contentuid="h4be1f455g2614g43e1gbe42g7636850e7749">Burning Weapons</content>
-	<content contentuid="h4e021a63g8d27g4cf2g865agf52e17ae50c2">General Attribute Correction</content>
-	<content contentuid="h50e9548eg61f2g4aedg8a3eg570a7ffee6d3">Reduce damage going through Physical Armour by [1]%</content>
-	<content contentuid="h51631525ga7c5g4ff3gbf10ga04307fcdf7e">When recovering from a hard crowd control effect, both Momentum and Lingering will always be triggered together whatever the crowd control effect it was. &lt;br&gt;Default : off&lt;br&gt;</content>
-	<content contentuid="h5181573egec45g4adcgb6d2g6b8d856c3b4f">Crit. Chance Backstab Bonus</content>
-	<content contentuid="h5340847eg5242g4a5bgb0dcg581a25c167ce">Default : 2</content>
-	<content contentuid="h54f2ea13g97dbg4b86g9d13geeb81186faca">Ranged increases damage and Critical Chance when using bows and crossbows. Also increases the range when wielding a bow, crossbow or wand(s).</content>
-	<content contentuid="h552b479bg3e56g4ea1gb01fg96d986de5e5f">Activate the stats correction formula for GM mode. This is up to your preferences, but if you already created and balanced encounters, you might need to rebalance them.&lt;br&gt;Default : off&lt;br&gt;&lt;font color=#ff0000&gt;Require a game restart&lt;/font&gt;</content>
-	<content contentuid="h562bb140gab7bg4f78gba75g5aaf2cd7f27b">Default : 3</content>
-	<content contentuid="h565877e2g71eag43aag928fgfee5ca4f0c4f">Warmup</content>
-	<content contentuid="h56cb39a0ge913g4364g97e6g843aca99bcdc">Consume oil surfaces around you and convert them to Physical Armour. If you are Slowed or Petrified, you restore an additional 30% Physical Armour. Remove Slowed, Petrified and Stunned.</content>
-	<content contentuid="h579e2544g8e6cg4bbdg92a1g5598996b8f7b">Apply a multiplier to all Corrosive and Magic damage. &lt;br&gt;Default : 100</content>
-	<content contentuid="h5806fbdcgce18g421dg8affg316856abad0f">Refund 1 AP on use if the user is Wet.</content>
-	<content contentuid="h5822708bgb172g42d7g8d1fg948980c9d8eb">Finesse Movement Bonus</content>
-	<content contentuid="h584b8016g05e3g4c00gbaccg0c441bf1c3f5">Activate fall damage when character use Jump skills or Projectile skills moving the character. Damage is not applied for Fly.</content>
-	<content contentuid="h58e777ddgd569g4c0dg8f58gece56cce053d">+[1] point(s) = +[2]% to all Damage, +[3]% more for skills, +[4]% Accuracy and attacks ignore [5]% Resistance if it&apos;s under 100%.</content>
-	<content contentuid="h5ad5ffbeg192cg47b3gbebag87252e71f246">Confused (3)</content>
-	<content contentuid="h5c90bf4dg4c11g4bb3gaf93g2caf0bb5c4c0">Use recommended attribute values</content>
-	<content contentuid="h5cb3da10g4cddg44eegbefeg72ffb21118ee">Wits Damage Over Time Bonus</content>
-	<content contentuid="h5d0c3ad0g3d9dg4cf1g92b7g20d6d7d26344">Level [1]: +[2]% Armour after a hard Crowd Control effect recovery and +[3]% on all Resistances when incapacitated.</content>
-	<content contentuid="h5d124a78g6932g4f5egb844gf9569ec4d2ba">Your inner demon actively watches over you. When an enemy approaches in melee range, they will be pummelled by a demonic fist dealing [1].</content>
-	<content contentuid="h5d420a72gb8cag4a08gb9ffg774da57dd2f7">Set the base Movement penalty of Crossbows when they are equipped.&lt;br&gt;Default : -92&lt;br&gt;&lt;font color=#ff0000&gt;Require a game restart&lt;/font&gt;</content>
-	<content contentuid="h5e0c2cf9g042ag4803gb01bg6128e1246fc9">Real Jump</content>
-	<content contentuid="h5e23317dgf4ecg409bg9a6cg6d5be3ae8867">Staggered (3)</content>
-	<content contentuid="h5e26d4e3g63d5g4415gbe5ag4bc3e42bb995">Throw an explosive trap at target location. Trap takes 1 turn to activate. When active, the trap will explode when a character approaches it, dealing [1].</content>
-	<content contentuid="h600f8b60g94fbg439bg963eg56599207438f">Staggered (2)</content>
-	<content contentuid="h606e89bdgce80g4bcag99f3g914af3e4baae">Poison Weapons</content>
-	<content contentuid="h60ef5d4ag817dg4564g9c6eg9bc2339a55d5">Destroy [1] on target enemy. They are Terrified for 1 turn.</content>
-	<content contentuid="h6138efe4ge000g4a7dga5e8g479f54f1234a">Oily Weapons</content>
-	<content contentuid="h619fc68ag94ccg4c8ag9442g4ad02630ad64">Slow enemies in [1] range.</content>
-	<content contentuid="h6268c71cge671g4168g8827g653a7ace2925">This character drank too many potions and is experiencing side effects.</content>
-	<content contentuid="h6516d420gee6dg45ccgb315gd94c2d8b3bc5">The number of points you can invest in an attribute. Doesn&apos;t concern bonuses from statuses and equipment.&lt;br&gt;Default : 40</content>
-	<content contentuid="h656cf1ffgd118g40b8g9b1bgaa270b84bec8">Enemies can only be targeted if one of their armour is depleted.</content>
-	<content contentuid="h69b87598gf85eg4c63g9533ga0aa699de1ce">Warning ! Changing the vitality scaling will break the vitality of the characters on the current map (in story mode) or on all scenes (in GM mode). It is highly recommended that you enable this option during the character creation before starting the game, or if you are in GM mode before creating your scenes. Proceed ?</content>
-	<content contentuid="h6a4d6da0g29cfg44ecg8913g5a0a76cf1bbd">Arrow Recovery provides a 33% chance to recover a special arrow after shooting it, and removes the close-quarters damage penalty of ranged weapons.</content>
-	<content contentuid="h6b67efcagf943g43a1g959eg36f9ecc42e7e">Increases all damage by [1]% per point. Damage dealt by skills is further increased by [2]% (including weapon-based skills) and Accuracy by [3]% per point. Each point also makes attacks ignore resistance by the multiplier set by your Strength as long as the target resistance is under 100%. Each point also increase the Accuracy given by Warmup by 1%</content>
-	<content contentuid="h6c5806e8g7bccg4ecdg959eg254d17edbd71">This character has already drunk one potion during their turn. Drinking another potion before the end of the turn will have side effects.</content>
-	<content contentuid="h6d219e8ag59abg4adegbf53g2f73649ee312">The correction indice for damaging attribute if there is a tie between two or all three damaging attributes for NPCs. The higher it is, the lower will be the final result.&lt;br&gt;Default : 60&lt;br&gt;&lt;font color=#ff0000&gt;Require a game restart&lt;/font&gt;</content>
-	<content contentuid="h6d2cd8aeg4e09g4003ga57cg3fea3a0f5502">Wits increase your Critical Chance by [1]%, Initiative by [2], increase damages dealt by damaging statuses by [3]% per point and your ability to detect traps and find hidden treasures.</content>
-	<content contentuid="h6d523ea5g116eg4380g816fg72079d80f321">Set the skill damage multplier pencetage when a wand is equipped (can be doubled when dual-wielding).&lt;br&gt;Default : 5</content>
-	<content contentuid="h6d76eb15gdb1ag4ebeg8001g58173516a923">Walk It Off reduces all status durations by 1 turn, including positive statuses. Does not affect statuses with a duration of 1 turn. Also increases elemental resistances by 8% and Physical and Piercing resistances by 4% each time you are directly hit by a character, up to a maximum of 3 times until the next turn.</content>
-	<content contentuid="h6e9ec88dgcbb7g426bgb1d9g69df0240825a">Level [1]: +[2]% Damage, +[3]% Critical Multiplier.</content>
-	<content contentuid="h70707bb2g5a48g4571g9a68ged2fe5a030ea">Level [1]: +[2]% Damage, +[3]% accuracy, +[4]% armours and +[5]% to Elemental Resistances.</content>
-	<content contentuid="h711b52a9ga71ag458cg82c4gdca0433f24b2">Wand Skill Damage Multiplier</content>
-	<content contentuid="h7184b190ge934g49d4g9b5cg67ff537bd723">Shoot a volatile bolt that deals [1], and then creates a corresponding surface. Chaos trigger a random type of damage.</content>
-	<content contentuid="h71b09f9fg285fg4532gab16g1c7640864141">Damage is based on your level and trigger the additional skill bonus from Intelligence.</content>
-	<content contentuid="h730eb29cgf6a6g4efcg8625g1b7d95925932">Perseverance Resistance Bonus per point.&lt;br&gt;Default : 5&lt;br&gt;</content>
-	<content contentuid="h74f2f4d1gb916g4bccgb635g264d3444d84b">Perseverance Vitality Restoration</content>
-	<content contentuid="h751cb9fcgcc15g485fg80dag96d013bb5fff">Single-Handed increases damage and Accuracy when using a single-handed weapon (dagger, sword, axe, mace or wand) with a shield or empty off-hand. Also increases armours and resistances.</content>
-	<content contentuid="h75391bafg8744g4441g9b1egf52f182f96fc">Increases all damage by [1]% per point. Dodge is increased by [2]%, Critical Chance by [3]% and Movement by [4]m per AP per point.</content>
-	<content contentuid="h753b1b3fgdfdfg428fg90e0g9e631beb1f06">Strength Global Damage Bonus</content>
-	<content contentuid="h75422cb0g14ccg4731g89a7gae632f7669a8">Str. Resistance Bypass Multiplier</content>
-	<content contentuid="h7579318fg2a13g4185g856bgad8960145220">Confused (2)</content>
-	<content contentuid="h757f2c61g6620g4134ga7efgd7db36630de5">Base Accuracy</content>
-	<content contentuid="h7583bee1g949cg433dg8b2ag94d9a47bef82">Bonus damage (%) from surface AND cloud the character stands in.&lt;br&gt;Default : 20</content>
-	<content contentuid="h76856ed3gf1cdg4c63g887fgb4c1fd40952b">This summon is weaker.</content>
-	<content contentuid="h768669d0g02adg48f7g901eg83068a96bf19">Dual-Wielding increases damage and Dodging when wielding two Single-Handed weapons and increases off-hand damage.</content>
-	<content contentuid="h7a2f1a05g4b52g4ec2g8354g1f92a8bf442d">Ranged weapons (including wands) deal 20% additional damage of the type of the surface the target stands on. Using a grenade or an arrow also now provide 1 turn of Elemental Weapons of the same type.</content>
-	<content contentuid="h7b1052abg9968g4acdgb399g989954144550">Finesse Global Damage Bonus</content>
-	<content contentuid="h7b6b2d7eg13f2g4a8cg9691g811c39d97536">Enable the old dodge system, triggering Dodge Fatigue instead of Warmup on dodges.&lt;br&gt;Default : off</content>
-	<content contentuid="h7bcfac6eg76a6g4ccega83bg2ff334058ccc">Armour Damage Multiplier</content>
-	<content contentuid="h7c3dcbc3gb3f4g4746g9a94g00021c9c2930">Target a circular area. Until your next turn, you will reflexively shoot at the first three enemies moving within this area if you have sight on them.</content>
-	<content contentuid="h7e7b669dged21g4b8ag8a44g32bede9e51ae">Consume frozen surfaces around you and convert them to Magic Armour. If you are Chilled or Frozen, you restore an additional 30% Magic Armour. Remove Chilled, Frozen, Burning and Necrofire.</content>
-	<content contentuid="h7fec5db8g58d3g4abbgab7ag03e19b542bef">Total damage: [1]-[2]</content>
-	<content contentuid="h80149363gb072g4531gae22gf187147b9c44">CC Recover Duration</content>
-	<content contentuid="h81ca938fg5ef4g452agb093g1294e2f0718b">Leech heals you when standing in blood. Also increases Lifesteal by 25%.</content>
-	<content contentuid="h8256bf13gb4cag4662gaafegb5724b210c92">[1] grants Dodging and Resistance bonuses to all allies in a 16m radius.</content>
-	<content contentuid="h8271feceg6b6cg470cg8c8fg5de1ee77a76b">Set the percentage of damage going through armours.&lt;br&gt;Default : 50</content>
-	<content contentuid="h846daabdg90beg4ac9gb930g02e96dcdbd8d">Reduce Movement by [1]m</content>
-	<content contentuid="h8521db9fgfb9ag40c7g8767g7465226e3a00">Confused</content>
-	<content contentuid="h863fc18ag2674g47e8g9657ge6fb4a5b074f">Activate fall damage when characters are victim of the Force property of some skills.&lt;br&gt;Scoundrel reduce the height tolerance for each point. Damage is not applied if the victim has Wings.</content>
-	<content contentuid="h878c02c0gc629g470dg955cg80dc2a125cb2">Stench decreases everyone&apos;s attitude towards you by [2], but melee opponents find you less attractive in combat. Increases your Poison resistance by 30% and makes you immune to Diseased and Infected.</content>
-	<content contentuid="h88ed61e9g4d7fg4eb7g81f1g9e7c48dde602">Multiply the base Vitality of all summons (ally and enemy). &lt;br&gt;Default : 100 &lt;br&gt;&lt;font color=#ff0000&gt;Require a game restart&lt;/font&gt;</content>
-	<content contentuid="h8afcfe4egf50fg402agbcc0g6ba95472ff53">Enemies can only be targeted if one of their armour is depleted.</content>
-	<content contentuid="h8b09bd1cg68deg4987g9494g540c9d948538">Offhand bonus: [1]% (high ability nullify the base penalty)</content>
-	<content contentuid="h8b1768fbgf8edg4ce6gab9dg617267af4852">Pers. Resistance Bonus</content>
-	<content contentuid="h8ddc8dd4ge8feg4420ga6dag0d87ce8ec743">[1] lets you evade attacks of opportunity. Increases your Dodge by 5% and Movement by 1m per AP.</content>
-	<content contentuid="h8fc505abgfadbg4481g8d79gb73e606117d7">When an allied character dies, a Zombie Crawler is raised at their corpse, under their control. Zombie Crawler lasts 3 turns or until character is resurrected. Range 12m. Does not affect summoned creatures. Can happen only once per turn.</content>
-	<content contentuid="h9055594bg16a7g48b8g81ffg25bbbf89963b">Sets off a chain reaction that causes ice areas to explode into water puddles, dealing [1] and setting Chilled.</content>
-	<content contentuid="h90812fdfg4f53g49afg8a97g42aefdeb508c">[1] gives all magical skills a critical chance equal to your critical chance score, and increase your Critical chance by 10%.</content>
-	<content contentuid="h93731b66g32c8g425dg8ed5g9863a8d35279">Unlock Whirlwind and Rush for your Incarnate. Provides [1] (amount depends on your level). Increases damage by [2]% and increase maximum Vitality by 15%.</content>
-	<content contentuid="h944c3db5gc792g4cdcg923cg9471f4cb0969">Water Weapons</content>
-	<content contentuid="h9729b9ceg2860g4396g8b3fg9eef86106d4f">Unlock ranged attack for your Incarnate. Provides [1] (amount depends on your level). Increases damage by [2]% and increase maximum Vitality by 15%.</content>
-	<content contentuid="h98163163g695ag4813gb105g3ade9ea09050">[1] gives you [2] extra Action Points after dealing a killing blow once per turn and increase Movement by 2m for 1 turn.</content>
-	<content contentuid="h9df517d1gf64bg499dgb23fg462fd1f061bc">Your chance to Critically Strike when attacking with a weapon or when using a weapon-based skill. If you Backstab, your Critical Chance is converted to additional damage : for 1% of Critical Chance, you gain [1]% damage.</content>
-	<content contentuid="h9dffbeb7g85b6g4275g8c58g8b0de33c8583">This character drank too many potions and could not handle the side effects.</content>
-	<content contentuid="h9e8b6e5bgd7b4g4444g8853g5eb8910285a4">The amount of damage going through Physical and Magic Armour is reduced by half.</content>
-	<content contentuid="h9e97f6cdg7b63g4603g9f25g7a515742c55d">Flaming Tongues protect you, immediately attacking approaching enemies and deals them [1].</content>
-	<content contentuid="h9ec453a6g6fb1g4f78g9e28g7c1b6495567e">Classic Teleport</content>
-	<content contentuid="h9f363adeg7345g487fg97f8ga61db7bdb460">Aimed Shot</content>
-	<content contentuid="ha0a64a63g9fd2g40edg98b0g421c3099523d">Classic Chameleon Cloak</content>
-	<content contentuid="ha1578450g666bg4b87g8377g1c389879435f">Default : 10</content>
-	<content contentuid="ha2bd4aa9gae5dg4bb0gb6ddg25a682c5a68b">Duck Duck Goose</content>
-	<content contentuid="ha418e064g2d69g4407gadc2gf2f590f0e895">From Strength weapon bonus : [1]%</content>
-	<content contentuid="ha422c4f4ge2bbg4cbcgbbf3g505c7ce673d1">+[1] point(s) = +[2]% Critical Chance, +[3] Initiative and +[4]% to statuses inflicting damages.</content>
-	<content contentuid="ha4a2351eg24cdg4f68g8ef6gb7ee91c0c08e">Default : 2&lt;br&gt;&lt;font color=#ff0000&gt;Require a game restart&lt;/font&gt;</content>
-	<content contentuid="ha4cfd852g52f1g4079g8919gd392ac8ade1a">Damage is based on your basic attack and trigger the additional bonus from both Strength and Intelligence.</content>
-	<content contentuid="ha6375589ga989g4860g8d73g58af60e32ce9">The number of potions you need to drink in the same turn before receiving a warning of dizziness. Set to 0 to immediatly get a penalty after the first potion, and -1 to make potions usage brutally punishing. Default : 1.</content>
-	<content contentuid="ha6f17eacgbfdbg4cc2g9734g87d7801fe648">Revert Chameleon Cloak ability requirements to Polymorph 1 only.&lt;br&gt;Default : off&lt;br&gt;&lt;font color=#ff0000&gt;Require a game restart&lt;/font&gt;</content>
-	<content contentuid="ha742cf9eg80e6g4b43g8106ga4b83bd5e241">Cause target character to teleport in a random direction each time they are attacked. Increases Dodge by [1]% and Air Resistance by [2]%.</content>
-	<content contentuid="ha79ac9a4g91ceg4fbfg9b70ge273d5f12090">Your attacks never miss but cannot deal critical strikes (except backstabs not triggered by skills and if your weapon has higher level than you). Convert the critical bonus from Wits to resistance bypass.</content>
-	<content contentuid="haa3cebcagba62g47bbg8546gf0c154e0e46f">You gain immunity to stunned, frozen, knocked down, polymorphed, petrified, crippled for 1 turn after being affected by one of these statuses. Can happen once every 3 turns. Increase the duration of Momentum and Lingering by 1 turn.</content>
-	<content contentuid="hab342575gecacg4c17ga4dcg4d2c771f2a24">Change the vitality scaling to be linear instead of exponential. The difference of Vitality, Armours and Damage between levels are much lower, avoiding weapons fast obsolescence and making inter-levels combats more fair. &lt;br&gt;Default : off&lt;br&gt;&lt;font color=#ff0000&gt;Require a map reload. It is highly recommended to activate this option before starting a new game (during character creation), and deactivating it mid-playthrough will break all NPCs vitality.&lt;/font&gt;</content>
-	<content contentuid="hae2334ccg2f64g45aaga94dgf4ce0f03a7a6">Warmup (3)</content>
-	<content contentuid="hae29de3agcf14g44f7g9020g90e1fd77694d">If deactivated, you will be able to use custom attributes bonuses. Not recommended if you want to keep an overall balanced experience unless you really know what you are doing.&lt;br&gt;Default : on</content>
-	<content contentuid="hae68ba97g6072g46fagb9d3g7c289a0e7511">Magnificent horns sprout from your forehead, making you see red. You can rush at your enemies and gore them. Increases Retribution ability by 2 for the duration.</content>
-	<content contentuid="haee8a8d1g10e8g491ag83c8g833c3a4d0fbb">The damage bonus provided per Critical Chance percent when backstabbing. &lt;br&gt;Default : 0.5&lt;br&gt;</content>
-	<content contentuid="hb1fc6d8bg6bf6g4a3bg83f7g94177ced086a">Duelist</content>
-	<content contentuid="hb24edf38gd48ag477fgbf75g3bd3de8c6eec">Resistance Corrosion</content>
-	<content contentuid="hb4d441e2g0d7cg45f5g8917g5fa55696a431">Hothead</content>
-	<content contentuid="hb5c81b75ga23dg44aeg8ceeg6c88bf367e38">Secondary Attribute Correction</content>
-	<content contentuid="hb78e3fa5gfa77g4a00g9228g62b93db293e9">If Corrosive or Magic damage is dealt while the corresponding armour is depleted, they will strip resistances for 2 turns. Can be stacked, the resistance loss is proportional to the damage dealt and the max vitality of the target. Can be removed with Fortified or Magic Shell. &lt;br&gt;Default : on&lt;br&gt;</content>
-	<content contentuid="hb924258ag2cf7g4c11gaf4eg8b7de303c197"> </content>
-	<content contentuid="hb96acab6g6db2g425fg8e7fg947dc56be642">Revert Teleport and Nether Swap targetting to unconditional. &lt;br&gt;Default : off&lt;br&gt;&lt;font color=#ff0000&gt;Require a game restart&lt;/font&gt;</content>
-	<content contentuid="hbce8b81ag1259g4a30g99f9g1f99e9b74583">Elemental Weapons</content>
-	<content contentuid="hbd257f75g9084g4c73g9db0g77d418e677c9">A character with Ice King has an extra 20% Water Resistance, but takes a 15% penalty to Fire Resistance. Additionally, the maximum Water Resistance is raised by 10. All Water damage you deal are increased by 20% and grants immunity to Chilled.</content>
-	<content contentuid="hbd366dc5g10a3g48acg9bffg4a11bccb189d">Each ally consumes frozen surfaces around them, converting the frozen surfaces to Magic Armour. If they are Chilled or Frozen, they restore an additional 30% Magic Armour. Removes Chilled, Frozen, Burning and Necrofire.</content>
-	<content contentuid="hbd5f39f8g78e1g42c8g95b6g1917a8c65816">Target character and surrounding allies receive Sparkmaster status that make melee attacks firing sparks that can fork twice at nearby enemies. Each spark hit deals [1].</content>
-	<content contentuid="hbde985cfgb1c4g4bb6g9a61gbec72c9b4ed6">Mnenomic doubles all points invested in Memory.</content>
-	<content contentuid="hbe73e4f8g0448g4a54gaa87g3905ebfeb604">Use this if you enabled Vanilla Plus on a running save and you witness most characters and items lack some Vitality.</content>
-	<content contentuid="hbef625c0g5d09g42f2g9065gf9099a39e11e">Dodge Fatigue (3)</content>
-	<content contentuid="hbf283d5cgda64g4436g886cg3452c10aa414">Warning ! Use it only if you enabled Vanilla Plus in a running save and witness everything lacking Vitality. The fix might be somewhat inaccurate and can potentially break encounters. Proceed ?</content>
-	<content contentuid="hbf9f6f92g699ag47b3gb967g5bfa164a0612">Bloody Weapons</content>
-	<content contentuid="hc13534c0gc9e9g453dgab9bg194a3f41689b">Multiply the base vitality of the player characters and summons. &lt;br&gt;Default : 100 &lt;br&gt;&lt;font color=#ff0000&gt;Require a game restart&lt;/font&gt;</content>
-	<content contentuid="hc13ac1f2ge15eg4791ga4bcgca5508715345">Activate for GM mode</content>
-	<content contentuid="hc385872cge252g4da0gbc7agf774df831f28">Electric Weapons</content>
-	<content contentuid="hc4400964gcf4bg429cg882cg9e90ba8cf0ce">Level [1]: Water attacks deal +[2]% more damage, +[3]% Vitality healed, +[4]% Magic Armour from skills and potions.</content>
-	<content contentuid="hc453e399ge1f5g41f1gaeabgcdd4de833c63">A character with [1] has an extra 20% [3], but takes a [4]% penalty to [5]. Additionally, the maximum [3] is raised by [6]. Demon grants immunity to Burning and Necrofire. Ice King increases all Water damage you deal by 20% and grants immunity to Chilled.</content>
-	<content contentuid="hc5574731g874ag4d82gb4a0gba70af698168">Crossbow Base Penalty</content>
-	<content contentuid="hc5d5552bg6b33g44c1gbb0cg8d55a101f081">Level [1]: +[2]% Damage, +[3]% Dodging and increase Offhand damage by [4]%.</content>
-	<content contentuid="hc7851209gc2d8g4332g865dgae162ed9708b">Warmup (2)</content>
-	<content contentuid="hc82cf98agdf5dg41d5gac1bg325ac645fb79">The correction indice for the highest damaging attribute for NPCs. The higher it is, the lower will be the final result.&lt;br&gt;Default : 50&lt;br&gt;&lt;font color=#ff0000&gt;Require a game restart&lt;/font&gt;</content>
-	<content contentuid="hc8901962g28ceg4fd9g82c2ge28ef16abd5b">Finesse Critical Chance Bonus</content>
-	<content contentuid="hc9386e15gf8f2g46efg9ab1g7dc5f3910ae8">Gain 1 Action Point immediately at the cost of [1] Constitution for 2 turns. Any Action Points over your maximum are lost.</content>
-	<content contentuid="hcb8f9837gdf0fg4a01ga7d6g5ed522b74189">[1] allows you to flee combat even when enemies are close by. Provides immunity to Crippled, Entangled and Enwebbed.</content>
-	<content contentuid="hcd0b98f8g6ce9g454cg880cgb0358ed18328">Attributes Soft Cap</content>
-	<content contentuid="hcf74a6efg1ab6g45ecgaa12g147f528975ee">Throw [1] explosive traps at target locations. Each trap takes a turn to activate. When active, trap will explode when a character approaches it, dealing [2].</content>
-	<content contentuid="hd15c8d51gb26bg460cgaa29g8f2cc4f96877">Summons Damage Boost</content>
-	<content contentuid="hd281d94fg1f41g4af0ga8c2g69747893e1f2">This character has staggered during their recovery.</content>
-	<content contentuid="hd2fd14e5gaf70g4acagb99bg491d9c3c5ce2">Staggered</content>
-	<content contentuid="hd376dcd8g0707g4bd5g9052g01d558955583">Teleport a target character or item to a point of your choosing, dealing [1].</content>
-	<content contentuid="hd4d51fddgb38cg4394ga485gf37cb37523d0">Remove poison surfaces and clouds. Gain poison damage bonus to weapon attacks and weapon-based skills (dependent upon size of poison area cleared) for 2 turns and your weapon attacks now also set Acid for 1 turn (3 turns if Venom Coating is also active).</content>
-	<content contentuid="hd4f241b4gb997g41efga6c0gb5d38e0ad0b0">Intelligence Accuracy Bonus</content>
-	<content contentuid="hd5148365gb1f7g4f21g9521gd50d897e5e4a">Default : 20&lt;br&gt;&lt;font color=#ff0000&gt;Require a game restart&lt;/font&gt;</content>
-	<content contentuid="hd573aa44gad41g4232g8040gf59652415d1d">Summons Vitality Multiplier</content>
-	<content contentuid="hd980a2a1gc33eg4810gafc8g07f55ba70245">Duelist</content>
-	<content contentuid="hd9b1f84fge616g4da4g8c57g9a9bc5f9708c">Savage Sortilege</content>
-	<content contentuid="hd9f92f34g0daag4393g887cg1be725ab19ab">Dodge Fatigue</content>
-	<content contentuid="hda7d12b4gfd73g46dag981bg3bcc5d9e8ad1">Enable Linear Vitality Scaling</content>
-	<content contentuid="hda7ee9a4g5bbeg4c62g96b7ge31b21e094f3">Next Level [1]: +[2]% Damage, +[3]% Critical Multiplier.</content>
-	<content contentuid="hdbadc53agb463g47c8gb396gff76b7cc0164">Switch back to the exponential scaling. Break vitalities of characters on the current map (story mode), or on all scenes (GM mode).</content>
-	<content contentuid="hdc60c039gac18g416cgb2a0g3d58fc54afcc">Reduce damage going through Physical Armour by [1]%</content>
-	<content contentuid="hddb00621g65ddg46acg89d2gfcf3efd8cd78">Also triggers the Strength weapon bonus.</content>
-	<content contentuid="hdef2f1beg2fc7g4a22gab9eg29c2f0694e4d">The duration of Momentum and Lingering when they are triggered. &lt;br&gt;Default : 2&lt;br&gt;</content>
-	<content contentuid="hdf2a4bd0g134eg4107g9a8agd93d6d22fd68">From Attributes : [1]%</content>
-	<content contentuid="he1708d1eg243dg4b72g8f48gddb9bc8d62ff">+[1] point(s) = +[2]% to all Damage and +[3]% more for weapon-based attacks. Each point in Intelligence will increase resistance bypass by [4]% per point.</content>
-	<content contentuid="he187433cg29c8g44dag8924gdd2345937ed0">Warning ! Deactivating the linear scaling will break characters vitalities again. If you do it in story mode, it is recommended to do it just before transitioning to a new act. Proceed ?</content>
-	<content contentuid="he3980bf8gf554g4dd8g823cgf2ccb71036a6">Offhand penalty: [1]%</content>
-	<content contentuid="he3d3ef27gc4e2g4271ga838ge227b9193ef7">Increase Accuracy and Critical Chance for the next weapon attack.</content>
-	<content contentuid="he47a8a79g2f04g410bgbf00gd6b2a84ba9a5">Reduce damage going through Physical Armour by [1]%</content>
-	<content contentuid="he534e470gb8a2g4032gbd9bgee0ac41f1f0f"></content>
-	<content contentuid="he53d3385g125cg49ddgaacegce01ebea865f">Dual CC Resistance</content>
-	<content contentuid="he573ce38g6445g4975g8562ge97ea0a52c79">This module transforms Cloak and Dagger, Phoenix Dive and Tactical Retreat as projectile equivalents (like Fly with Spread your wings). It applies to everyone. If some NPC still have the classic version, deactivate and reactivate this module.</content>
-	<content contentuid="he5970b83g4f56g4348g8d23g39bce69f8c3c">Aimed Shot</content>
-	<content contentuid="he6c2c979gd7a7g4926g9180g5d69e9d79d62">Crossbow Penalty Per Level</content>
-	<content contentuid="he8315150gd40cg453dg911bgef5e2cd5ef74">Default : 90&lt;br&gt;&lt;font color=#ff0000&gt;Require a game restart&lt;/font&gt;</content>
-	<content contentuid="he86bfd28ge123g42a4g8c0cg2f9bcd7d9e05">Level [1]: +[2]% Damage, +[3]% Critical Chance and increase Range by [4]m.</content>
-	<content contentuid="he8ede611g2306g4bacga3aag78eccdf928fb">This characters dodging has become less effective.</content>
-	<content contentuid="he94327f7g293dg488eg9d25gcb4f7ae7be24">While above 75% Vitality, Hothead provides 10% Critical Chance and 10% Accuracy.</content>
-	<content contentuid="he9aa2d6dge162g4078gb831g0894e01a72e5">Pet Pal (Summon)</content>
-	<content contentuid="he9b44d3fg577fg4d9bgab26g3a6b1910b1f7">The correction indice for the damaging attributes that are not the highest for NPCs. The higher it is, the lower will be the final result.&lt;br&gt;Default: 70&lt;br&gt;&lt;font color=#ff0000&gt;Require a game restart&lt;/font&gt;</content>
-	<content contentuid="heace2e30g4075g428cg8163g3fc8eff9323b">Armour penetration</content>
-	<content contentuid="heb12b418g92ccg4bbeg9837gdab77683435b">Dodge Fatigue</content>
-	<content contentuid="heb8111a8g1b89g4bf6gbf1age84937263ba2">Set the Movement penalty of Crossbows growth per level.&lt;br&gt;Default : -8&lt;br&gt;&lt;font color=#ff0000&gt;Require a game restart&lt;/font&gt;</content>
-	<content contentuid="hebc78e7bg3775g4da6gbe21g054b280f11ce">Corrogic</content>
-	<content contentuid="hed14cc79g467bg4d3fgbed6gec529691740e">Multiply all damages of summons (ally and enemy). &lt;br&gt; Default: +0% &lt;br&gt;&lt;font color=#ff0000&gt;Require a game restart&lt;/font&gt;</content>
-	<content contentuid="hf130b10ag0b9ag4c68g8c17g54d30b86fe2b">Pet Pal (Summoner)</content>
-	<content contentuid="hf2c55a59ge06dg4e77g8d04g69f9ea668541">Set the percentage of damage going through armour when one type of armour is depleted. Additive to the first value.&lt;br&gt;Default : 25</content>
-	<content contentuid="hf2f2ceb4g7be9g453fgb093ga8d7c563f782">Reduce damage going through Magic Armour by [1]%</content>
-	<content contentuid="hf338b2c0gd158g49b4ga2ceg15a7099a4b7b">Skills gets a bonus of +[1]% from Intelligence</content>
-	<content contentuid="hf3893f8fg20c5g4078ga83cgef8783082103">The first skill used each turn has its cooldown reduced by one turn (minimum 1).</content>
-	<content contentuid="hf3cd8067g36c0g4b48ga4dfg361f33579b43">Ambidextrous reduces the cost of using grenades and scrolls by 1 AP when your off-hand is free. Refund the AP cost for 2 equipment switches per turn (except for Crossbows).</content>
-	<content contentuid="hf69fc03eg0a46g4ed6g80e4ga325a7ffe659">Fix Vitality Gap</content>
-	<content contentuid="hf7a19975gea84g44a3g8fffg5b4f063b88b4">Reduce damage going through Physical and Magic Armour by [1]%</content>
-	<content contentuid="hf7f34763g19feg4018gb6f6g4cc298dc512d">Int. Global Damage Bonus</content>
-	<content contentuid="hf859c7e8g7e30g48e3ga24aga943a18f0c5c">Set the percentage of damage penalty when using a ranged weapon on a target within the CQB range limit.&lt;br&gt;Default : 35</content>
-	<content contentuid="hfb851683g738cg4b48g8fd8g478d375c030a">Incarnate learns a teleport skill, and a skill to swap places with its master. Increases damage by [1]% and maximum Vitality by 15%.</content>
-	<content contentuid="hfb8eec35g3339g4762g8382g712e74a2ac0b">[1] adds an extra [2]m range to your grenade throws and increase their damage by 30%.</content>
-	<content contentuid="hfc25a87dg9103g4602g872dg8ecb8965fc0a">Explode two random grenades or arrows in the inventories of every enemy, dealing [1] and set Atrophy in a target circle.</content>
-	<content contentuid="hfc8981a1g8f84g49c8ga8b4g17564a836c45">Duelist increases AP Start and Recovery by 1, and Max AP by 1, if you are wielding a Single-Handed weapon with a free off-hand.</content>
-	<content contentuid="hfd01dd86gb216g473fg86a3gb6eddafc79db">Intelligence Skill Damage Bonus</content>
-	<content contentuid="hfe32bba9g038fg4541g921cge1be27275d5f">Activate Force fall damage</content>
-	<content contentuid="hfe5567d9g5f27g4729g8774g36bce3393b4d">Walk It Off (4)</content>
-	<content contentuid="hffc37ae5g6651g4a60ga1c1g49d233cb1ca2">Next Level [1]: +[2]% Damage, +[3]% Critical Chance and increase Range by [4]m.</content>
-	<content contentuid="hffe960e0g8d88g4c63gb285g507247c47d43">Player Vitality Multiplier</content>
+	<content contentuid="h2f00286fg98feg42abg84a5gb9d4fcce838e" Source="Attributes.lsb" Key="Accuracy">Your chance to hit an enemy. On miss, you trigger Warmup which increase your Accuracy and Movement (improved by Warfare), stackable up to 4 times.</content>
+	<content contentuid="h278d3a4fg4dceg4362g9b35g9c3685c93268" Source="Attributes.lsb" Key="Damage">The damage you inflict when successfully hitting an enemy or object.</content>
+	<content contentuid="hb924258ag2cf7g4c11gaf4eg8b7de303c197" Source="Attributes.lsb" Key="DynamicBonus"> </content>
+	<content contentuid="h75391bafg8744g4441g9b1egf52f182f96fc" Source="Attributes.lsb" Key="Finesse">Increases all damage by [1]% per point. Dodge is increased by [2]% and Movement by [3]m per AP per point. Increase Accuracy bonus cap from Intelligence by [4]%.</content>
+	<content contentuid="h6b67efcagf943g43a1g959eg36f9ecc42e7e" Source="Attributes.lsb" Key="Intelligence">Increases all damage by [1]% per point. Damage dealt by skills is further increased by [2]% (but also wand attacks) and Accuracy by [3]% per point. Each point also increase Ingress by [4], up to the cap set by Strength and increase Wisdom bonus cap from Wits by [5].</content>
+	<content contentuid="h18f97d5bg9a79g4917g809dgb0ac7a5ec302" Source="Attributes.lsb" Key="Strength">Increases all damage by [1]% per point. Damage dealt with weapons (except wands) are further increased by [2]%. Increase Ingress bonus cap from Intelligence by [3]. Allows you to lift and carry heavier items.</content>
+	<content contentuid="h6d2cd8aeg4e09g4003ga57cg3fea3a0f5502" Source="Attributes.lsb" Key="Wits">Wits increase Critical Chance by [1]%, Initiative by [2], increases damage dealt by damaging statuses by [3]% per point and your ability to detect traps and find hidden treasures. Increase Wisdom by [4]%, up to the cap set by Intelligence.</content>
+	<content contentuid="h5525b96fg1a36g41a8gbf58gb9279050aa32" Source="CMP_Soulcatcher_Zombie">Zombie</content>
+	<content contentuid="h5b58a9a9g7632g4958g88fagd579fcea5423" Source="CMP_Soulcatcher_Zombie"></content>
+	<content contentuid="h768669d0g02adg48f7g901eg83068a96bf19" Source="CombatAbilities.lsb" Key="Dual-Wielding_Description">Dual-Wielding increases damage and Dodging when wielding two Single-Handed weapons and increases off-hand damage.</content>
+	<content contentuid="h03d68693g35e7g4721ga1b3g9f9882f08b12" Source="CombatAbilities.lsb" Key="Dual-Wielding_Displayname">Dual-Wielding</content>
+	<content contentuid="h8b09bd1cg68deg4987g9494g540c9d948538" Source="CombatAbilities.lsb" Key="DualWieldingOffhandBonusTooltip">Offhand bonus: [1]% (high ability nullify the base penalty)</content>
+	<content contentuid="he3980bf8gf554g4dd8g823cgf2ccb71036a6" Source="CombatAbilities.lsb" Key="DualWieldingPenalty">Offhand penalty: [1]%</content>
+	<content contentuid="h092684e6gbf69g4372g99f8g4743516b0efe" Source="CombatAbilities.lsb" Key="DualWieldingPenaltyTooltip">Offhand penalty: [1]% (penalty reduced by [2]% from Dual-Wielding)</content>
+	<content contentuid="hc5d5552bg6b33g44c1gbb0cg8d55a101f081" Source="CombatAbilities.lsb" Key="DualWieldingTooltipCurrent">Level [1]: +[2]% Damage, +[3]% Dodging and increase Offhand damage by [4]%.</content>
+	<content contentuid="h2baa6ed9gdca0g4731gb999g098d9c2d90b0" Source="CombatAbilities.lsb" Key="DualWieldingTooltipNew">Next Level [1]: +[2]% Damage, +[3]% Dodging and increase Offhand damage by [4]%.</content>
+	<content contentuid="hc4400964gcf4bg429cg882cg9e90ba8cf0ce" Source="CombatAbilities.lsb" Key="HydrosophistCurrent">Level [1]: Water attacks deal +[2]% more damage, +[3]% Vitality healed, +[4]% Magic Armour from skills and potions.</content>
+	<content contentuid="h0a8b0b59g5da9g483fg86a3g59afce30dbb7" Source="CombatAbilities.lsb" Key="HydrosophistNext">Next Level [1]: Water attacks deal +[2]% more damage, +[3]% Vitality healed, +[4]% Magic Armour from skills and potions.</content>
+	<content contentuid="h8256bf13gb4cag4662gaafegb5724b210c92" Source="CombatAbilities.lsb" Key="Leadership_Description">[1] grants Dodging and Resistance bonuses to all allies in a 16m radius.</content>
+	<content contentuid="h1bae56a9ga45fg431fg80bfg2afbef03c1d2" Source="CombatAbilities.lsb" Key="Perseverance_Description">Perseverance restores Magic Armour on recovering from Frozen or Stunned, and restores Physical Armour on recovering from Knocked Down or Petrified. Additionally, when you&apos;re incapacitated (Knocked Down, Petrified, Stunned, Frozen or similar) your resistances are increased. When recovering from a Staggered or Confused status, Perseverance also triggers but its effect is halved.</content>
+	<content contentuid="h5d0c3ad0g3d9dg4cf1g92b7g20d6d7d26344" Source="CombatAbilities.lsb" Key="PerseveranceTooltipCurrent">Level [1]: Recover [2] Armour when a hard crowd control effect expires and +[3]% on all Resistances when incapacitated.</content>
+	<content contentuid="h443a51dcgbd6fg46c2g8988gbfe93a3123a5" Source="CombatAbilities.lsb" Key="PerseveranceTooltipNew">Next Level [1]: Recover [2] Armour when a hard crowd control effect expires and +[3]% on all Resistances when incapacitated.</content>
+	<content contentuid="h54f2ea13g97dbg4b86g9d13geeb81186faca" Source="CombatAbilities.lsb" Key="Ranged_Description">Ranged increases damage and Critical Chance when using bows and crossbows. Also increases the range when wielding a bow, crossbow or wand(s).</content>
+	<content contentuid="he86bfd28ge123g42a4g8c0cg2f9bcd7d9e05" Source="CombatAbilities.lsb" Key="RangedTooltipCurrent">Level [1]: +[2]% Damage, +[3]% Critical Chance and increase Range by [4]m.</content>
+	<content contentuid="hffc37ae5g6651g4a60ga1c1g49d233cb1ca2" Source="CombatAbilities.lsb" Key="RangedTooltipNew">Next Level [1]: +[2]% Damage, +[3]% Critical Chance and increase Range by [4]m.</content>
+	<content contentuid="h3e8d0f43g5060g48d8g95cag541abe3a7c08" Source="CombatAbilities.lsb" Key="RangedWeaponsDynamicTooltip">Receive a [1]% Damage penalty if the target is closer than [2] meters</content>
+	<content contentuid="h751cb9fcgcc15g485fg80dag96d013bb5fff" Source="CombatAbilities.lsb" Key="Single-Handed_Description">Single-Handed increases damage and Accuracy when using a single-handed weapon (dagger, sword, axe, mace or wand) with a shield or empty off-hand. Also increases armours and resistances.</content>
+	<content contentuid="h206ce4abg4f84g4b2dg934aga0d96a602f2c" Source="CombatAbilities.lsb" Key="Two-Handed_Description">Two-Handed increases damage and Critical Multiplier when using two-handed melee weapons (swords, axe, mace, spear or staff).</content>
+	<content contentuid="hae8649cfg3688g43b4gb137gdae29b32492e" Source="CombatAbilities.lsb" Key="Warfare_Description">[1] increases all Physical damage you deal and improve your Warmup status.</content>
+	<content contentuid="h2443a42egd7abg4116g95b4g8036050c3bd3" Source="CombatAbilities.lsb" Key="Warfare_TooltipCurrent">Next Level [1]: Physical attacks deal +[2]% more damage, Warmup accuracy bonus increased by [3]% and movement bonus is increased by [4]% per stack.</content>
+	<content contentuid="ha4b72525g51d5g434cgbdf9g3a4ec57319aa" Source="CombatAbilities.lsb" Key="Warfare_TooltipNext">Level [1]: Physical attacks deal +[2]% more damage, Warmup accuracy bonus increased by [3]% and movement bonus is increased by [4]% per stack.</content>
+	<content contentuid="h45221235g7b29g4bdegb758gebf6e378573b" Source="CON_Potion_A_Health_Giant">A very, very large-sized potion that restores your vitality. It makes a soft, tinkling sound when you shake it.</content>
+	<content contentuid="h2c9f8a93g1a43g44b9gbbb6g45f983560791" Source="CON_Potion_A_Health_Giant">Polymorph skills allow you to reshape your body as well as the bodies of your enemies.</content>
+	<content contentuid="hc6e506e1ga2e7g40c0g81c2g297ed840e37d" Source="CON_Potion_A_Health_Giant">Use to read and learn about crafting.</content>
+	<content contentuid="hc32234efg6d48g461egb2b3g9a0b823b170c" Source="CON_Potion_A_Health_Giant">Undeployed Explosive Mine</content>
+	<content contentuid="h344c6011g9e49g44a2ga410gafdb828dba07" Source="CON_Potion_A_Health_Giant">Bone Widow</content>
+	<content contentuid="h1852216fgb397g409ag9dcfg50b29ba87da0" Source="CON_Potion_A_Health_Giant">| Living Wall |</content>
+	<content contentuid="ha556dc68g617dg45c0g8307g392dcb022e7c" Source="CON_Potion_A_Health_Giant">Explosive Mine</content>
+	<content contentuid="h87614bc3g6474g4b95gba1dgc62361ed1734" Source="CON_Potion_A_Health_Giant">Potions</content>
+	<content contentuid="hcf97a6e7ga0ebg4fe3ga4dcg393c9c87423f" Source="CON_Potion_A_Health_Giant">Skillbooks</content>
+	<content contentuid="hf0269df0g098cg47eagaf77g1fdf0c86d90e" Source="CON_Potion_A_Health_Giant">Books</content>
+	<content contentuid="he5dbd78fg9fa1g4ac0g950ag843cb94c1f61" Source="DGM_FallDummy">Dummy</content>
+	<content contentuid="h45ad9237g3009g4b8dgbf80g0c622e5fa194" Source="DGM_FallDummy">Training Targets</content>
+	<content contentuid="h85f3246dg3b28g4736gbb82gbfe321c7d5a3" Source="GRN_Grenade_Acid_A">Grenades</content>
+	<content contentuid="hdf2a4bd0g134eg4107g9a8agd93d6d22fd68" Source="Misc.lsb" Key="AttributesGeneralBonusDynamicTooltip">From Attributes : [1]%</content>
+	<content contentuid="he534e470gb8a2g4032gbd9bgee0ac41f1f0f" Source="Misc.lsb" Key="BuiltinWeaponEnhancementTooltip"></content>
+	<content contentuid="hb24edf38gd48ag477fgbf75g3bd3de8c6eec" Source="Misc.lsb" Key="Corrogic">Resistance Corrosion</content>
+	<content contentuid="h9df517d1gf64bg499dgb23fg462fd1f061bc" Source="Misc.lsb" Key="CriticalChanceDescription">Your chance to Critically Strike when attacking with a weapon or when using a weapon-based skill. If you Backstab, your Critical Chance is converted to additional damage : for 1% of Critical Chance, you gain [1]% damage.</content>
+	<content contentuid="h7fec5db8g58d3g4abbgab7ag03e19b542bef" Source="Misc.lsb" Key="DamageDynamicTooltip">Total damage: [1]-[2]</content>
+	<content contentuid="h2e87e6cfg0183g4968g8ec1g325614c7d9fa" Source="Misc.lsb" Key="FinesseDynamicTooltip">+[1] point(s) = +[2]% to all Damage, +[3]% Dodge, +[4]m of movement per AP and +[5]% to Accuracy cap (given by Intelligence).</content>
+	<content contentuid="h58e777ddgd569g4c0dg8f58gece56cce053d" Source="Misc.lsb" Key="IntelligenceDynamicTooltip">+[1] point(s) = +[2]% to all Damage, +[3]% more for skills, +[4]% Accuracy[5], Ingress by [6]% [7]and Wisdom cap from Wits by [8].</content>
+	<content contentuid="hf338b2c0gd158g49b4ga2ceg15a7099a4b7b" Source="Misc.lsb" Key="IntelligenceSkillDamageTooltip">Skills gets a bonus of +[1]% from Intelligence</content>
+	<content contentuid="h2ce13614gab6cg4878gb781gcb3186a8ead9" Source="Misc.lsb" Key="Shout_FrostAura">Reduce damage going through Magic Armour by [1]%</content>
+	<content contentuid="h50e9548eg61f2g4aedg8a3eg570a7ffee6d3" Source="Misc.lsb" Key="Shout_MendMetal">Reduce damage going through Physical Armour by [1]%</content>
+	<content contentuid="hf7a19975gea84g44a3g8fffg5b4f063b88b4" Source="Misc.lsb" Key="Shout_RecoverArmour">Reduce damage going through Physical and Magic Armour by [1]%</content>
+	<content contentuid="he47a8a79g2f04g410bgbf00gd6b2a84ba9a5" Source="Misc.lsb" Key="Shout_SteelSkin">Reduce damage going through Physical Armour by [1]%</content>
+	<content contentuid="h70707bb2g5a48g4571g9a68ged2fe5a030ea" Source="Misc.lsb" Key="SingleHandedTooltipCurrent">Level [1]: +[2]% Damage, +[3]% accuracy, +[4]% armours and +[5]% to Elemental Resistances.</content>
+	<content contentuid="h2afdc1f0g4650g4ea9gafb7gb0c042367766" Source="Misc.lsb" Key="SingleHandedTooltipNew">Next Level [1]: +[2]% Damage, +[3]% accuracy, +[4]% armours and +[5]% to Elemental Resistances.</content>
+	<content contentuid="h1e5caa33g4d5dg4f42g91edg9f546d42f56b" Source="Misc.lsb" Key="StaffDynamicTooltip">Increases all Skill damage by [1]%.</content>
+	<content contentuid="he1708d1eg243dg4b72g8f48gddb9bc8d62ff" Source="Misc.lsb" Key="StrengthDynamicTooltip">+[1] point(s) = +[2]% to all Damage and +[3]% more for weapon-based attacks and +[4]% to Ingress cap (given by Intelligence).</content>
+	<content contentuid="ha418e064g2d69g4407gadc2gf2f590f0e895" Source="Misc.lsb" Key="StrengthWeaponDamageTooltip">From Strength weapon bonus : [1]%</content>
+	<content contentuid="h5806fbdcgce18g421dg8affg316856abad0f" Source="Misc.lsb" Key="Target_Condense">Refund 1 AP on use if the user is Wet.</content>
+	<content contentuid="h456b2bf0gf693g41e8gb01cg42e3548814a2" Source="Misc.lsb" Key="Target_EvasiveManeuver">Prevent the attacker to Warmup when you dodge.</content>
+	<content contentuid="hdc60c039gac18g416cgb2a0g3d58fc54afcc" Source="Misc.lsb" Key="Target_Fortify">Reduce damage going through Physical Armour by [1]%</content>
+	<content contentuid="hf2f2ceb4g7be9g453fgb093ga8d7c563f782" Source="Misc.lsb" Key="Target_FrostyShell">Reduce damage going through Magic Armour by [1]%</content>
+	<content contentuid="h8afcfe4egf50fg402agbcc0g6ba95472ff53" Source="Misc.lsb" Key="Teleportation_FreeFall">Enemies can only be targeted if one of their armour is depleted.</content>
+	<content contentuid="h656cf1ffgd118g40b8g9b1bgaa270b84bec8" Source="Misc.lsb" Key="Teleportation_NetherSwap">Enemies can only be targeted if one of their armour is depleted.</content>
+	<content contentuid="hddb00621g65ddg46acg89d2gfcf3efd8cd78" Source="Misc.lsb" Key="TentacleLashAdditionalDescription">Also triggers the Strength weapon bonus.</content>
+	<content contentuid="h6e9ec88dgcbb7g426bgb1d9g69df0240825a" Source="Misc.lsb" Key="TwoHandedTooltipCurrent">Level [1]: +[2]% Damage, +[3]% Critical Multiplier.</content>
+	<content contentuid="hda7ee9a4g5bbeg4c62g96b7ge31b21e094f3" Source="Misc.lsb" Key="TwoHandedTooltipNew">Next Level [1]: +[2]% Damage, +[3]% Critical Multiplier.</content>
+	<content contentuid="h314ee256g43cdg4864ga519gd23e909ec63e" Source="Misc.lsb" Key="WandDynamicTooltip">Increase all Skill damage by [1]%.&lt;br&gt;Wands attacks do [2]% more damage of the type of the surface and the cloud the character is standing in.</content>
+	<content contentuid="ha422c4f4ge2bbg4cbcgbbf3g505c7ce673d1" Source="Misc.lsb" Key="WitsDynamicTooltip">+[1] point(s) = +[2]% Critical Chance, +[3] Initiative, +[4]% damage done by harmful statuses and +[5] Wisdom[6].</content>
+	<content contentuid="h4641ef2eg741ag408bg95adg2fe65094c8b6" Source="Potion.lsb" Key="ConfusedDescription">This character has been magically affected during recovery.</content>
+	<content contentuid="he8ede611g2306g4bacga3aag78eccdf928fb" Source="Potion.lsb" Key="DodgeFatigueDescription">This characters dodging has become less effective.</content>
+	<content contentuid="h06098edfg8629g4f30gb6d4g45057f6622ce" Source="Potion.lsb" Key="FoodPoisoningDescription">Deals [1] damage each turn.</content>
+	<content contentuid="h32fcbbfbgec6bg4af4g894ag49fd997307fe" Source="Potion.lsb" Key="LingeringDescription">Any attempt to apply Stunned, Petrified, Frozen, Madness, Terrified or Charm will apply Confused instead.</content>
+	<content contentuid="h619fc68ag94ccg4c8ag9442g4ad02630ad64" Source="Potion.lsb" Key="MedusaHeadAuraDescription">Slow enemies in [1] range.</content>
+	<content contentuid="h2ceb4cffgfaf3g42b2g95c8g4fad6567f70d" Source="Potion.lsb" Key="MomentumDescription">Any attempt to apply Knocked Down or Chicken Form will apply Staggered instead.</content>
+	<content contentuid="h76856ed3gf1cdg4c63g887fgb4c1fd40952b" Source="Potion.lsb" Key="PetpalStatusDescription">This summon is weaker.</content>
+	<content contentuid="h6268c71cge671g4168g8827g653a7ace2925" Source="Potion.lsb" Key="PotionFatigue1Description">This character drank too many potions and is experiencing side effects.</content>
+	<content contentuid="h9dffbeb7g85b6g4275g8c58g8b0de33c8583" Source="Potion.lsb" Key="PotionFatigue2Description">This character drank too many potions and could not handle the side effects.</content>
+	<content contentuid="h6c5806e8g7bccg4ecdg959eg254d17edbd71" Source="Potion.lsb" Key="PotionWarningDescription">This character has already drunk one potion during their turn. Drinking another potion before the end of the turn will have side effects.</content>
+	<content contentuid="h9e8b6e5bgd7b4g4444g8853g5eb8910285a4" Source="Potion.lsb" Key="ShieldsUpDescription">The amount of damage going through Physical and Magic Armour is reduced by half.</content>
+	<content contentuid="hd281d94fg1f41g4af0ga8c2g69747893e1f2" Source="Potion.lsb" Key="StaggeredDescription">This character has staggered during their recovery.</content>
+	<content contentuid="hbf9f6f92g699ag47b3gb967g5bfa164a0612" Source="Potion.lsb" Key="Stats_Arrowhead_Blood">Bloody Weapons</content>
+	<content contentuid="hc385872cge252g4da0gbc7agf774df831f28" Source="Potion.lsb" Key="Stats_Arrowhead_Electric">Electric Weapons</content>
+	<content contentuid="h4be1f455g2614g43e1gbe42g7636850e7749" Source="Potion.lsb" Key="Stats_Arrowhead_Fire">Burning Weapons</content>
+	<content contentuid="h6138efe4ge000g4a7dga5e8g479f54f1234a" Source="Potion.lsb" Key="Stats_Arrowhead_Oil">Oily Weapons</content>
+	<content contentuid="h606e89bdgce80g4bcag99f3g914af3e4baae" Source="Potion.lsb" Key="Stats_Arrowhead_Poison">Poison Weapons</content>
+	<content contentuid="h944c3db5gc792g4cdcg923cg9471f4cb0969" Source="Potion.lsb" Key="Stats_Arrowhead_Water">Water Weapons</content>
+	<content contentuid="h8521db9fgfb9ag40c7g8767g7465226e3a00" Source="Potion.lsb" Key="Stats_LX_Confused">Confused</content>
+	<content contentuid="h7579318fg2a13g4185g856bgad8960145220" Source="Potion.lsb" Key="Stats_LX_Confused2">Confused (2)</content>
+	<content contentuid="h5ad5ffbeg192cg47b3gbebag87252e71f246" Source="Potion.lsb" Key="Stats_LX_Confused3">Confused (3)</content>
+	<content contentuid="ha2bd4aa9gae5dg4bb0gb6ddg25a682c5a68b" Source="Potion.lsb" Key="Stats_LX_DDGoose">Duck Duck Goose</content>
+	<content contentuid="h3d077707gcc2cg4b6eg808agda8c3a0384a8" Source="Potion.lsb" Key="Stats_LX_Demon">Demon (Bonus)</content>
+	<content contentuid="hd9f92f34g0daag4393g887cg1be725ab19ab" Source="Potion.lsb" Key="Stats_LX_DodgeFatigue1">Dodge Fatigue</content>
+	<content contentuid="h0cf4ee90g8298g491eg9c31g396810cbce3b" Source="Potion.lsb" Key="Stats_LX_DodgeFatigue2">Dodge Fatigue (2)</content>
+	<content contentuid="hbef625c0g5d09g42f2g9065gf9099a39e11e" Source="Potion.lsb" Key="Stats_LX_DodgeFatigue3">Dodge Fatigue (3)</content>
+	<content contentuid="h2ea5f141g4d43g49b8g8d6agd365b90a0d6d" Source="Potion.lsb" Key="Stats_LX_DodgeFatigue4">Dodge Fatigue (4)</content>
+	<content contentuid="hb1fc6d8bg6bf6g4a3bg83f7g94177ced086a" Source="Potion.lsb" Key="Stats_LX_Duelist">Duelist</content>
+	<content contentuid="hb4d441e2g0d7cg45f5g8917g5fa55696a431" Source="Potion.lsb" Key="Stats_LX_Hothead">Hothead</content>
+	<content contentuid="h43401d61ga5dfg4282ga423gc4a5b78ff7ac" Source="Potion.lsb" Key="Stats_LX_Leech">Leech</content>
+	<content contentuid="h055c33d3ge1f1g431eg8fd0gebd6da7eb962" Source="Potion.lsb" Key="Stats_LX_MorningPerson">Morning Person</content>
+	<content contentuid="he9aa2d6dge162g4078gb831g0894e01a72e5" Source="Potion.lsb" Key="Stats_LX_PetPal">Pet Pal (Summon)</content>
+	<content contentuid="hf130b10ag0b9ag4c68g8c17g54d30b86fe2b" Source="Potion.lsb" Key="Stats_LX_PetPalSummoner">Pet Pal (Summoner)</content>
+	<content contentuid="h0dd878f8g8f63g4c9ag86b2g2488d2a86c79" Source="Potion.lsb" Key="Stats_LX_PotionFatigue1">Potion Poisoning</content>
+	<content contentuid="hd9b1f84fge616g4da4g8c57g9a9bc5f9708c" Source="Potion.lsb" Key="Stats_LX_SavageSortilege">Savage Sortilege</content>
+	<content contentuid="hd2fd14e5gaf70g4acagb99bg491d9c3c5ce2" Source="Potion.lsb" Key="Stats_LX_Staggered">Staggered</content>
+	<content contentuid="h600f8b60g94fbg439bg963eg56599207438f" Source="Potion.lsb" Key="Stats_LX_Staggered2">Staggered (2)</content>
+	<content contentuid="h5e23317dgf4ecg409bg9a6cg6d5be3ae8867" Source="Potion.lsb" Key="Stats_LX_Staggered3">Staggered (3)</content>
+	<content contentuid="h08adfff4gbd75g4ee9g8070gf928d43a6302" Source="Potion.lsb" Key="Stats_LX_Stench">Stench</content>
+	<content contentuid="h41b54dbagf949g40aagb148gd7c0b42eedfe" Source="Potion.lsb" Key="Stats_LX_WalkItOff">Walk It Off</content>
+	<content contentuid="h0f9a9124g20a8g430egaaaege3de06266056" Source="Potion.lsb" Key="Stats_LX_WalkItOff_2">Walk It Off (2)</content>
+	<content contentuid="h169eda41gad02g4143g997eg29c0cee15c14" Source="Potion.lsb" Key="Stats_LX_WalkItOff_3">Walk It Off (3)</content>
+	<content contentuid="hfe5567d9g5f27g4729g8774g36bce3393b4d" Source="Potion.lsb" Key="Stats_LX_WalkItOff_4">Walk It Off (4)</content>
+	<content contentuid="h3c306881g0106g4b61g931eg1e837bca6149" Source="Potion.lsb" Key="Stats_LX_WalkItOff_5">Walk It Off (5)</content>
+	<content contentuid="heace2e30g4075g428cg8163g3fc8eff9323b" Source="Resources.lsb" Key="LXDGM_ArmourDamagePass">Armour penetration</content>
+	<content contentuid="h8271feceg6b6cg470cg8c8fg5de1ee77a76b" Source="Resources.lsb" Key="LXDGM_ArmourDamagePass_Description">Set the percentage of damage going through armours.&lt;br&gt;Default : 50</content>
+	<content contentuid="h39ded39fg40a6g46a1gafe4gbaf448e4f20a" Source="Resources.lsb" Key="LXDGM_ArmourDamagePassDepleted">Last armour penetration</content>
+	<content contentuid="hf2c55a59ge06dg4e77g8d04g69f9ea668541" Source="Resources.lsb" Key="LXDGM_ArmourDamagePassDepleted_Description">Set the percentage of damage going through armour when one type of armour is depleted. Additive to the first value.&lt;br&gt;Default : 25</content>
+	<content contentuid="h7bcfac6eg76a6g4ccega83bg2ff334058ccc" Source="Resources.lsb" Key="LXDGM_ArmourReductionMultiplier">Armour Damage Multiplier</content>
+	<content contentuid="h579e2544g8e6cg4bbdg92a1g5598996b8f7b" Source="Resources.lsb" Key="LXDGM_ArmourReductionMultiplier_Description">Apply a multiplier to all Corrosive and Magic damage. &lt;br&gt;Default : 100</content>
+	<content contentuid="hcd0b98f8g6ce9g454cg880cgb0358ed18328" Source="Resources.lsb" Key="LXDGM_AttributeCap">Attributes Soft Cap</content>
+	<content contentuid="h6516d420gee6dg45ccgb315gd94c2d8b3bc5" Source="Resources.lsb" Key="LXDGM_AttributeCap_Description">The number of points you can invest in an attribute. Doesn&apos;t concern bonuses from statuses and equipment.&lt;br&gt;Default : 40</content>
+	<content contentuid="h5181573egec45g4adcgb6d2g6b8d856c3b4f" Source="Resources.lsb" Key="LXDGM_BackstabCritChanceBonus">Crit. Chance Backstab Bonus</content>
+	<content contentuid="haee8a8d1g10e8g491ag83c8g833c3a4d0fbb" Source="Resources.lsb" Key="LXDGM_BackstabCritChanceBonus_Description">The damage bonus provided per Critical Chance percent when backstabbing. &lt;br&gt;Default : 0.5&lt;br&gt;</content>
+	<content contentuid="h757f2c61g6620g4134ga7efgd7db36630de5" Source="Resources.lsb" Key="LXDGM_BaseAccuracy">Base Accuracy</content>
+	<content contentuid="he8315150gd40cg453dg911bgef5e2cd5ef74" Source="Resources.lsb" Key="LXDGM_BaseAccuracy_Description">Default : 90&lt;br&gt;&lt;font color=#ff0000&gt;Require a game restart&lt;/font&gt;</content>
+	<content contentuid="h80149363gb072g4531gae22gf187147b9c44" Source="Resources.lsb" Key="LXDGM_CCParryDuration">CC Recover Duration</content>
+	<content contentuid="hdef2f1beg2fc7g4a22gab9eg29c2f0694e4d" Source="Resources.lsb" Key="LXDGM_CCParryDuration_Description">The duration of Momentum and Lingering when they are triggered. &lt;br&gt;Default : 2&lt;br&gt;</content>
+	<content contentuid="h0c972945g2320g4a0agbfebg86667bcf4c7b" Source="Resources.lsb" Key="LXDGM_CQBPenalty">CQB Ranged Combat Penalty</content>
+	<content contentuid="h2cfe726egc70bg459cgb8b8gc2442ce7b9ea" Source="Resources.lsb" Key="LXDGM_CQBPenaltyRange">CQB Range Threshold</content>
+	<content contentuid="h19525dddg3cadg4699g94d2g342b1192a332" Source="Resources.lsb" Key="LXDGM_CQBPenaltyRange_Description">Set the target distance threshold which defines when do ranged weapons gets a penalty.&lt;br&gt;Default : 2&lt;br&gt;</content>
+	<content contentuid="hc5574731g874ag4d82gb4a0gba70af698168" Source="Resources.lsb" Key="LXDGM_CrossbowPenaltyBase">Crossbow Base Penalty</content>
+	<content contentuid="h5d420a72gb8cag4a08gb9ffg774da57dd2f7" Source="Resources.lsb" Key="LXDGM_CrossbowPenaltyBase_Description">Set the base Movement penalty of Crossbows when they are equipped.&lt;br&gt;Default : -92&lt;br&gt;&lt;font color=#ff0000&gt;Require a game restart&lt;/font&gt;</content>
+	<content contentuid="he6c2c979gd7a7g4926g9180g5d69e9d79d62" Source="Resources.lsb" Key="LXDGM_CrossbowPenaltyGrowth">Crossbow Penalty Per Level</content>
+	<content contentuid="heb8111a8g1b89g4bf6gbf1age84937263ba2" Source="Resources.lsb" Key="LXDGM_CrossbowPenaltyGrowth_Description">Set the Movement penalty of Crossbows growth per level.&lt;br&gt;Default : -8&lt;br&gt;&lt;font color=#ff0000&gt;Require a game restart&lt;/font&gt;</content>
+	<content contentuid="hc8901962g28ceg4fd9g82c2ge28ef16abd5b" Source="Resources.lsb" Key="LXDGM_FinesseCriticalChanceBonus">Finesse Critical Chance Bonus</content>
+	<content contentuid="h049f29acg76c5g4336ga831g3effd3b94d4e" Source="Resources.lsb" Key="LXDGM_FinesseCriticalChanceBonus_Description">Default : 1&lt;br&gt;&lt;font color=#ff0000&gt;Require a game restart&lt;/font&gt;</content>
+	<content contentuid="h7b1052abg9968g4acdgb399g989954144550" Source="Resources.lsb" Key="LXDGM_FinesseGlobalDamageBonus">Finesse Global Damage Bonus</content>
+	<content contentuid="h19eab510gec8cg4d4fg92fag5918044ab001" Source="Resources.lsb" Key="LXDGM_FinesseGlobalDamageBonus_Description">Default : 3</content>
+	<content contentuid="h5822708bgb172g42d7g8d1fg948980c9d8eb" Source="Resources.lsb" Key="LXDGM_FinesseMovementBonus">Finesse Movement Bonus</content>
+	<content contentuid="hd5148365gb1f7g4f21g9521gd50d897e5e4a" Source="Resources.lsb" Key="LXDGM_FinesseMovementBonus_Description">Default : 20&lt;br&gt;&lt;font color=#ff0000&gt;Require a game restart&lt;/font&gt;</content>
+	<content contentuid="hf69fc03eg0a46g4ed6g80e4ga325a7ffe659" Source="Resources.lsb" Key="LXDGM_FixConstitutionGap">Fix Vitality Gap</content>
+	<content contentuid="hbe73e4f8g0448g4a54gaa87g3905ebfeb604" Source="Resources.lsb" Key="LXDGM_FixConstitutionGap_Description">Use this if you enabled Vanilla Plus on a running save and you witness most characters and items lack some Vitality.</content>
+	<content contentuid="hbf283d5cgda64g4436g886cg3452c10aa414" Source="Resources.lsb" Key="LXDGM_FixConstitutionGap_Message">Warning ! Use it only if you enabled Vanilla Plus in a running save and witness everything lacking Vitality. The fix might be somewhat inaccurate and can potentially break encounters. Proceed ?</content>
+	<content contentuid="h69b87598gf85eg4c63g9533ga0aa699de1ce" Source="Resources.lsb" Key="LXDGM_FlatScaling_Message1">Warning ! Changing the vitality scaling will break the vitality of the characters on the current map (in story mode) or on all scenes (in GM mode). It is highly recommended that you enable this option during the character creation before starting the game, or if you are in GM mode before creating your scenes. Proceed ?</content>
+	<content contentuid="he187433cg29c8g44dag8924gdd2345937ed0" Source="Resources.lsb" Key="LXDGM_FlatScaling_Message2">Warning ! Deactivating the linear scaling will break characters vitalities again. If you do it in story mode, it is recommended to do it just before transitioning to a new act. Proceed ?</content>
+	<content contentuid="hda7d12b4gfd73g46dag981bg3bcc5d9e8ad1" Source="Resources.lsb" Key="LXDGM_FlatScalingActivate">Enable Linear Vitality Scaling</content>
+	<content contentuid="hab342575gecacg4c17ga4dcg4d2c771f2a24" Source="Resources.lsb" Key="LXDGM_FlatScalingActivate_Description">Change the vitality scaling to be linear instead of exponential. The difference of Vitality, Armours and Damage between levels are much lower, avoiding weapons fast obsolescence and making inter-levels combats more fair. &lt;br&gt;Default : off&lt;br&gt;&lt;font color=#ff0000&gt;Require a map reload. It is highly recommended to activate this option before starting a new game (during character creation), and deactivating it mid-playthrough will break all NPCs vitality.&lt;/font&gt;</content>
+	<content contentuid="h1cf47358gd399g486fg9401g6a12b06eb879" Source="Resources.lsb" Key="LXDGM_FlatScalingDeactivate">Disable Linear Vitality Scaling</content>
+	<content contentuid="hdbadc53agb463g47c8gb396gff76b7cc0164" Source="Resources.lsb" Key="LXDGM_FlatScalingDeactivate_Description">Switch back to the exponential scaling. Break vitalities of characters on the current map (story mode), or on all scenes (GM mode).</content>
+	<content contentuid="hd4f241b4gb997g41efga6c0gb5d38e0ad0b0" Source="Resources.lsb" Key="LXDGM_IntelligenceAccuracyBonus">Intelligence Accuracy Bonus</content>
+	<content contentuid="ha4a2351eg24cdg4f68g8ef6gb7ee91c0c08e" Source="Resources.lsb" Key="LXDGM_IntelligenceAccuracyBonus_Description">Default : 2&lt;br&gt;&lt;font color=#ff0000&gt;Require a game restart&lt;/font&gt;</content>
+	<content contentuid="hf7f34763g19feg4018gb6f6g4cc298dc512d" Source="Resources.lsb" Key="LXDGM_IntelligenceGlobalDamageBonus">Int. Global Damage Bonus</content>
+	<content contentuid="h5340847eg5242g4a5bgb0dcg581a25c167ce" Source="Resources.lsb" Key="LXDGM_IntelligenceGlobalDamageBonus_Description">Default : 2</content>
+	<content contentuid="hfd01dd86gb216g473fg86a3gb6eddafc79db" Source="Resources.lsb" Key="LXDGM_IntelligenceSpecialDamageBonus">Intelligence Skill Damage Bonus</content>
+	<content contentuid="h4b32fa34gdce0g4683g93aagf3c802c319d7" Source="Resources.lsb" Key="LXDGM_IntelligenceSpecialDamageBonus_Description">Default : 3</content>
+	<content contentuid="hebc78e7bg3775g4da6gbe21g054b280f11ce" Source="Resources.lsb" Key="LXDGM_ModuleCorrogicDisable">Corrogic</content>
+	<content contentuid="hb78e3fa5gfa77g4a00g9228g62b93db293e9" Source="Resources.lsb" Key="LXDGM_ModuleCorrogicDisable_Description">If Corrosive or Magic damage is dealt while the corresponding armour is depleted, they will strip resistances for 2 turns. Can be stacked, the resistance loss is proportional to the damage dealt and the max vitality of the target. Can be removed with Fortified or Magic Shell. &lt;br&gt;Default : on&lt;br&gt;</content>
+	<content contentuid="h2512e452g4bdcg4631g9f32g67f9b6e5fc99" Source="Resources.lsb" Key="LXDGM_ModuleDivineTalentsDisable">Divine Talents Plus</content>
+	<content contentuid="h0045f23fgb529g49d5gb9f5gab8c0a6a4b17" Source="Resources.lsb" Key="LXDGM_ModuleDivineTalentsDisable_Description">Enable talents from Gift Bag 4, with effects slightly adapted to Vanilla Plus gameplay. &lt;br&gt;Default : on&lt;br&gt;&lt;font color=#ff0000&gt;Require a game restart&lt;/font&gt;</content>
+	<content contentuid="he53d3385g125cg49ddgaacegce01ebea865f" Source="Resources.lsb" Key="LXDGM_ModuleDualCC">Dual CC Resistance</content>
+	<content contentuid="h51631525ga7c5g4ff3gbf10ga04307fcdf7e" Source="Resources.lsb" Key="LXDGM_ModuleDualCC_Description">When recovering from a hard crowd control effect, both Momentum and Lingering will always be triggered together whatever the crowd control effect it was. &lt;br&gt;Default : off&lt;br&gt;</content>
+	<content contentuid="h2e8803d0g3b27g470dgb836g26fcbeb60714" Source="Resources.lsb" Key="LXDGM_ModuleFallDamageAlternate">Activate Jump fall damage</content>
+	<content contentuid="h584b8016g05e3g4c00gbaccg0c441bf1c3f5" Source="Resources.lsb" Key="LXDGM_ModuleFallDamageAlternate_Description">Activate fall damage when character use Jump skills or Projectile skills moving the character. Damage is not applied for Fly.</content>
+	<content contentuid="hfe32bba9g038fg4541g921cge1be27275d5f" Source="Resources.lsb" Key="LXDGM_ModuleFallDamageClassic">Activate Force fall damage</content>
+	<content contentuid="h863fc18ag2674g47e8g9657ge6fb4a5b074f" Source="Resources.lsb" Key="LXDGM_ModuleFallDamageClassic_Description">Activate fall damage when characters are victim of the Force property of some skills.&lt;br&gt;Scoundrel reduce the height tolerance for each point. Damage is not applied if the victim has Wings.</content>
+	<content contentuid="heb12b418g92ccg4bbeg9837gdab77683435b" Source="Resources.lsb" Key="LXDGM_ModuleLegacyDodge">Dodge Fatigue</content>
+	<content contentuid="h7b6b2d7eg13f2g4a8cg9691g811c39d97536" Source="Resources.lsb" Key="LXDGM_ModuleLegacyDodge_Description">Enable the old dodge system, triggering Dodge Fatigue instead of Warmup on dodges.&lt;br&gt;Default : off</content>
+	<content contentuid="ha0a64a63g9fd2g40edg98b0g421c3099523d" Source="Resources.lsb" Key="LXDGM_ModuleOriginalChameleonCloak">Classic Chameleon Cloak</content>
+	<content contentuid="ha6f17eacgbfdbg4cc2g9734g87d7801fe648" Source="Resources.lsb" Key="LXDGM_ModuleOriginalChameleonCloak_Description">Revert Chameleon Cloak ability requirements to Polymorph 1 only.&lt;br&gt;Default : off&lt;br&gt;&lt;font color=#ff0000&gt;Require a game restart&lt;/font&gt;</content>
+	<content contentuid="h9ec453a6g6fb1g4f78g9e28g7c1b6495567e" Source="Resources.lsb" Key="LXDGM_ModuleOriginalTeleport">Classic Teleport</content>
+	<content contentuid="hb96acab6g6db2g425fg8e7fg947dc56be642" Source="Resources.lsb" Key="LXDGM_ModuleOriginalTeleport_Description">Revert Teleport and Nether Swap targetting to unconditional. &lt;br&gt;Default : off&lt;br&gt;&lt;font color=#ff0000&gt;Require a game restart&lt;/font&gt;</content>
+	<content contentuid="h5e0c2cf9g042ag4803gb01bg6128e1246fc9" Source="Resources.lsb" Key="LXDGM_ModuleRealJump">Real Jump</content>
+	<content contentuid="he573ce38g6445g4975g8562ge97ea0a52c79" Source="Resources.lsb" Key="LXDGM_ModuleRealJump_Description">This module transforms Cloak and Dagger, Phoenix Dive and Tactical Retreat as projectile equivalents (like Fly with Spread your wings). It applies to everyone. If some NPC still have the classic version, deactivate and reactivate this module.</content>
+	<content contentuid="h0bd1a48dg8f40g44b7g9229g826720785117" Source="Resources.lsb" Key="LXDGM_NPCStatsCorrectionCampaignDisable">Activate stats correction</content>
+	<content contentuid="h1b361ce1gd5d3g4c0eg8b8cg7d87658e755f" Source="Resources.lsb" Key="LXDGM_NPCStatsCorrectionCampaignDisable_Description">Activate the stats correction formula. Strongly recommended when playing Story mode or any Adventure mod that has not been balanced for Vanilla Plus.&lt;br&gt;Default : on&lt;br&gt;&lt;font color=#ff0000&gt;Require a game restart&lt;/font&gt;</content>
+	<content contentuid="hc13ac1f2ge15eg4791ga4bcgca5508715345" Source="Resources.lsb" Key="LXDGM_NPCStatsCorrectionGM">Activate for GM mode</content>
+	<content contentuid="h552b479bg3e56g4ea1gb01fg96d986de5e5f" Source="Resources.lsb" Key="LXDGM_NPCStatsCorrectionGM_Description">Activate the stats correction formula for GM mode. This is up to your preferences, but if you already created and balanced encounters, you might need to rebalance them.&lt;br&gt;Default : off&lt;br&gt;&lt;font color=#ff0000&gt;Require a game restart&lt;/font&gt;</content>
+	<content contentuid="h2802446bg3159g4290g9154g8cac4a93eaf1" Source="Resources.lsb" Key="LXDGM_NPCStatsMainCorrection">Main Attribute Correction</content>
+	<content contentuid="hc82cf98agdf5dg41d5gac1bg325ac645fb79" Source="Resources.lsb" Key="LXDGM_NPCStatsMainCorrection_Description">The correction indice for the highest damaging attribute for NPCs. The higher it is, the lower will be the final result.&lt;br&gt;Default : 50&lt;br&gt;&lt;font color=#ff0000&gt;Require a game restart&lt;/font&gt;</content>
+	<content contentuid="h4e021a63g8d27g4cf2g865agf52e17ae50c2" Source="Resources.lsb" Key="LXDGM_NPCStatsNoArchetypeCorrection">General Attribute Correction</content>
+	<content contentuid="h6d219e8ag59abg4adegbf53g2f73649ee312" Source="Resources.lsb" Key="LXDGM_NPCStatsNoArchetypeCorrection_Description">The correction indice for damaging attribute if there is a tie between two or all three damaging attributes for NPCs. The higher it is, the lower will be the final result.&lt;br&gt;Default : 60&lt;br&gt;&lt;font color=#ff0000&gt;Require a game restart&lt;/font&gt;</content>
+	<content contentuid="hb5c81b75ga23dg44aeg8ceeg6c88bf367e38" Source="Resources.lsb" Key="LXDGM_NPCStatsSecondaryCorrection">Secondary Attribute Correction</content>
+	<content contentuid="he9b44d3fg577fg4d9bgab26g3a6b1910b1f7" Source="Resources.lsb" Key="LXDGM_NPCStatsSecondaryCorrection_Description">The correction indice for the damaging attributes that are not the highest for NPCs. The higher it is, the lower will be the final result.&lt;br&gt;Default: 70&lt;br&gt;&lt;font color=#ff0000&gt;Require a game restart&lt;/font&gt;</content>
+	<content contentuid="h8b1768fbgf8edg4ce6gab9dg617267af4852" Source="Resources.lsb" Key="LXDGM_PerseveranceResistance">Pers. Resistance Bonus</content>
+	<content contentuid="h730eb29cgf6a6g4efcg8625g1b7d95925932" Source="Resources.lsb" Key="LXDGM_PerseveranceResistance_Description">Perseverance Resistance Bonus per point.&lt;br&gt;Default : 5&lt;br&gt;</content>
+	<content contentuid="h74f2f4d1gb916g4bccgb635g264d3444d84b" Source="Resources.lsb" Key="LXDGM_PerseveranceVitality">Perseverance Vitality Restoration</content>
+	<content contentuid="h494e1e4egf5b8g4d00gb816g61bbd41a0dee" Source="Resources.lsb" Key="LXDGM_PerseveranceVitality_Description">Set the percentage of vitality restored when Perseverance proc.&lt;br&gt;Default : 2</content>
+	<content contentuid="hffe960e0g8d88g4c63gb285g507247c47d43" Source="Resources.lsb" Key="LXDGM_PlayerVitalityMultiplier">Player Vitality Multiplier</content>
+	<content contentuid="hc13534c0gc9e9g453dgab9bg194a3f41689b" Source="Resources.lsb" Key="LXDGM_PlayerVitalityMultiplier_Description">Multiply the base vitality of the player characters and summons. &lt;br&gt;Default : 100 &lt;br&gt;&lt;font color=#ff0000&gt;Require a game restart&lt;/font&gt;</content>
+	<content contentuid="h49481882g278cg4223gb275g7758a42e9051" Source="Resources.lsb" Key="LXDGM_PotionFatigue">Potion Dizziness</content>
+	<content contentuid="ha6375589ga989g4860g8d73g58af60e32ce9" Source="Resources.lsb" Key="LXDGM_PotionFatigue_Description">The number of potions you need to drink in the same turn before receiving a warning of dizziness. Set to 0 to immediatly get a penalty after the first potion, and -1 to make potions usage brutally punishing. Default : 1.</content>
+	<content contentuid="h5c90bf4dg4c11g4bb3gaf93g2caf0bb5c4c0" Source="Resources.lsb" Key="LXDGM_SettingsUseDefaultAttributeValues">Use recommended attribute values</content>
+	<content contentuid="hae29de3agcf14g44f7g9020g90e1fd77694d" Source="Resources.lsb" Key="LXDGM_SettingsUseDefaultAttributeValues_Description">If deactivated, you will be able to use custom attributes bonuses. Not recommended if you want to keep an overall balanced experience unless you really know what you are doing.&lt;br&gt;Default : on</content>
+	<content contentuid="h3d6fb0f8g0419g4ed0g8f4eg5ecdedbedbad" Source="Resources.lsb" Key="LXDGM_StaffSkillMult">Staff Skill Damage Multiplier</content>
+	<content contentuid="h0b24b325g8818g4552g97ebgcb6a2481f573" Source="Resources.lsb" Key="LXDGM_StaffSkillMult_Description">Set the skill damage multiplier percentage when a staff is equipped.&lt;br&gt;Default : 10</content>
+	<content contentuid="h753b1b3fgdfdfg428fg90e0g9e631beb1f06" Source="Resources.lsb" Key="LXDGM_StrengthGlobalDamageBonus">Strength Global Damage Bonus</content>
+	<content contentuid="h36683e27ge1cag45f9gb7ddgdf954e865e33" Source="Resources.lsb" Key="LXDGM_StrengthGlobalDamageBonus_Description">Default : 2</content>
+	<content contentuid="h75422cb0g14ccg4731g89a7gae632f7669a8" Source="Resources.lsb" Key="LXDGM_StrengthResistanceIgnore">Str. Resistance Bypass Multiplier</content>
+	<content contentuid="h4a738dd3gf483g4913gbc27g5e8eeff26c2b" Source="Resources.lsb" Key="LXDGM_StrengthResistanceIgnore_Description">Default : 0.15</content>
+	<content contentuid="h285f26a1g0683g4a86gae3eg0c69934433b8" Source="Resources.lsb" Key="LXDGM_StrengthSpecialDamageBonus">Strength Weapon Damage Bonus</content>
+	<content contentuid="h562bb140gab7bg4f78gba75g5aaf2cd7f27b" Source="Resources.lsb" Key="LXDGM_StrengthSpecialDamageBonus_Description">Default : 3</content>
+	<content contentuid="hd15c8d51gb26bg460cgaa29g8f2cc4f96877" Source="Resources.lsb" Key="LXDGM_SummonsDamageBoost">Summons Damage Boost</content>
+	<content contentuid="hed14cc79g467bg4d3fgbed6gec529691740e" Source="Resources.lsb" Key="LXDGM_SummonsDamageBoost_Description">Multiply all damages of summons (ally and enemy). &lt;br&gt; Default: +0% &lt;br&gt;&lt;font color=#ff0000&gt;Require a game restart&lt;/font&gt;</content>
+	<content contentuid="hd573aa44gad41g4232g8040gf59652415d1d" Source="Resources.lsb" Key="LXDGM_SummonsVitalityMultiplier">Summons Vitality Multiplier</content>
+	<content contentuid="h88ed61e9g4d7fg4eb7g81f1g9e7c48dde602" Source="Resources.lsb" Key="LXDGM_SummonsVitalityMultiplier_Description">Multiply the base Vitality of all summons (ally and enemy). &lt;br&gt;Default : 100 &lt;br&gt;&lt;font color=#ff0000&gt;Require a game restart&lt;/font&gt;</content>
+	<content contentuid="h711b52a9ga71ag458cg82c4gdca0433f24b2" Source="Resources.lsb" Key="LXDGM_WandSkillMult">Wand Skill Damage Multiplier</content>
+	<content contentuid="h6d523ea5g116eg4380g816fg72079d80f321" Source="Resources.lsb" Key="LXDGM_WandSkillMult_Description">Set the skill damage multplier pencetage when a wand is equipped (can be doubled when dual-wielding).&lt;br&gt;Default : 5</content>
+	<content contentuid="h1c81462eg26ceg48a1g8828gdf9254cbdae0" Source="Resources.lsb" Key="LXDGM_WandSurfaceMult">Wands Surface Bonus</content>
+	<content contentuid="h7583bee1g949cg433dg8b2ag94d9a47bef82" Source="Resources.lsb" Key="LXDGM_WandSurfaceMult_Description">Bonus damage (%) from surface AND cloud the character stands in.&lt;br&gt;Default : 20</content>
+	<content contentuid="h5cb3da10g4cddg44eegbefeg72ffb21118ee" Source="Resources.lsb" Key="LXDGM_WitsDotBonus">Wits Damage Over Time Bonus</content>
+	<content contentuid="ha1578450g666bg4b87g8377g1c389879435f" Source="Resources.lsb" Key="LXDGM_WitsDotBonus_Description">Default : 10</content>
+	<content contentuid="hf859c7e8g7e30g48e3ga24aga943a18f0c5c" Source="Resources.lsb" Key="LXGDM_CQBPenalty_Description">Set the percentage of damage penalty when using a ranged weapon on a target within the CQB range limit.&lt;br&gt;Default : 35</content>
+	<content contentuid="h846daabdg90beg4ac9gb930g02e96dcdbd8d" Source="Resources.lsb" Key="WpnCrossbow">Reduce Movement by [1]m</content>
+	<content contentuid="hd3c3e911gca34g4d24g9abeg44369d755d43" Source="RootTemplates.lsb" Key="BOOK_Skill_Air_JellyfishSkin_DisplayName">Transmute Skin Skillbook</content>
+	<content contentuid="h9943e1c0ge10eg40a9gbd4cg10bb7693bdb8" Source="RootTemplates.lsb" Key="BOOK_Skill_Earth_PoisonousSkin_DisplayName">Transmute Skin Skillbook</content>
+	<content contentuid="h67922474g2592g43afg9671g53636c3d0afc" Source="RootTemplates.lsb" Key="BOOK_Skill_Fire_FlamingSkin_DisplayName">Transmute Skin Skillbook</content>
+	<content contentuid="h8f5f2804ga338g4c63gb378ge235ddc7d808" Source="RootTemplates.lsb" Key="BOOK_Skill_Water_IcySkin_DisplayName">Transmute Skin Skillbook</content>
+	<content contentuid="h22a39843gf968g4212g851dg6e121235fa85" Source="Skills.lsb" Key="BlessDescription">Bless target character or surface. Prevent Diseased, Decaying, Petrified, Stunned, increase Dodge by [1]%, Accuracy by [2]% and elemental resistances by [3].</content>
+	<content contentuid="h2f904fe7g83d0g4d51g8bcfgd6b561ba92e3" Source="Skills.lsb" Key="BullHornsDescription">Magnificent horns sprout from your forehead, making you see red. You can rush at your enemies and gore them. Increases Retribution ability by 2 for the duration.</content>
+	<content contentuid="hb1796f71g6c96g4c25g9c99gc089814d7494" Source="Skills.lsb" Key="Cone_Shatter_Description">Deal [1] and set Frozen to the characters in the cone.</content>
+	<content contentuid="h3240460dgd250g435bg9ebegc1682089c5ed" Source="Skills.lsb" Key="CorpseExplosionDescription">Explode target corpse, dealing [1] in the area.</content>
+	<content contentuid="h7e7b669dged21g4b8ag8a44g32bede9e51ae" Source="Skills.lsb" Key="CryotherapyDescription">Consume frozen surfaces around you and convert them to Magic Armour. If you are Chilled or Frozen, you restore an additional 30% Magic Armour. Remove Chilled, Frozen, Burning and Necrofire.</content>
+	<content contentuid="h5d124a78g6932g4f5egb844gf9569ec4d2ba" Source="Skills.lsb" Key="DemonicTutelageDescription">Your inner demon actively watches over you. When an enemy approaches in melee range, they will be pummelled by a demonic fist dealing [1].</content>
+	<content contentuid="hcf74a6efg1ab6g45ecgaa12g147f528975ee" Source="Skills.lsb" Key="DeployMassTrapDescription">Throw [1] explosive traps at target locations. Each trap takes a turn to activate. When active, trap will explode when a character approaches it, dealing [2].</content>
+	<content contentuid="h7184b190ge934g49d4g9b5cg67ff537bd723" Source="Skills.lsb" Key="DimensionalBoltDescription">Shoot a volatile bolt that deals [1], and then creates a corresponding surface. Chaos trigger a random type of damage.</content>
+	<content contentuid="h4542353bg043cg4964ga401g7a80dd267e5b" Source="Skills.lsb" Key="ElementalArrowheadDescription">Target a surface in melee radius. Elemental damage matching that surface is added to your weapon attacks and weapon-based skills.</content>
+	<content contentuid="ha742cf9eg80e6g4b43g8106ga4b83bd5e241" Source="Skills.lsb" Key="ErraticWispDescription">Cause target character to teleport in a random direction each time they are attacked. Increases Dodge by [1]% and Air Resistance by [2]%.</content>
+	<content contentuid="h9729b9ceg2860g4396g8b3fg9eef86106d4f" Source="Skills.lsb" Key="FarsightInfusionDescription">Unlock ranged attack for your Incarnate. Provides [1] (amount depends on your level). Increases damage by [2]% and increase maximum Vitality by 15%.</content>
+	<content contentuid="h9e97f6cdg7b63g4603g9f25g7a515742c55d" Source="Skills.lsb" Key="FlamingTonguesDescription">Flaming Tongues protect you, immediately attacking approaching enemies and deals them [1].</content>
+	<content contentuid="hc9386e15gf8f2g46efg9ab1g7dc5f3910ae8" Source="Skills.lsb" Key="FleshSacrificeDescription">Gain 1 Action Point immediately at the cost of [1] Constitution for 2 turns. Any Action Points over your maximum are lost.</content>
+	<content contentuid="hd376dcd8g0707g4bd5g9052g01d558955583" Source="Skills.lsb" Key="FreeFallDescription">Teleport a target character or item to a point of your choosing, dealing [1].</content>
+	<content contentuid="h9055594bg16a7g48b8g81ffg25bbbf89963b" Source="Skills.lsb" Key="IcebreakerDescription">Sets off a chain reaction that causes ice areas to explode into water puddles, dealing [1] and setting Chilled.</content>
+	<content contentuid="h362a94a5g0b60g4be6g9998gd44214d4a78f" Source="Skills.lsb" Key="LastRitesDescription">Sacrifice yourself to bring an ally back to life. Reduce your Vitality to 1 and ressurrects target character with maximum Vitality.</content>
+	<content contentuid="h1a6bf0edg47eeg4ee8gaa86g5a608e5dda7b" Source="Skills.lsb" Key="MassCorpseExplosionDescription">Explode all corpses around you, dealing [1] in the area.</content>
+	<content contentuid="hbd366dc5g10a3g48acg9bffg4a11bccb189d" Source="Skills.lsb" Key="MassCryotherapyDescription">Each ally consumes frozen surfaces around them, converting the frozen surfaces to Magic Armour. If they are Chilled or Frozen, they restore an additional 30% Magic Armour. Removes Chilled, Frozen, Burning and Necrofire.</content>
+	<content contentuid="h195e0642ge46ag4d02g85ecg20a8a0012104" Source="Skills.lsb" Key="MassOilyCarapaceDescription">Each ally consumes oil surfaces around them, converting the oil surfaces to Physical Armour. If they are Slowed or Petrified, they restore an additional 30% Physical Armour. Removes Slowed, Petrified and Stunned.</content>
+	<content contentuid="hfc25a87dg9103g4602g872dg8ecb8965fc0a" Source="Skills.lsb" Key="MassSabotageDescription">Explode two random grenades or arrows in the inventories of every enemy, dealing [1] and set Atrophy in a target circle.</content>
+	<content contentuid="hbd5f39f8g78e1g42c8g95b6g1917a8c65816" Source="Skills.lsb" Key="MasterofsparksDescription">Target character and surrounding allies receive Sparkmaster status that make melee attacks firing sparks that can fork twice at nearby enemies. Each spark hit deals [1].</content>
+	<content contentuid="h56cb39a0ge913g4364g97e6g843aca99bcdc" Source="Skills.lsb" Key="OilyCarapaceDescription">Consume oil surfaces around you and convert them to Physical Armour. If you are Slowed or Petrified, you restore an additional 30% Physical Armour. Remove Slowed, Petrified and Stunned.</content>
+	<content contentuid="h93731b66g32c8g425dg8ed5g9863a8d35279" Source="Skills.lsb" Key="PowerInfusionDescription">Unlock Whirlwind and Rush for your Incarnate. Provides [1] (amount depends on your level). Increases damage by [2]% and increase maximum Vitality by 15%.</content>
+	<content contentuid="hc2c1dcdfg1413g4335gb49fg695dbeb8efdc" Source="Skills.lsb" Key="Projectile_EnemyOilSpit_DisplayName">Oil Spit</content>
+	<content contentuid="h7c3dcbc3gb3f4g4746g9a94g00021c9c2930" Source="Skills.lsb" Key="ReactiveShotDescription">Target a circular area. Until your next turn, you will reflexively shoot at the first three enemies moving within this area if you have sight on them.</content>
+	<content contentuid="h004cd16fgf0e9g4216g9a3cg2dc6e16fe78a" Source="Skills.lsb" Key="SabotageDescription">Deals [1] to the target character and set Atrophy. If target character is carrying grenades or arrows, a random one explodes in their inventory.</content>
+	<content contentuid="h42f0b1b6gd786g46ebga04egf56b57d92048" Source="Skills.lsb" Key="ShadowInfusionDescription">Incarnate learns how to go invisible and strike foes with a corrosive slash. Increases damage by [1]% and maximum Vitality by 15%.</content>
+	<content contentuid="h31d2a547g005bg4ee3g8d2ag47720bd4fa1a" Source="Skills.lsb" Key="Shout_Adrenaline_Description">Gain 2 Action Points immediately, but lose 3 Action Points next turn. Any Action Points over your maximum are lost.</content>
+	<content contentuid="h02f12f9fg9a25g4a95gba27gd65217023ed9" Source="Skills.lsb" Key="Shout_LX_AimedShot_Description">Increase the Accuracy by [1]% (improved by Intelligence) and Critical Chance by [1]% (improved by Strength) for the next weapon attack.</content>
+	<content contentuid="h9f363adeg7345g487fg97f8ga61db7bdb460" Source="Skills.lsb" Key="Shout_LX_AimedShot_DisplayName">Aimed Shot</content>
+	<content contentuid="h306dea20g79ddg4ae4gaa3cg206215dfa11f" Source="Skills.lsb" Key="Shout_LX_RangedReflexStance_Description">Accuracy is reduced by half when attacking targets beyond 8m but each successful hit grants 2 meters of free movement. Also provides Reloading and Rapid fire skills.</content>
+	<content contentuid="haff7a737gdaa3g46d5gbe5cg5dd7743e3b30" Source="Skills.lsb" Key="Shout_LX_RangedReflexStance_DisplayName">Reflex Stance</content>
+	<content contentuid="hf037b2e6g44afg4bbcgb15fg075efbdb3476" Source="Skills.lsb" Key="Shout_LX_RangedStances_Description">Change the character stance to provide specific advantages with a bow or a crossbow.</content>
+	<content contentuid="h221949cbgcfc0g434egac2ag4c5ea847d59f" Source="Skills.lsb" Key="Shout_LX_RangedStances_DisplayName">Ranger Stances</content>
+	<content contentuid="h9f10a6bdgfc4fg4af8gb213gb7081cb9eda2" Source="Skills.lsb" Key="Shout_LX_TransmuteSkin_Description">Transmute your skin with elements to gain new properties.</content>
+	<content contentuid="h8c8b69b0g710eg4ed6gb86fg3206130ea716" Source="Skills.lsb" Key="Shout_LX_TransmuteSkin_DisplayName">Transmute Skin</content>
+	<content contentuid="hb0408ca4g5c61g4e89g91d0gcb14ef6da93f" Source="Skills.lsb" Key="Shout_VacuumAura_Description">Deal [1] damage to enemies in the area. Caster receives an aura that sets Silence and Suffocating on enemies.</content>
+	<content contentuid="he72efc5fg2dddg459dgb224gd0f0f97fdd0a" Source="Skills.lsb" Key="Shout_VacuumAura_DisplayName">Vacuum Aura</content>
+	<content contentuid="hd4d51fddgb38cg4394ga485gf37cb37523d0" Source="Skills.lsb" Key="SiphonPoisonDescription">Remove poison surfaces and clouds. Gain poison damage bonus to weapon attacks and weapon-based skills (dependent upon size of poison area cleared) for 2 turns and your weapon attacks now also set Acid for 1 turn (3 turns if Venom Coating is also active).</content>
+	<content contentuid="h0897c725g76cbg4ab7ga0ceg31a5294abbf8" Source="Skills.lsb" Key="SkinGraftDescription">Reset all cooldowns but remove your armours for 2 turns. Removes Burning, Necrofire, Poisoned, Bleeding, Momentum and Lingering.</content>
+	<content contentuid="h0fe63523g3caeg4e46g8152geabd390080af" Source="Skills.lsb" Key="SparkstrikerDescription">Receive Sparkstriker status. This causes your melee attacks to create a Spark projectile that bounces off the initial target to hit the closest enemy, dealing [1].</content>
+	<content contentuid="h7650995bg0673g4ccfg82eeg66ad641811e8" Source="Skills.lsb" Key="Target_Challenge_CursorTooltip">Challenge:&lt;br&gt;+[1]�% Damage&lt;br&gt;+[2] Physical Armour&lt;br&gt;+[3]Magic Armour&lt;br&gt;[4] Vitality heal&lt;br&gt;If failure: [4] damage received.</content>
+	<content contentuid="hf827c53ege83cg44afgaaacge92cb957fdf4" Source="Skills.lsb" Key="Target_DeathsDoor_Description">For 2 turns, your target character&apos;s Vitality cannot be reduced below 1 point, keeping them alive against all odds. If the target is a summon, their lifetime will be prolonged for the duration. Once the effect expires, the character receive Forbearance for 2 turns, preventing any other death resist effect to be applied while it is active.</content>
+	<content contentuid="hbce8b81ag1259g4a30g99f9g1f99e9b74583" Source="Skills.lsb" Key="Target_ElementalArrowheads_DisplayName">Elemental Weapons</content>
+	<content contentuid="h03ff3173g4c29g4f69ga115g9eacc87b1c89" Source="Skills.lsb" Key="Target_Fatality_Description">Deal [1] damage. Damage is doubled if you are sneaking or invisible.</content>
+	<content contentuid="h60ef5d4ag817dg4564g9c6eg9bc2339a55d5" Source="Skills.lsb" Key="TerrifyDescription">Destroy [1] on target enemy. They are Terrified for 1 turn.</content>
+	<content contentuid="h5e26d4e3g63d5g4415gbe5ag4bc3e42bb995" Source="Skills.lsb" Key="ThrowExplosiveTrapDescription">Throw an explosive trap at target location. Trap takes 1 turn to activate. When active, the trap will explode when a character approaches it, dealing [1].</content>
+	<content contentuid="h71b09f9fg285fg4532gab16g1c7640864141" Source="Skills.lsb" Key="TooltipBonusLevel">Damage is based on your level and trigger the additional skill bonus from Intelligence.</content>
+	<content contentuid="ha4cfd852g52f1g4079g8919gd392ac8ade1a" Source="Skills.lsb" Key="TooltipBonusWeapon">Damage is based on your basic attack and trigger the additional bonus from both Strength and Intelligence.</content>
+	<content contentuid="hfb851683g738cg4b48g8fd8g478d375c030a" Source="Skills.lsb" Key="WarpInfusionDescription">Incarnate learns a teleport skill, and a skill to swap places with its master. Increases damage by [1]% and maximum Vitality by 15%.</content>
+	<content contentuid="h512982bbgf22bg4604gb41bg6503586ee1ab" Source="Status_DAMAGE_DisplayName.lsb" Key="LX_FOOD_POISONED_DisplayName">Food Poisoning</content>
+	<content contentuid="h32b3f391g84c8g4350gb6c1gc0577fd7372a" Source="Statuses.lsb" Key="AcidDescription">Inflict [1] each turn.</content>
+	<content contentuid="hae68ba97g6072g46fagb9d3g7c289a0e7511" Source="Statuses.lsb" Key="BullHornsDescription">Magnificent horns sprout from your forehead, making you see red. You can rush at your enemies and gore them. Increases Retribution ability by 2 for the duration.</content>
+	<content contentuid="he3d3ef27gc4e2g4271ga838ge227b9193ef7" Source="Statuses.lsb" Key="DGM_AIMEDSHOT_Description">Increase Accuracy and Critical Chance for the next weapon attack.</content>
+	<content contentuid="he5970b83g4f56g4348g8d23g39bce69f8c3c" Source="Statuses.lsb" Key="DGM_AIMEDSHOT_DisplayName">Aimed Shot</content>
+	<content contentuid="h565877e2g71eag43aag928fgfee5ca4f0c4f" Source="Statuses.lsb" Key="DGM_WARMUP_DisplayName">Warmup</content>
+	<content contentuid="hc7851209gc2d8g4332g865dgae162ed9708b" Source="Statuses.lsb" Key="DGM_WARMUP2_DisplayName">Warmup (2)</content>
+	<content contentuid="hae2334ccg2f64g45aaga94dgf4ce0f03a7a6" Source="Statuses.lsb" Key="DGM_WARMUP3_DisplayName">Warmup (3)</content>
+	<content contentuid="h1c89538dg51d5g451dgac1agaf4de9de70bf" Source="Statuses.lsb" Key="DGM_WARMUP4_DisplayName">Warmup (4)</content>
+	<content contentuid="h8124ee04g9685g465ag99f3g2f8043bd74db" Source="Statuses.lsb" Key="LX_FORBEARANCE_Description">Prevent statuses which grants a death resist effect to be applied.</content>
+	<content contentuid="hf4b8b267gc763g481bgbd5bga9b7b3aa1b54" Source="Statuses.lsb" Key="LX_FORBEARANCE_DisplayName">Forbearance</content>
+	<content contentuid="h715373cbg7d5ag4d96gbe04g12f02ce2f0cd" Source="Statuses.lsb" Key="LX_OILED_Description">Covered in flammable oil.</content>
+	<content contentuid="h8bd0907bg9018g4f99gb534gc1b5b1cabbaf" Source="Statuses.lsb" Key="LX_OILED_DisplayName">Oiled</content>
+	<content contentuid="hf83ad08bg0071g4e56ga59cgb20a7582487d" Source="Statuses.lsb" Key="LX_SHIELD_AIR_DisplayName">Air Absorption</content>
+	<content contentuid="hef5b4ec4ge333g4a87g986cg3ed74b22348b" Source="Statuses.lsb" Key="LX_SHIELD_ALL_DisplayName">Damage Absorption</content>
+	<content contentuid="hf057399cg861ag4a33ga7c9g4499f85017f2" Source="Statuses.lsb" Key="LX_SHIELD_EARTH_DisplayName">Earth Absorption</content>
+	<content contentuid="h8071c537g81a0g4ba8g989dg148af4e03af8" Source="Statuses.lsb" Key="LX_SHIELD_ELEMENTAL_Description">Absorb the next incoming [2].</content>
+	<content contentuid="hb17eb43fg09fbg492cg80adge28b3994742a" Source="Statuses.lsb" Key="LX_SHIELD_FIRE_DisplayName">Fire Absorption</content>
+	<content contentuid="hbd8379a5ga1a2g4b38gb489gfe7c4eea3ae1" Source="Statuses.lsb" Key="LX_SHIELD_PHYSICAL_DisplayName">Physical Absorption</content>
+	<content contentuid="ha8075074g465fg49f5gb0acg54af096d6b81" Source="Statuses.lsb" Key="LX_SHIELD_PIERCING_DisplayName">Piercing Absorption</content>
+	<content contentuid="h552573bcg2ecag488bgb382ge54822f8c678" Source="Statuses.lsb" Key="LX_SHIELD_POISON_DisplayName">Poison Absorption</content>
+	<content contentuid="h9bfd7c0fg0b2eg4e18g9c51g28172cc575ea" Source="Statuses.lsb" Key="LX_SHIELD_WATER_DisplayName">Water Absorption</content>
+	<content contentuid="hf3893f8fg20c5g4078ga83cgef8783082103" Source="Talents.lsb" Key="AllSkilledUp">The first skill used each turn has its cooldown reduced by one turn (minimum 1).</content>
+	<content contentuid="hf3cd8067g36c0g4b48ga4dfg361f33579b43" Source="Talents.lsb" Key="Ambidextrous">Ambidextrous reduces the cost of using grenades and scrolls by 1 AP when your off-hand is free. Refund the AP cost for 2 equipment switches per turn (except for Crossbows).</content>
+	<content contentuid="h6a4d6da0g29cfg44ecg8913g5a0a76cf1bbd" Source="Talents.lsb" Key="ArrowRecovery">Arrow Recovery provides a 33% chance to recover a special arrow after shooting it, and removes the close-quarters damage penalty of ranged weapons.</content>
+	<content contentuid="h06c77362g1304g4f81ga661g695dc6b814bc" Source="Talents.lsb" Key="Demon">A character with Demon has an extra 20% Fire Resistance, but takes a 15% penalty to Water Resistance. Additionally, the maximum Fire Resistance is raised by 10 and grants immunity to Burning and Necrofire.</content>
+	<content contentuid="hc453e399ge1f5g41f1gaeabgcdd4de833c63" Source="Talents.lsb" Key="DemonIceKing">A character with [1] has an extra 20% [3], but takes a [4]% penalty to [5]. Additionally, the maximum [3] is raised by [6]. Demon grants immunity to Burning and Necrofire. Ice King increases all Water damage you deal by 20% and grants immunity to Chilled.</content>
+	<content contentuid="h8ddc8dd4ge8feg4420ga6dag0d87ce8ec743" Source="Talents.lsb" Key="DuckDuckGoose">[1] lets you evade attacks of opportunity. Increases your Dodge by 5% and Movement by 1m per AP.</content>
+	<content contentuid="hfc8981a1g8f84g49c8ga8b4g17564a836c45" Source="Talents.lsb" Key="DuelistDescription">Duelist increases AP Start and Recovery by 1, and Max AP by 1, if you are wielding a Single-Handed weapon with a free off-hand.</content>
+	<content contentuid="hd980a2a1gc33eg4810gafc8g07f55ba70245" Source="Talents.lsb" Key="DuelistDisplayname">Duelist</content>
+	<content contentuid="h3886606fg0cc0g49b9g9bbcg3ea8baa4c040" Source="Talents.lsb" Key="ElementalAffinity"></content>
+	<content contentuid="h7a2f1a05g4b52g4ec2g8354g1f92a8bf442d" Source="Talents.lsb" Key="ElementalRanger">Ranged weapons (including wands) deal 20% additional damage of the type of the surface the target stands on. Using a grenade or an arrow also now provide 1 turn of Elemental Weapons of the same type.</content>
+	<content contentuid="hcb8f9837gdf0fg4a01ga7d6g5ed522b74189" Source="Talents.lsb" Key="Escapist">[1] allows you to flee combat even when enemies are close by. Provides immunity to Crippled, Entangled and Enwebbed.</content>
+	<content contentuid="h98163163g695ag4813gb105g3ade9ea09050" Source="Talents.lsb" Key="Executioner">[1] gives you [2] extra Action Points after dealing a killing blow once per turn and increase Movement by 2m for 1 turn.</content>
+	<content contentuid="h46770f2agdbb8g47eag9e0eg65ac47bde918" Source="Talents.lsb" Key="GlassCannon">With [1], you start every combat round with Maximum AP, but Magic and Physical Armour are nullified and do not protect you from statuses.</content>
+	<content contentuid="ha79ac9a4g91ceg4fbfg9b70ge273d5f12090" Source="Talents.lsb" Key="Haymaker">Your attacks never miss but cannot deal critical strikes (except backstabs not triggered by skills and if your weapon has higher level than you). Convert the critical bonus from Wits to resistance bypass.</content>
+	<content contentuid="he94327f7g293dg488eg9d25gcb4f7ae7be24" Source="Talents.lsb" Key="Hothead">While above 75% Vitality, Hothead provides 10% Critical Chance and 10% Accuracy.</content>
+	<content contentuid="hbd257f75g9084g4c73g9db0g77d418e677c9" Source="Talents.lsb" Key="IceKing">A character with Ice King has an extra 20% Water Resistance, but takes a 15% penalty to Fire Resistance. Additionally, the maximum Water Resistance is raised by 10. All Water damage you deal are increased by 20% and grants immunity to Chilled.</content>
+	<content contentuid="haa3cebcagba62g47bbg8546gf0c154e0e46f" Source="Talents.lsb" Key="Indomitable">You gain immunity to stunned, frozen, knocked down, polymorphed, petrified, crippled for 1 turn after being affected by one of these statuses. Can happen once every 3 turns. Increase the duration of Momentum and Lingering by 1 turn.</content>
+	<content contentuid="h81ca938fg5ef4g452agb093g1294e2f0718b" Source="Talents.lsb" Key="Leech">Leech heals you when standing in blood. Also increases Lifesteal by 25%.</content>
+	<content contentuid="h34fa90bdg6d1fg4ee8gb3e7g8c3694c70fae" Source="Talents.lsb" Key="MagicCycles">At the start of an encounter, you gain one of two statuses: Cycle of Fire and Water or Cycle of Earth and Air. Cycle of Fire and Water increases your Pyrokinetic and Hydrosophist by 3. Cycle of Earth and Air increases your Geomancy and Aerotheurgy by 3. Statuses swap each turn.</content>
+	<content contentuid="hbde985cfgb1c4g4bb6g9a61gbec72c9b4ed6" Source="Talents.lsb" Key="Mnemonics">Mnenomic doubles all points invested in Memory.</content>
+	<content contentuid="h278b2bccg1afcg4314gbfcbgb10105ebc12b" Source="Talents.lsb" Key="MorningPerson">When resurrected, you resurrect to full health. When your turn is skipped because of incapacitating effect(s), you start your next turn with 2 additional AP. You also start combat with 2 stacks of Warmup.</content>
+	<content contentuid="h00f565c4g6178g424fgb031g41a2c12bf85d" Source="Talents.lsb" Key="ParryMasterDescription">[1] gives you [2]% Dodging while dual wielding.</content>
+	<content contentuid="h42b4c1e3g7c07g400dg8924g2807a024e6bb" Source="Talents.lsb" Key="PetPal">Pet Pal enables you to talk to animals. Also increases your maximum number of summons by 1, but reduces their damage and Vitality by 50%.</content>
+	<content contentuid="h90812fdfg4f53g49afg8a97g42aefdeb508c" Source="Talents.lsb" Key="SavageSortilege_Description">[1] gives all magical skills a critical chance equal to your critical chance score, and increase your Critical chance by 10%.</content>
+	<content contentuid="hfb8eec35g3339g4762g8382g712e74a2ac0b" Source="Talents.lsb" Key="Slingshot">[1] adds an extra [2]m range to your grenade throws and increase their damage by 30%.</content>
+	<content contentuid="h8fc505abgfadbg4481g8d79gb73e606117d7" Source="Talents.lsb" Key="Soulcatcher">When an allied character dies, a Zombie Crawler is raised at their corpse, under their control. Zombie Crawler lasts 3 turns or until character is resurrected. Range 12m. Does not affect summoned creatures. Can happen only once per turn.</content>
+	<content contentuid="h878c02c0gc629g470dg955cg80dc2a125cb2" Source="Talents.lsb" Key="Stench">Stench decreases everyone&apos;s attitude towards you by [2], but melee opponents find you less attractive in combat. Increases your Poison resistance by 30% and makes you immune to Diseased and Infected.</content>
+	<content contentuid="h6d76eb15gdb1ag4ebeg8001g58173516a923" Source="Talents.lsb" Key="WalkItOff">Walk It Off reduces all status durations by 1 turn, including positive statuses. Does not affect statuses with a duration of 1 turn. Also increases elemental resistances by 8% and Physical and Piercing resistances by 4% each time you are directly hit by a character, up to a maximum of 3 times until the next turn.</content>
+	<content contentuid="haf2e28f8gb3cdg49d0g8c8cg5b602a7e2e26" Source="VPP_VisionBlockerTest">Crate</content>
+	<content contentuid="hdef9a124ga8d8g4662ga946g843dccecb5a1" Source="VPP_VisionBlockerTest">Miscellaneous</content>
 </contentList>

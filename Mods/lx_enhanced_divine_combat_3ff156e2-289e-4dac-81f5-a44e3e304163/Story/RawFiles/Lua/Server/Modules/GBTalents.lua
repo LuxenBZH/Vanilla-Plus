@@ -73,7 +73,8 @@ local indomitableStatuses = {
     CRIPPLED = true
 }
 
-Ext.RegisterOsirisListener("CharacterStatusApplied", 3, "before", function(character, status, causee)
+Ext.RegisterOsirisListener("CharacterStatusRemoved", 3, "before", function(character, status, causee)
+    if ObjectExists(character) == 0 then return end
     local character = Ext.GetCharacter(character)
     if character.Stats.TALENT_Indomitable and indomitableStatuses[status] and not character:GetStatus("LX_INDOMITABLE_CD") then
         ApplyStatus(character.MyGuid, "LX_INDOMITABLE", 6.0)

@@ -3,12 +3,14 @@ local defaultDataValues = {
     DGM_StrengthWeaponBonus = 3,
     DGM_StrengthResIgnoreBaseMult = 0.15,
     DGM_FinesseGlobalBonus = 3,
-    DGM_FinesseMovementBonus = 20,
-    DGM_FinesseCritChance = 1,
+    DGM_FinesseMovementBonus = 35,
+    DGM_FinesseCritChance = 0,
     DGM_IntelligenceGlobalBonus = 2,
     DGM_IntelligenceSkillBonus = 3,
     DGM_IntelligenceAccuracyBonus = 2,
+    DGM_IntelligenceWisdomFromWitsCap = 1,
     DGM_WitsDotBonus = 10,
+    DGM_WitsWisdomBonus = 40,
     DGM_DamageThroughArmor = 50,
     DGM_DamageThroughArmorDepleted = 25,
     DGM_RangedCQBPenalty = 35,
@@ -27,7 +29,7 @@ local defaultDataValues = {
     DGM_PlayerVitalityMultiplier = 100,
     DGM_NpcVitalityMultiplier = 100,
     DGM_WandSurfaceBonus = 15,
-    DGM_PerseveranceResistance = 5,
+    DGM_PerseveranceResistance = 10,
     DGM_BaseAccuracy = 90
 }
 
@@ -95,13 +97,13 @@ local flags = {
 
 Ext.RegisterListener("StatsLoaded", function()
     if Mods.LeaderLib == nil then return end
-    Ext.Print("Loading stored vars...")
+    Helpers.VPPrint("Loading stored vars...", "Settings")
     local json = Ext.LoadFile("LeaderLib_GlobalSettings.json", "user")
     if json == nil or json == "" then return end
     local data = Ext.JsonParse(json).Mods["3ff156e2-289e-4dac-81f5-a44e3e304163"]
     if data then
         for var,value in pairs(data.Global.Variables) do
-            Ext.Print("Set Data var",var,value.Value)
+            Helpers.VPPrint("Set Data var", "Settings",var,value.Value)
             if requireRestart[var] then
                 Ext.ExtraData[idToVariable[var]] = value.Value
             end

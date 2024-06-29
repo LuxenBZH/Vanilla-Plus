@@ -13,10 +13,14 @@ local magicArmorReduction = {
 	LX_CRYOTHERAPY = Ext.ExtraData.DGM_CryotherapyPassingMagicReduction,
 }
 
----@param character EsvCharacter
+--- @class ArmorSystem
+ArmorSystem = {}
+
+---@param character Guid
 ---@param amount number
 ---@param dmgType string
-function CalculatePassingDamage(character, amount, dmgType)
+---@return number
+ArmorSystem.CalculatePassingDamage = function(character, amount, dmgType)
 	if ObjectIsCharacter(character) == 0 then return end
 	if amount == nil then amount = 0 end
 	if amount < 0 then return 0 end
@@ -74,9 +78,9 @@ function CalculatePassingDamage(character, amount, dmgType)
 	return math.ceil(dmgThrough)
 end
 
----@param character EsvCharacter
+---@param character Guid
 ---@param amount number
-function ApplyPassingDamage(character, amount)
+ArmorSystem.ApplyPassingDamage = function(character, amount)
 	if ObjectIsCharacter(character) == 0 then return end
 	local currentVitality = NRD_CharacterGetStatInt(character, "CurrentVitality")
 	if currentVitality == nil then return end

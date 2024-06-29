@@ -1,0 +1,149 @@
+new deltamod "LX_Boost_Armor_Ring_Special_Wisdom"
+param "BoostType" "Normal"
+param "MinLevel" "1"
+param "MaxLevel" "9"
+param "Frequency" "1"
+param "ModifierType" "Armor"
+param "SlotType" "Ring"
+new boost "_LX_Boost_Armor_Special_Wisdom",1
+
+new deltamod "LX_Boost_Armor_Ring_Special_Wisdom_Medium"
+param "BoostType" "Normal"
+param "MinLevel" "9"
+param "Frequency" "1"
+param "ModifierType" "Armor"
+param "SlotType" "Ring"
+new boost "_LX_Boost_Armor_Special_Wisdom_Medium",1
+
+new deltamod "LX_Boost_Armor_Ring_Special_Wisdom_Large"
+param "BoostType" "Legendary"
+param "MinLevel" "16"
+param "Frequency" "1"
+param "ModifierType" "Armor"
+param "SlotType" "Ring"
+new boost "_LX_Boost_Armor_Special_Wisdom_Large",1
+
+new deltamod "LX_Boost_Armor_Amulet_Special_Wisdom"
+param "BoostType" "Normal"
+param "MinLevel" "1"
+param "MaxLevel" "9"
+param "Frequency" "1"
+param "ModifierType" "Armor"
+param "SlotType" "Amulet"
+new boost "_LX_Boost_Armor_Special_Wisdom",1
+
+new deltamod "LX_Boost_Armor_Amulet_Special_Wisdom_Medium"
+param "BoostType" "Normal"
+param "MinLevel" "9"
+param "Frequency" "1"
+param "ModifierType" "Armor"
+param "SlotType" "Amulet"
+new boost "_LX_Boost_Armor_Special_Wisdom_Medium",1
+
+new deltamod "LX_Boost_Armor_Amulet_Special_Wisdom_Large"
+param "BoostType" "Legendary"
+param "MinLevel" "16"
+param "Frequency" "1"
+param "ModifierType" "Armor"
+param "SlotType" "Amulet"
+new boost "_LX_Boost_Armor_Special_Wisdom_Large",1
+
+new deltamod "LX_Boost_Weapon_Staff_Special_Wisdom"
+param "BoostType" "Normal"
+param "MinLevel" "1"
+param "MaxLevel" "9"
+param "Frequency" "1"
+param "ModifierType" "Weapon"
+param "WeaponType" "Staff"
+new boost "_LX_Boost_Weapon_TH_Special_Wisdom",1
+
+new deltamod "LX_Boost_Weapon_Staff_Special_Wisdom_Medium"
+param "BoostType" "Normal"
+param "MinLevel" "9"
+param "Frequency" "1"
+param "ModifierType" "Weapon"
+param "WeaponType" "Staff"
+new boost "_LX_Boost_Weapon_TH_Special_Wisdom_Medium",1
+
+new deltamod "LX_Boost_Weapon_Staff_Special_Wisdom_Large"
+param "BoostType" "Legendary"
+param "MinLevel" "16"
+param "Frequency" "1"
+param "ModifierType" "Weapon"
+param "WeaponType" "Staff"
+new boost "_LX_Boost_Weapon_TH_Special_Wisdom_Large",1
+
+new deltamod "LX_Boost_Weapon_Wand_Special_Wisdom"
+param "BoostType" "Normal"
+param "MinLevel" "1"
+param "MaxLevel" "9"
+param "Frequency" "1"
+param "ModifierType" "Weapon"
+param "WeaponType" "Wand"
+new boost "_LX_Boost_Weapon_Special_Wisdom",1
+
+new deltamod "LX_Boost_Weapon_Wand_Special_Wisdom_Medium"
+param "BoostType" "Normal"
+param "MinLevel" "9"
+param "Frequency" "1"
+param "ModifierType" "Weapon"
+param "WeaponType" "Wand"
+new boost "_LX_Boost_Weapon_Special_Wisdom_Medium",1
+
+new deltamod "LX_Boost_Weapon_Wand_Special_Wisdom_Large"
+param "BoostType" "Legendary"
+param "MinLevel" "16"
+param "Frequency" "1"
+param "ModifierType" "Weapon"
+param "WeaponType" "Wand"
+new boost "_LX_Boost_Weapon_Special_Wisdom_Large",1
+
+new deltamod "LX_Boost_Armor_Boots_Special_Celerity"
+param "BoostType" "Normal"
+param "MinLevel" "1"
+param "MaxLevel" "9"
+param "Frequency" "1"
+param "ModifierType" "Armor"
+param "SlotType" "Boots"
+new boost "_LX_Boost_Armor_Special_Celerity",1
+
+new deltamod "LX_Boost_Armor_Boots_Special_Celerity_Medium"
+param "BoostType" "Normal"
+param "MinLevel" "9"
+param "Frequency" "1"
+param "ModifierType" "Armor"
+param "SlotType" "Boots"
+new boost "_LX_Boost_Armor_Special_Celerity_Medium",1
+
+new deltamod "LX_Boost_Armor_Boots_Special_Celerity_Large"
+param "BoostType" "Legendary"
+param "MinLevel" "16"
+param "Frequency" "1"
+param "ModifierType" "Armor"
+param "SlotType" "Boots"
+new boost "_LX_Boost_Armor_Special_Celerity_Large",1
+
+new deltamod "LX_Boost_Armor_Leggings_Special_Celerity"
+param "BoostType" "Normal"
+param "MinLevel" "1"
+param "MaxLevel" "9"
+param "Frequency" "1"
+param "ModifierType" "Armor"
+param "SlotType" "Leggings"
+new boost "_LX_Boost_Armor_Special_Celerity",1
+
+new deltamod "LX_Boost_Armor_Leggings_Special_Celerity_Medium"
+param "BoostType" "Normal"
+param "MinLevel" "9"
+param "Frequency" "1"
+param "ModifierType" "Armor"
+param "SlotType" "Leggings"
+new boost "_LX_Boost_Armor_Special_Celerity_Medium",1
+
+new deltamod "LX_Boost_Armor_Leggings_Special_Celerity_Large"
+param "BoostType" "Legendary"
+param "MinLevel" "16"
+param "Frequency" "1"
+param "ModifierType" "Armor"
+param "SlotType" "Leggings"
+new boost "_LX_Boost_Armor_Special_Celerity_Large",1

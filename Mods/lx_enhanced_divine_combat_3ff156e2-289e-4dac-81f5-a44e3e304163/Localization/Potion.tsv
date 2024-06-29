@@ -1,0 +1,47 @@
+Key	Content	Handle
+ConfusedDescription	This character has been magically affected during recovery.	h4641ef2eg741ag408bg95adg2fe65094c8b6
+DodgeFatigueDescription	This characters dodging has become less effective.	he8ede611g2306g4bacga3aag78eccdf928fb
+FoodPoisoningDescription	Deals [1] damage each turn.	h06098edfg8629g4f30gb6d4g45057f6622ce
+LingeringDescription	Any attempt to apply Stunned, Petrified, Frozen, Madness, Terrified or Charm will apply Confused instead.	h32fcbbfbgec6bg4af4g894ag49fd997307fe
+MedusaHeadAuraDescription	Slow enemies in [1] range.	h619fc68ag94ccg4c8ag9442g4ad02630ad64
+MomentumDescription	Any attempt to apply Knocked Down or Chicken Form will apply Staggered instead.	h2ceb4cffgfaf3g42b2g95c8g4fad6567f70d
+PetpalStatusDescription	This summon is weaker.	h76856ed3gf1cdg4c63g887fgb4c1fd40952b
+PotionFatigue1Description	This character drank too many potions and is experiencing side effects.	h6268c71cge671g4168g8827g653a7ace2925
+PotionFatigue2Description	This character drank too many potions and could not handle the side effects.	h9dffbeb7g85b6g4275g8c58g8b0de33c8583
+PotionWarningDescription	This character has already drunk one potion during their turn. Drinking another potion before the end of the turn will have side effects.	h6c5806e8g7bccg4ecdg959eg254d17edbd71
+ShieldsUpDescription	The amount of damage going through Physical and Magic Armour is reduced by half.	h9e8b6e5bgd7b4g4444g8853g5eb8910285a4
+StaggeredDescription	This character has staggered during their recovery.	hd281d94fg1f41g4af0ga8c2g69747893e1f2
+Stats_Arrowhead_Blood	Bloody Weapons	hbf9f6f92g699ag47b3gb967g5bfa164a0612
+Stats_Arrowhead_Electric	Electric Weapons	hc385872cge252g4da0gbc7agf774df831f28
+Stats_Arrowhead_Fire	Burning Weapons	h4be1f455g2614g43e1gbe42g7636850e7749
+Stats_Arrowhead_Oil	Oily Weapons	h6138efe4ge000g4a7dga5e8g479f54f1234a
+Stats_Arrowhead_Poison	Poison Weapons	h606e89bdgce80g4bcag99f3g914af3e4baae
+Stats_Arrowhead_Water	Water Weapons	h944c3db5gc792g4cdcg923cg9471f4cb0969
+Stats_LX_Confused	Confused	h8521db9fgfb9ag40c7g8767g7465226e3a00
+Stats_LX_Confused2	Confused (2)	h7579318fg2a13g4185g856bgad8960145220
+Stats_LX_Confused3	Confused (3)	h5ad5ffbeg192cg47b3gbebag87252e71f246
+Stats_LX_DDGoose	Duck Duck Goose	ha2bd4aa9gae5dg4bb0gb6ddg25a682c5a68b
+Stats_LX_Demon	Demon (Bonus)	h3d077707gcc2cg4b6eg808agda8c3a0384a8
+Stats_LX_DodgeFatigue1	Dodge Fatigue	hd9f92f34g0daag4393g887cg1be725ab19ab
+Stats_LX_DodgeFatigue2	Dodge Fatigue (2)	h0cf4ee90g8298g491eg9c31g396810cbce3b
+Stats_LX_DodgeFatigue3	Dodge Fatigue (3)	hbef625c0g5d09g42f2g9065gf9099a39e11e
+Stats_LX_DodgeFatigue4	Dodge Fatigue (4)	h2ea5f141g4d43g49b8g8d6agd365b90a0d6d
+Stats_LX_Duelist	Duelist	hb1fc6d8bg6bf6g4a3bg83f7g94177ced086a
+Stats_LX_Hothead	Hothead	hb4d441e2g0d7cg45f5g8917g5fa55696a431
+Stats_LX_IceKing	Ice King	ls::TranslatedStringRepository::s_HandleUnknown
+Stats_LX_Leech	Leech	h43401d61ga5dfg4282ga423gc4a5b78ff7ac
+Stats_LX_MorningPerson	Morning Person	h055c33d3ge1f1g431eg8fd0gebd6da7eb962
+Stats_LX_PetPal	Pet Pal (Summon)	he9aa2d6dge162g4078gb831g0894e01a72e5
+Stats_LX_PetPalSummoner	Pet Pal (Summoner)	hf130b10ag0b9ag4c68g8c17g54d30b86fe2b
+Stats_LX_PotionFatigue1	Potion Poisoning	h0dd878f8g8f63g4c9ag86b2g2488d2a86c79
+Stats_LX_PotionFatigue2	Potion Poisoning	h0dd878f8g8f63g4c9ag86b2g2488d2a86c79
+Stats_LX_SavageSortilege	Savage Sortilege	hd9b1f84fge616g4da4g8c57g9a9bc5f9708c
+Stats_LX_Staggered	Staggered	hd2fd14e5gaf70g4acagb99bg491d9c3c5ce2
+Stats_LX_Staggered2	Staggered (2)	h600f8b60g94fbg439bg963eg56599207438f
+Stats_LX_Staggered3	Staggered (3)	h5e23317dgf4ecg409bg9a6cg6d5be3ae8867
+Stats_LX_Stench	Stench	h08adfff4gbd75g4ee9g8070gf928d43a6302
+Stats_LX_WalkItOff	Walk It Off	h41b54dbagf949g40aagb148gd7c0b42eedfe
+Stats_LX_WalkItOff_2	Walk It Off (2)	h0f9a9124g20a8g430egaaaege3de06266056
+Stats_LX_WalkItOff_3	Walk It Off (3)	h169eda41gad02g4143g997eg29c0cee15c14
+Stats_LX_WalkItOff_4	Walk It Off (4)	hfe5567d9g5f27g4729g8774g36bce3393b4d
+Stats_LX_WalkItOff_5	Walk It Off (5)	h3c306881g0106g4b61g931eg1e837bca6149
