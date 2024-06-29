@@ -132,14 +132,14 @@ end
 --- @param event string
 Ext.Osiris.RegisterListener("StoryEvent", 2, "before", function(character, event)
     if event ~= "DGM_GlobalStatCheck" or character == "NULL_00000000-0000-0000-0000-000000000000" or ObjectExists(character) == 0 then return end
-    CustomStatusManager:SynchronizeDGMBonuses(Ext.ServerEntity.GetCharacter(character))
+    CustomStatusManager:SynchronizeDGMBonuses(Helpers.ServerSafeGetCharacter(character))
 end)
 
 --- @param character GUID
 --- @param event string
 Ext.Osiris.RegisterListener("ProcObjectTimerFinished", 2, "after", function(character, event)
     if event ~= "DGM_GlobalStatCheck" or character == "00000000-0000-0000-0000-000000000000" or ObjectExists(character) == 0 then return end
-    CustomStatusManager:SynchronizeDGMBonuses(Ext.ServerEntity.GetCharacter(character))
+    CustomStatusManager:SynchronizeDGMBonuses(Helpers.ServerSafeGetCharacter(character))
 end)
 
 --- @param character GUID
@@ -147,7 +147,7 @@ end)
 --- @param instigator GUID
 local function CharacterStatusEventSynchronize(character, status, instigator)
     if not CustomStatusManager.Banned[status] and character ~= "NULL_00000000-0000-0000-0000-000000000000" and ObjectExists(character) == 1 then
-        CustomStatusManager:SynchronizeDGMBonuses(Ext.ServerEntity.GetCharacter(character))
+        CustomStatusManager:SynchronizeDGMBonuses(Helpers.ServerSafeGetCharacter(character))
     end
 end
 
@@ -158,7 +158,7 @@ Ext.Osiris.RegisterListener("CharacterStatusRemoved", 3, "before", CharacterStat
 --- @param character GUID
 local function CharacterEquipmentEventSynchronize(item, character)
     if character == "NULL_00000000-0000-0000-0000-000000000000" or ObjectExists(character) == 0 then return end
-    CustomStatusManager:SynchronizeDGMBonuses(Ext.ServerEntity.GetCharacter(character))
+    CustomStatusManager:SynchronizeDGMBonuses(Helpers.ServerSafeGetCharacter(character))
 end
 
 Ext.Osiris.RegisterListener("ItemEquipped", 2, "before", CharacterEquipmentEventSynchronize)
@@ -167,12 +167,12 @@ Ext.Osiris.RegisterListener("ItemUnequipped", 2, "before", CharacterEquipmentEve
 --- @param message string
 --- @param netID string
 Ext.RegisterNetListener("DGM_UpdateCharacter", function(message, netID)
-    local character = Ext.ServerEntity.GetCharacter(tonumber(netID))
+    local character = Helpers.ServerSafeGetCharacter(tonumber(netID))
     Osi.ProcObjectTimer(character.MyGuid, "DGM_GlobalStatCheck", 330)
 end)
 
 Ext.Osiris.RegisterListener("CharacterResurrected", 1, "before", function(character)
-    CustomStatusManager:SynchronizeDGMBonuses(Ext.ServerEntity.GetCharacter(character))
+    CustomStatusManager:SynchronizeDGMBonuses(Helpers.ServerSafeGetCharacter(character))
 end)
 
 --[[
@@ -224,7 +224,7 @@ function CustomStatusManager:CharacterApplyMultipliedStatus(target, statusID, du
         target = target.MyGuid
     end
     if HasActiveStatus(target, statusID) == 1 then
-        Helpers.Status.Multiply(Ext.ServerEntity.GetCharacter(target):GetStatus(statusID), multiplier)
+        Helpers.Status.Multiply(Helpers.ServerSafeGetCharacter(target):GetStatus(statusID), multiplier)
         return
     end
     if not NRD_StatExists(statusID) then
@@ -234,7 +234,7 @@ function CustomStatusManager:CharacterApplyMultipliedStatus(target, statusID, du
     status.StatsMultiplier = multiplier
     Ext.ApplyStatus(status)
     Ext.Net.BroadcastMessage("VP_MultiplyStatus", Ext.Json.Stringify({
-        Character = Ext.ServerEntity.GetCharacter(target).NetID,
+        Character = Helpers.ServerSafeGetCharacter(target).NetID,
         Status = status.NetID
     }))
 end
