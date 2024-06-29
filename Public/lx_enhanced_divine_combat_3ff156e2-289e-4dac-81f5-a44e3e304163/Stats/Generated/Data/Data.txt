@@ -4,9 +4,9 @@ key "ExpectedConGrowthForArmorCalculation","1"
 
 key "ExpectedDamageBoostFromWeaponAbilityPerLevel","0.015"
 
-key "VitalityToDamageRatio","4.5"
+key "VitalityToDamageRatio","4"
 
-key "VitalityToDamageRatioGrowth","0.2"
+key "VitalityToDamageRatioGrowth","0.65"
 
 key "UnstableRadius","4"
 
@@ -275,3 +275,5 @@ key "DGM_SingleHandedDamageBonus","5"
 key "DGM_RangedDamageBonus","5"
 
 key "DGM_DualWieldingDamageBonus","5"
+
+key "DGM_WeaponDefaultLevelRange","2"
