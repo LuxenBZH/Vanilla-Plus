@@ -1,21 +1,19 @@
-Ext.RegisterNetListener("LX_VertcastingDecast", function(callback, payload, ...)
-    local netID = tonumber(payload)
-    PlayAnimation(Ext.Entity.GetCharacter(netID).MyGuid, "", "")
-end)
-
---- @param char string GUID
---- @param state ActionStateType
-Ext.Osiris.RegisterListener("NRD_OnActionStateEnter", 2, "before", function(char, state)
-    if CharacterIsPlayer(char) == 1 and state == "PrepareSkill" then
-        local pos = Ext.Entity.GetCharacter(char).WorldPos
-        local items = Ext.Entity.GetItemGuidsAroundPosition(pos[1], pos[2], pos[3], Ext.ExtraData.RangeBoostedGlobalCap + 5)
-        local ladders = {}
-        for i, guid in pairs(items) do
-            local item = Ext.Entity.GetItem(guid)
-            if item.IsLadder then
-                table.insert(ladders, item.NetID)
+---@param e EsvLuaBeforeStatusApplyEvent
+Ext.Events.BeforeStatusApply:Subscribe(function(e)
+    if e.Status.StatusId == "HIT" then
+        if e.Status.SkillId ~= "" then
+            local skill = Ext.Stats.Get(e.Status.SkillId:gsub("(.*).+-1$", "%1"))
+            if skill.SkillType == "Target" and skill.AreaRadius > 0 then
+                local target = Ext.ServerEntity.GetGameObject(e.Status.TargetHandle)
+                local heightDiff = math.abs(target.WorldPos[2] - e.Status.ImpactOrigin[2])
+                -- Modders can override the height check by writing a value in the Height field of a Target skill
+                -- Important note: the height field is multiplied by 1000 when checking it with the extender.
+                -- Modders should set the value in meters and not in millimiters !
+                if skill.Height/1000 < heightDiff and heightDiff > 2.5 then
+                    e.PreventStatusApply = true
+                    e:StopPropagation()
+                end
             end
         end
-        Ext.Net.PostMessageToClient(char, "LX_LaddercastFixEnter", Ext.Json.Stringify(ladders))
     end
 end)
