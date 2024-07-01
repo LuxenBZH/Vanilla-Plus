@@ -14,7 +14,8 @@ Ext.ClientBehavior.Skill.AddGlobal(function()
       return 8
     elseif Ext.Utils.IsValidHandle(targetHandle) then
       local target = Ext.ClientEntity.GetGameObject(targetHandle)
-      if Helpers.IsItem(target) and target.IsLadder then
+      -- Ladder should still be targetable if they are meant to be destroyed (if they have an HP bar)
+      if Helpers.IsItem(target) and target.IsLadder and target.StatsFromName.StatsEntry.Vitality == -1 then
         ev.PreventDefault = true
 			  ev.StopEvent = true
         return 4
