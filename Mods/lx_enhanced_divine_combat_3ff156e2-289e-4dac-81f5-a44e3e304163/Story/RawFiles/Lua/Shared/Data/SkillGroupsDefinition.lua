@@ -1,18 +1,27 @@
 local VPlusSimpleSkillGroups = {
-    Projectile_Fireball = {
-        Projectile_Fireball = function(character)
-            return true, true
+    Shout_LX_RangedStances = {
+        Shout_LX_RangedReflexStance = function(character)
+            return character:GetStatus("LX_AIMING_STANCE") == null, true
         end,
-        Projectile_FlamingDaggers = function(character)
-            return true, true
+        Shout_LX_RangedAimingStance = function(character)
+            return character:GetStatus("LX_REFLEX_STANCE") == null, true
         end,
-        Zone_LaserRay = function(character)
-            return true, true
+        Shout_LX_Reload = function(character)
+            return character:GetStatus("LX_REFLEX_STANCE") ~= null, false
         end,
-        Shout_InspireStart = function(character)
-            return false, true
+        Shout_LX_RapidFire = function(character)
+            return character:GetStatus("LX_REFLEX_STANCE") ~= null, false
+        end,
+        Target_LX_SuppressionFire = function(character)
+            return character:GetStatus("LX_AIMING_STANCE") ~= null, false
+        end,
+        Target_LX_MarkForDeath = function(character)
+            return character:GetStatus("LX_AIMING_STANCE") ~= null, false
         end
-    },
+    }
+}
+
+local VPlusSimpleSkillGroupsSharedCooldown = {
     Shout_LX_TransmuteSkin = {
         ---@param character EclCharacter
         Shout_IceSkin = function(character)
@@ -31,5 +40,9 @@ local VPlusSimpleSkillGroups = {
 }
 
 for parent, children in pairs(VPlusSimpleSkillGroups) do
+    SkillGroupManager:AddGroup(SkillGroup:Create(parent, children, false))
+end
+
+for parent, children in pairs(VPlusSimpleSkillGroupsSharedCooldown) do
     SkillGroupManager:AddGroup(SkillGroup:Create(parent, children, true))
 end
