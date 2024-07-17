@@ -2,9 +2,11 @@ Ext.RegisterNetListener("VP_MultiplyStatus", function(channel, payload, user)
     local info = Ext.Json.Parse(payload)
     local character = Ext.ClientEntity.GetCharacter(info.Character)
     if not character then return end
-    local status = Ext.ClientEntity.GetStatus(character, info.Status)
-    _VWarning("Status", "Client/Sync/Statuses", info.Status, "could not be found for character", character.DisplayName, character.MyGuid, "on client side!")
-    if not status then return end
+    local status = Ext.ClientEntity.GetStatus(info.Character, info.Status)
+    if not status then
+        _VWarning("Status", "Client/Sync/Statuses", info.Status, "could not be found for character", character.DisplayName, character.MyGuid, "on client side!")
+        return
+    end
     status.StatsMultiplier = info.Multiplier
     --- Crit Multiplier particularity
     local statEntry = Ext.Stats.Get(status.StatusId)
