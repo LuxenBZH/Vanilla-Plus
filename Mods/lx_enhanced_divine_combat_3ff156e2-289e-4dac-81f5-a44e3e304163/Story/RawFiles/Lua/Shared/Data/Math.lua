@@ -9,17 +9,9 @@ Data.Math = {}
 Data.Math.ComputeStatIntegerFromEquipment = function(character, statName)
 	local equipmentAttribute = 0
 	for i,j in pairs(Helpers.EquipmentSlots) do
-		local item
-		if getmetatable(character) == "esv::Character" then
-			local guid = CharacterGetEquippedItem(character.MyGuid, j)
-			if guid then
-				item = Ext.ServerEntity.GetItem(CharacterGetEquippedItem(character.MyGuid, j))
-			end
-		else
-			item = character:GetItemObjectBySlot(j)
-		end
+		local item = character.Stats:GetItemBySlot(j)
 		if item then
-			for i, dynamicStat in pairs(item.Stats.DynamicStats) do
+			for i, dynamicStat in pairs(item.DynamicStats) do
 				if dynamicStat.ObjectInstanceName ~= "" then
 					equipmentAttribute = equipmentAttribute + Ext.Stats.Get(dynamicStat.ObjectInstanceName)[statName]
 				end
@@ -451,3 +443,79 @@ Data.Math.ComputeCelerityValue = function(distance, character)
 		return 0
 	end
 end
+
+Data.Math.HitChance = {
+	Listeners = {}
+}
+
+---Listen for accuracy calculations and apply potential modifiers
+---@param name string
+---@param handle function
+Data.Math.HitChance.RegisterListener = function(name, handle)
+	Data.Math.HitChance.Listeners[name] = handle
+end
+
+Data.Math.HitChance.RemoveListener = function(name)
+	if not Data.Math.HitChance.Listeners[name] then
+		_VWarning('Could not find listener "'..name..'" in HitChance listeners !', "_InitShared")
+	end 
+	Data.Math.HitChance.Listeners[name] = nil
+end
+
+Data.Math.HitChance.CallListeners = function(attacker, target, hitChance)
+	for name, listener in pairs(Data.Math.HitChance.Listeners) do
+		hitChance = listener(attacker, target, hitChance)
+	end
+	return hitChance
+end
+
+--- @param attacker StatCharacter
+--- @param target StatCharacter
+local function DGM_CalculateHitChance(attacker, target)
+    if attacker.TALENT_Haymaker then
+		local diff = 0
+		if attacker.MainWeapon then
+			diff = diff + math.max(0, (attacker.MainWeapon.Level - attacker.Level))
+		end
+		if attacker.OffHandWeapon then
+			diff = diff + math.max(0, (attacker.OffHandWeapon.Level - attacker.Level))
+		end
+        return 100 - diff * Ext.ExtraData.WeaponAccuracyPenaltyPerLevel
+	end
+	
+	local _, accuracyFromStatuses = Data.Math.ComputeStatIntegerFromStatus(attacker.Character, "AccuracyBoost")
+	local accuracy
+	if Ext.IsServer() then
+		accuracy = attacker.Accuracy + Data.Math.ComputeStatIntegerFromEquipment(attacker.Character, "AccuracyBoost") + accuracyFromStatuses
+	else
+		accuracy = attacker.Accuracy
+	end
+	local dodge = target.Dodge
+	if target.Character:GetStatus("KNOCKED_DOWN") and dodge > 0 then
+		dodge = 0
+	end
+
+	local chanceToHit1 = accuracy - dodge
+	chanceToHit1 = Data.Math.HitChance.CallListeners(attacker, target, chanceToHit1)
+	-- chanceToHit1 = math.max(0, math.min(100, chanceToHit1))
+    return chanceToHit1 + attacker.ChanceToHitBoost
+end
+
+Game.Math.CalculateHitChance = DGM_CalculateHitChance
+
+---@param attacker CDivinityStatsCharacter
+---@param target CDivinityStatsCharacter
+local function DGM_HitChanceFormula(attacker, target)
+	local hitChance = attacker.Accuracy - target.Dodge + attacker.ChanceToHitBoost
+    -- Make sure that we return a value in the range (0% .. 100%)
+	hitChance = math.max(math.min(hitChance, 100), 0)
+    return hitChance
+end
+
+--- @param e LuaGetHitChanceEvent
+Ext.Events.GetHitChance:Subscribe(function(e)
+	-- e.HitChance = DGM_HitChanceFormula(e.Attacker, e.Target)
+	
+	e.HitChance = DGM_CalculateHitChance(e.Attacker, e.Target)
+	_P(e.HitChance)
+end)
