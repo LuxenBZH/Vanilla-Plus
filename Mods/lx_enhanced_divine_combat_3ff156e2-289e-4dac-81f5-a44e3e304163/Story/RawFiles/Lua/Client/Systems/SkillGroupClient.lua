@@ -36,6 +36,7 @@ Ext.Events.UICall:Subscribe(function(ev)
         local hotbarSlot = Helpers.Client.GetCurrentCharacter().PlayerData.SkillBarItems[SkillGroupManager:GetSlotNumber(ev.Args[1]+1)]
         local skillGroup = SkillGroupManager:SearchGroups(hotbarSlot.SkillOrStatId)
         local cancel = hotbarSlot.SkillOrStatId == "Target_LX_CancelGroupSkill"
+        _P(cancel)
         if cancel then
             Ext.Net.PostMessageToServer("LX_SkillGroupsRecover", Ext.Json.Stringify({
                 Character = tostring(Helpers.Client.GetCurrentCharacter().NetID),
@@ -92,7 +93,7 @@ end)
 
 Ext.Events.UIInvoke:Subscribe(function(ev)
     if SkillGroupManager.IsInAGroup and ev.UI == Ext.UI.GetByType(36) and ev.Function == "showNewSkill" then
-        ClientTimer.Start(500, function()
+        Helpers.Timer.Start(500, function()
             Ext.UI.GetByType(36):ExternalInterfaceCall("notificationDone")
         end)
         ev:PreventAction()
