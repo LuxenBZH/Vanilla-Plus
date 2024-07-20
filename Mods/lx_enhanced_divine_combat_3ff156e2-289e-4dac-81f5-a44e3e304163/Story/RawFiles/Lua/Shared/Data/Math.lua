@@ -36,7 +36,7 @@ Data.Math.ComputeStatIntegerFromStatus = function(character, statName)
 			if statsId ~= "" then
 				table.insert(statusesAttribute, {
 					Status = stat.StatsId,
-					Value = tonumber(Ext.Stats.Get(statsId)[statName]) * status.StatsMultiplier,
+					Value = Ext.Utils.Round(tonumber(Ext.Stats.Get(statsId)[statName]) * status.StatsMultiplier),
 					Type = statName
 				})
 			end
@@ -76,27 +76,13 @@ Data.Math.ComputeCharacterWisdomFromEquipment = function(character)
 end
 
 Data.Math.ComputeCharacterWisdomFromStatuses = function(character)
-	local statusesWisdom = {}
-	for i,j in pairs(character:GetStatuses()) do
-		local stat = Ext.Stats.Get(j, nil, false)
-		if stat then
-			local statsId = stat.StatsId
-			if statsId ~= "" then
-				table.insert(statusesWisdom, {
-					Status = stat.StatsId,
-					Value = tonumber(Ext.Stats.Get(statsId).VP_WisdomBoost),
-					Type = "VP_WisdomBoost"
-				})
-			end
-		end
-	end
-	return statusesWisdom
+	return Data.Math.ComputeStatIntegerFromStatus(character, "VP_WisdomBoost")
 end
 
 --- @param character EsvCharacter|EclCharacter
 Data.Math.ComputeCharacterWisdom = function(character)
 	local equipmentWisdom = Data.Math.ComputeCharacterWisdomFromEquipment(character)
-	local statusesInfo = Data.Math.ComputeCharacterWisdomFromStatuses(character)
+	local statusesInfo, _ = Data.Math.ComputeStatIntegerFromStatus(character, "VP_WisdomBoost")
 	local statusesWisdom = 0
 	for i,statusInfo in pairs(statusesInfo) do
 		statusesWisdom = statusesWisdom + statusInfo.Value
@@ -119,27 +105,13 @@ Data.Math.ComputeCharacterWisdomArmorFromEquipment = function(character)
 end
 
 Data.Math.ComputeCharacterWisdomArmorFromStatuses = function(character)
-	local statusesWisdom = {}
-	for i,j in pairs(character:GetStatuses()) do
-		local stat = Ext.Stats.Get(j, nil, false)
-		if stat then
-			local statsId = stat.StatsId
-			if statsId ~= "" then
-				table.insert(statusesWisdom, {
-					Status = stat.StatsId,
-					Value = tonumber(Ext.Stats.Get(statsId).VP_ArmorRegenBoost),
-					Type = "VP_ArmorRegenBoost"
-				})
-			end
-		end
-	end
-	return statusesWisdom
+	return Data.Math.ComputeStatIntegerFromStatus(character, "VP_ArmorRegenBoost")
 end
 
 --- @param character EsvCharacter|EclCharacter
 Data.Math.ComputeCharacterWisdomArmor = function(character)
 	local equipmentWisdom = Data.Math.ComputeCharacterWisdomArmorFromEquipment(character)
-	local statusesInfo = Data.Math.ComputeCharacterWisdomArmorFromStatuses(character)
+	local statusesInfo,_ = Data.Math.ComputeStatIntegerFromStatus(character, "VP_ArmorRegenBoost")
 	local statusesWisdom = 0
 	for i,statusInfo in pairs(statusesInfo) do
 		statusesWisdom = statusesWisdom + statusInfo.Value
@@ -162,27 +134,13 @@ Data.Math.ComputeCharacterWisdomMagicArmorFromEquipment = function(character)
 end
 
 Data.Math.ComputeCharacterWisdomMagicArmorFromStatuses = function(character)
-	local statusesWisdom = {}
-	for i,j in pairs(character:GetStatuses()) do
-		local stat = Ext.Stats.Get(j, nil, false)
-		if stat then
-			local statsId = stat.StatsId
-			if statsId ~= "" then
-				table.insert(statusesWisdom, {
-					Status = stat.StatsId,
-					Value = tonumber(Ext.Stats.Get(statsId).VP_MagicArmorRegenBoost),
-					Type = "VP_MagicArmorRegenBoost"
-				})
-			end
-		end
-	end
-	return statusesWisdom
+	return Data.Math.ComputeStatIntegerFromStatus(character, "VP_MagicArmorRegenBoost")
 end
 
 --- @param character EsvCharacter|EclCharacter
 Data.Math.ComputeCharacterWisdomMagicArmor = function(character)
 	local equipmentWisdom = Data.Math.ComputeCharacterWisdomMagicArmorFromEquipment(character)
-	local statusesInfo = Data.Math.ComputeCharacterWisdomMagicArmorFromStatuses(character)
+	local statusesInfo,_ = Data.Math.ComputeStatIntegerFromStatus(character, "VP_MagicArmorRegenBoost")
 	local statusesWisdom = 0
 	for i,statusInfo in pairs(statusesInfo) do
 		statusesWisdom = statusesWisdom + statusInfo.Value
@@ -438,7 +396,7 @@ end
 Data.Math.ComputeCelerityValue = function(distance, character)
 	local movement = Data.Math.GetCharacterMovement(character)
 	if movement.Movement > 0 then
-		return distance/movement.Movement
+		return math.max(distance/movement.Movement, 0)
 	else
 		return 0
 	end
@@ -503,19 +461,7 @@ end
 
 Game.Math.CalculateHitChance = DGM_CalculateHitChance
 
----@param attacker CDivinityStatsCharacter
----@param target CDivinityStatsCharacter
-local function DGM_HitChanceFormula(attacker, target)
-	local hitChance = attacker.Accuracy - target.Dodge + attacker.ChanceToHitBoost
-    -- Make sure that we return a value in the range (0% .. 100%)
-	hitChance = math.max(math.min(hitChance, 100), 0)
-    return hitChance
-end
-
 --- @param e LuaGetHitChanceEvent
 Ext.Events.GetHitChance:Subscribe(function(e)
-	-- e.HitChance = DGM_HitChanceFormula(e.Attacker, e.Target)
-	
 	e.HitChance = DGM_CalculateHitChance(e.Attacker, e.Target)
-	_P(e.HitChance)
 end)
