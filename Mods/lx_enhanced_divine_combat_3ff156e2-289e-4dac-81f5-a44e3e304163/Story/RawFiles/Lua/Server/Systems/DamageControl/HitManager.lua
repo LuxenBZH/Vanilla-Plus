@@ -167,7 +167,7 @@ local function DamageControl(target, instigator, hitDamage, handle)
     flags.Blocked = NRD_StatusGetInt(target.MyGuid, hit.StatusHandle, "Blocked") == 1
     flags.IsDirectAttack = hit.DamageSourceType == "Attack" or hit.SkillId ~= ""
 	flags.FromReflection = NRD_StatusGetInt(target.MyGuid, handle, "Reflection") == 1
-    flags.IsWeaponAttack = hit.Hit.HitWithWeapon
+    flags.IsWeaponAttack = hit.Hit.HitWithWeapon or (hit.DamageSourceType == "Attack" and Game.Math.IsRangedWeapon(instigator.Stats.MainWeapon)) --- EsvHit.HitWithWeapon returns False for ranged weapons
 	flags.IsStatusDamage = NRD_StatusGetInt(target.MyGuid, handle, "DoT") == 1
 
 	if ((skill and skill.Name == "Projectile_Talent_Unstable") and IsTagged(instigator.MyGuid, "LX_UNSTABLE_COOLDOWN") == 1) 
