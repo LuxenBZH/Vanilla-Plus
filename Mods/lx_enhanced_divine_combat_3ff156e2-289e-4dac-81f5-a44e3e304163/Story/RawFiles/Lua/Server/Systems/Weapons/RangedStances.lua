@@ -6,3 +6,15 @@ HitManager:RegisterHitListener("DGM_Hit", "AfterDamageScaling", "SuppressionFire
         end
     end
 end)
+
+HitManager:RegisterHitListener("DGM_Hit", "AfterDamageScaling", "AimingStanceBreak", function(hit, instigator, target, flags)
+    if target:GetStatus("LX_AIMING_STANCE") ~= null and (not flags.Dodged and not flags.Missed and not flags.Blocked) and flags.IsDirectAttack and flags.IsWeaponAttack then
+        if ((hit.DamageSourceType == "Offhand" and not Game.Math.IsRangedWeapon(instigator.Stats.OffHandWeapon)) or not Game.Math.IsRangedWeapon(instigator.Stats.MainWeapon)) then
+            local skill = hit.SkillId ~= "" and Ext.Stats.Get(hit.SkillId:gsub("(.*).+-1$", "%1")) or nil --- @type StatEntrySkillData | nil
+            if skill and skill.IsMelee == "Yes" or not skill then
+                RemoveStatus(target.MyGuid, "LX_AIMING_STANCE")
+                Helpers.Character.SetSkillCooldown(target, "Shout_LX_RangedAimingStance", 18.0)
+            end
+        end
+    end
+end)
