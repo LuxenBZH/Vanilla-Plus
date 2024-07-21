@@ -15,7 +15,7 @@ local VPlusSimpleSkillGroups = {
         Target_LX_SuppressionFire = function(character)
             return character:GetStatus("LX_AIMING_STANCE") ~= null, false
         end,
-        Target_LX_MarkForDeath = function(character)
+        Target_LX_HunterMark = function(character)
             return character:GetStatus("LX_AIMING_STANCE") ~= null, false
         end
     }

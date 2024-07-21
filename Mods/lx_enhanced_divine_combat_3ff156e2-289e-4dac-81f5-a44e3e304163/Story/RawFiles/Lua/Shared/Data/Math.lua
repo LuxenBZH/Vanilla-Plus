@@ -456,7 +456,7 @@ local function DGM_CalculateHitChance(attacker, target)
 	local chanceToHit1 = accuracy - dodge
 	chanceToHit1 = Data.Math.HitChance.CallListeners(attacker, target, chanceToHit1)
 	-- chanceToHit1 = math.max(0, math.min(100, chanceToHit1))
-    return chanceToHit1 + attacker.ChanceToHitBoost
+    return math.max(chanceToHit1 + attacker.ChanceToHitBoost, 0)
 end
 
 Game.Math.CalculateHitChance = DGM_CalculateHitChance
