@@ -31,3 +31,66 @@ Data.Math.HitChance.RegisterListener("HunterMark", function(attacker, target, hi
         return hitChance
     end
 end)
+
+if Ext.IsClient() then
+    --- @param character EclCharacter
+    --- @param skillName string
+    --- @param tooltip TooltipData
+    local function RapidFirePenaltyTooltip(character, skillName, tooltip)
+        local skill = Ext.Stats.Get(skillName)
+        if character:GetStatus("LX_RAPIDFIRE") == null or skill.Ability ~= "Ranger" or skill["Damage Multiplier"] == 0 or skill.ActionPoints == 1 then return end
+        local desc = tooltip:GetElement("SkillDescription")
+        tooltip:AppendElementAfter({
+            Label = "<font color=#ff0000>Rapid fire damage penalty: -"..tostring(75/skill.ActionPoints).."%</font>",
+            Type = "SkillDescription"
+        }, desc)
+
+    end
+
+    --- @param character EclCharacter
+    --- @param skillName string
+    --- @param tooltip TooltipData
+    local function ReloadSkillTooltip(character, skillName, tooltip)
+        if skillName == "Shout_LX_Reload" then
+            local desc = tooltip:GetElement("SkillDescription")
+            local lastSkills = Helpers.UserVars.GetVar(character, "VP_LastSkillsUsed")
+            if lastSkills then
+                local skill
+                local i = 1
+                while not skill and i <= #lastSkills do
+                    local statEntry = Ext.Stats.Get(lastSkills[i].Name)
+                    if statEntry.Ability == "Ranger" and statEntry.Requirement == "RangedWeapon" then
+                        skill = lastSkills[i].Name
+                    end
+                    i = i + 1
+                end
+                if skill then
+                    local celerity = Data.Math.ComputeCharacterCelerity(character)
+                    local cdReduction = math.floor(celerity/math.abs(Ext.Stats.Get("Stats_LX_Reload").VP_Celerity))
+                    tooltip:AppendElementAfter({
+                        Label = "<font color=#FFEA8C>Available Celerity: "..tostring(celerity/100).."m<br>Cooldown reduction: "..tostring(cdReduction).."<br>Final cooldown: "..tostring(math.max(math.floor(character.SkillManager.Skills[skill].ActiveCooldown/6) - cdReduction, 0)).."</font>",
+                        Type = "SkillDescription"
+                    }, desc)
+                    tooltip:AppendElementAfter({
+                        Label = "<font color=#FFEA8C>Will apply to: "..Ext.L10N.GetTranslatedStringFromKey(skill.."_DisplayName").."</font>",
+                        Type = "SkillDescription"
+                    }, desc)
+                else
+                    tooltip:AppendElementAfter({
+                        Label = "<font color=#FFEA8C>No elligible skill used yet!</font>",
+                        Type = "SkillDescription"
+                    }, desc)
+                end
+            else
+                tooltip:AppendElementAfter({
+                    Label = "<font color=#FFEA8C>No elligible skill used yet!</font>",
+                    Type = "SkillDescription"
+                }, desc)
+            end
+        end
+    end
+    Ext.Events.SessionLoaded:Subscribe(function(e)
+        Game.Tooltip.RegisterListener("Skill", nil, RapidFirePenaltyTooltip)
+        Game.Tooltip.RegisterListener("Skill", nil, ReloadSkillTooltip)
+    end)
+end
