@@ -69,10 +69,11 @@ Ext.Events.SessionLoaded:Subscribe(function(e)
         if item.StatsFromName and Helpers.Stats.GetEntryType(item.StatsFromName.StatsEntry) == "Potion" and item.StatsFromName.StatsEntry.VP_AbsorbShieldValue > 0 then
             local potion = item.StatsFromName.StatsEntry
             local character = Helpers.Client.GetCurrentCharacter()
-            local value = Helpers.ScalingFunctions[potion.VP_AbsorbShieldScaling](character.Stats.Level) * (potion.VP_AbsorbShieldValue / 100)
+            local value = character and Helpers.ScalingFunctions[potion.VP_AbsorbShieldScaling](character.Stats.Level) * (potion.VP_AbsorbShieldValue / 100) or Helpers.ScalingFunctions[potion.VP_AbsorbShieldScaling](1) * (potion.VP_AbsorbShieldValue / 100)
             tooltip:AppendElement({
                 Type = "ConsumableEffect",
-                Label = "Absorb "..Data.Text.GetFormattedDamageText(potion.VP_AbsorbShieldType, value).." for "..potion.Duration.." turns."
+                Label = "Absorb "..Data.Text.GetFormattedDamageText(potion.VP_AbsorbShieldType, value).." for "..potion.Duration.." turns.",
+                Value = ""
             })
         end
     end)    
