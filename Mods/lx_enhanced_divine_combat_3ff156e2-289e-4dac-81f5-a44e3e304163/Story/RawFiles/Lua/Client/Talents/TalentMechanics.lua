@@ -53,4 +53,4 @@ function ClientElementalAffinityRework(e)
     end
 end
 
-Data.APCostManager.RegisterGlobalSkillAPFormula(ClientElementalAffinityRework, "VPElementalAffinity")
+Data.APCostManager.RegisterGlobalSkillAPFormula("VPElementalAffinity", ClientElementalAffinityRework, 1)

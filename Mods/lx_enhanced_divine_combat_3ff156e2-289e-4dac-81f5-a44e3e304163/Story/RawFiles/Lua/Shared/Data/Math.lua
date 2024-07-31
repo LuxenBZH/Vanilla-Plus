@@ -30,6 +30,7 @@ Data.Math.ComputeStatIntegerFromStatus = function(character, statName)
 	local statusesAttribute = {}
 	for i,j in pairs(character:GetStatuses()) do
 		local stat = Ext.Stats.Get(j, nil, false)
+		--- Note: some particular statuses does seems to create a warning (e.g. LINGERING_WOUNDS)
 		local status = character:GetStatus(j)
 		if stat then
 			local statsId = stat.StatsId
