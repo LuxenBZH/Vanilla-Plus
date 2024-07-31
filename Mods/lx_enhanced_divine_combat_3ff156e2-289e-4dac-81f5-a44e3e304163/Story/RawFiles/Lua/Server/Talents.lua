@@ -520,7 +520,7 @@ Ext.Osiris.RegisterListener("CharacterUsedSkill", 4, "before", function(characte
 	end
 end)
 
-Data.APCostManager.RegisterGlobalSkillAPFormula(ServerElementalAffinityRework, "ServerElementalAffinityRework")
+Data.APCostManager.RegisterGlobalSkillAPFormula("VP_ServerElementalAffinityRework", ServerElementalAffinityRework, 1)
 
 ---------
 ---@param e EsvLuaBeforeStatusApplyEvent

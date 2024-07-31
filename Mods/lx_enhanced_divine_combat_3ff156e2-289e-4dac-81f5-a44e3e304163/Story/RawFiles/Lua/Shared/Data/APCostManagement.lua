@@ -29,11 +29,16 @@ end
 ---Setter for global conditional AP costs
 ---@param callback function
 ---@param name string
-Data.APCostManager.RegisterGlobalSkillAPFormula = function(callback, name)
-	table.insert(Data.APCostManager.Globals, {
+---@param priority number|nil
+Data.APCostManager.RegisterGlobalSkillAPFormula = function(name, callback, priority)
+	local index = priority or 100
+	while Data.APCostManager.Globals[index] do
+		index = index + 1
+	end
+	Data.APCostManager.Globals[index] = {
 		Callback = callback,
 		Name = name
-	})
+	}
     Helpers.VPPrint("Registered global AP formula", "APCostManager:"..(Ext.IsServer() and "Server" or "Client"), name)
 end
 
@@ -168,4 +173,13 @@ Data.APCostManager.RegisterSkillAPFormula("Target_TerrifyingCruelty", function(e
 			end
 		end
 	end
+end)
+
+---Ranger stance: rapid fire
+---@param e LuaGetSkillAPCostEvent
+Data.APCostManager.RegisterGlobalSkillAPFormula("RapidFire", function(e)
+	local skill = e.Skill.StatsObject.StatsEntry
+	local character = e.Character.Character ---@type EclCharacter|EsvCharacter
+	if skill.Ability ~= "Ranger" or character:GetStatus("LX_RAPIDFIRE") == null or skill["Damage Multiplier"] == 0 then return end
+	e.AP = math.max(skill.ActionPoints - 1, 1)
 end)
