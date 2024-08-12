@@ -1,23 +1,29 @@
 Key	Content	Handle
 Shout_LX_RangedAimingStance_DisplayName	Aiming Stance	
-Shout_LX_RangedAimingStance_Description	Reduce Movement by [1]%, Dodge by [2]% set Celerity to 0 but increase Accuracy by [3]% and Critical chance by [4]%. Also provides Suppression and Mark for death skills. If the character receives a melee attack, the stance breaks and go on cooldown for 3 turns.	
+Shout_LX_RangedAimingStance_Description	Set Movement to 0, reduce Dodge by [1]% but increase Accuracy by [2]% and Critical chance by [3]%. Also provides Suppression and Mark for death skills. If the character receives a melee attack, the stance breaks and go on cooldown for 3 turns.	
 Shout_LX_Reload_DisplayName	Reload	
 Shout_LX_Reload_Description	Consume available Celerity to reduce the cooldown of the latest Huntsman skill used by 1 turn per 2.5m of Celerity consumed.	
 Shout_LX_RapidFire_DisplayName	Rapid Fire	
 Shout_LX_RapidFire_Description	Reduce the AP cost of Huntsman skills by 1 but reduces their damage by up to 35% depending on the original cost until the end of the turn. Cannot reduce AP costs below 1.	
 Target_LX_SuppressionFire_DisplayName	Suppression fire	
-Target_LX_SuppressionFiret_Description	Cover an area and sets Suppression on characters you shoot inside, reducing their Celerity by [1], Accuracy by [2]% and Ingress by [3] for 2 turns and stacks up to 5 times. The suppression area lasts 2 turns.	
+Target_LX_SuppressionFiret_Description	Cover an area and sets Suppression on characters you shoot inside, reducing their Celerity by [1], Damage by [2]%, Movement by [3] and Wisdom by [4] for 2 turns and stacks up to 5 times. The suppression area lasts 2 turns.	
 Target_LX_HunterMark_DisplayName	Hunter's mark	
 Target_LX_HunterMark_Description	Mark the target. If the stance is not broken until next turn, the next skill against the marked target will inflict 50% more damage and bypass Accuracy checks.	
 LX_RELOAD_DisplayName	Reload	
 LX_RELOAD_PENALTY_DisplayName	Reload	
 LX_RELOAD_PENALTY_Description	Convert Celerity to reduce the cooldown of the last skill used.	
-LX_RAPIDFIRE_DisplayName	Reload	
+LX_RAPIDFIRE_DisplayName	Rapid fire	
 LX_REFLEX_STANCE_DisplayName	Reflex Stance	
 LX_AIMING_STANCE_DisplayName	Aiming Stance	
 LX_SUPPRESSED_DisplayName	Suppressed	
 LX_SUPPRESSED_Description	Receiving ranged attacks will reduce further Movement, Celerity, Damage and Wisdom while staying in the suppressed area.	
 LX_HUNTERMARK_DisplayName	Hunter's Mark	
-LX_HUNTERMARK_Description	If the aiming stance of the instigator is not broken when this status expires, their next skill will do 50% more damage and bypass Accuracy when targeting this character.	
+LX_HUNTERMARK_Description	If the aiming stance of the instigator is not broken when this status expires, their next ranged weapon skill will do 50% more damage and bypass Accuracy when targeting this character.	
 LX_HUNTERMARK_APPLIED_DisplayName	Marked for death	
-LX_HUNTERMARK_APPLIED_Description	The next skill from [1] will do 50% more damage and will bypass Accuracy checks.	
+LX_HUNTERMARK_APPLIED_Description	The next ranged weapon skill from [1] will do 50% more damage and will bypass Accuracy checks.	
+Shout_LX_RangedStances_DisplayName	Ranger Stances	
+Shout_LX_RangedStances_Description	Change the character stance to provide specific advantages with a bow or a crossbow.	
+Shout_LX_RangedReflexStance_DisplayName	Reflex Stance	
+Shout_LX_RangedReflexStance_Description	Accuracy is reduced by half when attacking targets beyond 8m but each successful hit grants 2 meters of free movement. Also provides Reloading and Rapid fire skills.	
+LX_RAPIDFIRE_Description	Huntsman offensive skills cost less AP but will do less damage as well.	
+LX_REFLEX_STANCE_Description	Each successful ranged weapon hit done by this character will provide [1]m Celerity, but Accuracy on targets beyond 8m is halved.	
