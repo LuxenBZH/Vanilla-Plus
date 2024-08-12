@@ -74,3 +74,14 @@ Ext.Events.BeforeStatusApply:Subscribe(function(e)
         end
     end
 end)
+
+Ext.Osiris.RegisterListener("ItemUnEquipped", 2, "before", function(item, character)
+    if ObjectExists(item) == 1 then
+        local item = Helpers.ServerSafeGetItem(item)
+        if Game.Math.IsRangedWeapon(item.Stats) then
+            RemoveStatus(character, "LX_RAPIDFIRE")
+            RemoveStatus(character, "LX_AIMING_STANCE")
+            RemoveStatus(character, "LX_REFLEX_STANCE")
+        end
+    end
+end)
