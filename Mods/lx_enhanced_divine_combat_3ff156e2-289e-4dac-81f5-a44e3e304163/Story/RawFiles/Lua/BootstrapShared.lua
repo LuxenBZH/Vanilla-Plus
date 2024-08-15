@@ -16,3 +16,4 @@ end)
 Ext.Require("Shared/_InitShared.lua")
 
 Helpers.UserVars.RegisterUserVar("VP_LastSkillsUsed", true, true, true)
+Helpers.UserVars.RegisterUserVar("VP_HuntsmanReloadLastSkill", true, true, true)

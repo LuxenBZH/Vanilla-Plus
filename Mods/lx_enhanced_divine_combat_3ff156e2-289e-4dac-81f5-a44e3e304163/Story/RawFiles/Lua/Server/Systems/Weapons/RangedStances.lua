@@ -55,20 +55,10 @@ end)
 Ext.Events.BeforeStatusApply:Subscribe(function(e)
     if e.Status.StatusId == "LX_RELOAD" then
         local character = Ext.ServerEntity.GetCharacter(e.Owner.Handle)
-        local lastSkills = Helpers.UserVars.GetVar(character, "VP_LastSkillsUsed")
-        if lastSkills then
-            local skill
-            local i = 1
-            while not skill and i <= #lastSkills do
-                local statEntry = Ext.Stats.Get(lastSkills[i].Name)
-                if statEntry.Ability == "Ranger" and statEntry.Requirement == "RangedWeapon" then
-                    skill = lastSkills[i].Name
-                end
-                i = i + 1
-            end
+        local skill = Helpers.UserVars.GetVar(character, "VP_HuntsmanReloadLastSkill")
+        if skill then
             local currentCD = character:GetSkillInfo(skill).ActiveCooldown
             local cdReduction = math.min(math.floor(Data.Math.ComputeCharacterCelerity(character) / math.abs(Ext.Stats.Get(Ext.Stats.Get(e.Status.StatusId).StatsId).VP_Celerity)), currentCD)
-            _P(math.max(character:GetSkillInfo(skill).ActiveCooldown - (cdReduction * 6.0), 0))
             Helpers.Character.SetSkillCooldown(character, skill, math.max(character:GetSkillInfo(skill).ActiveCooldown - (cdReduction * 6.0), 0))
             e.Status.StatsMultiplier = cdReduction
         end

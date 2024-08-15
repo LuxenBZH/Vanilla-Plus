@@ -71,6 +71,10 @@ Ext.Osiris.RegisterListener("CharacterUsedSkill", 4, "before", function(characte
         lastSkills = table.move(lastSkills, 1, math.min(9, #lastSkills), 2, {[1] = {Name = skill, ID = math.random(0, 2147483647)}})
     end
     Helpers.UserVars.SetVar(character, "VP_LastSkillsUsed", lastSkills)
+    local statEntry = Ext.Stats.Get(skill)
+    if statEntry.Ability == "Ranger" and statEntry.Requirement == "RangedWeapon" then
+        Helpers.UserVars.SetVar(character, "VP_HuntsmanReloadLastSkill", skill)
+    end
 end)
 
 Ext.Require("Server/_InitServer.lua")
