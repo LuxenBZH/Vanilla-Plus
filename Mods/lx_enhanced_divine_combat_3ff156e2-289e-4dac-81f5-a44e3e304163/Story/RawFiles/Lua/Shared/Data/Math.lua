@@ -466,3 +466,10 @@ Game.Math.CalculateHitChance = DGM_CalculateHitChance
 Ext.Events.GetHitChance:Subscribe(function(e)
 	e.HitChance = DGM_CalculateHitChance(e.Attacker, e.Target)
 end)
+
+---@param character EsvCharacter
+Data.Math.CharacterCalculatePartialAP = function(character)
+	local movement = Data.Math.GetCharacterMovement(character)
+	local celerity = Data.Math.ComputeCelerityValue(Data.Math.ComputeCharacterCelerity(character), character)
+	return (character.Stats.TALENT_QuickStep and 1 or 0) + 100/movement.Movement + celerity
+end
