@@ -56,9 +56,9 @@ if Ext.IsClient() then
             local skill = Helpers.UserVars.GetVar(character, "VP_HuntsmanReloadLastSkill")
             if skill then
                 local celerity = Data.Math.ComputeCharacterCelerity(character)
-                local cdReduction = math.floor(celerity/math.abs(Ext.Stats.Get("Stats_LX_Reload").VP_Celerity))
+                local cdReduction = math.max(0, math.floor(celerity/math.abs(Ext.Stats.Get("Stats_LX_Reload").VP_Celerity)))
                 tooltip:AppendElementAfter({
-                    Label = "<font color=#FFEA8C>Available Celerity: "..tostring(celerity/100).."m<br>Cooldown reduction: "..tostring(cdReduction).."<br>Final cooldown: "..tostring(math.max(math.floor(character.SkillManager.Skills[skill].ActiveCooldown/6) - cdReduction, 0)).."</font>",
+                    Label = "<font color=#FFEA8C>Available Celerity: "..tostring(math.max(celerity/100, 0)).."m<br>Cooldown reduction: "..tostring(cdReduction).."<br>Final cooldown: "..tostring(math.max(math.floor(character.SkillManager.Skills[skill].ActiveCooldown/6) - cdReduction, 0)).."</font>",
                     Type = "SkillDescription"
                 }, desc)
                 tooltip:AppendElementAfter({

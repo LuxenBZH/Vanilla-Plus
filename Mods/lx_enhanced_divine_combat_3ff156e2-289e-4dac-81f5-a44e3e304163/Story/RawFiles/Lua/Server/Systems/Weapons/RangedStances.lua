@@ -25,6 +25,17 @@ HitManager:RegisterHitListener("DGM_Hit", "AfterDamageScaling", "RangedStancesMe
     if Helpers.IsCharacter(instigator) and instigator:GetStatus("LX_RAPIDFIRE") and flags.IsWeaponAttack and skill and Helpers.UserVars.GetVar(instigator, "VP_LastSkillsUsed")[1].Name == skill.Name and skill.ActionPoints > 1 then
         HitHelpers.HitMultiplyDamage(hit.Hit, target, instigator, 1 - (0.75 / skill.ActionPoints))
     end
+    --- Reflex stance Celerity bonus
+    if Helpers.IsCharacter(instigator) and instigator:GetStatus("LX_REFLEX_STANCE") and flags.IsWeaponAttack and (not flags.Missed and not flags.Blocked and not flags.Dodged) then
+        if (flags.IsWeaponAttack and ((hit.DamageSourceType == "Offhand" and Game.Math.IsRangedWeapon(instigator.Stats.OffHandWeapon)) or Game.Math.IsRangedWeapon(instigator.Stats.MainWeapon))) then
+            local stance = instigator:GetStatus("LX_REFLEX_BONUS")
+            if stance and stance.CurrentLifeTime > 0 then
+                Helpers.Status.Multiply(stance, math.min(stance.StatsMultiplier + 1, 4))
+            else
+                ApplyStatus(instigator.MyGuid, "LX_REFLEX_BONUS", 1.0, 1, instigator.MyGuid)
+            end
+        end
+    end
 end)
 
 --- Hunter mark removal

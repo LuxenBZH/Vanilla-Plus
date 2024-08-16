@@ -8,6 +8,10 @@ Helpers.UserVars = {
 ---@param entity EsvCharacter|EclCharacter|EsvItem|EclItem
 ---@param name string
 function Helpers.UserVars.GetVar(entity, name)
+    if not entity then
+        _VError("Attempted to get var "..name.." from an unexisting entity!")
+        return nil
+    end
     local id = Ext.IsServer() and entity.MyGuid or entity.NetID
     local vars = Ext.Vars.GetModVariables(Data.ModGUID)
     if not vars[name] then
@@ -187,3 +191,4 @@ function Helpers.UserVars.RegisterUserVar(name, persistent, syncToClient, syncOn
         vars[name] = {}
     end
 end
+
