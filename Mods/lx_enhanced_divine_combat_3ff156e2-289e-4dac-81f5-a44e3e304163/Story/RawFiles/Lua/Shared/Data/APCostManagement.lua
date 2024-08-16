@@ -180,6 +180,8 @@ end)
 Data.APCostManager.RegisterGlobalSkillAPFormula("RapidFire", function(e)
 	local skill = e.Skill.StatsObject.StatsEntry
 	local character = e.Character.Character ---@type EclCharacter|EsvCharacter
-	if skill.Ability ~= "Ranger" or character:GetStatus("LX_RAPIDFIRE") == null or skill["Damage Multiplier"] == 0 then return end
-	e.AP = math.max(skill.ActionPoints - 1, 1)
+	e.ElementalAffinity = e.ElementalAffinity or false
+	if skill.Ability == "Ranger" and character:GetStatus("LX_RAPIDFIRE") and skill["Damage Multiplier"] > 0 then
+		e.AP = math.max(skill.ActionPoints - 1, 1)
+	end
 end)
