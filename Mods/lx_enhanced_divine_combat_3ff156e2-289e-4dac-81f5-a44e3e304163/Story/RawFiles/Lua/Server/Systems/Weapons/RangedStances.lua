@@ -17,7 +17,8 @@ HitManager:RegisterHitListener("DGM_Hit", "AfterDamageScaling", "RangedStancesMe
         end
     end
     --- Hunter mark bonus
-    if Helpers.IsCharacter(instigator) and target:GetStatus("LX_HUNTERMARK_APPLIED") and flags.IsWeaponAttack and hit.SkillId ~= "" and instigator.UserVars.VP_LastSkillID.Name == skill.Name then
+    local mark = target:GetStatus("LX_HUNTERMARK_APPLIED")
+    if Helpers.IsCharacter(instigator) and mark and mark.StatusSourceHandle == instigator.Handle and flags.IsWeaponAttack and hit.SkillId ~= "" and Helpers.UserVars.GetVar(instigator, "VP_LastSkillsUsed")[1].Name == skill.Name then
         HitHelpers.HitMultiplyDamage(hit.Hit, target, instigator, 1.5)
         Osi.ProcObjectTimer(target.MyGuid, "VP_HunterMarkComboTimer", 1000)
     end
@@ -84,5 +85,13 @@ Ext.Osiris.RegisterListener("ItemUnEquipped", 2, "before", function(item, charac
             RemoveStatus(character, "LX_AIMING_STANCE")
             RemoveStatus(character, "LX_REFLEX_STANCE")
         end
+    end
+end)
+
+---comment
+---@param object GUID
+Helpers.RegisterTurnTrueStartListener(function(object)
+    if ObjectIsCharacter(object) and HasActiveStatus(object, "LX_RELOAD") == 1 then
+        RemoveStatus(character, "")
     end
 end)
