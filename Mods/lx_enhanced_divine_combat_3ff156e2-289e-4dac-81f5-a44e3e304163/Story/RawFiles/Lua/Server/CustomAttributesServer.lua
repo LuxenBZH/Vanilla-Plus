@@ -72,10 +72,9 @@ local function CelerityRecalcStatusEvent(character, status, removed)
     character = GetUUID(character)
     if CharacterIsInCombat(character) == 1 and CombatGetActiveEntity(CombatGetIDForCharacter(character)) ~= character and not Data.Stats.BannedStatusesFromChecks[status] and status ~= "" and NRD_StatExists(status) then
         local character = Ext.ServerEntity.GetCharacter(character)
-        local status = removed and status or character:GetStatus(status)
-        if status then
-            if removed and Ext.Stats.Get(status).StatsId == "" then return end
-            local statEntry = Ext.Stats.Get(not removed and status.StatsId or Ext.Stats.Get(status).StatsId)
+        local statsId = Ext.Stats.Get(status).StatsId
+        if statsId ~= "" then
+            local statEntry = Ext.Stats.Get(statsId)
             if statEntry.Movement ~= 0 or statEntry.MovementSpeedBoost ~= 0 or statEntry.VP_Celerity ~= 0 then
                 character.PartialAP = Data.Math.CharacterCalculatePartialAP(character)
             end
