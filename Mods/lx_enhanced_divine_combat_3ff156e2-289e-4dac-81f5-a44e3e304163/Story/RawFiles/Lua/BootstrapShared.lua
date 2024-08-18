@@ -15,5 +15,7 @@ end)
 
 Ext.Require("Shared/_InitShared.lua")
 
-Helpers.UserVars.RegisterUserVar("VP_LastSkillsUsed", true, true, true)
-Helpers.UserVars.RegisterUserVar("VP_HuntsmanReloadLastSkill", true, true, true)
+Ext.Events.SessionLoading:Subscribe(function(e)
+    Helpers.UserVars.RegisterUserVar("VP_LastSkillsUsed", true, true, true)
+    Helpers.UserVars.RegisterUserVar("VP_HuntsmanReloadLastSkill", true, true, true)
+end)

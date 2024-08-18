@@ -18,7 +18,7 @@ function Helpers.UserVars.GetVar(entity, name)
         _VError("Variable "..name.." is not registered!", "UserVars")
         return nil
     end
-    return Ext.Json.Parse(vars[name])[tostring(id)]
+    return vars[name][tostring(id)]
 end
 
 function Helpers.UserVars.SetComplexValue(name, index, value)
@@ -27,10 +27,9 @@ function Helpers.UserVars.SetComplexValue(name, index, value)
         _VWarning("Var "..name.." is not registered !", "UserVars", "IsServer:", Ext.IsServer())
         return
     end
-    if type(vars[name]) ~= "string" then return false end
-    local varContent = Ext.Json.Parse(vars[name])
+    local varContent = vars[name]
     varContent[index] = value
-    vars[name] = Ext.Json.Stringify(varContent)
+    vars[name] = varContent
     return true
 end
 
@@ -66,16 +65,17 @@ end
 local function PackVariableForClientSide(varName)
     local contentTable = {}
     local vars = Ext.Vars.GetModVariables(Data.ModGUID)
-    local varContent = Ext.Json.Parse(vars[varName])
+    local varContent = vars[varName]
     if varContent then
         for guid, content in pairs(varContent) do
+            ---TODO: GUID integrity checks. Maybe a map-based table for GM mode ?
             if ObjectExists(guid) == 1 then
                 local entity = Ext.ServerEntity.GetGameObject(guid)
                 if entity.CurrentLevel == Ext.ServerEntity.GetCurrentLevel().LevelDesc.LevelName then
                     contentTable[entity.NetID] = content
                 end
-            else
-                Helpers.UserVars.SetComplexValue(varName, guid, nil)
+            -- else
+            --     Helpers.UserVars.SetComplexValue(varName, guid, nil)
             end
         end
         return contentTable
@@ -150,14 +150,14 @@ else
     ---@param _ integer|nil
     Ext.RegisterNetListener("VP_UserVarsSyncVar", function(_, payload, _)
         local info = Ext.Json.Parse(payload)
-        local vars = Ext.Vars.GetModVariables(Data.ModGUID)
+        _VPrint("Syncing var "..info.Var.." from server", "UserVars:Client")
         for entity,value in pairs(info.Content) do
             Helpers.UserVars.SetComplexValue(info.Var, entity, value)
         end
     end)
 end
 
----Better be used on SessionStarted
+---Better be used on SessionLoading
 ---@param name string
 ---@param persistent boolean|nil
 ---@param syncToClient boolean|nil
@@ -171,7 +171,6 @@ function Helpers.UserVars.RegisterUserVar(name, persistent, syncToClient, syncOn
         SyncOnWrite = syncOnWrite,
         SyncOnTick = syncOnTick
     }
-    _P(name, persistent)
     Ext.Vars.RegisterModVariable(Data.ModGUID, name, {
         Persistent = persistent or false,
         Server = true,
@@ -187,14 +186,14 @@ function Helpers.UserVars.RegisterUserVar(name, persistent, syncToClient, syncOn
     local vars = Ext.Vars.GetModVariables(Data.ModGUID)
     if Ext.IsServer() then
         if not vars[name] then
-            vars[name] = "{}"
+            vars[name] = {}
             return
         end
         if persistent then
             Helpers.Timer.Start(300, SyncVariableToClients, nil, name)
         end
     else
-        vars[name] = "{}"
+        vars[name] = {}
     end
 end
 
