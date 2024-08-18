@@ -182,7 +182,8 @@ if Ext.IsServer() then
 		warning = warning or true
 		if character.SkillManager.Skills[skill] then
 			character.SkillManager.Skills[skill].ActiveCooldown = 0 
-			character.SkillManager.Skills[skill].ActiveCooldown = cooldown
+			Helpers.Timer.Start(100, function(character, cooldown) Ext.ServerEntity.GetCharacter(character).SkillManager.Skills[skill].ActiveCooldown = cooldown end, nil, character.NetID, cooldown)
+			-- character.SkillManager.Skills[skill].ActiveCooldown = cooldown
 		else
 			if warning then
 				_VWarning("Character "..character.MyGuid.." does not have the skill "..skill.." so its cooldown could not be changed!", "CharacterHelpers")

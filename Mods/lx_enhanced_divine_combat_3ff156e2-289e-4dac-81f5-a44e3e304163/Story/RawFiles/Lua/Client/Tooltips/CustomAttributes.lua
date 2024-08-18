@@ -26,7 +26,7 @@ Game.Tooltip.RegisterListener("Item", nil, function(item, tooltip)
     end
 end)
 
---- Equipment Wisdom bonus
+--- Equipment custom bonuses
 ---@param item EclItem
 ---@param tooltip TooltipData
 Game.Tooltip.RegisterListener("Item", nil, function(item, tooltip)
@@ -45,7 +45,7 @@ Game.Tooltip.RegisterListener("Item", nil, function(item, tooltip)
                 celerity = celerity + Ext.Stats.Get(dynamicStat.ObjectInstanceName).VP_Celerity
             end
         end
-        if wisdom > 0 then
+        if wisdom ~= 0 then
             local element = tooltip:GetElement("AbilityBoost")
             tooltip:AppendElement({
                 Label = "Wisdom",
@@ -53,7 +53,7 @@ Game.Tooltip.RegisterListener("Item", nil, function(item, tooltip)
                 Value = wisdom
             })
         end
-        if celerity > 0 then
+        if celerity ~= 0 then
             celerity = celerity / 100
             local element = tooltip:GetElement("AbilityBoost")
             tooltip:AppendElement({

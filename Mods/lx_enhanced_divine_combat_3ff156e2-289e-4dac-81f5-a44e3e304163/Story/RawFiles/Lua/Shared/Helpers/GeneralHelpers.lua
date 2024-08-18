@@ -16,16 +16,29 @@ Helpers.SignNumber = function(number)
 	return number > 0 and 1 or -1
 end
 
-Helpers.Status = {}
-
-Helpers.Status.MultipliedStats = {}
-
-Helpers.Status.MultipliedStatusesListeners = {}
-
+---@param position1 vec3
+---@param position2 vec3
+---@return number
+Helpers.CalculateVectorDistance = function(position1, position2)
+	local xDist = (position1[1] - position2[1]) * (position1[1] - position2[1])
+	local yDist = (position1[2] - position2[2]) * (position1[2] - position2[2])
+	local zDist = (position1[3] - position2[3]) * (position1[3] - position2[3])
+	return math.sqrt(xDist + yDist + zDist)
+end
 
 if Ext.IsServer() then
+	Helpers.Status = {}
+
+	Helpers.Status.MultipliedStats = {}
+
+	Helpers.Status.MultipliedStatusesListeners = {
+		All = {}
+	}
+
 	function Helpers.Status.RegisterMultipliedStatus(statusID, func)
-		if not Helpers.Status.MultipliedStatusesListeners[statusID] then
+		if statusID == "All" then
+			table.insert(Helpers.Status.MultipliedStatusesListeners.All, func)
+		elseif not Helpers.Status.MultipliedStatusesListeners[statusID] then
 			Helpers.Status.MultipliedStatusesListeners[statusID] = {func}
 		else
 			table.insert(Helpers.Status.MultipliedStatusesListeners[statusID], func)
@@ -36,11 +49,18 @@ if Ext.IsServer() then
 	---@param multiplier number
 	---@param previousMultiplier number
 	function Helpers.Status.TriggerMultipliedStatusesListeners(status, multiplier, previousMultiplier)
-		for i,func in pairs(Helpers.Status.MultipliedStatusesListeners[status.StatusId]) do
-			func(status, multiplier, previousMultiplier)
+		if not Helpers.Status.MultipliedStatusesListeners then
+			Helpers.Status.MultipliedStatusesListeners = {}
+			return
 		end
-		for i,func in pairs(Helpers.Status.MultipliedStatusesListeners.All) do
-			func(status, multiplier, previousMultiplier)
+		local handlers = Helpers.Status.MultipliedStatusesListeners[status.StatusId]
+		if handlers then
+			for i,func in pairs(handlers) do
+				func(status, multiplier, previousMultiplier)
+			end
+			for i,func in pairs(Helpers.Status.MultipliedStatusesListeners.All) do
+				func(status, multiplier, previousMultiplier)
+			end
 		end
 	end
 
@@ -73,9 +93,11 @@ if Ext.IsServer() then
 			status.DamageStats = newStatName
 			Helpers.Status.MultipliedStats[status] = newStatName
 		end
-		Ext.Net.BroadcastMessage("VP_MultiplyStatus", Ext.Utils.JsonStringify({
-			Character = Ext.ServerEntity.GetCharacter(status.TargetHandle),
+		status.RequestClientSync = true -- Triggers the client refresh
+		Ext.Net.BroadcastMessage("VP_MultiplyStatus", Ext.Json.Stringify({
+			Character = Ext.ServerEntity.GetCharacter(status.TargetHandle).NetID,
 			Status = status.NetID,
+			Multiplier = multiplier,
 		}))
 		Helpers.Status.TriggerMultipliedStatusesListeners(status, multiplier, previousMultiplier)
 	end

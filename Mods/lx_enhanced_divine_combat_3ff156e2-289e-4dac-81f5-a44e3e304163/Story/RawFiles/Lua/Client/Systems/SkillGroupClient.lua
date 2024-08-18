@@ -92,7 +92,7 @@ end)
 
 Ext.Events.UIInvoke:Subscribe(function(ev)
     if SkillGroupManager.IsInAGroup and ev.UI == Ext.UI.GetByType(36) and ev.Function == "showNewSkill" then
-        ClientTimer.Start(500, function()
+        Helpers.Timer.Start(500, function()
             Ext.UI.GetByType(36):ExternalInterfaceCall("notificationDone")
         end)
         ev:PreventAction()

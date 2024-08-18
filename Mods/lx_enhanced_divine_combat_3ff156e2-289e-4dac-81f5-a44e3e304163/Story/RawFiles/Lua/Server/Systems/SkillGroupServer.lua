@@ -76,13 +76,9 @@ Ext.Osiris.RegisterListener("CharacterUsedSkill", 4, "before", function(characte
     }))
 end)
 
----Restores the hotbar shortcuts to its original state
----@param _ string
----@param payload string
-Ext.RegisterNetListener("LX_SkillGroupsRecover", function(_, payload)
-    local info = Ext.Json.Parse(payload)
-    local character = Ext.ServerEntity.GetCharacter(tonumber(info.Character))
-    local skillStatus = nil
+---@param character GUID
+local function RestoreCharacterHotbar(guid)
+    local character = Ext.ServerEntity.GetCharacter(guid)
     for i,status in pairs(character:GetStatuses()) do
         if string.starts(status, "LX_SkillGroup") then
             RemoveStatus(character.MyGuid, status)
@@ -105,6 +101,24 @@ Ext.RegisterNetListener("LX_SkillGroupsRecover", function(_, payload)
     else
         _VWarning("Tried to restore the skillbar of "..character.MyGuid.." but it was not saved !")
     end
+end
+
+local function LoopUntilSkillIsDone(guid)
+    local character = Ext.ServerEntity.GetCharacter(guid)
+    if character.ActionMachine.Layers[1] and character.ActionMachine.Layers[1].State and character.ActionMachine.Layers[1].State.Type == "UseSkill" then
+        Helpers.Timer.Start(33, LoopUntilSkillIsDone, nil, character.MyGuid)
+    else
+        RestoreCharacterHotbar(character.MyGuid)
+    end
+end
+
+---Restores the hotbar shortcuts to its original state
+---@param _ string
+---@param payload string
+Ext.RegisterNetListener("LX_SkillGroupsRecover", function(_, payload)
+    local info = Ext.Json.Parse(payload)
+    local character = Ext.ServerEntity.GetCharacter(tonumber(info.Character))
+    Helpers.Timer.Start(33, LoopUntilSkillIsDone, nil, character.MyGuid)
 end)
 
 ---@param e EsvLuaGameStateChangedEvent
@@ -116,7 +130,7 @@ Ext.Events.GameStateChanged:Subscribe(function(e)
             if character.PlayerData then
                 local status = Helpers.Character.GetStatus(character, "LX_SkillGroup_")
                 if status then
-                    Ext.Net.PostMessageToServer("LX_SkillGroupsRecover", Ext.Json.Stringify({
+                    Ext.Net.BroadcastMessage("LX_SkillGroupsRecover", Ext.Json.Stringify({ -- ERROR HERE (attempt to call a nil value (field 'PostMessageToServer'))
                         Character = character.NetID
                     }))
                 end

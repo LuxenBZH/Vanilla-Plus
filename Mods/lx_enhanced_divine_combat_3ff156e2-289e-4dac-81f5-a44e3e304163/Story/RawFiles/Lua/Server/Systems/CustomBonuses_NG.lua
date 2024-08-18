@@ -233,10 +233,6 @@ function CustomStatusManager:CharacterApplyMultipliedStatus(target, statusID, du
     local status = Ext.PrepareStatus(target, statusID, duration)
     status.StatsMultiplier = multiplier
     Ext.ApplyStatus(status)
-    Ext.Net.BroadcastMessage("VP_MultiplyStatus", Ext.Json.Stringify({
-        Character = Helpers.ServerSafeGetCharacter(target).NetID,
-        Status = status.NetID
-    }))
 end
 
 ---@param statusID string

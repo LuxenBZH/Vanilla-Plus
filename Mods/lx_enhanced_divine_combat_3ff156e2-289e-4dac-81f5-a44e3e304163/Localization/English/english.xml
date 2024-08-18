@@ -6,8 +6,6 @@
 	<content contentuid="h6b67efcagf943g43a1g959eg36f9ecc42e7e" Source="Attributes.lsb" Key="Intelligence">Increases all damage by [1]% per point. Damage dealt by skills is further increased by [2]% (but also wand attacks) and Accuracy by [3]% per point. Each point also increase Ingress by [4], up to the cap set by Strength and increase Wisdom bonus cap from Wits by [5].</content>
 	<content contentuid="h18f97d5bg9a79g4917g809dgb0ac7a5ec302" Source="Attributes.lsb" Key="Strength">Increases all damage by [1]% per point. Damage dealt with weapons (except wands) are further increased by [2]%. Increase Ingress bonus cap from Intelligence by [3]. Allows you to lift and carry heavier items.</content>
 	<content contentuid="h6d2cd8aeg4e09g4003ga57cg3fea3a0f5502" Source="Attributes.lsb" Key="Wits">Wits increase Critical Chance by [1]%, Initiative by [2], increases damage dealt by damaging statuses by [3]% per point and your ability to detect traps and find hidden treasures. Increase Wisdom by [4]%, up to the cap set by Intelligence.</content>
-	<content contentuid="h5525b96fg1a36g41a8gbf58gb9279050aa32" Source="CMP_Soulcatcher_Zombie">Zombie</content>
-	<content contentuid="h5b58a9a9g7632g4958g88fagd579fcea5423" Source="CMP_Soulcatcher_Zombie"></content>
 	<content contentuid="h768669d0g02adg48f7g901eg83068a96bf19" Source="CombatAbilities.lsb" Key="Dual-Wielding_Description">Dual-Wielding increases damage and Dodging when wielding two Single-Handed weapons and increases off-hand damage.</content>
 	<content contentuid="h03d68693g35e7g4721ga1b3g9f9882f08b12" Source="CombatAbilities.lsb" Key="Dual-Wielding_Displayname">Dual-Wielding</content>
 	<content contentuid="h8b09bd1cg68deg4987g9494g540c9d948538" Source="CombatAbilities.lsb" Key="DualWieldingOffhandBonusTooltip">Offhand bonus: [1]% (high ability nullify the base penalty)</content>
@@ -30,19 +28,6 @@
 	<content contentuid="hae8649cfg3688g43b4gb137gdae29b32492e" Source="CombatAbilities.lsb" Key="Warfare_Description">[1] increases all Physical damage you deal and improve your Warmup status.</content>
 	<content contentuid="h2443a42egd7abg4116g95b4g8036050c3bd3" Source="CombatAbilities.lsb" Key="Warfare_TooltipCurrent">Next Level [1]: Physical attacks deal +[2]% more damage, Warmup accuracy bonus increased by [3]% and movement bonus is increased by [4]% per stack.</content>
 	<content contentuid="ha4b72525g51d5g434cgbdf9g3a4ec57319aa" Source="CombatAbilities.lsb" Key="Warfare_TooltipNext">Level [1]: Physical attacks deal +[2]% more damage, Warmup accuracy bonus increased by [3]% and movement bonus is increased by [4]% per stack.</content>
-	<content contentuid="h45221235g7b29g4bdegb758gebf6e378573b" Source="CON_Potion_A_Health_Giant">A very, very large-sized potion that restores your vitality. It makes a soft, tinkling sound when you shake it.</content>
-	<content contentuid="h2c9f8a93g1a43g44b9gbbb6g45f983560791" Source="CON_Potion_A_Health_Giant">Polymorph skills allow you to reshape your body as well as the bodies of your enemies.</content>
-	<content contentuid="hc6e506e1ga2e7g40c0g81c2g297ed840e37d" Source="CON_Potion_A_Health_Giant">Use to read and learn about crafting.</content>
-	<content contentuid="hc32234efg6d48g461egb2b3g9a0b823b170c" Source="CON_Potion_A_Health_Giant">Undeployed Explosive Mine</content>
-	<content contentuid="h344c6011g9e49g44a2ga410gafdb828dba07" Source="CON_Potion_A_Health_Giant">Bone Widow</content>
-	<content contentuid="h1852216fgb397g409ag9dcfg50b29ba87da0" Source="CON_Potion_A_Health_Giant">| Living Wall |</content>
-	<content contentuid="ha556dc68g617dg45c0g8307g392dcb022e7c" Source="CON_Potion_A_Health_Giant">Explosive Mine</content>
-	<content contentuid="h87614bc3g6474g4b95gba1dgc62361ed1734" Source="CON_Potion_A_Health_Giant">Potions</content>
-	<content contentuid="hcf97a6e7ga0ebg4fe3ga4dcg393c9c87423f" Source="CON_Potion_A_Health_Giant">Skillbooks</content>
-	<content contentuid="hf0269df0g098cg47eagaf77g1fdf0c86d90e" Source="CON_Potion_A_Health_Giant">Books</content>
-	<content contentuid="he5dbd78fg9fa1g4ac0g950ag843cb94c1f61" Source="DGM_FallDummy">Dummy</content>
-	<content contentuid="h45ad9237g3009g4b8dgbf80g0c622e5fa194" Source="DGM_FallDummy">Training Targets</content>
-	<content contentuid="h85f3246dg3b28g4736gbb82gbfe321c7d5a3" Source="GRN_Grenade_Acid_A">Grenades</content>
 	<content contentuid="hdf2a4bd0g134eg4107g9a8agd93d6d22fd68" Source="Misc.lsb" Key="AttributesGeneralBonusDynamicTooltip">From Attributes : [1]%</content>
 	<content contentuid="he534e470gb8a2g4032gbd9bgee0ac41f1f0f" Source="Misc.lsb" Key="BuiltinWeaponEnhancementTooltip"></content>
 	<content contentuid="hb24edf38gd48ag477fgbf75g3bd3de8c6eec" Source="Misc.lsb" Key="Corrogic">Resistance Corrosion</content>
@@ -115,6 +100,34 @@
 	<content contentuid="h169eda41gad02g4143g997eg29c0cee15c14" Source="Potion.lsb" Key="Stats_LX_WalkItOff_3">Walk It Off (3)</content>
 	<content contentuid="hfe5567d9g5f27g4729g8774g36bce3393b4d" Source="Potion.lsb" Key="Stats_LX_WalkItOff_4">Walk It Off (4)</content>
 	<content contentuid="h3c306881g0106g4b61g931eg1e837bca6149" Source="Potion.lsb" Key="Stats_LX_WalkItOff_5">Walk It Off (5)</content>
+	<content contentuid="h277498b7gfd0bg449bga053g3e1dae5ca0b0" Source="RangedStances.lsb" Key="LX_AIMING_STANCE_DisplayName">Aiming Stance</content>
+	<content contentuid="h13ed1461ge8e3g477ag8f51g958c2f4a4727" Source="RangedStances.lsb" Key="LX_HUNTERMARK_APPLIED_Description">The next ranged weapon skill from [1] will do 50% more damage and will bypass Accuracy checks.</content>
+	<content contentuid="h60b4894egad4bg4739gac4agfe88440bce95" Source="RangedStances.lsb" Key="LX_HUNTERMARK_APPLIED_DisplayName">Marked for death</content>
+	<content contentuid="h84fd8ab8gbebag4766g9ae6gf44377bc80e5" Source="RangedStances.lsb" Key="LX_HUNTERMARK_Description">If the aiming stance of the instigator is not broken when this status expires, their next ranged weapon skill will do 50% more damage and bypass Accuracy when targeting this character.</content>
+	<content contentuid="h824a28cfg6feag40e9gb4aegadb1c9c1b6b1" Source="RangedStances.lsb" Key="LX_HUNTERMARK_DisplayName">Hunter&apos;s Mark</content>
+	<content contentuid="hd136cd0dge4efg455bgab63g1c5f09e8b3f7" Source="RangedStances.lsb" Key="LX_RAPIDFIRE_Description">Huntsman offensive skills cost less AP but will do less damage as well.</content>
+	<content contentuid="hc6fd8ccagf282g443cga110g9dee53707a0b" Source="RangedStances.lsb" Key="LX_RAPIDFIRE_DisplayName">Rapid fire</content>
+	<content contentuid="h029d1a4fg5ab0g49e0g9abegc9e15bebca22" Source="RangedStances.lsb" Key="LX_REFLEX_STANCE_Description">Each successful ranged weapon hit done by this character will provide [1]m Celerity, but Accuracy on targets beyond 8m is halved.</content>
+	<content contentuid="hf9f20bd7gbfe4g4c4bgad59gdc7269f503ed" Source="RangedStances.lsb" Key="LX_REFLEX_STANCE_DisplayName">Reflex Stance</content>
+	<content contentuid="h9e6328c3gd089g40a0g9b27gc128f0ec539a" Source="RangedStances.lsb" Key="LX_RELOAD_DisplayName">Reload</content>
+	<content contentuid="hecc2fd8fged63g414bg9418g03b24ee992f4" Source="RangedStances.lsb" Key="LX_RELOAD_PENALTY_Description">Convert Celerity to reduce the cooldown of the last skill used.</content>
+	<content contentuid="hfb285918gb021g48ecga65cgdf885c76c31a" Source="RangedStances.lsb" Key="LX_RELOAD_PENALTY_DisplayName">Reload</content>
+	<content contentuid="h2fcb1a3fg1529g457dga677g50f4ec549691" Source="RangedStances.lsb" Key="LX_SUPPRESSED_Description">Receiving ranged attacks will reduce further Movement, Celerity, Damage and Wisdom while staying in the suppressed area.</content>
+	<content contentuid="h1371caecg6f8bg4f1bg8c9ag31fc22292c21" Source="RangedStances.lsb" Key="LX_SUPPRESSED_DisplayName">Suppressed</content>
+	<content contentuid="h77c44af5g4d45g434bgbe54g5fccaef26cd3" Source="RangedStances.lsb" Key="Shout_LX_RangedAimingStance_Description">Set Movement to 0, reduce Dodge by [1]% but increase Accuracy by [2]% and Critical chance by [3]%. Also provides Suppression and Mark for death skills. If the character receives a melee attack, the stance breaks and go on cooldown for 3 turns.</content>
+	<content contentuid="h2045f341g51b8g4435gbeccg405635077ac2" Source="RangedStances.lsb" Key="Shout_LX_RangedAimingStance_DisplayName">Aiming Stance</content>
+	<content contentuid="hca9195aeg715fg4387gbe13ge48e4ccdf2a3" Source="RangedStances.lsb" Key="Shout_LX_RangedReflexStance_Description">Accuracy is reduced by half when attacking targets beyond 8m but each successful hit grants 2 meters of free movement. Also provides Reloading and Rapid fire skills.</content>
+	<content contentuid="h1db2ada5g0ccag4febg8228g771074232992" Source="RangedStances.lsb" Key="Shout_LX_RangedReflexStance_DisplayName">Reflex Stance</content>
+	<content contentuid="h34ec8c2ega1ecg46b4gbe96gf7070e6678d2" Source="RangedStances.lsb" Key="Shout_LX_RangedStances_Description">Change the character stance to provide specific advantages with a bow or a crossbow.</content>
+	<content contentuid="h6fa29989g3160g479ag9e1cgcde1483eedd0" Source="RangedStances.lsb" Key="Shout_LX_RangedStances_DisplayName">Ranger Stances</content>
+	<content contentuid="hd289e74bgd779g47d8gb225ga4c7526336d2" Source="RangedStances.lsb" Key="Shout_LX_RapidFire_Description">Reduce the AP cost of Huntsman skills by 1 but reduces their damage by up to 35% depending on the original cost until the end of the turn. Cannot reduce AP costs below 1.</content>
+	<content contentuid="h8e14798eg42cfg468fg87efg3da3af53f26f" Source="RangedStances.lsb" Key="Shout_LX_RapidFire_DisplayName">Rapid Fire</content>
+	<content contentuid="h17742d01ga6afg4d36g99efg057be20b47ea" Source="RangedStances.lsb" Key="Shout_LX_Reload_Description">Consume available Celerity to reduce the cooldown of the latest Huntsman skill used by 1 turn per 2.5m of Celerity consumed.</content>
+	<content contentuid="he988464dga06ag4169ga694g853a26a924df" Source="RangedStances.lsb" Key="Shout_LX_Reload_DisplayName">Reload</content>
+	<content contentuid="he277a356g75c7g4ce1g9b3ag6340b43bc512" Source="RangedStances.lsb" Key="Target_LX_HunterMark_Description">Mark the target. If the stance is not broken until next turn, the next skill against the marked target will inflict 50% more damage and bypass Accuracy checks.</content>
+	<content contentuid="h38811663g88e4g444dgbda2g880b18198a1c" Source="RangedStances.lsb" Key="Target_LX_HunterMark_DisplayName">Hunter&apos;s mark</content>
+	<content contentuid="hf6ad3ad9g9ceag4df4g8035gee550741027b" Source="RangedStances.lsb" Key="Target_LX_SuppressionFire_DisplayName">Suppression fire</content>
+	<content contentuid="h22ed7dacg4d3cg4beag92c7g224187547dfe" Source="RangedStances.lsb" Key="Target_LX_SuppressionFiret_Description">Cover an area and sets Suppression on characters you shoot inside, reducing their Celerity by [1], Damage by [2]%, Movement by [3] and Wisdom by [4] for 2 turns and stacks up to 5 times. The suppression area lasts 2 turns.</content>
 	<content contentuid="heace2e30g4075g428cg8163g3fc8eff9323b" Source="Resources.lsb" Key="LXDGM_ArmourDamagePass">Armour penetration</content>
 	<content contentuid="h8271feceg6b6cg470cg8c8fg5de1ee77a76b" Source="Resources.lsb" Key="LXDGM_ArmourDamagePass_Description">Set the percentage of damage going through armours.&lt;br&gt;Default : 50</content>
 	<content contentuid="h39ded39fg40a6g46a1gafe4gbaf448e4f20a" Source="Resources.lsb" Key="LXDGM_ArmourDamagePassDepleted">Last armour penetration</content>
@@ -269,7 +282,6 @@
 	<content contentuid="h71b09f9fg285fg4532gab16g1c7640864141" Source="Skills.lsb" Key="TooltipBonusLevel">Damage is based on your level and trigger the additional skill bonus from Intelligence.</content>
 	<content contentuid="ha4cfd852g52f1g4079g8919gd392ac8ade1a" Source="Skills.lsb" Key="TooltipBonusWeapon">Damage is based on your basic attack and trigger the additional bonus from both Strength and Intelligence.</content>
 	<content contentuid="hfb851683g738cg4b48g8fd8g478d375c030a" Source="Skills.lsb" Key="WarpInfusionDescription">Incarnate learns a teleport skill, and a skill to swap places with its master. Increases damage by [1]% and maximum Vitality by 15%.</content>
-	<content contentuid="h512982bbgf22bg4604gb41bg6503586ee1ab" Source="Status_DAMAGE_DisplayName.lsb" Key="LX_FOOD_POISONED_DisplayName">Food Poisoning</content>
 	<content contentuid="h32b3f391g84c8g4350gb6c1gc0577fd7372a" Source="Statuses.lsb" Key="AcidDescription">Inflict [1] each turn.</content>
 	<content contentuid="hae68ba97g6072g46fagb9d3g7c289a0e7511" Source="Statuses.lsb" Key="BullHornsDescription">Magnificent horns sprout from your forehead, making you see red. You can rush at your enemies and gore them. Increases Retribution ability by 2 for the duration.</content>
 	<content contentuid="he3d3ef27gc4e2g4271ga838ge227b9193ef7" Source="Statuses.lsb" Key="DGM_AIMEDSHOT_Description">Increase Accuracy and Critical Chance for the next weapon attack.</content>
@@ -319,6 +331,4 @@
 	<content contentuid="h8fc505abgfadbg4481g8d79gb73e606117d7" Source="Talents.lsb" Key="Soulcatcher">When an allied character dies, a Zombie Crawler is raised at their corpse, under their control. Zombie Crawler lasts 3 turns or until character is resurrected. Range 12m. Does not affect summoned creatures. Can happen only once per turn.</content>
 	<content contentuid="h878c02c0gc629g470dg955cg80dc2a125cb2" Source="Talents.lsb" Key="Stench">Stench decreases everyone&apos;s attitude towards you by [2], but melee opponents find you less attractive in combat. Increases your Poison resistance by 30% and makes you immune to Diseased and Infected.</content>
 	<content contentuid="h6d76eb15gdb1ag4ebeg8001g58173516a923" Source="Talents.lsb" Key="WalkItOff">Walk It Off reduces all status durations by 1 turn, including positive statuses. Does not affect statuses with a duration of 1 turn. Also increases elemental resistances by 8% and Physical and Piercing resistances by 4% each time you are directly hit by a character, up to a maximum of 3 times until the next turn.</content>
-	<content contentuid="haf2e28f8gb3cdg49d0g8c8cg5b602a7e2e26" Source="VPP_VisionBlockerTest">Crate</content>
-	<content contentuid="hdef9a124ga8d8g4662ga946g843dccecb5a1" Source="VPP_VisionBlockerTest">Miscellaneous</content>
 </contentList>

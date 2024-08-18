@@ -64,31 +64,63 @@ Ext.Osiris.RegisterListener("NRD_OnStatusAttempt", 4, "before", function(target,
     end
 end)
 
----------- Celerity free movement attribution
+---------- Celerity PartialAP recalculation every time a status influencing Movement stat or Celerity is added or removed
 ---@param character GUID
 ---@param status string
----@param instigator GUID
-Ext.Osiris.RegisterListener("CharacterStatusApplied", 3, "before", function(character, status, instigator)
-    if not Data.Stats.BannedStatusesFromChecks[status] and status ~= "" and NRD_StatExists(status) == 1 then
+---@param removed boolean
+local function CelerityRecalcStatusEvent(character, status, removed)
+    character = GetUUID(character)
+    if CharacterIsInCombat(character) == 1 and CombatGetActiveEntity(CombatGetIDForCharacter(character)) ~= character and not Data.Stats.BannedStatusesFromChecks[status] and status ~= "" and NRD_StatExists(status) then
         local character = Ext.ServerEntity.GetCharacter(character)
-        local status = character:GetStatus(status)
-        local statEntry = Ext.Stats.Get(status.StatsId)
-        if statEntry.VP_Celerity ~= 0 then
-            character.PartialAP = character.PartialAP + statEntry.VP_Celerity / Data.Math.GetCharacterMovement(character).Movement
+        local statsId = Ext.Stats.Get(status).StatsId
+        if statsId ~= "" then
+            local statEntry = Ext.Stats.Get(statsId)
+            if statEntry.Movement ~= 0 or statEntry.MovementSpeedBoost ~= 0 or statEntry.VP_Celerity ~= 0 then
+                character.PartialAP = Data.Math.CharacterCalculatePartialAP(character)
+            end
         end
+    end
+end
+
+---@param status EsvStatus
+Helpers.Status.RegisterMultipliedStatus("All", function(status, _, _)
+    if NRD_StatExists(status.StatsId) then
+        local character = Ext.ServerEntity.GetCharacter(status.TargetHandle)
+        CelerityRecalcStatusEvent(character.MyGuid, status.StatusId)
     end
 end)
 
-----------
----------- Free Movement per turn
-Helpers.RegisterTurnTrueStartListener(function(character)
-    local char = Ext.ServerEntity.GetCharacter(character)
-    local movement = Data.Math.GetCharacterMovement(char)
-    local celerity = Data.Math.ComputeCelerityValue(Data.Math.ComputeCharacterCelerity(char), char)
-    if movement.Movement >= movement.BaseMovement then
-        char.PartialAP = char.PartialAP + 100/movement.Movement + celerity
-    else
-        char.PartialAP = char.PartialAP + movement.Movement/movement.BaseMovement * 100/movement.Movement + celerity
+---@param character GUID
+---@param status string
+---@param instigator GUID
+Ext.Osiris.RegisterListener("CharacterStatusApplied", 3, "after", function(character, status, instigator)
+    if ObjectExists(character) == 1 then
+        CelerityRecalcStatusEvent(character, status)
+    end
+end)
+
+Ext.Osiris.RegisterListener("CharacterStatusRemoved", 3, "before", function(character, status, instigator)
+    if ObjectExists(character) == 1 then
+        CelerityRecalcStatusEvent(character, status, true)
+    end
+end)
+
+---@param e EsvLuaStatusDeleteEvent
+-- Ext.Events.BeforeStatusDelete:Subscribe(function(e)
+--     _P(e.Status.StatusId, e.Status.StatusType, e.Status.StatsId)
+--     if e.Status.StatusType == "CONSUME" and NRD_StatExists(e.Status.StatsId) then
+--         local object = Ext.ServerEntity.GetGameObject(e.Status.TargetHandle)
+--         if Helpers.IsCharacter(object) then
+--             _P("CALL")
+--             CelerityRecalcStatusEvent(object.MyGuid, e.Status.StatusId)
+--         end
+--     end
+-- end)
+
+Ext.Osiris.RegisterListener("ObjectTurnEnded", 1, "after", function(object)
+    if ObjectIsCharacter(object) == 1 then
+        local character = Ext.ServerEntity.GetCharacter(object)
+        character.PartialAP = Data.Math.CharacterCalculatePartialAP(character)
     end
 end)
 
