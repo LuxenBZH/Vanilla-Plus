@@ -94,11 +94,15 @@ end)
 ---@param status string
 ---@param instigator GUID
 Ext.Osiris.RegisterListener("CharacterStatusApplied", 3, "after", function(character, status, instigator)
-    CelerityRecalcStatusEvent(character, status)
+    if ObjectExists(character) == 1 then
+        CelerityRecalcStatusEvent(character, status)
+    end
 end)
 
 Ext.Osiris.RegisterListener("CharacterStatusRemoved", 3, "before", function(character, status, instigator)
-    CelerityRecalcStatusEvent(character, status, true)
+    if ObjectExists(character) == 1 then
+        CelerityRecalcStatusEvent(character, status, true)
+    end
 end)
 
 ---@param e EsvLuaStatusDeleteEvent
