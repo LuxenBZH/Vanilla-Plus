@@ -18,7 +18,7 @@ function Helpers.UserVars.GetVar(entity, name)
         _VError("Variable "..name.." is not registered!", "UserVars")
         return nil
     end
-    return vars[name][tostring(id)]
+    return Ext.Json.Parse(vars[name])[tostring(id)]
 end
 
 function Helpers.UserVars.SetComplexValue(name, index, value)
@@ -27,9 +27,10 @@ function Helpers.UserVars.SetComplexValue(name, index, value)
         _VWarning("Var "..name.." is not registered !", "UserVars", "IsServer:", Ext.IsServer())
         return
     end
-    local varContent = vars[name]
+    if type(vars[name]) ~= "string" then return false end
+    local varContent = Ext.Json.Parse(vars[name])
     varContent[index] = value
-    vars[name] = varContent
+    vars[name] = Ext.Json.Stringify(varContent)
     return true
 end
 
@@ -40,8 +41,8 @@ end
 ---@param noSync boolean|nil
 function Helpers.UserVars.SetVar(entity, name, value, noSync)
     local id = Ext.IsServer() and entity.MyGuid or entity.NetID
-    noSync = not Helpers.UserVars.SetComplexValue(name, id, value)
-    if not noSync then
+    local valid = Helpers.UserVars.SetComplexValue(name, id, value)
+    if not noSync and valid then
         if Ext.IsServer() then
             if Helpers.UserVars.Registered[name].SyncToClient and Helpers.UserVars.Registered[name].SyncOnWrite then
                 Ext.Net.BroadcastMessage("VP_UserVarsSyncSingle", Ext.Json.Stringify({
@@ -65,18 +66,22 @@ end
 local function PackVariableForClientSide(varName)
     local contentTable = {}
     local vars = Ext.Vars.GetModVariables(Data.ModGUID)
-    local varContent = vars[varName]
-    for guid, content in pairs(vars[varName]) do
-        if ObjectExists(guid) == 1 then
-            local entity = Ext.ServerEntity.GetGameObject(guid)
-            if entity.CurrentLevel == Ext.ServerEntity.GetCurrentLevel().LevelDesc.LevelName then
-                contentTable[entity.NetID] = content
+    local varContent = Ext.Json.Parse(vars[varName])
+    if varContent then
+        for guid, content in pairs(varContent) do
+            if ObjectExists(guid) == 1 then
+                local entity = Ext.ServerEntity.GetGameObject(guid)
+                if entity.CurrentLevel == Ext.ServerEntity.GetCurrentLevel().LevelDesc.LevelName then
+                    contentTable[entity.NetID] = content
+                end
+            else
+                Helpers.UserVars.SetComplexValue(varName, guid, nil)
             end
-        else
-            Helpers.UserVars.SetComplexValue(varName, guid, nil)
         end
+        return contentTable
+    else
+        return {}
     end
-    return contentTable
 end
 
 local function SyncVariableToClients(varName)
@@ -166,13 +171,14 @@ function Helpers.UserVars.RegisterUserVar(name, persistent, syncToClient, syncOn
         SyncOnWrite = syncOnWrite,
         SyncOnTick = syncOnTick
     }
+    _P(name, persistent)
     Ext.Vars.RegisterModVariable(Data.ModGUID, name, {
         Persistent = persistent or false,
         Server = true,
         Client = true,
         WriteableOnServer = true,
         WriteableOnClient = true,
-        DontCache = true,
+        DontCache = false,
         SyncOnTick = false,
         SyncOnWrite = false,
         SyncToClient = false,
@@ -181,14 +187,14 @@ function Helpers.UserVars.RegisterUserVar(name, persistent, syncToClient, syncOn
     local vars = Ext.Vars.GetModVariables(Data.ModGUID)
     if Ext.IsServer() then
         if not vars[name] then
-            vars[name] = {}
+            vars[name] = "{}"
             return
         end
         if persistent then
             Helpers.Timer.Start(300, SyncVariableToClients, nil, name)
         end
     else
-        vars[name] = {}
+        vars[name] = "{}"
     end
 end
 
