@@ -48,3 +48,14 @@ end
 Data.Text.GetFormattedDamageRangeText = function(damageType, value1, value2)
     return "<font color="..Data.Text.GetDamageColor(damageType)..">"..tostring(Ext.Utils.Round(value1)).."-"..tostring(Ext.Utils.Round(value2)).." "..damageType.." "..string.lower(Ext.L10N.GetTranslatedString(Data.Text.TranslatedKeys.Common.Damage)).."</font>"
 end
+
+---@param skill string
+Data.Text.GetSkillDisplayName = function(skill)
+    local statEntry = Ext.Stats.Get(skill) ---@type StatEntrySkillData
+    if statEntry.DisplayName ~= "" then
+        return Ext.L10N.GetTranslatedStringFromKey(statEntry.DisplayName)
+    elseif statEntry.Using ~= "" then
+        Data.Text.GetSkillDisplayName(statEntry.Using)
+    end
+    return skill
+end

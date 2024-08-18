@@ -62,7 +62,7 @@ if Ext.IsClient() then
                     Type = "SkillDescription"
                 }, desc)
                 tooltip:AppendElementAfter({
-                    Label = "<font color=#FFEA8C>Will apply to: "..Ext.L10N.GetTranslatedStringFromKey(skill.."_DisplayName").."</font>",
+                    Label = "<font color=#FFEA8C>Will apply to: "..Data.Text.GetSkillDisplayName(skill).."</font>",
                     Type = "SkillDescription"
                 }, desc)
             else
