@@ -220,9 +220,9 @@ end
 local function AttributeCap()
 	local hardSaved = Ext.LoadFile("LeaderLib_GlobalSettings.json")
 	if hardSaved ~= nil then
-		local variables = Ext.JsonParse(hardSaved).Mods["3ff156e2-289e-4dac-81f5-a44e3e304163"].Global.Flags
-		if variables.LXDGM_AttributeCap then
-			Ext.ExtraData.AttributeSoftCap = variables.LXDGM_AttributeCap
+		local variables = Ext.JsonParse(hardSaved).Mods["3ff156e2-289e-4dac-81f5-a44e3e304163"].Global.Variables
+		if variables.AttributeCap then
+			Ext.ExtraData.AttributeSoftCap = variables.AttributeCap
 		end
 	end
 end
