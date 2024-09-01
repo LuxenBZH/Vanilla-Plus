@@ -65,3 +65,56 @@ Ext.Osiris.RegisterListener("ObjectLeftCombat", 2, "before", function(object, co
         PersistentVars.SPunchCooldown[object] = nil
     end
 end)
+
+---@param hit EsvStatusHit
+---@param instigator EsvCharacter
+---@param target EsvCharacter
+---@param flags HitFlags
+HitManager:RegisterHitListener("DGM_Hit", "AfterDamageScaling", "VP_AxeAttackBonus", function(hit, instigator, target, flags)
+    if hit.SkillId == "Target_LX_AxeAttack_-1" and Helpers.IsCharacter(target) then
+        local mainDamage = (instigator.Stats.MainWeapon and instigator.Stats.MainWeapon.WeaponType == "Axe") and instigator.Stats.MainWeapon.StatsEntry['Damage Type'] or 
+            instigator.Stats.OffHandWeapon.StatsEntry['Damage Type']
+        local correspondingArmor = Data.DamageTypeToArmorType[mainDamage]
+        local correspondingDamage = correspondingArmor == "CurrentArmor" and HitHelpers.HitGetPhysicalDamage(hit.Hit) or HitHelpers.HitGetMagicDamage(hit.Hit)
+        if target.Stats[correspondingArmor] - correspondingDamage <= 0 then
+            local totalDamage = Ext.Utils.Round(math.min(HitHelpers.HitGetTotalDamage(hit.Hit)*0.75, instigator.Stats.MaxVitality*0.08))
+            HitHelpers.HitAddDamage(hit.Hit, target, instigator, mainDamage, totalDamage)
+            Helpers.Character.AddSkillCooldown(instigator, "Target_LX_AxeAttack", 6.0)
+        end
+    elseif hit.SkillId == "Target_LX_MaceCrush_-1" and Helpers.IsCharacter(target) then
+        local mainDamage = (instigator.Stats.MainWeapon and instigator.Stats.MainWeapon.WeaponType == "Club") and instigator.Stats.MainWeapon.StatsEntry['Damage Type'] or 
+            instigator.Stats.OffHandWeapon.StatsEntry['Damage Type']
+        local correspondingArmor = Data.DamageTypeToArmorType[mainDamage]
+        if target.Stats[correspondingArmor] <= 0 then
+            Helpers.Character.AddSkillCooldown(instigator, "Target_LX_MaceCrush", -6.0)
+        end
+        local totalDamage = Ext.Utils.Round(HitHelpers.HitGetTotalDamage(hit.Hit)*0.8)
+        HitHelpers.HitAddDamage(hit.Hit, target, instigator, Data.ArmorTypeDamage[correspondingArmor], totalDamage)
+    elseif hit.SkillId == "Zone_LX_SpearAttack_-1" and Helpers.IsCharacter(target) then
+        local count = GetVarInteger(instigator.MyGuid, "VP_SpearAttackCount") or 0
+        SetVarInteger(instigator.MyGuid, "VP_SpearAttackCount", count+1)
+    elseif hit.SkillId == "Target_LX_SwordCleave_-1" and Helpers.IsCharacter(target) then
+        local count = GetVarInteger(instigator.MyGuid, "VP_SwordAttackCount") or 0
+        SetVarInteger(instigator.MyGuid, "VP_SwordAttackCount", count+1)
+    end
+end)
+
+Ext.Osiris.RegisterListener("CharacterUsedSkill", 4, "after", function(character, skill, _, _)
+    if skill == "Zone_LX_SpearAttack" then
+        Helpers.Timer.Start(1200, function(character)
+            local count = GetVarInteger(character, "VP_SpearAttackCount") or 0
+            if count > 2 then
+                Helpers.Character.AddSkillCooldown(Ext.ServerEntity.GetCharacter(character), "Zone_LX_SpearAttack", (count-2)*6)
+            end
+            SetVarInteger(character, "VP_SpearAttackCount", 0)
+        end, nil, character)
+    elseif skill == "Target_LX_SwordCleave" then
+        Helpers.Timer.Start(1200, function(character)
+            local count = GetVarInteger(character, "VP_SwordAttackCount") or 0
+            if count > 2 then
+                Helpers.Character.AddSkillCooldown(Ext.ServerEntity.GetCharacter(character), "Target_LX_SwordCleave", (count-2)*6)
+            end
+            SetVarInteger(character, "VP_SwordAttackCount", 0)
+        end, nil, character)
+    end
+end)

@@ -1,0 +1,9 @@
+Key	Content	Handle
+Target_HeavyAttack_DisplayName	Recklessness	
+Target_AxeAttack_Description	Perform a heavy attack that deals [1]. If the target armour corresponding to the main damage of the axe is stripped, it also deals 8% of the user max Vitality (up to 75% of the damage done by the hit) as the main axe damage but also increases cooldown by 1 turn.	
+Target_SwordCleave_DisplayName	Cleave	
+Target_SwordCleave_Description	Perform a swipe cleaving all enemies within 3 meters of the target, dealing [1]. Each hit beyond the second character increases the cooldown by 1.	
+Target_LX_MaceCrush_DisplayName	Crush Armor	
+Target_LX_MaceCrush_Description	Strike the target to deal [1]. Deals an additional 80% of this hit as armor damage corresponding to the main damage type of the mace. If there is no armor before the hit, cooldown is reduced by 1 turn.	
+Zone_LX_SpearAttack_DisplayName	Lightning Throw	
+Zone_LX_SpearAttack_Description	Execute a long range thrust, dealing [1] over 8 meters. When hitting more than two characters, cooldown is increased by 1 turn for each additional hit.	

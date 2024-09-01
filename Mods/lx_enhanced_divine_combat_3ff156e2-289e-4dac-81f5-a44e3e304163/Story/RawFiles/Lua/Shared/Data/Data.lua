@@ -454,3 +454,20 @@ Data.EquipmentSlots = {
 }
 
 Data.ModGUID = "3ff156e2-289e-4dac-81f5-a44e3e304163"
+
+Data.DamageTypeToArmorType = {
+	Air = "CurrentMagicArmor",
+	Earth ="CurrentMagicArmor",
+	Fire = "CurrentMagicArmor",
+	Magic = "CurrentMagicArmor",
+	Poison = "CurrentMagicArmor",
+	Water = "CurrentMagicArmor",
+	Corrosive = "CurrentArmor",
+	Physical = "CurrentArmor",
+	--Sulfuric = "CurrentArmor/CurrentMagicArmor", -- Affects CurrentMagicArmor if MagicalSulfur is true, otherwise CurrentArmor
+}
+
+Data.ArmorTypeDamage = {
+	CurrentMagicArmor = "Magic",
+	CurrentArmor = "Corrosive"
+}
