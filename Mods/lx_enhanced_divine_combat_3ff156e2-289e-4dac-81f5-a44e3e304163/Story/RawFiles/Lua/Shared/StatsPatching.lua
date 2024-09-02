@@ -222,7 +222,7 @@ local function AttributeCap()
 	if hardSaved ~= nil then
 		local variables = Ext.JsonParse(hardSaved).Mods["3ff156e2-289e-4dac-81f5-a44e3e304163"].Global.Variables
 		if variables.AttributeCap then
-			Ext.ExtraData.AttributeSoftCap = variables.AttributeCap
+			Ext.ExtraData.AttributeSoftCap = variables.AttributeCap.Value
 		end
 	end
 end
