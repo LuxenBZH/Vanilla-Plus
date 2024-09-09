@@ -59,3 +59,12 @@ Data.Text.GetSkillDisplayName = function(skill)
     end
     return skill
 end
+
+---comment
+---@param number number|string
+---@return string
+Data.Text.FormatNumberDigitsNoZero = function(number)
+    local str = string.format("%.2f", number)
+    local pruned = str:gsub("%.?0+$", "")
+    return pruned
+end
