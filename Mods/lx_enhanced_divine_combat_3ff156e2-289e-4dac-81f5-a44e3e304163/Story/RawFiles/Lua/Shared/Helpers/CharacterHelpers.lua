@@ -75,15 +75,11 @@ end
 Helpers.GetCharactersAroundPosition = function(x,y,z,radius)
 	local grid = Ext.Entity.GetAiGrid()
 	local characters = {}
-	for posx = x-radius,x+radius,1 do
-		for posz = z-radius,z+radius,1 do
-			local cell = grid:GetCellInfo(posx, posz)
-			for i,object in pairs(cell.Objects) do
-				local entity = Ext.Entity.GetGameObject(object)
-				if Ext.Types.GetObjectType(entity) == "ecl::Character" and entity.WorldPos[2] < y+radius and entity.WorldPos[2] > y-radius then
-					table.insert(characters, entity)
-				end
-			end
+	local currentLevel = Ext.Entity.GetCurrentLevel()
+	local levelCharacters = currentLevel.EntityManager.CharacterConversionHelpers.ActivatedCharacters[currentLevel.LevelDesc.LevelName]
+	for i, character in pairs(levelCharacters) do
+		if Ext.Math.Distance({x, y, z}, character.WorldPos) <= radius then
+			table.insert(characters, character)
 		end
 	end
 	return characters
