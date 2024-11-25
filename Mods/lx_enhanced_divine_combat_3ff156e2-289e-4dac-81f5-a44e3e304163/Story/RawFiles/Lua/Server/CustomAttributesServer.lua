@@ -27,18 +27,21 @@ Ext.Osiris.RegisterListener("NRD_OnStatusAttempt", 4, "before", function(target,
     local s = Ext.ServerEntity.GetStatus(target, handle) --- @type EsvStatus|EsvStatusHeal|EsvStatusHealing
     if ObjectIsCharacter(instigator) == 0 then return end
     local healer
+    local target = Ext.ServerEntity.GetGameObject(target)
     -- Fix the double bonus from shared healings
     if status == "HEAL" and s.HealEffect == "HealSharing" then
         healer = Ext.ServerEntity.GetCharacter(instigator)
         if s.HealType == "PhysicalArmor" then
+            if Helpers.IsItem(target) then return end
             s.HealAmount = Ext.Utils.Round(s.HealAmount / (1 + healer.Stats.EarthSpecialist * Ext.ExtraData.SkillAbilityArmorRestoredPerPoint / 100))
         elseif s.HealType == "MagicArmor" then
+            if Helpers.IsItem(target) then return end
             s.HealAmount = Ext.Utils.Round(s.HealAmount / (1 + healer.Stats.WaterSpecialist * Ext.ExtraData.SkillAbilityArmorRestoredPerPoint / 100))
         else
             s.HealAmount = Ext.Utils.Round(s.HealAmount / (1 + healer.Stats.WaterSpecialist * Ext.ExtraData.SkillAbilityVitalityRestoredPerPoint / 100))
         end
     end
-    local target = Ext.ServerEntity.GetGameObject(target)
+    
     healer = Ext.ServerEntity.GetCharacter(instigator)
     -- Wisdom bonus to any other heal that isn't LIFESTEAL
     -- HEAL is the proxy status used for the healing value, the original status will have a healing value equal to 0

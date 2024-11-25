@@ -152,16 +152,23 @@ Data.Math.ComputeCharacterWisdomMagicArmor = function(character)
         character.Stats.WaterSpecialist * Ext.ExtraData.SkillAbilityArmorRestoredPerPoint + equipmentWisdom + statusesWisdom) / 100 + 1
 end
 
+--- @param character EsvCharacter|EclCharacter
+Data.Math.ComputeCharacterWisdomHighestArmor = function(character)
+	return math.max(Data.Math.ComputeCharacterWisdomArmor(character), Data.Math.ComputeCharacterWisdomMagicArmor(character))
+end
+
 Data.Stats.HealType = {
     Vitality = Data.Math.ComputeCharacterWisdom,
     PhysicalArmor = Data.Math.ComputeCharacterWisdomArmor,
-    MagicArmor = Data.Math.ComputeCharacterWisdomMagicArmor
+    MagicArmor = Data.Math.ComputeCharacterWisdomMagicArmor,
+	AllArmor = Data.Math.ComputeCharacterWisdomHighestArmor
 }
 
 Data.Stats.HealAbilityBonus = {
 	Vitality = function(healer) return math.max(1, 1 + (healer.Stats.WaterSpecialist*Ext.ExtraData.SkillAbilityVitalityRestoredPerPoint/100)) end,
 	PhysicalArmor = function(healer) return math.max(1, 1 + (healer.Stats.EarthSpecialist*Ext.ExtraData.SkillAbilityArmorRestoredPerPoint/100)) end,
-	MagicArmor = function(healer) return math.max(1, 1 + (healer.Stats.WaterSpecialist*Ext.ExtraData.SkillAbilityArmorRestoredPerPoint/100)) end
+	MagicArmor = function(healer) return math.max(1, 1 + (healer.Stats.WaterSpecialist*Ext.ExtraData.SkillAbilityArmorRestoredPerPoint/100)) end,
+	AllArmor = function(healer) return math.max(math.max(1, 1 + (healer.Stats.EarthSpecialist*Ext.ExtraData.SkillAbilityArmorRestoredPerPoint/100)), math.max(1, 1 + (healer.Stats.WaterSpecialist*Ext.ExtraData.SkillAbilityArmorRestoredPerPoint/100))) end
 }
 
 --- @param character EsvCharacter | EclCharacter
