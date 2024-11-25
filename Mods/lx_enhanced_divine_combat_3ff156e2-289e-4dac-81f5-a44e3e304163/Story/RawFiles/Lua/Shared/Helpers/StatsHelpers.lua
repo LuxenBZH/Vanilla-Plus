@@ -26,3 +26,21 @@ Helpers.Stats.GetEntryType = function(entry)
 		return "Character"
 	end
 end
+
+---Check if the designated stat exists
+---@param statType StatType
+---@param name string
+---@return boolean
+Helpers.Stats.Exists = function(statType, name)
+	if Ext.IsServer() then
+		return NRD_StatExists(name) and true or false
+	else
+		local stats = Ext.Stats.GetStats(statType)
+		for i,stat in pairs(stats) do
+			if stat == name then
+				return true
+			end
+		end
+		return false
+	end
+end
