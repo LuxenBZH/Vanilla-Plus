@@ -118,8 +118,7 @@ if Ext.IsServer() then
     ---@param _ string|number
     ---@param _ any
     Ext.Osiris.RegisterListener("UserConnected", 3, "after", function(userId, userName, _)
-        _VPrint(userName.." connected.")
-        for i,var in pairs(Helpers.UserVars.Registered) do
+        for var,j in pairs(Helpers.UserVars.Registered) do
             local contentTable = PackVariableForClientSide(var)
             Ext.Net.PostMessageToUser(userId, "VP_UserVarsSyncVar", Ext.Json.Stringify({
                 Var = var,
