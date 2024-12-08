@@ -1,8 +1,22 @@
 Data = {}
-Data.IsServer = Ext.IsServer()
 Ext.Require("BootstrapShared.lua")
 -- Ext.Require("Shared/Helpers.lua")
 Helpers.VPPrint("Loaded", "BootstrapClient")
+
+---Ask the server for the UserID
+Ext.Events.GameStateChanged:Subscribe(function(e)
+	if e.FromState == "PrepareRunning" and e.ToState == "Running" then
+		Ext.Net.PostMessageToServer("LX_AskClientInfo", tostring(Ext.ClientEntity.GetPlayerManager().ClientPlayerData[1].CharacterNetId))
+	end
+end)
+
+Ext.Events.ResetCompleted:Subscribe(function(e)
+	Ext.Net.PostMessageToServer("LX_AskClientInfo", tostring(Ext.ClientEntity.GetPlayerManager().ClientPlayerData[1].CharacterNetId))
+end)
+
+Ext.RegisterNetListener("LX_RetrieveClientInfo", function(channel, payload, ...)
+	Data.UserID = tonumber(payload)
+end)
 
 -- Ext.Require("BootstrapShared.lua")
 

@@ -77,4 +77,18 @@ Ext.Osiris.RegisterListener("CharacterUsedSkill", 4, "before", function(characte
     end
 end)
 
+Ext.RegisterNetListener("LX_AskClientInfo", function(channel, payload, ...)
+    local character = Ext.ServerEntity.GetCharacter(tonumber(payload))
+    Ext.Net.PostMessageToUser(character.UserID or character.ReservedUserID, "LX_RetrieveClientInfo", tostring(character.UserID or character.ReservedUserID))
+end)
+
+-- Ext.Osiris.RegisterListener("UserConnected", 3, "after", function(userID, userName, userProfile)
+--     _P("User connected:", userID, userName, userProfile)
+--     Ext.Net.PostMessageToUser(userID, "LX_SendClientInfo", Ext.Json.Stringify({
+--         UserID = userID,
+--         UserName = userName,
+--         UserProfile = userProfile
+--     }))
+-- end)
+
 Ext.Require("Server/_InitServer.lua")
