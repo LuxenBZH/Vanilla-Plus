@@ -1,6 +1,4 @@
 Data = {}
-Data.IsServer = Ext.IsServer() -- Can be useful to know the variable context
-
 Helpers = {}
 
 Helpers.VPPrint = function(text, module, ...)
@@ -39,6 +37,7 @@ Ext.Require("Shared/Helpers/StatsHelpers.lua")
 Ext.Require("Shared/Helpers/StatusHelpers.lua")
 Ext.Require("Shared/Helpers/HitHelpers.lua")
 Ext.Require("Shared/Helpers/UIHelpers.lua")
+Ext.Require("Shared/Helpers/AuraTargeting.lua")
 Ext.Require("Shared/Systems/Requirements.lua")
 Ext.Require("Shared/Settings.lua")
 Ext.Require("Shared/StatsPatching.lua")

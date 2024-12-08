@@ -112,7 +112,8 @@ if Ext.IsServer() then
 	end
 
 	Ext.Osiris.RegisterListener("CharacterStatusApplied", 3, "before", function(character, status, instigator)
-		if not Data.Stats.BannedStatusesFromChecks[status] or status == "DGM_Finesse" and status ~= "" then
+		--- string.starts act reversed ???
+		if not Data.Stats.BannedStatusesFromChecks[status] or status == "DGM_Finesse" and status ~= "" and string.starts(status, "LX_AURATARGET") then
 			for name, func in pairs(Helpers.Status.StatusAppliedListeners) do
 				func(character,status,instigator)
 			end
