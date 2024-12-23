@@ -389,3 +389,24 @@ Helpers.SimpleHash16 = function(input)
 
     return digest
 end
+
+---Get the position of a point on the line drawn by 2 points with a specific distance from the first point
+---@param pos1 number[]
+---@param pos2 number[]
+---@param distance number
+---@return number[]
+Helpers.CalculatePositionFromDirection = function(pos1, pos2, distance)
+	 local dx = pos2[1] - pos1[1]
+	 local dz = pos2[3] - pos1[3]
+ 
+	 local magnitude = math.sqrt(dx^2 + dz^2)
+ 
+	 local normX = dx / magnitude
+	 local normY = dz / magnitude
+ 
+	 local cx = pos1[1] + distance * normX
+	 local cz = pos1[3] + distance * normY
+
+	 local cy = Ext.Entity.GetCurrentLevel().AiGrid:GetHeight(cx, cz)
+	 return {cx, cy, cz}
+end

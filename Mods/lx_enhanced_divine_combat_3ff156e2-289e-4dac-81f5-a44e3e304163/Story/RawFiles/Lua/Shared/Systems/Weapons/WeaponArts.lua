@@ -5,6 +5,7 @@ if Ext.IsClient() then
     local impactEffect
     local visual
     local targeted = {}
+    local validatedPos = nil
 
     Ext.RegisterNetListener("LX_WA_MaceSendEffect", function(channel, payload)
         impactEffect = tonumber(payload)
@@ -23,12 +24,14 @@ if Ext.IsClient() then
 		function EclCustomSkillState:EnterBehaviour(ev,skillState)
             local character = Ext.ClientEntity.GetCharacter(skillState.CharacterHandle)
             local statEntry = Ext.Stats.Get(string.gsub(skillState.SkillId, "%_%-1", ""))
+            --- REF: Spear WA
             if character:GetStatus("LX_WA_RANGEPLUS") and statEntry.UseWeaponDamage == "Yes" then
                 if skillState.Type == "Target" or skillState.Type == "MultiStrike" then
                     skillState.TargetRadius = skillState.TargetRadius *1.35
                 elseif skillState.Type == "Shout" then
                     skillState.AreaRadius = skillState.AreaRadius * 1.35
                 end
+            --- REF: Mace WA
             elseif character:GetStatus("LX_WA_MACE") and statEntry.UseWeaponDamage == "Yes" and (skillState.Type == "Zone" or skillState.Type == "Rush") then
                 Ext.Net.PostMessageToServer("LX_WA_MaceCreateEffect", tostring(character.NetID))
                 Ext.Net.PostMessageToServer("LX_CreateCustomTargetEffect", Ext.Json.Stringify({
@@ -36,7 +39,14 @@ if Ext.IsClient() then
                     Radius = 3,
 
                 }))
-                Helpers.AuraTargeting.Client.ApplyTargeting(skillState.Type == "Rush" and Ext.ClientUI.GetPickingState().WalkablePosition or character.WorldPos, 3, false, false, true, true, character)
+                local cursorPosition = Ext.ClientUI.GetPickingState().WalkablePosition
+                local coneStartPosition = Helpers.CalculatePositionFromDirection(character.WorldPos, cursorPosition, (math.max(character.AI.AIBoundsRadius + 0.6, statEntry.FrontOffset/2000-0.2)))
+                Helpers.AuraTargeting.Client.ApplyTargeting(skillState.Type == "Rush" and cursorPosition or coneStartPosition, 3, false, false, true, true, character)
+                if skillState.Type == "Zone" then
+                    Helpers.Timer.Start(100, function()
+                        Helpers.AuraTargeting.Client.SetTrackerTarget(Ext.ClientEntity.GetItem(impactEffect))
+                    end)
+                end
                 -- visual:AddVisual("")
                 --- note: create visual by creating an invisible item with the template GUID "9a0c0892-64ff-4e2c-9137-322efe4946c2"
                 --- Once created on the server, create a visual with Ext.ClientVisual.Create
@@ -47,8 +57,6 @@ if Ext.IsClient() then
 			return false
 		end
 
-        local once = false
-        
         ---@param ev CustomSkillEventParams
         ---@param skillState EclSkillState
         ---@param targetHandle ComponentHandle
@@ -56,64 +64,73 @@ if Ext.IsClient() then
         ---@param snapToGrid boolean
         ---@param fillInHeight boolean
         ---@return CustomSkillState.ValidateTargetResult
-        function EclCustomSkillState:ValidateTargetSight(ev, skillState, targetPos)
+        function EclCustomSkillState:GetTargetMoveDistance(ev, skillState)
             local character = Ext.ClientEntity.GetCharacter(skillState.CharacterHandle)
-            local statEntry = Ext.Stats.Get(string.gsub(skillState.SkillId, "%_%-1", "")) 
-            -- if not once and skillState.State ~= "Init" then
-            --     _DS(skillState)
-            --     _DS(targetPos)
-            --     once = true
-            -- end
-            if character:GetStatus("LX_WA_MACE") and statEntry.UseWeaponDamage == "Yes" and (skillState.Type == "Zone" or skillState.Type == "Rush") then
+            local statEntry = Ext.Stats.Get(string.gsub(skillState.SkillId, "%_%-1", ""))
+            if character:GetStatus("LX_WA_MACE") and statEntry.UseWeaponDamage == "Yes" then
                 if impactEffect and visual then
-                    Ext.ClientEntity.GetItem(impactEffect).Translate = Ext.ClientUI.GetPickingState().WalkablePosition
+                    if skillState.Type == "Rush" then
+                        Ext.ClientEntity.GetItem(impactEffect).Translate = Ext.ClientUI.GetPickingState().WalkablePosition
+                    elseif skillState.Type == "Zone" then
+                        Ext.ClientEntity.GetItem(impactEffect).Translate = Helpers.CalculatePositionFromDirection(character.WorldPos, Ext.ClientUI.GetPickingState().WalkablePosition, math.max(character.AI.AIBoundsRadius + 0.6, statEntry.FrontOffset/2000-0.2))
+                    end
                 end
-                
-                -- local pos = skillState.Type == "Rush" and Ext.ClientUI.GetPickingState().WalkablePosition or character.WorldPos
-                -- local inRange = Helpers.GetCharactersAroundPosition(pos[1], pos[2], pos[3], 3)
-                -- for netID,effect in pairs(targeted) do
-
-                --     if Ext.Math.Distance(pos, Ext.ClientEntity.GetCharacter(netID).WorldPos) > 3 then
-                --         Ext.ClientVisual.Get(effect):Delete()
-                --         targeted[netID] = nil
-                --     end
-                -- end
-                -- for i,char in pairs(inRange) do
-                --     if not targeted[char.NetID] then
-                --         local arrowBillboard = Ext.ClientVisual.CreateOnCharacter({char.WorldPos[1], char.WorldPos[2], char.WorldPos[3]}, char) ---@type EclLuaVisualClientMultiVisual
-                --         -- local arrowBillboard = Ext.ClientVisual.Create({char.WorldPos[1], char.WorldPos[2]+char.AI.AIBoundsHeight*1.15, char.WorldPos[3]}) ---@type EclLuaVisualClientMultiVisual
-                --         arrowBillboard:ParseFromStats("RS3_FX_UI_Icon_TriangleDown_01_Yellow_Active", "")
-                --         targeted[char.NetID] = arrowBillboard.Handle
-                --     end
-                -- end
             end
             return 1
         end
-
-        -- ---@param ev CustomSkillEventParams
-        -- ---@param skillState EclSkillState
-        -- function EclCustomSkillState:TickAction(ev, skillState)
-        --     local character = Ext.ClientEntity.GetCharacter(skillState.CharacterHandle)
-        --     local statEntry = Ext.Stats.Get(string.gsub(skillState.SkillId, "%_%-1", "")) ---@type StatEntrySkillData
-        --     if character:GetStatus("LX_WA_MACE") and statEntry.SkillType == "Rush" and statEntry.UseWeaponDamage == "Yes" then
-        --         if impactEffect and visual then
-        --             impactEffect.Translate = skillState.TargetPosition
-        --         end
-        --     end
-        -- end
 
         ---@param ev CustomSkillEventParams
         ---@param skillState EclSkillState
         function EclCustomSkillState:EnterAction(ev, skillState)
             local character = Ext.ClientEntity.GetCharacter(skillState.CharacterHandle)
-            if character:GetStatus("LX_WA_RANGEPLUS") then
-                local statEntry = Ext.Stats.Get(string.gsub(skillState.SkillId, "%_%-1", ""))
-                if statEntry.UseWeaponDamage == "No" then return false end
+            local statEntry = Ext.Stats.Get(string.gsub(skillState.SkillId, "%_%-1", ""))
+            --- REF: Spear WA effect
+            if character:GetStatus("LX_WA_RANGEPLUS") and statEntry.UseWeaponDamage == "Yes" then
                 if skillState.Type == "Shout" then
                     Ext.Net.PostMessageToServer("LX_WA_RangePlusShout", Ext.Json.Stringify({
                         Character = character.NetID,
                         WeaponRange = character.Stats.MainWeapon.DynamicStats[1].WeaponRange + (skillState.AreaRadius - (skillState.AreaRadius/1.35))
                     }))
+                end
+            --- REF: Mace WA effect
+            elseif character:GetStatus("LX_WA_MACE") and statEntry.UseWeaponDamage == "Yes" then
+                if skillState.Type == "Rush" then
+                    Helpers.Timer.StartNamed("WA_Mace_Impact_Trigger", 10, function(netID, targetPosition, originalSkill)
+                        local character = Ext.ClientEntity.GetCharacter(netID)
+                        if Ext.Math.Distance(character.WorldPos, targetPosition) < 0.25 then
+                            local statEntry = Ext.Stats.Get(originalSkill)
+                            local effectName = "Projectile_LX_WA_Mace_Impact_"..tostring(statEntry["Damage Multiplier"])
+                            if not Ext.Stats.Get(effectName, nil, false, false) then
+                                local effect = Ext.Stats.Create(effectName, "SkillData", "Projectile_LX_WA_Mace_Impact")
+                                effect["Damage Multiplier"] = statEntry.ActionPoints * Ext.Stats.Get("LX_WA_MACE").VP_WA_DamagePerAP
+                                Ext.Stats.Sync(effectName, false)
+                            end
+                            Ext.Net.PostMessageToServer("LX_ExplodeOnPosition", Ext.Json.Stringify({
+                                Source = netID,
+                                Skill = effectName,
+                                TargetPosition = targetPosition
+                            }))
+                            Helpers.Timer.Delete("WA_Mace_Impact_Trigger")
+                        end
+                    end, 200, character.NetID, skillState.TargetPosition, statEntry.Name)
+                elseif skillState.Type == "Zone" then
+                    Helpers.Timer.StartNamed("WA_Mace_Impact_Trigger", 5, function(netID, targetPosition, originalSkill)
+                        if Ext.ClientEntity.GetCharacter(netID).SkillManager.CurrentSkill.State == "CastFinished" then
+                            local statEntry = Ext.Stats.Get(originalSkill)
+                            local effectName = "Projectile_LX_WA_Mace_Impact_"..tostring(statEntry["Damage Multiplier"])
+                            if not Ext.Stats.Get(effectName, nil, false, false) then
+                                local effect = Ext.Stats.Create(effectName, "SkillData", "Projectile_LX_WA_Mace_Impact")
+                                effect["Damage Multiplier"] = statEntry.ActionPoints * Ext.Stats.Get("LX_WA_MACE").VP_WA_DamagePerAP
+                                Ext.Stats.Sync(effectName, false)
+                            end
+                            Ext.Net.PostMessageToServer("LX_ExplodeOnPosition", Ext.Json.Stringify({
+                                Source = netID,
+                                Skill = effectName,
+                                TargetPosition = targetPosition
+                            }))
+                            Helpers.Timer.Delete("WA_Mace_Impact_Trigger")
+                        end
+                    end, 400, character.NetID, Ext.ClientEntity.GetItem(impactEffect).Translate, statEntry.Name)
                 end
             end
             Helpers.AuraTargeting.Client.Stop()
@@ -166,7 +183,6 @@ if Ext.IsClient() then
         elseif character:GetStatus("LX_WA_RANGEPLUS") and statEntry.UseWeaponDamage and statEntry["Damage Multiplier"] > 0 and (statEntry.SkillType == "Target" or statEntry.SkillType == "Shout" or statEntry.SkillType == "MultiStrike") then
             local desc = tooltip:GetElement("SkillRange")
             if desc then
-                _DS(desc)
                 local value = desc.Value:gsub("m", "")
                 local bonus = Data.Text.FormatNumberDigitsNoZero(value * 0.3)
                 desc.Value = value.."m".."<font color=#FFEA8C> +"..bonus.."m</font>"
@@ -239,6 +255,17 @@ if Ext.IsServer() then
     Ext.RegisterNetListener("LX_DeleteEffectItem", function(channel, payload)
         local item = Ext.ServerEntity.GetItem(tonumber(payload))
         ItemRemove(item.MyGuid)
+    end)
+
+    Ext.RegisterNetListener("LX_ExplodeOnPosition", function(channel, payload, ...)
+        local info = Ext.Json.Parse(payload)
+        --- TODO: check if there's a better way to handle it since it cause a small game freeze on explosion
+        Helpers.LaunchProjectile(info.TargetPosition, info.TargetPosition, info.Skill, {
+            GuidString = {
+                Source = Ext.ServerEntity.GetCharacter(info.Source).MyGuid,
+                Caster = Ext.ServerEntity.GetCharacter(info.Source).MyGuid,
+            }
+        })
     end)
 end
 
