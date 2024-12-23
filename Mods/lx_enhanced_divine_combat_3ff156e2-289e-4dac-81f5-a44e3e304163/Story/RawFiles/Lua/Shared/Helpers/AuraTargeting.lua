@@ -1,8 +1,10 @@
 Helpers.AuraTargeting = {
     Client = {
         Tracker = nil,
-        TrackCursorListener = false,
-        Aura = nil
+        TrackPositionListener = false,
+        Aura = nil,
+        TrackerTarget = nil,
+        TrackerTargetGetter = nil
     },
     Server = {},
     ArrowStatuses = {
@@ -84,11 +86,19 @@ if Ext.IsClient() then
         }))
     end
 
+    ---In case the tracker need to track something else than the cursor
+    ---@param trackerTarget any
+    function Helpers.AuraTargeting.Client.SetTrackerTarget(trackerTarget)
+        Helpers.AuraTargeting.Client.TrackerTarget = trackerTarget and trackerTarget.NetID or nil
+        Helpers.AuraTargeting.Client.TrackerTargetGetter = trackerTarget and (Helpers.IsCharacter(trackerTarget) and Ext.ClientEntity.GetCharacter or Ext.ClientEntity.GetItem) or nil
+        Helpers.AuraTargeting.Client.TrackPosition()
+    end
+
     function Helpers.AuraTargeting.Client.SetTracker(channel, payload, ...)
         local info = Ext.Json.Parse(payload)
         Helpers.AuraTargeting.Client.Tracker = tonumber(info.Tracker)
         if info.Cursor then
-            Helpers.AuraTargeting.Client.TrackCursorPosition()
+            Helpers.AuraTargeting.Client.TrackPosition()
         end
     end
 
@@ -102,22 +112,20 @@ if Ext.IsClient() then
         tracker.Translate = position
     end
 
-    function Helpers.AuraTargeting.Client.TrackCursorPosition()
+    function Helpers.AuraTargeting.Client.TrackPosition()
         if Helpers.AuraTargeting.Client.Tracker then
-            if not Helpers.AuraTargeting.Client.TrackCursorListener then
-                Helpers.AuraTargeting.Client.TrackCursorListener = Ext.Events.Tick:Subscribe(function(e)
+            if not Helpers.AuraTargeting.Client.TrackPositionListener then
+                Helpers.AuraTargeting.Client.TrackPositionListener = Ext.Events.Tick:Subscribe(function(e)
                     if Helpers.AuraTargeting.Client.Tracker then
-                        -- Ext.ClientEntity.GetItem(Helpers.AuraTargeting.Client.Tracker).Translate = Ext.ClientUI.GetPickingState().WorldPosition
-                        -- Ext.ClientEntity.GetCharacter(Helpers.AuraTargeting.Client.Tracker).Translate = Ext.ClientUI.GetPickingState().WalkablePosition
                         Ext.ClientEntity.GetCharacter(Helpers.AuraTargeting.Client.Tracker).Invisible = true
                         Ext.Net.PostMessageToServer("LX_AuraTarget_Update", Ext.Json.Stringify({
                             Tracker = Helpers.AuraTargeting.Client.Tracker,
-                            Position = Ext.ClientUI.GetPickingState().WalkablePosition
+                            Position = Helpers.AuraTargeting.Client.TrackerTarget and Helpers.AuraTargeting.Client.TrackerTargetGetter(Helpers.AuraTargeting.Client.TrackerTarget).WorldPos or Ext.ClientUI.GetPickingState().WalkablePosition
                         }))
-
                     else
-                        Ext.Events.Tick:Unsubscribe(Helpers.AuraTargeting.Client.TrackCursorListener)
-                        Helpers.AuraTargeting.Client.TrackCursorListener = nil
+                        Ext.Events.Tick:Unsubscribe(Helpers.AuraTargeting.Client.TrackPositionListener)
+                        Helpers.AuraTargeting.Client.TrackPositionListener = nil
+                        Helpers.AuraTargeting.Client.TrackerTarget = nil
                     end
                 end, {Priority=912})
             else
@@ -135,10 +143,11 @@ if Ext.IsClient() then
                 Aura = Helpers.AuraTargeting.Client.Aura
             }))
             Helpers.AuraTargeting.Client.Tracker = nil
+            Helpers.AuraTargeting.Client.TrackerTarget = nil
             Helpers.AuraTargeting.Client.Aura = nil
-            if Helpers.AuraTargeting.Client.TrackCursorListener then
-                Ext.Events.Tick:Unsubscribe(Helpers.AuraTargeting.Client.TrackCursorListener)
-                Helpers.AuraTargeting.Client.TrackCursorListener = nil
+            if Helpers.AuraTargeting.Client.TrackPositionListener then
+                Ext.Events.Tick:Unsubscribe(Helpers.AuraTargeting.Client.TrackPositionListener)
+                Helpers.AuraTargeting.Client.TrackPositionListener = nil
             end
         end
     end
