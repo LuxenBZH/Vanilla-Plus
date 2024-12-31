@@ -67,7 +67,10 @@ BootstrapModule = {
         VP_ChallengeVitalityStep = "ConstantInt",
         VP_ChallengeVitalityScaling = "FixedString",
         VP_ChallengeMultiplierCap = "ConstantInt",
-        VP_WA_DamagePerAP = "ConstantInt"
+        VP_WA_DamagePerAP = "ConstantInt",
+        VP_ExecuteMultiplier = "ConstantInt",
+        VP_ExecuteScaling = "FixedString",
+        VP_ExecuteCondition = "FixedString"
     },
     Object = {}
 }

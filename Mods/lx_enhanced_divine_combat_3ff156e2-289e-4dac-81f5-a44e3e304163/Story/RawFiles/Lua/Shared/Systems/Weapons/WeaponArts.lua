@@ -7,6 +7,7 @@ if Ext.IsClient() then
     local targeted = {}
     local validatedPos = nil
 
+    --- REF: Mace WA Effect
     Ext.RegisterNetListener("LX_WA_MaceSendEffect", function(channel, payload)
         impactEffect = tonumber(payload)
         local item = Ext.ClientEntity.GetItem(tonumber(payload))
@@ -14,6 +15,9 @@ if Ext.IsClient() then
         visual:ParseFromStats("VP_FX_Target_Circle_3x", "")
         visual = visual.Handle
     end)
+
+    ---Customize the skills targeting
+    ---@return table
 	Ext.ClientBehavior.Skill.AddGlobal(function()
 		local EclCustomSkillState = {}
 
@@ -79,6 +83,7 @@ if Ext.IsClient() then
             return 1
         end
 
+        -----WA Effect trigger
         ---@param ev CustomSkillEventParams
         ---@param skillState EclSkillState
         function EclCustomSkillState:EnterAction(ev, skillState)
@@ -163,10 +168,11 @@ if Ext.IsClient() then
 		return EclCustomSkillState
 	end)
 
+    ------ Tooltips
     --- @param character EclCharacter
     --- @param skillName string
     --- @param tooltip TooltipData
-    local function WeaponArtTooltip(character, skillName, tooltip)
+    local function WeaponArtSkillTooltip(character, skillName, tooltip)
         local statEntry = Ext.Stats.Get(skillName)
         if character:GetStatus("LX_WA_TWOHANDED") and statEntry.UseWeaponDamage and statEntry["Damage Multiplier"] > 0 then
             local desc = tooltip:GetElement("SkillDescription")
@@ -198,8 +204,19 @@ if Ext.IsClient() then
             end
         end
     end
+
+    ---@param character EclCharacter
+    ---@param status EclStatus
+    ---@param tooltip TooltipData
+    local function WeaponArtStatusTooltip(character, status, tooltip)
+        if status.StatusId == "LX_WEAPON_EXECUTE" then
+            local description = tooltip:GetElement("StatusDescription")
+            description.Label = Helpers.String.SubstituteIndexedParams(description.Label, status.StatsMultiplier)
+        end
+    end
     Ext.Events.SessionLoaded:Subscribe(function(e)
-        Game.Tooltip.RegisterListener("Skill", nil, WeaponArtTooltip)
+        Game.Tooltip.RegisterListener("Skill", nil, WeaponArtSkillTooltip)
+        Game.Tooltip.RegisterListener("Status", nil, WeaponArtStatusTooltip)
     end)
 end
 

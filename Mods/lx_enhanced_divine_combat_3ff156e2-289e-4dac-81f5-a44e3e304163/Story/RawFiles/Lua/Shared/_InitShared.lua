@@ -30,6 +30,7 @@ _VError = Helpers.VPPrintError
 
 Ext.Require("Shared/Systems/UserVars.lua")
 Ext.Require("Shared/Helpers.lua")
+Ext.Require("Shared/Helpers/StringHelpers.lua")
 Ext.Require("Shared/Helpers/Timers.lua")
 Ext.Require("Shared/Helpers/GeneralHelpers.lua")
 Ext.Require("Shared/Helpers/CharacterHelpers.lua")

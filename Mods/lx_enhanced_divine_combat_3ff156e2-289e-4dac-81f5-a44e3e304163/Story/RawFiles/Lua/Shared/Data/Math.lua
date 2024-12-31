@@ -480,3 +480,26 @@ Data.Math.CharacterCalculatePartialAP = function(character)
 	local celerity = Data.Math.ComputeCelerityValue(Data.Math.ComputeCharacterCelerity(character), character)
 	return (character.Stats.TALENT_QuickStep and 1 or 0) + 100/movement.Movement + celerity
 end
+
+Data.Math.Character = {}
+
+---comment
+---@param character EsvCharacter|EclCharacter
+---@param isWeapon boolean
+---@param isMagic boolean
+Data.Math.Character.GetExecutionRange = function(character, isWeapon, isMagic)
+	local executeValue = 0
+	for i, statusName in pairs(character:GetStatuses()) do
+		local statEntry = Ext.Stats.Get(statusName, nil, false)
+		if statEntry and statEntry.VP_ExecuteMultiplier ~= 0 then
+			if isWeapon and statEntry.VP_ExecuteCondition == "Weapon" or isMagic and statEntry.VP_ExecuteCondition == "Magic" or statEntry.VP_ExecuteCondition == "" then
+				if statEntry.VP_ExecuteScaling ~= "" then
+					executeValue = executeValue + Data.DamageScalingFormulas[VP_ExecuteScaling](character.Stats.Level) * statEntry.VP_ExecuteMultiplier/100
+				else
+					executeValue = executeValue + statEntry.VP_ExecuteMultiplier/100 * character:GetStatus(statusName).StatsMultiplier
+				end
+			end
+		end
+	end
+	return executeValue
+end

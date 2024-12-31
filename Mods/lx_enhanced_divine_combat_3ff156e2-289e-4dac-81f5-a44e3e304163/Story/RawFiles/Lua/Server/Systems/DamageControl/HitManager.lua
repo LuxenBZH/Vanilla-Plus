@@ -158,6 +158,7 @@ local function DamageControl(target, instigator, hitDamage, handle)
 	-- end
 	local hit = Ext.ServerEntity.GetStatus(target.MyGuid, handle) --- @type EsvStatusHit
 	local skill = hit.SkillId ~= "" and Ext.Stats.Get(hit.SkillId:gsub("(.*).+-1$", "%1")) or nil --- @type StatEntrySkillData | nil
+	local skillId = skill and skill.Name or nil
 	local flags = HitFlags:Create()
     flags.Dodged = NRD_StatusGetInt(target.MyGuid, hit.StatusHandle, "Dodged") == 1
     flags.Missed = NRD_StatusGetInt(target.MyGuid, hit.StatusHandle, "Missed") == 1
@@ -195,7 +196,7 @@ local function DamageControl(target, instigator, hitDamage, handle)
 	 or (flags.DamageSourceType > 0 and flags.DamageSourceType < 4)
 	 or (flags.DamageSourceType == 0 and hit.SkillId == "" and Helpers.IsCharacter(target))
 	 or (skill and (skill.Damage ~= "AverageLevelDamge" and skill.Damage ~= "BaseLevelDamage"))  then
-		HitManager:TriggerHitListeners("DGM_Hit", "AfterDamageScaling", hit, instigator, target, flags)
+		HitManager:TriggerHitListeners("DGM_Hit", "AfterDamageScaling", hit, instigator, target, flags, skillId)
 		HitManager:InitiatePassingDamage(target, hit.Hit.DamageList:ToTable())
         return
 	end
@@ -206,7 +207,7 @@ local function DamageControl(target, instigator, hitDamage, handle)
 	if instigator.MyGuid == 'NULL_00000000-0000-0000-0000-000000000000' then return end
 
     -- Bonuses
-	local attacker = Data.Math.GetCharacterComputedDamageBonus(instigator, target, flags, skill)
+	local attacker = Data.Math.GetCharacterComputedDamageBonus(instigator, target, flags, skill, skillId)
 
     if (skill and skill.Name == "Projectile_Talent_Unstable") or IsTagged(target.MyGuid, "DGM_GuardianAngelProtector") == 1 or flags.IsFromShackles then
 		ClearTag(target.MyGuid, "DGM_GuardianAngelProtector")
@@ -214,7 +215,7 @@ local function DamageControl(target, instigator, hitDamage, handle)
 		attacker.GlobalMultiplier = 1
 	end
 	-- _VPrint("General multiplier:", "HitManager", attacker.DamageBonus, attacker.GlobalMultiplier)
-	HitManager:TriggerHitListeners("DGM_Hit", "BeforeDamageScaling", hit, instigator, target, flags)
+	HitManager:TriggerHitListeners("DGM_Hit", "BeforeDamageScaling", hit, instigator, target, flags, skillId)
 	local damageTable = hit.Hit.DamageList:ToTable()
 	-- _DS(damageTable)
 	NRD_HitStatusClearAllDamage(target.MyGuid, handle)
@@ -233,7 +234,7 @@ local function DamageControl(target, instigator, hitDamage, handle)
 	end
 	HitHelpers.HitRecalculateAbsorb(hit.Hit, target)
 	HitHelpers.HitRecalculateLifesteal(hit.Hit, instigator)
-	HitManager:TriggerHitListeners("DGM_Hit", "AfterDamageScaling", hit, instigator, target, flags)
+	HitManager:TriggerHitListeners("DGM_Hit", "AfterDamageScaling", hit, instigator, target, flags, skillId)
 	if Ext.ExtraData.DGM_Corrogic == 1 then
 		TriggerCorrogicResistanceStrip(target.MyGuid, hit.Hit.DamageList:ToTable())
 	end

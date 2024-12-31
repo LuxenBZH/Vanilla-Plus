@@ -204,4 +204,20 @@ if Ext.IsServer() then
 			end
 		end
 	end
+
+	---comment
+	---@param target EsvCharacter
+	---@param instigator EsvCharacter
+	---@param deathType string
+	Helpers.Character.Execute = function(target, instigator, deathType)
+		PlayEffect(target.MyGuid, "RS3_FX_Skills_Warrior_BlinkStrike_Impact_01", "Dummy_BodyFX")
+		CharacterStatusText(target.MyGuid, "Executed!")
+		CharacterDie(target.MyGuid, 1, deathType, instigator.MyGuid)
+		for i,status in pairs(instigator:GetStatuses()) do
+			local statEntry = Ext.Stats.Get(status, nil, false)
+			if statEntry and statEntry.VP_ExecuteMultiplier > 0 then
+				RemoveStatus(instigator.MyGuid, status)
+			end
+		end
+	end
 end

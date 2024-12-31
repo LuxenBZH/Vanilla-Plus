@@ -70,8 +70,8 @@ if Ext.IsServer() then
 		local previousMultiplier = status.StatsMultiplier
 		status.StatsMultiplier = multiplier
 		if status.StatusType == "CONSUME" then
-			local stat = Ext.Stats.Get(Ext.Stats.Get(status.StatusId).StatsId)
-			if stat["Damage Multiplier"] > 0 then
+			local stat = Ext.Stats.Get(Ext.Stats.Get(status.StatusId).StatsId, nil, false)
+			if stat and stat["Damage Multiplier"] > 0 then
 				local character = Ext.ServerEntity.GetCharacter(status.TargetHandle)
 				character.UserVars.LX_StatusConsumeMultiplier = multiplier
 			end
