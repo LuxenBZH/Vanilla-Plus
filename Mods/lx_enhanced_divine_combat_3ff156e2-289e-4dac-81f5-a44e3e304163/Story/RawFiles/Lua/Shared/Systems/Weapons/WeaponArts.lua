@@ -31,9 +31,9 @@ if Ext.IsClient() then
             --- REF: Spear WA
             if character:GetStatus("LX_WA_RANGEPLUS") and statEntry.UseWeaponDamage == "Yes" then
                 if skillState.Type == "Target" or skillState.Type == "MultiStrike" then
-                    skillState.TargetRadius = skillState.TargetRadius *1.35
+                    skillState.TargetRadius = skillState.TargetRadius *1.5
                 elseif skillState.Type == "Shout" then
-                    skillState.AreaRadius = skillState.AreaRadius * 1.35
+                    skillState.AreaRadius = skillState.AreaRadius * 1.5
                 end
             --- REF: Mace WA
             elseif character:GetStatus("LX_WA_MACE") and statEntry.UseWeaponDamage == "Yes" and (skillState.Type == "Zone" or skillState.Type == "Rush") then
@@ -94,7 +94,7 @@ if Ext.IsClient() then
                 if skillState.Type == "Shout" then
                     Ext.Net.PostMessageToServer("LX_WA_RangePlusShout", Ext.Json.Stringify({
                         Character = character.NetID,
-                        WeaponRange = character.Stats.MainWeapon.DynamicStats[1].WeaponRange + (skillState.AreaRadius - (skillState.AreaRadius/1.35))
+                        WeaponRange = character.Stats.MainWeapon.DynamicStats[1].WeaponRange + (skillState.AreaRadius - (skillState.AreaRadius/1.5))
                     }))
                 end
             --- REF: Mace WA effect
@@ -190,15 +190,15 @@ if Ext.IsClient() then
             local desc = tooltip:GetElement("SkillRange")
             if desc then
                 local value = desc.Value:gsub("m", "")
-                local bonus = Data.Text.FormatNumberDigitsNoZero(value * 0.3)
+                local bonus = Data.Text.FormatNumberDigitsNoZero(value * 0.5)
                 desc.Value = value.."m".."<font color=#FFEA8C> +"..bonus.."m</font>"
             else
                 desc = {
                     Label = "Range",
                     Type = "SkillRange",
-                    Value = statEntry.AreaRadius + character.Stats.MainWeapon.WeaponRange/100 + 0.25
+                    Value = statEntry.AreaRadius + character.Stats.MainWeapon.WeaponRange/100 + 0.5
                 }
-                local bonus = Data.Text.FormatNumberDigitsNoZero(desc.Value * 0.3)
+                local bonus = Data.Text.FormatNumberDigitsNoZero(desc.Value * 0.5)
                 desc.Value = desc.Value.."m".."<font color=#FFEA8C> +"..bonus.."m</font>"
                 tooltip:AppendElementAfterType(desc, "SkillRange")
             end
