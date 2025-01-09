@@ -441,6 +441,33 @@ local function ComputeTooltipHealings(character, skill, tooltip)
     end
 end
 
+---@param character EclCharacter
+---@param status EclStatus|EclStatusChallenge|EclStatusDamage|EclStatusDamageOnMove|EclStatusConsumeBaseStatsData|EclStatusIncapacitated|EclStatusAoO|EclStatusEffect
+---@param tooltip TooltipData
+local function DamageStatusTooltipScaleFromPower(character, status, tooltip)
+    if getmetatable(status) == "ecl::StatusDamage" and status.StatsMultiplier ~= 1 then
+        local description = tooltip:GetElements("StatusDescription")
+        local damageRanges = {}
+        for minValue, maxValue in string.gmatch(description[1].Label, "(%d+)%-(%d+)") do
+            table.insert(damageRanges, {Ext.Utils.Round(math.floor(minValue * status.StatsMultiplier)), Ext.Utils.Round(math.floor(maxValue * status.StatsMultiplier))})
+        end
+        local updatedStr = description[1].Label:gsub("(%d+)%-(%d+)", function(oldMin, oldMax)
+            for i,replacements in pairs(damageRanges) do
+                -- Check if a replacement is available
+                if replacements[i] then
+                    local newMin = replacements[1]
+                    local newMax = replacements[2]
+                    return newMin .. "-" .. newMax
+                else
+                    -- If no replacement is provided, return the original range
+                    return oldMin .. "-" .. oldMax
+                end
+            end
+        end)
+        description[1].Label = updatedStr
+    end
+end
+
 ---comment
 ---@param e LuaEmptyEvent
 local function DGM_Tooltips_Init(e)
@@ -455,6 +482,7 @@ local function DGM_Tooltips_Init(e)
     Game.Tooltip.RegisterListener("Skill", "Shout_LX_AimedShot", AimedShotTooltip)
     Game.Tooltip.RegisterListener("Skill", "Shout_Adrenaline", AdrenalineTooltip)
     Game.Tooltip.RegisterListener("Skill", nil, ComputeTooltipHealings)
+    Game.Tooltip.RegisterListener("Status", nil, DamageStatusTooltipScaleFromPower)
 end
 
 Ext.Events.SessionLoaded:Subscribe(DGM_Tooltips_Init)

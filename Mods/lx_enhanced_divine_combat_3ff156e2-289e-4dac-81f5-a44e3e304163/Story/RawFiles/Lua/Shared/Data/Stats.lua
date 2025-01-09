@@ -404,3 +404,37 @@ Data.Stats.BannedStatusesFromChecks.BLIND = nil
 -- 	if status.StatusId == "CONSUME" then
 -- 		return Ext.Stats.Get(status.)
 -- end
+
+Data.Stats.Talents = {}
+
+Data.Stats.Talents.TorturerStatuses = {
+	"BLEEDING",
+	"BURNING",
+	"NECROFIRE",
+	"POISONED",
+	"ACID",
+	"SUFFOCATING",
+	"ENTANGLED",
+	"RUPTURE",
+	"DAMAGE_ON_MOVE"
+}
+
+local torturerStatusesMetatable = {
+	__index = function(table, key)
+		if type(key) == "string" then
+			local statEntry = Ext.Stats.Get(key, nil, false)
+			for i,j in pairs(table.raw) do
+				if key == j or (statEntry and HasParent(statEntry, j)) then
+					return true
+				end
+			end
+		elseif type(key) == "number" then
+			return table.raw[key]
+		end
+		return nil
+	end
+}
+
+-- Statuses that are children from vanilla Torturer statuses are also considered as affected by Torturer
+Data.Stats.Talents.TorturerStatuses.raw = Data.Stats.Talents.TorturerStatuses -- Keep the original table as "raw"
+setmetatable(Data.Stats.Talents.TorturerStatuses, torturerStatusesMetatable)

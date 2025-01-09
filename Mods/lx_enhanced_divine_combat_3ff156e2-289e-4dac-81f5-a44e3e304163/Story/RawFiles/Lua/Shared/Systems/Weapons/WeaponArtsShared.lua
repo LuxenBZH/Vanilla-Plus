@@ -284,6 +284,37 @@ if Ext.IsServer() then
             }
         })
     end)
+
+    ---@param e EsvLuaBeforeStatusApplyEvent
+    Ext.Events.BeforeStatusApply:Subscribe(function(e)
+        local target = Ext.ServerEntity.GetGameObject(e.Status.TargetHandle) ---@type EsvCharacter
+        local instigator = Ext.Utils.IsValidHandle(e.Status.StatusSourceHandle) and Ext.ServerEntity.GetGameObject(e.Status.StatusSourceHandle) or nil ---@type EsvCharacter
+        if Helpers.IsCharacter(target) and Helpers.IsCharacter(instigator) and e.Status.DamageSourceType == "StatusEnter" and instigator:GetStatus("LX_WA_DAGGER") then
+            if Data.Stats.Talents.TorturerStatuses[e.Status.StatusId] then
+                Helpers.Timer.Start(10, function(targetHandle, statusHandle)
+                    local status = Ext.ServerEntity.GetStatus(targetHandle, statusHandle)
+                    if status then
+                        Helpers.Status.Multiply(status, status.StatsMultiplier + 0.5)
+                        RemoveStatus(Ext.ServerEntity.GetCharacter(status.StatusSourceHandle).MyGuid, "LX_WA_DAGGER")
+                    end
+                end, nil, e.Status.TargetHandle, e.Status.StatusHandle)
+            else
+                local statEntry = Ext.Stats.Get(e.Status.StatusId, nil, false)
+                if statEntry then
+                    if (statEntry.SavingThrow == "PhysicalArmor" and target.Stats.CurrentArmor > 0) or (statEntry.SavingThrow == "MagicArmor" and target.Stats.CurrentMagicArmor > 0) then
+                        e.Status.ForceStatus = true
+                        --More statuses can be applied by a single skill, so let other statuses from the skill benefit from the WA
+                        Helpers.Timer.Start(30, function(character)
+                            local character = Ext.ServerEntity.GetCharacter(character)
+                            if not character.SkillManager.CurrentSkillState then
+                                RemoveStatus(character.MyGuid, "LX_WA_DAGGER")
+                            end
+                        end, 40, instigator.MyGuid)
+                    end
+                end
+            end
+        end
+    end)
 end
 
 Data.APCostManager.RegisterGlobalSkillAPFormula("LX_WeaponArts", function(e)
