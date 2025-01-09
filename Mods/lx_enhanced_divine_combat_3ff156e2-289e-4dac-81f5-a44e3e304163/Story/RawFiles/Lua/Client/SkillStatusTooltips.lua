@@ -275,10 +275,10 @@ end
 Ext.RegisterListener("SkillGetDescriptionParam", SkillGetDescriptionParam)
 
 ---@param status StatsStatusPrototype
----@param statusSource EsvGameObject
----@param character StatCharacter
+---@param statusSource StatCharacter
+---@param target StatCharacter
 ---@param par string
-local function StatusGetDescriptionParam(status, statusSource, character, par)
+local function StatusGetDescriptionParam(status, statusSource, target, par)
     if par == "Damage" then
         local dmgStat = Ext.Stats.Get(status.DamageStats, nil, false)
         if statusSource == nil then return end
@@ -311,8 +311,8 @@ local function StatusGetDescriptionParam(status, statusSource, character, par)
         end
     elseif par == "WPN-DamageFromBase" then
         local statEntry = Ext.Stats.Get(Ext.Stats.Get(status.StatsObject.StatsId).BonusWeapon)
-        local bonus = Data.Math.GetCharacterComputedDamageBonus(character.Character, nil, {}, Ext.Stats.Get("Target_LX_NormalAttack"))
-        local damage = Data.DamageScalingFormulas[tonumber(statEntry.Damage)](character.Level) * (statEntry.DamageFromBase/100) * (bonus.DamageBonus/100+Game.Math.GetDamageBoostByType(character, statEntry["Damage Type"]))*bonus.GlobalMultiplier 
+        local bonus = Data.Math.GetCharacterComputedDamageBonus(target.Character, nil, {}, Ext.Stats.Get("Target_LX_NormalAttack"))
+        local damage = Data.DamageScalingFormulas[tonumber(statEntry.Damage)](target.Level) * (statEntry.DamageFromBase/100) * (bonus.DamageBonus/100+Game.Math.GetDamageBoostByType(target, statEntry["Damage Type"]))*bonus.GlobalMultiplier 
         return Data.Text.GetFormattedDamageRangeText(statEntry["Damage Type"], Ext.Utils.Round(damage*(1-statEntry['Damage Range']/2/100)), Ext.Utils.Round(damage*(1+statEntry['Damage Range']/2/100)))
 	end
 	return nil

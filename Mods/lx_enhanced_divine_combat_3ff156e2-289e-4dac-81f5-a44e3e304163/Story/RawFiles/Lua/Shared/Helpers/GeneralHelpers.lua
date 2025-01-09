@@ -84,11 +84,16 @@ if Ext.IsServer() then
 			-- Ext.Stats.Sync(newStatName, true)
 			-- Helpers.Status.MultipliedStats[status] = newStatName
 		elseif status.StatusType == "DAMAGE" then
-			local stat = Ext.Stats.Get(status.DamageStats)
-			local newStatName = stat.Name.."_x"..Ext.Utils.Round(multiplier)
-			Ext.Stats.Create(newStatName, "Weapon", stat.Name)
+			if status.OriginalWeaponStatsId == "" then
+				status.OriginalWeaponStatsId = status.DamageStats
+			end
+			local stat = Ext.Stats.Get(status.OriginalWeaponStatsId)
+			local newStatName = stat.Name.."_x"..tostring(multiplier)
+			if not Ext.Stats.Get(newStatName, nil, false) then
+				Ext.Stats.Create(newStatName, "Weapon", stat.Name)
+			end
 			local multipliedStat = Ext.Stats.Get(newStatName) ---@type StatEntryWeapon
-			multipliedStat.Damage = Ext.Utils.Round(multipliedStat.DamageFromBase * multiplier)
+			multipliedStat.DamageFromBase = Ext.Utils.Round(stat.DamageFromBase * multiplier)
 			Ext.Stats.Sync(newStatName, true)
 			status.DamageStats = newStatName
 			Helpers.Status.MultipliedStats[status] = newStatName
