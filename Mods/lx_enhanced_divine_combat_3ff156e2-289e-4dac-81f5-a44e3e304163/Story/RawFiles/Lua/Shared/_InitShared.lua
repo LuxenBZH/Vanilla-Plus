@@ -28,6 +28,7 @@ end
 
 _VError = Helpers.VPPrintError
 
+Ext.Require("Shared/Utilities.lua")
 Ext.Require("Shared/Systems/UserVars.lua")
 Ext.Require("Shared/Helpers.lua")
 Ext.Require("Shared/Helpers/StringHelpers.lua")
