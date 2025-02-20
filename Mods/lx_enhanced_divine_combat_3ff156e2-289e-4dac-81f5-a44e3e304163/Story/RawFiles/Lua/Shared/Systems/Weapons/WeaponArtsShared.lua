@@ -218,6 +218,31 @@ if Ext.IsClient() then
         Game.Tooltip.RegisterListener("Skill", nil, WeaponArtSkillTooltip)
         Game.Tooltip.RegisterListener("Status", nil, WeaponArtStatusTooltip)
     end)
+
+    Ext.Events.UICall:Subscribe(function(ev)
+        -- REF: Sword WA
+        local character = Helpers.Client.GetCurrentCharacter()
+        if character and character:GetStatus("LX_WA_SWORD_PREPARE") and ev.UI:GetTypeId() == Ext.UI.TypeID.hotBar and (ev.Function == "SlotPressed" or ev.Function == "slotPressed") and ev.When == "Before" then
+            local hotbarSlot = character.PlayerData.SkillBarItems[SkillGroupManager:GetSlotNumber(ev.Args[1]+1)]
+            local statEntry = hotbarSlot.Type == "Skill" and Ext.Stats.Get(hotbarSlot.SkillOrStatId, nil, false) or nil
+            if statEntry and statEntry.UseWeaponDamage == "Yes" and character.SkillManager.Skills[hotbarSlot.SkillOrStatId] then
+                local root = ev.UI:GetRoot()
+                local skill = character.SkillManager.Skills[hotbarSlot.SkillOrStatId]
+                -- Since there is no native call to see if a skill fill its requirements to be used, we'll assume the hotbar will
+                if skill.ActiveCooldown == 0 and (skill.IsActivated or skill.CauseListSize > 0) and skill.Type ~= "Rush" and root.hotbar_mc.slotholder_mc.slot_array[ev.Args[1]].isEnabled then
+                    ev:PreventAction()
+                    ev:StopPropagation()
+                    Helpers.Character.AddSkillCooldown(character, skill.SkillId, math.ceil(statEntry.Cooldown*6*0.65))
+                    Helpers.Timer.Start(200, function(netID, skillId)
+                        Ext.Net.PostMessageToServer("LX_SwordWAPrepare", Ext.Json.Stringify({
+                            Character = netID,
+                            Skill = skillId
+                        }))
+                    end, nil, character.NetID, skill.SkillId)
+                end
+            end
+        end
+    end, {Priority = 21})
 end
 
 --------------
@@ -283,6 +308,21 @@ if Ext.IsServer() then
                 Caster = Ext.ServerEntity.GetCharacter(info.Source).MyGuid,
             }
         })
+    end)
+
+    Ext.RegisterNetListener("LX_SwordWAPrepare", function(channel, payload, ...)
+        local info = Ext.Json.Parse(payload)
+        local character = Ext.ServerEntity.GetCharacter(tonumber(info.Character))
+        RemoveStatus(character.MyGuid, "LX_WA_SWORD_PREPARE")
+        SetVarString(character.MyGuid, "LX_SwordWA_PreparedSkill", info.Skill)
+        _DS(character.SkillManager.Skills[info.Skill])
+        ApplyStatus(character.MyGuid, "LX_WA_SWORD", character.SkillManager.Skills[info.Skill].ActiveCooldown, 1, character.MyGuid)
+    end)
+
+    Ext.Osiris.RegisterListener("CharacterStatusRemoved", 3, "after", function(character, status, causee)
+        if status == "LX_WA_SWORD" then
+            ClearVarObject(character, "LX_SwordWA_PreparedSkill")
+        end
     end)
 
     ---@param e EsvLuaBeforeStatusApplyEvent
