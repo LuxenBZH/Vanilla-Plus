@@ -47,6 +47,7 @@ Ext.Events.UICall:Subscribe(function(ev)
 
         if not SkillGroupManager.IsInAGroup and skillGroup then
             ev:PreventAction()
+            ev:StopPropagation()
             local currentHotbar = root.hotbar_mc.cycleHotBar_mc.currentHotBarIndex
             SkillGroupManager.SavedBarIndex = currentHotbar
             while currentHotbar > 1 do
@@ -78,6 +79,7 @@ Ext.Events.UICall:Subscribe(function(ev)
         -- Cancel events: character change, unpossess, cancel prompt, successful skill cast
     elseif SkillGroupManager.IsInAGroup and (ev.Function == "prevHotbar" or ev.Function == "nextHotbar") and ev.When == "Before" then
         ev:PreventAction()
+        ev:StopPropagation()
         ev.UI:GetRoot().hotbar_mc.cycleHotBar_mc.currentHotBarIndex = 1
         ev.UI:GetRoot().hotbar_mc.cycleHotBar_mc.text_txt.htmlText = "+"
     elseif (ev.Function == "showNewSkill" or ev.Function == "ShowNewSkill") and ev.When == "Before" then
@@ -88,7 +90,7 @@ Ext.Events.UICall:Subscribe(function(ev)
         SkillGroupManager.IsInAGroup = false
         SkillGroupManager.CurrentCharacter = nil
     end
-end)
+end, {Priority = 9500})
 
 Ext.Events.UIInvoke:Subscribe(function(ev)
     if SkillGroupManager.IsInAGroup and ev.UI == Ext.UI.GetByType(36) and ev.Function == "showNewSkill" then
@@ -96,6 +98,7 @@ Ext.Events.UIInvoke:Subscribe(function(ev)
             Ext.UI.GetByType(36):ExternalInterfaceCall("notificationDone")
         end)
         ev:PreventAction()
+        ev:StopPropagation()
     end
 end)
 
