@@ -41,17 +41,6 @@ Ext.Events.StatusDelete:Subscribe(function(e)
 end)
 ---END Forbearance
 
----Perseverance on Staggered or Confused expiration
----@param e EsvLuaStatusDeleteEvent
-Ext.Events.StatusDelete:Subscribe(function(e)
-    local entity = Ext.ServerEntity.GetGameObject(e.Status.TargetHandle)
-    if (e.Status.StatusId == "LX_STAGGERED" or e.Status.StatusId == "LX_STAGGERED2" or e.Status.StatusId == "LX_STAGGERED3") and e.Status.CurrentLifeTime == 0.0 then
-        ApplyStatus(entity.MyGuid, "POST_PHYS_CONTROL_HALF", 0, 1)
-    elseif e.Status.StatusId == "LX_CONFUSED" or e.Status.StatusId == "LX_CONFUSED2" or e.Status.StatusId == "LX_CONFUSED3" and e.Status.CurrentLifeTime == 0.0 then
-        ApplyStatus(entity.MyGuid, "POST_MAGIC_CONTROL_HALF", 0, 1)
-    end
-end)
-
 ---@param e EsvLuaStatusDeleteEvent
 Ext.Events.BeforeStatusDelete:Subscribe(function(e)
     if Data.Stats.Warmup[e.Status.StatusId] then

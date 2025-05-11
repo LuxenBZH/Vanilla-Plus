@@ -98,11 +98,6 @@ HitManager:RegisterHitListener("DGM_Hit", "AfterDamageScaling", "DGM_AbsorbShiel
 			end
 		end
 	end
-	--- Perseverance damage multiplier
-	if Helpers.IsCharacter(target) and CharacterIsIncapacitated(target.MyGuid) == 1 and target.Stats.Perseverance > 0 then
-		local multiplier = math.max((1 - target.Stats.Perseverance * (Ext.ExtraData.DGM_PerseveranceResistance/100)), 0.5)
-		HitHelpers.HitMultiplyDamage(hit.Hit, target, instigator, multiplier)
-	end
 end, 49)
 
 --- @param character GUID

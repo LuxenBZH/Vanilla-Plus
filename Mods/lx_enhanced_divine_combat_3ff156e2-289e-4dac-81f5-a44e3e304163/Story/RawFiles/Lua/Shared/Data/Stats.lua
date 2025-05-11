@@ -9,7 +9,7 @@ local function DataLoadStatsInfo(e)
 		Intelligence = {Potion = {AccuracyBoost = Ext.ExtraData.DGM_IntelligenceAccuracyBonus}, Status = {StackId = "DGM_Intelligence"}, Cap = Ext.ExtraData.DGM_IntelligenceAccuracyCap}
 	}
 
-	Data.Stats.CustomAbilityBonuses = {
+	Data.Stats.CustomWeaponAbilityBonuses = {
 		SingleHanded = { Potion = {
 				ArmorBoost=Ext.ExtraData.DGM_SingleHandedArmorBonus,
 				MagicArmorBoost=Ext.ExtraData.DGM_SingleHandedArmorBonus,
@@ -24,6 +24,10 @@ local function DataLoadStatsInfo(e)
 		Ranged = {Potion = {RangeBoost=Ext.ExtraData.DGM_RangedRangeBonus}, Status = {StackId = "DGM_Ranged"}, Cap = 10},
 		-- DualWielding = {},
 		-- None = {}
+	}
+
+	Data.Stats.CustomAbilityBonuses = {
+		Perseverance = {Potion = {Armor=Ext.ExtraData.DGM_PerseveranceArmorIncrease, MagicArmor=Ext.ExtraData.DGM_PerseveranceArmorIncrease}, Status = {StackId = "DGM_Perseverance"}, Cap = 10}
 	}
 	
 	Data.Stats.CrossbowMovementPenalty = {
@@ -71,8 +75,8 @@ Data.Stats.WeaponAbilitiesBonuses = {}
 setmetatable(Data.Stats.WeaponAbilitiesBonuses, nilTableHandler)
 Data.Stats.CrossbowMovementPenalty = {}
 setmetatable(Data.Stats.CrossbowMovementPenalty, nilTableHandler)
-Data.Stats.CustomAbilityBonuses = {}
-setmetatable(Data.Stats.CustomAbilityBonuses, nilTableHandler)
+Data.Stats.CustomWeaponAbilityBonuses = {}
+setmetatable(Data.Stats.CustomWeaponAbilityBonuses, nilTableHandler)
 Data.Stats.CustomAttributeBonuses = {}
 setmetatable(Data.Stats.CustomAttributeBonuses, nilTableHandler)
 

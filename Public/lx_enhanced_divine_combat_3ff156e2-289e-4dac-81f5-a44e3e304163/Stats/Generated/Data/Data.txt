@@ -277,3 +277,7 @@ key "DGM_RangedDamageBonus","5"
 key "DGM_DualWieldingDamageBonus","5"
 
 key "DGM_WeaponDefaultLevelRange","2"
+
+key "DGM_PerseveranceRecovery","12"
+
+key "DGM_PerseveranceArmorIncrease","15"
