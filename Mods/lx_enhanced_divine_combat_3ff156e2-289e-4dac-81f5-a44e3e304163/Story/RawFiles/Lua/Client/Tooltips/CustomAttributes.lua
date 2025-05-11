@@ -7,7 +7,7 @@ Game.Tooltip.RegisterListener("Item", nil, function(item, tooltip)
         local vitalityAmount = Ext.Utils.Round(Game.Math.GetAverageLevelDamage(level)*item.StatsFromName.StatsEntry.VP_VitalityMinimum/100)  
         tooltip:AppendElement({
             Type = "ConsumableEffect",
-            Label = "Heals for a minimum of "..tostring(vitalityAmount).." Vitality."
+            Label = Helpers.GetDynamicTranslationStringFromKey("Heal_ThresholdMinimum", vitalityAmount)
         })
     end
 end)
@@ -21,7 +21,7 @@ Game.Tooltip.RegisterListener("Item", nil, function(item, tooltip)
         local character = Ext.ClientEntity.GetCharacter(Ext.UI.DoubleToHandle(Ext.UI.GetByType(Data.UIType.hotBar):GetRoot().hotbar_mc.characterHandle))
         local element = tooltip:GetElement("ConsumableEffect")
         if element then
-            element.Label = element.Label.." ("..Ext.Utils.Round(character.Stats.MaxVitality*percentage/100).." HP)"
+            element.Label = element.Label.." ("..Ext.Utils.Round(character.Stats.MaxVitality*percentage/100).." "..Ext.L10N.GetTranslatedString("h90ab20e0g9be8g44d6g9261gfbcdaab16798", "HP")..")"
         end
     end
 end)

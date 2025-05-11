@@ -39,14 +39,14 @@ local function OnItemTooltip(item, tooltip)
         end
         if tooltip:IsExpanded() then
             if item.ItemType ~= "Weapon" and GetParentStat(stat, "IsConsumable") == "Yes" and GetParentStat(stat, "IsFood") ~= "Yes" then      
-                element.Label = element.Label.."<br><font color='#0783b7'>Drinking a second potion during your turn will reduce your AP by 1 the next turn, and drinking a third one will immediatly end your turn and reduce your AP by 3 the next turn.</font>"
+                element.Label = element.Label.."<br><font color='#0783b7'>"..Ext.L10N.GetTranslatedStringFromKey("Stats_Potion_Overdose").."</font>"
             end
             if stat.ExtraProperties == nil then return end
             for i,property in pairs(stat.ExtraProperties) do
                 if property.Action == "HEALING_ELIXIR" then
                     tooltip:AppendElement({
                         Type = "ConsumableEffect",
-                        Label = "Clear Crippled, Atrophy and Diseased."
+                        Label = Ext.L10N.GetTranslatedStringFromKey("Stats_Potion_HealingElixir_Custom")
                     })
                 end
             end
@@ -101,12 +101,12 @@ local function ExtendDamage(element, skill, characterStats, isProjectile, prefix
         if skill["Damage Range"] > 0 then
             local min = string.gsub(tostring(skill["Damage Multiplier"] - skill["Damage Range"]/2), "%.0", "")
             local max = string.gsub(tostring(skill["Damage Multiplier"] + skill["Damage Range"]/2), "%.0", "")
-            element.Label=element.Label .. "<br><font color='#0783b7'>"..prefix.."Damage "..isProjectile..": "..min.."% - "..max.."%</font>"
+            element.Label=element.Label .. "<br><font color='#0783b7'>"..prefix..Ext.L10N.GetTranslatedString("h0f24461cg404bg4661g9659g509e0e160261", "Damage").." "..isProjectile..": "..min.."% - "..max.."%</font>"
         else
-            element.Label=element.Label .. "<br><font color='#0783b7'>"..prefix.."Damage "..isProjectile..": "..skill["Damage Multiplier"].."%</font>"
+            element.Label=element.Label .. "<br><font color='#0783b7'>"..prefix..Ext.L10N.GetTranslatedString("h0f24461cg404bg4661g9659g509e0e160261", "Damage").." "..isProjectile..": "..skill["Damage Multiplier"].."%</font>"
         end
         if radius and skill.AreaRadius > 0 then
-            element.Label=element.Label .. "<br><font color='#0783b7'>"..prefix.."Radius: "..skill.AreaRadius.."m</font>"
+            element.Label=element.Label .. "<br><font color='#0783b7'>"..prefix..Ext.L10N.GetTranslatedString("hecbfc395g00a6g41eeg9b44gb9b068ccacca", "Radius")..": "..skill.AreaRadius..Ext.L10N.GetTranslatedString("he8466a80g2f9eg4d8bg9b76g573bf555ea08", "M").."</font>"
         end
         if skill.Damage == "BaseLevelDamage" or skill.Damage == "AverageLevelDamge" or skill.Damage == "MonsterWeaponDamage" then
             local generalBonus = math.floor((characterStats.Strength-Ext.ExtraData.AttributeBaseValue) * Ext.ExtraData.DGM_StrengthGlobalBonus +
@@ -124,8 +124,8 @@ local function ExtendDamage(element, skill, characterStats, isProjectile, prefix
             else
                 intelligenceBonus = math.floor(intelligenceBonus * Ext.ExtraData.DGM_IntelligenceGlobalBonus)
             end
-            element.Label=element.Label .. "<br><font color='#00cc00'>"..prefix.."Bonus from Attributes: "..generalBonus + strengthBonus + intelligenceBonus.."% </font>"
-            element.Label=element.Label .. "<br><font color='#008000'>"..prefix.."• Global: "..generalBonus.."%"
+            element.Label=element.Label .. "<br><font color='#00cc00'>"..prefix..Ext.L10N.GetTranslatedStringFromKey("Tooltip_BonusFromAttributes")..": "..generalBonus + strengthBonus + intelligenceBonus.."% </font>"
+            element.Label=element.Label .. "<br><font color='#008000'>"..prefix.."• "..Ext.L10N.GetTranslatedString("h249cdf83g1b80g453bg81a2g025d1bcdd59c", "Global")..": "..generalBonus.."%"
             
             if GetParentStat(skill, "UseWeaponDamage") == "Yes" or skill.Name == "Target_TentacleLash" then
                 element.Label=element.Label .. "<br>"..prefix.."• Strength: "..strengthBonus.."%"
@@ -137,7 +137,7 @@ local function ExtendDamage(element, skill, characterStats, isProjectile, prefix
                 local ability = GetWeaponAbility(characterStats, characterStats.MainWeapon)
                 if ability ~= nil then
                     local bonus = math.floor(Game.Math.ComputeWeaponCombatAbilityBoost(characterStats, characterStats.MainWeapon))
-                    element.Label=element.Label .. "<br><font color='#ff8c1a'>"..prefix.."Bonus from "..weaponAbility[ability]..": "..bonus.."%</font>"
+                    element.Label=element.Label .. "<br><font color='#ff8c1a'>"..prefix..Ext.L10N.GetTranslatedStringFromKey("Tooltip_Generic_BonusFrom")..weaponAbility[ability]..": "..bonus.."%</font>"
                 end
             end
             local damageTypes = Game.Math.GetSkillDamageRange(characterStats, skill, true)
@@ -146,7 +146,7 @@ local function ExtendDamage(element, skill, characterStats, isProjectile, prefix
                 local school = dmgTypeToSchool[dmgType]
                 if school ~= nil then
                     local bonus = math.floor(Game.Math.GetDamageBoostByType(characterStats, dmgType)*100)
-                    element.Label=element.Label .. "<br><font color='#ff8c1a'>"..prefix.."Bonus from "..school..": "..bonus.."%</font>"
+                    element.Label=element.Label .. "<br><font color='#ff8c1a'>"..prefix..Ext.L10N.GetTranslatedStringFromKey("Tooltip_Generic_BonusFrom").." "..school..": "..bonus.."%</font>"
                 end
             end
         end
@@ -155,9 +155,9 @@ end
 
 local function ExtendStatusDamage(status, element, stats, statusName, isWeaponBonus)
     if isWeaponBonus then
-        element.Label=element.Label .. "<br><font color='#e60000'>Weapon bonus: "..Mods.LeaderLib.GameHelpers.GetStringKeyText(statusName).."</font>"
+        element.Label=element.Label .. "<br><font color='#e60000'>"..Helpers.GetDynamicTranslationStringFromKey("Status_Damage_ExtensionWeapon", Mods.LeaderLib.GameHelpers.GetStringKeyText(statusName)).."</font>"
     else
-        element.Label=element.Label .. "<br><font color='#e60000'>Status: "..Mods.LeaderLib.GameHelpers.GetStringKeyText(statusName).."</font>"
+        element.Label=element.Label .. "<br><font color='#e60000'>"..Helpers.GetDynamicTranslationStringFromKey("Status_Damage_ExtensionStatus",Mods.LeaderLib.GameHelpers.GetStringKeyText(statusName)).."</font>"
     end
     if status ~= nil then
         local min = tostring(status.DamageFromBase - status["Damage Range"]/2):gsub("%.0", "")
@@ -192,16 +192,16 @@ local function ExtendStatus(status, element, stats)
         end
     elseif status.StatusType == "ACTIVE_DEFENSE" then
         if status.Projectile ~= "" then
-            element.Label=element.Label .. "<br><font color='#e60000'>On Activation: "..Mods.LeaderLib.GameHelpers.GetStringKeyText(status.DisplayName).."</font>"
+            element.Label=element.Label .. "<br><font color='#e60000'>"..Helpers.GetDynamicTranslationStringFromKey("Stats_Property_ActiveDefense",Mods.LeaderLib.GameHelpers.GetStringKeyText(status.DisplayName)).."</font>"
             local damageStat = Ext.Stats.Get(status.Projectile)
             ExtendDamage(element, damageStat, stats, "", "    ")
         end
     elseif status.LeaveAction ~= "" then
-        element.Label=element.Label .. "<br><font color='#e60000'>On "..Mods.LeaderLib.GameHelpers.GetStringKeyText(status.DisplayName).." expiration:</font>"
+        element.Label=element.Label .. "<br><font color='#e60000'>"..Helpers.GetDynamicTranslationStringFromKey("Stats_Property_LeaveAction", Mods.LeaderLib.GameHelpers.GetStringKeyText(status.DisplayName))..":</font>"
         local subStatus = Ext.Stats.Get(status.LeaveAction)
         ExtendDamage(element, subStatus, stats, "", "    ", true)
     elseif status.StatusType == "SPARK" then
-        element.Label=element.Label .. "<br><font color='#e60000'>Each hit will throw a projectile to the nearest target in a "..status.Radius.."m radius:</font>"
+        element.Label=element.Label .. "<br><font color='#e60000'>"..Helpers.GetDynamicTranslationStringFromKey("Stats_Property_Spark", status.Radius)..":</font>"
         local subStatus = Ext.Stats.Get(status.Projectile)
         ExtendDamage(element, subStatus, stats, "", "    ")
     elseif status.StatusType == "CONSUME" then
@@ -230,7 +230,7 @@ local function OnSkillTooltip(character, skill, tooltip)
                 skillStat = Ext.Stats.Get(skillStat.ProjectileSkills:gsub(";.*", ""))
             end
             if skillStat.SkillType == "Projectile" or skillStat.SkillType == "ProjectileStrike" then
-                isProjectile = "per hit"
+                isProjectile = Ext.L10N.GetTranslatedStringFromKey("Stats_Projectiles_PerHit")
             end
             ExtendDamage(element, skillStat, stats, isProjectile)
             local statuses = {}
@@ -239,7 +239,7 @@ local function OnSkillTooltip(character, skill, tooltip)
                 if property.Action == "EXPLODE" then
                     local status = Ext.Stats.Get(property.StatsId)
                     if status ~= nil then
-                        element.Label=element.Label .. "<br><font color='#e60000'>Explode target, causing in a "..skillStat.AreaRadius.."m radius:</font>"
+                        element.Label=element.Label .. "<br><font color='#e60000'>"..Helpers.GetDynamicTranslationStringFromKey("Stats_Property_ExplodeTarget", skillStat.AreaRadius)..":</font>"
                         ExtendDamage(element, status, stats, "", "    ")
                     end
                 elseif property.Type == "Status" then
@@ -275,10 +275,10 @@ local function OnStatTooltip(character, stat, tooltip)
         tooltip:MarkDirty()
         if tooltip:IsExpanded() then
             local element = tooltip:GetElement("StatsDescription")
-            element.Label=element.Label .. "<br><font color='#66ffff'>• Base Level "..character.Stats.Level.." Damage: "..math.floor(Ext.Round(Game.Math.GetLevelScaledDamage(character.Stats.Level))).."</font>"
-            element.Label=element.Label .. "<br><font color='#66ffff'>• Base Weapon Level "..character.Stats.Level.." Damage: "..math.floor(Ext.Round(Game.Math.GetLevelScaledWeaponDamage(character.Stats.Level))).."</font>"
-            element.Label=element.Label .. "<br><font color='#66ffff'>• Average Level "..character.Stats.Level.." Damage: "..math.floor(Ext.Round(Game.Math.GetAverageLevelDamage(character.Stats.Level))).."</font>"
-            element.Label=element.Label .. "<br><font color='#ff9966'>Base level damage is level scaled damage for a 100% damage hit. Average Level damage takes into account the average bonus from attributes and abilities and is a good point of reference to evaluate the damage effectiveness of your character.</font>"
+            element.Label=element.Label .. "<br><font color='#66ffff'>• "..Helpers.GetDynamicTranslationStringFromKey("BaseLevelDamage", character.Stats.Level)..": "..math.floor(Ext.Round(Game.Math.GetLevelScaledDamage(character.Stats.Level))).."</font>"
+            element.Label=element.Label .. "<br><font color='#66ffff'>• "..Helpers.GetDynamicTranslationStringFromKey("BaseWeaponLevelDamage", character.Stats.Level)..": "..math.floor(Ext.Round(Game.Math.GetLevelScaledWeaponDamage(character.Stats.Level))).."</font>"
+            element.Label=element.Label .. "<br><font color='#66ffff'>• "..Helpers.GetDynamicTranslationStringFromKey("AverageLevelDamage", character.Stats.Level)..": "..math.floor(Ext.Round(Game.Math.GetAverageLevelDamage(character.Stats.Level))).."</font>"
+            element.Label=element.Label .. "<br><font color='#ff9966'>"..Helpers.GetDynamicTranslationStringFromKey("DamageScalings_Description").."</font>"
         end
     end
 end

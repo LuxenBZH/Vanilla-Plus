@@ -24,7 +24,7 @@ CustomStatusManager = {
     },
     ExtendedBanList = {
         Data.Stats.CustomAttributeBonuses,
-        Data.Stats.CustomAbilityBonuses,
+        Data.Stats.CustomWeaponAbilityBonuses,
     },
     SyncListeners = {},
 }
@@ -195,10 +195,19 @@ end, 1)
 --- @param character EsvCharacter
 CustomStatusManager:RegisterCharacterSyncListener("DGM_AbilitiesSync", function(character)
     local currentAbility = GetWeaponAbility(character.Stats, character.Stats.MainWeapon)
-    if currentAbility and Data.Stats.CustomAbilityBonuses[currentAbility] then
+    if currentAbility and Data.Stats.CustomWeaponAbilityBonuses[currentAbility] then
         local abilityValue = character.Stats[currentAbility]
-        local status = CustomStatusManager:Create("DGM_"..currentAbility, Data.Stats.CustomAbilityBonuses[currentAbility])
-        CustomStatusManager:Apply(character, status.Name, -1.0, abilityValue, Data.Stats.CustomAbilityBonuses[currentAbility].Cap)
+        local status = CustomStatusManager:Create("DGM_"..currentAbility, Data.Stats.CustomWeaponAbilityBonuses[currentAbility])
+        CustomStatusManager:Apply(character, status.Name, -1.0, abilityValue, Data.Stats.CustomWeaponAbilityBonuses[currentAbility].Cap)
+    end
+    for ability, bonuses in pairs(Data.Stats.CustomAbilityBonuses) do
+        if character.Stats[ability] > 0 then
+            _P("TEST")
+            local status = CustomStatusManager:Create("DGM_"..ability, bonuses)
+            CustomStatusManager:Apply(character, status.Name, -1.0, character.Stats[ability], bonuses.Cap)
+        else
+            RemoveStatus(character.MyGuid, "DGM_"..ability)
+        end
     end
 end, 2)
 
