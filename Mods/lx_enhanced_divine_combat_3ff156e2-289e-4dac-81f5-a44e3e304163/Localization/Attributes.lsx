@@ -1,0 +1,59 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<save>
+	<version major="3" minor="6" revision="4" build="0" />
+	<region id="TranslatedStringKeys">
+		<node id="root">
+			<children>
+				<node id="TranslatedStringKey">
+					<attribute id="Content" type="28" handle="h18f97d5bg9a79g4917g809dgb0ac7a5ec302" value="Increases all damage by [1]% per point. Damage dealt with weapons (except wands) are further increased by [2]%. Increase Ingress bonus cap from Intelligence by [3]. Allows you to lift and carry heavier items." />
+					<attribute id="ExtraData" type="23" value="" />
+					<attribute id="Speaker" type="22" value="" />
+					<attribute id="Stub" type="19" value="True" />
+					<attribute id="UUID" type="22" value="Strength" />
+				</node>
+				<node id="TranslatedStringKey">
+					<attribute id="Content" type="28" handle="h6b67efcagf943g43a1g959eg36f9ecc42e7e" value="Increases all damage by [1]% per point. Damage dealt by skills is further increased by [2]% (but also wand attacks) and Accuracy by [3]% per point. Each point also increase Ingress by [4], up to the cap set by Strength and increase Wisdom bonus cap from Wits by [5]." />
+					<attribute id="ExtraData" type="23" value="" />
+					<attribute id="Speaker" type="22" value="" />
+					<attribute id="Stub" type="19" value="False" />
+					<attribute id="UUID" type="22" value="Intelligence" />
+				</node>
+				<node id="TranslatedStringKey">
+					<attribute id="Content" type="28" handle="h6d2cd8aeg4e09g4003ga57cg3fea3a0f5502" value="Wits increase Critical Chance by [1]%, Initiative by [2], increases damage dealt by damaging statuses by [3]% per point and your ability to detect traps and find hidden treasures. Increase Wisdom by [4]%, up to the cap set by Intelligence." />
+					<attribute id="ExtraData" type="23" value="" />
+					<attribute id="Speaker" type="22" value="" />
+					<attribute id="Stub" type="19" value="False" />
+					<attribute id="UUID" type="22" value="Wits" />
+				</node>
+				<node id="TranslatedStringKey">
+					<attribute id="Content" type="28" handle="h75391bafg8744g4441g9b1egf52f182f96fc" value="Increases all damage by [1]% per point. Dodge is increased by [2]% and Movement by [3]m per AP per point. Increase Accuracy bonus cap from Intelligence by [4]%." />
+					<attribute id="ExtraData" type="23" value="" />
+					<attribute id="Speaker" type="22" value="" />
+					<attribute id="Stub" type="19" value="False" />
+					<attribute id="UUID" type="22" value="Finesse" />
+				</node>
+				<node id="TranslatedStringKey">
+					<attribute id="Content" type="28" handle="hb924258ag2cf7g4c11gaf4eg8b7de303c197" value=" " />
+					<attribute id="ExtraData" type="23" value="" />
+					<attribute id="Speaker" type="22" value="" />
+					<attribute id="Stub" type="19" value="False" />
+					<attribute id="UUID" type="22" value="DynamicBonus" />
+				</node>
+				<node id="TranslatedStringKey">
+					<attribute id="Content" type="28" handle="h278d3a4fg4dceg4362g9b35g9c3685c93268" value="The damage you inflict when successfully hitting an enemy or object." />
+					<attribute id="ExtraData" type="23" value="" />
+					<attribute id="Speaker" type="22" value="" />
+					<attribute id="Stub" type="19" value="False" />
+					<attribute id="UUID" type="22" value="Damage" />
+				</node>
+				<node id="TranslatedStringKey">
+					<attribute id="Content" type="28" handle="h2f00286fg98feg42abg84a5gb9d4fcce838e" value="Your chance to hit an enemy. On miss, you trigger Warmup which increase your Accuracy and Movement (improved by Warfare), stackable up to 4 times." />
+					<attribute id="ExtraData" type="23" value="" />
+					<attribute id="Speaker" type="22" value="" />
+					<attribute id="Stub" type="19" value="False" />
+					<attribute id="UUID" type="22" value="Accuracy" />
+				</node>
+			</children>
+		</node>
+	</region>
+</save>

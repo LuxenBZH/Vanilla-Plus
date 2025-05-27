@@ -1,0 +1,696 @@
+Status,Key,Value,Source,GUID
+OK,Accuracy_Description,"Your chance to hit an enemy. On miss with a melee weapon, you trigger Warmup which increase your Accuracy and Movement (improved by Warfare), stackable up to 4 times.",Attributes.lsb,h2f00286fg98feg42abg84a5gb9d4fcce838e
+OK,Damage_Description,The damage you inflict when successfully hitting an enemy or object.,Attributes.lsb,h278d3a4fg4dceg4362g9b35g9c3685c93268
+OK,DynamicBonus,,Attributes.lsb,hb924258ag2cf7g4c11gaf4eg8b7de303c197
+OK,Finesse_Description,Increases all damage by [1]% per point. Dodge is increased by [2]% and Movement by [3]m per AP per point. Increase Accuracy bonus cap from Intelligence by [4]% and Critical Multiplier by [5]%.,Attributes.lsb,h75391bafg8744g4441g9b1egf52f182f96fc
+OK,Intelligence_Description,Increases all damage by [1]% per point. Spell damage is further increased by [2]% and Accuracy by [3]% per point. Each point also increase Ingress by [4] and increase Wisdom bonus cap from Wits by [5].,Attributes.lsb,h6b67efcagf943g43a1g959eg36f9ecc42e7e
+OK,Strength_Description,Increases all damage by [1]% per point. Damage dealt with martial weapons are further increased by [2]%. Increase Ingress bonus cap from Intelligence by [3]. Allows you to lift and carry heavier items.,Attributes.lsb,h18f97d5bg9a79g4917g809dgb0ac7a5ec302
+OK,Wits_Description,"Wits increase Critical Chance by [1]%, Initiative by [2], increases damage dealt status ticks by [3]% per point and your ability to detect traps and find hidden treasures. Increase Wisdom by [4]%, up to the cap set by Intelligence.",Attributes.lsb,h6d2cd8aeg4e09g4003ga57cg3fea3a0f5502
+OK,Strength_Cap,(require more Strength to unlock full potential),Attributes.lsb,h67cd4494a00a96f8ab2d6d72725e2df5f03f
+OK,Finesse_Cap,(require more Finesse to unlock full potential),Attributes.lsb,h97220f17f0a7e0f845a6d27ff36ff4280432
+OK,Intelligence_Cap,(require more Intelligence to unlock the full potential),Attributes.lsb,h103ba6e4da779f12f4121d30c184dd34a1e7
+OK,CriticalChance_Description,"Your chance to Critically Strike when attacking with a weapon or when using a weapon-based skill. If you Backstab, your Critical Chance is converted to additional damage : for 1% of Critical Chance, you gain [1]% damage.",Attributes.lsb,h9df517d1gf64bg499dgb23fg462fd1f061bc
+OK,Damage_DynamicTooltip,Total damage: [1]-[2],Attributes.lsb,h7fec5db8g58d3g4abbgab7ag03e19b542bef
+OK,Finesse_DynamicTooltip,"+[1] point(s) = +[2]% to all Damage, +[3]% Dodge, +[4]m of movement per AP and +[5]% to Accuracy cap (given by Intelligence).",Attributes.lsb,h2e87e6cfg0183g4968g8ec1g325614c7d9fa
+OK,Intelligence_DynamicTooltip,"+[1] point(s) = +[2]% to all Damage, +[3]% more for skills, +[4]% Accuracy[5], Ingress by [6]% [7]and Wisdom cap from Wits by [8].",Attributes.lsb,h58e777ddgd569g4c0dg8f58gece56cce053d
+OK,Intelligence_SkillDamageTooltip,Spells gets a bonus of +[1]% from Intelligence,Attributes.lsb,hf338b2c0gd158g49b4ga2ceg15a7099a4b7b
+OK,MagicArmourBypassReduction_Tooltip,Reduce damage going through Magic Armour by [1]%,Attributes.lsb,h2ce13614gab6cg4878gb781gcb3186a8ead9
+OK,Strength_DynamicTooltip,+[1] point(s) = +[2]% to all Damage and +[3]% more for weapon-based attacks and +[4]% to Ingress cap (given by Intelligence).,Attributes.lsb,he1708d1eg243dg4b72g8f48gddb9bc8d62ff
+OK,Wits_DynamicTooltip,"+[1] point(s) = +[2]% Critical Chance, +[3] Initiative, +[4]% damage done by harmful statuses and +[5] Wisdom[6].",Attributes.lsb,ha422c4f4ge2bbg4cbcgbbf3g505c7ce673d1
+OK,DualWielding_Description,Dual-Wielding increases damage and Dodging when wielding two Single-Handed weapons.,CombatAbilities.lsb,h768669d0g02adg48f7g901eg83068a96bf19
+OK,DualWielding_Displayname,Dual-Wielding,CombatAbilities.lsb,h03d68693g35e7g4721ga1b3g9f9882f08b12
+OK,Hydrosophist_TooltipCurrent,"Level [1]: Water attacks deal +[2]% more damage, +[3]% Vitality healed, +[4]% Magic Armour from skills and potions.",CombatAbilities.lsb,hc4400964gcf4bg429cg882cg9e90ba8cf0ce
+OK,Hydrosophist_TooltipNext,"Next Level [1]: Water attacks deal +[2]% more damage, +[3]% Vitality healed, +[4]% Magic Armour from skills and potions.",CombatAbilities.lsb,h0a8b0b59g5da9g483fg86a3g59afce30dbb7
+OK,Perseverance_Description,Recovers armour passively at the start of every turn. This effect cannot be shared and is not affected by healing modifiers. This effect is disabled while under the effects of crowd control. Also increase maximum armours and provide the same amount on resurrection.,CombatAbilities.lsb,h1bae56a9ga45fg431fg80bfg2afbef03c1d2
+OK,Perseverance_TooltipCurrent,Level [1]: Recover [2] Armour every turn and increase maximum armours by [3].,CombatAbilities.lsb,h5d0c3ad0g3d9dg4cf1g92b7g20d6d7d26344
+OK,Perseverance_TooltipNext,Next Level [1]: Recover [2] Armour every turn and increase maximum armours by [3].,CombatAbilities.lsb,h443a51dcgbd6fg46c2g8988gbfe93a3123a5
+OK,Ranged_Description,"Ranged increases damage and Critical Chance when using bows and crossbows. Also increases the range when wielding a bow, crossbow or wand(s) up to 2 meters.",CombatAbilities.lsb,h54f2ea13g97dbg4b86g9d13geeb81186faca
+OK,Ranged_TooltipCurrent,"Level [1]: +[2]% Damage, +[3]% Critical Chance and increase Range by [4]m.",CombatAbilities.lsb,he86bfd28ge123g42a4g8c0cg2f9bcd7d9e05
+OK,Ranged_TooltipNext,"Next Level [1]: +[2]% Damage, +[3]% Critical Chance and increase Range by [4]m.",CombatAbilities.lsb,hffc37ae5g6651g4a60ga1c1g49d233cb1ca2
+OK,RangedWeapons_DynamicTooltip,Receive a [1]% Damage penalty if the target is closer than [2] meters,CombatAbilities.lsb,h3e8d0f43g5060g48d8g95cag541abe3a7c08
+OK,TwoHanded_Description,"Two-Handed increases damage and Critical Multiplier when using two-handed melee weapons (swords, axe, mace, spear or staff).",CombatAbilities.lsb,h206ce4abg4f84g4b2dg934aga0d96a602f2c
+OK,Warfare_Description,[1] increases all Physical damage you deal and improve your Warmup status.,CombatAbilities.lsb,hae8649cfg3688g43b4gb137gdae29b32492e
+OK,Warfare_TooltipCurrent,"Next Level [1]: Physical attacks deal +[2]% more damage, Warmup accuracy bonus increased by [3]% and movement bonus is increased by [4]% per stack.",CombatAbilities.lsb,h2443a42egd7abg4116g95b4g8036050c3bd3
+OK,Warfare_TooltipNext,"Level [1]: Physical attacks deal +[2]% more damage, Warmup accuracy bonus increased by [3]% and movement bonus is increased by [4]% per stack.",CombatAbilities.lsb,ha4b72525g51d5g434cgbdf9g3a4ec57319aa
+OK,SingleHanded_TooltipCurrent,"Level [1]: +[2]% Damage, +[3]% accuracy, +[4]% armours and +[5]% to Elemental Resistances.",CombatAbilities.lsb,h70707bb2g5a48g4571g9a68ged2fe5a030ea
+OK,SingleHanded_TooltipNext,"Next Level [1]: +[2]% Damage, +[3]% accuracy, +[4]% armours and +[5]% to Elemental Resistances.",CombatAbilities.lsb,h2afdc1f0g4650g4ea9gafb7gb0c042367766
+OK,TwoHanded_TooltipCurrent,"Level [1]: +[2]% Damage, +[3]% Critical Multiplier.",CombatAbilities.lsb,h6e9ec88dgcbb7g426bgb1d9g69df0240825a
+OK,TwoHanded_TooltipNew,"Next Level [1]: +[2]% Damage, +[3]% Critical Multiplier.",CombatAbilities.lsb,hda7ee9a4g5bbeg4c62g96b7ge31b21e094f3
+OK,Condition_OneArmorDown,Enemies need to have Physical or Magic armour down to be targetable.,CustomTooltips.lsb,hd8444847bbd19af4a64fec0be5d676cfd2ac
+OK,BaseLevelDamage,Base Level [1] Damage,CustomTooltips.lsb,h929657ba1aba4325f243f0e6772cfaceaadd
+OK,BaseWeaponLevelDamage,Base Weapon Level [1] Damage,CustomTooltips.lsb,h79577823a419e6c124b9bd82921fb1d6acde
+OK,AverageLevelDamage,Average Level [1] Damage,CustomTooltips.lsb,h32e659dc26b4d734b08f6d9f3e8b60556886
+OK,DamageScalings_Description,Base level damage is level scaled damage for a 100% damage hit. Average Level damage takes into account the average bonus from attributes and abilities and is a good point of reference to evaluate the damage effectiveness of your character.,CustomTooltips.lsb,h83426768906c06cfb771d3a4e67a34ae789d
+OK,Heal_ThresholdMinimum,"Heals for a minimum of ""..tostring(vitalityAmount).."" Vitality.",CustomTooltips.lsb,h0c13f0f76f8b9dcd03df00bd6c263ab24ca1
+OK,Stats_AbsorbStatus_Description,Absorb [1] for [2] turns.,CustomTooltips.lsb,h2416b155e7eff9468ec627d35e1d9c1d5eef
+OK,Stats_Absorb_DynamicTooltip_B,Creates or reinforce a shield absorbing [1] [2] damage.,CustomTooltips.lsb,h057a12aa72d45d7954ee6d3994ee52aab99d
+OK,Stats_Absorb_DynamicTooltip,Creates a shield absorbing [1] [2] damage.,CustomTooltips.lsb,heea3647e407108c82cfb8bc7b9a28466e0ab
+OK,Status_Absorb_Description,Shield remaining power: [1],CustomTooltips.lsb,hb8cba6c6ac0a19b36270e362a009381676be
+OK,Stats_Property_TryKill_Source,Consume up to [1] Source points to increase the execution threshold by [2] per SP. (current threshold: [3]),CustomTooltips.lsb,h6bad3b201c1986e5a3827934ca6f49bc37fd
+OK,Stats_Property_TryKill_Influence,Increase the execution threshold by [1] if the target is under the influence of ,CustomTooltips.lsb,hd7663294fbe68dbeb04a7325ed6ef4f1fc1e
+OK,Stats_Property_TryKill_Tooltip,Attempt to execute the target if their Vitality falls under [1] HP after the hit.,CustomTooltips.lsb,hdc7a789f1f7aa544b50c8c57aeeefdc81f99
+OK,Stats_Property_SurfaceBoost,Absorb surfaces to boost the skill.,CustomTooltips.lsb,h8f46c277e3bfc1bd5e4bbdc9dd44cb02a76b
+OK,Stats_Property_ExplodeTarget,"Explode target, causing damage in a [1] meters radius",CustomTooltips.lsb,h18e8b47d7dd5bd8e8fe8dd3648babef22e0e
+OK,Stats_Projectiles_PerHit,per hit,CustomTooltips.lsb,h4e5602c09b6bcb669bfdbf883d41a4733bee
+OK,Stats_Property_Spark,Each hit will throw a projectile to the nearest target in a [1] meters radius,CustomTooltips.lsb,hf7706a04b05a3924631fd884d6fb9098791c
+OK,Stats_Property_LeaveAction,On [1] expiration,CustomTooltips.lsb,h61696f26f01ce354a30f6417bb246c7f4233
+OK,Stats_Property_ActiveDefense,On activation: [1],CustomTooltips.lsb,hadf39de9d8d3bcbd079c8e63931ca10cc64c
+OK,Status_Damage_ExtensionWeapon,Weapon bonus: [1],CustomTooltips.lsb,hb26a8b9532200173428dddf10659da5c09a0
+OK,Status_Damage_ExtensionStatus,Status: [1],CustomTooltips.lsb,hc93f8814ef80da6b9a7e1c5b2dd32b96d9d5
+OK,Tooltip_Generic_BonusFrom,Bonus from ,CustomTooltips.lsb,h2bfa26da00cc53a60efe45644bb2fb131345
+OK,Tooltip_BonusFromAttributes,Bonus from Attributes,CustomTooltips.lsb,hc47f2a9f4b4028956cd52426f13d7fa81856
+OK,Stats_Potion_Overdose,"Drinking a second potion during your turn will reduce your AP by 1 the next turn, and drinking a third one will immediatly end your turn and reduce your AP by 3 the next turn.",CustomTooltips.lsb,h4b32c30df6e6bfe971f6a7d2a3f6cec47921
+OK,Stats_Potion_HealingElixir_Custom,"Clear Crippled, Atrophy and Diseased.",CustomTooltips.lsb,h95b0cc714194a4a72e30770873e9bcef128d
+OK,AttributesGeneralBonusDynamicTooltip,From Attributes : [1]%,Misc.lsb,hdf2a4bd0g134eg4107g9a8agd93d6d22fd68
+OK,BuiltinWeaponEnhancementTooltip,,Misc.lsb,he534e470gb8a2g4032gbd9bgee0ac41f1f0f
+OK,Corrogic_DisplayName,Resistance Corrosion,Misc.lsb,hb24edf38gd48ag477fgbf75g3bd3de8c6eec
+OK,PhysArmourBypassReduction_Tooltip,Reduce damage going through Physical Armour by [1]%,Misc.lsb,h50e9548eg61f2g4aedg8a3eg570a7ffee6d3
+OK,ArmoursReductionBypass_Tooltip,Reduce damage going through Physical and Magic Armour by [1]%,Misc.lsb,hf7a19975gea84g44a3g8fffg5b4f063b88b4
+OK,Strength_WeaponDamageTooltip,From Strength weapon bonus : [1]%,Misc.lsb,ha418e064g2d69g4407gadc2gf2f590f0e895
+OK,Target_Condense_Custom,Refund 1 AP on use if the user is Wet.,Misc.lsb,h5806fbdcgce18g421dg8affg316856abad0f
+OK,Target_EvasiveManeuver_Custom,Prevent the attacker to Warmup when you dodge.,Misc.lsb,h456b2bf0gf693g41e8gb01cg42e3548814a2
+OK,TargetCondition_ArmoursDepleted,Enemies can only be targeted if one of their armour is depleted.,Misc.lsb,h8afcfe4egf50fg402agbcc0g6ba95472ff53
+OK,Target_TentacleLash_Custom,Also triggers the Strength weapon bonus.,Misc.lsb,hddb00621g65ddg46acg89d2gfcf3efd8cd78
+OK,Confused_Description,This character has been magically affected during recovery.,Potion.lsb,h4641ef2eg741ag408bg95adg2fe65094c8b6
+OK,DodgeFatigue_Description,This characters dodging has become less effective.,Potion.lsb,he8ede611g2306g4bacga3aag78eccdf928fb
+OK,FoodPoisoning_Description,Deals [1] damage each turn.,Potion.lsb,h06098edfg8629g4f30gb6d4g45057f6622ce
+OK,Lingering_Description,"Any attempt to apply Stunned, Petrified, Frozen, Madness, Terrified or Charm will apply Confused instead.",Potion.lsb,h32fcbbfbgec6bg4af4g894ag49fd997307fe
+OK,MedusaHeadAura_Description,Slow enemies in [1] range.,Potion.lsb,h619fc68ag94ccg4c8ag9442g4ad02630ad64
+OK,Momentum_Description,Any attempt to apply Knocked Down or Chicken Form will apply Staggered instead.,Potion.lsb,h2ceb4cffgfaf3g42b2g95c8g4fad6567f70d
+OK,PetpalStatus_Description,This summon is weaker.,Potion.lsb,h76856ed3gf1cdg4c63g887fgb4c1fd40952b
+OK,PotionFatigue1_Description,This character drank too many potions and is experiencing side effects.,Potion.lsb,h6268c71cge671g4168g8827g653a7ace2925
+OK,PotionFatigue2_Description,This character drank too many potions and could not handle the side effects.,Potion.lsb,h9dffbeb7g85b6g4275g8c58g8b0de33c8583
+OK,PotionWarning_Description,This character has already drunk one potion during their turn. Drinking another potion before the end of the turn will have side effects.,Potion.lsb,h6c5806e8g7bccg4ecdg959eg254d17edbd71
+OK,ShieldsUp_Description,The amount of damage going through Physical and Magic Armour is reduced by half.,Potion.lsb,h9e8b6e5bgd7b4g4444g8853g5eb8910285a4
+OK,Staggered_Description,This character has staggered during their recovery.,Potion.lsb,hd281d94fg1f41g4af0ga8c2g69747893e1f2
+OK,LX_AIMING_STANCE_DisplayName,Aiming Stance,RangedStances.lsb,h277498b7gfd0bg449bga053g3e1dae5ca0b0
+OK,LX_HUNTERMARK_APPLIED_Description,The next ranged weapon skill from [1] will do 50% more damage and will bypass Accuracy checks.,RangedStances.lsb,h13ed1461ge8e3g477ag8f51g958c2f4a4727
+OK,LX_HUNTERMARK_APPLIED_DisplayName,Marked for death,RangedStances.lsb,h60b4894egad4bg4739gac4agfe88440bce95
+OK,LX_HUNTERMARK_Description,"If the aiming stance of the instigator is not broken when this status expires, their next ranged weapon skill will do 50% more damage and bypass Accuracy when targeting this character.",RangedStances.lsb,h84fd8ab8gbebag4766g9ae6gf44377bc80e5
+OK,LX_HUNTERMARK_DisplayName,Hunter's Mark,RangedStances.lsb,h824a28cfg6feag40e9gb4aegadb1c9c1b6b1
+OK,LX_RAPIDFIRE_Description,Huntsman offensive skills cost less AP but will do less damage as well.,RangedStances.lsb,hd136cd0dge4efg455bgab63g1c5f09e8b3f7
+OK,LX_RAPIDFIRE_DisplayName,Rapid fire,RangedStances.lsb,hc6fd8ccagf282g443cga110g9dee53707a0b
+OK,LX_REFLEX_STANCE_Description,"Each successful ranged weapon hit done by this character will provide [1]m Celerity, but Accuracy on targets beyond 8m is halved.",RangedStances.lsb,h029d1a4fg5ab0g49e0g9abegc9e15bebca22
+OK,LX_REFLEX_STANCE_DisplayName,Reflex Stance,RangedStances.lsb,hf9f20bd7gbfe4g4c4bgad59gdc7269f503ed
+OK,LX_RELOAD_DisplayName,Reload,RangedStances.lsb,h9e6328c3gd089g40a0g9b27gc128f0ec539a
+OK,LX_RELOAD_PENALTY_Description,Convert Celerity to reduce the cooldown of the last skill used.,RangedStances.lsb,hecc2fd8fged63g414bg9418g03b24ee992f4
+OK,LX_RELOAD_PENALTY_DisplayName,Reload,RangedStances.lsb,hfb285918gb021g48ecga65cgdf885c76c31a
+OK,LX_SUPPRESSED_Description,"Receiving ranged attacks will reduce further Movement, Celerity, Damage and Wisdom while staying in the suppressed area.",RangedStances.lsb,h2fcb1a3fg1529g457dga677g50f4ec549691
+OK,LX_SUPPRESSED_DisplayName,Suppressed,RangedStances.lsb,h1371caecg6f8bg4f1bg8c9ag31fc22292c21
+OK,Shout_LX_RangedAimingStance_Description,"Set Movement to 0, reduce Dodge by [1]% but increase Accuracy by [2]% and Critical chance by [3]%. Also provides Suppression and Mark for death skills. If the character receives a melee attack, the stance breaks and go on cooldown for 3 turns.",RangedStances.lsb,h77c44af5g4d45g434bgbe54g5fccaef26cd3
+OK,Shout_LX_RangedAimingStance_DisplayName,Aiming Stance,RangedStances.lsb,h2045f341g51b8g4435gbeccg405635077ac2
+OK,Shout_LX_RangedReflexStance_Description,Accuracy is reduced by half when attacking targets beyond 8m but each successful hit grants 2 meters of free movement. Also provides Reloading and Rapid fire skills.,RangedStances.lsb,hca9195aeg715fg4387gbe13ge48e4ccdf2a3
+OK,Shout_LX_RangedReflexStance_DisplayName,Reflex Stance,RangedStances.lsb,h1db2ada5g0ccag4febg8228g771074232992
+OK,Shout_LX_RangedStances_Description,Change the character stance to provide specific advantages with a bow or a crossbow.,RangedStances.lsb,h34ec8c2ega1ecg46b4gbe96gf7070e6678d2
+OK,Shout_LX_RangedStances_DisplayName,Ranger Stances,RangedStances.lsb,h6fa29989g3160g479ag9e1cgcde1483eedd0
+OK,Shout_LX_RapidFire_Description,Reduce the AP cost of Huntsman skills by 1 but reduces their damage by up to 35% depending on the original cost until the end of the turn. Cannot reduce AP costs below 1.,RangedStances.lsb,hd289e74bgd779g47d8gb225ga4c7526336d2
+OK,Shout_LX_RapidFire_DisplayName,Rapid Fire,RangedStances.lsb,h8e14798eg42cfg468fg87efg3da3af53f26f
+OK,Shout_LX_Reload_Description,Consume available Celerity to reduce the cooldown of the latest Huntsman skill used by 1 turn per 2.5m of Celerity consumed.,RangedStances.lsb,h17742d01ga6afg4d36g99efg057be20b47ea
+OK,Shout_LX_Reload_DisplayName,Reload,RangedStances.lsb,he988464dga06ag4169ga694g853a26a924df
+OK,Target_LX_HunterMark_Description,"Mark the target. If the stance is not broken until next turn, the next skill against the marked target will inflict 50% more damage and bypass Accuracy checks.",RangedStances.lsb,he277a356g75c7g4ce1g9b3ag6340b43bc512
+OK,Target_LX_HunterMark_DisplayName,Hunter's mark,RangedStances.lsb,h38811663g88e4g444dgbda2g880b18198a1c
+OK,Target_LX_SuppressionFire_DisplayName,Suppression fire,RangedStances.lsb,hf6ad3ad9g9ceag4df4g8035gee550741027b
+OK,Target_LX_SuppressionFiret_Description,"Cover an area and sets Suppression on characters you shoot inside, reducing their Celerity by [1], Damage by [2]%, Movement by [3] and Wisdom by [4] for 2 turns and stacks up to 5 times. The suppression area lasts 2 turns.",RangedStances.lsb,h22ed7dacg4d3cg4beag92c7g224187547dfe
+OK,LXDGM_ArmourDamagePass,Armour penetration,Resources.lsb,heace2e30g4075g428cg8163g3fc8eff9323b
+OK,LXDGM_ArmourDamagePass_Description,Set the percentage of damage going through armours.<br>Default : 50,Resources.lsb,h8271feceg6b6cg470cg8c8fg5de1ee77a76b
+OK,LXDGM_ArmourDamagePassDepleted,Last armour penetration,Resources.lsb,h39ded39fg40a6g46a1gafe4gbaf448e4f20a
+OK,LXDGM_ArmourDamagePassDepleted_Description,Set the percentage of damage going through armour when one type of armour is depleted. Additive to the first value.<br>Default : 25,Resources.lsb,hf2c55a59ge06dg4e77g8d04g69f9ea668541
+OK,LXDGM_ArmourReductionMultiplier,Armour Damage Multiplier,Resources.lsb,h7bcfac6eg76a6g4ccega83bg2ff334058ccc
+OK,LXDGM_ArmourReductionMultiplier_Description,Apply a multiplier to all Corrosive and Magic damage. <br>Default : 100,Resources.lsb,h579e2544g8e6cg4bbdg92a1g5598996b8f7b
+OK,LXDGM_AttributeCap,Attributes Soft Cap,Resources.lsb,hcd0b98f8g6ce9g454cg880cgb0358ed18328
+OK,LXDGM_AttributeCap_Description,The number of points you can invest in an attribute. Doesn't concern bonuses from statuses and equipment.<br>Default : 40,Resources.lsb,h6516d420gee6dg45ccgb315gd94c2d8b3bc5
+OK,LXDGM_BackstabCritChanceBonus,Crit. Chance Backstab Bonus,Resources.lsb,h5181573egec45g4adcgb6d2g6b8d856c3b4f
+OK,LXDGM_BackstabCritChanceBonus_Description,The damage bonus provided per Critical Chance percent when backstabbing. <br>Default : 0.5<br>,Resources.lsb,haee8a8d1g10e8g491ag83c8g833c3a4d0fbb
+OK,LXDGM_BaseAccuracy,Base Accuracy,Resources.lsb,h757f2c61g6620g4134ga7efgd7db36630de5
+OK,LXDGM_BaseAccuracy_Description,Default : 90<br><font color=#ff0000>Require a game restart</font>,Resources.lsb,he8315150gd40cg453dg911bgef5e2cd5ef74
+OK,LXDGM_CCParryDuration,CC Recover Duration,Resources.lsb,h80149363gb072g4531gae22gf187147b9c44
+OK,LXDGM_CCParryDuration_Description,The duration of Momentum and Lingering when they are triggered. <br>Default : 2<br>,Resources.lsb,hdef2f1beg2fc7g4a22gab9eg29c2f0694e4d
+OK,LXDGM_CQBPenalty,CQB Ranged Combat Penalty,Resources.lsb,h0c972945g2320g4a0agbfebg86667bcf4c7b
+OK,LXDGM_CQBPenaltyRange,CQB Range Threshold,Resources.lsb,h2cfe726egc70bg459cgb8b8gc2442ce7b9ea
+OK,LXDGM_CQBPenaltyRange_Description,Set the target distance threshold which defines when do ranged weapons gets a penalty.<br>Default : 2<br>,Resources.lsb,h19525dddg3cadg4699g94d2g342b1192a332
+OK,LXDGM_CrossbowPenaltyBase,Crossbow Base Penalty,Resources.lsb,hc5574731g874ag4d82gb4a0gba70af698168
+OK,LXDGM_CrossbowPenaltyBase_Description,Set the base Movement penalty of Crossbows when they are equipped.<br>Default : -92<br><font color=#ff0000>Require a game restart</font>,Resources.lsb,h5d420a72gb8cag4a08gb9ffg774da57dd2f7
+OK,LXDGM_CrossbowPenaltyGrowth,Crossbow Penalty Per Level,Resources.lsb,he6c2c979gd7a7g4926g9180g5d69e9d79d62
+OK,LXDGM_CrossbowPenaltyGrowth_Description,Set the Movement penalty of Crossbows growth per level.<br>Default : -8<br><font color=#ff0000>Require a game restart</font>,Resources.lsb,heb8111a8g1b89g4bf6gbf1age84937263ba2
+OK,LXDGM_FinesseCriticalChanceBonus,Finesse Critical Chance Bonus,Resources.lsb,hc8901962g28ceg4fd9g82c2ge28ef16abd5b
+OK,LXDGM_FinesseCriticalChanceBonus_Description,Default : 1<br><font color=#ff0000>Require a game restart</font>,Resources.lsb,h049f29acg76c5g4336ga831g3effd3b94d4e
+OK,LXDGM_FinesseGlobalDamageBonus,Finesse Global Damage Bonus,Resources.lsb,h7b1052abg9968g4acdgb399g989954144550
+OK,LXDGM_FinesseGlobalDamageBonus_Description,Default : 3,Resources.lsb,h19eab510gec8cg4d4fg92fag5918044ab001
+OK,LXDGM_FinesseMovementBonus,Finesse Movement Bonus,Resources.lsb,h5822708bgb172g42d7g8d1fg948980c9d8eb
+OK,LXDGM_FinesseMovementBonus_Description,Default : 20<br><font color=#ff0000>Require a game restart</font>,Resources.lsb,hd5148365gb1f7g4f21g9521gd50d897e5e4a
+OK,LXDGM_FixConstitutionGap,Fix Vitality Gap,Resources.lsb,hf69fc03eg0a46g4ed6g80e4ga325a7ffe659
+OK,LXDGM_FixConstitutionGap_Description,Use this if you enabled Vanilla Plus on a running save and you witness most characters and items lack some Vitality.,Resources.lsb,hbe73e4f8g0448g4a54gaa87g3905ebfeb604
+OK,LXDGM_FixConstitutionGap_Message,Warning ! Use it only if you enabled Vanilla Plus in a running save and witness everything lacking Vitality. The fix might be somewhat inaccurate and can potentially break encounters. Proceed ?,Resources.lsb,hbf283d5cgda64g4436g886cg3452c10aa414
+OK,LXDGM_FlatScaling_Message1,"Warning ! Changing the vitality scaling will break the vitality of the characters on the current map (in story mode) or on all scenes (in GM mode). It is highly recommended that you enable this option during the character creation before starting the game, or if you are in GM mode before creating your scenes. Proceed ?",Resources.lsb,h69b87598gf85eg4c63g9533ga0aa699de1ce
+OK,LXDGM_FlatScaling_Message2,"Warning ! Deactivating the linear scaling will break characters vitalities again. If you do it in story mode, it is recommended to do it just before transitioning to a new act. Proceed ?",Resources.lsb,he187433cg29c8g44dag8924gdd2345937ed0
+OK,LXDGM_FlatScalingActivate,Enable Linear Vitality Scaling,Resources.lsb,hda7d12b4gfd73g46dag981bg3bcc5d9e8ad1
+OK,LXDGM_FlatScalingActivate_Description,"Change the vitality scaling to be linear instead of exponential. The difference of Vitality, Armours and Damage between levels are much lower, avoiding weapons fast obsolescence and making inter-levels combats more fair. <br>Default : off<br><font color=#ff0000>Require a map reload. It is highly recommended to activate this option before starting a new game (during character creation), and deactivating it mid-playthrough will break all NPCs vitality.</font>",Resources.lsb,hab342575gecacg4c17ga4dcg4d2c771f2a24
+OK,LXDGM_FlatScalingDeactivate,Disable Linear Vitality Scaling,Resources.lsb,h1cf47358gd399g486fg9401g6a12b06eb879
+OK,LXDGM_FlatScalingDeactivate_Description,"Switch back to the exponential scaling. Break vitalities of characters on the current map (story mode), or on all scenes (GM mode).",Resources.lsb,hdbadc53agb463g47c8gb396gff76b7cc0164
+OK,LXDGM_IntelligenceAccuracyBonus,Intelligence Accuracy Bonus,Resources.lsb,hd4f241b4gb997g41efga6c0gb5d38e0ad0b0
+OK,LXDGM_IntelligenceAccuracyBonus_Description,Default : 2<br><font color=#ff0000>Require a game restart</font>,Resources.lsb,ha4a2351eg24cdg4f68g8ef6gb7ee91c0c08e
+OK,LXDGM_IntelligenceGlobalDamageBonus,Int. Global Damage Bonus,Resources.lsb,hf7f34763g19feg4018gb6f6g4cc298dc512d
+OK,LXDGM_IntelligenceGlobalDamageBonus_Description,Default : 2,Resources.lsb,h5340847eg5242g4a5bgb0dcg581a25c167ce
+OK,LXDGM_IntelligenceSpecialDamageBonus,Intelligence Skill Damage Bonus,Resources.lsb,hfd01dd86gb216g473fg86a3gb6eddafc79db
+OK,LXDGM_IntelligenceSpecialDamageBonus_Description,Default : 3,Resources.lsb,h4b32fa34gdce0g4683g93aagf3c802c319d7
+OK,LXDGM_ModuleCorrogicDisable,Corrogic,Resources.lsb,hebc78e7bg3775g4da6gbe21g054b280f11ce
+OK,LXDGM_ModuleCorrogicDisable_Description,"If Corrosive or Magic damage is dealt while the corresponding armour is depleted, they will strip resistances for 2 turns. Can be stacked, the resistance loss is proportional to the damage dealt and the max vitality of the target. Can be removed with Fortified or Magic Shell. <br>Default : on<br>",Resources.lsb,hb78e3fa5gfa77g4a00g9228g62b93db293e9
+OK,LXDGM_ModuleDivineTalentsDisable,Divine Talents Plus,Resources.lsb,h2512e452g4bdcg4631g9f32g67f9b6e5fc99
+OK,LXDGM_ModuleDivineTalentsDisable_Description,"Enable talents from Gift Bag 4, with effects slightly adapted to Vanilla Plus gameplay. <br>Default : on<br><font color=#ff0000>Require a game restart</font>",Resources.lsb,h0045f23fgb529g49d5gb9f5gab8c0a6a4b17
+OK,LXDGM_ModuleDualCC,Dual CC Resistance,Resources.lsb,he53d3385g125cg49ddgaacegce01ebea865f
+OK,LXDGM_ModuleDualCC_Description,"When recovering from a hard crowd control effect, both Momentum and Lingering will always be triggered together whatever the crowd control effect it was. <br>Default : off<br>",Resources.lsb,h51631525ga7c5g4ff3gbf10ga04307fcdf7e
+OK,LXDGM_ModuleFallDamageAlternate,Activate Jump fall damage,Resources.lsb,h2e8803d0g3b27g470dgb836g26fcbeb60714
+OK,LXDGM_ModuleFallDamageAlternate_Description,Activate fall damage when character use Jump skills or Projectile skills moving the character. Damage is not applied for Fly.,Resources.lsb,h584b8016g05e3g4c00gbaccg0c441bf1c3f5
+OK,LXDGM_ModuleFallDamageClassic,Activate Force fall damage,Resources.lsb,hfe32bba9g038fg4541g921cge1be27275d5f
+OK,LXDGM_ModuleFallDamageClassic_Description,Activate fall damage when characters are victim of the Force property of some skills.<br>Scoundrel reduce the height tolerance for each point. Damage is not applied if the victim has Wings.,Resources.lsb,h863fc18ag2674g47e8g9657ge6fb4a5b074f
+OK,LXDGM_ModuleLegacyDodge,Dodge Fatigue,Resources.lsb,heb12b418g92ccg4bbeg9837gdab77683435b
+OK,LXDGM_ModuleLegacyDodge_Description,"Enable the old dodge system, triggering Dodge Fatigue instead of Warmup on dodges.<br>Default : off",Resources.lsb,h7b6b2d7eg13f2g4a8cg9691g811c39d97536
+OK,LXDGM_ModuleOriginalChameleonCloak,Classic Chameleon Cloak,Resources.lsb,ha0a64a63g9fd2g40edg98b0g421c3099523d
+OK,LXDGM_ModuleOriginalChameleonCloak_Description,Revert Chameleon Cloak ability requirements to Polymorph 1 only.<br>Default : off<br><font color=#ff0000>Require a game restart</font>,Resources.lsb,ha6f17eacgbfdbg4cc2g9734g87d7801fe648
+OK,LXDGM_ModuleOriginalTeleport,Classic Teleport,Resources.lsb,h9ec453a6g6fb1g4f78g9e28g7c1b6495567e
+OK,LXDGM_ModuleOriginalTeleport_Description,Revert Teleport and Nether Swap targetting to unconditional. <br>Default : off<br><font color=#ff0000>Require a game restart</font>,Resources.lsb,hb96acab6g6db2g425fg8e7fg947dc56be642
+OK,LXDGM_ModuleRealJump,Real Jump,Resources.lsb,h5e0c2cf9g042ag4803gb01bg6128e1246fc9
+OK,LXDGM_ModuleRealJump_Description,"This module transforms Cloak and Dagger, Phoenix Dive and Tactical Retreat as projectile equivalents (like Fly with Spread your wings). It applies to everyone. If some NPC still have the classic version, deactivate and reactivate this module.",Resources.lsb,he573ce38g6445g4975g8562ge97ea0a52c79
+OK,LXDGM_NPCStatsCorrectionCampaignDisable,Activate stats correction,Resources.lsb,h0bd1a48dg8f40g44b7g9229g826720785117
+OK,LXDGM_NPCStatsCorrectionCampaignDisable_Description,Activate the stats correction formula. Strongly recommended when playing Story mode or any Adventure mod that has not been balanced for Vanilla Plus.<br>Default : on<br><font color=#ff0000>Require a game restart</font>,Resources.lsb,h1b361ce1gd5d3g4c0eg8b8cg7d87658e755f
+OK,LXDGM_NPCStatsCorrectionGM,Activate for GM mode,Resources.lsb,hc13ac1f2ge15eg4791ga4bcgca5508715345
+OK,LXDGM_NPCStatsCorrectionGM_Description,"Activate the stats correction formula for GM mode. This is up to your preferences, but if you already created and balanced encounters, you might need to rebalance them.<br>Default : off<br><font color=#ff0000>Require a game restart</font>",Resources.lsb,h552b479bg3e56g4ea1gb01fg96d986de5e5f
+OK,LXDGM_NPCStatsMainCorrection,Main Attribute Correction,Resources.lsb,h2802446bg3159g4290g9154g8cac4a93eaf1
+OK,LXDGM_NPCStatsMainCorrection_Description,"The correction indice for the highest damaging attribute for NPCs. The higher it is, the lower will be the final result.<br>Default : 50<br><font color=#ff0000>Require a game restart</font>",Resources.lsb,hc82cf98agdf5dg41d5gac1bg325ac645fb79
+OK,LXDGM_NPCStatsNoArchetypeCorrection,General Attribute Correction,Resources.lsb,h4e021a63g8d27g4cf2g865agf52e17ae50c2
+OK,LXDGM_NPCStatsNoArchetypeCorrection_Description,"The correction indice for damaging attribute if there is a tie between two or all three damaging attributes for NPCs. The higher it is, the lower will be the final result.<br>Default : 60<br><font color=#ff0000>Require a game restart</font>",Resources.lsb,h6d219e8ag59abg4adegbf53g2f73649ee312
+OK,LXDGM_NPCStatsSecondaryCorrection,Secondary Attribute Correction,Resources.lsb,hb5c81b75ga23dg44aeg8ceeg6c88bf367e38
+OK,LXDGM_NPCStatsSecondaryCorrection_Description,"The correction indice for the damaging attributes that are not the highest for NPCs. The higher it is, the lower will be the final result.<br>Default: 70<br><font color=#ff0000>Require a game restart</font>",Resources.lsb,he9b44d3fg577fg4d9bgab26g3a6b1910b1f7
+OK,LXDGM_PerseveranceResistance,Pers. Resistance Bonus,Resources.lsb,h8b1768fbgf8edg4ce6gab9dg617267af4852
+OK,LXDGM_PerseveranceResistance_Description,Perseverance Resistance Bonus per point.<br>Default : 5<br>,Resources.lsb,h730eb29cgf6a6g4efcg8625g1b7d95925932
+OK,LXDGM_PerseveranceVitality,Perseverance Vitality Restoration,Resources.lsb,h74f2f4d1gb916g4bccgb635g264d3444d84b
+OK,LXDGM_PerseveranceVitality_Description,Set the percentage of vitality restored when Perseverance proc.<br>Default : 2,Resources.lsb,h494e1e4egf5b8g4d00gb816g61bbd41a0dee
+OK,LXDGM_PlayerVitalityMultiplier,Player Vitality Multiplier,Resources.lsb,hffe960e0g8d88g4c63gb285g507247c47d43
+OK,LXDGM_PlayerVitalityMultiplier_Description,Multiply the base vitality of the player characters and summons. <br>Default : 100 <br><font color=#ff0000>Require a game restart</font>,Resources.lsb,hc13534c0gc9e9g453dgab9bg194a3f41689b
+OK,LXDGM_PotionFatigue,Potion Dizziness,Resources.lsb,h49481882g278cg4223gb275g7758a42e9051
+OK,LXDGM_PotionFatigue_Description,"The number of potions you need to drink in the same turn before receiving a warning of dizziness. Set to 0 to immediatly get a penalty after the first potion, and -1 to make potions usage brutally punishing. Default : 1.",Resources.lsb,ha6375589ga989g4860g8d73g58af60e32ce9
+OK,LXDGM_SettingsUseDefaultAttributeValues,Use recommended attribute values,Resources.lsb,h5c90bf4dg4c11g4bb3gaf93g2caf0bb5c4c0
+OK,LXDGM_SettingsUseDefaultAttributeValues_Description,"If deactivated, you will be able to use custom attributes bonuses. Not recommended if you want to keep an overall balanced experience unless you really know what you are doing.<br>Default : on",Resources.lsb,hae29de3agcf14g44f7g9020g90e1fd77694d
+OK,LXDGM_StaffSkillMult,Staff Skill Damage Multiplier,Resources.lsb,h3d6fb0f8g0419g4ed0g8f4eg5ecdedbedbad
+OK,LXDGM_StaffSkillMult_Description,Set the skill damage multiplier percentage when a staff is equipped.<br>Default : 10,Resources.lsb,h0b24b325g8818g4552g97ebgcb6a2481f573
+OK,LXDGM_StrengthGlobalDamageBonus,Strength Global Damage Bonus,Resources.lsb,h753b1b3fgdfdfg428fg90e0g9e631beb1f06
+OK,LXDGM_StrengthGlobalDamageBonus_Description,Default : 2,Resources.lsb,h36683e27ge1cag45f9gb7ddgdf954e865e33
+OK,LXDGM_StrengthResistanceIgnore,Str. Resistance Bypass Multiplier,Resources.lsb,h75422cb0g14ccg4731g89a7gae632f7669a8
+OK,LXDGM_StrengthResistanceIgnore_Description,Default : 0.15,Resources.lsb,h4a738dd3gf483g4913gbc27g5e8eeff26c2b
+OK,LXDGM_StrengthSpecialDamageBonus,Strength Weapon Damage Bonus,Resources.lsb,h285f26a1g0683g4a86gae3eg0c69934433b8
+OK,LXDGM_StrengthSpecialDamageBonus_Description,Default : 3,Resources.lsb,h562bb140gab7bg4f78gba75g5aaf2cd7f27b
+OK,LXDGM_SummonsDamageBoost,Summons Damage Boost,Resources.lsb,hd15c8d51gb26bg460cgaa29g8f2cc4f96877
+OK,LXDGM_SummonsDamageBoost_Description,Multiply all damages of summons (ally and enemy). <br> Default: +0% <br><font color=#ff0000>Require a game restart</font>,Resources.lsb,hed14cc79g467bg4d3fgbed6gec529691740e
+OK,LXDGM_SummonsVitalityMultiplier,Summons Vitality Multiplier,Resources.lsb,hd573aa44gad41g4232g8040gf59652415d1d
+OK,LXDGM_SummonsVitalityMultiplier_Description,Multiply the base Vitality of all summons (ally and enemy). <br>Default : 100 <br><font color=#ff0000>Require a game restart</font>,Resources.lsb,h88ed61e9g4d7fg4eb7g81f1g9e7c48dde602
+OK,LXDGM_WandSkillMult,Wand Skill Damage Multiplier,Resources.lsb,h711b52a9ga71ag458cg82c4gdca0433f24b2
+OK,LXDGM_WandSkillMult_Description,Set the skill damage multplier pencetage when a wand is equipped (can be doubled when dual-wielding).<br>Default : 5,Resources.lsb,h6d523ea5g116eg4380g816fg72079d80f321
+OK,LXDGM_WandSurfaceMult,Wands Surface Bonus,Resources.lsb,h1c81462eg26ceg48a1g8828gdf9254cbdae0
+OK,LXDGM_WandSurfaceMult_Description,Bonus damage (%) from surface AND cloud the character stands in.<br>Default : 20,Resources.lsb,h7583bee1g949cg433dg8b2ag94d9a47bef82
+OK,LXDGM_WitsDotBonus,Wits Damage Over Time Bonus,Resources.lsb,h5cb3da10g4cddg44eegbefeg72ffb21118ee
+OK,LXDGM_WitsDotBonus_Description,Default : 10,Resources.lsb,ha1578450g666bg4b87g8377g1c389879435f
+OK,LXGDM_CQBPenalty_Description,Set the percentage of damage penalty when using a ranged weapon on a target within the CQB range limit.<br>Default : 35,Resources.lsb,hf859c7e8g7e30g48e3ga24aga943a18f0c5c
+OK,Weapon_Crossbow_MovementPenalty,Reduce Movement by [1]m,Resources.lsb,h846daabdg90beg4ac9gb930g02e96dcdbd8d
+OK,BOOK_Skill_Air_JellyfishSkin_DisplayName,Transmute Skin Skillbook,RootTemplates.lsb,hd3c3e911gca34g4d24g9abeg44369d755d43
+OK,BOOK_Skill_Earth_PoisonousSkin_DisplayName,Transmute Skin Skillbook,RootTemplates.lsb,h9943e1c0ge10eg40a9gbd4cg10bb7693bdb8
+OK,BOOK_Skill_Fire_FlamingSkin_DisplayName,Transmute Skin Skillbook,RootTemplates.lsb,h67922474g2592g43afg9671g53636c3d0afc
+OK,BOOK_Skill_Water_IcySkin_DisplayName,Transmute Skin Skillbook,RootTemplates.lsb,h8f5f2804ga338g4c63gb378ge235ddc7d808
+OK,Target_Bless_Description,"Bless target character or surface. Prevent Diseased, Decaying, Petrified, Stunned, increase Dodge by [1]%, Accuracy by [2]% and elemental resistances by [3].",Skills.lsb,h22a39843gf968g4212g851dg6e121235fa85
+OK,Target_BullHorns_Description,"Magnificent horns sprout from your forehead, making you see red. You can rush at your enemies and gore them. Increases Retribution ability by 2 for the duration.",Skills.lsb,h2f904fe7g83d0g4d51g8bcfgd6b561ba92e3
+OK,Cone_Shatter_Description,Deal [1] and set Frozen to the characters in the cone.,Skills.lsb,hb1796f71g6c96g4c25g9c99gc089814d7494
+OK,Target_CorpseExplosion_Description,"Explode target corpse, dealing [1] in the area.",Skills.lsb,h3240460dgd250g435bg9ebegc1682089c5ed
+OK,Shout_Cryotherapy_Description,"Consume frozen surfaces around you and convert them to Magic Armour. If you are Chilled or Frozen, you restore an additional 30% Magic Armour. Remove Chilled, Frozen, Burning and Necrofire.",Skills.lsb,h7e7b669dged21g4b8ag8a44g32bede9e51ae
+OK,Shout_DemonicTutelage_Description,"Your inner demon actively watches over you. When an enemy approaches in melee range, they will be pummelled by a demonic fist dealing [1].",Skills.lsb,h5d124a78g6932g4f5egb844gf9569ec4d2ba
+OK,Projectile_DeployMassTrap_Description,"Throw [1] explosive traps at target locations. Each trap takes a turn to activate. When active, trap will explode when a character approaches it, dealing [2].",Skills.lsb,hcf74a6efg1ab6g45ecgaa12g147f528975ee
+OK,Projectile_DimensionalBolt_Description,"Shoot a volatile bolt that deals [1], and then creates a corresponding surface. Chaos trigger a random type of damage.",Skills.lsb,h7184b190ge934g49d4g9b5cg67ff537bd723
+OK,Target_ElementalArrowhead_Description,Target a surface in melee radius. Elemental damage matching that surface is added to your weapon attacks and weapon-based skills.,Skills.lsb,h4542353bg043cg4964ga401g7a80dd267e5b
+OK,Target_WindWalker_Description,Cause target character to teleport in a random direction each time they are attacked. Increases Dodge by [1]% and Air Resistance by [2]%.,Skills.lsb,ha742cf9eg80e6g4b43g8106ga4b83bd5e241
+OK,Target_Farsight_Description,Unlock ranged attack for your Incarnate. Provides [1] (amount depends on your level). Increases damage by [2]% and increase maximum Vitality by 15%.,Skills.lsb,h9729b9ceg2860g4396g8b3fg9eef86106d4f
+OK,Shout_FlamingTongues_Description,"Flaming Tongues protect you, immediately attacking approaching enemies and deals them [1].",Skills.lsb,h9e97f6cdg7b63g4603g9f25g7a515742c55d
+OK,Shout_FleshSacrifice_Description,Gain 1 Action Point immediately at the cost of [1] Constitution for 2 turns. Any Action Points over your maximum are lost.,Skills.lsb,hc9386e15gf8f2g46efg9ab1g7dc5f3910ae8
+OK,Teleportation_FreeFall_Description,"Teleport a target character or item to a point of your choosing, dealing [1].",Skills.lsb,hd376dcd8g0707g4bd5g9052g01d558955583
+OK,Shout_Icebreaker_Description,"Sets off a chain reaction that causes ice areas to explode into water puddles, dealing [1] and setting Chilled.",Skills.lsb,h9055594bg16a7g48b8g81ffg25bbbf89963b
+OK,Teleportation_LastRites_Description,Sacrifice yourself to bring an ally back to life. Reduce your Vitality to 1 and ressurrects target character with maximum Vitality.,Skills.lsb,h362a94a5g0b60g4be6g9998gd44214d4a78f
+OK,LX_AIMING_STANCE_DisplayName,Aiming Stance,Skills.lsb,h4e6da0a4gcfadg417fgab29g89cca395af8f
+OK,LX_HUNTERMARK_APPLIED_Description,The next skill from [1] will do 50% more damage and will bypass Accuracy checks.,Skills.lsb,h16f86affg34ecg4d72g95c5gb30030cde90f
+OK,LX_HUNTERMARK_APPLIED_DisplayName,Marked for death,Skills.lsb,hf3e92e17g43ebg4c86gbac0g9d253ea44738
+OK,LX_HUNTERMARK_Description,"If the aiming stance of the instigator is not broken when this status expires, their next skill will do 50% more damage and bypass Accuracy when targeting this character.",Skills.lsb,h0ecfcf94gc33bg4d76gb180gd91c3bd8b4ed
+OK,LX_HUNTERMARK_DisplayName,Hunter's Mark,Skills.lsb,h467e6fe1g71a6g4923gbfc8g7c6836540199
+OK,LX_RAPIDFIRE_DisplayName,Reload,Skills.lsb,h81a8f07ag2b5fg4a8bga401gb6df3518dd0a
+OK,LX_REFLEX_STANCE_DisplayName,Reflex Stance,Skills.lsb,h88eacd2cgbcc4g4bb5gb695g1eeaec95194f
+OK,LX_RELOAD_DisplayName,Reload,Skills.lsb,h739f4ce6g153dg40a6gb27aga6f5a1c8031d
+OK,LX_RELOAD_PENALTY_Description,Convert Celerity to reduce the cooldown of the last skill used.,Skills.lsb,h925e1dd3gaacag412fgb617g5431fe68c642
+OK,LX_RELOAD_PENALTY_DisplayName,Reload,Skills.lsb,hde987d44ge487g46a7g811dg348a37182f38
+OK,LX_SUPPRESSED_Description,"Receiving ranged attacks will reduce further Movement, Celerity, Damage and Wisdom while staying in the suppressed area.",Skills.lsb,h2fdbc13cg3526g4c79ga172g99e08de66287
+OK,LX_SUPPRESSED_DisplayName,Suppressed,Skills.lsb,h9fbd4d14gc3d6g46c1gb283gee10ebe11ac7
+OK,Shout_MassCorpseExplosion_Description,"Explode all corpses around you, dealing [1] in the area.",Skills.lsb,h1a6bf0edg47eeg4ee8gaa86g5a608e5dda7b
+OK,Shout_MassCryotherapy_Description,"Each ally consumes frozen surfaces around them, converting the frozen surfaces to Magic Armour. If they are Chilled or Frozen, they restore an additional 30% Magic Armour. Removes Chilled, Frozen, Burning and Necrofire.",Skills.lsb,hbd366dc5g10a3g48acg9bffg4a11bccb189d
+OK,Shout_MassOilyCarapace_Description,"Each ally consumes oil surfaces around them, converting the oil surfaces to Physical Armour. If they are Slowed or Petrified, they restore an additional 30% Physical Armour. Removes Slowed, Petrified and Stunned.",Skills.lsb,h195e0642ge46ag4d02g85ecg20a8a0012104
+OK,Target_MassSabotage_Description,"Explode two random grenades or arrows in the inventories of every enemy, dealing [1] and set Atrophy in a target circle.",Skills.lsb,hfc25a87dg9103g4602g872dg8ecb8965fc0a
+OK,Target_MasterOfSparks_Description,Target character receive Sparkmaster status that make melee attacks firing sparks that can fork twice at nearby enemies. Each spark hit deals [1].,Skills.lsb,hbd5f39f8g78e1g42c8g95b6g1917a8c65816
+OK,Shout_OilyCarapace_Description,"Consume oil surfaces around you and convert them to Physical Armour. If you are Slowed or Petrified, you restore an additional 30% Physical Armour. Remove Slowed, Petrified and Stunned.",Skills.lsb,h56cb39a0ge913g4364g97e6g843aca99bcdc
+OK,Target_PowerInfusion_Description,Unlock Whirlwind and Rush for your Incarnate. Provides [1] (amount depends on your level). Increases damage by [2]% and increase maximum Vitality by 15%.,Skills.lsb,h93731b66g32c8g425dg8ed5g9863a8d35279
+OK,Projectile_EnemyOilSpit_DisplayName,Oil Spit,Skills.lsb,hc2c1dcdfg1413g4335gb49fg695dbeb8efdc
+OK,Target_ReactiveShot_Description,"Target a circular area. Until your next turn, you will reflexively shoot at the first three enemies moving within this area if you have sight on them.",Skills.lsb,h7c3dcbc3gb3f4g4746g9a94g00021c9c2930
+OK,Target_Sabotage_Description,"Deals [1] to the target character and set Atrophy. If target character is carrying grenades or arrows, a random one explodes in their inventory.",Skills.lsb,h004cd16fgf0e9g4216g9a3cg2dc6e16fe78a
+OK,Target_ShadowInfusion_Description,Incarnate learns how to go invisible and strike foes with a corrosive slash. Increases damage by [1]% and maximum Vitality by 15%.,Skills.lsb,h42f0b1b6gd786g46ebga04egf56b57d92048
+OK,Shout_Adrenaline_Description,"Gain 2 Action Points immediately, but lose 3 Action Points next turn. Any Action Points over your maximum are lost.",Skills.lsb,h31d2a547g005bg4ee3g8d2ag47720bd4fa1a
+OK,Shout_LX_AimedShot_Description,Increase the Accuracy by [1]% (improved by Intelligence) and Critical Chance by [1]% (improved by Strength) for the next weapon attack.,Skills.lsb,h02f12f9fg9a25g4a95gba27gd65217023ed9
+OK,Shout_LX_AimedShot_DisplayName,Aimed Shot,Skills.lsb,h9f363adeg7345g487fg97f8ga61db7bdb460
+OK,Shout_LX_RangedAimingStance_Description,"Reduce Movement by [1]%, Dodge by [2]% set Celerity to 0 but increase Accuracy by [3]% and Critical chance by [4]%. Also provides Suppression and Mark for death skills. If the character receives a melee attack, the stance breaks and go on cooldown for 3 turns.",Skills.lsb,h677b36c5g2dfag4af4ga41ag2f1f0f85aca1
+OK,Shout_LX_RangedAimingStance_DisplayName,Aiming Stance,Skills.lsb,hdc2797cag85b7g4c99g8527g5016a2ffebbf
+OK,Shout_LX_RangedReflexStance_Description,Accuracy is reduced by half when attacking targets beyond 8m but each successful hit grants 2 meters of free movement. Also provides Reloading and Rapid fire skills.,Skills.lsb,h306dea20g79ddg4ae4gaa3cg206215dfa11f
+OK,Shout_LX_RangedReflexStance_DisplayName,Reflex Stance,Skills.lsb,haff7a737gdaa3g46d5gbe5cg5dd7743e3b30
+OK,Shout_LX_RangedStances_Description,Change the character stance to provide specific advantages with a bow or a crossbow.,Skills.lsb,hf037b2e6g44afg4bbcgb15fg075efbdb3476
+OK,Shout_LX_RangedStances_DisplayName,Ranger Stances,Skills.lsb,h221949cbgcfc0g434egac2ag4c5ea847d59f
+OK,Shout_LX_RapidFire_Description,Reduce the AP cost of Huntsman skills by 1 but reduces their damage by up to 35% depending on the original cost until the end of the turn. Cannot reduce AP costs below 1.,Skills.lsb,hbbd712c6g4cf0g4326gb646g6f7db12d1439
+OK,Shout_LX_RapidFire_DisplayName,Rapid Fire,Skills.lsb,h72372d45g6237g49b2ga06fg69963977ca60
+OK,Shout_LX_Reload_Description,Consume available Celerity to reduce the cooldown of the latest Huntsman skill used by 1 turn per 2.5m of Celerity consumed.,Skills.lsb,hcda0cc81gb5ebg4408g95a5g2e9cc85f7d37
+OK,Shout_LX_Reload_DisplayName,Reload,Skills.lsb,hf02ca430g5439g4d51gaff6g22355bd4e963
+OK,Shout_LX_TransmuteSkin_Description,Transmute your skin with elements to gain new properties.,Skills.lsb,h9f10a6bdgfc4fg4af8gb213gb7081cb9eda2
+OK,Shout_LX_TransmuteSkin_DisplayName,Transmute Skin,Skills.lsb,h8c8b69b0g710eg4ed6gb86fg3206130ea716
+OK,Shout_VacuumAura_Description,Deal [1] damage to enemies in the area. Caster receives an aura that sets Silence and Suffocating on enemies.,Skills.lsb,hb0408ca4g5c61g4e89g91d0gcb14ef6da93f
+OK,Shout_VacuumAura_DisplayName,Vacuum Aura,Skills.lsb,he72efc5fg2dddg459dgb224gd0f0f97fdd0a
+OK,Shout_SiphonPoison_Description,Remove poison surfaces and clouds. Gain poison damage bonus to weapon attacks and weapon-based skills (dependent upon size of poison area cleared) for 2 turns and your weapon attacks now also set Acid for 1 turn (3 turns if Venom Coating is also active).,Skills.lsb,hd4d51fddgb38cg4394ga485gf37cb37523d0
+OK,Shout_ShedSkin_Description,"Reset all cooldowns but remove your armours for 2 turns. Removes Burning, Necrofire, Poisoned, Bleeding, Momentum and Lingering.",Skills.lsb,h0897c725g76cbg4ab7ga0ceg31a5294abbf8
+OK,Shout_SparkingSwings_Description,"Receive Sparkstriker status. This causes your melee attacks to create a Spark projectile that bounces off the initial target to hit the closest enemy, dealing [1].",Skills.lsb,h0fe63523g3caeg4e46g8152geabd390080af
+OK,Target_Challenge_CursorTooltip,Challenge:<br>+[1]�% Damage<br>+[2] Physical Armour<br>+[3]Magic Armour<br>[4] Vitality heal<br>If failure: [4] damage received.,Skills.lsb,h7650995bg0673g4ccfg82eeg66ad641811e8
+OK,Target_DeathsDoor_Description,"For 2 turns, your target character's Vitality cannot be reduced below 1 point, keeping them alive against all odds. If the target is a summon, their lifetime will be prolonged for the duration. Once the effect expires, the character receive Forbearance for 2 turns, preventing any other death resist effect to be applied while it is active.",Skills.lsb,hf827c53ege83cg44afgaaacge92cb957fdf4
+OK,Target_ElementalArrowheads_DisplayName,Elemental Weapons,Skills.lsb,hbce8b81ag1259g4a30g99f9g1f99e9b74583
+OK,Target_Fatality_Description,Deal [1] damage. Damage is doubled if you are sneaking or invisible.,Skills.lsb,h03ff3173g4c29g4f69ga115g9eacc87b1c89
+OK,Target_LX_HunterMark_Description,"Mark the target. If the stance is not broken until next turn, the next skill against the marked target will inflict 50% more damage and bypass Accuracy checks.",Skills.lsb,hf04494b3ge90ag4233g9eadg30f93dbcbdf2
+OK,Target_LX_HunterMark_DisplayName,Hunter's mark,Skills.lsb,hb3a26792g5213g4080g9352g77ff6cf2757c
+OK,Target_LX_SuppressionFire_DisplayName,Suppression fire,Skills.lsb,h89c6aab1ge516g4fe9g86adge7ae966ccfc3
+OK,Target_LX_SuppressionFiret_Description,"Cover an area and sets Suppression on characters you shoot inside, reducing their Celerity by [1], Accuracy by [2]% and Ingress by [3] for 2 turns and stacks up to 5 times. The suppression area lasts 2 turns.",Skills.lsb,hb24d74dcgfab9g4976g9584g1ab2346801ce
+OK,Target_Terrify_Description,Destroy [1] on target enemy. They are Terrified for 1 turn.,Skills.lsb,h60ef5d4ag817dg4564g9c6eg9bc2339a55d5
+OK,Target_ThrowExplosiveTrap_Description,"Throw an explosive trap at target location. Trap takes 1 turn to activate. When active, the trap will explode when a character approaches it, dealing [1].",Skills.lsb,h5e26d4e3g63d5g4415gbe5ag4bc3e42bb995
+OK,TooltipBonusLevel,Damage is based on your level and trigger the additional skill bonus from Intelligence.,Skills.lsb,h71b09f9fg285fg4532gab16g1c7640864141
+OK,TooltipBonusWeapon,Damage is based on your basic attack and trigger the additional bonus from both Strength and Intelligence.,Skills.lsb,ha4cfd852g52f1g4079g8919gd392ac8ade1a
+OK,WarpInfusionDescription,"Incarnate learns a teleport skill, and a skill to swap places with its master. Increases damage by [1]% and maximum Vitality by 15%.",Skills.lsb,hfb851683g738cg4b48g8fd8g478d375c030a
+OK,ACID_Description,Inflict [1] each turn.,Statuses.lsb,h32b3f391g84c8g4350gb6c1gc0577fd7372a
+OK,Shout_BullHorns_Description,"Magnificent horns sprout from your forehead, making you see red. You can rush at your enemies and gore them. Increases Retribution ability by 2 for the duration.",Statuses.lsb,hae68ba97g6072g46fagb9d3g7c289a0e7511
+OK,DGM_AIMEDSHOT_Description,Next weapon attack beneficiate of Accuracy and Critical Chance boost.,Statuses.lsb,he3d3ef27gc4e2g4271ga838ge227b9193ef7
+OK,DGM_AIMEDSHOT_DisplayName,Aimed Shot,Statuses.lsb,he5970b83g4f56g4348g8d23g39bce69f8c3c
+OK,DGM_WARMUP_DisplayName,Warmup,Statuses.lsb,h565877e2g71eag43aag928fgfee5ca4f0c4f
+OK,DGM_WARMUP2_DisplayName,Warmup (2),Statuses.lsb,hc7851209gc2d8g4332g865dgae162ed9708b
+OK,DGM_WARMUP3_DisplayName,Warmup (3),Statuses.lsb,hae2334ccg2f64g45aaga94dgf4ce0f03a7a6
+OK,DGM_WARMUP4_DisplayName,Warmup (4),Statuses.lsb,h1c89538dg51d5g451dgac1agaf4de9de70bf
+OK,LX_FORBEARANCE_Description,Prevent statuses which grants a death resist effect to be applied.,Statuses.lsb,h8124ee04g9685g465ag99f3g2f8043bd74db
+OK,LX_FORBEARANCE_DisplayName,Forbearance,Statuses.lsb,hf4b8b267gc763g481bgbd5bga9b7b3aa1b54
+OK,LX_OILED_Description,Character body is covered with inflammable oil.,Statuses.lsb,h715373cbg7d5ag4d96gbe04g12f02ce2f0cd
+OK,LX_OILED_DisplayName,Oiled,Statuses.lsb,h8bd0907bg9018g4f99gb534gc1b5b1cabbaf
+OK,LX_SHIELD_AIR_DisplayName,Air Absorption,Statuses.lsb,hf83ad08bg0071g4e56ga59cgb20a7582487d
+OK,LX_SHIELD_ALL_DisplayName,Damage Absorption,Statuses.lsb,hef5b4ec4ge333g4a87g986cg3ed74b22348b
+OK,LX_SHIELD_EARTH_DisplayName,Earth Absorption,Statuses.lsb,hf057399cg861ag4a33ga7c9g4499f85017f2
+OK,LX_SHIELD_ELEMENTAL_Description,Absorb the next incoming [2].,Statuses.lsb,h8071c537g81a0g4ba8g989dg148af4e03af8
+OK,LX_SHIELD_FIRE_DisplayName,Fire Absorption,Statuses.lsb,hb17eb43fg09fbg492cg80adge28b3994742a
+OK,LX_SHIELD_PHYSICAL_DisplayName,Physical Absorption,Statuses.lsb,hbd8379a5ga1a2g4b38gb489gfe7c4eea3ae1
+OK,LX_SHIELD_PIERCING_DisplayName,Piercing Absorption,Statuses.lsb,ha8075074g465fg49f5gb0acg54af096d6b81
+OK,LX_SHIELD_POISON_DisplayName,Poison Absorption,Statuses.lsb,h552573bcg2ecag488bgb382ge54822f8c678
+OK,LX_SHIELD_WATER_DisplayName,Water Absorption,Statuses.lsb,h9bfd7c0fg0b2eg4e18g9c51g28172cc575ea
+OK,Talent_AllSkilledUp_Description,The first skill used each turn has its cooldown reduced by one turn (minimum 1).,Talents.lsb,hf3893f8fg20c5g4078ga83cgef8783082103
+OK,Talent_Ambidextrous_Description,Ambidextrous reduces the cost of using grenades and scrolls by 1 AP when your off-hand is free. Refund the AP cost for 2 equipment switches per turn (except for Crossbows).,Talents.lsb,hf3cd8067g36c0g4b48ga4dfg361f33579b43
+OK,Talent_ArrowRecovery_Description,"Arrow Recovery provides a 33% chance to recover a special arrow after shooting it, and removes the close-quarters damage penalty of ranged weapons.",Talents.lsb,h6a4d6da0g29cfg44ecg8913g5a0a76cf1bbd
+OK,Talent_Demon_Description,"A character with Demon has an extra 20% Fire Resistance, but takes a 15% penalty to Water Resistance. Additionally, the maximum Fire Resistance is raised by 10 and grants immunity to Burning and Necrofire.",Talents.lsb,h06c77362g1304g4f81ga661g695dc6b814bc
+OK,Talent_DemonIceKing_Description,"A character with [1] has an extra 20% [3], but takes a [4]% penalty to [5]. Additionally, the maximum [3] is raised by [6]. Demon grants immunity to Burning and Necrofire. Ice King increases all Water damage you deal by 20% and grants immunity to Chilled.",Talents.lsb,hc453e399ge1f5g41f1gaeabgcdd4de833c63
+OK,Talent_DuckDuckGoose_Description,[1] lets you evade attacks of opportunity. Increases your Dodge by 5% and Movement by 1m per AP.,Talents.lsb,h8ddc8dd4ge8feg4420ga6dag0d87ce8ec743
+OK,Talent_Duelist_Description,"Duelist increases AP Start and Recovery by 1, and Max AP by 1, if you are wielding a Single-Handed weapon with a free off-hand.",Talents.lsb,hfc8981a1g8f84g49c8ga8b4g17564a836c45
+OK,Talent_Duelist_DisplayName,Duelist,Talents.lsb,hd980a2a1gc33eg4810gafc8g07f55ba70245
+OK,Talent_ElementalAffinity_Description,,Talents.lsb,h3886606fg0cc0g49b9g9bbcg3ea8baa4c040
+OK,Talent_ElementalRanger_Description,Ranged weapons (including wands) deal 20% additional damage of the type of the surface the target stands on. Using a grenade or an arrow also now provide 1 turn of Elemental Weapons of the same type.,Talents.lsb,h7a2f1a05g4b52g4ec2g8354g1f92a8bf442d
+OK,Talent_Escapist_Description,"[1] allows you to flee combat even when enemies are close by. Provides immunity to Crippled, Entangled and Enwebbed.",Talents.lsb,hcb8f9837gdf0fg4a01ga7d6g5ed522b74189
+OK,Talent_Executioner_Description,[1] gives you [2] extra Action Points after dealing a killing blow once per turn and increase Movement by 2m for 1 turn.,Talents.lsb,h98163163g695ag4813gb105g3ade9ea09050
+OK,Talent_GlassCannon_Description,"With [1], you start every combat round with Maximum AP, but Magic and Physical Armour are nullified and do not protect you from statuses.",Talents.lsb,h46770f2agdbb8g47eag9e0eg65ac47bde918
+OK,Talent_Haymaker_Description,Your attacks never miss but cannot deal critical strikes (except backstabs not triggered by skills and if your weapon has higher level than you). Convert the critical bonus from Wits to resistance bypass.,Talents.lsb,ha79ac9a4g91ceg4fbfg9b70ge273d5f12090
+OK,Talent_Hothead_Description,"While above 75% Vitality, Hothead provides 10% Critical Chance and 10% Accuracy.",Talents.lsb,he94327f7g293dg488eg9d25gcb4f7ae7be24
+OK,Talent_IceKing_Description,"A character with Ice King has an extra 20% Water Resistance, but takes a 15% penalty to Fire Resistance. Additionally, the maximum Water Resistance is raised by 10. All Water damage you deal are increased by 20% and grants immunity to Chilled.",Talents.lsb,hbd257f75g9084g4c73g9db0g77d418e677c9
+OK,Talent_Indomitable_Description,"You gain immunity to stunned, frozen, knocked down, polymorphed, petrified, crippled for 1 turn after being affected by one of these statuses. Can happen once every 3 turns. Increase the duration of Momentum and Lingering by 1 turn.",Talents.lsb,haa3cebcagba62g47bbg8546gf0c154e0e46f
+OK,Talent_Leech_Description,Leech heals you when standing in blood. Also increases Lifesteal by 25%.,Talents.lsb,h81ca938fg5ef4g452agb093g1294e2f0718b
+OK,Talent_MagicCycles_Description,"At the start of an encounter, you gain one of two statuses: Cycle of Fire and Water or Cycle of Earth and Air. Cycle of Fire and Water increases your Pyrokinetic and Hydrosophist by 3. Cycle of Earth and Air increases your Geomancy and Aerotheurgy by 3. Statuses swap each turn.",Talents.lsb,h34fa90bdg6d1fg4ee8gb3e7g8c3694c70fae
+OK,Talent_Mnemonics_Description,Mnenomic doubles all points invested in Memory.,Talents.lsb,hbde985cfgb1c4g4bb6g9a61gbec72c9b4ed6
+OK,Talent_MorningPerson_Description,"When resurrected, you resurrect to full health. When your turn is skipped because of incapacitating effect(s), you start your next turn with 2 additional AP. You also start combat with 2 stacks of Warmup.",Talents.lsb,h278b2bccg1afcg4314gbfcbgb10105ebc12b
+OK,Talent_ParryMaster_Description,[1] gives you [2]% Dodging while dual wielding.,Talents.lsb,h00f565c4g6178g424fgb031g41a2c12bf85d
+OK,Talent_PetPal_Description,"Pet Pal enables you to talk to animals. Also increases your maximum number of summons by 1, but reduces their damage and Vitality by 50%.",Talents.lsb,h42b4c1e3g7c07g400dg8924g2807a024e6bb
+OK,Talent_SavageSortilege_Description,"[1] gives all magical skills a critical chance equal to your critical chance score, and increase your Critical chance by 10%.",Talents.lsb,h90812fdfg4f53g49afg8a97g42aefdeb508c
+OK,Talent_Slingshot_Description,[1] adds an extra [2]m range to your grenade throws and increase their damage by 30%.,Talents.lsb,hfb8eec35g3339g4762g8382g712e74a2ac0b
+OK,Talent_Soulcatcher_Description,"When an allied character dies, a Zombie Crawler is raised at their corpse, under their control. Zombie Crawler lasts 3 turns or until character is resurrected. Range 12m. Does not affect summoned creatures. Can happen only once per turn.",Talents.lsb,h8fc505abgfadbg4481g8d79gb73e606117d7
+OK,Talent_Stench_Description,"Stench decreases everyone's attitude towards you by [2], but melee opponents find you less attractive in combat. Increases your Poison resistance by 30% and makes you immune to Diseased and Infected.",Talents.lsb,h878c02c0gc629g470dg955cg80dc2a125cb2
+OK,Talent_WalkItOff_Description,"Walk It Off reduces all status durations by 1 turn, including positive statuses. Does not affect statuses with a duration of 1 turn. Also increases elemental resistances by 8% and Physical and Piercing resistances by 4% each time you are directly hit by a character, up to a maximum of 3 times until the next turn.",Talents.lsb,h6d76eb15gdb1ag4ebeg8001g58173516a923
+OK,LX_WA_AXE_Description,The next hit done by a weapon skill can execute the target.,WeaponArts.lsb,h527a0df4g280bg4ef8g9d85ga06b5bf3c777
+OK,LX_WA_AXE_DisplayName,Weapon art: Execution,WeaponArts.lsb,h27667c0cg7af9g4ab5gb1cdgf0c1097a6544
+OK,LX_WA_DUALWIELDING_Description,Next weapon skill AP cost decreased by 1 and damage reduced proportionnally. Cooldown increased by 30% (rounded up),WeaponArts.lsb,h3513f9bbg92fbg498bga6c5geacbdab6a6ae
+OK,LX_WA_DUALWIELDING_DisplayName,Weapon art: Maneuver,WeaponArts.lsb,h850a0c0fgb8b8g434cga343g4ed71dcb7fea
+OK,LX_WA_MACE_Description,"Crush the ground at the impact location for Cone skills or at the final location of a Rush skill, dealing additional weapon damage.",WeaponArts.lsb,h5124b201g8b5cg42c7g85a1g0996e9e5b00e
+OK,LX_WA_MACE_DisplayName,Weapon art: Blast impact,WeaponArts.lsb,hc30081a6g026fg46e1gb896g8fea5f9b553f
+OK,LX_WA_RANGEPLUS_Description,Increases the range of the next melee skill by 50% (rounded down),WeaponArts.lsb,h081b648dg1868g4027g927fg756199a151ed
+OK,LX_WA_RANGEPLUS_DisplayName,Weapon art: Outstanding reach,WeaponArts.lsb,h2ff0068eg8f9eg4c21g8210g6c8a303f1723
+OK,LX_WA_TWOHANDED_Description,The next weapon skill AP cost increased by 1 and damage increased proportionnally. Cooldown reduced by 30% (rounded up),WeaponArts.lsb,h94f21956g2aa1g4a23g93acg4448f0cf7f84
+OK,LX_WA_TWOHANDED_DisplayName,Weapon art: Two handed mastery,WeaponArts.lsb,hbf05cb6bg95e9g4db0g9a82ga124bd771c44
+OK,LX_WEAPON_EXECUTE_Description,The next hit done with a weapon skill will benefit from an execute value of [1].,WeaponArts.lsb,h8bae73b1g3972g44beg9a7ag85b217e324ef
+OK,LX_WEAPON_EXECUTE_DisplayName,Armed Execution,WeaponArts.lsb,hb1254607g0f9fg4de0ga256gc7b27bfaef98
+OK,Shout_LX_WeaponArtAxe_Description,"The next hit done by a weapon skill can will provide an execution range of half the damage done. If the target is not executed, the execution range is kept for 3 turns or until a target is executed. Can be stacked.",WeaponArts.lsb,hd94bc977gcba1g4297g802ag310b4730cf3b
+OK,Shout_LX_WeaponArtAxe_DisplayName,Weapon art: Swift chop,WeaponArts.lsb,h72da1797g0710g42d0ga9a5g1c21b7305ed1
+OK,Shout_LX_WeaponArtDualWielding_Description,Next weapon skill AP cost decreased by 1 and damage reduced proportionnally. Cooldown increased by 30% (rounded up),WeaponArts.lsb,h68a95c65g048ag4e86g93edg0f87fc4f50e8
+OK,Shout_LX_WeaponArtDualWielding_DisplayName,Weapon art: Maneuver,WeaponArts.lsb,h179ef1c9g8af3g4ab2gb2cagdabdbe62b49b
+OK,Shout_LX_WeaponArtMace_Description,"Crush the ground at the impact location for Cone skills or at the final location of a Rush skill, dealing [1] damage per AP spent",WeaponArts.lsb,hbb5d7a4cg3868g43e5g9c2bg9aff15016e7f
+OK,Shout_LX_WeaponArtMace_DisplayName,Weapon art: Blast impact,WeaponArts.lsb,h09d27242g6434g43c4gae3bgb845753a3ab0
+OK,Shout_LX_WeaponArtSpear_Description,Increases the range of the next melee skill by 50% (rounded down),WeaponArts.lsb,haece3a57g40feg42f9g8cddgc69068c32640
+OK,Shout_LX_WeaponArtSpear_DisplayName,Weapon art: Outstanding reach,WeaponArts.lsb,he929ee5fgfd07g4782g9344g406105175ad5
+OK,Shout_LX_WeaponArtTwoHanded_Description,The next weapon skill AP cost increased by 1 and damage increased proportionnally. Cooldown reduced by 30% (rounded up),WeaponArts.lsb,h7897cac8g5ec5g4099g8817g6e9f9beb4722
+OK,Shout_LX_WeaponArtTwoHanded_DisplayName,Weapon art: Two handed mastery,WeaponArts.lsb,h35d2a6e4g30f8g4ce9g8fceg1e87f13d190c
+OK,Target_AxeAttack_Description,"Perform a heavy attack that deals [1]. If the target armour corresponding to the main damage of the axe is stripped, it also deals 8% of the user max Vitality (up to 75% of the damage done by the hit) as the main axe damage but also increases cooldown by 1 turn.",WeaponArts.lsb,hbe66e251g2e6bg4412gb651g6ef6ad271aa1
+OK,Target_HeavyAttack_DisplayName,Recklessness,WeaponArts.lsb,h01c46179g3349g48b8g8f84gae408db7d84b
+OK,Target_LX_MaceCrush_Description,"Strike the target to deal [1]. Deals an additional 80% of this hit as armor damage corresponding to the main damage type of the mace. If there is no armor before the hit, cooldown is reduced by 1 turn.",WeaponArts.lsb,h1eb02aceg710bg468dgbdecgf2eb25848581
+OK,Target_LX_MaceCrush_DisplayName,Crush Armor,WeaponArts.lsb,he04458dag5caag4a8ega1fbg813ae5548cec
+OK,Target_SwordCleave_Description,"Perform a swipe cleaving all enemies within 3 meters of the target, dealing [1]. Each hit beyond the second character increases the cooldown by 1.",WeaponArts.lsb,h2c9d8627gae2ag4ab6g8080gde819d82462f
+OK,Target_SwordCleave_DisplayName,Cleave,WeaponArts.lsb,h7515c312gd726g49a5g92b5g0b7766cc5b6c
+OK,Zone_LX_SpearAttack_Description,"Execute a long range thrust, dealing [1] over 8 meters. When hitting more than two characters, cooldown is increased by 1 turn for each additional hit.",WeaponArts.lsb,hb9957da3g81c9g4fecg8760g913444b41439
+OK,Zone_LX_SpearAttack_DisplayName,Lightning Throw,WeaponArts.lsb,h7586aa05gbabfg40dbg8a0bgc648343b41a3
+OK,Stats_LX_WalkItOff_DisplayName,Walk It Off,,h9c4078d15e8cb044e2f3240279da3733ca5f
+OK,Stats_LX_WalkItOff_2_DisplayName,Walk It Off (2),,hdd730c189ff997f48a7a0e2349367e2e8d28
+OK,Stats_LX_WalkItOff_3_DisplayName,Walk It Off (3),,h5196f78a7402f2d11fd52d3c21600671d7c6
+OK,Stats_LX_WalkItOff_4_DisplayName,Walk It Off (4),,ha69bb8f89a15922929c2dd22e94caada7873
+OK,Stats_LX_WalkItOff_5_DisplayName,Walk It Off (5),,h460e017c43b4bcb001408e6a12b20dc1a262
+OK,Stats_LX_PetPal_DisplayName,Pet Pal (Summon),,h2364bcf28514d51121163fd500f4f19fb0f4
+OK,Stats_LX_Staggered_DisplayName,Staggered,,hb7a84f50b4011d8e28f82008ed6860c6c5c5
+OK,Stats_LX_Staggered_Description,This character has staggered during their recovery.,,h21a44df2bbb467ac3539a306ad698ac45328
+OK,Stats_LX_Staggered2_DisplayName,Staggered (2),,hd493b63a719ad7929011311281a1dba58490
+OK,Stats_LX_Staggered3_DisplayName,Staggered (3),,h9148c5ec8966fd23f3b53927054e85b220e6
+OK,Stats_LX_Confused_DisplayName,Confused,,h22292255bd0172cfae99724479ed1c6cfd8f
+OK,Stats_LX_Confused_Description,This character has been magically affected during recovery.,,h7cde22b7f51b51530d8fa8c54ce999a354a8
+OK,Stats_LX_Confused2_DisplayName,Confused (2),,hbc053c4d5cf3d8e037a83cd1eedbdbeca520
+OK,Stats_LX_Confused3_DisplayName,Confused (3),,h83e6dc59d223504ee2aa4ec925630f644e96
+OK,Stats_LX_DodgeFatigue_DisplayName,Dodge Fatigue,,h6183e9343d7c9c6ffc18e2282c15cca9aced
+OK,Stats_LX_DodgeFatigue_Description,This characters dodging has become less effective.,,h778113d8a581055739665991a89fa007aa95
+OK,Stats_LX_DodgeFatigue2_DisplayName,Dodge Fatigue (2),,hb80a54255449c00b02039adb8ba91ad3e826
+OK,Stats_LX_DodgeFatigue3_DisplayName,Dodge Fatigue (3),,hb1129a8eb7a5791e509ff5286ff65fb37bf3
+OK,Stats_LX_DodgeFatigue4_DisplayName,Dodge Fatigue (4),,h188a173c5ddcfdf4397ab91e34a99ed1f58a
+OK,Stats_LX_Leech_DisplayName,Leech,,hfb5e51942d4ff585348ccb0c317e872d7b13
+OK,Stats_LX_Demon_DisplayName,Demon,,hb204169b297f032dd59a682c9b9958bb2cd1
+OK,Stats_LX_DDGoose_DisplayName,Duck Duck Goose,,h30d79a1266e258b3eb649378faeba3112a34
+OK,Stats_LX_Hothead_DisplayName,Hothead,,h15766b3a132823806143bfe6a43b19e16575
+OK,Stats_LX_PetPalSummoner_DisplayName,Pet Pal (Summoner),,hbebf95367f17ae13f94a619a64f49074e3cc
+OK,Stats_LX_Duelist_DisplayName,Duelist,,h7c04e1a1ec593adc804020712f553dfc73eb
+OK,Stats_LX_PotionFatigue2_DisplayName,Potion Fatigue,,h3b7e086000610af19c117759fd8421adebaf
+OK,Stats_LX_PotionFatigue2_Description,This character drank too many potions and could not handle the side effects.,,he81bdc67f3a4ea738e1cca4f4f2da8919005
+OK,Stats_LX_PotionFatigue1_DisplayName,Potion Fatigue,,h7651437b87f4315ce4b17025df851a0d630b
+OK,Stats_LX_PotionFatigue1_Description,This character drank too many potions and is experiencing side effects.,,hc2b9dd482c28178afb4183881c484e3a3abe
+OK,Stats_LX_IceKing_DisplayName,Ice King,,h173c800605185b3f9f6695a5f5f6563dbf9f
+OK,Stats_LX_Adrenaline_DisplayName,Adrenaline,,hf61fad6899772e08173cc2c8d971b9f7d1c5
+OK,Stats_LX_Perseverance_DisplayName,Perseverance,,haf56695b0d8ee503b3f683f9a71af5cfe2fe
+OK,Stats_LX_SavageSortilege_DisplayName,Savage Sortilege,,hbbe91df103d42b17f9629cdde890eaf0f964
+OK,Stats_LX_Escapist_DisplayName,Escapist,,h3e0a817aefd88f1ed23de0253e5994e5388f
+OK,Stats_LX_Stench_DisplayName,Stench,,hfbac23f93f11725e5f90e10ef61281ee64a6
+OK,Stats_LX_Reload_DisplayName,Reload,,hbf25f21b8d7a096675cbc77c8b4650e36cb8
+OK,Stats_LX_AimingStance_DisplayName,Aiming stance,,hb4cabea4e375f9904a9e9b36c136132973d4
+OK,LX_REFLEX_BONUS_DisplayName,Hit and Run,,ha4ecfc2ce003947c82a982f1b2e4476c95c8
+OK,Stats_LX_ReflexBonus_DisplayName,Hit and run,,h863438d8dc7513df9d5157a785ea66582f44
+OK,Stats_LX_Suppressed_DisplayName,Suppressed,,hf0e22f23c7454ffc7712beed8d02069f4639
+OK,LX_UNSTABLE_COOLDOWN_DisplayName,Equalized,,h72c29d8963cf25c08cd8b5df2b8428ed99e4
+OK,LX_UNSTABLE_COOLDOWN_Description,Unstable effect won't trigger.,,h8e64152c32b964c91685fbbe6d1430e076bf
+OK,LX_GUERILLA_COOLDOWN_DisplayName,Caught Attention,,hbb1177c99109d8b57cb0a498e8ed1b52edaf
+OK,LX_GUERILLA_COOLDOWN_Description,GUERILLA effect won't trigger.,,h61c776d87d62dca1d4e34775fc4540ea3da4
+OK,LX_WALKITOFF_2_DisplayName,Walk It Off,,ha99777bebb82be885102ab0743c199794ed2
+OK,LX_WALKITOFF_DisplayName,Walk It Off,,h62f3682a9d7ba1c558a19ae1aca68e6a1761
+OK,LX_WALKITOFF_3_DisplayName,Walk It Off,,h48c9f42b6c1df14e1ccbaaedb60e238e78c0
+OK,LX_WALKITOFF_4_DisplayName,Walk It Off,,had434b6362f2070cdf6d21bcfd9a742a81d5
+OK,LX_WALKITOFF_5_DisplayName,Walk It Off,,hd22f4cd4822b681f5d435902535ebfdfae71
+OK,LX_PETPAL_DisplayName,Weaker Summon,,hebc013d69a13ae0c41868eb2ca859c11dfca
+OK,LX_PETPAL_Description,This summon is weaker.,,h2f999276c68bcf35694b671060ba0092b36d
+OK,LX_STAGGERED_DisplayName,Staggered,,h0685cf1f17ab508f2211783ec8cc22ab6100
+OK,LX_STAGGERED_Description,This character have staggered during his recovery.,,h173891773cf4a3fb3f4109d907f4d26260f8
+OK,LX_STAGGERED2_DisplayName,Staggered (2),,h7ec0b0c899b97d88682be8c7f1c1343f18ec
+OK,LX_STAGGERED2_Description,This character have staggered during his recovery.,,h4d6ad50eb91107548666b9722e93c498cd20
+OK,LX_STAGGERED3_DisplayName,Staggered (3),,h792db397af6646d72b75716fd21b60503a89
+OK,LX_STAGGERED3_Description,This character have staggered during his recovery.,,hfbf89261768648c12b2c408d6f7205b75c2c
+OK,LX_CONFUSED_DisplayName,Confused,,ha836b4ab274c50a8b9dacfa926045f69aac2
+OK,LX_CONFUSED_Description,This character have been magically affected during recovery.,,h9fc2898b49d01bf7c68833eeceaa322fa382
+OK,LX_CONFUSED2_DisplayName,Confused (2),,ha7179b2bda5e0df115c6945d481e9b6a3313
+OK,LX_CONFUSED2_Description,This character have been magically affected during recovery.,,haa8913c434ca21f5bcd3b24dc4881eddc4d4
+OK,LX_CONFUSED3_DisplayName,Confused (3),,hcef47da64b88ccf4eb613b19db8fbabfe8c4
+OK,LX_CONFUSED3_Description,This character have been magically affected during recovery.,,ha098c9acf9a5b0d31096fa5858dace119474
+OK,LX_MOMENTUM_DisplayName,Momentum,,h6c3967e394d5e3b5d09f42bcd4fbbfebabb5
+OK,LX_MOMENTUM_Description,Any attempt to apply Knocked Down or Chicken will apply Staggered instead.,,hb3ae976b5084c2e951c79403f9c696d79f0a
+OK,LX_LINGERING_DisplayName,Lingering,,h71bfe43455262a358b51a319eb26c0ed0a4a
+OK,LX_LINGERING_Description,"Any attempt to apply Stunned, Petrified, Frozen, Madness, Terrified or Charm will apply Confused instead.",,h5e8002d4fb3b16e0518021181a30578b5f04
+OK,LX_DODGE_FATIGUE1_DisplayName,Dodge Fatigue,,h63a0e967129a24d0a8e8bb1a722450d33119
+OK,LX_DODGE_FATIGUE1_Description,This character dodges become less effective.,,h9be287a0449131f565fbc1b7ce1b8d52b792
+OK,LX_DODGE_FATIGUE2_DisplayName,Dodge Fatigue (2),,h29a75931a36da4e45df68bfa5c4fd0a6ebdf
+OK,LX_DODGE_FATIGUE2_Description,This character dodges become less effective.,,hc64fce2dbe690cf4ac20ae6c32179e737d86
+OK,LX_DODGE_FATIGUE3_DisplayName,Dodge Fatigue (3),,h16afb7bc7e83f82527cdeadc512b3200e16d
+OK,LX_DODGE_FATIGUE3_Description,This character dodges become less effective.,,h4c3c01148a7a04160e8415f086a586783ba5
+OK,LX_DODGE_FATIGUE4_DisplayName,Dodge Fatigue (4),,h9375ec2ada466fa83623453ee152aa70b1e0
+OK,LX_DODGE_FATIGUE4_Description,This character dodges become less effective.,,hb83232767602e8126ad0eeb8edb188d4054a
+OK,ARROWHEAD_FIRE_DisplayName,Burning Weapons,,h2497b5fa51bb612f9867758999761d2d0a4b
+OK,ARROWHEAD_FIRE_Description,Adds [1] to weapon attacks and skills.,,h343f33376a1f75c656dd8db76610735cb74c
+OK,ARROWHEAD_WATER_DisplayName,Water Weapons,,hf8a1fd1433a61a45d5d894611f1f4b54a272
+OK,ARROWHEAD_WATER_Description,Adds [1] to weapon attacks and skills.,,h758cf2b80d7232722cf3bd18e6bc264b74e5
+OK,ARROWHEAD_POISON_DisplayName,Poison Weapons,,h24da4c9952b638a1f946930db299a1593f95
+OK,ARROWHEAD_POISON_Description,Adds [1] to weapon attacks and skills.,,h4471c75b04bb9af0fc3f168a0676088fd899
+OK,ARROWHEAD_ELECTRIC_DisplayName,Electric Weapons,,h4edb6a0ab518dd0e868a9efa0edff7392608
+OK,ARROWHEAD_ELECTRIC_Description,Adds [1] to weapon attacks and skills.,,h6f58fe6ecdd4085cb69ceab29d6aaf372a6f
+OK,ARROWHEAD_BLOOD_DisplayName,Bloody Weapons,,hc784d07a36ba53b847518caae4c5a7367b74
+OK,ARROWHEAD_BLOOD_Description,Adds [1] to weapon attacks and skills.,,h9583de7ccc268c8342ed22263f00f8cbc997
+OK,ARROWHEAD_OIL_DisplayName,Oily Weapons,,h41698c31c795720b79251ce7cfb1a12ba573
+OK,ARROWHEAD_OIL_Description,Adds [1] to weapon attacks and skills.,,h20e7d74e2a3cca969263d8b9e473157c8d72
+OK,LX_POTIONWARNING_DisplayName,Potion Dizziness,,he8b56946f477a84c81f0ad0378267bd1a7e2
+OK,LX_POTIONWARNING_Description,This character drank a lot of potions. One more potion and it's an overdose !,,h29a84757b8d4e22fdc654256550bb29ed3a8
+OK,LX_POTIONFATIGUE2_DisplayName,Potion Poisoning,,h40f0eac9de311f0c8f0235d80da010336830
+OK,LX_POTIONFATIGUE2_Description,This character drank too much potions and could not handle the side effects.,,h10ac42dc04c4f5ec66e521a3695121161176
+OK,LX_POTIONFATIGUE1_DisplayName,Potion Poisoning,,h63ac60827b0ef3245abe6c57cc1b5c58ee9d
+OK,LX_POTIONFATIGUE1_Description,This character drank too much potions and start to have side effects.,,he27081c1a8af591efccc9381951215a4ff93
+OK,LX_SHIELDSUP_DisplayName,Shields Up,,h70294b6565f101f8bef0f22c08e812b16192
+OK,LX_SHIELDSUP_Description,The amount of damage going through armors is reduced by half.,,h0250ad88f981681502fcbc83914b7cd964b1
+OK,LX_FOOD_REGENERATION_DisplayName,Well fed,,heca7c4ccd707d81fde5c890ca5c82a09b6ef
+OK,LX_FOOD_REGENERATION_Description,Regenerate 1% Vitality per turn during combat.,,h03a35c65c27aec2d70741ad21a514ac04a02
+OK,LX_FOOD_CLEAN_DisplayName,Purge,,hc84c91228f7bf766f9bf81ec0d224f6aa790
+OK,LX_FOOD_REGENERATION2_DisplayName,Well fed,,h0a2ed3179c2d9e6a5cd752142347ee4e9a44
+OK,LX_FOOD_REGENERATION2_Description,Regenerate 2% Vitality per turn during combat.,,h13fc4db8b6f72ebaa7b7b39a56ea69ff40a3
+OK,LX_SLOWED_DisplayName,Slowed,,he4f40880d7bb3274f51ed5baaa179f6e4bee
+OK,LX_OILYCARAPACE_DisplayName,Oily Carapace,,habec2d0728dff238e91568e1f09291fdc548
+OK,LX_OILYCARAPACE_Description,Reduce damage going through Physical armour by 100%,,ha0897767f1c44a6d5dc3ab403654b42dbdac
+OK,LX_CRYOTHERAPY_DisplayName,Cryotherapy,,hbaf0bb69df7156a455500a82ec456bd5f4c1
+OK,LX_CRYOTHERAPY_Description,Reduce damage going through Magic armour by 100%,,h5dea718430bdcc5f95559761401d81eb31d6
+OK,LX_INCQB_DisplayName,Close Quarter Penalty,,h81ba4087692a0f23b503ae1da2e030765960
+OK,LX_INCQB_Description,"If you attack this character with a ranged weapon, the damage will be lowered.",,h0467750ac75dbfbfd0509e8ebc4dcd026fae
+OK,SIPHON_POISON_Description,Adds [2] damage to your weapon attacks and skills. They now also set Acid for 1 turn (3 if Venom Coating is active).,,h7664fbcab3aa6c5631c05b7f212a38dd1cd9
+OK,VENOM_COATING_Description,Adds [1] to weapon attacks and skills.,,hc31468d7f466afbe56aec5f4fc2b3d5c3f9c
+OK,VENOM_AURA_Description,Adds [1] to weapon attacks and skills.,,h360622fcd64db87e1ee41e009facc8e69566
+OK,FIRE_BRAND_Description,Adds [1] to weapon attacks and skills.,,ha5fd9ae6f6383684d1dd4d1b4bd69d464050
+OK,FIRE_BRAND_AURA_Description,Adds [1] to weapon attacks and skills.,,hcf75fc243a329d3ec93ef81568feb854d7c5
+OK,LX_ADRENALINE_DisplayName,Adrenaline,,hfeab494893f95c32ee8a550a6d8acd87baf9
+OK,LX_PERSEVERANCE_DisplayName,Perseverance,,h72333b3ebcda96a401c161d1a0233980c1b8
+OK,LX_EXECUTIONER_DisplayName,Executioner,,h52ee9b5459224a3f466330c6326d43ca3ace
+OK,LX_GB4_MC_EA_DisplayName,Cycle of Earth and Air,,hf58d9e68060a288c288bf0027c77df24d347
+OK,LX_GB4_MC_WF_DisplayName,Cycle of Water and Fire,,h94a9e217667127c8ddf519eaedf8557e9dfd
+OK,LX_INDOMITABLE_DisplayName,Indomitable,,h7d9ca602069794aae86c221bf39e7d771a05
+OK,LX_INDOMITABLE_CD_DisplayName,Exhausted,,hb4269ccf3d0b523f5f6dc6f344ab07ea25c2
+OK,LX_INDOMITABLE_CD_Description,The Indomitable talent won't have any effect while this status is present.,,h73d3381f128961b871a33fd0fb09b24bfa22
+OK,LX_GLADIATOR_CD_DisplayName,Gladiator,,hc3a58fe9caa4321bcd77d4d27067dd0833fd
+OK,LX_GLADIATOR_CD_Description,The Gladiator talent won't have any effect while this status is present.,,h7a2b373d77c7638062044226a32b8fadc570
+OK,LX_SOULCATCHER_DisplayName,Soulcatcher,,h4a96eb37fe5b09758281e25d51f7bcc06a98
+OK,LX_SOULCATCHER_Description,Raised as a zombie until status expires or character is resurrected.,,h98acae781e5e2d435d866b3b8e419e9ad0e7
+OK,LX_GB4_JITTERBUG_CD_DisplayName,Escaped,,h0ea26be0194b6038bb8eb5065769e23db5ea
+OK,LX_GB4_JITTERBUG_CD_Description,The Jitterbug talent won't have any effect while this status is present.,,h33c9a09138a5e1c1827c87292d51396a2bd8
+OK,LX_SOULCATCHER_CD_DisplayName,Soulcatcher,,h47ae14133c086975c3b75e91d52174387acc
+OK,LX_SOULCATCHER_CD_Description,The Soulcatcher talent won't work while this status is active.,,hfeb589ff2f4b387365feceb2be48c0cf97b2
+OK,LX_CORROGIC_DisplayName,Resistance Corrosion,,hbdbb73c17e055a2f4e600c091a462fc90e4d
+OK,LX_CORROGIC_Description,Resistances are lowered by Corrosive and/or Magic armour damage on Vitality. Cured by Fortified and Magic Shell.,,h8676efd04adb371953642e47fc2c81da1f49
+OK,DGM_WARMUP_Description,The character adapt their blows to the moving targets.,,h21c7ee770c245fb179f79f3531c954ddb376
+OK,Shout_LX_WeaponArtDagger_DisplayName,Weapon art: Prefidious stab,,h02d517a7a37b6ecd4b1b6d9a77ec755ace4e
+OK,Shout_LX_WeaponArtDagger_Description,Status applied by the next weapon skill will bypass the armour check. Statuses affected by Torturer have their power increased by 50%.,,h33f7aa8dcabd9d0dbf37a1787a5966458548
+OK,LX_WA_DAGGER_DisplayName,Weapon art: Perfidious stab,,h45ae9b90719a76407d1630800109799210e3
+OK,LX_WA_DAGGER_Description,Status applied by the next weapon skill will bypass the armour check. Statuses affected by Torturer have their power increased by 50%.,,h285ca3b2041ec1401f785b7252cf16246ac5
+OK,Shout_LX_WeaponArtSword_DisplayName,Weapon art: Counter-attack,,h1f3a30bc09e79bccc13d1dbc6078d77f7ef0
+OK,Shout_LX_WeaponArtSword_Description,"Once used, a weapon skill can be selected. It will go on cooldown (with a 35% reduction, rounded up) but it will be automatically used after the first enemy attacking if it is in range. Damage dealt by the counter-attack reduced by 50%.",,h4134b78174648853aaddb9b3bc160686061d
+OK,LX_WA_SWORD_PREPARE_DisplayName,Weapon art: Counter-attack (prepare),,hf6d6088eb49ae8a9ebcc02e2fc7c91615697
+OK,LX_WA_SWORD_PREPARE_Description,Select a weapon skill to prepare for counter-attack.,,h87899fbc31e19fd457494d832215dd2de143
+OK,LX_WA_SWORD_DisplayName,Weapon art: Counter-attack,,h23abcf7bb270c68661ca8de9afdaea5d1c9e
+OK,LX_WA_SWORD_Description,This character will use a prepared skill to counter-attack if the attacker is in range.,,h97f4115fd7a3782f4cab4d137a75906f9977
+OK,Shout_LX_WeaponArtTrueStrike_DisplayName,Weapon art: True Strike,,he36eddee7af44154150cf8ccc8aa0ab0216f
+OK,Shout_LX_WeaponArtTrueStrike_Description,"The next weapon attack have a bonus accuracy of 3 times the current Warmup bonus, but damage is also reduced by the same percentage.",,h71cff39413dd258f33bac3c352fa34d18f00
+OK,LX_WA_TRUESTRIKE_DisplayName,Weapon art: True Strike,,ha72181627b4d8b115e4bd4c58d7a51e8aea9
+OK,LX_WA_TRUESTRIKE_Description,+[1] Accuracy and -[2]% damage on the next weapon attack,,h5354c8a2df0ce8b399e1b86697719035a4e2
+OK,Projectile_Grenade_SilverPowder_DisplayName,Silver Powder Grenade,,hcb4655450b823ddde9b9d5ba1ed1958b32e0
+OK,Projectile_Grenade_SilverPowder_Description,Deals [1] and sets Suffocating for 2 turns.,,he2eca94944d1b118c14edc83e957b8126b12
+OK,LX_FOOD_POISONED_DisplayName,Food Poisoning,,h4de329a1f3cbdc8f694ff104f1effae11dc1
+OK,LX_FOOD_POISONED_Description,Deals [1] damage each turn.,,h64e900c1cea6bfbd6573657da560f7c74cef
+OK,Strength_Cap,(require more Strength to unlock full potential),Attributes.lsb,h4620587ac18381105faf7326b5bdbf5008ca
+OK,Finesse_Cap,(require more Finesse to unlock full potential),Attributes.lsb,hcba95ba4b6d03b273bef82999d7e67de96be
+OK,Intelligence_Cap,(require more Intelligence to unlock the full potential),Attributes.lsb,hee02f684c93ad3178ae3932c97220eeb8971
+OK,Leadership_Description,[1] grants Dodging and Resistance bonuses to all allies in a 16m radius.,CombatAbilities.lsb,h8256bf13gb4cag4662gaafegb5724b210c92
+OK,SingleHanded_Description,"Single-Handed increases damage and Accuracy when using a single-handed weapon (dagger, sword, axe, mace or wand) with a shield or empty off-hand. Also increases armours and resistances.",CombatAbilities.lsb,h751cb9fcgcc15g485fg80dag96d013bb5fff
+OK,Condition_OneArmorDown,Enemies need to have Physical or Magic armour down to be targetable.,CustomTooltips.lsb,h3c843142e00318ddf7770cb9eabe6f093ee6
+OK,BaseLevelDamage,Base Level [1] Damage,CustomTooltips.lsb,hd049be999b5c14549d6f42deb751a71f1e8b
+OK,BaseWeaponLevelDamage,Base Weapon Level [1] Damage,CustomTooltips.lsb,h3827bcfe077d207c8eff3b74082f1a4d8935
+OK,AverageLevelDamage,Average Level [1] Damage,CustomTooltips.lsb,h2413d603e27cee826098383b983007f25ea2
+OK,DamageScalings_Description,Base level damage is level scaled damage for a 100% damage hit. Average Level damage takes into account the average bonus from attributes and abilities and is a good point of reference to evaluate the damage effectiveness of your character.,CustomTooltips.lsb,h4bc4468e3c2291e2aca7f70c453cb52e5e67
+OK,Heal_ThresholdMinimum,"Heals for a minimum of ""..tostring(vitalityAmount).."" Vitality.",CustomTooltips.lsb,h48a2abfdd9b0967d8b078def253c9899ae0f
+OK,Stats_AbsorbStatus_Description,Absorb [1] for [2] turns.,CustomTooltips.lsb,h19b882cd276f7be53f5b6fc7373238578ec3
+OK,Stats_Absorb_DynamicTooltip_B,Creates or reinforce a shield absorbing [1] [2] damage.,CustomTooltips.lsb,h6c228e1dca370d669ce5168db0927c61b57c
+OK,Stats_Absorb_DynamicTooltip,Creates a shield absorbing [1] [2] damage.,CustomTooltips.lsb,h13beb88d132d7c0eb32bb9a434b4e8a6a1c8
+OK,Status_Absorb_Description,Shield remaining power: [1],CustomTooltips.lsb,h45a06186b653138b10b219f1dee4bc77f6f7
+OK,Stats_Property_TryKill_Source,Consume up to [1] Source points to increase the execution threshold by [2] per SP. (current threshold: [3]),CustomTooltips.lsb,hfc05d668d082c69a492830cda4df107344dd
+OK,Stats_Property_TryKill_Influence,Increase the execution threshold by [1] if the target is under the influence of ,CustomTooltips.lsb,hc528919edb2923281338cee3e3dbb82d40ad
+OK,Stats_Property_TryKill_Tooltip,Attempt to execute the target if their Vitality falls under [1] HP after the hit.,CustomTooltips.lsb,hc8251915393960158a29894ed7d0c471707d
+OK,Stats_Property_SurfaceBoost,Absorb surfaces to boost the skill.,CustomTooltips.lsb,h8db94d64b57028510a0bfefaabb6dceb6d32
+OK,Stats_Property_ExplodeTarget,"Explode target, causing damage in a [1] meters radius",CustomTooltips.lsb,h8370edcb809ef4743acfc1cf162b9707842f
+OK,Stats_Projectiles_PerHit,per hit,CustomTooltips.lsb,hb1f9588e6e6d07889026aff787c58413e7da
+OK,Stats_Property_Spark,Each hit will throw a projectile to the nearest target in a [1] meters radius,CustomTooltips.lsb,h2b37179787081cbe7b4deed5b24821ba74cf
+OK,Stats_Property_LeaveAction,On [1] expiration,CustomTooltips.lsb,h63f706ac0cb8acb3f9d829a14c9cd88b3258
+OK,Stats_Property_ActiveDefense,On activation: [1],CustomTooltips.lsb,hb77529a7df1c668e1649ab510b8a1aaed1b4
+OK,Status_Damage_ExtensionWeapon,Weapon bonus: [1],CustomTooltips.lsb,h222fa92ef59caf564d62f41769567e53e559
+OK,Status_Damage_ExtensionStatus,Status: [1],CustomTooltips.lsb,h405d171013fc6b70d9b4999cb277c1920937
+OK,Tooltip_Generic_BonusFrom,Bonus from ,CustomTooltips.lsb,hbf24fc79dc4717f72a3d81871a95bbff53d8
+OK,Tooltip_BonusFromAttributes,Bonus from Attributes,CustomTooltips.lsb,h226bd07ff4fb8f63dc004fc10f99ea79863a
+OK,Stats_Potion_Overdose,"Drinking a second potion during your turn will reduce your AP by 1 the next turn, and drinking a third one will immediatly end your turn and reduce your AP by 3 the next turn.",CustomTooltips.lsb,h0656b1bbac7c66e62fa7197cff4af1ceae26
+OK,Stats_Potion_HealingElixir_Custom,"Clear Crippled, Atrophy and Diseased.",CustomTooltips.lsb,h5d09fa7ec537287a656101484846022086d8
+OK,Stats_LX_WalkItOff_DisplayName,Walk It Off,,hb4ad403cf2af97652719feb7c78ce4b86861
+OK,Stats_LX_WalkItOff_2_DisplayName,Walk It Off (2),,hbb144b263a698aa0d37d2c2df9a19e7c6fcd
+OK,Stats_LX_WalkItOff_3_DisplayName,Walk It Off (3),,h942c55b6732d29e271886f42afd7aff9f7ff
+OK,Stats_LX_WalkItOff_4_DisplayName,Walk It Off (4),,hd13e042859974aab427e90795b1502b1b23a
+OK,Stats_LX_WalkItOff_5_DisplayName,Walk It Off (5),,h8b9a2a48cc32e1d37b8be2c2b8b2ff341fe0
+OK,Stats_LX_PetPal_DisplayName,Pet Pal (Summon),,hb33e7a9635fb62599c1085f06512e4daf343
+OK,Stats_LX_Staggered_DisplayName,Staggered,,h42d479c0b259ca4324e6ea027e9288afda8d
+OK,Stats_LX_Staggered_Description,This character has staggered during their recovery.,,hc8cecdde17960b3afec86b7e13238b329ecf
+OK,Stats_LX_Staggered2_DisplayName,Staggered (2),,hfc75efb7f07c7220adb4f66dd546aa9a0f99
+OK,Stats_LX_Staggered3_DisplayName,Staggered (3),,h644059b80185f08e50a768988d9510fedb8b
+OK,Stats_LX_Confused_DisplayName,Confused,,h1356ded60c840314b1fffcfd353d9c18949d
+OK,Stats_LX_Confused_Description,This character has been magically affected during recovery.,,h07b19e9f40be685af728ea182d0d8231d83d
+OK,Stats_LX_Confused2_DisplayName,Confused (2),,h367ab2e69a98bf1808eb760053115cc9c664
+OK,Stats_LX_Confused3_DisplayName,Confused (3),,hdd5637b626e5cd0fd845cd82ec67ec65489e
+OK,Stats_LX_DodgeFatigue_DisplayName,Dodge Fatigue,,h7961b029b43df131a3e32582c064a493d9c9
+OK,Stats_LX_DodgeFatigue_Description,This characters dodging has become less effective.,,hc30334ba9f4d9970fe8c03e1eaeb515e6101
+OK,Stats_LX_DodgeFatigue2_DisplayName,Dodge Fatigue (2),,h27b9d6b00f172bac48a8b7ca365e10856e29
+OK,Stats_LX_DodgeFatigue3_DisplayName,Dodge Fatigue (3),,hacb40125b6946df13f7cfa488c553ae86421
+OK,Stats_LX_DodgeFatigue4_DisplayName,Dodge Fatigue (4),,he52a4f52183033a1fcc3cf042255be16d804
+OK,Stats_LX_Leech_DisplayName,Leech,,h9d6449a0abe721069c13c198adebdd84858d
+OK,Stats_LX_Demon_DisplayName,Demon,,h21b7ae3463cffc69fb0f4bf79960ddd94e97
+OK,Stats_LX_DDGoose_DisplayName,Duck Duck Goose,,h37966702d577ce543bd74aa4e9cb849f2d92
+OK,Stats_LX_Hothead_DisplayName,Hothead,,h97c7c5abb61d0362469032e820eab2ba323c
+OK,Stats_LX_PetPalSummoner_DisplayName,Pet Pal (Summoner),,h96c9540eebc6595206f1606dd2b26e3d36a5
+OK,Stats_LX_Duelist_DisplayName,Duelist,,hfb7e84316c587ad7da4409c5b5b8bc24966a
+OK,Stats_LX_PotionFatigue2_DisplayName,Potion Fatigue,,h972b60a5c69d8aa48e525ebc9e89d02a38d0
+OK,Stats_LX_PotionFatigue2_Description,This character drank too many potions and could not handle the side effects.,,h54f2b5b4ea45a6ed009c7ba93ea1fefcfaac
+OK,Stats_LX_PotionFatigue1_DisplayName,Potion Fatigue,,h1ea367e75a66042517db5317e364f3ee2b9c
+OK,Stats_LX_PotionFatigue1_Description,This character drank too many potions and is experiencing side effects.,,hbdb380c4dbb3bfc085a3242bb19915a09507
+OK,Stats_LX_IceKing_DisplayName,Ice King,,h82ac482dc620b87569d179099d25ac45e9fe
+OK,Stats_LX_Adrenaline_DisplayName,Adrenaline,,hdfe073f24705d97c79a0836b5eaf2b427f14
+OK,Stats_LX_Perseverance_DisplayName,Perseverance,,hb5f4f726d116894d52d5aaa1219baa0687b3
+OK,Stats_LX_SavageSortilege_DisplayName,Savage Sortilege,,h02057f77758dfb964fd495ae8a0fd8d57907
+OK,Stats_LX_Escapist_DisplayName,Escapist,,hf9c53d88d7deb2cd75aa2e657b1308587ca1
+OK,Stats_LX_Stench_DisplayName,Stench,,h368113583e27be44a8089517bc3c42fbfc39
+OK,Stats_LX_Reload_DisplayName,Reload,,h3fc22207ab1fa6e1667bce320f1ca63a0e1c
+OK,Stats_LX_AimingStance_DisplayName,Aiming stance,,hbb367feeb5f90a8e2ac7128c42e33d8c956c
+OK,LX_REFLEX_BONUS_DisplayName,Hit and Run,,h570c5bd45f969f49388ca1d00ca628189447
+OK,Stats_LX_ReflexBonus_DisplayName,Hit and run,,h8232c91a2268ebd5972cff308049e259a94c
+OK,Stats_LX_Suppressed_DisplayName,Suppressed,,h45ea15fefec0d2ce958359de9645dcb19869
+OK,LX_UNSTABLE_COOLDOWN_DisplayName,Equalized,,hf44bfd5c0cc7110dd546e1918eaa46199318
+OK,LX_UNSTABLE_COOLDOWN_Description,Unstable effect won't trigger.,,he29c14e7a834a9299e2bd5e0556d51c378c1
+OK,LX_GUERILLA_COOLDOWN_DisplayName,Caught Attention,,h61adee3ec8ae9efab1d8b5f8303623eafcdb
+OK,LX_GUERILLA_COOLDOWN_Description,GUERILLA effect won't trigger.,,hd0fa0a6fddd41dbe51ea78342a5a09aa074e
+OK,LX_WALKITOFF_2_DisplayName,Walk It Off,,h2cd0f172ea19988ab7303c5b48e52e11f203
+OK,LX_WALKITOFF_DisplayName,Walk It Off,,h06a99769a90b53d5341f53d2ffa4f44ed840
+OK,LX_WALKITOFF_3_DisplayName,Walk It Off,,h2a78c410a8c056e98d9b45260cbd09c3d902
+OK,LX_WALKITOFF_4_DisplayName,Walk It Off,,hf6a0cb8c8b4dd1ad7f96f3aba2b54c62f749
+OK,LX_WALKITOFF_5_DisplayName,Walk It Off,,h69c679272d20dd4b25ffffbb1830ea6dcddc
+OK,LX_PETPAL_DisplayName,Weaker Summon,,hea3c0bfdd2c3277c8e926b2971dc43040b44
+OK,LX_PETPAL_Description,This summon is weaker.,,h73a9850250ee5e2ec8e10f3bf16e426b258f
+OK,LX_STAGGERED_DisplayName,Staggered,,he2685eb7ea7e47c74af07c33de8372729597
+OK,LX_STAGGERED_Description,This character have staggered during his recovery.,,h1046e69c35e9d339de0df907d9f9c5e5b613
+OK,LX_STAGGERED2_DisplayName,Staggered (2),,he9793a4c7c3fc7cd2b84e54d658b388c5e3d
+OK,LX_STAGGERED2_Description,This character have staggered during his recovery.,,hf2185f63a152e2a33ef9587d1e94f65f79f3
+OK,LX_STAGGERED3_DisplayName,Staggered (3),,h0629d908e1f9a5d9d40bef990bbc5029bfc5
+OK,LX_STAGGERED3_Description,This character have staggered during his recovery.,,h439b14059061894c701cbe2a615b2b2bccb4
+OK,LX_CONFUSED_DisplayName,Confused,,h539e57fff869fda5acd7669cfa10d5f737b2
+OK,LX_CONFUSED_Description,This character have been magically affected during recovery.,,h847dc6fe63531db70f903279718d3561d101
+OK,LX_CONFUSED2_DisplayName,Confused (2),,h7391c9f3c8bcfff1f8a25e7217aa41c289b0
+OK,LX_CONFUSED2_Description,This character have been magically affected during recovery.,,h1022799c2c9a5397bcdb4ee7886513bfe1d9
+OK,LX_CONFUSED3_DisplayName,Confused (3),,h13b895adc6427f69c43e37b95a1e89fb557d
+OK,LX_CONFUSED3_Description,This character have been magically affected during recovery.,,h362e9c0fa2715e24db191865fcfcc9d90019
+OK,LX_MOMENTUM_DisplayName,Momentum,,h772d1e183567aa51dc6841b125f7e8bc683a
+OK,LX_MOMENTUM_Description,Any attempt to apply Knocked Down or Chicken will apply Staggered instead.,,h17af82c4097a9cb87b24b6d0524cc0dcd4dd
+OK,LX_LINGERING_DisplayName,Lingering,,haddd9f949b1151825931413eb14fa7259abe
+OK,LX_LINGERING_Description,"Any attempt to apply Stunned, Petrified, Frozen, Madness, Terrified or Charm will apply Confused instead.",,h87ca8cb76e3f52b748994535bcd2dedd3c50
+OK,LX_DODGE_FATIGUE1_DisplayName,Dodge Fatigue,,h4d064468088afdee5bbf6d4c8cee96bfbdc7
+OK,LX_DODGE_FATIGUE1_Description,This character dodges become less effective.,,he0a097e390a9cceded578444a71f74d411c9
+OK,LX_DODGE_FATIGUE2_DisplayName,Dodge Fatigue (2),,h9fb77c150d5fe5295a927b311d577e523251
+OK,LX_DODGE_FATIGUE2_Description,This character dodges become less effective.,,hab8d10b50c84232b821ef2d4558e4f424570
+OK,LX_DODGE_FATIGUE3_DisplayName,Dodge Fatigue (3),,h0dc28c3de36f7a288b8099267b8c90a5b027
+OK,LX_DODGE_FATIGUE3_Description,This character dodges become less effective.,,h8cfae7ee7993b88bd0acb4d82de056afbb1b
+OK,LX_DODGE_FATIGUE4_DisplayName,Dodge Fatigue (4),,h4cae14b887e80f9724d50066f5395104092b
+OK,LX_DODGE_FATIGUE4_Description,This character dodges become less effective.,,h3be5e941ce580f4bb64a8babfd8ca3a9653d
+OK,ARROWHEAD_FIRE_DisplayName,Burning Weapons,,h4de630ec3cc057953d5618f9ad4a112b1afa
+OK,ARROWHEAD_FIRE_Description,Adds [1] to weapon attacks and skills.,,hdd97052ea7db0a7a32224d23e5621cc73db9
+OK,ARROWHEAD_WATER_DisplayName,Water Weapons,,haf84e414e4aabea7d8e2603710229cd2a711
+OK,ARROWHEAD_WATER_Description,Adds [1] to weapon attacks and skills.,,hbb2381c97169ce028c001971eb91502711ea
+OK,ARROWHEAD_POISON_DisplayName,Poison Weapons,,ha31b82f7e46a378bfbc6f8019853c8b6264e
+OK,ARROWHEAD_POISON_Description,Adds [1] to weapon attacks and skills.,,h570b756a8992ffdbe31fb9c506e7e9593d8b
+OK,ARROWHEAD_ELECTRIC_DisplayName,Electric Weapons,,h4567cae4dbe3a12d0ab1498764831795de40
+OK,ARROWHEAD_ELECTRIC_Description,Adds [1] to weapon attacks and skills.,,h0cc8dfda4bc4cedb51f825eaab228e19d69f
+OK,ARROWHEAD_BLOOD_DisplayName,Bloody Weapons,,h69cd599c9ef7506ff33f886666e2922165c6
+OK,ARROWHEAD_BLOOD_Description,Adds [1] to weapon attacks and skills.,,h96cf1d8668a18d3e999b417af42bb2f14a67
+OK,ARROWHEAD_OIL_DisplayName,Oily Weapons,,hfb68c13256c7f3dae6ffcc99f35918554fbc
+OK,ARROWHEAD_OIL_Description,Adds [1] to weapon attacks and skills.,,h942aab15a0999ec4712787b25fd825f96e2c
+OK,LX_POTIONWARNING_DisplayName,Potion Dizziness,,h1e8e776ca2bf14ee21c6bb624879d5d421ef
+OK,LX_POTIONWARNING_Description,This character drank a lot of potions. One more potion and it's an overdose !,,hbcd3dde79eb8bd3e5ceae7ae249837579abe
+OK,LX_POTIONFATIGUE2_DisplayName,Potion Poisoning,,h0fb75b984b2c66057fa399841d5197fdc04c
+OK,LX_POTIONFATIGUE2_Description,This character drank too much potions and could not handle the side effects.,,h9d56447e861abd625fbcaa3a09daa660a726
+OK,LX_POTIONFATIGUE1_DisplayName,Potion Poisoning,,hd0482a1c092114bfe51a89cd5a57cc8c3f13
+OK,LX_POTIONFATIGUE1_Description,This character drank too much potions and start to have side effects.,,h0e10fbbc4c79f0b812479d2c81ff4a354f13
+OK,LX_SHIELDSUP_DisplayName,Shields Up,,h0509c602e3caedf3297e68128e46984d4ea9
+OK,LX_SHIELDSUP_Description,The amount of damage going through armors is reduced by half.,,hb91a9a7667ebc9dbc04ba66f2d1d77efc3e1
+OK,LX_FOOD_REGENERATION_DisplayName,Well fed,,h9de7f7616d40814d23e1949eb3dc6a0d0ca0
+OK,LX_FOOD_REGENERATION_Description,Regenerate 1% Vitality per turn during combat.,,h2f13b19ab2d24889a2f50ff624b0e1e657ce
+OK,LX_FOOD_CLEAN_DisplayName,Purge,,h4f1c120eb24dee29621b58d7a5b5cb50ff32
+OK,LX_FOOD_REGENERATION2_DisplayName,Well fed,,ha20956a5ef9f46b5877456f0841087f66a27
+OK,LX_FOOD_REGENERATION2_Description,Regenerate 2% Vitality per turn during combat.,,hd8d1749dcf998cba7ae1c1f8fcb632cd3183
+OK,LX_SLOWED_DisplayName,Slowed,,h540132c805fc19fc30491c7ee2578e3e18c5
+OK,LX_OILYCARAPACE_DisplayName,Oily Carapace,,ha8e2e2028c9e504ea0356adac7b32588d2d9
+OK,LX_OILYCARAPACE_Description,Reduce damage going through Physical armour by 100%,,hc0f093fb16f537809b32cb845cc8ebc5eea5
+OK,LX_CRYOTHERAPY_DisplayName,Cryotherapy,,h40cb8cd359944ad661ef50bee9de011d4dbf
+OK,LX_CRYOTHERAPY_Description,Reduce damage going through Magic armour by 100%,,h261858d44a7f64ddb4e8f7231e8c1a86802c
+OK,LX_INCQB_DisplayName,Close Quarter Penalty,,h81cf1b4d012ea51318d067c8103422a717b5
+OK,LX_INCQB_Description,"If you attack this character with a ranged weapon, the damage will be lowered.",,h42565e1390d322469cf08ec6c96b2e66d156
+OK,SIPHON_POISON_Description,Adds [2] damage to your weapon attacks and skills. They now also set Acid for 1 turn (3 if Venom Coating is active).,,h9c33c6d81c2abbf2502caeddb85679193a3f
+OK,VENOM_COATING_Description,Adds [1] to weapon attacks and skills.,,h3bb407f117d8fa90c6ecfefc7af26b7838e2
+OK,VENOM_AURA_Description,Adds [1] to weapon attacks and skills.,,h87b40a052dfea5474f2594bdd03ad595ed2f
+OK,FIRE_BRAND_Description,Adds [1] to weapon attacks and skills.,,h6ad5ccc0205e9d79980638b169718ede5289
+OK,FIRE_BRAND_AURA_Description,Adds [1] to weapon attacks and skills.,,hc843987d4b86abaaf4720981be63e1c00a9f
+OK,LX_ADRENALINE_DisplayName,Adrenaline,,h287e90a8f596b129d2d9fe072e0f81368789
+OK,LX_PERSEVERANCE_DisplayName,Perseverance,,hfb1d4d42e3e122d98531109694f45333a427
+OK,LX_EXECUTIONER_DisplayName,Executioner,,hc053bfd00fadba1ffeecec45538229033424
+OK,LX_GB4_MC_EA_DisplayName,Cycle of Earth and Air,,h7e47b275491929b1a4851838bbf6717e46f3
+OK,LX_GB4_MC_WF_DisplayName,Cycle of Water and Fire,,h6effa6ffb58a363f993150b71278db828cdf
+OK,LX_INDOMITABLE_DisplayName,Indomitable,,h9ae860059d87fe8b6374be98f8209edc7b05
+OK,LX_INDOMITABLE_CD_DisplayName,Exhausted,,h26f666f513ae33a3a42fc896edc944505179
+OK,LX_INDOMITABLE_CD_Description,The Indomitable talent won't have any effect while this status is present.,,h746daa4faea19f74d14e332bf9df32f72e94
+OK,LX_GLADIATOR_CD_DisplayName,Gladiator,,hcef39a28732ae151be05eeae68663af6501b
+OK,LX_GLADIATOR_CD_Description,The Gladiator talent won't have any effect while this status is present.,,hbef0b038ebb5392e4ea73768b613da058b8e
+OK,LX_SOULCATCHER_DisplayName,Soulcatcher,,hb675ae8baed94d663f48511ff283ef918f0c
+OK,LX_SOULCATCHER_Description,Raised as a zombie until status expires or character is resurrected.,,h3a5b6aaa581ee21d115970dce7c35c5d6b1f
+OK,LX_GB4_JITTERBUG_CD_DisplayName,Escaped,,h70f68f06b094ea8cc83265572f99e7911b9e
+OK,LX_GB4_JITTERBUG_CD_Description,The Jitterbug talent won't have any effect while this status is present.,,h2c0c31224fad055f5072c0669313c7b4b809
+OK,LX_SOULCATCHER_CD_DisplayName,Soulcatcher,,h147eafd80b1db71df1f1504a0a8be538b3ac
+OK,LX_SOULCATCHER_CD_Description,The Soulcatcher talent won't work while this status is active.,,h33cca1f0d2d3b411f4dea41ebe8cd5ebc82c
+OK,LX_CORROGIC_DisplayName,Resistance Corrosion,,hcd93b3faf628b345ff080c1c8c507c47c76b
+OK,LX_CORROGIC_Description,Resistances are lowered by Corrosive and/or Magic armour damage on Vitality. Cured by Fortified and Magic Shell.,,hf454e44a7fe0ce13c243af2eedd69ba2a000
+OK,DGM_WARMUP_Description,The character adapt their blows to the moving targets.,,h65e218f0be47336837cfa8fdc368b8b6b13e
+OK,Shout_LX_WeaponArtDagger_DisplayName,Weapon art: Prefidious stab,,h35dd93ba4420ef8e32c1d665a37c27a0fbeb
+OK,Shout_LX_WeaponArtDagger_Description,Status applied by the next weapon skill will bypass the armour check. Statuses affected by Torturer have their power increased by 50%.,,hba0caa7ac255c0e38c0e53091902034df30d
+OK,LX_WA_DAGGER_DisplayName,Weapon art: Perfidious stab,,haf5d9ade25f7e733003988983ce4113b15ee
+OK,LX_WA_DAGGER_Description,Status applied by the next weapon skill will bypass the armour check. Statuses affected by Torturer have their power increased by 50%.,,hdf3455393776618527b0dce61ab49cc05e97
+OK,Shout_LX_WeaponArtSword_DisplayName,Weapon art: Counter-attack,,hcb8198fae3acb5a0a074f83519549fbf4a89
+OK,Shout_LX_WeaponArtSword_Description,"Once used, a weapon skill can be selected. It will go on cooldown (with a 35% reduction, rounded up) but it will be automatically used after the first enemy attacking if it is in range. Damage dealt by the counter-attack reduced by 50%.",,h23357fad2105bf9eabd86cf5179d50622d90
+OK,LX_WA_SWORD_PREPARE_DisplayName,Weapon art: Counter-attack (prepare),,h7dc9a10bfcbd7e8319a626d98e868b716f1e
+OK,LX_WA_SWORD_PREPARE_Description,Select a weapon skill to prepare for counter-attack.,,h202caf639d658b2e42535181f8ac313032a9
+OK,LX_WA_SWORD_DisplayName,Weapon art: Counter-attack,,hf1363ae6701297434be5d9d4f7941fa8758f
+OK,LX_WA_SWORD_Description,This character will use a prepared skill to counter-attack if the attacker is in range.,,hc8c768dbca613d260f3fbf97099d4ce6052f
+OK,Shout_LX_WeaponArtTrueStrike_DisplayName,Weapon art: True Strike,,hcba00a2f95cb9773d9925799ec7f9069014c
+OK,Shout_LX_WeaponArtTrueStrike_Description,"The next weapon attack have a bonus accuracy of 3 times the current Warmup bonus, but damage is also reduced by the same percentage.",,hd7db1cdae5de7bcb7ec68def6e243816678d
+OK,LX_WA_TRUESTRIKE_DisplayName,Weapon art: True Strike,,h684b07a02310ea606d9531e335bdbb8efb9f
+OK,LX_WA_TRUESTRIKE_Description,+[1] Accuracy and -[2]% damage on the next weapon attack,,h9b31ad064ab64cbc4247807f3a42fe60998f
+OK,Projectile_Grenade_SilverPowder_DisplayName,Silver Powder Grenade,,ha5ebaf91940fbf21efb2dd5b4eaad574b6ad
+OK,Projectile_Grenade_SilverPowder_Description,Deals [1] and sets Suffocating for 2 turns.,,ha783bf042ed64be7489efe14a2339692d5a1
+OK,LX_FOOD_POISONED_DisplayName,Food Poisoning,,hbb1278a72965de0286b1dca9c8d9eb5c2460
+OK,LX_FOOD_POISONED_Description,Deals [1] damage each turn.,,hcdf7019a90ab3349b8fdcef28419578bd959
