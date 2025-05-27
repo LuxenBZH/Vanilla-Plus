@@ -129,7 +129,11 @@ end
 Helpers.Client = {}
 
 Helpers.Client.GetCurrentCharacter = function()
-	return Ext.ClientEntity.GetCharacter(Ext.UI.DoubleToHandle(Ext.UI.GetByType(Data.UIType.hotBar):GetRoot().hotbar_mc.characterHandle))
+	if Ext.UI.GetByType(Data.UIType.hotBar) then
+		return Ext.ClientEntity.GetCharacter(Ext.UI.DoubleToHandle(Ext.UI.GetByType(Data.UIType.hotBar):GetRoot().hotbar_mc.characterHandle))
+	else
+		return nil
+	end
 end
 
 if Ext.IsServer() then
@@ -205,6 +209,11 @@ if Ext.IsServer() then
 		end
 	end
 
+	Ext.RegisterNetListener("LX_RefreshSkillCooldown", function(channel, payload)
+		local info = Ext.Json.Parse(payload)
+		Helpers.Character.AddSkillCooldown(Ext.ServerEntity.GetCharacter(tonumber(info.Character)), info.Skill, tonumber(info.Cooldown), info.Warning)
+	end)
+
 	---comment
 	---@param target EsvCharacter
 	---@param instigator EsvCharacter
@@ -219,5 +228,18 @@ if Ext.IsServer() then
 				RemoveStatus(instigator.MyGuid, status)
 			end
 		end
+	end
+else
+	---@param character EclCharacter
+	---@param skill string
+	---@param cooldown number in seconds
+	---@param warning boolean|nil
+	Helpers.Character.AddSkillCooldown = function(character, skill, cooldown, warning)
+		Ext.Net.PostMessageToServer("LX_RefreshSkillCooldown", Ext.Json.Stringify({
+			Character = character.NetID,
+			Skill = skill,
+			Cooldown = cooldown,
+			Warning = warning
+		}))
 	end
 end
