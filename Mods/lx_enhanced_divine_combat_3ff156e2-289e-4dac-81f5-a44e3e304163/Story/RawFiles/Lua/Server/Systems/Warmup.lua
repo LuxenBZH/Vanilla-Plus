@@ -60,13 +60,13 @@ HitManager:RegisterHitListener("DGM_Hit", "AfterDamageScaling", "DGM_AbsorbShiel
 			if hit.SkillId ~= "" then
 				local skill = Ext.Stats.Get(Helpers.GetFormattedSkillID(hit.SkillId))
 				---Make sure a character can get a warmup count only once for AoE skills, but can still get as many count as there are hits for a single target skill
-				if ((instigator.UserVars.LX_WarmupManager.LastSkillHitID ~= Helpers.UserVars.Get(instigator, "VP_LastSkillsUsed")[1].ID) or
-				(instigator.UserVars.LX_WarmupManager.LastSkillHitID == Helpers.UserVars.Get(instigator, "VP_LastSkillsUsed")[1].ID and instigator.UserVars.LX_WarmupManager.LastTarget == target.MyGuid)) or
-				(instigator.UserVars.LX_WarmupManager.LastSkillHitID == Helpers.UserVars.Get(instigator, "VP_LastSkillsUsed")[1].ID and instigator.UserVars.LX_WarmupManager.LastTarget ~= target.MyGuid and skill.SkillType == "MultiStrike") and
+				if ((instigator.UserVars.LX_WarmupManager.LastSkillHitID ~= Helpers.UserVars.GetVar(instigator, "VP_LastSkillsUsed")[1].ID) or
+				(instigator.UserVars.LX_WarmupManager.LastSkillHitID == Helpers.UserVars.GetVar(instigator, "VP_LastSkillsUsed")[1].ID and instigator.UserVars.LX_WarmupManager.LastTarget == target.MyGuid)) or
+				(instigator.UserVars.LX_WarmupManager.LastSkillHitID == Helpers.UserVars.GetVar(instigator, "VP_LastSkillsUsed")[1].ID and instigator.UserVars.LX_WarmupManager.LastTarget ~= target.MyGuid and skill.SkillType == "MultiStrike") and
 				skill.UseWeaponDamage == "Yes" then
 					instigator.UserVars.LX_WarmupManager.Counter = instigator.UserVars.LX_WarmupManager.Counter + 1
 				end
-				instigator.UserVars.LX_WarmupManager.LastSkillHitID = Helpers.UserVars.Get(instigator, "VP_LastSkillsUsed")[1].ID
+				instigator.UserVars.LX_WarmupManager.LastSkillHitID = Helpers.UserVars.GetVar(instigator, "VP_LastSkillsUsed")[1].ID
 				instigator.UserVars.LX_WarmupManager.LastTarget = target.MyGuid
 			else
 				instigator.UserVars.LX_WarmupManager.Counter = instigator.UserVars.LX_WarmupManager.Counter + 1
