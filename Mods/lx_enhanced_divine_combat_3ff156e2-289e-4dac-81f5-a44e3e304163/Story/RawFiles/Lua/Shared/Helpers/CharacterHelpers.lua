@@ -126,6 +126,14 @@ Helpers.Character.CheckSkillRequirements = function(character, skill, base)
 	return true
 end
 
+---Get the amount of warmup stacks of a character
+---@param character EsvCharacter|EclCharacter
+Helpers.Character.GetWarmupStacks = function(character)
+	local warmup = Helpers.Character.GetStatus(character, "DGM_WARMUP")
+	local stackNumber = warmup and tonumber(string.sub(warmup, -1)) or 0
+	return stackNumber
+end
+
 Helpers.Client = {}
 
 Helpers.Client.GetCurrentCharacter = function()

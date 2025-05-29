@@ -41,20 +41,6 @@ Ext.Events.StatusDelete:Subscribe(function(e)
 end)
 ---END Forbearance
 
----@param e EsvLuaStatusDeleteEvent
-Ext.Events.BeforeStatusDelete:Subscribe(function(e)
-    if Data.Stats.Warmup[e.Status.StatusId] then
-        local object = Ext.ServerEntity.GetGameObject(e.Status.TargetHandle)
-        if Helpers.IsCharacter(object) and object:HasTag("LX_Warmup") then
-            e.Status.CurrentLifeTime = 6.0
-            e:PreventAction()
-            ClearTag(object.MyGuid, "LX_Warmup")
-        else
-            ApplyStatus(object.MyGuid, Data.Stats.Warmup[Data.Stats.Warmup[e.Status.StatusId]-1] or "", 6.0, 1, object.MyGuid)
-        end
-    end
-end)
-
 Ext.Osiris.RegisterListener("CharacterStartAttackObject", 3, "before", function(defender, owner, attacker)
     if CharacterIsInCombat(attacker) == 1 then
         SetTag(attacker, "LX_Warmup")

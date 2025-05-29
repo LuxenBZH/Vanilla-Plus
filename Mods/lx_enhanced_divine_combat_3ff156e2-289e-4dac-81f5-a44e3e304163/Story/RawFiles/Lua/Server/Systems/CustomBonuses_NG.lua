@@ -202,7 +202,6 @@ CustomStatusManager:RegisterCharacterSyncListener("DGM_AbilitiesSync", function(
     end
     for ability, bonuses in pairs(Data.Stats.CustomAbilityBonuses) do
         if character.Stats[ability] > 0 then
-            _P("TEST")
             local status = CustomStatusManager:Create("DGM_"..ability, bonuses)
             CustomStatusManager:Apply(character, status.Name, -1.0, character.Stats[ability], bonuses.Cap)
         else

@@ -18,6 +18,23 @@ local VPlusSimpleSkillGroups = {
         Target_LX_HunterMark = function(character)
             return character:GetStatus("LX_AIMING_STANCE") ~= null, false
         end
+    },
+    Target_HeavyAttack = {
+        Target_HeavyAttack = function(character)
+            return true, false
+        end,
+        Shout_LX_WeaponArtTrueStrike = function(character)
+            return true, false
+        end
+    },
+
+    Target_DualWieldingAttack = {
+        Target_DualWieldingAttack = function(character)
+            return true, false
+        end,
+        Shout_LX_WeaponArtTrueStrike = function(character)
+            return true, false
+        end
     }
 }
 

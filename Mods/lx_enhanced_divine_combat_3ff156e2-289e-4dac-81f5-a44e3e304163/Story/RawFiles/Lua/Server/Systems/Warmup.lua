@@ -20,6 +20,17 @@ function ApplyWarmup(character, step, fromMiss)
 	CustomStatusManager:CharacterApplyMultipliedStatus(character, "DGM_WARMUP"..tostring(stage), 6.0, 1.0 + 0.1 * character.Stats.WarriorLore)
 end
 
+---@param character EsvCharacter
+---@param amount number
+function ConsumeWarmup(character, amount)
+	local warmup = Helpers.Character.GetStatus(character, "DGM_WARMUP")
+	local warmupStacks = Helpers.Character.GetWarmupStacks(character)
+	RemoveStatus(character.MyGuid, warmup)
+	if warmupStacks - amount > 0 then
+		CustomStatusManager:CharacterApplyMultipliedStatus(character, "DGM_WARMUP"..tostring(warmupStacks - amount), 6.0, 1.0 + 0.1 * character.Stats.WarriorLore)
+	end
+end
+
 ---@param character string
 ---@param status string
 ---@param causee string
@@ -93,3 +104,27 @@ HitManager:RegisterHitListener("DGM_Hit", "AfterDamageScaling", "DGM_AbsorbShiel
 		end
 	end
 end, 52)
+
+---@param e EsvLuaStatusDeleteEvent
+Ext.Events.BeforeStatusDelete:Subscribe(function(e)
+    if Data.Stats.Warmup[e.Status.StatusId] then
+        local object = Ext.ServerEntity.GetGameObject(e.Status.TargetHandle)
+        if Helpers.IsCharacter(object) and object:HasTag("LX_Warmup") then
+            e.Status.CurrentLifeTime = 6.0
+            e:PreventAction()
+            ClearTag(object.MyGuid, "LX_Warmup")
+        else
+            ApplyStatus(object.MyGuid, Data.Stats.Warmup[Data.Stats.Warmup[e.Status.StatusId]-1] or "", 6.0, 1, object.MyGuid)
+        end
+    end
+end)
+
+--- Warmup skill requirement stack consumption
+Ext.Osiris.RegisterListener("CharacterUsedSkill", 4, "before", function(character, skill, skillType, element)
+    local statEntry = Ext.Stats.Get(skill)
+    for i,requirement in pairs(statEntry.Requirements) do
+        if requirement.Requirement == "Warmup" then
+            ConsumeWarmup(Ext.ServerEntity.GetCharacter(character), requirement.Param)
+        end
+    end
+end)
