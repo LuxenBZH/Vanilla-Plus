@@ -86,6 +86,10 @@ end
 
 ---@param e EsvLuaComputeCharacterHitEvent
 Ext.Events.ComputeCharacterHit:Subscribe(function(e)
+	--- Make sure auto attacks roll the crit chance through the modded functions
+	if (e.HitType == "Melee" or e.HitType == "Ranged") and e.SkillProperties == null and e.CriticalRoll ~= "Roll" then
+		e.CriticalRoll = "Roll"
+	end
 	if not (Mods.LeaderLib and Mods.LeaderLib.HitOverrides.ComputeOverridesEnabled()) and e.Attacker and e.Attacker.TALENT_Sadist then
 		-- Fix Sadist for melee skills that doesn't have UseCharacterStats = Yes
 		if e.HitType == "WeaponDamage" and not Game.Math.IsRangedWeapon(e.Attacker.MainWeapon) and e.Hit.HitWithWeapon then
@@ -93,7 +97,13 @@ Ext.Events.ComputeCharacterHit:Subscribe(function(e)
 		-- Fix Sadist for Necrofire
 		elseif e.HitType == "Melee" and e.Target.Character:GetStatus("NECROFIRE") then
 			ApplySadist(e)
+		else
+			e.Handled = true
+			Game.Math.ComputeCharacterHit(e.Target, e.Attacker, e.Weapon, e.DamageList, e.HitType, e.NoHitRoll, e.ForceReduceDurability, e.Hit, e.AlwaysBackstab, e.HighGround, e.CriticalRoll)
 		end
+	else
+		e.Handled = true
+		Game.Math.ComputeCharacterHit(e.Target, e.Attacker, e.Weapon, e.DamageList, e.HitType, e.NoHitRoll, e.ForceReduceDurability, e.Hit, e.AlwaysBackstab, e.HighGround, e.CriticalRoll)
 	end
 end)
 
