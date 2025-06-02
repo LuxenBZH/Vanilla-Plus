@@ -25,6 +25,9 @@ local VPlusSimpleSkillGroups = {
         end,
         Shout_LX_WeaponArtTrueStrike = function(character)
             return true, false
+        end,
+        Shout_LX_WeaponArtPinpoint = function(character)
+            return true, false
         end
     },
 
@@ -33,6 +36,9 @@ local VPlusSimpleSkillGroups = {
             return true, false
         end,
         Shout_LX_WeaponArtTrueStrike = function(character)
+            return true, false
+        end,
+        Shout_LX_WeaponArtPinpoint = function(character)
             return true, false
         end
     }

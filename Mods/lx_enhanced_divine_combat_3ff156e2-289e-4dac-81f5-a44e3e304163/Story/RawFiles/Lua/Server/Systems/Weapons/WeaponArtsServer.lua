@@ -36,6 +36,17 @@ HitManager:RegisterHitListener("DGM_Hit", "AfterDamageScaling", "LX_WeaponArtsHi
             end
         end, 150, instigator.MyGuid)
     end
+    if instigator:GetStatus("LX_WA_PINPOINT") then
+        ---Check if the character is back to idle state and remove Pinpoint
+        ---@param character EsvCharacter
+        Helpers.Timer.StartNamed("LX_Pinpoint_"..instigator.MyGuid, 30, function(guid)
+            local character = Ext.ServerEntity.GetCharacter(guid)
+            if character.ActionMachine.Layers[1].State == null then
+                RemoveStatus(character.MyGuid, "LX_WA_PINPOINT")
+                Helpers.Timer.Delete("LX_Pinpoint_"..guid)
+            end
+        end, 150, instigator.MyGuid)
+    end
 end)
 
 Ext.Osiris.RegisterListener("CharacterStatusApplied", 3, "before", function(character, status, instigator)
@@ -44,4 +55,11 @@ Ext.Osiris.RegisterListener("CharacterStatusApplied", 3, "before", function(char
         local trueStrike = character:GetStatus(status)
         Helpers.Status.Multiply(trueStrike, math.min(Helpers.Character.GetWarmupStacks(character)*3*(1.0 + 0.1 * character.Stats.WarriorLore)*3, 30))
     end
+end)
+
+Data.Math.CriticalChance.RegisterListener("PinpointBonus", function(attacker, target, critChance)
+    if attacker.Character:GetStatus("LX_WA_PINPOINT") then
+        return critChance + (math.max(0, attacker.Accuracy-100))
+    end
+    return critChance
 end)
