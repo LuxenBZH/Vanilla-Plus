@@ -474,6 +474,67 @@ Ext.Events.GetHitChance:Subscribe(function(e)
 	e.HitChance = DGM_CalculateHitChance(e.Attacker, e.Target)
 end)
 
+---Listen for critical chance calculations and apply potential modifiers
+Data.Math.CriticalChance = {
+	Listeners = {}
+}
+
+---@param name string
+---@param handle function
+Data.Math.CriticalChance.RegisterListener = function(name, handle)
+	Data.Math.CriticalChance.Listeners[name] = handle
+end
+
+Data.Math.CriticalChance.RemoveListener = function(name)
+	if not Data.Math.CriticalChance.Listeners[name] then
+		_VWarning('Could not find listener "'..name..'" in CriticalChance listeners !', "_InitShared")
+	end 
+	Data.Math.CriticalChance.Listeners[name] = nil
+end
+
+Data.Math.CriticalChance.CallListeners = function(attacker, target, critChance)
+	for name, listener in pairs(Data.Math.CriticalChance.Listeners) do
+		critChance = listener(attacker, target, critChance)
+	end
+	return critChance
+end
+
+--- @param hit HitRequest
+--- @param attacker StatCharacter
+--- @param hitType string HitType enumeration
+--- @param criticalRoll string CriticalRoll enumeration
+local function ShouldApplyCriticalHit(hit, attacker, hitType, criticalRoll)
+    if criticalRoll ~= "Roll" then
+        return criticalRoll == "Critical"
+    end
+
+    if attacker.TALENT_Haymaker then
+        return false
+    end
+
+    if hitType == "DoT" or hitType == "Surface" then
+        return false
+    end
+    local critChance = attacker.CriticalChance
+    if attacker.TALENT_ViolentMagic and hitType == "Magic" then
+        critChance = critChance * Ext.ExtraData.TalentViolentMagicCriticalChancePercent * 0.01
+        critChance = math.max(critChance, 1)
+    else
+        if hit.Backstab then
+            return true
+        end
+
+        if hitType == "Magic" then
+            return false
+        end
+    end
+	critChance = Data.Math.CriticalChance.CallListeners(attacker, target, critChance)
+
+    return math.random(0, 99) < critChance
+end
+
+Game.Math.ShouldApplyCriticalHit = ShouldApplyCriticalHit
+
 ---@param character EsvCharacter
 Data.Math.CharacterCalculatePartialAP = function(character)
 	local movement = Data.Math.GetCharacterMovement(character)
