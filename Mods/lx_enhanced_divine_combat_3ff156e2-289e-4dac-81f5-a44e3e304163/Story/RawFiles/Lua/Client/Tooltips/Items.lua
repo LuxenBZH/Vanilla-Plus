@@ -45,7 +45,7 @@ Ext.Events.SessionLoaded:Subscribe(function(e)
     ---@param tooltip TooltipData
     Game.Tooltip.RegisterListener("Item", nil, function(item, tooltip)
         if tooltip == nil then return end
-        if item.ItemSlot ~= "Weapon" and iteh90ab20e0g9be8g44d6g9261gfbcdaab16798m.ItemSlot ~= "Shield" then return end
+        if item.ItemSlot ~= "Weapon" and item.ItemSlot ~= "Shield" then return end
         -- _P(Helpers.GetVariableTag(item.GameObject, "VP_WeaponGenerationLevel"))
         local originalLevel = Helpers.GetVariableTag(item.GameObject, "VP_WeaponGenerationLevel") or (item.GameObject.Level ~= 0 and item.GameObject.Level or item.Stats.Level)
         local levelElement = tooltip:GetElement("ItemLevel")
