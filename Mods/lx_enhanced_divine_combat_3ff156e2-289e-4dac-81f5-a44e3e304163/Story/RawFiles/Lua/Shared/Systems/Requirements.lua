@@ -43,6 +43,15 @@ staffr.Callbacks.EvaluateCallback = function (req, ctx, char)
     return true and ((char.MainWeapon and char.MainWeapon.WeaponType == "Staff") or (char.OffHandWeapon and char.OffHandWeapon.WeaponType == "Staff")) or false
 end
 
+local wandr = Ext.Stats.AddRequirement("WandWeapon")
+wandr.Description = "a wand"
+---@param req any
+---@param ctx any
+---@param char CDivinityStatsCharacter
+wandr.Callbacks.EvaluateCallback = function (req, ctx, char) 
+    return true and ((char.MainWeapon and char.MainWeapon.WeaponType == "Wand") or (char.OffHandWeapon and char.OffHandWeapon.WeaponType == "Wand")) or false
+end
+
 local warmupRequirement = Ext.Stats.AddRequirement("Warmup")
 warmupRequirement.Description = "Consumes [1] stacks of Warmup" --Ext.L10N.GetTranslatedStringFromKey("WarmupRequirement_Description")
 ---@param req any
