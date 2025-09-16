@@ -22,6 +22,12 @@ end
 ---@param callback function
 ---@param repeatCount number|nil
 function Helpers.Timer.StartNamed(name, time, callback, repeatCount, ...)
+    for i, activeTimer in pairs(Helpers.Timer.ActiveTimers) do
+        if type(timer) == "string" and activeTimer.Name == name then
+            activeTimer.Time = time
+            return
+        end
+    end
     table.insert(Helpers.Timer.ActiveTimers, {
         Name = name,
         Time = time,

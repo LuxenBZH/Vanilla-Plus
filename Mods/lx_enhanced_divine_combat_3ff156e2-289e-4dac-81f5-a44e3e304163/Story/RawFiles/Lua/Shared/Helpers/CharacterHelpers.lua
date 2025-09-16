@@ -134,6 +134,14 @@ Helpers.Character.GetWarmupStacks = function(character)
 	return stackNumber
 end
 
+---Returns the weapon class in each hand
+---@param character EsvCharacter|EclCharacter
+Helpers.Character.GetWeaponTypes = function(character)
+	local mainHand = character.Stats.MainWeapon and character.Stats.MainWeapon.WeaponType or nil
+	local offHand = character.Stats.OffHandWeapon and character.Stats.OffHandWeapon.WeaponType or nil
+	return mainHand, offHand
+end
+
 Helpers.Client = {}
 
 Helpers.Client.GetCurrentCharacter = function()

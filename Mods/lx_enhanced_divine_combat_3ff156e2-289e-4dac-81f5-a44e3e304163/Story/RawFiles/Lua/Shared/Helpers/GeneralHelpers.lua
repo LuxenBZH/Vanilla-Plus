@@ -415,3 +415,10 @@ Helpers.CalculatePositionFromDirection = function(pos1, pos2, distance)
 	 local cy = Ext.Entity.GetCurrentLevel().AiGrid:GetHeight(cx, cz)
 	 return {cx, cy, cz}
 end
+
+Helpers.TableShiftLeft = function(t)
+	for i = 1, #t - 1 do
+        t[i] = t[i + 1]
+    end
+    t[#t] = nil
+end

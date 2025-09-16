@@ -60,3 +60,12 @@ warmupRequirement.Description = "Consumes [1] stacks of Warmup" --Ext.L10N.GetTr
 warmupRequirement.Callbacks.EvaluateCallback = function(req, ctx, char)
     return Helpers.Character.GetWarmupStacks(char.Character) >= req.Param
 end
+
+local warmupRequirement = Ext.Stats.AddRequirement("SpellConduit")
+warmupRequirement.Description = "Requires at least [1] spell conduit(s)" --Ext.L10N.GetTranslatedStringFromKey("WarmupRequirement_Description")
+---@param req any
+---@param ctx any
+---@param char CDivinityStatsCharacter
+warmupRequirement.Callbacks.EvaluateCallback = function(req, ctx, char)
+    return char.Character.UserVars.LX_SpellConduit and (#char.Character.UserVars.LX_SpellConduit >= req.Param)
+end
