@@ -44,28 +44,28 @@ end
 
 --- Forbids player to validate casts if the AP cost has been modified through Lua and is above their current AP
 --- TODO: fetch the gamepad input value
-if Ext.IsClient() then
-	Ext.ClientBehavior.Skill.AddGlobal(function()
-		local EclCustomSkillState = {}
-		---@class ev CustomSkillEventParams
-		---@param skillState EclSkillState
-		---@param inputEvent InputEvent
-		---@return boolean
-		function EclCustomSkillState:OnInputEvent(ev,skillState, inputEvent)
-			local cc = Ext.UI.GetCursorControl()
-			local td = Ext.UI.GetByHandle(cc.TextDisplayUIHandle)
-			local tooMuchAP = string.match(td.Text, Ext.L10N.GetTranslatedString("h478017a5gdbc6g44ffgb28dga893e733370b", "Not enough AP"))
-			if tooMuchAP and inputEvent.EventId == 1 then
-				ev.PreventDefault = true
-				ev.StopEvent = true
-			else
-				ev.StopEvent = false
-			end
-			return false
-		end
-		return EclCustomSkillState
-	end)
-end
+-- if Ext.IsClient() then
+-- 	Ext.ClientBehavior.Skill.AddGlobal(function()
+-- 		local EclCustomSkillState = {}
+-- 		---@class ev CustomSkillEventParams
+-- 		---@param skillState EclSkillState
+-- 		---@param inputEvent InputEvent
+-- 		---@return boolean
+-- 		function EclCustomSkillState:OnInputEvent(ev,skillState, inputEvent)
+-- 			local cc = Ext.UI.GetCursorControl()
+-- 			local td = Ext.UI.GetByHandle(cc.TextDisplayUIHandle)
+-- 			local tooMuchAP = string.match(td.Text, Ext.L10N.GetTranslatedString("h478017a5gdbc6g44ffgb28dga893e733370b", "Not enough AP"))
+-- 			if tooMuchAP and inputEvent.EventId == 1 then
+-- 				ev.PreventDefault = true
+-- 				ev.StopEvent = true
+-- 			else
+-- 				ev.StopEvent = false
+-- 			end
+-- 			return false
+-- 		end
+-- 		return EclCustomSkillState
+-- 	end)
+-- end
 
 Ext.Events.SessionLoading:Subscribe(function (_)
     if Mods.EpipEncounters then
@@ -175,13 +175,25 @@ Data.APCostManager.RegisterSkillAPFormula("Target_TerrifyingCruelty", function(e
 	end
 end)
 
----Ranger stance: rapid fire
----@param e LuaGetSkillAPCostEvent
-Data.APCostManager.RegisterGlobalSkillAPFormula("RapidFire", function(e)
+Data.APCostManager.RegisterSkillAPFormula("Projectile_LX_SpellConduit", function(e)
 	local skill = e.Skill.StatsObject.StatsEntry
 	local character = e.Character.Character ---@type EclCharacter|EsvCharacter
 	e.ElementalAffinity = e.ElementalAffinity or false
-	if skill.Ability == "Ranger" and character:GetStatus("LX_RAPIDFIRE") and skill["Damage Multiplier"] > 0 then
-		e.AP = math.max(skill.ActionPoints - 1, 1)
+	if not character.UserVars.LX_SpellConduit then
+		e.AP = 1
+	else
+		local conduit = #character.UserVars.LX_SpellConduit or 1
+		e.AP = math.min(conduit, 3)
 	end
 end)
+
+-- ---Ranger stance: rapid fire
+-- ---@param e LuaGetSkillAPCostEvent
+-- Data.APCostManager.RegisterGlobalSkillAPFormula("RapidFire", function(e)
+-- 	local skill = e.Skill.StatsObject.StatsEntry
+-- 	local character = e.Character.Character ---@type EclCharacter|EsvCharacter
+-- 	e.ElementalAffinity = e.ElementalAffinity or false
+-- 	if skill.Ability == "Ranger" and character:GetStatus("LX_RAPIDFIRE") and skill["Damage Multiplier"] > 0 then
+-- 		e.AP = math.max(skill.ActionPoints - 1, 1)
+-- 	end
+-- end)
