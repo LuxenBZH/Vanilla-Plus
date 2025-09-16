@@ -184,4 +184,13 @@ Ext.Vars.RegisterUserVariable("LX_WarmupManager", {
     SyncOnTick = false,
 })
 
+Ext.Vars.RegisterUserVariable("LX_SpellConduit", {
+    Server = true,
+    Client = true, 
+    SyncToClient = true,
+    Persistent = true,
+    SyncOnWrite = true,
+    SyncOnTick = false
+})
+
 Ext.Require("Client/_InitClient.lua")

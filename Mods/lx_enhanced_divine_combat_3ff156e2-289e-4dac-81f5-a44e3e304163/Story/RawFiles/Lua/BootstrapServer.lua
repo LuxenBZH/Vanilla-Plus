@@ -6,6 +6,14 @@ Ext.Require("BootstrapShared.lua")
 -- Ext.Require("Shared/Helpers.lua")
 Helpers.VPPrint("Loaded", "BootstrapServer")
 
+Ext.Vars.RegisterUserVariable("LX_SpellConduit", {
+    Server = true,
+    Client = true, 
+    SyncToClient = true,
+    Persistent = true,
+    SyncOnWrite = true,
+    SyncOnTick = false
+})
 
 Ext.Vars.RegisterUserVariable("VP_LastSkillID", {
     Server = true,
