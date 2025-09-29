@@ -320,6 +320,18 @@ end
 
 Ext.RegisterListener("StatusGetDescriptionParam", StatusGetDescriptionParam)
 
+---@param character EclCharacter
+---@param status EclStatus|EclStatusChallenge|EclStatusDamage|EclStatusDamageOnMove|EclStatusConsumeBaseStatsData|EclStatusIncapacitated|EclStatusAoO|EclStatusEffect
+---@param tooltip TooltipData
+Game.Tooltip.RegisterListener("Status", nil, function(character, status, tooltip)
+    if status.StatsMultiplier ~= 1.0 and status.StatsId ~= "" then
+        tooltip:AppendElement({
+            Label = "<font color='#188EDE'><font size='15'>◆</font> "..Ext.L10N.GetTranslatedString("LX_StatusEffectiveness_DisplayName", "Effectiveness")..": "..tostring(Ext.Utils.Round(status.StatsMultiplier*100)).."%</font>",
+            Type = "StatusDescription"
+        })
+    end
+end)
+
 local DamageTypes = {
     None = 0,
     Physical = 1,
