@@ -39,7 +39,7 @@ local function PreventClientVertcasting()
   ---@param ev CustomSkillEventParams
   ---@param skillState EclSkillState
   function EclCustomSkillState:EnterAction(ev, skillState)
-    if #skillProperties > 0 then
+    if skillProperties and #skillProperties > 0 then
       local skill = Helpers.GetFormattedSkillID(skillState.SkillId)
       local statEntry = Ext.Stats.Get(skill)
       statEntry.SkillProperties = skillProperties
@@ -50,7 +50,7 @@ local function PreventClientVertcasting()
   ---@param ev CustomSkillEventParams
   ---@param skillState EclSkillState
   function EclCustomSkillState:Finish(ev, skillState)
-    if #skillProperties > 0 then
+    if skillProperties and #skillProperties > 0 then
       local skill = Helpers.GetFormattedSkillID(skillState.SkillId)
       local statEntry = Ext.Stats.Get(skill)
       statEntry.SkillProperties = skillProperties
