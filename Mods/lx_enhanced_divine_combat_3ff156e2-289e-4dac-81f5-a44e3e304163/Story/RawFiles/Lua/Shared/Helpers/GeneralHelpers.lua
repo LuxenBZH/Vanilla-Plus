@@ -104,6 +104,13 @@ if Ext.IsServer() then
 			Status = status.NetID,
 			Multiplier = multiplier,
 		}))
+		-- Trigger the dynamic stat recomputation on server side
+		if statsId then
+			Helpers.Timer.Start(33, function(characterHandle, statusHandle, statsId)
+				local status = Ext.ServerEntity.GetStatus(characterHandle, statusHandle)
+				status.StatsId = statsId
+			end, nil, status.TargetHandle, status.StatusHandle, status.StatsId)
+		end
 		Helpers.Status.TriggerMultipliedStatusesListeners(status, multiplier, previousMultiplier)
 	end
 
