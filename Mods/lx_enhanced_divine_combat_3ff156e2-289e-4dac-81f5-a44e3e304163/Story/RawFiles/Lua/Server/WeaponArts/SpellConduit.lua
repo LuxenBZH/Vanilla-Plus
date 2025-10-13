@@ -83,3 +83,30 @@ Ext.Osiris.RegisterListener("ItemUnEquipped", 2, "after", function(item, charact
             Ext.Net.PostMessageToClient(guid, "LX_WandsConduitUpdate", tostring(netID))
         end, 0, character.MyGuid, character.NetID)
 end)
+
+local _SPELL_CONDUIT_STATUS = {
+    SHOCKED = 2.0,
+    WET = 5.0,
+    BURNING = 2.0,
+    POISONED = 2.0,
+    SLOWED = 3.0
+}
+
+---@param e EsvLuaBeforeStatusApplyEvent
+Ext.Events.BeforeStatusApply:Subscribe(function(e)
+    local target = Ext.ServerEntity.GetCharacter(e.Status.TargetHandle)
+    if _SPELL_CONDUIT_STATUS[e.Status.StatusId] then
+        for s,maxEffectiveness in pairs(_SPELL_CONDUIT_STATUS) do
+            local status = target:GetStatus(s)
+            if status then
+                if e.Status.StatusId == status.StatusId then
+                    Helpers.Status.Multiply(status, math.min(status.StatsMultiplier + maxEffectiveness/5, maxEffectiveness))
+                    status.CurrentLifeTime = math.max(status.CurrentLifeTime + 6.0, status.CurrentLifeTime)
+                else
+                    Helpers.Status.Multiply(status, math.min(status.StatsMultiplier + maxEffectiveness/10, maxEffectiveness))
+                end
+                e.PreventStatusApply = true
+            end
+        end
+    end
+end)
