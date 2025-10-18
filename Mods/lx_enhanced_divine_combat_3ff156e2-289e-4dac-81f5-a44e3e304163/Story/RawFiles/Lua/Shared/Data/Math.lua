@@ -476,25 +476,44 @@ end)
 
 ---Listen for critical chance calculations and apply potential modifiers
 Data.Math.CriticalChance = {
-	Listeners = {}
+	CalculationListeners = {},
+	Flags = {}
 }
 
+--- @alias CriticalHitModifierCallback fun(hit:HitRequest, target:StatCharacter, attacker:StatCharacter, hitType:HitType, criticalRoll:string, critChance:number, flags:table):number
+
 ---@param name string
----@param handle function
-Data.Math.CriticalChance.RegisterListener = function(name, handle)
-	Data.Math.CriticalChance.Listeners[name] = handle
+---@param callback CriticalHitModifierCallback
+function Data.Math.CriticalChance:RegisterCalculationListener(name, callback)
+	Data.Math.CriticalChance.CalculationListeners[name] = callback
 end
 
-Data.Math.CriticalChance.RemoveListener = function(name)
-	if not Data.Math.CriticalChance.Listeners[name] then
-		_VWarning('Could not find listener "'..name..'" in CriticalChance listeners !', "_InitShared")
+function Data.Math.CriticalChance:RemoveListener(name)
+	if not Data.Math.CriticalChance.CalculationListeners[name] then
+		_VWarning('Could not find listener "'..name..'" in CriticalChance listeners !', "Math")
 	end 
-	Data.Math.CriticalChance.Listeners[name] = nil
+	Data.Math.CriticalChance.CalculationListeners[name] = nil
 end
 
-Data.Math.CriticalChance.CallListeners = function(attacker, target, critChance)
-	for name, listener in pairs(Data.Math.CriticalChance.Listeners) do
-		critChance = listener(attacker, target, critChance)
+function Data.Math.CriticalChance:CallListeners(hit, target, attacker, hitType, criticalRoll, critChance, flags)
+	if not target then
+		return critChance
+	end
+	for name, listener in pairs(Data.Math.CriticalChance.CalculationListeners) do
+		critChance = listener(hit, target, attacker, hitType, criticalRoll, critChance, flags)
+	end
+	return critChance
+end
+
+function Data.Math.CriticalChance:AddFlag(flag, callback)
+	Data.Math.CriticalChance.Flags[flag] = callback
+end
+
+function Data.Math.CriticalChance:CallFlagsFunctions(hit, target, attacker, hitType, criticalRoll, critChance, flags)
+	for flag, bool in pairs(flags) do
+		if bool then
+			critChance = Data.Math.CriticalChance.Flags[flag](hit, target, attacker, hitType, criticalRoll, critChance)
+		end
 	end
 	return critChance
 end
@@ -503,7 +522,7 @@ end
 --- @param attacker StatCharacter
 --- @param hitType string HitType enumeration
 --- @param criticalRoll string CriticalRoll enumeration
-local function ShouldApplyCriticalHit(hit, attacker, hitType, criticalRoll)
+local function ShouldApplyCriticalHit(hit, attacker, hitType, criticalRoll, target)
     if criticalRoll ~= "Roll" then
         return criticalRoll == "Critical"
     end
@@ -528,12 +547,87 @@ local function ShouldApplyCriticalHit(hit, attacker, hitType, criticalRoll)
             return false
         end
     end
-	critChance = Data.Math.CriticalChance.CallListeners(attacker, target, critChance)
+	local flags = {}
+	critChance = Data.Math.CriticalChance:CallListeners(hit, target, attacker, hitType, criticalRoll, critChance, flags)
+	critChance = Data.Math.CriticalChance:CallFlagsFunctions(hit, target, attacker, hitType, criticalRoll, critChance, flags)
 
     return math.random(0, 99) < critChance
 end
 
 Game.Math.ShouldApplyCriticalHit = ShouldApplyCriticalHit
+
+--- @param hit HitRequest
+--- @param target StatCharacter
+--- @param attacker StatCharacter
+--- @param hitType string HitType enumeration
+--- @param criticalRoll string CriticalRoll enumeration
+--- @param ctx HitCalculationContext
+local function ConditionalApplyCriticalHitMultiplier(hit, target, attacker, hitType, criticalRoll, ctx)
+    if Game.Math.ShouldApplyCriticalHit(hit, attacker, hitType, criticalRoll, target) then
+        Game.Math.ApplyCriticalHit(hit, attacker, ctx)
+    end
+end
+
+Game.Math.ConditionalApplyCriticalHitMultiplier = ConditionalApplyCriticalHitMultiplier
+
+---Listen for critical chance calculations and apply potential modifiers
+Data.Math.CriticalMultiplier = {
+	CalculationListeners = {}
+}
+
+---@param name string
+---@param callback CriticalHitModifierCallback
+function Data.Math.CriticalMultiplier:RegisterCalculationListener(name, callback)
+	Data.Math.CriticalMultiplier.CalculationListeners[name] = callback
+end
+
+function Data.Math.CriticalMultiplier:RemoveListener(name)
+	if not Data.Math.CriticalMultiplier.CalculationListeners[name] then
+		_VWarning('Could not find listener "'..name..'" in CriticalMultiplier listeners !', "Math")
+	end 
+	Data.Math.CriticalMultiplier.CalculationListeners[name] = nil
+end
+
+function Data.Math.CriticalMultiplier:CallListeners(weapon, character, critMultiplier)
+	for name, listener in pairs(Data.Math.CriticalMultiplier.CalculationListeners) do
+		critMultiplier = listener(weapon, character, critMultiplier)
+	end
+	return critMultiplier
+end
+
+--- @param weapon StatItem
+--- @param character StatCharacter
+local function GetCriticalHitMultiplier(weapon, character)
+    local criticalMultiplier = 0
+    if weapon.ItemType == "Weapon" then
+        for i,stat in pairs(weapon.DynamicStats) do
+            criticalMultiplier = criticalMultiplier + stat.CriticalDamage
+        end
+  
+        if character ~= nil then
+            local ability = Game.Math.GetWeaponAbility(character, weapon)
+            criticalMultiplier = criticalMultiplier + Game.Math.GetAbilityCriticalHitMultiplier(character, ability) + Game.Math.GetAbilityCriticalHitMultiplier(character, "RogueLore")
+                
+            if character.TALENT_Human_Inventive then
+                criticalMultiplier = criticalMultiplier + Ext.ExtraData.TalentHumanCriticalMultiplier
+            end
+        end
+    end
+	criticalMultiplier = Data.Math.CriticalMultiplier:CallListeners(weapon, character, criticalMultiplier)
+    return criticalMultiplier * 0.01
+end
+
+Game.Math.GetCriticalHitMultiplier = GetCriticalHitMultiplier
+
+Data.Math.CriticalMultiplier:RegisterCalculationListener("DGM_CriticalChanceOverflow", function(weapon, character, criticalMultiplier)
+	if not character then
+		return criticalMultiplier
+	end
+	if character.CriticalChance > 100 then
+		criticalMultiplier = criticalMultiplier + (character.CriticalChance - 100)
+	end
+	return criticalMultiplier
+end)
 
 ---@param character EsvCharacter
 Data.Math.CharacterCalculatePartialAP = function(character)
