@@ -23,11 +23,6 @@ end
 --- @param flags HitFlags
 --- @param instigatorDGMStats table
 HitManager:RegisterHitListener("DGM_Hit", "BeforeDamageScaling", "DGM_Specifics", function(hit, instigator, target, flags)
-	--- Critical multiplier bonus from crit chance > 100
-	if hit.Hit.CriticalHit and instigator.Stats.CriticalChance > 100 and not hit.Hit.Backstab then
-		local multiplier = Helpers.Character.GetComputedCriticalMultiplier(instigator)
-		HitHelpers.HitMultiplyDamage(hit.Hit, target, instigator, (instigator.Stats.CriticalChance - 100 + multiplier) / multiplier)
-	end
 	--- SIPHON_POISON feature
 	if HasActiveStatus(instigator.MyGuid, "SIPHON_POISON") == 1 then
 		local seconds = 12.0

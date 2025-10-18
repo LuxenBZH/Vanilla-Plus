@@ -41,7 +41,7 @@ Ext.Events.SessionLoaded:Subscribe(function(e)
     end)
 
     --- Weapon and Shields level range adaptation
-    ---@param item CDivinityStatsItem
+    ---@param item EclItem
     ---@param tooltip TooltipData
     Game.Tooltip.RegisterListener("Item", nil, function(item, tooltip)
         if tooltip == nil then return end
@@ -51,6 +51,13 @@ Ext.Events.SessionLoaded:Subscribe(function(e)
         local levelElement = tooltip:GetElement("ItemLevel")
         levelElement.Label = levelElement.Label.." ("..tostring(item.Stats.Level)..") "..tostring(Ext.Utils.Round(originalLevel)).." -"
         levelElement.Value = Ext.Utils.Round(originalLevel + Ext.ExtraData.DGM_WeaponDefaultLevelRange)
+        if item.ItemSlot == "Weapon" then
+            local critMultiplier = tooltip:GetElement("WeaponCritMultiplier")
+            if critMultiplier then
+                --- Weapon tooltips will now display their own critical multiplier instead of the computed critical multiplier with the character stats
+                critMultiplier.Value = tostring(Ext.Utils.Round(Game.Math.GetCriticalHitMultiplier(item.Stats, nil) * 100)).."%"
+            end
+        end
     end)
 
     --- Potion damage absorption shield tooltip

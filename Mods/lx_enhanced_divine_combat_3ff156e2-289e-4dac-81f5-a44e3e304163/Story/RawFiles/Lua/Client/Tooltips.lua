@@ -95,6 +95,8 @@ local function OnStatTooltip(character, stat, tooltip)
 
     elseif stat == "Critical Chance" then
         statsDescription.Label = Helpers.GetDynamicTranslationStringFromKey("CriticalChance_Description", Ext.ExtraData.DGM_BackstabCritChanceBonus)
+        local critMultiplier = tooltip:GetElement("StatsCriticalInfos")
+        critMultiplier.Label = string.gsub(string.gsub(Ext.L10N.GetTranslatedString("h84bafbedgb201g4356gaa16g41cf785deff0", "Critical Damage: [1]%"), "%[1%]", tostring(Ext.Utils.Round(Game.Math.GetCriticalHitMultiplier(character.Stats.MainWeapon, character.Stats) * 100))), "<br>", "")
         
     elseif stat == "Damage" then
         local damageText = tooltip:GetElement("StatsTotalDamage")
