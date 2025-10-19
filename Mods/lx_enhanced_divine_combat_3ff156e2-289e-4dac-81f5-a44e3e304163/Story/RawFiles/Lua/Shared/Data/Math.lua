@@ -619,12 +619,24 @@ end
 
 Game.Math.GetCriticalHitMultiplier = GetCriticalHitMultiplier
 
-Data.Math.CriticalMultiplier:RegisterCalculationListener("DGM_CriticalChanceOverflow", function(weapon, character, criticalMultiplier)
-	if not character then
-		return criticalMultiplier
-	end
-	if character.CriticalChance > 100 then
+Data.Math.CriticalMultiplier:RegisterCalculationListener("VP_CriticalChanceOverflow", function(weapon, character, criticalMultiplier)
+	if character and character.CriticalChance > 100 then
 		criticalMultiplier = criticalMultiplier + (character.CriticalChance - 100)
+	end
+	return criticalMultiplier
+end)
+
+Data.Math.CriticalMultiplier:RegisterCalculationListener("VP_CriticalMultiplierFromStatuses", function(weapon, character, criticalMultiplier)
+	if character then
+		for i,status in pairs(character.Character:GetStatuses()) do
+			local statusEntry = Ext.Stats.Get(status)
+			if statusEntry and statusEntry.StatsId then
+				local potionEntry = Ext.Stats.Get(statusEntry.StatsId)
+				if potionEntry.VP_CriticalMultiplier ~= 0 then
+					criticalMultiplier = criticalMultiplier + potionEntry.VP_CriticalMultiplier * character.Character:GetStatus(status).StatsMultiplier
+				end
+			end
+		end
 	end
 	return criticalMultiplier
 end)
