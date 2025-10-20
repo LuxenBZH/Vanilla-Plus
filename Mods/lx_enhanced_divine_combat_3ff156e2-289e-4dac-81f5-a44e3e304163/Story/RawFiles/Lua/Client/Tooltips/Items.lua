@@ -57,6 +57,15 @@ Ext.Events.SessionLoaded:Subscribe(function(e)
                 --- Weapon tooltips will now display their own critical multiplier instead of the computed critical multiplier with the character stats
                 critMultiplier.Value = tostring(Ext.Utils.Round(Game.Math.GetCriticalHitMultiplier(item.Stats, nil) * 100)).."%"
             end
+            local tad = 0
+            for i,stat in ipairs(item.Stats.DynamicStats) do
+                tad = tad + ((stat.StatsType == "Weapon" and stat.DamageType ~= "None") and stat.DamageFromBase or 0)
+            end
+            local damageIndicator = {
+                Label = "Total base damage: "..tostring(tad).."%",
+                Type = "StatsTotalDamage"
+            }
+            tooltip:AppendElement(damageIndicator)
         end
     end)
 
