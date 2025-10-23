@@ -2,7 +2,7 @@
 --- @param type string DamageType enumeration
 local function GetResistance(character, damageType)
 	local cap = character.MaxResistance
-	local resistance = character[tostring(damageType).."Resistance"]
+	local resistance = Data.OgResistances[tostring(damageType)] and character[tostring(damageType).."Resistance"] or 0
 	if damageType == "None" or damageType == "Chaos" then
 		damageType = "Custom" 
 	end
@@ -12,7 +12,7 @@ local function GetResistance(character, damageType)
 		cap = cap + typeCap
 	end
 	-- If the base resistance is higher than the cap, let it be
-	if character["Base"..tostring(damageType).."Resistance"] > cap then
+	if Data.OgResistances[tostring(damageType)] and character["Base"..tostring(damageType).."Resistance"] > cap then
 		return character["Base"..tostring(damageType).."Resistance"]
 	elseif resistance > cap then
 		return cap
@@ -45,16 +45,16 @@ local function CustomApplyHitResistances(character, damageList, attacker)
 		local bypassValue = GetResistanceBypassValue(attacker)
 		-- Ext.Print("Resistance bypass value:",bypassValue)
 		-- Ext.Print(resistance)
-		if originalResistance ~= nil and originalResistance > 50 and originalResistance < 100 and bypassValue > 0 then
+		if originalResistance ~= nil and originalResistance < 100 and bypassValue > 0 then
             -- resistance = GetResistance(character, damage, originalResistance - bypassValue)
 			resistance = originalResistance - bypassValue
-			if resistance < 50  then
-				resistance = 50
+			if resistance < 0  then
+				resistance = 0
 			elseif resistance > originalResistance then
 				resistance = originalResistance
 			end
 		end
-		_P(tostring(damage.DamageType).." Resistance: "..tostring(resistance))
+		-- _P(tostring(damage.DamageType).." Resistance: "..tostring(resistance))
         damageList:Add(damage.DamageType, math.floor(damage.Amount * -resistance / 100.0))
     end
 end
