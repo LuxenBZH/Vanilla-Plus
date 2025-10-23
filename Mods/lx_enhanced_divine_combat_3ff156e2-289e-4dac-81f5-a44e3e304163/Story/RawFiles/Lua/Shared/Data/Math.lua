@@ -1,4 +1,6 @@
-Data.Math = {}
+Data.Math = {
+	Character = {}
+}
 
 --[[
     Character stats related formulas
@@ -275,10 +277,35 @@ Data.Math.ApplyCQBPenalty = function(target, instigator)
 end
 
 ---@param character EsvCharacter|EclCharacter
+---@param modifier table|nil
+Data.Math.Character.GlobalDamageBonus = function(character, modifier)
+	local strength = character.Stats.Strength - Ext.ExtraData.AttributeBaseValue + (modifier and modifier.Strength or 0)
+    local finesse = character.Stats.Finesse - Ext.ExtraData.AttributeBaseValue + (modifier and modifier.Finesse or 0)
+    local intelligence = character.Stats.Intelligence - Ext.ExtraData.AttributeBaseValue + (modifier and modifier.Intelligence or 0)
+	return strength * Ext.ExtraData.DGM_StrengthGlobalBonus + finesse * Ext.ExtraData.DGM_FinesseGlobalBonus + intelligence * Ext.ExtraData.DGM_IntelligenceGlobalBonus -- /!\ Remember that 1=1% in this variable
+end
+
+---@param character EsvCharacter|EclCharacter
+Data.Math.Character.WeaponDamageBonus = function(character)
+	local globalBonus = Data.Math.Character.GlobalDamageBonus(character)
+	local strengthBonus = (character.Stats.Strength - Ext.ExtraData.AttributeBaseValue) * Ext.ExtraData.DGM_StrengthWeaponBonus
+	local abilityBonus = Data.Math.GetCharacterWeaponAbilityBonus(character)
+	return globalBonus + strengthBonus + abilityBonus
+end
+
+Data.Math.Character.SpellDamageBonus = function(character, ability)
+	local globalBonus = Data.Math.Character.GlobalDamageBonus(character)
+	local intelligenceBonus = (character.Stats.Intelligence - Ext.ExtraData.AttributeBaseValue) * Ext.ExtraData.DGM_IntelligenceSkillBonus
+	local abilityBonus = (ability and Data.Math.GetCharacterComputedAbilityBonus(character, ability)) or 0
+	return globalBonus + intelligenceBonus + abilityBonus
+end
+
+---@param character EsvCharacter|EclCharacter
 ---@param target EsvCharacter|EclCharacter
 ---@param flags HitFlags
 ---@param skill StatEntrySkillData|nil
-Data.Math.GetCharacterComputedDamageBonus = function(character, target, flags, skill)
+---@param modifier table|nil
+Data.Math.GetCharacterComputedDamageBonus = function(character, target, flags, skill, modifier)
 	if not character or getmetatable(character) ~= "esv::Character" and getmetatable(character) ~= "ecl::Character" then return {
 		Strength = 0,
 		Finesse = 0,
@@ -287,15 +314,12 @@ Data.Math.GetCharacterComputedDamageBonus = function(character, target, flags, s
 		DamageBonus = 0,
 		GlobalMultiplier = 1.0
 	} end
-    local strength = character.Stats.Strength - Ext.ExtraData.AttributeBaseValue
-    local finesse = character.Stats.Finesse - Ext.ExtraData.AttributeBaseValue
-    local intelligence = character.Stats.Intelligence - Ext.ExtraData.AttributeBaseValue
 	local attributes = {
-        Strength = strength,
-        Finesse = finesse,
-        Intelligence = intelligence,
-		Wits = character.Stats.Wits - Ext.ExtraData.AttributeBaseValue,
-        DamageBonus = strength*Ext.ExtraData.DGM_StrengthGlobalBonus+finesse*Ext.ExtraData.DGM_FinesseGlobalBonus+intelligence*Ext.ExtraData.DGM_IntelligenceGlobalBonus, -- /!\ Remember that 1=1% in this variable
+        Strength = character.Stats.Strength - Ext.ExtraData.AttributeBaseValue + (modifier and modifier.Strength or 0),
+        Finesse = character.Stats.Finesse - Ext.ExtraData.AttributeBaseValue + (modifier and modifier.Finesse or 0),
+        Intelligence = character.Stats.Intelligence - Ext.ExtraData.AttributeBaseValue + (modifier and modifier.Intelligence or 0),
+		Wits = character.Stats.Wits - Ext.ExtraData.AttributeBaseValue + (modifier and modifier.Wits or 0),
+        DamageBonus = Data.Math.Character.GlobalDamageBonus(character, modifier),
         GlobalMultiplier = 1.0
     }
 	if flags.Backstab then
@@ -312,7 +336,7 @@ Data.Math.GetCharacterComputedDamageBonus = function(character, target, flags, s
 		-- Weapon ability boost
 		if character.Stats.MainWeapon ~= null then
 			local weaponAbility = Game.Math.GetWeaponAbility(character.Stats, character.Stats.MainWeapon)
-			attributes.DamageBonus = attributes.DamageBonus + (1 + character.Stats[weaponAbility] * Data.Stats.WeaponAbilitiesBonuses[weaponAbility])
+			attributes.DamageBonus = attributes.DamageBonus + (1 + (character.Stats[weaponAbility] + (modifier and modifier[weaponAbility] or 0)) * Data.Stats.WeaponAbilitiesBonuses[weaponAbility])
 		end
 		attributes.GlobalMultiplier = attributes.GlobalMultiplier + Data.Math.ApplyCQBPenalty(target, character)
 	-- DoT Boost
@@ -629,11 +653,13 @@ end)
 Data.Math.CriticalMultiplier:RegisterCalculationListener("VP_CriticalMultiplierFromStatuses", function(weapon, character, criticalMultiplier)
 	if character then
 		for i,status in pairs(character.Character:GetStatuses()) do
-			local statusEntry = Ext.Stats.Get(status)
-			if statusEntry and statusEntry.StatsId then
-				local potionEntry = Ext.Stats.Get(statusEntry.StatsId)
-				if potionEntry.VP_CriticalMultiplier ~= 0 then
-					criticalMultiplier = criticalMultiplier + potionEntry.VP_CriticalMultiplier * character.Character:GetStatus(status).StatsMultiplier
+			if not Data.EngineStatus[status] then
+				local statusEntry = Ext.Stats.Get(status)
+				if statusEntry and statusEntry.StatsId then
+					local potionEntry = Ext.Stats.Get(statusEntry.StatsId)
+					if potionEntry.VP_CriticalMultiplier ~= 0 then
+						criticalMultiplier = criticalMultiplier + potionEntry.VP_CriticalMultiplier * character.Character:GetStatus(status).StatsMultiplier
+					end
 				end
 			end
 		end
@@ -647,8 +673,6 @@ Data.Math.CharacterCalculatePartialAP = function(character)
 	local celerity = Data.Math.ComputeCelerityValue(Data.Math.ComputeCharacterCelerity(character), character)
 	return (character.Stats.TALENT_QuickStep and 1 or 0) + 100/movement.Movement + celerity
 end
-
-Data.Math.Character = {}
 
 ---comment
 ---@param character EsvCharacter|EclCharacter
@@ -669,4 +693,12 @@ Data.Math.Character.GetExecutionRange = function(character, isWeapon, isMagic)
 		end
 	end
 	return executeValue
+end
+
+--- Base level damage + primary attributes general bonus
+---@param character EsvCharacter|EclCharacter
+Data.Math.Character.GetBaseDamage = function(character)
+	local BLD = Game.Math.GetLevelScaledDamage(character.Stats.Level)
+	local computedBonus = Data.Math.GetCharacterComputedDamageBonus(character, nil, {}, nil)
+	return BLD * computedBonus.DamageBonus
 end
