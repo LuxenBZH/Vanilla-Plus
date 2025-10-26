@@ -68,3 +68,13 @@ Data.Text.FormatNumberDigitsNoZero = function(number)
     local pruned = str:gsub("%.?0+$", "")
     return pruned
 end
+
+---String concatenation helper to help with code visibility (and better performance)
+---@param elements table
+---@param lineBreak boolean|nil
+Data.Text.Concatenate = function(elements, lineBreak)
+    for i,j in pairs(elements) do
+        elements[i] = tostring(j)
+    end
+    return table.concat(elements, (lineBreak and "<br> " or " "))
+end

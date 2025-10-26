@@ -7,6 +7,19 @@ Data.Math = {
 ]]
 
 ---@param character EclCharacter|EsvCharacter
+---@param statName string
+---@return number
+Data.Math.ComputeStatIntegerFromCharacter = function(character, statName)
+	local stat = 0
+	for i,dynamicStat in pairs(character.Stats.DynamicStats) do
+		if dynamicStat[statName] then
+			stat = stat + dynamicStat[statName]
+		end
+	end
+	return stat
+end
+
+---@param character EclCharacter|EsvCharacter
 ---@return number
 Data.Math.ComputeStatIntegerFromEquipment = function(character, statName)
 	local equipmentAttribute = 0
@@ -190,6 +203,16 @@ Data.Math.ComputeCharacterCelerity = function(character)
 		statusesCelerity = statusesCelerity + statusInfo.Value
 	end
     return math.min(equipmentCelerity + statusesCelerity)
+end
+
+---@param character EsvCharacter|EclCharacter
+---@param bonusCon int
+Data.Math.ComputeCharacterMaxVitality = function(character, bonusCon)
+	local maxVitality = Game.Math.GetVitalityBoostByLevel(character.Stats.Level)
+	local baseVitality = Data.Math.ComputeStatIntegerFromCharacter(character, "Vitality") + (character.Stats.TALENT_WarriorLoreNaturalHealth and 3 * character.Stats.WarriorLore or 0)
+	local bonusVitality = Data.Math.ComputeStatIntegerFromCharacter(character, "VitalityBoost")
+	local equipmentVitality = Data.Math.ComputeStatIntegerFromEquipment(character, "VitalityBoost") -- Already computed
+	return (maxVitality * (baseVitality/100) * (1+bonusVitality) + equipmentVitality) * (Ext.ExtraData.VitalityBoostFromAttribute * (character.Stats.Constitution + bonusCon))
 end
 
 --[[
@@ -655,7 +678,7 @@ Data.Math.CriticalMultiplier:RegisterCalculationListener("VP_CriticalMultiplierF
 		for i,status in pairs(character.Character:GetStatuses()) do
 			if not Data.EngineStatus[status] then
 				local statusEntry = Ext.Stats.Get(status)
-				if statusEntry and statusEntry.StatsId then
+				if statusEntry and statusEntry.StatsId ~= "" then
 					local potionEntry = Ext.Stats.Get(statusEntry.StatsId)
 					if potionEntry.VP_CriticalMultiplier ~= 0 then
 						criticalMultiplier = criticalMultiplier + potionEntry.VP_CriticalMultiplier * character.Character:GetStatus(status).StatsMultiplier
