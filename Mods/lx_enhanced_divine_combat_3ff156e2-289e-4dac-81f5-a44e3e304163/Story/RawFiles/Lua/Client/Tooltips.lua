@@ -301,16 +301,9 @@ end
 ---@param tooltip TooltipData
 local function TeleportTooltip(character, skill, tooltip)
     local description = tooltip:GetElement("SkillDescription")
-    description.Label = description.Label.."<br>"..Helpers.GetDynamicTranslationStringFromKey("Condition_OneArmorDown")
-end
-
----@param character EsvCharacter
----@param skill string
----@param tooltip TooltipData
-local function AimedShotTooltip(character, skill, tooltip)
-    local description = tooltip:GetElement("SkillDescription")
-    local accuracy = math.floor(20 + (character.Stats.Intelligence - Ext.ExtraData.AttributeBaseValue) * 3)
-    description.Label = Helpers.GetDynamicTranslationStringFromKey("Shout_LX_AimedShot_Description", accuracy, math.floor(character.Stats.Strength))
+    if description then
+        description.Label = description.Label.."<br>"..Helpers.GetDynamicTranslationStringFromKey("Condition_OneArmorDown")
+    end
 end
 
 ---@param character EsvCharacter
