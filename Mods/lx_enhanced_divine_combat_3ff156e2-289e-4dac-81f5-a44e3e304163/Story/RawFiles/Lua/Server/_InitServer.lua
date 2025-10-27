@@ -1,41 +1,66 @@
-Ext.Require("Server/ServerHelpers.lua")
-Ext.Require("Server/CustomAttributesServer.lua")
-Ext.Require("Server/Fixes/GeneralFixes.lua")
-Ext.Require("Server/Fixes/Taunt.lua")
-Ext.Require("Server/Fixes/UndeadFoodFix.lua")
-Ext.Require("Server/Fixes/ServerCasting.lua")
-Ext.Require("Server/Systems/CustomBonuses_NG.lua")
--- Ext.Require("Server/Systems/DamageControl_NG.lua")
-Ext.Require("Server/Systems/DamageControl/DamageOverrides.lua")
-Ext.Require("Server/Systems/DamageControl/HitManager.lua")
-Ext.Require("Server/Systems/DamageControl/MainDamageControl.lua")
-Ext.Require("Server/Systems/Warmup.lua")
-Ext.Require("Server/Systems/WeaponLevelRange.lua")
-Ext.Require("Server/Systems/Weapons/RangedStances.lua")
-Ext.Require("Server/Systems/Weapons/WeaponArtsServer.lua")
-Ext.Require("Server/Mechanics.lua")
--- Ext.Require("Server/DamageControl.lua")
-Ext.Require("Server/Resistance.lua")
-Ext.Require("Server/AbsorbShield.lua")
-Ext.Require("Server/ArmorSystem.lua")
-Ext.Require("Server/CCSystem.lua")
-Ext.Require("Server/Potions.lua")
-Ext.Require("Server/Talents.lua")
-Ext.Require("Server/Weapons.lua")
--- Ext.Require("Server/CustomBonuses.lua")
-Ext.Require("Server/Modules/Modules.lua")
-Ext.Require("Server/Consumables.lua")
-Ext.Require("Server/CQBEffect.lua")
-Ext.Require("Server/CustomSkillPropertiesServer.lua")
-Ext.Require("Server/Miscelleanous.lua")
-Ext.Require("Server/Statuses.lua")
-Ext.Require("Server/Skills.lua")
-Ext.Require("Server/Systems/SkillGroupServer.lua")
-Ext.Require("Server/Abilities.lua")
-Ext.Require("Server/WeaponArts/SpellConduit.lua")
--- Ext.Require("Server/Systems/SkillMutator.lua")
--- Ext.Require("Server/SP_DMR.lua")
--- Ext.Utils.Include("3ff156e2-289e-4dac-81f5-a44e3e304163", "Server/SP_DiminishingReturn.lua")
+_OrderedScriptsLoad = {
+	"Server/ServerHelpers",
+	"Server/Systems/Mechanics/CustomAttributes",
+	"Server/Fixes/GeneralFixes",
+	"Server/Fixes/Taunt",
+	"Server/Fixes/UndeadFoodFix",
+	"Server/Fixes/ServerCasting",
+	"Server/Stats/CustomBonuses",
+	"Server/Systems/DamageControl/DamageOverrides",
+	"Server/Systems/DamageControl/HitManager",
+	"Server/Systems/DamageControl/MainDamageControl",
+	"Server/Systems/Mechanics/Warmup",
+	"Server/Systems/Mechanics/WeaponLevelRange",
+	"Server/Systems/DamageControl/AbsorbShield",
+	"Server/Systems/DamageControl/ArmorSystem",
+	"Server/Systems/Mechanics/CCSystem",
+	"Server/Stats/Potions",
+	"Server/Stats/Talents",
+	"Server/Modules/Modules",
+	"Server/Systems/Mechanics/Consumables",
+	"Server/Systems/Mechanics/CQBEffect",
+	"Server/Stats/CustomSkillPropertiesServer",
+	"Server/Miscelleanous",
+	"Server/Stats/Statuses",
+	"Server/Stats/Skills/Skills",
+	"Server/Systems/Mechanics/SkillGroupServer",
+	"Server/Stats/Abilities",
+	"Server/Systems/WeaponArts/SpellConduit",
+	"Server/Stats/Skills/RangedSignature"
+}
+
+for i,script in ipairs(_OrderedScriptsLoad) do
+	Ext.Require(script..".lua")
+end
+
+-- Ext.Require("Server/ServerHelpers.lua")
+-- Ext.Require("Server/Systems/Mechanics/CustomAttributesServer.lua")
+-- Ext.Require("Server/Fixes/GeneralFixes.lua")
+-- Ext.Require("Server/Fixes/Taunt.lua")
+-- Ext.Require("Server/Fixes/UndeadFoodFix.lua")
+-- Ext.Require("Server/Fixes/ServerCasting.lua")
+-- Ext.Require("Server/Systems/CustomBonuses_NG.lua")
+-- Ext.Require("Server/Systems/DamageControl/DamageOverrides.lua")
+-- Ext.Require("Server/Systems/DamageControl/HitManager.lua")
+-- Ext.Require("Server/Systems/DamageControl/MainDamageControl.lua")
+-- Ext.Require("Server/Systems/Warmup.lua")
+-- Ext.Require("Server/Systems/WeaponLevelRange.lua")
+-- Ext.Require("Server/AbsorbShield.lua")
+-- Ext.Require("Server/ArmorSystem.lua")
+-- Ext.Require("Server/CCSystem.lua")
+-- Ext.Require("Server/Potions.lua")
+-- Ext.Require("Server/Talents.lua")
+-- Ext.Require("Server/Modules/Modules.lua")
+-- Ext.Require("Server/Consumables.lua")
+-- Ext.Require("Server/CQBEffect.lua")
+-- Ext.Require("Server/CustomSkillPropertiesServer.lua")
+-- Ext.Require("Server/Miscelleanous.lua")
+-- Ext.Require("Server/Statuses.lua")
+-- Ext.Require("Server/Skills.lua")
+-- Ext.Require("Server/Systems/SkillGroupServer.lua")
+-- Ext.Require("Server/Abilities.lua")
+-- Ext.Require("Server/WeaponArts/SpellConduit.lua")
+-- Ext.Require("Server/Skills/RangedSignature.lua")
 
 if PersistentVars.SPunchCooldown == nil then
 	PersistentVars.SPunchCooldown = {}

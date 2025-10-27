@@ -437,7 +437,7 @@ Ext.Osiris.RegisterListener("ObjectEnteredCombat", 2, "before", function(object,
 end)
 
 ---- Guerilla invisibility effect
-RegisterTurnTrueEndListener(function(character)
+Helpers.RegisterTurnTrueEndListener(function(character)
 	if CharacterHasTalent(character, "Guerilla") == 1 and HasActiveStatus(character, "SNEAKING") == 1 and HasActiveStatus(character, "LX_GUERILLA_COOLDOWN") == 0 then
 		ApplyStatus(character, "INVISIBLE", 6.0, 1, character)
 		ApplyStatus(character, "LX_GUERILLA_COOLDOWN", 18.0, 1, character)

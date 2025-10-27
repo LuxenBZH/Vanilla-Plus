@@ -57,7 +57,7 @@ Ext.Osiris.RegisterListener("CharacterStatusApplied", 3, "before", function(char
     end
 end)
 
-Data.Math.CriticalChance.RegisterListener("PinpointBonus", function(attacker, target, critChance)
+Data.Math.CriticalChance:RegisterCalculationListener("PinpointBonus", function(attacker, target, critChance)
     if attacker.Character:GetStatus("LX_WA_PINPOINT") then
         return critChance + (math.max(0, attacker.Accuracy-100))
     end

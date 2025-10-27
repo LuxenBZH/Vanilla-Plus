@@ -1,0 +1,23 @@
+-- ---Crossbow's Bullseye
+-- ---@param hit HitRequest
+-- ---@param target StatCharacter
+-- ---@param attacker StatCharacter
+-- ---@param hitType HitType
+-- ---@param criticalRoll string
+-- ---@param critChance number
+-- Data.Math.CriticalChance:AddModifier("LX_Crossbow_Signature", function(hit, target, attacker, hitType, criticalRoll, critChance, flags)
+--     local mainWeapon, _ = Helpers.Character.GetWeaponTypes(attacker.Character)
+--     if attacker.Character:GetStatus("LX_CROSSBOW_SIGNATURE") and mainWeapon == "Crossbow" and hitType == "WeaponDamage" then
+--         flags.AccuracyOverflow = true
+--         local targetMovement = target.Movement - 500
+--         return critChance - Ext.Utils.Round(targetMovement/10)
+--     else
+--         return critChance
+--     end
+-- end)
+
+-- HitManager:RegisterHitListener("DGM_Hit", "AfterDamageScaling", "LX_Bow_Signature_FreeMovement", function(status, instigator, target, flags)
+--     if instigator:GetStatus("LX_BOW_SIGNATURE") and status.SkillId ~= "" and not (flags.Missed or flags.Blocked or flags.Dodged) then
+--         -- instigator
+--     end
+-- end)
