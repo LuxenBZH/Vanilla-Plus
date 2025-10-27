@@ -96,7 +96,8 @@ Data.Math.ComputeCharacterWisdomFromStatuses = function(character)
 end
 
 --- @param character EsvCharacter|EclCharacter
-Data.Math.ComputeCharacterWisdom = function(character)
+--- @param modifiers table|nil
+Data.Math.ComputeCharacterWisdom = function(character, modifiers)
 	local equipmentWisdom = Data.Math.ComputeCharacterWisdomFromEquipment(character)
 	local statusesInfo, _ = Data.Math.ComputeStatIntegerFromStatus(character, "VP_WisdomBoost")
 	local statusesWisdom = 0
@@ -104,9 +105,9 @@ Data.Math.ComputeCharacterWisdom = function(character)
 		statusesWisdom = statusesWisdom + statusInfo.Value
 	end
     return (math.min(
-        (character.Stats.Intelligence - Ext.ExtraData.AttributeBaseValue) * Ext.ExtraData.DGM_IntelligenceWisdomFromWitsCap,
-        (character.Stats.Wits - Ext.ExtraData.AttributeBaseValue) * Ext.ExtraData.DGM_WitsWisdomBonus) +
-        character.Stats.WaterSpecialist * Ext.ExtraData.SkillAbilityVitalityRestoredPerPoint + equipmentWisdom + statusesWisdom) / 100 + 1
+        (character.Stats.Intelligence - Ext.ExtraData.AttributeBaseValue + (modifiers and modifiers.Intelligence or 0)) * Ext.ExtraData.DGM_IntelligenceWisdomFromWitsCap,
+        (character.Stats.Wits - Ext.ExtraData.AttributeBaseValue + (modifiers and modifiers.Finesse or 0)) * Ext.ExtraData.DGM_WitsWisdomBonus) +
+        (character.Stats.WaterSpecialist + (modifiers and modifiers.WaterSpecialist or 0)) * Ext.ExtraData.SkillAbilityVitalityRestoredPerPoint + equipmentWisdom + statusesWisdom) / 100 + 1
 end
 
 Data.Math.ComputeCharacterWisdomArmorFromEquipment = function(character)
@@ -187,8 +188,9 @@ Data.Stats.HealAbilityBonus = {
 }
 
 --- @param character EsvCharacter | EclCharacter
-Data.Math.ComputeCharacterIngress = function(character)
-    local ingressFromAttributes = math.min((character.Stats.Intelligence - Ext.ExtraData.AttributeBaseValue) * Ext.ExtraData.DGM_IntelligenceIngressBonus, (character.Stats.Strength - Ext.ExtraData.AttributeBaseValue) * Ext.ExtraData.DGM_StrengthIngressCap)
+--- @param modifiers table|nil
+Data.Math.ComputeCharacterIngress = function(character, modifiers)
+    local ingressFromAttributes = (character.Stats.Strength - Ext.ExtraData.AttributeBaseValue + (modifiers and modifiers.Strength or 0)) * Ext.ExtraData.DGM_StrengthIngressBonus
     local ingressFromHuntsman = character.Stats.RangerLore * Ext.ExtraData.DGM_RangerLoreIngressBonus
     local ingressFromEquipment = 0 --TODO: Equipment Ingress stat and deltamods
     return ingressFromAttributes + ingressFromHuntsman + ingressFromEquipment

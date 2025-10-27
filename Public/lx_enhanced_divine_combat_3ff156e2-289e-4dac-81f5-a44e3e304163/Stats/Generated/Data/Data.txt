@@ -1,4 +1,4 @@
-key "ArmorToVitalityRatio","0.45"
+key "ArmorToVitalityRatio","0.35"
 
 key "ExpectedConGrowthForArmorCalculation","1"
 
@@ -101,6 +101,8 @@ key "DGM_StrengthGlobalBonus","2"
 key "DGM_StrengthResistanceIgnore","0.15"
 
 key "DGM_StrengthIngressCap","1"
+
+key "DGM_StrengthIngressBonus","1.5"
 
 key "DGM_StrengthWeaponBonus","3"
 
