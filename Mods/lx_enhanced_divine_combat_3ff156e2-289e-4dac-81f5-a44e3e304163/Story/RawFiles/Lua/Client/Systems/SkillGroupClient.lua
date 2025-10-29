@@ -56,7 +56,7 @@ Ext.Events.UICall:Subscribe(function(ev)
             end
             Ext.UI.GetByType(40):GetRoot().hotbar_mc.cycleHotBar_mc.text_txt.htmlText = "+"
             local skills = {}
-            for i, child in pairs(skillGroup.Children) do
+            for i, child in ipairs(skillGroup.Children) do
                 --- A skill can show in the toolbar even if conditions are not met.
                 isMemorized, isVisible = child.Condition(Helpers.Client.GetCurrentCharacter())
                 skills[child.SkillName] = {Memorized = isMemorized, Visible = isVisible}

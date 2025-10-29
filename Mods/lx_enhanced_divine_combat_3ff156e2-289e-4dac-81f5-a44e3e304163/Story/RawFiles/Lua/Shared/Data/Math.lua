@@ -106,7 +106,7 @@ Data.Math.ComputeCharacterWisdom = function(character, modifiers)
 	end
     return (math.min(
         (character.Stats.Intelligence - Ext.ExtraData.AttributeBaseValue + (modifiers and modifiers.Intelligence or 0)) * Ext.ExtraData.DGM_IntelligenceWisdomFromWitsCap,
-        (character.Stats.Wits - Ext.ExtraData.AttributeBaseValue + (modifiers and modifiers.Finesse or 0)) * Ext.ExtraData.DGM_WitsWisdomBonus) +
+        (character.Stats.Wits - Ext.ExtraData.AttributeBaseValue + (modifiers and modifiers.Wits or 0)) * Ext.ExtraData.DGM_WitsWisdomBonus) +
         (character.Stats.WaterSpecialist + (modifiers and modifiers.WaterSpecialist or 0)) * Ext.ExtraData.SkillAbilityVitalityRestoredPerPoint + equipmentWisdom + statusesWisdom) / 100 + 1
 end
 
@@ -204,7 +204,7 @@ Data.Math.ComputeCharacterCelerity = function(character)
 	for i,statusInfo in pairs(statusesInfo) do
 		statusesCelerity = statusesCelerity + statusInfo.Value
 	end
-    return math.min(equipmentCelerity + statusesCelerity)
+    return equipmentCelerity + statusesCelerity
 end
 
 ---@param character EsvCharacter|EclCharacter
