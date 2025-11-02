@@ -56,7 +56,7 @@ key "LeadershipAllResBonus","3"
 
 key "SkillAbilityVitalityRestoredPerPoint","4"
 
-key "SkillAbilityLifeStealPerPoint","6"
+key "SkillAbilityLifeStealPerPoint","8"
 
 key "SkillAbilitySulfuricDamageBoostPerPoint","0"
 
@@ -108,15 +108,15 @@ key "DGM_StrengthWeaponBonus","3"
 
 key "DGM_FinesseGlobalBonus","3"
 
-key "DGM_FinesseMovementBonus","35"
+key "DGM_FinesseMovementBonus","25"
 
 key "DGM_FinesseMovementCap","30"
 
 key "DGM_FinesseCritChance","1"
 
-key "DGM_FinesseCritMultBonus", "2"
+key "DGM_FinesseCritMultBonus","2"
 
-key "DGM_FinesseAccuracyFromIntelligenceCap","3"
+key "DGM_FinesseAccuracyFromIntelligenceCap","5"
 
 key "DGM_IntelligenceGlobalBonus","2"
 
@@ -124,7 +124,7 @@ key "DGM_IntelligenceSkillBonus","3"
 
 key "DGM_IntelligenceAccuracyBonus","2"
 
-key "DGM_IntelligenceAccuracyCap","30"
+key "DGM_IntelligenceAccuracyCap","60"
 
 key "DGM_IntelligenceWisdomFromWitsCap","4"
 
@@ -144,11 +144,13 @@ key "DGM_RangedCQBPenalty","35"
 
 key "DGM_SingleHandedArmorBonus","6"
 
-key "DGM_SingleHandedResistanceBonus","2"
+key "DGM_SingleHandedToughness","2.5"
 
 key "DGM_RangedRangeBonus","20"
 
 key "DGM_DualWieldingOffhandBonus","10"
+
+key "DGM_DualWieldingArpen","2.5"
 
 key "DGM_TwoHandedCTHBonus","1"
 
@@ -283,3 +285,9 @@ key "DGM_WeaponDefaultLevelRange","2"
 key "DGM_PerseveranceRecovery","12"
 
 key "DGM_PerseveranceArmorIncrease","15"
+
+key "VP_BaseToughness","50"
+
+key "VP_ToughnessMultiplierArmorBroken","0.5"
+
+key "VP_PolymorphResistanceBonus","3"

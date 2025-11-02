@@ -10,16 +10,7 @@ local function DataLoadStatsInfo(e)
 	}
 
 	Data.Stats.CustomWeaponAbilityBonuses = {
-		SingleHanded = { Potion = {
-				ArmorBoost=Ext.ExtraData.DGM_SingleHandedArmorBonus,
-				MagicArmorBoost=Ext.ExtraData.DGM_SingleHandedArmorBonus,
-				FireResistance=Ext.ExtraData.DGM_SingleHandedResistanceBonus,
-				EarthResistance=Ext.ExtraData.DGM_SingleHandedResistanceBonus,
-				PoisonResistance=Ext.ExtraData.DGM_SingleHandedResistanceBonus,
-				WaterResistance=Ext.ExtraData.DGM_SingleHandedResistanceBonus,
-				AirResistance=Ext.ExtraData.DGM_SingleHandedResistanceBonus
-			}, Status = {StackId = "DGM_SingleHanded"}
-		},
+		-- SingleHanded = {},
 		-- TwoHanded = {},
 		Ranged = {Potion = {RangeBoost=Ext.ExtraData.DGM_RangedRangeBonus}, Status = {StackId = "DGM_Ranged"}, Cap = 10},
 		-- DualWielding = {},
@@ -27,7 +18,14 @@ local function DataLoadStatsInfo(e)
 	}
 
 	Data.Stats.CustomAbilityBonuses = {
-		Perseverance = {Potion = {Armor=Ext.ExtraData.DGM_PerseveranceArmorIncrease, MagicArmor=Ext.ExtraData.DGM_PerseveranceArmorIncrease}, Status = {StackId = "DGM_Perseverance"}, Cap = 10}
+		Perseverance = {Potion = {Armor=Ext.ExtraData.DGM_PerseveranceArmorIncrease, MagicArmor=Ext.ExtraData.DGM_PerseveranceArmorIncrease}, Status = {StackId = "DGM_Perseverance"}, Cap = 10},
+		Polymorph = {Potion = {
+			FireResistance=Ext.ExtraData.DGM_PolymorphResistanceBonus,
+			EarthResistance=Ext.ExtraData.DGM_PolymorphResistanceBonus,
+			PoisonResistance=Ext.ExtraData.DGM_PolymorphResistanceBonus,
+			WaterResistance=Ext.ExtraData.DGM_PolymorphResistanceBonus,
+			AirResistance=Ext.ExtraData.DGM_PolymorphResistanceBonus
+		}, Status = {StackId = "DGM_Polymorph"}}
 	}
 	
 	Data.Stats.CrossbowMovementPenalty = {
