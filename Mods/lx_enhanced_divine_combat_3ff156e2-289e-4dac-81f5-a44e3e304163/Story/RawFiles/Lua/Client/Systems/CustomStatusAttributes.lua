@@ -35,6 +35,24 @@ local function OnStatusTooltip(e, tooltip, character, status)
                 }
             )
         end
+        if potion.VP_Toughness ~= 0 and status.StatsMultiplier ~= 0 then
+            local signInfo = Helpers.UI.GetTooltipNumberSign(tonumber(potion.VP_Toughness))
+            tooltip:AppendElement(
+                {
+                    Label = "Toughness: "..signInfo.Sign..Ext.Utils.Round(potion.VP_Toughness*status.StatsMultiplier),
+                    Type = signInfo.Type
+                }
+            )
+        end
+        if potion.VP_Arpen ~= 0 and status.StatsMultiplier ~= 0 then
+            local signInfo = Helpers.UI.GetTooltipNumberSign(tonumber(potion.VP_Arpen))
+            tooltip:AppendElement(
+                {
+                    Label = "ArPen: "..signInfo.Sign..Ext.Utils.Round(potion.VP_Arpen*status.StatsMultiplier),
+                    Type = signInfo.Type
+                }
+            )
+        end
     end
 end
 

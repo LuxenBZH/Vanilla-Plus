@@ -66,17 +66,22 @@ end
 
 --- Calculate and apply the damage going through armors and hit Vitality
 ---@param target EsvCharacter
+---@param instigator EsvCharacter
 ---@param damages table
-function HitManager:InitiatePassingDamage(target, damages)
+function HitManager:ExecuteArmorBypass(target, instigator, damages)
 	if getmetatable(target) ~= "esv::Character" then
 		return
 	end
-	for i, element  in pairs(damages) do
-		if element.Amount ~= 0 then
-			local piercing = ArmorSystem.CalculatePassingDamage(target.MyGuid, element.Amount, element.DamageType)
-			ArmorSystem.ApplyPassingDamage(target.MyGuid, piercing)
-		end
+	local bypassedDamage = Data.Math.HitComputeArmorBypass(damages, target, instigator)
+	for element, amount in pairs(bypassedDamage) do
+		NRD_CharacterSetStatInt(target.MyGuid, "CurrentVitality", target.Stats.CurrentVitality - amount)
 	end
+	-- for i, element  in pairs(damages) do
+	-- 	if element.Amount ~= 0 then
+	-- 		local piercing = ArmorSystem.CalculatePassingDamage(target.MyGuid, element.Amount, element.DamageType)
+	-- 		ArmorSystem.ApplyPassingDamage(target.MyGuid, piercing)
+	-- 	end
+	-- end
 end
 
 ---------- Corrogic Module
@@ -197,7 +202,7 @@ local function DamageControl(target, instigator, hitDamage, handle)
 	 or (flags.DamageSourceType == 0 and hit.SkillId == "" and Helpers.IsCharacter(target))
 	 or (skill and (skill.Damage ~= "AverageLevelDamge" and skill.Damage ~= "BaseLevelDamage"))  then
 		HitManager:TriggerHitListeners("DGM_Hit", "AfterDamageScaling", hit, instigator, target, flags, skillId)
-		HitManager:InitiatePassingDamage(target, hit.Hit.DamageList:ToTable())
+		HitManager:ExecuteArmorBypass(target, hit.Hit.DamageList:ToTable())
         return
 	end
 
@@ -238,7 +243,7 @@ local function DamageControl(target, instigator, hitDamage, handle)
 	if Ext.ExtraData.DGM_Corrogic == 1 then
 		TriggerCorrogicResistanceStrip(target.MyGuid, hit.Hit.DamageList:ToTable())
 	end
-	HitManager:InitiatePassingDamage(target, hit.Hit.DamageList:ToTable())
+	HitManager:ExecuteArmorBypass(target, instigator, hit.Hit.DamageList:ToTable())
 	-- HitManager:ShieldStatusesAbsorbDamage(target, hit.Hit.DamageList)
 end
 

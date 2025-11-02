@@ -727,3 +727,40 @@ Data.Math.Character.GetBaseDamage = function(character)
 	local computedBonus = Data.Math.GetCharacterComputedDamageBonus(character, nil, {}, nil)
 	return BLD * computedBonus.DamageBonus
 end
+
+---@param character EsvCharacter|EclCharacter
+---@return number
+Data.Math.Character.ComputeToughness = function(character)
+	local toughness = Ext.ExtraData.VP_BaseToughness
+	local fromEquipment = Data.Math.ComputeStatIntegerFromEquipment(character, "VP_Toughness")
+	local fromStatus, statusTotal = Data.Math.ComputeStatIntegerFromStatus(character, "VP_Toughness")
+	local fromSingleHanded = Game.Math.GetWeaponAbility(character.Stats, character.Stats.MainWeapon) == "SingleHanded" and character.Stats.SingleHanded * Ext.ExtraData.DGM_SingleHandedToughness or 0
+	local armorDown = (character.Stats.CurrentArmor == 0 or character.Stats.CurrentMagicArmor == 0) and Ext.ExtraData.VP_ToughnessMultiplierArmorBroken or 1
+	return math.min(100, math.max(0, (toughness + fromEquipment + statusTotal + fromSingleHanded) * armorDown))
+end
+
+Data.Math.Character.ComputeArpen = function(character)
+	local fromEquipment = Data.Math.ComputeStatIntegerFromEquipment(character, "VP_Arpen")
+	local fromStatus, statusTotal = Data.Math.ComputeStatIntegerFromStatus(character, "VP_Arpen")
+	local fromDualWielding = Game.Math.GetWeaponAbility(character.Stats, character.Stats.MainWeapon) == "DualWielding" and character.Stats.DualWielding * Ext.ExtraData.DGM_DualWieldingArpen or 0
+	return math.min(100, math.max(0, fromDualWielding + fromEquipment + statusTotal))
+end
+
+---@param damageTable table
+---@param target EsvCharacter
+---@param instigator EsvCharacter
+---@return table
+Data.Math.HitComputeArmorBypass = function(damageTable, target, instigator)
+	if not target then
+		return damageTable
+	end
+	local bypassTable = {}
+	local bypassMod = 1 - math.min(math.max(Data.Math.Character.ComputeToughness(target) - Data.Math.Character.ComputeArpen(instigator), 0), 100) / 100
+	
+	for i,element in pairs(damageTable) do
+		_P(element.DamageType, element.Amount, bypassMod, math.ceil(element.Amount * bypassMod))
+		bypassTable[element.DamageType] = math.ceil(element.Amount * bypassMod)
+	end
+	-- Ext.Print("[LXDGM_ArmorSystem.CalculatePassingDamage] Original: "..amount.." "..dmgType.." result "..dmgThrough)
+	return bypassTable
+end

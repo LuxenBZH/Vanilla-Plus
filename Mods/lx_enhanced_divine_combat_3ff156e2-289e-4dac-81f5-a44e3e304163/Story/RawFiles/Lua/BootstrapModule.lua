@@ -24,7 +24,9 @@ BootstrapModule = {
         VP_VitalityMinimum = "ConstantInt",
         VP_Celerity = "ConstantInt",
         VP_CelerityFromMovement = "ConstantInt",
-        VP_CriticalMultiplier = "ConstantInt"
+        VP_CriticalMultiplier = "ConstantInt",
+        VP_Toughness = "ConstantInt",
+        VP_Arpen = "ConstantInt"
     },
     Weapon = {
         VP_IngressBoost = "ConstantInt",
@@ -35,7 +37,9 @@ BootstrapModule = {
         VP_CustomImmunity = "FixedString",
         VP_Celerity = "ConstantInt",
         VP_CelerityFromMovement = "ConstantInt",
-        VP_CriticalMultiplier = "ConstantInt"
+        VP_CriticalMultiplier = "ConstantInt",
+        VP_Toughness = "ConstantInt",
+        VP_Arpen = "ConstantInt"
     },
     Shield = {
         VP_IngressBoost = "ConstantInt",
@@ -45,7 +49,9 @@ BootstrapModule = {
         VP_MagicArmorRegenBoost = "ConstantInt",
         VP_CustomImmunity = "FixedString",
         VP_Celerity = "ConstantInt",
-        VP_CelerityFromMovement = "ConstantInt"
+        VP_CelerityFromMovement = "ConstantInt",
+        VP_Toughness = "ConstantInt",
+        VP_Arpen = "ConstantInt"
     },
     Armor = {
         VP_IngressBoost = "ConstantInt",
@@ -55,7 +61,9 @@ BootstrapModule = {
         VP_MagicArmorRegenBoost = "ConstantInt",
         VP_CustomImmunity = "FixedString",
         VP_Celerity = "ConstantInt",
-        VP_CelerityFromMovement = "ConstantInt"
+        VP_CelerityFromMovement = "ConstantInt",
+        VP_Toughness = "ConstantInt",
+        VP_Arpen = "ConstantInt"
     },
     SkillData = {
         VP_DamageCapValue = "ConstantInt",
