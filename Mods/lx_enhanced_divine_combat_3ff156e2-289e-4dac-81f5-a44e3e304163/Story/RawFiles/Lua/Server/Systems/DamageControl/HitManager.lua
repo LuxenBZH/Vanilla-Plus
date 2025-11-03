@@ -72,9 +72,13 @@ function HitManager:ExecuteArmorBypass(target, instigator, damages)
 	if getmetatable(target) ~= "esv::Character" then
 		return
 	end
+	local inCombat = CharacterIsInCombat(target.MyGuid) == 1
 	local bypassedDamage = Data.Math.HitComputeArmorBypass(damages, target, instigator)
 	for element, amount in pairs(bypassedDamage) do
 		NRD_CharacterSetStatInt(target.MyGuid, "CurrentVitality", target.Stats.CurrentVitality - amount)
+		if inCombat then
+			target.UserVars.LX_LastTurnVitalityDamageTaken = (target.UserVars.LX_LastTurnVitalityDamageTaken or 0) + amount
+		end
 	end
 	-- for i, element  in pairs(damages) do
 	-- 	if element.Amount ~= 0 then

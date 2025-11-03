@@ -13,6 +13,33 @@ Ext.Events.GameStateChanged:Subscribe(function(e)
     end
 end)
 
+Ext.Vars.RegisterUserVariable("LX_LastTurnDamageTaken", {
+    Server = true,
+    Client = true, 
+    SyncToClient = true,
+    Persistent = true,
+    SyncOnWrite = true,
+    SyncOnTick = false,
+})
+
+Ext.Vars.RegisterUserVariable("LX_LastTurnVitalityDamageTaken", {
+    Server = true,
+    Client = true, 
+    SyncToClient = true,
+    Persistent = true,
+    SyncOnWrite = true,
+    SyncOnTick = false,
+})
+
+Ext.Vars.RegisterUserVariable("LX_LastTurnArmorDamageTaken", {
+    Server = true,
+    Client = true, 
+    SyncToClient = true,
+    Persistent = true,
+    SyncOnWrite = true,
+    SyncOnTick = false,
+})
+
 Ext.Require("Shared/_InitShared.lua")
 
 Ext.Events.SessionLoading:Subscribe(function(e)

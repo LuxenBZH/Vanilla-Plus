@@ -113,3 +113,47 @@ Ext.Osiris.RegisterListener("ObjectLeftCombat", 2, "before", function(object, co
 		Ext.ServerEntity.GetCharacter(object).UserVars.LX_WarmupManager = 0
 	end
 end)
+
+HitManager:RegisterHitListener("DGM_Hit", "AfterDamageScaling", "LX_RegisterTurnDamage", function(hit, instigator, target, flags)
+	if CharacterIsInCombat(target.MyGuid) == 1 and target.LifeTime ~= 0 and flags.Blocked or flags.Dodged or flags.Missed then
+		return
+	end
+	target.UserVars.LX_LastTurnVitalityDamageTaken = (target.UserVars.LX_LastTurnVitalityDamageTaken or 0) + Ext.Utils.Round(hit.Hit.TotalDamageDone - hit.Hit.ArmorAbsorption)
+	local pArmourAbsorb = math.min(target.Stats.CurrentArmor, HitHelpers.HitGetPhysicalDamage(hit.Hit))
+	local mArmourAbsorb = math.min(target.Stats.CurrentMagicArmor, HitHelpers.HitGetMagicDamage(hit.Hit))
+	if not target.UserVars.LX_LastTurnArmorDamageTaken then
+		target.UserVars.LX_LastTurnArmorDamageTaken = {
+			Armor = pArmourAbsorb,
+			MagicArmor = mArmourAbsorb
+		}
+	else
+		target.UserVars.LX_LastTurnArmorDamageTaken.Armor = target.UserVars.LX_LastTurnArmorDamageTaken.Armor + pArmourAbsorb
+		target.UserVars.LX_LastTurnArmorDamageTaken.MagicArmor = target.UserVars.LX_LastTurnArmorDamageTaken.MagicArmor + mArmourAbsorb
+	end
+	if type(target.UserVars.LX_LastTurnDamageTaken) ~= "table" then
+		target.UserVars.LX_LastTurnDamageTaken = {}
+	end
+	for i,element in pairs(hit.Hit.DamageList:ToTable()) do
+		target.UserVars.LX_LastTurnDamageTaken[element.DamageType] = (target.UserVars.LX_LastTurnDamageTaken[element.DamageType] or 0) + element.Amount
+	end
+	
+end, 9999)
+
+local function WipeLastTurnDamageTaken(characterGUID)
+	local character = Ext.ServerEntity.GetCharacter(characterGUID)
+	character.UserVars.LX_LastTurnDamageTaken = nil
+	character.UserVars.LX_LastTurnVitalityDamageTaken = nil
+	character.UserVars.LX_LastTurnArmorDamageTaken = nil
+end
+
+Ext.Osiris.RegisterListener("ObjectTurnEnded", 1, "before", function(object)
+	if ObjectIsCharacter(object) == 1 then
+		WipeLastTurnDamageTaken(object)
+	end
+end)
+
+Ext.Osiris.RegisterListener("ObjectLeftCombat", 2, "before", function(object, _)
+	if ObjectIsCharacter(object) == 1 then
+		WipeLastTurnDamageTaken(object)
+	end
+end)
