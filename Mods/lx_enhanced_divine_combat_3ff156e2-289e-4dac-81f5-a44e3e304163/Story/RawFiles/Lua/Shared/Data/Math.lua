@@ -735,7 +735,7 @@ Data.Math.Character.ComputeToughness = function(character)
 	local fromEquipment = Data.Math.ComputeStatIntegerFromEquipment(character, "VP_Toughness")
 	local fromStatus, statusTotal = Data.Math.ComputeStatIntegerFromStatus(character, "VP_Toughness")
 	local fromSingleHanded = Game.Math.GetWeaponAbility(character.Stats, character.Stats.MainWeapon) == "SingleHanded" and character.Stats.SingleHanded * Ext.ExtraData.DGM_SingleHandedToughness or 0
-	local armorDown = (character.Stats.CurrentArmor == 0 or character.Stats.CurrentMagicArmor == 0) and Ext.ExtraData.VP_ToughnessMultiplierArmorBroken or 1
+	local armorDown = (character.Stats.CurrentArmor <= 0 or character.Stats.CurrentMagicArmor <= 0) and Ext.ExtraData.VP_ToughnessMultiplierArmorBroken or 1
 	return math.min(100, math.max(0, (toughness + fromEquipment + statusTotal + fromSingleHanded) * armorDown))
 end
 
@@ -756,11 +756,8 @@ Data.Math.HitComputeArmorBypass = function(damageTable, target, instigator)
 	end
 	local bypassTable = {}
 	local bypassMod = 1 - math.min(math.max(Data.Math.Character.ComputeToughness(target) - Data.Math.Character.ComputeArpen(instigator), 0), 100) / 100
-	
 	for i,element in pairs(damageTable) do
-		_P(element.DamageType, element.Amount, bypassMod, math.ceil(element.Amount * bypassMod))
 		bypassTable[element.DamageType] = math.ceil(element.Amount * bypassMod)
 	end
-	-- Ext.Print("[LXDGM_ArmorSystem.CalculatePassingDamage] Original: "..amount.." "..dmgType.." result "..dmgThrough)
 	return bypassTable
 end
