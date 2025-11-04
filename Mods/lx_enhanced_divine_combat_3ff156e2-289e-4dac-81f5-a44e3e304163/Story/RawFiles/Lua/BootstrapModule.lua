@@ -26,7 +26,10 @@ BootstrapModule = {
         VP_CelerityFromMovement = "ConstantInt",
         VP_CriticalMultiplier = "ConstantInt",
         VP_Toughness = "ConstantInt",
-        VP_Arpen = "ConstantInt"
+        VP_Arpen = "ConstantInt",
+        VP_RecoverLastTurnArmorDamage = "ConstantInt",
+        VP_RecoverLastTurnMagicArmorDamage = "ConstantInt",
+        VP_RecoverLastTurnVitalityDamage = "ConstantInt",
     },
     Weapon = {
         VP_IngressBoost = "ConstantInt",
@@ -78,7 +81,11 @@ BootstrapModule = {
         VP_WA_DamagePerAP = "ConstantInt",
         VP_ExecuteMultiplier = "ConstantInt",
         VP_ExecuteScaling = "FixedString",
-        VP_ExecuteCondition = "FixedString"
+        VP_ExecuteCondition = "FixedString",
+        VP_RecoverLastTurnArmorDamage = "ConstantInt",
+        VP_RecoverLastTurnMagicArmorDamage = "ConstantInt",
+        VP_RecoverLastTurnVitalityDamage = "ConstantInt",
+        VP_RecoverLastTurnDamageCapALD = "ConstantInt"
     },
     Object = {}
 }

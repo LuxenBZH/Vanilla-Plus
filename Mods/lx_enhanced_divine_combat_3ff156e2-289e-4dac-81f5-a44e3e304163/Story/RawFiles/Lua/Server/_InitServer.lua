@@ -20,6 +20,7 @@ _OrderedScriptsLoad = {
 	"Server/Systems/Mechanics/Consumables",
 	"Server/Systems/Mechanics/CQBEffect",
 	"Server/Stats/CustomSkillPropertiesServer",
+	"Server/Stats/CustomStatFields",
 	"Server/Miscelleanous",
 	"Server/Stats/Statuses",
 	"Server/Stats/Skills/Skills",
