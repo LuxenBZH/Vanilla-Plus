@@ -121,15 +121,8 @@ HitManager:RegisterHitListener("DGM_Hit", "AfterDamageScaling", "LX_RegisterTurn
 	target.UserVars.LX_LastTurnVitalityDamageTaken = (target.UserVars.LX_LastTurnVitalityDamageTaken or 0) + Ext.Utils.Round(hit.Hit.TotalDamageDone - hit.Hit.ArmorAbsorption)
 	local pArmourAbsorb = math.min(target.Stats.CurrentArmor, HitHelpers.HitGetPhysicalDamage(hit.Hit))
 	local mArmourAbsorb = math.min(target.Stats.CurrentMagicArmor, HitHelpers.HitGetMagicDamage(hit.Hit))
-	if not target.UserVars.LX_LastTurnArmorDamageTaken then
-		target.UserVars.LX_LastTurnArmorDamageTaken = {
-			Armor = pArmourAbsorb,
-			MagicArmor = mArmourAbsorb
-		}
-	else
-		target.UserVars.LX_LastTurnArmorDamageTaken.Armor = target.UserVars.LX_LastTurnArmorDamageTaken.Armor + pArmourAbsorb
-		target.UserVars.LX_LastTurnArmorDamageTaken.MagicArmor = target.UserVars.LX_LastTurnArmorDamageTaken.MagicArmor + mArmourAbsorb
-	end
+	target.UserVars.LX_LastTurnArmorDamageTaken = (target.UserVars.LX_LastTurnArmorDamageTaken or 0) + pArmourAbsorb
+	target.UserVars.LX_LastTurnMagicArmorDamageTaken = (target.UserVars.LX_LastTurnMagicArmorDamageTaken or 0) + mArmourAbsorb
 	if type(target.UserVars.LX_LastTurnDamageTaken) ~= "table" then
 		target.UserVars.LX_LastTurnDamageTaken = {}
 	end
@@ -144,6 +137,7 @@ local function WipeLastTurnDamageTaken(characterGUID)
 	character.UserVars.LX_LastTurnDamageTaken = nil
 	character.UserVars.LX_LastTurnVitalityDamageTaken = nil
 	character.UserVars.LX_LastTurnArmorDamageTaken = nil
+	character.UserVars.LX_LastTurnMagicArmorDamageTaken = nil
 end
 
 Ext.Osiris.RegisterListener("ObjectTurnEnded", 1, "before", function(object)
