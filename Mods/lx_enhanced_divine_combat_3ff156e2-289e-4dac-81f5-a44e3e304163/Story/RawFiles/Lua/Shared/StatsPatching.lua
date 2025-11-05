@@ -38,26 +38,6 @@ local function AdaptWeaponEnhancingSkills()
 	end
 end
 
-local function AddAdditionalDescription()
-	local descriptions = {
-		["Target_EvasiveManeuver"] = {},
-		["Target_Fortify"]         = {math.floor(Ext.ExtraData.DGM_FortifiedPassingPhysicalReduction*100)},
-		["Shout_MendMetal"]        = {math.floor(Ext.ExtraData.DGM_MendMetalPassingPhysicalReduction*100)},
-		["Shout_SteelSkin"]        = {math.floor(Ext.ExtraData.DGM_SteelSkinPassingPhysicalReduction*100)},
-		["Target_FrostyShell"]     = {math.floor(Ext.ExtraData.DGM_MagicShellPassingMagicReduction*100)},
-		["Shout_FrostAura"]        = {math.floor(Ext.ExtraData.DGM_FrostAuraPassingMagicReduction*100)},
-		["Shout_RecoverArmour"]    = {math.floor(Ext.ExtraData.DGM_ShieldsUpPassingReduction*100)},
-		["Target_TentacleLash"]	   = {},
-		["Target_Condense"]		   = {},
-	}
-
-	for skill, params in pairs(descriptions) do
-		local desc = Helpers.GetDynamicTranslationStringFromKey(skill.."_DisplayName", table.unpack(params))
-		if desc == nil then desc = params end
-		Ext.StatAddCustomDescription(skill, "SkillProperties", desc)
-	end
-end
-
 local function OverrideBonus(name, type, multiplier)
 	local boost = Ext.StatGetAttribute(name, type)
 	if string.find(name, "Rune") ~= nil then return end
@@ -291,7 +271,6 @@ Ext.RegisterListener("GameStateChanged", FlatScaling)
 Ext.RegisterListener("StatsLoaded", AttributeCap)
 Ext.RegisterListener("StatsLoaded", AddDamageToDescription)
 Ext.RegisterListener("StatsLoaded", AdaptWeaponEnhancingSkills)
-Ext.RegisterListener("StatsLoaded", AddAdditionalDescription)
 Ext.RegisterListener("StatsLoaded", ReduceDeltaModBonuses)
 Ext.RegisterListener("StatsLoaded", ReplaceDescriptionParams)
 Ext.RegisterListener("StatsLoaded", AdjustNPCStats)
