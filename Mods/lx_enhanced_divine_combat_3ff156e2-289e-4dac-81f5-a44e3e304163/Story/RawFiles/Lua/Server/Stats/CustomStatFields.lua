@@ -21,12 +21,10 @@ local _LastTurnDamageRecoveryType = {
 local function ApplyLastTurnDamageRecovery(character, healType, amount, sourceHandle)
     local damageTaken = character.UserVars[_LastTurnDamageTakenType[healType]] or 0
     if damageTaken > 0 and amount > 0 then
-        _P("Healing:",math.ceil(damageTaken * amount / 100))
         local heal = Ext.PrepareStatus(character.MyGuid, "HEAL", 0) ---@type EsvStatusHeal
         heal.HealType = _LastTurnDamageRecoveryType[healType]
         heal.HealAmount = math.ceil(damageTaken * amount / 100)
         heal.StatusSourceHandle = sourceHandle
-        _DS(heal)
         Ext.ApplyStatus(heal)
     end
 end
@@ -37,9 +35,8 @@ Helpers.RegisterTurnTrueStartListener(function(object)
         local character = Ext.ServerEntity.GetCharacter(object)
         for i,statusName in pairs(character:GetStatuses()) do
             local statusEntry = Data.EngineStatus[statusName] and nil or Ext.Stats.Get(statusName, character.Stats.Level, false) ---@type EsvStatus
-            _P(statusEntry.StatusType)
-            if statusEntry and statusEntry.StatusType == "HEALING"then
-                if statusEntry.HealingEvent == "OnTurn" or statusEntry.HealingEvent == "OnApplyAndTurn" then
+            if statusEntry then
+                if (statusEntry.StatusType == "HEALING" and statusEntry.HealingEvent == "OnTurn" or statusEntry.HealingEvent == "OnApplyAndTurn") or statusEntry.StatusType == "CONSUME" then
                     for recoverType, j in pairs(_RecoverTypes) do
                         if statusEntry[recoverType] > 0 then
                             ApplyLastTurnDamageRecovery(character, recoverType, statusEntry[recoverType], character:GetStatus(statusName).StatusSourceHandle)
@@ -54,7 +51,7 @@ end)
 Ext.Osiris.RegisterListener("CharacterStatusApplied", 3, "after", function(character, status, instigator)
     if not Data.EngineStatus[status] then
         local statEntry = Ext.Stats.Get(status, nil, false)
-        if statEntry.StatusType == "HEAL" or (statEntry.StatusType == "HEALING" and (statEntry.HealingEvent == "OnApply" or statEntry.HealingEvent == "OnApplyAndTurn")) then
+        if statEntry.StatusType == "HEAL" or (statEntry.StatusType == "HEALING" and (statEntry.HealingEvent == "OnApply" or statEntry.HealingEvent == "OnApplyAndTurn")) or statEntry.StatusType == "CONSUME" then
             local character = Ext.ServerEntity.GetCharacter(character)
             for recoverType, j in pairs(_RecoverTypes) do
                 if statEntry[recoverType] > 0 then
