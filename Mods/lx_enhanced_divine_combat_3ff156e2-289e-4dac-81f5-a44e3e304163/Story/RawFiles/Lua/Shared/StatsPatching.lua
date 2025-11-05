@@ -300,3 +300,32 @@ Ext.RegisterListener("StatsLoaded", ChameleonCloakRevert)
 Ext.RegisterListener("StatsLoaded", FixPhysicalResistance)
 Ext.RegisterListener("ModuleLoadStarted", TeleportRevert)
 Ext.RegisterListener("StatsLoaded", ChangeBaseAccuracy)
+
+local _AdditionalCCSkills = {
+	"Shout_BreathingBubble",
+	"Target_Vaporize",
+	"Shout_SmokeCover",
+	"Projectile_ThrowDust",
+	"Target_CorrosiveTouch",
+	"Target_Condense",
+	"Shout_VenomCoating",
+	"Shout_Cryotherapy",
+	"Shout_HealingTears",
+	"Target_VampiricHunger",
+	"Target_CleanseWounds",
+	"Target_Fireblood",
+	"Target_CorpseExplosion",
+	"Target_Sabotage",
+	"Shout_SparkingSwings",
+	"Projectile_LaunchExplosiveTrap"
+}
+Ext.Events.StatsLoaded:Subscribe(function(e)
+	local skillSet = Ext.Stats.SkillSet.GetLegacy("Character_Creation")
+	local skills = skillSet.Skills
+	for _,skill in pairs(_AdditionalCCSkills) do
+		table.insert(skills, skill)
+		Ext.Stats.Get(skill).Tier = "Starter"
+	end
+	skillSet.Skills = skills
+	Ext.Stats.SkillSet.Update(skillSet)
+end)
