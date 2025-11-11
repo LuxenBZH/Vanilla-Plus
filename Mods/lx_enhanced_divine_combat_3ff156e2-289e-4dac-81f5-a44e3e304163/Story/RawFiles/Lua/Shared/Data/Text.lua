@@ -32,6 +32,18 @@ Data.Text.DamageTypeColors = {
     None ="'#C80030'",
 }
 
+Data.Text.CustomAttributes = {
+	VP_Celerity = Ext.L10N.GetTranslatedString("", "Celerity"),
+	VP_WisdomBoost = Ext.L10N.GetTranslatedString("", "Wisdom"),
+	VP_IngressBoost = Ext.L10N.GetTranslatedString("", "Ingress"),
+	VP_CriticalMultiplier = Ext.L10N.GetTranslatedString("", "Critical Multiplier"),
+	VP_ArmorHealReceivedMultiplier = Ext.L10N.GetTranslatedString("", "Physical Armour Recovery"),
+	VP_MagicArmorHealReceivedMultiplier = Ext.L10N.GetTranslatedString("", "Magic Armour Recovery"),
+	VP_VitalityHealReceivedMultiplier = Ext.L10N.GetTranslatedString("", "Vitality Recovery"),
+    VP_Arpen = Ext.L10N.GetTranslatedString("", "Armour Penetration"),
+    VP_Toughness = Ext.L10N.GetTranslatedString("", "Toughness")
+}
+
 Data.Text.GetDamageColor = Helpers.GetDamageColor
 
 Data.Text.TranslatedKeys.Common = {

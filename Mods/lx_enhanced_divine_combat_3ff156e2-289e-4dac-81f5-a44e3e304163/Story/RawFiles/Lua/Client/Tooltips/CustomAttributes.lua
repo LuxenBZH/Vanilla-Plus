@@ -33,34 +33,54 @@ Game.Tooltip.RegisterListener("Item", nil, function(item, tooltip)
     local stat = Ext.Stats.Get(item.StatsId)
     local statsEntry = Helpers.Stats.GetEntryType(stat)
     if statsEntry == "Armor" or statsEntry == "Weapon" or statsEntry == "Shield" then
-        local wisdom = item.Stats.VP_WisdomBoost
-        for i, dynamicStat in pairs(item.Stats.DynamicStats) do
-            if dynamicStat.ObjectInstanceName ~= "" then
-                wisdom = wisdom + Ext.Stats.Get(dynamicStat.ObjectInstanceName).VP_WisdomBoost
+        local customAttributes = {}
+        local itemStats = {} -- avoid console warnings for undeclared custom stats for this specific stat type
+        for statField,value in pairs(item.Stats) do
+            itemStats[statField] = value
+        end
+        for customStatField, displayName in pairs(Data.Text.CustomAttributes) do
+            if itemStats[customStatField] then
+                customAttributes[customStatField] = (customAttributes[customStatField] or 0) + (item.Stats[customStatField] or 0)
+                for i,dynamicStat in pairs(item.Stats.DynamicStats) do
+                    if dynamicStat.ObjectInstanceName ~= "" then 
+                        customAttributes[customStatField] = (customAttributes[customStatField] or 0) + Ext.Stats.Get(dynamicStat.ObjectInstanceName)[customStatField]
+                    end
+                end
             end
         end
-        local celerity = item.Stats.VP_Celerity
-        for i, dynamicStat in pairs(item.Stats.DynamicStats) do
-            if dynamicStat.ObjectInstanceName ~= "" then
-                celerity = celerity + Ext.Stats.Get(dynamicStat.ObjectInstanceName).VP_Celerity
+        for customStatField, value in pairs(customAttributes) do
+            if value ~= 0 then
+                local element = tooltip:GetElement("AbilityBoost")
+                if customStatField == "VP_Celerity" then
+                    value = value / 100
+                end
+                tooltip:AppendElement({
+                    Label = Data.Text.CustomAttributes[customStatField],
+                    Type = "AbilityBoost",
+                    Value = value
+                })
             end
         end
-        if wisdom ~= 0 then
-            local element = tooltip:GetElement("AbilityBoost")
-            tooltip:AppendElement({
-                Label = "Wisdom",
-                Type = "AbilityBoost",
-                Value = wisdom
-            })
-        end
-        if celerity ~= 0 then
-            celerity = celerity / 100
-            local element = tooltip:GetElement("AbilityBoost")
-            tooltip:AppendElement({
-                Label = "Celerity",
-                Type = "AbilityBoost",
-                Value = celerity
-            })
+    end
+end)
+
+--- Status custom bonuses
+---@param character EclCharacter
+---@param status EclStatus
+---@param tooltip TooltipData
+Game.Tooltip.RegisterListener("Status", nil, function(character, status, tooltip)
+    if status.StatsId and status.StatsId ~= "" then
+        local potion = Ext.Stats.Get(status.StatsId, nil, false)
+        for customStatField, displayName in pairs(Data.Text.CustomAttributes) do
+            if potion[customStatField] and potion[customStatField] ~= 0 and status.StatsMultiplier ~= 0 then
+                local signInfo = Helpers.UI.GetTooltipNumberSign(tonumber(potion[customStatField]))
+                tooltip:AppendElement(
+                {
+                    Label = displayName..": "..signInfo.Sign..Ext.Utils.Round(potion[customStatField]*status.StatsMultiplier),
+                    Type = signInfo.Type
+                }
+            )
+            end
         end
     end
 end)
