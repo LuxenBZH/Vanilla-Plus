@@ -13,15 +13,15 @@ local function HealToDamage(target, healStatus, amount, instigator)
     hit.HitReason = 6
     hit.Hit.DeathType = "DoT"
     hit.Hit.EffectFlags = 1
-    HitHelpers.HitAddDamage(hit.Hit, target, healer, "Physical", Ext.Utils.Round(amount*(1+Game.Math.GetDamageBoostByType(instigator.Stats, "Physical"))))
+    HitHelpers.HitAddDamage(hit.Hit, target, instigator, "Physical", Ext.Utils.Round(amount*(1+Game.Math.GetDamageBoostByType(instigator.Stats, "Physical"))))
     Ext.ApplyStatus(hit)
 end
 
 ---------- Wisdom healing increase
 --- @param target string GUID
+--- @param status string Status name
 --- @param instigator string GUID
---- @param amount integer
---- @param handle double StatusHandle
+--- @param handle integer StatusHandle
 Ext.Osiris.RegisterListener("NRD_OnStatusAttempt", 4, "before", function(target, status, handle, instigator)
     if instigator == "NULL_00000000-0000-0000-0000-000000000000" then return end -- Spams the console in few cases otherwise
     local s = Ext.ServerEntity.GetStatus(target, handle) --- @type EsvStatus|EsvStatusHeal|EsvStatusHealing
@@ -41,15 +41,22 @@ Ext.Osiris.RegisterListener("NRD_OnStatusAttempt", 4, "before", function(target,
             s.HealAmount = Ext.Utils.Round(s.HealAmount / (1 + healer.Stats.WaterSpecialist * Ext.ExtraData.SkillAbilityVitalityRestoredPerPoint / 100))
         end
     end
-    
     healer = Ext.ServerEntity.GetCharacter(instigator)
     -- Wisdom bonus to any other heal that isn't LIFESTEAL
     -- HEAL is the proxy status used for the healing value, the original status will have a healing value equal to 0
     -- You need to recalculate the healing value manually, and the following HEAL proxies will duplicate that value
     -- Note : you cannot track the origin of HEAL proxies. In case where a custom value would be needed for each tick, applying a new status each tick could be a workaround
+    -- if status == "HEAL" then
+    --     _DS(s)
+    -- end
     if (s.StatusType == "HEAL" or s.StatusType == "HEALING") and status ~= "HEAL" and status ~= "LIFESTEAL" then
         local stat = Ext.Stats.Get(s.StatusId)
         if stat.HealType ~= "Qualifier" then return end
+        if stat.HealValue == 0 then
+            --- A HEAL effect with a HealAmount equal to 0 will always heal the full average value for some reason
+            NRD_StatusPreventApply(target.MyGuid, handle, 1)
+            return
+        end
         local amount = Data.Math.GetHealScaledWisdomValue(stat, healer)
         --- HEAL statuses with a s.HealAmount modified manually will heal undeads for some reason unless it is set to 0
         --- HEALING statuses don't need this hack because they apply HEAL independently
@@ -64,6 +71,31 @@ Ext.Osiris.RegisterListener("NRD_OnStatusAttempt", 4, "before", function(target,
         s.HealAmount = Ext.Utils.Round(s.HealAmount / (1 + healer.Stats.WaterSpecialist * Ext.ExtraData.SkillAbilityVitalityRestoredPerPoint / 100))
     elseif status == "HEAL" and Helpers.IsCharacter(target) and (target.Stats.TALENT_Zombie or target:GetStatus("DECAYING_TOUCH")) then
         s.HealAmount = Ext.Utils.Round(s.HealAmount * (1+Game.Math.GetDamageBoostByType(healer.Stats, "Physical")))
+    end
+    if s.StatusType == "HEAL" then
+        local bonuses, totalBonus = {}, 0
+        if s.HealType == "Vitality" then
+            bonuses, totalBonus = Data.Math.ComputeStatIntegerFromStatus(healer, "VP_VitalityHealReceivedMultiplier")
+        elseif s.HealType == "PhysicalArmor" then
+            bonuses, totalBonus = Data.Math.ComputeStatIntegerFromStatus(healer, "VP_ArmorHealReceivedMultiplier")
+        elseif s.HealType == "MagicArmor" then
+            bonuses, totalBonus = Data.Math.ComputeStatIntegerFromStatus(healer, "VP_MagicArmorHealReceivedMultiplier")
+        elseif s.HealType == "AllArmor" then
+            local _, totalArmorBonus = Data.Math.ComputeStatIntegerFromStatus(healer, "VP_ArmorHealReceivedMultiplier")
+            local _, totalMagicArmorBonus = Data.Math.ComputeStatIntegerFromStatus(healer, "VP_MagicArmorHealReceivedMultiplier")
+            totalBonus = math.max(totalArmorBonus, totalMagicArmorBonus)
+        elseif s.HealType == "All" then
+            local _, totalVitalityBonus = Data.Math.ComputeStatIntegerFromStatus(healer, "VP_VitalityHealReceivedMultiplier")
+            local _, totalArmorBonus = Data.Math.ComputeStatIntegerFromStatus(healer, "VP_ArmorHealReceivedMultiplier")
+            local _, totalMagicArmorBonus = Data.Math.ComputeStatIntegerFromStatus(healer, "VP_MagicArmorHealReceivedMultiplier")
+            totalBonus = math.max(totalVitalityBonus, totalArmorBonus, totalMagicArmorBonus)
+        end
+        if totalBonus ~= 0 then
+            s.HealAmount = math.max(0, Ext.Utils.Round(s.HealAmount * (totalBonus + 100) / 100))
+        end
+        if s.HealAmount == 0 then
+            NRD_StatusPreventApply(target.MyGuid, handle, 1)
+        end
     end
 end)
 

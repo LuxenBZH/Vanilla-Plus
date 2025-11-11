@@ -30,6 +30,9 @@ BootstrapModule = {
         VP_RecoverLastTurnArmorDamage = "ConstantInt",
         VP_RecoverLastTurnMagicArmorDamage = "ConstantInt",
         VP_RecoverLastTurnVitalityDamage = "ConstantInt",
+        VP_VitalityHealReceivedMultiplier = "ConstantInt",
+        VP_ArmorHealReceivedMultiplier = "ConstantInt",
+        VP_MagicArmorHealReceivedMultiplier = "ConstantInt"
     },
     Weapon = {
         VP_IngressBoost = "ConstantInt",
