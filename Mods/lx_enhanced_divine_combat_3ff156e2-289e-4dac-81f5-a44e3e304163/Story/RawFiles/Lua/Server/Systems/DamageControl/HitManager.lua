@@ -175,7 +175,7 @@ local function DamageControl(target, instigator, hitDamage, handle)
     flags.Backstab = NRD_StatusGetInt(target.MyGuid, hit.StatusHandle, "Backstab") == 1
     flags.DamageSourceType = NRD_StatusGetInt(target.MyGuid, hit.StatusHandle, "DamageSourceType")
     flags.Blocked = NRD_StatusGetInt(target.MyGuid, hit.StatusHandle, "Blocked") == 1
-    flags.IsDirectAttack = hit.DamageSourceType == "Attack" or hit.SkillId ~= ""
+    flags.IsDirectAttack = hit.DamageSourceType == "Attack" or hit.SkillId ~= "" or hit.DamageSourceType == "Offhand"
 	flags.FromReflection = NRD_StatusGetInt(target.MyGuid, handle, "Reflection") == 1
     flags.IsWeaponAttack = hit.Hit.HitWithWeapon or (hit.DamageSourceType == "Attack" and Game.Math.IsRangedWeapon(instigator.Stats.MainWeapon)) --- EsvHit.HitWithWeapon returns False for ranged weapons
 	flags.IsStatusDamage = NRD_StatusGetInt(target.MyGuid, handle, "DoT") == 1
