@@ -429,3 +429,28 @@ Helpers.TableShiftLeft = function(t)
     end
     t[#t] = nil
 end
+
+Helpers.GameAction = {}
+
+Helpers.GameAction.GetInPosition = function(x, z, radius)
+	local gameActions = Ext.Entity.GetCurrentLevel().GameActionManager.GameActions
+	local result = {}
+	for i,gameAction in pairs(gameActions) do
+		if gameAction.Position[1] > x-radius and gameAction.Position[1] < x+radius and gameAction.Position[3] > z-radius and gameAction.Position[3] < z+radius then
+			table.insert(result, gameAction)
+		end
+	end
+	return result
+end
+
+Helpers.GameAction.GetSkillId = function(x, z, radius, skillId)
+	local gameActions = Helpers.GameAction.GetInPosition(x, z, radius)
+	local result = {}
+	for i,action in pairs(gameActions) do
+		local skill = Helpers.GetFormattedSkillID(action.SkillId)
+		if skill == skillId then
+			table.insert(result, action)
+		end
+	end
+	return result
+end
