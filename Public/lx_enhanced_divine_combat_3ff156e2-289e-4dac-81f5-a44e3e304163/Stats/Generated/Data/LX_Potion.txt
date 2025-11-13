@@ -700,13 +700,6 @@ data "Flags" "BurnImmunity"
 data "DisplayName" "Stats_LX_Demon_DisplayName"
 data "DisplayNameRef" "Demon"
 
-new entry "Stats_LX_DDGoose"
-type "Potion"
-data "Movement" "100"
-data "DodgeBoost" "5"
-data "DisplayName" "Stats_LX_DDGoose_DisplayName"
-data "DisplayNameRef" "Duck Duck Goose"
-
 new entry "Stats_LX_Hothead"
 type "Potion"
 data "AccuracyBoost" "10"
