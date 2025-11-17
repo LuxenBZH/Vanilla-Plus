@@ -582,3 +582,39 @@ Ext.Osiris.RegisterListener("CharacterUsedSkill", 4, "before", function(characte
 		end
 	end
 end)
+
+Helpers.RegisterTurnTrueStartListener(function(object)
+	local object = Ext.ServerEntity.GetGameObject(object)
+	local status = object:GetStatus("CHILLED") or object:GetStatus("FROZEN")
+	if status then
+		local instigatorHandle = status.StatusSourceHandle
+		if Ext.Utils.IsValidHandle(instigatorHandle) then
+			local instigator = Ext.ServerEntity.GetCharacter(instigatorHandle)
+			if instigator.Stats.TALENT_IceKing then
+				local frostBite = object:GetStatus("LX_FROSTBITE")
+				if frostBite then
+					Helpers.Status.Multiply(frostBite, math.min(frostBite.StatsMultiplier + (status.StatusId == "CHILLED" and 0.25 or 1.0), 3.0))
+					frostBite.CurrentLifeTime = frostBite.CurrentLifeTime + 6.0
+				else
+					ApplyStatus(object.MyGuid, "LX_FROSTBITE", 12.0, 0, instigator.MyGuid)
+				end
+			end
+		end
+	end
+end)
+
+---@param character GUID
+---@param status string
+---@param instigator GUID
+Ext.Osiris.RegisterListener("CharacterStatusApplied", 3, "after", function(character, status, instigator)
+	if (status == "CHILLED" or status == "FROZEN") and CharacterHasTalent(instigator, "IceKing") == 1 then
+		local character = Ext.ServerEntity.GetCharacter(character)
+		local frostBite = character:GetStatus("LX_FROSTBITE")
+		if frostBite then
+			frostBite.CurrentLifeTime = frostBite.CurrentLifeTime + 6.0
+			Helpers.Status.Multiply(frostBite, math.min(frostBite.StatsMultiplier + (status == "CHILLED" and 0.25 or 1.0), 3.0))
+		else
+			ApplyStatus(character.MyGuid, "LX_FROSTBITE", 12.0, 0, instigator)
+		end
+	end
+end)

@@ -230,9 +230,7 @@ local function DamageControl(target, instigator, hitDamage, handle)
 	NRD_HitStatusClearAllDamage(target.MyGuid, handle)
 	for i,element in pairs(damageTable) do
 		local multiplier = 1 + attacker.DamageBonus/100
-		if element.DamageType == "Water" and instigator.Stats.TALENT_IceKing then
-			multiplier = multiplier + 1/Ext.ExtraData.DGM_IceKingDamageBonus
-		elseif element.DamageType == "Corrosive" or element.DamageType == "Magic" then
+		if element.DamageType == "Corrosive" or element.DamageType == "Magic" then
 			element.Amount = element.Amount * Ext.ExtraData.DGM_ArmourReductionMultiplier / 100
 		end
 		local schoolMultiplier = (instigator and Data.DamageTypeToAbility[element.DamageType]) and Game.Math.GetDamageBoostByType(instigator.Stats, element.DamageType) or 0
