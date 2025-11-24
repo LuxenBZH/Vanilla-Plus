@@ -69,7 +69,7 @@ end
 ---@param instigator EsvCharacter
 ---@param damages table
 function HitManager:ExecuteArmorBypass(target, instigator, damages)
-	if getmetatable(target) ~= "esv::Character" then
+	if target and getmetatable(target) ~= "esv::Character" then
 		return
 	end
 	local inCombat = CharacterIsInCombat(target.MyGuid) == 1
@@ -206,7 +206,7 @@ local function DamageControl(target, instigator, hitDamage, handle)
 	 or (flags.DamageSourceType == 0 and hit.SkillId == "" and Helpers.IsCharacter(target))
 	 or (skill and (skill.Damage ~= "AverageLevelDamge" and skill.Damage ~= "BaseLevelDamage"))  then
 		HitManager:TriggerHitListeners("DGM_Hit", "AfterDamageScaling", hit, instigator, target, flags, skillId)
-		HitManager:ExecuteArmorBypass(target, hit.Hit.DamageList:ToTable())
+		HitManager:ExecuteArmorBypass(target, instigator, hit.Hit.DamageList:ToTable())
         return
 	end
 
