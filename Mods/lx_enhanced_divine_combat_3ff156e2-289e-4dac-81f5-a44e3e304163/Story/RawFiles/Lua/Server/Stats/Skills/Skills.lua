@@ -118,3 +118,17 @@ Ext.Osiris.RegisterListener("CharacterUsedSkill", 4, "after", function(character
         end, nil, character)
     end
 end)
+
+---@param hit EsvStatusHit
+---@param instigator EsvCharacter
+---@param target EsvCharacter
+---@param flags HitFlags
+HitManager:RegisterHitListener("DGM_Hit", "AfterDamageScaling", "VP_DomeOfProtection", function(hit, instigator, target, flags)
+    local dome = target:GetStatus("LX_PROTECTION_CIRCLE")
+    if dome and flags.IsDirectAttack then
+        local domeAction = Helpers.GameAction.GetSkillId(target.WorldPos[1], target.WorldPos[3], Ext.Stats.Get("Dome_CircleOfProtection").AreaRadius, "Dome_CircleOfProtection")[1]
+        if domeAction then
+            HitHelpers.HitMultiplyDamage(hit.Hit, target, instigator, 0.65)
+        end
+    end
+end)
