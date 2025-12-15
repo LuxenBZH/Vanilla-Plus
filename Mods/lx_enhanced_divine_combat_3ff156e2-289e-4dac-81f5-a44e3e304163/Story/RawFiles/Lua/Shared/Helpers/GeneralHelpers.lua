@@ -145,6 +145,23 @@ Helpers.GetVariableTag = function(entity, tag)
 	end
 end
 
+Helpers.GetCharactersInSurface = function(surfaceHandle)
+	local surface = Ext.ServerEntity.GetSurface(surfaceHandle)
+	local position = surface.SubSurfaces[1].Cells[1].Position
+	local aiGrid = Ext.ServerEntity.GetAiGrid()
+	position[1] = position[1] * aiGrid.GridScale + aiGrid.OffsetX
+	position[2] = position[2] * aiGrid.GridScale + aiGrid.OffsetZ
+	local characters = Helpers.GetCharactersAroundPosition(position[1], 0, position[2], 30)
+	local result = {}
+	for _,character in pairs(characters) do
+		local cell = aiGrid:GetCellInfo(character.WorldPos[1], character.WorldPos[3])
+		if cell.CloudSurface == surfaceHandle then
+			table.insert(result, character)
+		end
+	end
+	return result
+end
+
 if Ext.IsServer() then
 	Ext.Osiris.RegisterListener("CharacterStatusRemoved", 3, "before", function(target, status, instigator)
 		if Helpers.Status.MultipliedStats[status] then

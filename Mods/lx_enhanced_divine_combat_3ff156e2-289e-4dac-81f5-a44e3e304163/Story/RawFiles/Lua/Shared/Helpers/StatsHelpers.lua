@@ -44,3 +44,6 @@ Helpers.Stats.Exists = function(statType, name)
 		return false
 	end
 end
+
+Helpers.Stats.GetParentStat = GetParentStat
+Helpers.Stats.HasParent = HasParent
