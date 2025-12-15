@@ -69,8 +69,17 @@ Ext.Vars.RegisterUserVariable("LX_WarmupManager", {
     SyncOnTick = false,
 })
 
+Ext.Vars.RegisterUserVariable("VP_MagicCycles", {
+    Server = true,
+    Client = false, 
+    SyncToClient = false,
+    Persistent = false,
+    SyncOnWrite = false,
+    SyncOnTick = false,
+})
+
 Ext.Osiris.RegisterListener("CharacterUsedSkill", 4, "before", function(character, skill, skillType, skillElement)
-    -- Ext.Entity.GetCharacter(character).UserVars.VP_LastSkillID = {Name = skill, ID = math.random(0, 2147483647)}
+    Ext.Entity.GetCharacter(character).UserVars.VP_LastSkillID = {Name = skill, ID = math.random(0, 2147483647)}
     local character = Ext.ServerEntity.GetCharacter(character)
     local lastSkills = Helpers.UserVars.GetVar(character, "VP_LastSkillsUsed")
     if not lastSkills then

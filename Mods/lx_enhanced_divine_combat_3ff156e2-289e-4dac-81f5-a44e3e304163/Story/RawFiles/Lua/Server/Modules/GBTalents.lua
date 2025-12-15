@@ -4,33 +4,173 @@ Ext.RegisterListener("SessionLoaded", function()
     end
 end)
 -------- Magic Cycles START
---- @param object string UUID
---- @param combatId integer
-Ext.RegisterOsirisListener("ObjectEnteredCombat", 2, "before", function(object, combatId)
-    if ObjectIsCharacter(object) ~= 1 then return end
-    local character = Ext.GetCharacter(object)
-    if character.Stats.TALENT_MagicCycles then
-        local roll = math.random(1, 2)
-        if roll == 1 then
-            ApplyStatus(object, "LX_GB4_MC_EA", 6.0, 1)
-        else
-            ApplyStatus(object, "LX_GB4_MC_WF", 6.0, 1)
+-- --- @param object string UUID
+-- --- @param combatId integer
+-- Ext.RegisterOsirisListener("ObjectEnteredCombat", 2, "before", function(object, combatId)
+--     if ObjectIsCharacter(object) ~= 1 then return end
+--     local character = Ext.GetCharacter(object)
+--     if character.Stats.TALENT_MagicCycles then
+--         local roll = math.random(1, 2)
+--         if roll == 1 then
+--             ApplyStatus(object, "LX_GB4_MC_EA", 6.0, 1)
+--         else
+--             ApplyStatus(object, "LX_GB4_MC_WF", 6.0, 1)
+--         end
+--     end
+-- end)
+
+-- --- @param object string UUID
+-- Ext.RegisterOsirisListener("ObjectTurnStarted", 1, "before", function(object)
+--     if ObjectIsCharacter(object) ~= 1 then return end
+--     local character = Ext.GetCharacter(object)
+--     if character.Stats.TALENT_MagicCycles then
+--         if character:GetStatus("LX_GB4_MC_EA") then
+--             ApplyStatus(object, "LX_GB4_MC_WF", 6.0, 1)
+--         else
+--             ApplyStatus(object, "LX_GB4_MC_EA", 6.0, 1)
+--         end
+--     end
+-- end)
+
+local function TriggerMagicCycleEarth(instigator, pos)
+    local cloud = Ext.ServerEntity.GetAiGrid():GetCellInfo(pos[1], pos[3]).CloudSurface
+    if cloud then
+        local characters = Helpers.GetCharactersInSurface(cloud)
+        for i,character in pairs(characters) do
+            local suffocating = character:GetStatus("SUFFOCATING")
+            if CharacterIsEnemy(instigator.MyGuid, character.MyGuid) == 1 then
+                if suffocating then
+                    if suffocating.CurrentLifeTime >= 12.0 then
+                        Helpers.Status.Multiply(suffocating, suffocating.StatsMultiplier + 0.2)
+                    else
+                        suffocating.CurrentLifeTime = suffocating.CurrentLifeTime + 6.0
+                        suffocating.RequestClientSync = true
+                    end
+                else
+                    ApplyStatus(character.MyGuid, "SUFFOCATING", 6.0, 0, instigator.MyGuid)
+                end
+            end
+        end
+    end
+end
+
+-- ---@param e EsvLuaProjectileHitEvent
+Ext.Events.ProjectileHit:Subscribe(function(e)
+    if e.HitObject and Ext.Utils.IsValidHandle(e.Projectile.SourceHandle) and e.Projectile.SkillId ~= "" then
+        local skill = Ext.Stats.Get(string.gsub(e.Projectile.SkillId, "%_%-1", ""), nil, false)
+        local instigator = Ext.ServerEntity.GetGameObject(e.Projectile.SourceHandle)
+        if Helpers.IsCharacter(instigator) and instigator.Stats.TALENT_MagicCycles then
+            if skill.Ability == "Air" then
+                Ext.PropertyList.ExecuteSkillPropertiesOnPosition("Target_Vaporize", instigator.MyGuid, e.Position, skill.AreaRadius, {"Target", "AoE"}, false)
+            elseif skill.Ability == "Earth" then
+                TriggerMagicCycleEarth(instigator, e.Position)
+            end
         end
     end
 end)
 
---- @param object string UUID
-Ext.RegisterOsirisListener("ObjectTurnStarted", 1, "before", function(object)
-    if ObjectIsCharacter(object) ~= 1 then return end
-    local character = Ext.GetCharacter(object)
-    if character.Stats.TALENT_MagicCycles then
-        if character:GetStatus("LX_GB4_MC_EA") then
-            ApplyStatus(object, "LX_GB4_MC_WF", 6.0, 1)
+Ext.Osiris.RegisterListener("CharacterUsedSkillAtPosition", 7, "after", function(character, x, y, z, skillName, skillType, ability)
+    if CharacterHasTalent(character, "MagicCycles") == 1 and (ability == "Air" or ability == "Earth") and skillType ~= "Projectile" then
+        local character = Ext.ServerEntity.GetCharacter(character)
+        character.UserVars.VP_MagicCycles = {[1] =  {x,y,z}}
+    end
+end)
+
+Ext.Osiris.RegisterListener("CharacterUsedSkillOnTarget", 5, "after", function(character, target, skillName, skillType, ability)
+    if CharacterHasTalent(character, "MagicCycles") == 1 and (ability == "Air" or ability == "Earth") and skillType ~= "Projectile" then
+        local character = Ext.ServerEntity.GetCharacter(character)
+        local target = Ext.ServerEntity.GetCharacter(target)
+        if not character.UserVars.VP_MagicCycles then
+            character.UserVars.VP_MagicCycles = {
+                [1] =  target.WorldPos
+            }
         else
-            ApplyStatus(object, "LX_GB4_MC_EA", 6.0, 1)
+            character.UserVars.VP_MagicCycles[#character.UserVars.VP_MagicCycles+1] = target.WorldPos
         end
     end
 end)
+
+---@param e EsvLuaBeforeStatusApplyEvent
+Ext.Events.BeforeStatusApply:Subscribe(function(e)
+    local instigator = Ext.Utils.IsValidHandle(e.Status.StatusSourceHandle) and Ext.ServerEntity.GetCharacter(e.Status.StatusSourceHandle) or nil
+    if instigator and instigator.Stats.TALENT_MagicCycles then
+        local target = Ext.ServerEntity.GetGameObject(e.Status.TargetHandle)
+        local thermalShock = target:GetStatus("LX_THERMAL_SHOCK")
+        if ((e.Status.StatusId == "BURNING" or e.Status.StatusId == "NECROFIRE") and (target:GetStatus("WET") or target:GetStatus("CHILLED") or target:GetStatus("FROZEN"))) then
+            if thermalShock then
+                thermalShock.CurrentLifeTime = thermalShock.CurrentLifeTime + 6.0
+                thermalShock.RequestClientSync = true
+            else
+                ApplyStatus(target.MyGuid, "LX_THERMAL_SHOCK", 12, 0, instigator.MyGuid)
+            end
+        elseif ((e.Status.StatusId == "WET" or e.Status.StatusId == "CHILLED") and (target:GetStatus("BURNING")) or target:GetStatus("NECROFIRE") or target:GetStatus("WARM")) then
+            if thermalShock then
+                thermalShock.CurrentLifeTime = thermalShock.CurrentLifeTime + 6.0
+                thermalShock.RequestClientSync = true
+            else
+                ApplyStatus(target.MyGuid, "LX_THERMAL_SHOCK", 12, 0, instigator.MyGuid)
+            end
+        end
+    end
+end)
+
+Ext.Osiris.RegisterListener("CharacterStatusApplied", 3, "before", function(target, status, instigator)
+    if HasActiveStatus(target, "LX_THERMAL_SHOCK") == 1 and status == "INSURFACE" then
+        local cloud = GetSurfaceCloudAt(target)
+        if cloud == "SurfaceWaterCloud" then
+            local thermalShockInstigator = Ext.ServerEntity.GetCharacter(Ext.ServerEntity.GetCharacter(target):GetStatus("LX_THERMAL_SHOCK").OwnerHandle)
+            ApplyDamage(target, Ext.Utils.Round(Game.Math.GetLevelScaledWeaponDamage(CharacterGetLevel(instigator))*0.4), "Water", thermalShockInstigator.MyGuid)
+        end
+    end
+end)
+
+Data.Math.Resistance:RegisterCalculationListener("LX_ThermalShock", function(target, attacker, damage, resistance, bypassValue)
+    if target.Character:GetStatus("LX_THERMAL_SHOCK") and ((damage.DamageType == "Fire" and damage.Amount > 0) or (damage.DamageType == "Water" and damage.Amount > 0)) then
+        local fireResistance = Game.Math.GetResistance(target, "Fire")
+        local waterResistance = Game.Math.GetResistance(target, "Water")
+        return math.min(fireResistance, waterResistance), bypassValue+15
+    end
+    return resistance, bypassValue
+end)
+
+-- Ext.Osiris.RegisterListener("CharacterStatusApplied", 3, "after", function(character, status, instigator)
+--     _DS(Ext.ServerEntity.GetCharacter(character):GetStatus(status))
+-- end)
+
+Ext.Osiris.RegisterListener("SkillCast", 4, "after", function(character, skillName, _, ability)
+    if CharacterHasTalent(character, "MagicCycles") == 1 then
+        local character = Ext.ServerEntity.GetCharacter(character)
+        local skill = Ext.Stats.Get(skillName, nil, true)
+        if ability == "Air" then    
+            local condense = false
+            if not condense then
+                for i,targetPos in pairs(character.UserVars.VP_MagicCycles or {}) do
+                    for i,property in pairs(skill.SkillProperties or {}) do
+                        if property.Action == "Condense" then
+                            condense = true
+                        end
+                    end
+                    Ext.PropertyList.ExecuteSkillPropertiesOnPosition("Target_Vaporize", character.MyGuid, {targetPos[1], targetPos[2], targetPos[3]}, skill.AreaRadius, {"Target", "AoE"}, false)
+                end
+                character.UserVars.VP_MagicCycles = nil
+            end
+        elseif ability == "Earth" then
+            for i,targetPos in pairs(character.UserVars.VP_MagicCycles or {}) do
+                TriggerMagicCycleEarth(character, targetPos)
+            end
+        end
+    end
+end)
+
+-- ---@param e LuaGetSkillDamageEvent
+-- Ext.Events.GetSkillDamage:Subscribe(function(e)
+--     if e.Skill ~= "" and e.Attacker and getmetatable(e.Attacker) == "CDivinityStats_Character" and e.Attacker.TALENT_MagicCycles then
+--         if e.Skill.Ability == "Air" then
+--             Ext.PropertyList.ExecuteSkillPropertiesOnPosition("Target_Vaporize", attacker.Character.MyGuid, e.Position, e.Skill.AreaRadius, {"Target", "AoE"}, false)
+--         end
+--     end
+-- end)
+
 --------- Magic Cycles END
 
 --------- Greedy Vessel START
