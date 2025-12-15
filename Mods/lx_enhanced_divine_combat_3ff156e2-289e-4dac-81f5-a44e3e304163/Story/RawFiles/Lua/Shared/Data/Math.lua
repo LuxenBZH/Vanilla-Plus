@@ -761,3 +761,103 @@ Data.Math.HitComputeArmorBypass = function(damageTable, target, instigator)
 	end
 	return bypassTable
 end
+
+---Listen for critical chance calculations and apply potential modifiers
+Data.Math.Resistance = {
+	CalculationListeners = {}
+}
+
+--- @alias ResistanceModifierCallback fun(target:StatCharacter, attacker:StatCharacter, damage:table,  resistance:number, bypassValue:number):number,number
+
+---@param name string
+---@param callback ResistanceModifierCallback
+function Data.Math.Resistance:RegisterCalculationListener(name, callback)
+	Data.Math.Resistance.CalculationListeners[name] = callback
+end
+
+function Data.Math.Resistance:RemoveListener(name)
+	if not Data.Math.Resistance.CalculationListeners[name] then
+		_VWarning('Could not find listener "'..name..'" in Resistance listeners !', "Math")
+	end 
+	Data.Math.Resistance.CalculationListeners[name] = nil
+end
+
+function Data.Math.Resistance:CallListeners(character, target, damage, resistance, bypassValue)
+	for name, listener in pairs(Data.Math.Resistance.CalculationListeners) do
+		resistance, bypassValue = listener(character, target, damage, resistance, bypassValue)
+	end
+	return resistance, bypassValue
+end
+
+--- @param character StatCharacter
+--- @param type string DamageType enumeration
+local function GetResistance(character, damageType)
+	local cap = character.MaxResistance
+	if damageType == "None" or damageType == "Chaos" then
+		damageType = "Custom" 
+	end
+	local resistanceType = tostring(damageType).."Resistance"
+	local resistance = Data.OgResistances[resistanceType] and character[resistanceType] or 0
+	local resCap = FindTag(Ext.GetCharacter(character.MyGuid), "DGM_ResCap"..tostring(damageType)) or character.MaxResistance
+	local typeCap = tonumber(string.gsub(resCap, ".*_", "")[1])
+	if typeCap then
+		cap = cap + typeCap
+	end
+	-- If the base resistance is higher than the cap, let it be
+	if Data.OgResistances[resistanceType] and character["Base"..resistanceType] > cap then
+		return character["Base"..resistanceType]
+	elseif resistance > cap then
+		return cap
+	else
+		return resistance
+	end
+end
+
+Game.Math.GetResistance = GetResistance
+
+--- @param character CDivinityStatsCharacter
+local function GetResistanceBypassValue(character)
+	if not character then
+		return 0
+	end
+	local bypassValue = Data.Math.ComputeCharacterIngress(character.Character)
+	if character.TALENT_Haymaker then
+		bypassValue = bypassValue + (character.Wits-Ext.ExtraData.AttributeBaseValue)*Ext.ExtraData.CriticalBonusFromWits
+	end
+	return bypassValue
+end
+
+--- @param character CDivinityStatsCharacter
+--- @param damageList DamageList
+--- @param attacker StatCharacter
+local function CustomApplyHitResistances(character, damageList, attacker)
+	for i,damage in pairs(damageList:ToTable()) do
+		local originalResistance = Game.Math.GetResistance(character, damage.DamageType)
+		local resistance = originalResistance
+		local bypassValue = GetResistanceBypassValue(attacker)
+		resistance, bypassValue = Data.Math.Resistance:CallListeners(character, attacker, damage, resistance, bypassValue)
+		if originalResistance ~= nil and originalResistance < 100 and bypassValue > 0 then
+			resistance = resistance - bypassValue
+			if resistance < 0  then
+				resistance = 0
+			elseif resistance > originalResistance then
+				resistance = originalResistance
+			end
+		end
+        damageList:Add(damage.DamageType, math.floor(damage.Amount * -resistance / 100.0))
+    end
+end
+
+Game.Math.ApplyHitResistances = CustomApplyHitResistances
+
+--- @param character CDivinityStatsCharacter
+--- @param attacker CDivinityStatsCharacter
+--- @param damageList DamageList
+function CustomApplyDamageCharacterBonuses(character, attacker, damageList)
+    damageList:AggregateSameTypeDamages()
+    CustomApplyHitResistances(character, damageList, attacker)
+
+    Game.Math.ApplyDamageSkillAbilityBonuses(damageList, attacker)
+end
+
+Game.Math.ApplyDamageCharacterBonuses = CustomApplyDamageCharacterBonuses
