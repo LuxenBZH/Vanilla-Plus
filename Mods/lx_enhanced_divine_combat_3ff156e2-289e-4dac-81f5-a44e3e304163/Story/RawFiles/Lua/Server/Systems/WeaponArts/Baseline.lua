@@ -1,7 +1,7 @@
 HitManager:RegisterHitListener("DGM_Hit", "AfterDamageScaling", "LX_WeaponArtsHit", function(status, instigator, target, flags, skillId)
     if instigator == nil then return end 
     if instigator:GetStatus("LX_WA_TRUESTRIKE") then    
-        HitHelpers.HitMultiplyDamage(status.Hit, target, instigator, 0.7)
+        HitHelpers.HitMultiplyDamage(status.Hit, target, instigator, 0.9)
         ---Check if the character is back to idle state and remove True Strike
         ---Also reduce damage by 30%
         ---@param character EsvCharacter
@@ -19,6 +19,6 @@ end)
 Ext.Events.BeforeStatusApply:Subscribe(function(e)
     if e.Status.StatusId == "LX_WA_RECKLESSDASH" then
         e.PreventStatusApply = true
-        e.Owner.PartialAP = e.Owner.PartialAP + Data.Math.ComputeCelerityValue(Data.Math.GetCharacterMovement(e.Owner).Movement*0.75, e.Owner)
+        e.Owner.PartialAP = e.Owner.PartialAP + Data.Math.ComputeCelerityValue(Data.Math.GetCharacterMovement(e.Owner).Movement, e.Owner)
     end
 end)
