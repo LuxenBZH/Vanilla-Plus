@@ -2,6 +2,7 @@
 ---@field Parent string
 ---@field Children SkillGroupChild[] skillName : function. At least one child must return true for the group to activate
 ---@field ShareCooldowns boolean if using one of the children skill triggers a cooldown on the parent and all other children
+---@field Order table|nil order skills if wanted
 SkillGroup = {
     Parent = "",
     Children = {},
@@ -12,8 +13,14 @@ SkillGroup.__index = SkillGroup
 
 function SkillGroup:Create(parent, children, shareCooldowns)
     local childrenList = {}
-    for skill,condition in pairs(children) do
-        table.insert(childrenList, SkillGroupChild:Create(skill, condition))
+    if children.Order then
+        for i,skillName in ipairs(children.Order) do
+            table.insert(childrenList, SkillGroupChild:Create(skillName, children[skillName]))
+        end
+    else
+        for skill,condition in pairs(children) do
+            table.insert(childrenList, SkillGroupChild:Create(skill, condition))
+        end
     end
     local this = {
         Parent = parent,
