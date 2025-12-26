@@ -1,3 +1,26 @@
+local WeaponArts = {
+    Shout_LX_WeaponArtTrueStrike = function(character)
+        return true, false
+    end,
+    Shout_LX_WeaponArtDash = function(character)
+        return true, false
+    end,
+    Shout_LX_WeaponArtGuard = function(character)
+        local mainHand, offHand = Helpers.Character.GetWeaponTypes(character)
+        return Helpers.Character.GetFightType(character) == "Melee" and offHand ~= "Shield", false
+    end,
+    Shout_LX_WeaponArtGuard_Shield = function(character)
+        local mainHand, offHand = Helpers.Character.GetWeaponTypes(character)
+        return Helpers.Character.GetFightType(character) == "Melee" and offHand == "Shield", false
+    end,
+    Order = {
+        "Shout_LX_WeaponArtTrueStrike",
+        "Shout_LX_WeaponArtDash",
+        "Shout_LX_WeaponArtGuard",
+        "Shout_LX_WeaponArtShield"
+    }
+}
+
 local VPlusSimpleSkillGroups = {
     Shout_LX_RangedStances = {
         Shout_LX_RangedReflexStance = function(character)
@@ -19,29 +42,8 @@ local VPlusSimpleSkillGroups = {
             return character:GetStatus("LX_AIMING_STANCE") ~= null, false
         end
     },
-    Target_HeavyAttack = {
-        Target_HeavyAttack = function(character)
-            return true, false
-        end,
-        Shout_LX_WeaponArtTrueStrike = function(character)
-            return true, false
-        end,
-        Shout_LX_WeaponArtPinpoint = function(character)
-            return true, false
-        end
-    },
-
-    Target_DualWieldingAttack = {
-        Target_DualWieldingAttack = function(character)
-            return true, false
-        end,
-        Shout_LX_WeaponArtTrueStrike = function(character)
-            return true, false
-        end,
-        Shout_LX_WeaponArtPinpoint = function(character)
-            return true, false
-        end
-    }
+    Target_HeavyAttack = WeaponArts,
+    Target_DualWieldingAttack = WeaponArts
 }
 
 local VPlusSimpleSkillGroupsSharedCooldown = {

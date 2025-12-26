@@ -16,10 +16,10 @@ _OrderedScriptsLoad = {
 	"Server/Systems/Mechanics/CCSystem",
 	"Server/Stats/Potions",
 	"Server/Stats/Talents",
+	"Server/Stats/CustomSkillPropertiesServer",
 	"Server/Modules/Modules",
 	"Server/Systems/Mechanics/Consumables",
 	"Server/Systems/Mechanics/CQBEffect",
-	"Server/Stats/CustomSkillPropertiesServer",
 	"Server/Stats/CustomStatFields",
 	"Server/Miscelleanous",
 	"Server/Stats/Statuses",
@@ -27,6 +27,7 @@ _OrderedScriptsLoad = {
 	"Server/Systems/Mechanics/SkillGroupServer",
 	"Server/Stats/Abilities",
 	"Server/Systems/WeaponArts/SpellConduit",
+	"Server/Systems/WeaponArts/Baseline",
 	"Server/Stats/Skills/RangedSignature"
 }
 

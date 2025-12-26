@@ -142,6 +142,15 @@ Helpers.Character.GetWeaponTypes = function(character)
 	return mainHand, offHand
 end
 
+Helpers.Character.GetFightType = function(character)
+	local mainHand, offHand = Helpers.Character.GetWeaponTypes(character)
+	if mainHand == "Bow" or mainHand == "Crossbow" or mainHand == "Rifle" or mainHand == "Wand" or (not mainHand and offHand == "Wand") then
+		return "Ranged"
+	else
+		return "Melee"
+	end
+end
+
 Helpers.Client = {}
 
 Helpers.Client.GetCurrentCharacter = function()
