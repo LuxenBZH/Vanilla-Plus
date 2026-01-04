@@ -28,7 +28,8 @@ _OrderedScriptsLoad = {
 	"Server/Stats/Abilities",
 	"Server/Systems/WeaponArts/SpellConduit",
 	"Server/Systems/WeaponArts/Baseline",
-	"Server/Stats/Skills/RangedSignature"
+	"Server/Stats/Skills/RangedSignature",
+	"Server/Stats/Skills/WeaponSignature"
 }
 
 for i,script in ipairs(_OrderedScriptsLoad) do
