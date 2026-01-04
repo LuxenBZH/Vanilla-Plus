@@ -65,7 +65,7 @@ Ext.Events.Tick:Subscribe(function()
                 Helpers.Timer.ActiveTimers[i].RepeatCount = timer.RepeatCount - 1
                 Helpers.Timer.ActiveTimers[i].Remaining = timer.Time
             else
-                if Helpers.Timer.ActiveTimers[i] then
+                if Helpers.Timer.ActiveTimers[i] and Helpers.Timer.ActiveTimers[i].RepeatCount ~= -1 then
                     Helpers.Timer.Delete(timer)
                 end
             end
