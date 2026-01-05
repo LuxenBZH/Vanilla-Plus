@@ -45,7 +45,7 @@ function HitManager:TriggerHitListeners(hook, event, ...)
     local params = {...}
     if self.HitHooks[hook] then
         for i,j in pairs(self.HitHooks[hook][event]) do
-            j.Handle(table.unpack(params))
+            j.Handle(...)
         end
     end
 end
@@ -205,6 +205,8 @@ local function DamageControl(target, instigator, hitDamage, handle)
 	 or (flags.DamageSourceType > 0 and flags.DamageSourceType < 4)
 	 or (flags.DamageSourceType == 0 and hit.SkillId == "" and Helpers.IsCharacter(target))
 	 or (skill and (skill.Damage ~= "AverageLevelDamge" and skill.Damage ~= "BaseLevelDamage"))  then
+		if instigator.MyGuid == Helpers.NullGUID then instigator = nil end
+		_P("Target:", target)
 		HitManager:TriggerHitListeners("DGM_Hit", "AfterDamageScaling", hit, instigator, target, flags, skillId)
 		HitManager:ExecuteArmorBypass(target, instigator, hit.Hit.DamageList:ToTable())
         return

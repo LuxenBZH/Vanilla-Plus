@@ -755,7 +755,8 @@ Data.Math.HitComputeArmorBypass = function(damageTable, target, instigator)
 		return damageTable
 	end
 	local bypassTable = {}
-	local bypassMod = 1 - math.min(math.max(Data.Math.Character.ComputeToughness(target) - Data.Math.Character.ComputeArpen(instigator), 0), 100) / 100
+	local arpen = instigator and Data.Math.Character.ComputeArpen(instigator) or 0
+	local bypassMod = 1 - math.min(math.max(Data.Math.Character.ComputeToughness(target) - arpen, 0), 100) / 100
 	for i,element in pairs(damageTable) do
 		bypassTable[element.DamageType] = math.ceil(element.Amount * bypassMod)
 	end

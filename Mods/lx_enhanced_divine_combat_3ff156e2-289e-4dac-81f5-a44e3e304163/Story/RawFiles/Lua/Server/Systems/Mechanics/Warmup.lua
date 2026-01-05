@@ -57,7 +57,7 @@ end, 51)
 --- @param instigator EsvCharacter
 --- @param target EsvItem|EsvCharacter
 --- @param flags HitFlags
-HitManager:RegisterHitListener("DGM_Hit", "AfterDamageScaling", "DGM_AbsorbShields", function(hit, instigator, target, flags)
+HitManager:RegisterHitListener("DGM_Hit", "AfterDamageScaling", "VP_WarmupManagement", function(hit, instigator, target, flags)
 	--- Warmup after 3 hits
 	if getmetatable(instigator) == "esv::Character" and instigator:GetStatus("COMBAT") and flags.IsWeaponAttack and not Game.Math.IsRangedWeapon(instigator.Stats.MainWeapon) then
 		if not instigator.UserVars.LX_WarmupManager or type(instigator.UserVars.LX_WarmupManager) == "number" then

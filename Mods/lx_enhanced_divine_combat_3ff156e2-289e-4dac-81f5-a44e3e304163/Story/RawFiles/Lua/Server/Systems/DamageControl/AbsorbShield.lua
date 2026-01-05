@@ -28,6 +28,7 @@ end)
 ---@param hit EsvStatusHit
 function AbsorbShieldProcessDamage(target, instigator, hit)
     local damageList = hit.Hit.DamageList:ToTable()
+    if not target then return end
     for index, array in pairs(damageList) do
         local damageType = tostring(array.DamageType)
 		local shield = Helpers.CharacterGetAbsorbShield(target, damageType)
