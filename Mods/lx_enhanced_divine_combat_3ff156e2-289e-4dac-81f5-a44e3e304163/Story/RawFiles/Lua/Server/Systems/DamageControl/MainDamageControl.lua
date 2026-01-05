@@ -46,7 +46,7 @@ end, 50)
 --- @param instigator EsvCharacter
 --- @param target EsvItem|EsvCharacter
 --- @param flags HitFlags
-HitManager:RegisterHitListener("DGM_Hit", "AfterDamageScaling", "DGM_AbsorbShields", function(hit, instigator, target, flags)
+HitManager:RegisterHitListener("DGM_Hit", "AfterDamageScaling", "VP_AbsorbShields", function(hit, instigator, target, flags)
 	--- Retribution indirect damage reduction
 	-- if flags.FromReflection or (hit.DamageSourceType ~= "Attack" and hit.DamageSourceType ~= "Offhand" and hit.DamageSourceType ~= "GM") then
 	-- 	HitHelpers.HitMultiplyDamage(hit.Hit, target, instigator, 1 - (target.Stats.PainReflection * (Ext.ExtraData.DGM_PainReflectionDamageReduction/100)))

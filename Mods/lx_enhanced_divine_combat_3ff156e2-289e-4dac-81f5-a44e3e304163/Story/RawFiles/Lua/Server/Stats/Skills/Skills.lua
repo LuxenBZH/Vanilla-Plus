@@ -70,7 +70,7 @@ end)
 ---@param instigator EsvCharacter
 ---@param target EsvCharacter
 ---@param flags HitFlags
-HitManager:RegisterHitListener("DGM_Hit", "AfterDamageScaling", "VP_AxeAttackBonus", function(hit, instigator, target, flags)
+HitManager:RegisterHitListener("DGM_Hit", "AfterDamageScaling", "VP_WeaponSignatures", function(hit, instigator, target, flags)
     if hit.SkillId == "Target_LX_AxeAttack_-1" and Helpers.IsCharacter(target) then
         local mainDamage = (instigator.Stats.MainWeapon and instigator.Stats.MainWeapon.WeaponType == "Axe") and instigator.Stats.MainWeapon.StatsEntry['Damage Type'] or 
             instigator.Stats.OffHandWeapon.StatsEntry['Damage Type']
