@@ -75,19 +75,19 @@ Ext.Osiris.RegisterListener("NRD_OnStatusAttempt", 4, "before", function(target,
     if s.StatusType == "HEAL" then
         local bonuses, totalBonus = {}, 0
         if s.HealType == "Vitality" then
-            bonuses, totalBonus = Data.Math.ComputeStatIntegerFromStatus(healer, "VP_VitalityHealReceivedMultiplier")
+            bonuses, totalBonus = Data.Math.ComputeStatIntegerFromStatus(target, "VP_VitalityHealReceivedMultiplier")
         elseif s.HealType == "PhysicalArmor" then
-            bonuses, totalBonus = Data.Math.ComputeStatIntegerFromStatus(healer, "VP_ArmorHealReceivedMultiplier")
+            bonuses, totalBonus = Data.Math.ComputeStatIntegerFromStatus(target, "VP_ArmorHealReceivedMultiplier")
         elseif s.HealType == "MagicArmor" then
-            bonuses, totalBonus = Data.Math.ComputeStatIntegerFromStatus(healer, "VP_MagicArmorHealReceivedMultiplier")
+            bonuses, totalBonus = Data.Math.ComputeStatIntegerFromStatus(target, "VP_MagicArmorHealReceivedMultiplier")
         elseif s.HealType == "AllArmor" then
-            local _, totalArmorBonus = Data.Math.ComputeStatIntegerFromStatus(healer, "VP_ArmorHealReceivedMultiplier")
-            local _, totalMagicArmorBonus = Data.Math.ComputeStatIntegerFromStatus(healer, "VP_MagicArmorHealReceivedMultiplier")
+            local _, totalArmorBonus = Data.Math.ComputeStatIntegerFromStatus(target, "VP_ArmorHealReceivedMultiplier")
+            local _, totalMagicArmorBonus = Data.Math.ComputeStatIntegerFromStatus(target, "VP_MagicArmorHealReceivedMultiplier")
             totalBonus = math.max(totalArmorBonus, totalMagicArmorBonus)
         elseif s.HealType == "All" then
-            local _, totalVitalityBonus = Data.Math.ComputeStatIntegerFromStatus(healer, "VP_VitalityHealReceivedMultiplier")
-            local _, totalArmorBonus = Data.Math.ComputeStatIntegerFromStatus(healer, "VP_ArmorHealReceivedMultiplier")
-            local _, totalMagicArmorBonus = Data.Math.ComputeStatIntegerFromStatus(healer, "VP_MagicArmorHealReceivedMultiplier")
+            local _, totalVitalityBonus = Data.Math.ComputeStatIntegerFromStatus(target, "VP_VitalityHealReceivedMultiplier")
+            local _, totalArmorBonus = Data.Math.ComputeStatIntegerFromStatus(target, "VP_ArmorHealReceivedMultiplier")
+            local _, totalMagicArmorBonus = Data.Math.ComputeStatIntegerFromStatus(target, "VP_MagicArmorHealReceivedMultiplier")
             totalBonus = math.max(totalVitalityBonus, totalArmorBonus, totalMagicArmorBonus)
         end
         if totalBonus ~= 0 then
