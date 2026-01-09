@@ -17,7 +17,7 @@ function ApplyWarmup(character, step, fromMiss)
 	if fromMiss and isMeleeTwoHanded then
 		stage = math.min(stage + 1, 4)
 	end
-	CustomStatusManager:CharacterApplyMultipliedStatus(character, "DGM_WARMUP"..tostring(stage), 6.0, 1.0 + 0.1 * character.Stats.WarriorLore)
+	ApplyStatus(character.MyGuid, "DGM_WARMUP"..tostring(stage), 6.0, 1, character.MyGuid)
 end
 
 ---@param character EsvCharacter
@@ -27,7 +27,7 @@ function ConsumeWarmup(character, amount)
 	local warmupStacks = Helpers.Character.GetWarmupStacks(character)
 	RemoveStatus(character.MyGuid, warmup)
 	if warmupStacks - amount > 0 then
-		CustomStatusManager:CharacterApplyMultipliedStatus(character, "DGM_WARMUP"..tostring(warmupStacks - amount), 6.0, 1.0 + 0.1 * character.Stats.WarriorLore)
+		ApplyStatus(character.MyGuid,  "DGM_WARMUP"..tostring(warmupStacks - amount), 6.0, 1, character.MyGuid)
 	end
 end
 
