@@ -436,11 +436,11 @@ Game.Math.GetDamageBoostByTypeVanilla = Data.Math.GetDamageBoostByType
 Data.Math.GetCharacterMovement = function(character)
     local stats = character.Stats.DynamicStats
 	local movementFromEquipment = Data.Math.ComputeStatIntegerFromEquipment(character, "Movement")
-	local movementFromStatuses = Data.Math.ComputeStatIntegerFromStatus(character, "Movement")
-	local movement = stats[1].Movement + movementFromEquipment + character.Stats.RogueLore * Ext.ExtraData.SkillAbilityMovementSpeedPerPoint
-	for i,statusInfo in pairs(movementFromStatuses) do
-		movement = movement + statusInfo.Value
+	local characterMovement = 0 -- includes character base movement, permaboost and status boosts
+	for i,stat in pairs(stats) do
+		characterMovement = characterMovement + stat.Movement
 	end
+	local movement = characterMovement + movementFromEquipment + character.Stats.RogueLore * Ext.ExtraData.SkillAbilityMovementSpeedPerPoint
     return {
         Movement = movement,
         BaseMovement = stats[1].Movement
