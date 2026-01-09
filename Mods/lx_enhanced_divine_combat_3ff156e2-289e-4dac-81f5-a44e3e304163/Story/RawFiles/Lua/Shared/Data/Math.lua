@@ -44,17 +44,26 @@ end
 Data.Math.ComputeStatIntegerFromStatus = function(character, statName)
 	local statusesAttribute = {}
 	for i,j in pairs(character:GetStatuses()) do
-		local stat = Ext.Stats.Get(j, nil, false)
-		--- Note: some particular statuses does seems to create a warning (e.g. LINGERING_WOUNDS)
-		local status = character:GetStatus(j)
-		if stat then
-			local statsId = stat.StatsId
-			if statsId ~= "" then
-				table.insert(statusesAttribute, {
-					Status = stat.StatsId,
-					Value = Ext.Utils.Round(tonumber(Ext.Stats.Get(statsId)[statName]) * status.StatsMultiplier),
-					Type = statName
-				})
+		if j == "LEADERSHIP" then
+			local status = character:GetStatus(j)
+			table.insert(statusesAttribute, {
+				Status = "LEADERSHIP",
+				Value = Ext.Utils.Round(tonumber(Ext.Stats.Get("SKILLBOOST_Leadership")[statName]) * status.StatsMultiplier),
+				Type = statName
+			})
+		else
+			local stat = Ext.Stats.Get(j, nil, false)
+			--- Note: some particular statuses does seems to create a warning (e.g. LINGERING_WOUNDS)
+			local status = character:GetStatus(j)
+			if stat then
+				local statsId = stat.StatsId
+				if statsId ~= "" then
+					table.insert(statusesAttribute, {
+						Status = stat.StatsId,
+						Value = Ext.Utils.Round(tonumber(Ext.Stats.Get(statsId)[statName]) * status.StatsMultiplier),
+						Type = statName
+					})
+				end
 			end
 		end
 	end
