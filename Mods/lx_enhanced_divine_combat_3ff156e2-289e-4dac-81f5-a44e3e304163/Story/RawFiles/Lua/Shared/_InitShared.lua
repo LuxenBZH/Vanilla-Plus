@@ -52,7 +52,6 @@ Ext.Require("Shared/Data/Text.lua")
 Ext.Require("Shared/Data/Stats.lua")
 Ext.Require("Shared/Data/Math.lua")
 Ext.Require("Shared/Systems/APCostManagement.lua")
--- Ext.Require("Shared/Systems/Weapons/RangedStances.lua")
 Ext.Require("Shared/Systems/Weapons/WeaponArtsShared.lua")
 Ext.Require("Shared/Gameplay/Skills/Weapons.lua")
 

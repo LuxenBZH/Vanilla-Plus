@@ -56,15 +56,15 @@ local function OnStatTooltip(character, stat, tooltip)
 
     local attrBonus = CharGetDGMAttributeBonus(character, 0)
 
-    if stat == "Strength" then
+    if stat == Ext.L10N.GetTranslatedString("h363413f4g5033g4821ga298g016915a5d625", "Strength") then
         statsDescription.Label = Helpers.GetDynamicTranslationStringFromKey("Strength_Description", Ext.ExtraData.DGM_StrengthGlobalBonus, Ext.ExtraData.DGM_StrengthWeaponBonus, Ext.ExtraData.DGM_StrengthIngressCap)
         statsPointValue.Label = Helpers.GetDynamicTranslationStringFromKey("Strength_DynamicTooltip", attrBonus["str"], attrBonus["strGlobal"], attrBonus["strWeapon"], attrBonus["strIngCap"])
 
-    elseif stat == "Finesse" then
+    elseif stat == Ext.L10N.GetTranslatedString("h281c2da7g2d2bg4d69g986agfd124c7f569f", "Finesse") then
         statsDescription.Label = Helpers.GetDynamicTranslationStringFromKey("Finesse_Description", Ext.ExtraData.DGM_FinesseGlobalBonus, math.floor(Ext.Utils.Round(Ext.ExtraData.DodgingBoostFromAttribute*100)), Ext.ExtraData.DGM_FinesseMovementBonus/100, Ext.ExtraData.DGM_FinesseAccuracyFromIntelligenceCap)
         statsPointValue.Label = Helpers.GetDynamicTranslationStringFromKey("Finesse_DynamicTooltip", attrBonus["fin"], attrBonus["finGlobal"], attrBonus["finDodge"], attrBonus["finMovement"], attrBonus["finAccCap"])
 
-    elseif stat == "Intelligence" then
+    elseif stat == Ext.L10N.GetTranslatedString("hfbc938ceg297fg4232ga11dg3fe44985b9f8", "Intelligence") then
         statsDescription.Label = Helpers.GetDynamicTranslationStringFromKey("Intelligence_Description", Ext.ExtraData.DGM_IntelligenceGlobalBonus, Ext.ExtraData.DGM_IntelligenceSkillBonus, Ext.ExtraData.DGM_IntelligenceAccuracyBonus, Ext.ExtraData.DGM_IntelligenceIngressBonus, Ext.ExtraData.DGM_IntelligenceWisdomFromWitsCap)
         local ingBonus = math.floor((character.Stats.Intelligence - baseValue) * Ext.ExtraData.DGM_IntelligenceIngressBonus)
         local ingCap = math.floor((character.Stats.Strength - baseValue) * Ext.ExtraData.DGM_StrengthIngressCap)
@@ -82,7 +82,7 @@ local function OnStatTooltip(character, stat, tooltip)
         end
         statsPointValue.Label = Helpers.GetDynamicTranslationStringFromKey("Intelligence_DynamicTooltip", attrBonus["int"], attrBonus["intGlobal"], attrBonus["intSkill"], accBonus, accCapWarning, ingBonus, ingCapWarning, attrBonus.intWisCap)
 
-    elseif stat == "Wits" then
+    elseif stat == Ext.L10N.GetTranslatedString("h0f1053bbg8ac4g461fg9179g6f28b9d091bd", "Wits") then
         statsDescription.Label = Helpers.GetDynamicTranslationStringFromKey("Wits_Description", Ext.ExtraData.CriticalBonusFromWits, Ext.ExtraData.InitiativeBonusFromWits, Ext.ExtraData.DGM_WitsDotBonus, Ext.ExtraData.DGM_WitsWisdomBonus)
         local wisBonus =  math.floor((character.Stats.Wits - baseValue) * Ext.ExtraData.DGM_WitsWisdomBonus)
         local wisCap =  math.floor((character.Stats.Intelligence - baseValue) * Ext.ExtraData.DGM_IntelligenceWisdomFromWitsCap)
@@ -93,12 +93,12 @@ local function OnStatTooltip(character, stat, tooltip)
         end
         statsPointValue.Label = Helpers.GetDynamicTranslationStringFromKey("Wits_DynamicTooltip", attrBonus["wits"], attrBonus["witsCrit"], attrBonus["witsIni"], attrBonus["witsDot"], wisBonus, wisCapWarning)
 
-    elseif stat == "Critical Chance" then
+    elseif stat == Ext.L10N.GetTranslatedString("h1b6a1120gb023g4df1gb463gc317e509ee2c", "Critical Chance")  then
         statsDescription.Label = Helpers.GetDynamicTranslationStringFromKey("CriticalChance_Description", Ext.ExtraData.DGM_BackstabCritChanceBonus)
         local critMultiplier = tooltip:GetElement("StatsCriticalInfos")
         critMultiplier.Label = string.gsub(string.gsub(Ext.L10N.GetTranslatedString("h84bafbedgb201g4356gaa16g41cf785deff0", "Critical Damage: [1]%"), "%[1%]", tostring(Ext.Utils.Round(Game.Math.GetCriticalHitMultiplier(character.Stats.MainWeapon, character.Stats) * 100))), "<br>", "")
         
-    elseif stat == "Damage" then
+    elseif stat == Ext.L10N.GetTranslatedString("h9531fd22g6366g4e93g9b08g11763cac0d86", "Damage") then
         local damageText = tooltip:GetElement("StatsTotalDamage")
         -- local minDamage = damageText.Label:gsub("^.* ", ""):gsub("-[1-9]*", "")
         -- local maxDamage = damageText.Label:gsub("^.*-", "")
@@ -115,6 +115,8 @@ local function OnStatTooltip(character, stat, tooltip)
         end
         
         damageText.Label = Helpers.GetDynamicTranslationStringFromKey("Damage_DynamicTooltip", minDamage, maxDamage)
+    elseif stat == Ext.L10N.GetTranslatedString("ha9fe36bfg692ag4f8bg8d9eg379bbbf04c87", "Movement") then
+        Helpers.GetDynamicTranslationStringFromKey("Movement_Description", Data.Math.ComputeCharacterCelerity(character))
     end
 end
 
@@ -162,6 +164,7 @@ Ext.Events.UICall:Subscribe(function(e)
     end
 end)
 
+---TODO: clean refactor
 ---@param character EsvCharacter
 ---@param stat string
 ---@param tooltip TooltipData
@@ -172,36 +175,34 @@ local function OnAbilityTooltip(character, stat, tooltip)
     local attrBonusNew = CharGetDGMAttributeBonus(character, 1)
     local stats = character.Stats
 
-    if stat == "Dual-Wielding" then
-
-        -- if stats.DualWielding > 0 then
-        --     abilityDescription.CurrentLevelEffect = Helpers.GetDynamicTranslationStringFromKey("DualWielding_Description", stats.DualWielding, attrBonus["dual"], attrBonus["dualDodge"], math.floor(attrBonus["dualOff"]/2))
-        -- end
+    if stat == string.gsub(Ext.L10N.GetTranslatedString("h03d68693g35e7g4721ga1b3g9f9882f08b12", "Dual-Wielding"), " ", "-") then
+        if stats.DualWielding > 0 then
+            abilityDescription.CurrentLevelEffect = Helpers.GetDynamicTranslationStringFromKey("DualWielding_TooltipCurrent", stats.DualWielding, attrBonus["dual"], attrBonus["dualDodge"], math.floor(attrBonus["dualArpen"]))
+        end
+        abilityDescription.NextLevelEffect = Helpers.GetDynamicTranslationStringFromKey("DualWielding_TooltipNext", stats.DualWielding+1, attrBonusNew["dual"], attrBonusNew["dualDodge"], math.floor(attrBonus["dualArpen"]))
         
-        -- abilityDescription.NextLevelEffect = Helpers.GetDynamicTranslationStringFromKey("DualWielding_TooltipNext", stats.DualWielding+1, attrBonusNew["dual"], attrBonusNew["dualDodge"], math.floor(attrBonus["dualOff"]/2))
-        
-    elseif stat == "Ranged" then
+    elseif stat == Ext.L10N.GetTranslatedString("hdda30cb9g17adg433ag9071g867e97c09c3a", "Ranged") then
         if stats.Ranged > 0 then
             abilityDescription.CurrentLevelEffect = Helpers.GetDynamicTranslationStringFromKey("Ranged_TooltipCurrent", stats.Ranged, attrBonus["ranged"], attrBonus["rangedCrit"], attrBonus["rangedRange"])
         end
         
         abilityDescription.NextLevelEffect = Helpers.GetDynamicTranslationStringFromKey("Ranged_TooltipNext", stats.Ranged+1, attrBonusNew["ranged"], attrBonusNew["rangedCrit"], attrBonusNew["rangedRange"])
 
-    elseif stat == "Single-Handed" then
+    elseif stat == Ext.L10N.GetTranslatedString("ha74334b1gd56bg49c2g8738g44da4decd00a", "Single-Handed") then
         if stats.SingleHanded > 0 then
-            abilityDescription.CurrentLevelEffect = Helpers.GetDynamicTranslationStringFromKey("SingleHanded_TooltipCurrent", stats.SingleHanded, attrBonus["single"], attrBonus["singleAcc"], attrBonus["singleArm"], attrBonus["singleEle"])
+            abilityDescription.CurrentLevelEffect = Helpers.GetDynamicTranslationStringFromKey("SingleHanded_TooltipCurrent", stats.SingleHanded, attrBonus["single"], attrBonus["singleAcc"], attrBonus["singleToughness"])
         end
 
-        abilityDescription.NextLevelEffect = Helpers.GetDynamicTranslationStringFromKey("SingleHanded_TooltipNext", stats.SingleHanded+1, attrBonusNew["single"], attrBonusNew["singleAcc"], attrBonusNew["singleArm"], attrBonusNew["singleEle"])
+        abilityDescription.NextLevelEffect = Helpers.GetDynamicTranslationStringFromKey("SingleHanded_TooltipNext", stats.SingleHanded+1, attrBonusNew["single"], attrBonusNew["singleAcc"], attrBonusNew["singleToughness"])
         
-    elseif stat == "Two-Handed" then
+    elseif stat == Ext.L10N.GetTranslatedString("h3fb5cd5ag9ec8g4746g8f9cg03100b26bd3a", "Two-Handed") then
         if stats.TwoHanded > 0 then
             abilityDescription.CurrentLevelEffect = Helpers.GetDynamicTranslationStringFromKey("TwoHanded_TooltipCurrent", stats.TwoHanded, attrBonus["two"], attrBonus["twoCrit"])
         end
 
         abilityDescription.NextLevelEffect =  Helpers.GetDynamicTranslationStringFromKey("TwoHanded_TooltipNext", stats.TwoHanded+1, attrBonusNew["two"], attrBonusNew["twoCrit"], attrBonusNew["twoAcc"])
 
-    elseif stat == "Perseverance" then
+    elseif stat == Ext.L10N.GetTranslatedString("h5b61fccfg5d2ag4a81g9cacg068403d61b5c", "Perseverance") then
         local pointValue = Ext.Utils.Round(Game.Math.GetAverageLevelDamage(stats.Level) * Ext.ExtraData.DGM_PerseveranceRecovery / 100)
         local current = pointValue * stats.Perseverance
         local next = pointValue * (stats.Perseverance + 1)
@@ -211,13 +212,18 @@ local function OnAbilityTooltip(character, stat, tooltip)
         
         abilityDescription.NextLevelEffect = Helpers.GetDynamicTranslationStringFromKey("Perseverance_TooltipNext", stats.Perseverance+1, next)
     
-    elseif stat == "Hydrosophist" then
+    elseif stat == Ext.L10N.GetTranslatedString("h21354580g6870g411dgbef4g52f34942686a", "Hydrosophist") then
         if stats.WaterSpecialist > 0 then
             abilityDescription.CurrentLevelEffect = Helpers.GetDynamicTranslationStringFromKey("Hydrosophist_TooltipCurrent", stats.WaterSpecialist, attrBonus["hydroDmg"], attrBonus["hydroHeal"], attrBonus["hydroArmor"])
         end
         
         abilityDescription.NextLevelEffect = Helpers.GetDynamicTranslationStringFromKey("Hydrosophist_TooltipNext", stats.WaterSpecialist+1, attrBonusNew["hydroDmg"], attrBonusNew["hydroHeal"], attrBonusNew["hydroArmor"])
-
+    
+    elseif stat == Ext.L10N.GetTranslatedString("h70714d89g196eg4affga165gaa9d72a61368", "Polymorph") then
+        if stats.Polymorph > 0 then
+            abilityDescription.CurrentLevelEffect = Helpers.GetDynamicTranslationStringFromKey("Polymorph_TooltipCurrent", stats.Polymorph, stats.Polymorph, stats.Polymorph*Ext.ExtraData.VP_PolymorphResistanceBonus)
+        end
+        abilityDescription.CurrentLevelEffect = Helpers.GetDynamicTranslationStringFromKey("Polymorph_TooltipNext", stats.Polymorph+1, stats.Polymorph+1, (stats.Polymorph+1)*Ext.ExtraData.VP_PolymorphResistanceBonus)
     end
 end
 
@@ -230,7 +236,6 @@ local tooltipFix = {
     Perseverance = "h5b61fccfg5d2ag4a81g9cacg068403d61b5c",
     Corrogic = "hb24edf38gd48ag477fgbf75g3bd3de8c6eec",
     Warmup = "h565877e2g71eag43aag928fgfee5ca4f0c4f",
-    AimedShot = "he5970b83g4f56g4348g8d23g39bce69f8c3c"
 }
 
 -- Tooltip here is the fix for not being able to put a translation key on generated statuses for custom bonuses
@@ -377,7 +382,6 @@ local function DGM_Tooltips_Init(e)
     Game.Tooltip.RegisterListener("Talent", nil, TalentTooltip)
     Game.Tooltip.RegisterListener("Skill", "Teleportation_FreeFall", TeleportTooltip)
     Game.Tooltip.RegisterListener("Skill", "Teleportation_Netherswap", TeleportTooltip)
-    Game.Tooltip.RegisterListener("Skill", "Shout_LX_AimedShot", AimedShotTooltip)
     Game.Tooltip.RegisterListener("Skill", "Shout_Adrenaline", AdrenalineTooltip)
     Game.Tooltip.RegisterListener("Skill", nil, ComputeTooltipHealings)
     Game.Tooltip.RegisterListener("Status", nil, DamageStatusTooltipScaleFromPower)

@@ -34,12 +34,6 @@ HitManager:RegisterHitListener("DGM_Hit", "BeforeDamageScaling", "DGM_Specifics"
 		end
 		ApplyStatus(target.MyGuid, "ACID", seconds, 1, instigator.MyGuid)
 	end
-
-	--- Aimed Shot
-	if flags.IsWeaponAttack and instigator.Stats.MainWeapon.WeaponType == "Crossbow" then
-        local aimedShot = FindStatus(instigator, "DMG_AimedShot")
-        if aimedShot then RemoveStatus(instigator.MyGuid, aimedShot) end
-    end
 end, 50)
 
 --- @param hit EsvStatusHit
