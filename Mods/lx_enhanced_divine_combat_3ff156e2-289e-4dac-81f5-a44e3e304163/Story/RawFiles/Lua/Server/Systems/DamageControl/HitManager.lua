@@ -67,25 +67,17 @@ end
 --- Calculate and apply the damage going through armors and hit Vitality
 ---@param target EsvCharacter
 ---@param instigator EsvCharacter
----@param damages table
-function HitManager:ExecuteArmorBypass(target, instigator, damages)
+---@param hit EsvStatusHit
+function HitManager:ExecuteArmorBypass(target, instigator, hit)
 	if target and getmetatable(target) ~= "esv::Character" then
 		return
 	end
 	local inCombat = CharacterIsInCombat(target.MyGuid) == 1
-	local bypassedDamage = Data.Math.HitComputeArmorBypass(damages, target, instigator)
-	for element, amount in pairs(bypassedDamage) do
-		NRD_CharacterSetStatInt(target.MyGuid, "CurrentVitality", target.Stats.CurrentVitality - amount)
-		if inCombat then
-			target.UserVars.LX_LastTurnVitalityDamageTaken = (target.UserVars.LX_LastTurnVitalityDamageTaken or 0) + amount
-		end
+	local bypassedDamage = Data.Math.HitComputeArmorBypass(hit, target, instigator)
+	NRD_CharacterSetStatInt(target.MyGuid, "CurrentVitality", target.Stats.CurrentVitality - bypassedDamage)
+	if inCombat then
+		target.UserVars.LX_LastTurnVitalityDamageTaken = (target.UserVars.LX_LastTurnVitalityDamageTaken or 0) + bypassedDamage
 	end
-	-- for i, element  in pairs(damages) do
-	-- 	if element.Amount ~= 0 then
-	-- 		local piercing = ArmorSystem.CalculatePassingDamage(target.MyGuid, element.Amount, element.DamageType)
-	-- 		ArmorSystem.ApplyPassingDamage(target.MyGuid, piercing)
-	-- 	end
-	-- end
 end
 
 ---------- Corrogic Module
@@ -207,8 +199,10 @@ local function DamageControl(target, instigator, hitDamage, handle)
 	 or (flags.DamageSourceType == 0 and hit.SkillId == "" and Helpers.IsCharacter(target))
 	 or (skill and (skill.Damage ~= "AverageLevelDamge" and skill.Damage ~= "BaseLevelDamage"))  then
 		if instigator.MyGuid == Helpers.NullGUID then instigator = nil end
+		HitHelpers.HitRecalculateAbsorb(hit.Hit, target)
+		HitHelpers.HitRecalculateLifesteal(hit.Hit, instigator)
 		HitManager:TriggerHitListeners("DGM_Hit", "AfterDamageScaling", hit, instigator, target, flags, skillId)
-		HitManager:ExecuteArmorBypass(target, instigator, hit.Hit.DamageList:ToTable())
+		HitManager:ExecuteArmorBypass(target, instigator, hit)
         return
 	end
 
@@ -228,7 +222,6 @@ local function DamageControl(target, instigator, hitDamage, handle)
 	-- _VPrint("General multiplier:", "HitManager", attacker.DamageBonus, attacker.GlobalMultiplier)
 	HitManager:TriggerHitListeners("DGM_Hit", "BeforeDamageScaling", hit, instigator, target, flags, skillId)
 	local damageTable = hit.Hit.DamageList:ToTable()
-	-- _DS(damageTable)
 	NRD_HitStatusClearAllDamage(target.MyGuid, handle)
 	for i,element in pairs(damageTable) do
 		local multiplier = 1 + attacker.DamageBonus/100
@@ -241,14 +234,16 @@ local function DamageControl(target, instigator, hitDamage, handle)
 		HitHelpers.HitAddDamage(hit.Hit, target, instigator, tostring(element.DamageType), math.floor(element.Amount))
 		-- NRD_HitStatusAddDamage(target.MyGuid, handle, element.DamageType, element.Amount)
 	end
+	-- _VP("HIT target:",target.DisplayName, "Source:", instigator.DisplayName)
+	-- _D(damageTable)
 	HitHelpers.HitRecalculateAbsorb(hit.Hit, target)
 	HitHelpers.HitRecalculateLifesteal(hit.Hit, instigator)
 	HitManager:TriggerHitListeners("DGM_Hit", "AfterDamageScaling", hit, instigator, target, flags, skillId)
 	if Ext.ExtraData.DGM_Corrogic == 1 then
 		TriggerCorrogicResistanceStrip(target.MyGuid, hit.Hit.DamageList:ToTable())
 	end
-	HitManager:ExecuteArmorBypass(target, instigator, hit.Hit.DamageList:ToTable())
-	-- HitManager:ShieldStatusesAbsorbDamage(target, hit.Hit.DamageList)	
+	HitManager:ExecuteArmorBypass(target, instigator, hit.Hit)
+	HitManager:ShieldStatusesAbsorbDamage(target, hit.Hit.DamageList)	
 end
 
 Ext.Osiris.RegisterListener("NRD_OnHit", 4, "before", DamageControl)

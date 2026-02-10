@@ -93,7 +93,7 @@ end, 49)
 --- @param event string
 Ext.Osiris.RegisterListener("ProcObjectTimerFinished", 2, "after", function(character, event)
     if string.gmatch(event, "VP_ConsecutiveHit_") ~= "VP_ConsecutiveHit_" or character == "00000000-0000-0000-0000-000000000000" or ObjectExists(character) == 0 then return end
-    local character = Ext.Entity.GetCharacter(character)
+    local character = Ext.Entity.GetGameObject(character)
 	if character.UserVars.VP_ConsecutiveHitFromSkill.OnGoing then
 		character.UserVars.VP_ConsecutiveHitFromSkill.OnGoing = false
 		Osi.ProcObjectTimer(target.MyGuid, "VP_ConsecutiveHit_"..tostring(target.VP_ConsecutiveHitFromSkill.ID), 500)
@@ -109,7 +109,7 @@ Ext.Osiris.RegisterListener("ObjectLeftCombat", 2, "before", function(object, co
 end)
 
 HitManager:RegisterHitListener("DGM_Hit", "AfterDamageScaling", "LX_RegisterTurnDamage", function(hit, instigator, target, flags)
-	if CharacterIsInCombat(target.MyGuid) == 1 and target.LifeTime ~= 0 and flags.Blocked or flags.Dodged or flags.Missed then
+	if CharacterIsInCombat(target.MyGuid) == 1 and target.LifeTime ~= 0 and flags.Blocked or flags.Dodged or flags.Missed or not target.Stats then
 		return
 	end
 	target.UserVars.LX_LastTurnVitalityDamageTaken = (target.UserVars.LX_LastTurnVitalityDamageTaken or 0) + Ext.Utils.Round(hit.Hit.TotalDamageDone - hit.Hit.ArmorAbsorption)

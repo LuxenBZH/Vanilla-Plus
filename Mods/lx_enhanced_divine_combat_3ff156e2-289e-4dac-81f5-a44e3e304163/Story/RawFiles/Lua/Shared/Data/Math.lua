@@ -755,21 +755,17 @@ Data.Math.Character.ComputeArpen = function(character)
 	return math.min(100, math.max(0, fromDualWielding + fromEquipment + statusTotal))
 end
 
----@param damageTable table
+---@param hit EsvStatusHit
 ---@param target EsvCharacter
 ---@param instigator EsvCharacter
----@return table
-Data.Math.HitComputeArmorBypass = function(damageTable, target, instigator)
+---@return number
+Data.Math.HitComputeArmorBypass = function(hit, target, instigator)
 	if not target then
-		return damageTable
+		return 0
 	end
-	local bypassTable = {}
 	local arpen = instigator and Data.Math.Character.ComputeArpen(instigator) or 0
 	local bypassMod = 1 - math.min(math.max(Data.Math.Character.ComputeToughness(target) - arpen, 0), 100) / 100
-	for i,element in pairs(damageTable) do
-		bypassTable[element.DamageType] = math.ceil(element.Amount * bypassMod)
-	end
-	return bypassTable
+	return math.min(hit.Hit.ArmorAbsorption, hit.Hit.ArmorAbsorption * bypassMod)
 end
 
 ---Listen for critical chance calculations and apply potential modifiers
