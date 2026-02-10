@@ -105,7 +105,8 @@ local function IncreaseCorrosiveMagicFromSkill(instigator, skill, damageList)
 end
 
 local function InflictResistanceDebuff(target, perc)
-	local character = Ext.GetCharacter(target)
+	local character = Helpers.ServerSafeGetCharacter(target)
+	if not target then return end
 	local current = FindStatus(character, "LX_CORROGIC_")
 	if not current then
 		current = perc
@@ -131,7 +132,7 @@ end
 --- @param target string GUID
 --- @param dmgList table
 local function TriggerCorrogicResistanceStrip(target, dmgListNew)
-	local character = Ext.GetCharacter(target)
+	local character = Helpers.ServerSafeGetCharacter(target)
 	local dmgList = {
 		Magic = 0,
 		Corrosive = 0
@@ -206,7 +207,6 @@ local function DamageControl(target, instigator, hitDamage, handle)
 	 or (flags.DamageSourceType == 0 and hit.SkillId == "" and Helpers.IsCharacter(target))
 	 or (skill and (skill.Damage ~= "AverageLevelDamge" and skill.Damage ~= "BaseLevelDamage"))  then
 		if instigator.MyGuid == Helpers.NullGUID then instigator = nil end
-		_P("Target:", target)
 		HitManager:TriggerHitListeners("DGM_Hit", "AfterDamageScaling", hit, instigator, target, flags, skillId)
 		HitManager:ExecuteArmorBypass(target, instigator, hit.Hit.DamageList:ToTable())
         return
@@ -248,7 +248,7 @@ local function DamageControl(target, instigator, hitDamage, handle)
 		TriggerCorrogicResistanceStrip(target.MyGuid, hit.Hit.DamageList:ToTable())
 	end
 	HitManager:ExecuteArmorBypass(target, instigator, hit.Hit.DamageList:ToTable())
-	-- HitManager:ShieldStatusesAbsorbDamage(target, hit.Hit.DamageList)
+	-- HitManager:ShieldStatusesAbsorbDamage(target, hit.Hit.DamageList)	
 end
 
 Ext.Osiris.RegisterListener("NRD_OnHit", 4, "before", DamageControl)

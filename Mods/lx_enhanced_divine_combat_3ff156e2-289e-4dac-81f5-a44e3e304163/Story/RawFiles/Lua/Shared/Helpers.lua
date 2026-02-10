@@ -142,6 +142,7 @@ function dump(o)
 	end
  end
 
+---TODO: clean refactor
 ---@param char EsvCharacter|EclCharacter
 ---@param next integer
 function CharGetDGMAttributeBonus(char, next)
@@ -175,14 +176,15 @@ function CharGetDGMAttributeBonus(char, next)
 		witsDot = math.floor((wits+next) * Ext.ExtraData.DGM_WitsDotBonus),
 		dual = math.floor(Ext.ExtraData.DGM_DualWieldingDamageBonus * (stats.DualWielding+next)),
 		dualDodge = math.floor(Ext.ExtraData.CombatAbilityDodgingBonus * (stats.DualWielding+next)),
-		dualOff = math.floor(Ext.ExtraData.DGM_DualWieldingOffhandBonus * (stats.DualWielding+next)),
+		dualArpen = math.floor(Ext.ExtraData.VP_DualWieldingArpenBonus * (stats.DualWielding+next)),
 		ranged = math.floor(Ext.ExtraData.DGM_RangedDamageBonus * (stats.Ranged+next)),
 		rangedCrit = math.floor(Ext.ExtraData.CombatAbilityCritBonus * (stats.Ranged+next)),
 		rangedRange = round(Ext.ExtraData.DGM_RangedRangeBonus * (stats.Ranged+next) * 0.01, 2),
 		single = math.floor(Ext.ExtraData.DGM_SingleHandedDamageBonus * (stats.SingleHanded+next)),
 		singleAcc = math.floor(Ext.ExtraData.CombatAbilityAccuracyBonus * (stats.SingleHanded+next)),
-		singleArm = math.floor(Ext.ExtraData.DGM_SingleHandedArmorBonus * (stats.SingleHanded+next)),
-		singleEle = math.floor(Ext.ExtraData.DGM_SingleHandedResistanceBonus * (stats.SingleHanded+next)),
+		-- singleArm = math.floor(Ext.ExtraData.DGM_SingleHandedArmorBonus * (stats.SingleHanded+next)),
+		-- singleEle = math.floor(Ext.ExtraData.DGM_SingleHandedResistanceBonus * (stats.SingleHanded+next)),
+		-- singleToughness = math.floor((Ext.ExtraData.VP_SingleHandedToughness) * (stats.SingleHanded+next)),
 		two = math.floor(Ext.ExtraData.DGM_TwoHandedDamageBonus * (stats.TwoHanded+next)),
 		twoCrit = math.floor(Ext.ExtraData.CombatAbilityCritMultiplierBonus * (stats.TwoHanded+next)),
 		twoAcc = math.floor(Ext.ExtraData.DGM_TwoHandedCTHBonus * (stats.TwoHanded+next)),

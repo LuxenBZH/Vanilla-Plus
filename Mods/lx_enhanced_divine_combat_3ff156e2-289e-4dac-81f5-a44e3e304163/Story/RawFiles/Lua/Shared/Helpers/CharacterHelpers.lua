@@ -171,7 +171,7 @@ if Ext.IsServer() then
 		if type(handle) == "number" then
 			return Ext.ServerEntity.GetCharacter(handle)
 		else
-			if ObjectExists(handle) == 1 then
+			if ObjectExists(handle) == 1 and ObjectIsCharacter(handle) == 1 then
 				return Ext.ServerEntity.GetCharacter(handle)
 			else
 				if Ext.Debug.IsDeveloperMode() then
@@ -190,7 +190,7 @@ if Ext.IsServer() then
 		if type(handle) == "number" then
 			return Ext.ServerEntity.GetItem(handle)
 		else
-			if ObjectExists(handle) == 1 then
+			if ObjectExists(handle) == 1 and ObjectIsItem(handle) == 1 then
 				return Ext.ServerEntity.GetItem(handle)
 			else
 				if Ext.Debug.IsDeveloperMode() then

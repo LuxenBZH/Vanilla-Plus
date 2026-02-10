@@ -118,7 +118,7 @@ Ext.Osiris.RegisterListener("CharacterStatusApplied", 3, "before", function(targ
     if HasActiveStatus(target, "LX_THERMAL_SHOCK") == 1 and status == "INSURFACE" then
         local cloud = GetSurfaceCloudAt(target)
         if cloud == "SurfaceWaterCloud" then
-            local thermalShockInstigator = Ext.ServerEntity.GetCharacter(Ext.ServerEntity.GetCharacter(target):GetStatus("LX_THERMAL_SHOCK").OwnerHandle)
+            local thermalShockInstigator = Ext.ServerEntity.GetCharacter(Ext.ServerEntity.GetGameObject(target):GetStatus("LX_THERMAL_SHOCK").OwnerHandle)
             ApplyDamage(target, Ext.Utils.Round(Game.Math.GetLevelScaledWeaponDamage(CharacterGetLevel(instigator))*0.4), "Water", thermalShockInstigator.MyGuid)
         end
     end
