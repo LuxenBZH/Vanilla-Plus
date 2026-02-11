@@ -69,11 +69,10 @@ end
 ---@param instigator EsvCharacter
 ---@param hit EsvStatusHit
 function HitManager:ExecuteArmorBypass(target, instigator, hit)
-	if target or getmetatable(target) ~= "esv::Character" then
+	if not target or (target and getmetatable(target) ~= "esv::Character") then
 		return
 	end
 	local bypassedDamage = Data.Math.HitComputeArmorBypass(hit, target, instigator)
-	-- _VPrint(target.DisplayName, "ExecuteArmorBypass", hit.Hit.ArmorAbsorption, bypassedDamage)
 	NRD_CharacterSetStatInt(target.MyGuid, "CurrentVitality", target.Stats.CurrentVitality - bypassedDamage)
 	if CharacterIsInCombat(target.MyGuid) == 1 then
 		target.UserVars.LX_LastTurnVitalityDamageTaken = (target.UserVars.LX_LastTurnVitalityDamageTaken or 0) + bypassedDamage
