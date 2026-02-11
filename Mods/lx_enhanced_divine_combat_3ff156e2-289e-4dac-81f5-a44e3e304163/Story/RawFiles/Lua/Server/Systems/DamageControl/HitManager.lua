@@ -72,10 +72,10 @@ function HitManager:ExecuteArmorBypass(target, instigator, hit)
 	if target or getmetatable(target) ~= "esv::Character" then
 		return
 	end
-	local inCombat = CharacterIsInCombat(target.MyGuid) == 1
 	local bypassedDamage = Data.Math.HitComputeArmorBypass(hit, target, instigator)
+	-- _VPrint(target.DisplayName, "ExecuteArmorBypass", hit.Hit.ArmorAbsorption, bypassedDamage)
 	NRD_CharacterSetStatInt(target.MyGuid, "CurrentVitality", target.Stats.CurrentVitality - bypassedDamage)
-	if inCombat then
+	if CharacterIsInCombat(target.MyGuid) == 1 then
 		target.UserVars.LX_LastTurnVitalityDamageTaken = (target.UserVars.LX_LastTurnVitalityDamageTaken or 0) + bypassedDamage
 	end
 end
@@ -170,7 +170,7 @@ local function DamageControl(target, instigator, hitDamage, handle)
     flags.Blocked = NRD_StatusGetInt(target.MyGuid, hit.StatusHandle, "Blocked") == 1
     flags.IsDirectAttack = hit.DamageSourceType == "Attack" or hit.SkillId ~= "" or hit.DamageSourceType == "Offhand"
 	flags.FromReflection = NRD_StatusGetInt(target.MyGuid, handle, "Reflection") == 1
-    flags.IsWeaponAttack = hit.Hit.HitWithWeapon or (hit.DamageSourceType == "Attack" and Game.Math.IsRangedWeapon(instigator.Stats.MainWeapon)) --- EsvHit.HitWithWeapon returns False for ranged weapons
+    flags.IsWeaponAttack = hit.Hit.HitWithWeapon or (hit.DamageSourceType == "Attack" and ((not skill and Game.Math.IsRangedWeapon(instigator.Stats.MainWeapon) or (skill and skill.UseWeaponDamage == "No")))) --- EsvHit.HitWithWeapon returns False for ranged weapons
 	flags.IsStatusDamage = NRD_StatusGetInt(target.MyGuid, handle, "DoT") == 1
 
 	if ((skill and skill.Name == "Projectile_Talent_Unstable") and IsTagged(instigator.MyGuid, "LX_UNSTABLE_COOLDOWN") == 1) 
@@ -212,7 +212,7 @@ local function DamageControl(target, instigator, hitDamage, handle)
 	if instigator.MyGuid == 'NULL_00000000-0000-0000-0000-000000000000' then return end
 
     -- Bonuses
-	local attacker = Data.Math.GetCharacterComputedDamageBonus(instigator, target, flags, skill, skillId)
+	local attacker = Data.Math.GetCharacterComputedDamageBonus(instigator, target, flags, skill)
 
     if (skill and skill.Name == "Projectile_Talent_Unstable") or IsTagged(target.MyGuid, "DGM_GuardianAngelProtector") == 1 or flags.IsFromShackles then
 		ClearTag(target.MyGuid, "DGM_GuardianAngelProtector")
@@ -234,7 +234,6 @@ local function DamageControl(target, instigator, hitDamage, handle)
 		HitHelpers.HitAddDamage(hit.Hit, target, instigator, tostring(element.DamageType), math.floor(element.Amount))
 		-- NRD_HitStatusAddDamage(target.MyGuid, handle, element.DamageType, element.Amount)
 	end
-	-- _VP("HIT target:",target.DisplayName, "Source:", instigator.DisplayName)
 	-- _D(damageTable)
 	HitHelpers.HitRecalculateAbsorb(hit.Hit, target)
 	HitHelpers.HitRecalculateLifesteal(hit.Hit, instigator)
