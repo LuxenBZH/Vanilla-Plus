@@ -69,7 +69,7 @@ end
 ---@param instigator EsvCharacter
 ---@param hit EsvStatusHit
 function HitManager:ExecuteArmorBypass(target, instigator, hit)
-	if target and getmetatable(target) ~= "esv::Character" then
+	if target or getmetatable(target) ~= "esv::Character" then
 		return
 	end
 	local inCombat = CharacterIsInCombat(target.MyGuid) == 1
@@ -243,7 +243,7 @@ local function DamageControl(target, instigator, hitDamage, handle)
 		TriggerCorrogicResistanceStrip(target.MyGuid, hit.Hit.DamageList:ToTable())
 	end
 	HitManager:ExecuteArmorBypass(target, instigator, hit.Hit)
-	HitManager:ShieldStatusesAbsorbDamage(target, hit.Hit.DamageList)	
+	-- HitManager:ShieldStatusesAbsorbDamage(target, hit.Hit.DamageList)	
 end
 
 Ext.Osiris.RegisterListener("NRD_OnHit", 4, "before", DamageControl)
