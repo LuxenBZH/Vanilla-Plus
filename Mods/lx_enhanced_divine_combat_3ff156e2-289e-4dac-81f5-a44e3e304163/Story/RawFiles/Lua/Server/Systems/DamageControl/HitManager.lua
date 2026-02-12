@@ -201,7 +201,7 @@ local function DamageControl(target, instigator, hitDamage, handle)
 		HitHelpers.HitRecalculateAbsorb(hit.Hit, target)
 		HitHelpers.HitRecalculateLifesteal(hit.Hit, instigator)
 		HitManager:TriggerHitListeners("DGM_Hit", "AfterDamageScaling", hit, instigator, target, flags, skillId)
-		HitManager:ExecuteArmorBypass(target, instigator, hit)
+		HitManager:ExecuteArmorBypass(target, instigator, hit.Hit)
         return
 	end
 
