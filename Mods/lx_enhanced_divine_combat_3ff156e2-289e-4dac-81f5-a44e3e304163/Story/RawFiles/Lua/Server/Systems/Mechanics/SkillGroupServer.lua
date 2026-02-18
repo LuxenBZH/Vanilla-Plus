@@ -98,6 +98,7 @@ local function RestoreCharacterHotbar(guid)
             slot = slot + 1
         end
         PersistentVars.SkillGroupSavedBars[character.MyGuid] = nil
+        Helpers.Timer.Delete("SkillGroup_"..guid) -- Safeguard since sometimes the loop function still loop for whatever reason
     else
         _VWarning("Tried to restore the skillbar of "..character.MyGuid.." but it was not saved !")
     end
@@ -106,7 +107,7 @@ end
 local function LoopUntilSkillIsDone(guid)
     local character = Ext.ServerEntity.GetCharacter(guid)
     if character.ActionMachine.Layers[1] and character.ActionMachine.Layers[1].State and character.ActionMachine.Layers[1].State.Type == "UseSkill" then
-        Helpers.Timer.Start(33, LoopUntilSkillIsDone, nil, character.MyGuid)
+        Helpers.Timer.StartNamed("SkillGroup_"..guid, 33, LoopUntilSkillIsDone, nil, character.MyGuid)
     else
         RestoreCharacterHotbar(character.MyGuid)
     end
@@ -118,7 +119,7 @@ end
 Ext.RegisterNetListener("LX_SkillGroupsRecover", function(_, payload)
     local info = Ext.Json.Parse(payload)
     local character = Ext.ServerEntity.GetCharacter(tonumber(info.Character))
-    Helpers.Timer.Start(33, LoopUntilSkillIsDone, nil, character.MyGuid)
+    Helpers.Timer.StartNamed("SkillGroup_"..character.MyGuid, 33, LoopUntilSkillIsDone, nil, character.MyGuid)
 end)
 
 ---@param e EsvLuaGameStateChangedEvent
