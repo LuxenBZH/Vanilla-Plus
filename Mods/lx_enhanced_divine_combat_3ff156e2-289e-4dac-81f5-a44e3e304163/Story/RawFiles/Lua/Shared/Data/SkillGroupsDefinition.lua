@@ -1,4 +1,7 @@
 local WeaponArts = {
+    Target_LX_DualWieldingAttack = function(character)
+        return Game.Math.GetWeaponAbility(character.Stats, character.Stats.MainWeapon) == "DualWielding"
+    end,
     Shout_LX_WeaponArtTrueStrike = function(character)
         return true, false
     end,
@@ -14,6 +17,7 @@ local WeaponArts = {
         return Helpers.Character.GetFightType(character) == "Melee" and offHand == "Shield", false
     end,
     Order = {
+        "Target_LX_DualWieldingAttack",
         "Shout_LX_WeaponArtTrueStrike",
         "Shout_LX_WeaponArtDash",
         "Shout_LX_WeaponArtGuard",
@@ -22,26 +26,6 @@ local WeaponArts = {
 }
 
 local VPlusSimpleSkillGroups = {
-    Shout_LX_RangedStances = {
-        Shout_LX_RangedReflexStance = function(character)
-            return character:GetStatus("LX_AIMING_STANCE") == null, true
-        end,
-        Shout_LX_RangedAimingStance = function(character)
-            return character:GetStatus("LX_REFLEX_STANCE") == null, true
-        end,
-        Shout_LX_Reload = function(character)
-            return character:GetStatus("LX_REFLEX_STANCE") ~= null, false
-        end,
-        Shout_LX_RapidFire = function(character)
-            return character:GetStatus("LX_REFLEX_STANCE") ~= null, false
-        end,
-        Target_LX_SuppressionFire = function(character)
-            return character:GetStatus("LX_AIMING_STANCE") ~= null, false
-        end,
-        Target_LX_HunterMark = function(character)
-            return character:GetStatus("LX_AIMING_STANCE") ~= null, false
-        end
-    },
     Target_HeavyAttack = WeaponArts,
     Target_DualWieldingAttack = WeaponArts
 }

@@ -71,17 +71,18 @@ end)
 ---@param target EsvCharacter
 ---@param flags HitFlags
 HitManager:RegisterHitListener("DGM_Hit", "AfterDamageScaling", "VP_WeaponSignatures", function(hit, instigator, target, flags)
-    if hit.SkillId == "Target_LX_AxeAttack_-1" and Helpers.IsCharacter(target) then
-        local mainDamage = (instigator.Stats.MainWeapon and instigator.Stats.MainWeapon.WeaponType == "Axe") and instigator.Stats.MainWeapon.StatsEntry['Damage Type'] or 
-            instigator.Stats.OffHandWeapon.StatsEntry['Damage Type']
+    local mainWeapon, offhandWeapon = Helpers.Character.GetWeaponTypes(instigator)
+    if hit.SkillId == "Target_LX_AxeAttack_-1" or (hit.SkillId == "Target_LX_DualWieldingAttack_-1" and ((target.UserVars.VP_ConsecutiveHitFromSkill.Amount == 2 and offhandWeapon == "Axe") or (target.UserVars.VP_ConsecutiveHitFromSkill.Amount ~= 2 and mainWeapon == "Axe"))) then
+        local mainDamage = mainWeapon == "Axe" and instigator.Stats.MainWeapon.StatsEntry['Damage Type'] or instigator.Stats.OffHandWeapon.StatsEntry['Damage Type']
         local correspondingArmor = Data.DamageTypeToArmorType[mainDamage]
         local correspondingDamage = correspondingArmor == "CurrentArmor" and HitHelpers.HitGetPhysicalDamage(hit.Hit) or HitHelpers.HitGetMagicDamage(hit.Hit)
-        if target.Stats[correspondingArmor] - correspondingDamage <= 0 then
-            local totalDamage = Ext.Utils.Round(math.min(HitHelpers.HitGetTotalDamage(hit.Hit)*0.75, instigator.Stats.MaxVitality*0.08))
+        if not Helpers.IsCharacter(target) or (target.Stats[correspondingArmor] - correspondingDamage <= 0) then
+            local twoHandedMultiplier = instigator.Stats.MainWeapon.IsTwoHanded and 1 or 2
+            local totalDamage = Ext.Utils.Round(math.min(HitHelpers.HitGetTotalDamage(hit.Hit)*0.75/twoHandedMultiplier, instigator.Stats.MaxVitality*0.08/twoHandedMultiplier))
             HitHelpers.HitAddDamage(hit.Hit, target, instigator, mainDamage, totalDamage)
             Helpers.Character.AddSkillCooldown(instigator, "Target_LX_AxeAttack", 6.0)
         end
-    elseif hit.SkillId == "Target_LX_MaceCrush_-1" and Helpers.IsCharacter(target) then
+    elseif hit.SkillId == "Target_LX_MaceCrush_-1" or (hit.SkillId == "Target_LX_DualWieldingAttack_-1" and ((target.UserVars.VP_ConsecutiveHitFromSkill.Amount == 2 and offhandWeapon == "Club") or (target.UserVars.VP_ConsecutiveHitFromSkill.Amount ~= 2 and mainWeapon == "Club"))) then
         local mainDamage = (instigator.Stats.MainWeapon and instigator.Stats.MainWeapon.WeaponType == "Club") and instigator.Stats.MainWeapon.StatsEntry['Damage Type'] or 
             instigator.Stats.OffHandWeapon.StatsEntry['Damage Type']
         local correspondingArmor = Data.DamageTypeToArmorType[mainDamage]
@@ -96,6 +97,34 @@ HitManager:RegisterHitListener("DGM_Hit", "AfterDamageScaling", "VP_WeaponSignat
     elseif hit.SkillId == "Target_LX_SwordCleave_-1" and Helpers.IsCharacter(target) then
         local count = GetVarInteger(instigator.MyGuid, "VP_SwordAttackCount") or 0
         SetVarInteger(instigator.MyGuid, "VP_SwordAttackCount", count+1)
+    elseif hit.SkillId == "Target_LX_DualWieldingAttack_-1" and ((target.UserVars.VP_ConsecutiveHitFromSkill.Amount == 2 and offhandWeapon == "Sword") or (target.UserVars.VP_ConsecutiveHitFromSkill.Amount ~= 2 and mainWeapon == "Sword")) then
+        local cleaveCandidates = Helpers.GetCharactersAroundPosition(target.WorldPos[1], target.WorldPos[2], target.WorldPos[3], 2)
+        local cleaveTarget = nil
+        local lowestDistance = 3
+        for i,character in pairs(cleaveCandidates) do
+            if CharacterIsEnemy(instigator.MyGuid, character.MyGuid) == 1 and character ~= target then --- Note: CharacterIsEnemy is always false if Peace Mode is active !
+                local newDistance = Ext.Math.Distance(target.WorldPos, character.WorldPos)
+                if newDistance < lowestDistance then
+                    cleaveTarget = character
+                    lowestDistance = newDistance
+                end
+            end
+        end
+        if not cleaveTarget then
+            return
+        end
+        local cleaveHit = NRD_HitPrepare(cleaveTarget.MyGuid, instigator.MyGuid)
+        for i,element in pairs(hit.Hit.DamageList:ToTable()) do
+            NRD_HitAddDamage(cleaveHit, element.DamageType, element.Amount*0.5)
+        end
+        local dodged = math.random(0, 99) >= Game.Math.CalculateHitChance(instigator.Stats, target.Stats)
+        NRD_HitSetInt(cleaveHit, "Dodged", dodged and 1 or 0)
+        NRD_HitSetInt(cleaveHit, "Missed", dodged and 1 or 0)
+        NRD_HitSetString(cleaveHit, "DeathType", "Physical")
+        NRD_HitSetInt(cleaveHit, "HitType", 4)
+        NRD_HitSetInt(cleaveHit, "Hit", 1)
+        NRD_HitQryExecute(cleaveHit)
+        HitHelpers.HitMultiplyDamage(hit.Hit, target, instigator, 0.5)
     end
 end)
 

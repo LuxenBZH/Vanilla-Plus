@@ -66,8 +66,8 @@ HitManager:RegisterHitListener("DGM_Hit", "AfterDamageScaling", "VP_AbsorbShield
 	--- Consecutive hit damage multiplier
 	if hit.SkillId ~= "" then
 		local stat = Ext.Stats.Get(hit.SkillId:gsub("(.*).+-1$", "%1"))
-		if stat.VP_ConsecutiveDamageReductionPercent ~= 0 then
-			if stat.VP_ConsecutiveDamageReductionHitAmount > 0 then
+		if stat.VP_ConsecutiveDamageReductionPercent ~= 0 or string.starts(hit.SkillId, "Target_LX_DualWieldingAttack") then
+			if stat.VP_ConsecutiveDamageReductionHitAmount > 0 or string.starts(hit.SkillId, "Target_LX_DualWieldingAttack") then
 				if not target.UserVars.VP_ConsecutiveHitFromSkill then
 					target.UserVars.VP_ConsecutiveHitFromSkill = {ID = instigator.UserVars.VP_LastSkillID.ID, Amount = 1, OnGoing = true}
 				else
