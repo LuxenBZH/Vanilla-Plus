@@ -8,18 +8,6 @@
 
 -- Ext.RegisterOsirisListener("CharacterStatusApplied", 3, "before", FoodRemoveRegeneration)
 
-local function ScaleAimedShot(character, status, causee)
-    if status == "DGM_AIMEDSHOT" then
-        RemoveStatus(character, "DGM_AIMEDSHOT")
-        local char = Ext.GetCharacter(character)
-        local accuracyBoost = math.floor(20 + (char.Stats.Intelligence - Ext.ExtraData.AttributeBaseValue)*3)
-        local status = CreateNewStatus("AimedShot_"..tostring(accuracyBoost), "DGM_Potion_Base", {AccuracyBoost = accuracyBoost, CriticalChance = char.Stats.Strength}, "DGM_AIMEDSHOT", {StackId = "Stack_LX_AimedShot"}, false)
-        ApplyStatus(character, status, 6.0, 1)
-    end
-end
-
-Ext.RegisterOsirisListener("CharacterStatusApplied", 3, "before", ScaleAimedShot)
-
 
 ---Forbearance mechanic
 ---@param target string|number
