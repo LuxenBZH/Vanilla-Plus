@@ -1,189 +1,4 @@
 <contentList>
-    <content contentuid="h5ef3ab659d7d2c752dd12873cd2b79a7b170" Key="Stats_LX_WalkItOff_DisplayName" Source="">Walk It Off</content>
-    <content contentuid="h7aedc5ebdfaad7b9d1840f348a91947c3123" Key="Stats_LX_WalkItOff_2_DisplayName" Source="">Walk It Off (2)</content>
-    <content contentuid="h6e5bb5fc5e1b5376880fd81a498856288433" Key="Stats_LX_WalkItOff_3_DisplayName" Source="">Walk It Off (3)</content>
-    <content contentuid="h57c62a371345b881f469c9d5b231410ba892" Key="Stats_LX_WalkItOff_4_DisplayName" Source="">Walk It Off (4)</content>
-    <content contentuid="hd4c730193a93d45cb2ff7e24365987ae25fa" Key="Stats_LX_WalkItOff_5_DisplayName" Source="">Walk It Off (5)</content>
-    <content contentuid="hf83e4895a702a9838c94525f85e73942998b" Key="Stats_LX_PetPal_DisplayName" Source="">Pet Pal (Summon)</content>
-    <content contentuid="he05c7ffa5721f7de84884b69fce936042a75" Key="Stats_LX_Staggered_DisplayName" Source="">Staggered</content>
-    <content contentuid="hd521271e1395614502b953dfbe796f694834" Key="Stats_LX_Staggered_Description" Source="">This character has staggered during their recovery.</content>
-    <content contentuid="h0ccdc4e7ed1a97eaca16d607c67101ed4c5b" Key="Stats_LX_Staggered2_DisplayName" Source="">Staggered (2)</content>
-    <content contentuid="hc6f4810b408b4215628d3e98864a4be29817" Key="Stats_LX_Staggered3_DisplayName" Source="">Staggered (3)</content>
-    <content contentuid="h49d92e105158435b5e9afce5e03af389c431" Key="Stats_LX_Confused_DisplayName" Source="">Confused</content>
-    <content contentuid="h5707257349b779287641c4de4123765de04c" Key="Stats_LX_Confused_Description" Source="">This character has been magically affected during recovery.</content>
-    <content contentuid="h5b565a2d6f38c6b17be47058beca5222e83e" Key="Stats_LX_Confused2_DisplayName" Source="">Confused (2)</content>
-    <content contentuid="h02bd2f026c68f8d2f4834b94b68698a52c06" Key="Stats_LX_Confused3_DisplayName" Source="">Confused (3)</content>
-    <content contentuid="h3866f7b68d58f1c0a956de7f60d1c235dd1a" Key="Stats_LX_DodgeFatigue_DisplayName" Source="">Dodge Fatigue</content>
-    <content contentuid="hf4e26d1c41bcfe7f79e6a07d8ab45e6df7a2" Key="Stats_LX_DodgeFatigue_Description" Source="">This characters dodging has become less effective.</content>
-    <content contentuid="he5cd4830e93025007a5ae8b0d745706498ad" Key="Stats_LX_DodgeFatigue2_DisplayName" Source="">Dodge Fatigue (2)</content>
-    <content contentuid="h40b9693c1e97fc02ef35829436b1b2fc8883" Key="Stats_LX_DodgeFatigue3_DisplayName" Source="">Dodge Fatigue (3)</content>
-    <content contentuid="h1f2ba6ccd48c9adcb2c94612326a8bdd2d5e" Key="Stats_LX_DodgeFatigue4_DisplayName" Source="">Dodge Fatigue (4)</content>
-    <content contentuid="h781e89a2e1db0f3794ba94aa3f628e020004" Key="Stats_LX_Leech_DisplayName" Source="">Leech</content>
-    <content contentuid="hbd1ceda01e514d1058ca77e9daa3ec4f1fde" Key="Stats_LX_Demon_DisplayName" Source="">Demon</content>
-    <content contentuid="hff1dfe992040af3758467999d30b7bc6ad1d" Key="Stats_LX_Hothead_DisplayName" Source="">Hothead</content>
-    <content contentuid="h0a0a7efb4f4d2fda50c7ef755f65c24cc8a4" Key="Stats_LX_PetPalSummoner_DisplayName" Source="">Pet Pal (Summoner)</content>
-    <content contentuid="h36b3fc5699b068bab64aa7f2aadf27ff9bcc" Key="Stats_LX_Duelist_DisplayName" Source="">Duelist</content>
-    <content contentuid="hfd76fdfbea2fbb28ef901ec837ab08a27d04" Key="Stats_LX_PotionFatigue2_DisplayName" Source="">Potion Fatigue</content>
-    <content contentuid="hce48e70032f56b229f50e2a8e57c8e3f1a43" Key="Stats_LX_PotionFatigue2_Description" Source="">This character drank too many potions and could not handle the side effects.</content>
-    <content contentuid="h5f799561d85a3be3fc3075dcf0ac827bc4b5" Key="Stats_LX_PotionFatigue1_DisplayName" Source="">Potion Fatigue</content>
-    <content contentuid="hf8f86b5ea45c0ca71bb92c3f1fc47751b342" Key="Stats_LX_PotionFatigue1_Description" Source="">This character drank too many potions and is experiencing side effects.</content>
-    <content contentuid="h17f742c4a36df53ca026a0b466ba7faee1d4" Key="Stats_LX_IceKing_DisplayName" Source="">Ice King</content>
-    <content contentuid="h588c64907f2252ed1dab6afc4562a8a0379e" Key="Stats_LX_Adrenaline_DisplayName" Source="">Adrenaline</content>
-    <content contentuid="h3eecc7bae3220c5aa4f053fbd030a472674b" Key="Stats_LX_Perseverance_DisplayName" Source="">Perseverance</content>
-    <content contentuid="hf814b62c2eb7ec808c80c6b1f0992159018c" Key="Stats_LX_SavageSortilege_DisplayName" Source="">Savage Sortilege</content>
-    <content contentuid="hc1cbc46a766af917bf1d1d72c1e8d8a94b05" Key="Stats_LX_Escapist_DisplayName" Source="">Escapist</content>
-    <content contentuid="hf9175bd9754e5f667987ab2c4cd63c397e08" Key="Stats_LX_Stench_DisplayName" Source="">Stench</content>
-    <content contentuid="hb64993e5d0185a8271b8e29b2f39460a0383" Key="Stats_LX_DDGoose_DisplayName" Source="">Duck Duck Goose</content>
-    <content contentuid="h626b07c57666811cc81fabc5e4d6d5576883" Key="Projectile_EnemyOilSpit_DisplayName" Source="">Oil Spit</content>
-    <content contentuid="h214d0701eb1ae846f4458da410868be1e3af" Key="Shout_LX_CrossbowSignature_DisplayName" Source="">Bullseye</content>
-    <content contentuid="h2572bf6c76514a7b815dd1e6952d137acf92" Key="Shout_LX_CrossbowSignature_Description" Source="">The next attack done with a crossbow will receive an Accuracy and Critical Chance modifier related to the movement speed of the target(s). Movement below 5 meters will provide 10% more Accuracy and Critical chance per meter, and reverse for each meter above 5 meters. Accuracy above 100% converted to Critical chance.</content>
-    <content contentuid="h7fe1cb6ab80e56eb2c2663121e90effc1565" Key="LX_SNIPER_DisplayName" Source="">Sniper</content>
-    <content contentuid="h940e08356471a664f061175e852574d38d17" Key="LX_SNIPER_Description" Source="">Increase critical chance every non-offensive skill or item used and resets when a critical hit happens.</content>
-    <content contentuid="h6177d37ecdc1d2475e4826110acd37baefde" Key="LX_SNIPER_MULT_DisplayName" Source="">Deadly Aim</content>
-    <content contentuid="h6549683b8689f648970d28c0194b6abfe190" Key="LX_SNIPER_MULT_Description" Source="">Increase critical multiplier every successful critical hit done while Sniper is active. The higher Sniper is, the more critical multiplier is granted.</content>
-    <content contentuid="h2e2a72e6c3031b004def69c9b36342b9ce26" Key="Projectile_LX_QuickShot_DisplayName" Source="">Quick Draw</content>
-    <content contentuid="h358ffae05c0b045596a6ca8ba9b32dac8cd3" Key="Projectile_LX_QuickShot_Description" Source="">Draw an arrow with haste and shoot to gain some time to deal [1]. Hit chance is capped at 80% and is further reduced with the distance from the target by 5% per meter beyond the third and immediately grants free movement equal to the travel distance of the arrow.</content>
-    <content contentuid="haad2b9c058a7505855c5bdbd8a59202a9bc5" Key="Dome_CircleOfProtection_Description" Source="">Create a magic field that increases Tougness by [1], reduces all direct damage taken from sources outside of the dome by 35% and recover Physical and Magic armours on cast.</content>
-    <content contentuid="hab31351288563ab94b37c353faed07955d42" Key="Shout_LX_TransmuteSkin_DisplayName" Source="">Transmute Skin</content>
-    <content contentuid="hd3001b3a1b5e44f7ddec7918976357091f39" Key="Shout_LX_TransmuteSkin_Description" Source="">Choose an available elemental skill. Each skill is unlocked if the ability requirements. Cooldown is shared between all available elemental skills.</content>
-    <content contentuid="he5cf30ab2c099b2118196289e2484650287b" Key="Shout_Adrenaline_Description" Source="">Gain 2 Action Points immediately, but lose 3 Action Points next turn. Any Action Points over your maximum are lost.</content>
-    <content contentuid="h8ff2bd1ae2b55a1f6f17128c287ee28da63a" Key="Target_ElementalArrowheads_DisplayName" Source="">Elemental Weapons</content>
-    <content contentuid="he7bd71f2d01d865d2a3e9893c267cba0680b" Key="Target_Overpower_Description" Source="">Deal [1]. Reduce the target's Toughness to 0 and prevent Physical and Magic armour recovery for 2 turns. Set Knocked Down.</content>
-    <content contentuid="h117b3564c0166ec0fdef5a0a2d5f41ef04b7" Key="Target_Vaporize_Description" Source="">Vaporize ground surfaces into clouds if possible. Targeting an oil surface will splash it and spread in a 6 meters radius. Targeting a frozen surface costs 1 more AP and will trigger Ice Breaker, dealing damage to all targets on the frozen surface.</content>
-    <content contentuid="h6a772bd570b155c73b5dca62c364cfc4bdfe" Key="LX_UNSTABLE_COOLDOWN_DisplayName" Source="">Equalized</content>
-    <content contentuid="hdb8cecf094a0b1a4f117b5cf594e5353cdfe" Key="LX_UNSTABLE_COOLDOWN_Description" Source="">Unstable effect won't trigger.</content>
-    <content contentuid="hdc64ca8b9b57e0caafd79fdd99e3b0a67939" Key="LX_GUERILLA_COOLDOWN_DisplayName" Source="">Caught Attention</content>
-    <content contentuid="h51b8a2bcc030b0584ca89b56f6fe241385d8" Key="LX_GUERILLA_COOLDOWN_Description" Source="">GUERILLA effect won't trigger.</content>
-    <content contentuid="h89baa02e802dd23fbf0c7cd34fa8184c2272" Key="LX_WALKITOFF_2_DisplayName" Source="">Walk It Off</content>
-    <content contentuid="h8bb99b2e027c4b57ed7cd5b598561cf9d804" Key="LX_WALKITOFF_DisplayName" Source="">Walk It Off</content>
-    <content contentuid="h79d170e14b502c8aff7b8001b2daa1bb7040" Key="LX_WALKITOFF_3_DisplayName" Source="">Walk It Off</content>
-    <content contentuid="h9ad23babf77b2fa91dd72f97a2530170f38f" Key="LX_WALKITOFF_4_DisplayName" Source="">Walk It Off</content>
-    <content contentuid="hf2524598064f1024f57da36f684777c2de44" Key="LX_WALKITOFF_5_DisplayName" Source="">Walk It Off</content>
-    <content contentuid="h47ce6c4e02ab79bcaab6100cf980d06ca2b5" Key="LX_PETPAL_DisplayName" Source="">Weaker Summon</content>
-    <content contentuid="hade1c19fa1c4d784efd433dd954ad2cbed21" Key="LX_PETPAL_Description" Source="">This summon is weaker.</content>
-    <content contentuid="h1c260bd3e364cd46071470fa6cc055e8c892" Key="LX_STAGGERED_DisplayName" Source="">Staggered</content>
-    <content contentuid="h968736ece970d23940b86aedff80cd6ffe20" Key="LX_STAGGERED_Description" Source="">This character have staggered during his recovery.</content>
-    <content contentuid="h0da1b4db5503d5a8eb45da090005a52ab17a" Key="LX_STAGGERED2_DisplayName" Source="">Staggered (2)</content>
-    <content contentuid="h64ee31b27a6e77991555c325df2671cd5310" Key="LX_STAGGERED2_Description" Source="">This character have staggered during his recovery.</content>
-    <content contentuid="h36447c316e13b79d81cae667ef6139588b29" Key="LX_STAGGERED3_DisplayName" Source="">Staggered (3)</content>
-    <content contentuid="hf63bff438fd06d48bde9501a36cc19e3b506" Key="LX_STAGGERED3_Description" Source="">This character have staggered during his recovery.</content>
-    <content contentuid="h0da4f2567aee7001c5edbbb70cc4b71d640b" Key="LX_CONFUSED_DisplayName" Source="">Confused</content>
-    <content contentuid="hdf4a7d51cafd2eec9ea2eb04968cd0f73e80" Key="LX_CONFUSED_Description" Source="">This character have been magically affected during recovery.</content>
-    <content contentuid="hc14d2173d1a74e10b885b87ee8d1ee0aa4d4" Key="LX_CONFUSED2_DisplayName" Source="">Confused (2)</content>
-    <content contentuid="h4a1ebe80a52a6d0b98845449fb4cab8de064" Key="LX_CONFUSED2_Description" Source="">This character have been magically affected during recovery.</content>
-    <content contentuid="h047aa6da51f9a4389d0479922463339da617" Key="LX_CONFUSED3_DisplayName" Source="">Confused (3)</content>
-    <content contentuid="h2d7b6e085d130d4467c33d6af1c72670c15c" Key="LX_CONFUSED3_Description" Source="">This character have been magically affected during recovery.</content>
-    <content contentuid="h14783c41f76ebab9c7eb2a57e30626df6ae2" Key="LX_MOMENTUM_DisplayName" Source="">Momentum</content>
-    <content contentuid="h4c265fb27c137e1680320d58357b0145f62e" Key="LX_MOMENTUM_Description" Source="">Any attempt to apply Knocked Down or Chicken will apply Staggered instead.</content>
-    <content contentuid="h79cbeef6d8555d899b8803b8d243e4647c99" Key="LX_LINGERING_DisplayName" Source="">Lingering</content>
-    <content contentuid="hacc228e497bcde39bd91e067ad22467dbf88" Key="LX_LINGERING_Description" Source="">Any attempt to apply Stunned, Petrified, Frozen, Madness, Terrified or Charm will apply Confused instead.</content>
-    <content contentuid="hd8d06fdeefd17597c12f8e6888dfbc039b3a" Key="LX_DODGE_FATIGUE1_DisplayName" Source="">Dodge Fatigue</content>
-    <content contentuid="hba86e5ffec25dd3d4542108dac38ede27859" Key="LX_DODGE_FATIGUE1_Description" Source="">This character dodges become less effective.</content>
-    <content contentuid="h53eee4873a4e4eb316af7ff45cebc61d8387" Key="LX_DODGE_FATIGUE2_DisplayName" Source="">Dodge Fatigue (2)</content>
-    <content contentuid="h9fc6d538fcd478e684f6f9ef614a08c8cf62" Key="LX_DODGE_FATIGUE2_Description" Source="">This character dodges become less effective.</content>
-    <content contentuid="ha0a604a0c8dfa7c4d094daf2322e64541594" Key="LX_DODGE_FATIGUE3_DisplayName" Source="">Dodge Fatigue (3)</content>
-    <content contentuid="h053cf5e1f0c77c3d7bccd531f5e0d29b7edc" Key="LX_DODGE_FATIGUE3_Description" Source="">This character dodges become less effective.</content>
-    <content contentuid="h9e34e7e0479e3caa2d2affea332aa7f849f4" Key="LX_DODGE_FATIGUE4_DisplayName" Source="">Dodge Fatigue (4)</content>
-    <content contentuid="hd680c557b93c9ddd78967b797e2757ccf57b" Key="LX_DODGE_FATIGUE4_Description" Source="">This character dodges become less effective.</content>
-    <content contentuid="h50c2bd50cb47e6e1d2db08fc3c7d267530c2" Key="ARROWHEAD_FIRE_DisplayName" Source="">Burning Weapons</content>
-    <content contentuid="h66204152765620e896c23424d54b3c0c6525" Key="ARROWHEAD_FIRE_Description" Source="">Adds [1] to weapon attacks and skills.</content>
-    <content contentuid="hf882d1e85f8563d5aeaa72d173b43ff8d8bc" Key="ARROWHEAD_WATER_DisplayName" Source="">Water Weapons</content>
-    <content contentuid="h9d7dd5fc99bd652fc463e6dced2522ded8e1" Key="ARROWHEAD_WATER_Description" Source="">Adds [1] to weapon attacks and skills.</content>
-    <content contentuid="hb870eb94c663256c9de9091dc1a69ee9cdb6" Key="ARROWHEAD_POISON_DisplayName" Source="">Poison Weapons</content>
-    <content contentuid="h41dcb819ff3bcf2dcc93737cba2f41035b1d" Key="ARROWHEAD_POISON_Description" Source="">Adds [1] to weapon attacks and skills.</content>
-    <content contentuid="h7ab4b6ee3a6d059c4bd05e62bcac9392e407" Key="ARROWHEAD_ELECTRIC_DisplayName" Source="">Electric Weapons</content>
-    <content contentuid="h68c7bf16753308b0c2ed1965e47f8b7ae71c" Key="ARROWHEAD_ELECTRIC_Description" Source="">Adds [1] to weapon attacks and skills.</content>
-    <content contentuid="ha6f46354b08087e1e78c96c7eb0e606b9f66" Key="ARROWHEAD_BLOOD_DisplayName" Source="">Bloody Weapons</content>
-    <content contentuid="h3b922a63c11866ff9203cf79eaa9718893b7" Key="ARROWHEAD_BLOOD_Description" Source="">Adds [1] to weapon attacks and skills.</content>
-    <content contentuid="haa8d03fdb9cb99021593f192c697cc084a63" Key="ARROWHEAD_OIL_DisplayName" Source="">Oily Weapons</content>
-    <content contentuid="h43d5044ff0777677cfa239594226392e0713" Key="ARROWHEAD_OIL_Description" Source="">Adds [1] to weapon attacks and skills.</content>
-    <content contentuid="hac6daa28073bb1e23b23c7a6cdba1ca9c8d2" Key="LX_POTIONWARNING_DisplayName" Source="">Potion Dizziness</content>
-    <content contentuid="hcb20c90193372082e93ff38d7cd1b4b55762" Key="LX_POTIONWARNING_Description" Source="">This character drank a lot of potions. One more potion and it's an overdose !</content>
-    <content contentuid="hbab96088917be273588e70bbc5a5b387c65c" Key="LX_POTIONFATIGUE2_DisplayName" Source="">Potion Poisoning</content>
-    <content contentuid="h07a0fd48ef17870419ecda09111aa1e19e21" Key="LX_POTIONFATIGUE2_Description" Source="">This character drank too much potions and could not handle the side effects.</content>
-    <content contentuid="h7927a3097191cbbf44c8b4bebfa308df2db2" Key="LX_POTIONFATIGUE1_DisplayName" Source="">Potion Poisoning</content>
-    <content contentuid="h56d95e144f1eaefb268b1cf9926ad9714309" Key="LX_POTIONFATIGUE1_Description" Source="">This character drank too much potions and start to have side effects.</content>
-    <content contentuid="h98efea94fb4cc9f3a651050b23d29dfed065" Key="LX_SHIELDSUP_DisplayName" Source="">Shields Up</content>
-    <content contentuid="hf6e13c46ed3835b30cb017edb284953154a1" Key="LX_SHIELDSUP_Description" Source="">The amount of damage going through armors is reduced by half.</content>
-    <content contentuid="h79469f2ea1e847b62b3d5b7994865e8bccc2" Key="LX_FOOD_REGENERATION_DisplayName" Source="">Well fed</content>
-    <content contentuid="h261e81af6957dbbd8298996f195c27cc6996" Key="LX_FOOD_REGENERATION_Description" Source="">Regenerate 1% Vitality per turn during combat.</content>
-    <content contentuid="h5b49e7aed7230cb70c16ca7cdd23fef33e0e" Key="LX_FOOD_CLEAN_DisplayName" Source="">Purge</content>
-    <content contentuid="he7d1e2a3b9558e7ee2e65ff2f102d5f3b06e" Key="LX_FOOD_REGENERATION2_DisplayName" Source="">Well fed</content>
-    <content contentuid="hbca89b050684ab9296ff259d172113133600" Key="LX_FOOD_REGENERATION2_Description" Source="">Regenerate 2% Vitality per turn during combat.</content>
-    <content contentuid="hd841f0a6604f1d6c0540b34d2fc682f3a41a" Key="LX_SLOWED_DisplayName" Source="">Slowed</content>
-    <content contentuid="he8c8e5b9703802fcda3af899085f63403ed6" Key="LX_OILYCARAPACE_DisplayName" Source="">Oily Carapace</content>
-    <content contentuid="hbc0f2ab65c6c94fd5f7bdfebd2ac5fe37457" Key="LX_OILYCARAPACE_Description" Source="">Reduce damage going through Physical armour by 100%</content>
-    <content contentuid="hec2e49da8a8aa3446f7a0b5dc49c441f4fa0" Key="LX_CRYOTHERAPY_DisplayName" Source="">Cryotherapy</content>
-    <content contentuid="ha4aa93333b2d12f376e7bb15395df3f985c3" Key="LX_CRYOTHERAPY_Description" Source="">Reduce damage going through Magic armour by 100%</content>
-    <content contentuid="h21b4651fdcdeb13787c4fbc8463acffabd0a" Key="LX_INCQB_DisplayName" Source="">Close Quarter Penalty</content>
-    <content contentuid="haf4a9f80bcfeccba0eb8a75b1eb8019bc5bf" Key="LX_INCQB_Description" Source="">If you attack this character with a ranged weapon, the damage will be lowered.</content>
-    <content contentuid="hc18ad27e64bc4f533e9a88b650a2e0b540cb" Key="SIPHON_POISON_Description" Source="">Adds [2] damage to your weapon attacks and skills. They now also set Acid for 1 turn (3 if Venom Coating is active).</content>
-    <content contentuid="h08d873cd266f6e78385f5c3811b711c413e0" Key="VENOM_COATING_Description" Source="">Adds [1] to weapon attacks and skills.</content>
-    <content contentuid="h161eadedcfeb70b9b777476ce532350418f4" Key="VENOM_AURA_Description" Source="">Adds [1] to weapon attacks and skills.</content>
-    <content contentuid="h62bb19acf14604859acabad42db00d902268" Key="FIRE_BRAND_Description" Source="">Adds [1] to weapon attacks and skills.</content>
-    <content contentuid="hbf89ef2a68508b32839bf02a9ebaec829435" Key="FIRE_BRAND_AURA_Description" Source="">Adds [1] to weapon attacks and skills.</content>
-    <content contentuid="hb0a3719033642eca29df55f94fc53093baac" Key="LX_ADRENALINE_DisplayName" Source="">Adrenaline</content>
-    <content contentuid="hef3ecce70c3a9a7ff497ea51b2660b2d795d" Key="LX_PERSEVERANCE_DisplayName" Source="">Perseverance</content>
-    <content contentuid="h7de039c81617186bd8adc5d784381f970430" Key="LX_EXECUTIONER_DisplayName" Source="">Executioner</content>
-    <content contentuid="h050fa98ba211e76cdbe91316fb91251b1b8c" Key="LX_GB4_MC_EA_DisplayName" Source="">Cycle of Earth and Air</content>
-    <content contentuid="h23a941495980e46d8506e8f360ecb4e740b3" Key="LX_GB4_MC_WF_DisplayName" Source="">Cycle of Water and Fire</content>
-    <content contentuid="h5e70e2f9b8ff886dee45abb9947c72c7af3d" Key="LX_INDOMITABLE_DisplayName" Source="">Indomitable</content>
-    <content contentuid="he80b88c77a630b024e7cc034c568947cd36e" Key="LX_INDOMITABLE_CD_DisplayName" Source="">Exhausted</content>
-    <content contentuid="h1c5974af7a003001a1debf926d030835febe" Key="LX_INDOMITABLE_CD_Description" Source="">The Indomitable talent won't have any effect while this status is present.</content>
-    <content contentuid="h6b6fb589025ed6451081b2eacb2b2c200661" Key="LX_GLADIATOR_CD_DisplayName" Source="">Gladiator</content>
-    <content contentuid="hea0e9566374cff90c4402ae4160ca7e36fe3" Key="LX_GLADIATOR_CD_Description" Source="">The Gladiator talent won't have any effect while this status is present.</content>
-    <content contentuid="hc38550f700984956f25b69715c5eb8ebdd52" Key="LX_SOULCATCHER_DisplayName" Source="">Soulcatcher</content>
-    <content contentuid="he59e8f4991e38b328142c2633f1115ed4836" Key="LX_SOULCATCHER_Description" Source="">Raised as a zombie until status expires or character is resurrected.</content>
-    <content contentuid="h92311bf4b13f1bdab009f21d730ae43a27a2" Key="LX_GB4_JITTERBUG_CD_DisplayName" Source="">Escaped</content>
-    <content contentuid="h7f482f41fc2b5d23d22cb722f9298f115d00" Key="LX_GB4_JITTERBUG_CD_Description" Source="">The Jitterbug talent won't have any effect while this status is present.</content>
-    <content contentuid="hf0c07b0877e7f2c1e3981a2543b37d035b24" Key="LX_SOULCATCHER_CD_DisplayName" Source="">Soulcatcher</content>
-    <content contentuid="h8dffedc4bfb513d74cab09b2d63285505831" Key="LX_SOULCATCHER_CD_Description" Source="">The Soulcatcher talent won't work while this status is active.</content>
-    <content contentuid="h51ef909b50f5f8e529f1d95a84b5b4e218e9" Key="LX_CORROGIC_DisplayName" Source="">Resistance Corrosion</content>
-    <content contentuid="hc9ceee68ccce95d92916727aacb0faa7bfed" Key="LX_CORROGIC_Description" Source="">Resistances are lowered by Corrosive and/or Magic armour damage on Vitality. Cured by Fortified and Magic Shell.</content>
-    <content contentuid="h7159aaedd214a8661537d52cc003b759b29e" Key="DGM_WARMUP_DisplayName" Source="">Warmup</content>
-    <content contentuid="hf44a347c46b3eaf64751f41b0946c3362099" Key="DGM_WARMUP_Description" Source="">The character adapt their blows to the moving targets.</content>
-    <content contentuid="h873fb7fc9841a22f0eb2eb9d6885847e226f" Key="DGM_WARMUP2_DisplayName" Source="">Warmup (2)</content>
-    <content contentuid="ha75377147b708a260574ca670d12f7664267" Key="DGM_WARMUP3_DisplayName" Source="">Warmup (3)</content>
-    <content contentuid="hfc23e04015be9a1b524f218e7f5640998338" Key="DGM_WARMUP4_DisplayName" Source="">Warmup (4)</content>
-    <content contentuid="h84c7ed2e89671bb03918e2d7225c81ddcbe9" Key="LX_OILED_DisplayName" Source="">Oiled</content>
-    <content contentuid="h2e1d4d231630216326ecb0518bfa5bc2518c" Key="LX_OILED_Description" Source="">Character body is covered with inflammable oil.</content>
-    <content contentuid="ha4da4f5b48ecae66924c165ae14fa5a0bca7" Key="LX_OVERPOWERED_DisplayName" Source="">Overpowered</content>
-    <content contentuid="h8e88d134eb046acfbe0e9380e99f3a1c63e4" Key="LX_PROTECTION_CIRCLE_DisplayName" Source="">Dome of Protection</content>
-    <content contentuid="hd15da529da2b972a5045e761659fbf54b514" Key="LX_THERMAL_SHOCK_DisplayName" Source="">Thermal Shock</content>
-    <content contentuid="h8243d6bd5bd977ce410367a9b3c9b32ec6c5" Key="LX_FROSTBITE_DisplayName" Source="">Frostbite</content>
-    <content contentuid="h11059a6d5d6c487e1b5870e9cbf5f0ac7419" Key="LX_FROSTBITE_Description" Source="">Deals [1] damage per turn.</content>
-    <content contentuid="hb37ea8628ca000cc521e1846d5f3608b77be" Key="Target_HeavyAttack_DisplayName" Source="">Recklessness</content>
-    <content contentuid="h8a12f71f33c0d5059a708c32449b6881e7a3" Key="Target_AxeAttack_Description" Source="">Perform a heavy attack that deals [1]. If the target armour corresponding to the main damage of the axe is stripped, it also deals 8% of the user max Vitality (up to 75% of the damage done by the hit) as the main axe damage but also increases cooldown by 1 turn.</content>
-    <content contentuid="h052ae06e850c1ec83ea9ed267f13a658c389" Key="Target_SwordCleave_DisplayName" Source="">Cleave</content>
-    <content contentuid="h26f1892691e4952aa567bad98dd0b8b606aa" Key="Target_SwordCleave_Description" Source="">Perform a swipe cleaving all enemies within 3 meters of the target, dealing [1]. Each hit beyond the second character increases the cooldown by 1.</content>
-    <content contentuid="h3714055248bfbfca4275af2788a4965c2ae0" Key="Target_LX_MaceCrush_DisplayName" Source="">Crush Armor</content>
-    <content contentuid="h56f34558e0c2d0bed0eb64fd75083748fc89" Key="Target_LX_MaceCrush_Description" Source="">Strike the target to deal [1]. Deals an additional 80% of this hit as armor damage corresponding to the main damage type of the mace. If there is no armor before the hit, cooldown is reduced by 1 turn.</content>
-    <content contentuid="hb596745fe0a06dc9b87355b5b784a04737f8" Key="Zone_LX_SpearAttack_DisplayName" Source="">Lightning Throw</content>
-    <content contentuid="h6ab9ae3d93d6df55d23729d8d0a15eba065c" Key="Zone_LX_SpearAttack_Description" Source="">Execute a long range thrust, dealing [1] over 8 meters. When hitting more than two characters, cooldown is increased by 1 turn for each additional hit.</content>
-    <content contentuid="h659a054915f3fe6e141d0ec176e1dc68f136" Key="Shout_LX_WeaponArtTrueStrike_DisplayName" Source="">Weapon art: True Strike</content>
-    <content contentuid="hd2c974fad389e88552f38bfc111e74628892" Key="Shout_LX_WeaponArtTrueStrike_Description" Source="">The next weapon attack have a bonus accuracy of 3 times the current Warmup accuracy bonus (up to 30%), but damage is also reduced by the same percentage.</content>
-    <content contentuid="he07dea815734e01ba5201f88cbc02ca6bfe1" Key="LX_WA_TRUESTRIKE_DisplayName" Source="">Weapon art: True Strike</content>
-    <content contentuid="hd003bfdf8d72b559ac569f29b710238f64c1" Key="LX_WA_TRUESTRIKE_Description" Source="">+[1] Accuracy and -[2]% damage on the next weapon attack</content>
-    <content contentuid="hbce6d9c5c9647d537041dfcb83b9af73e7e0" Key="Projectile_LX_SpellConduit_DisplayName" Source="">Staff Of Magus</content>
-    <content contentuid="hf046fece1f60e01fd3004fcb06c2de960096" Key="Projectile_LX_SpellConduit_Description" Source="">Launch a magical missile from your staff that deals [1] damage.</content>
-    <content contentuid="h09f49e3d36bb584e122e22c1ba4bf06f52be" Key="Shout_LX_BowSignature_DisplayName" Source="">Hit and Run</content>
-    <content contentuid="h0beb429763d4b9d1fe5dc177bd4bd9c719dd" Key="Shout_LX_BowSignature_Description" Source="">Until the end of the turn, every hit done with a skill using a bow will provide 1 AP worth of free movement, up to 250% of the character base movement and are not affected by close quarter penalty. Unspent movement at the end of the turn will carry over to the next turn. Hit chance beyond 7 meters range is reduced by 10% per meter.</content>
-    <content contentuid="h91682cb2f71921814006cd9d81cdcb8c1985" Key="LX_BOW_SIGNATURE_DisplayName" Source="">Hit and Run</content>
-    <content contentuid="hd782366240e5e41b195a742b9d294e4a11d3" Key="LX_BOW_SIGNATURE_Description" Source="">Hits done with a skill using a bow will provide 1 AP worth of free movement, up to 250% of the character base movement.</content>
-    <content contentuid="hb4490f751ae9046f3cb3d69fcadad42791e6" Key="LX_CROSSBOW_SIGNATURE_DisplayName" Source="">Bullseye</content>
-    <content contentuid="h57f98122992e5b8a84b64d45a70fe80354e8" Key="LX_CROSSBOW_SIGNATURE_Description" Source="">The next attack done with a crossbow will receive an Accuracy and Critical Chance modifier related to the movement speed of the target(s).</content>
-    <content contentuid="h24226ed8bfe48204cdf8f46a115633c7135f" Key="Shout_LX_WeaponArtDash_DisplayName" Source="">Weapon art: Reckless Dash</content>
-    <content contentuid="h28665bcdf2be2b32821e6e37fc056febbeac" Key="Shout_LX_WeaponArtDash_Description" Source="">Immediately acquire 1 AP worth of movement, but reduce the user toughness by 100 and prevent armours recovery for 1 turn. Cannot use if Guard is active.</content>
-    <content contentuid="h15c7feca932d45e6b9fdd10bd0a234efbe5e" Key="LX_EXPOSED_DisplayName" Source="">Exposed</content>
-    <content contentuid="h769a97ec242dd8ba46317780caf39c95b177" Key="Shout_LX_WeaponArtGuard_DisplayName" Source="">Weapon art: Guard</content>
-    <content contentuid="h117b3fcbdcef70a4cb1c8cb1cfc86ef95f7c" Key="Shout_LX_WeaponArtGuard_Description" Source="">Increase Toughness by 50 until next turn. Warmup cost reduced by 1 if a shield is equipped. Cannot use if Exposed is active.</content>
-    <content contentuid="h430676df48436da260f5abd1ce8345423851" Key="LX_WA_GUARD_DisplayName" Source="">Guard</content>
-    <content contentuid="h581cf559aa46f05f894d377f7ab6d5b84a34" Key="Projectile_Grenade_SilverPowder_DisplayName" Source="">Silver Powder Grenade</content>
-    <content contentuid="h3b8fcfc033a946a47294249c38a5a3118bec" Key="Projectile_Grenade_SilverPowder_Description" Source="">Deals [1] and sets Suffocating for 2 turns.</content>
-    <content contentuid="h8345df305d393a4b18f6bd801b14a04ebe65" Key="LX_FOOD_POISONED_DisplayName" Source="">Food Poisoning</content>
-    <content contentuid="h06e27ca2d185a32368510828382253cef57e" Key="LX_FOOD_POISONED_Description" Source="">Deals [1] damage each turn.</content>
-    <content contentuid="h161ed8a74b801ab8c77dd07963a24897c903" Key="OIL_CARAPACE_Description" Source="">Heals 35% of Physical armour damage taken last turn.</content>
-    <content contentuid="h63c3c0aa48f6e112c6965fa4bf577bd2e07c" Key="CRYOTHERAPY_Description" Source="">Heals 35% of Magic armour damage taken last turn.</content>
     <content contentuid="h2f00286fg98feg42abg84a5gb9d4fcce838e" Key="Accuracy_Description" Source="Attributes.lsb">Your chance to hit an enemy. On miss with a melee weapon, you trigger Warmup which increase your Accuracy and Movement (improved by Warfare), stackable up to 4 times.</content>
     <content contentuid="h278d3a4fg4dceg4362g9b35g9c3685c93268" Key="Damage_Description" Source="Attributes.lsb">The damage you inflict when successfully hitting an enemy or object.</content>
     <content contentuid="hb924258ag2cf7g4c11gaf4eg8b7de303c197" Key="DynamicBonus" Source="Attributes.lsb"/>
@@ -202,12 +17,8 @@
     <content contentuid="h2ce13614gab6cg4878gb781gcb3186a8ead9" Key="MagicArmourBypassReduction_Tooltip" Source="Attributes.lsb">Reduce damage going through Magic Armour by [1]%</content>
     <content contentuid="he1708d1eg243dg4b72g8f48gddb9bc8d62ff" Key="Strength_DynamicTooltip" Source="Attributes.lsb">+[1] point(s) = +[2]% to all Damage and +[3]% more for weapon-based attacks and +[4]% to Ingress cap (given by Intelligence).</content>
     <content contentuid="ha422c4f4ge2bbg4cbcgbbf3g505c7ce673d1" Key="Wits_DynamicTooltip" Source="Attributes.lsb">+[1] point(s) = +[2]% Critical Chance, +[3] Initiative, +[4]% damage done by harmful statuses and +[5] Wisdom[6].</content>
-    <content contentuid="ha23ceefdg2365g476cg98d0g3df72fdafc92" Key="DualWielding_TooltipCurrent" Source="">Level [1]: +[2]% Damage, +[3]% Dodging and +[4] Armour Penetration.</content>
-    <content contentuid="hb034efe9g235bg44c9g9307g65a6d96c90e6" Key="DualWielding_TooltipNext" Source="">Next Level [1]: +[2]% damage, +[3]% Dodging and +[4] Armour Penetration.</content>
     <content contentuid="h768669d0g02adg48f7g901eg83068a96bf19" Key="DualWielding_Description" Source="CombatAbilities.lsb">Dual-Wielding increases damage, Dodging and Armour Penetration when wielding two Single-Handed weapons.</content>
     <content contentuid="h03d68693g35e7g4721ga1b3g9f9882f08b12" Key="DualWielding_Displayname" Source="CombatAbilities.lsb">Dual-Wielding</content>
-    <content contentuid="hf9297ef7afe072f40e545fcd237d629c533d" Key="Polymorph_TooltipCurrent" Source="">Level [1]: +[2] attribute point(s), +[3]% elemental resistance.</content>
-    <content contentuid="hc0725c76f0536656a41dd55d7df2585b6593" Key="Polymorph_TooltipNext" Source="">Next Level [1]: +[2] attribute point(s), +[3]% elemental resistance.</content>
     <content contentuid="hc4400964gcf4bg429cg882cg9e90ba8cf0ce" Key="Hydrosophist_TooltipCurrent" Source="CombatAbilities.lsb">Level [1]: Water attacks deal +[2]% more damage, +[3]% Vitality healed, +[4]% Magic Armour from skills and potions.</content>
     <content contentuid="h0a8b0b59g5da9g483fg86a3g59afce30dbb7" Key="Hydrosophist_TooltipNext" Source="CombatAbilities.lsb">Next Level [1]: Water attacks deal +[2]% more damage, +[3]% Vitality healed, +[4]% Magic Armour from skills and potions.</content>
     <content contentuid="h1bae56a9ga45fg431fg80bfg2afbef03c1d2" Key="Perseverance_Description" Source="CombatAbilities.lsb">Recovers armour passively at the start of every turn. This effect cannot be shared and is not affected by healing modifiers. This effect is disabled while under the effects of crowd control. Also increase maximum armours and provide the same amount on resurrection.</content>
@@ -225,8 +36,6 @@
     <content contentuid="h2afdc1f0g4650g4ea9gafb7gb0c042367766" Key="SingleHanded_TooltipNext" Source="CombatAbilities.lsb">Next Level [1]: +[2]% Damage, +[3]% accuracy and +[5] Toughness.</content>
     <content contentuid="h6e9ec88dgcbb7g426bgb1d9g69df0240825a" Key="TwoHanded_TooltipCurrent" Source="CombatAbilities.lsb">Level [1]: +[2]% Damage, +[3]% Critical Multiplier.</content>
     <content contentuid="hda7ee9a4g5bbeg4c62g96b7ge31b21e094f3" Key="TwoHanded_TooltipNew" Source="CombatAbilities.lsb">Next Level [1]: +[2]% Damage, +[3]% Critical Multiplier.</content>
-    <content contentuid="h864217b230a4c85df65a9de69c734ce797b0" Key="Polymorph_TooltipCurrent" Source="">Level [1]: +[2] attribute point(s), +[3]% elemental resistances.</content>
-    <content contentuid="hb37861fe64b1e8cb1ae217544b101cf1c404" Key="Polymorph_TooltipNew" Source="">Next Level [1]: +[2] attribute point(s), +[3]% elemental resistances</content>
     <content contentuid="hd8444847bbd19af4a64fec0be5d676cfd2ac" Key="Condition_OneArmorDown" Source="CustomTooltips.lsb">Enemies need to have Physical or Magic armour down to be targetable.</content>
     <content contentuid="h929657ba1aba4325f243f0e6772cfaceaadd" Key="BaseLevelDamage" Source="CustomTooltips.lsb">Base Level [1] Damage</content>
     <content contentuid="h79577823a419e6c124b9bd82921fb1d6acde" Key="BaseWeaponLevelDamage" Source="CustomTooltips.lsb">Base Weapon Level [1] Damage</content>
@@ -406,7 +215,7 @@
     <content contentuid="h004cd16fgf0e9g4216g9a3cg2dc6e16fe78a" Key="Target_Sabotage_Description" Source="Skills.lsb">Deals [1] to the target character and set Atrophy. If target character is carrying grenades or arrows, a random one explodes in their inventory.</content>
     <content contentuid="h42f0b1b6gd786g46ebga04egf56b57d92048" Key="Target_ShadowInfusion_Description" Source="Skills.lsb">Incarnate learns how to go invisible and strike foes with a corrosive slash. Increases damage by [1]% and maximum Vitality by 15%.</content>
     <content contentuid="h31d2a547g005bg4ee3g8d2ag47720bd4fa1a" Key="Shout_Adrenaline_Description" Source="Skills.lsb">Gain 2 Action Points immediately, but lose 3 Action Points next turn. Any Action Points over your maximum are lost.</content>
-    <content contentuid="h9f10a6bdgfc4fg4af8gb213gb7081cb9eda2" Key="Shout_LX_TransmuteSkin_Description" Source="Skills.lsb">Transmute your skin with elements to gain new properties.</content>
+    <content contentuid="h9f10a6bdgfc4fg4af8gb213gb7081cb9eda2" Key="Shout_LX_TransmuteSkin_Description" Source="Skills.lsb">Choose an available elemental skill. Each skill is unlocked if the ability requirements. Cooldown is shared between all available elemental skills.</content>
     <content contentuid="h8c8b69b0g710eg4ed6gb86fg3206130ea716" Key="Shout_LX_TransmuteSkin_DisplayName" Source="Skills.lsb">Transmute Skin</content>
     <content contentuid="hb0408ca4g5c61g4e89g91d0gcb14ef6da93f" Key="Shout_VacuumAura_Description" Source="Skills.lsb">Deal [1] damage to enemies in the area. Caster receives an aura that sets Silence and Suffocating on enemies.</content>
     <content contentuid="he72efc5fg2dddg459dgb224gd0f0f97fdd0a" Key="Shout_VacuumAura_DisplayName" Source="Skills.lsb">Vacuum Aura</content>
@@ -449,17 +258,16 @@
     <content contentuid="h8ddc8dd4ge8feg4420ga6dag0d87ce8ec743" Key="Talent_DuckDuckGoose_Description" Source="Talents.lsb">[1] lets you evade attacks of opportunity. Increases your Dodge by 5% and Movement by 1m per AP.</content>
     <content contentuid="hfc8981a1g8f84g49c8ga8b4g17564a836c45" Key="Talent_Duelist_Description" Source="Talents.lsb">Duelist increases AP Start and Recovery by 1, and Max AP by 1, if you are wielding a Single-Handed weapon with a free off-hand.</content>
     <content contentuid="hd980a2a1gc33eg4810gafc8g07f55ba70245" Key="Talent_Duelist_DisplayName" Source="Talents.lsb">Duelist</content>
-    <content contentuid="h3886606fg0cc0g49b9g9bbcg3ea8baa4c040" Key="Talent_ElementalAffinity_Description" Source="Talents.lsb"/>
+    <content contentuid="h3886606fg0cc0g49b9g9bbcg3ea8baa4c040" Key="Talent_ElementalAffinity_Description" Source="Talents.lsb">Once per turn, reduce the AP cost of spells by one when the character is standing on a surface or a cloud of the same element.</content>
     <content contentuid="h7a2f1a05g4b52g4ec2g8354g1f92a8bf442d" Key="Talent_ElementalRanger_Description" Source="Talents.lsb">Ranged weapons (including wands) deal 20% additional damage of the type of the surface the target stands on. Using a grenade or an arrow also now provide 1 turn of Elemental Weapons of the same type.</content>
     <content contentuid="hcb8f9837gdf0fg4a01ga7d6g5ed522b74189" Key="Talent_Escapist_Description" Source="Talents.lsb">[1] allows you to flee combat even when enemies are close by. Provides immunity to Crippled, Entangled and Enwebbed.</content>
     <content contentuid="h98163163g695ag4813gb105g3ade9ea09050" Key="Talent_Executioner_Description" Source="Talents.lsb">[1] gives you [2] extra Action Points after dealing a killing blow once per turn and increase Movement by 2m for 1 turn.</content>
-    <content contentuid="h46770f2agdbb8g47eag9e0eg65ac47bde918" Key="Talent_GlassCannon_Description" Source="Talents.lsb">With [1], you start every combat round with Maximum AP, but Magic and Physical Armour are nullified and do not protect you from statuses.</content>
+    <content contentuid="h46770f2agdbb8g47eag9e0eg65ac47bde918" Key="Talent_GlassCannon_Description" Source="Talents.lsb">With [1], you start every combat round with Maximum AP, but Magic and Physical Armour do not protect you from statuses. Also reduce max Vitality by 35%.</content>
     <content contentuid="ha79ac9a4g91ceg4fbfg9b70ge273d5f12090" Key="Talent_Haymaker_Description" Source="Talents.lsb">Your attacks never miss but cannot deal critical strikes (except backstabs not triggered by skills and if your weapon has higher level than you). Convert the critical bonus from Wits to resistance bypass.</content>
     <content contentuid="he94327f7g293dg488eg9d25gcb4f7ae7be24" Key="Talent_Hothead_Description" Source="Talents.lsb">While above 75% Vitality, Hothead provides 10% Critical Chance and 10% Accuracy.</content>
-    <content contentuid="hbd257f75g9084g4c73g9db0g77d418e677c9" Key="Talent_IceKing_Description" Source="Talents.lsb">A character with Ice King has an extra 20% Water Resistance, but takes a 15% penalty to Fire Resistance. Additionally, the maximum Water Resistance is raised by 10. All Water damage you deal are increased by 20% and grants immunity to Chilled.</content>
+    <content contentuid="hbd257f75g9084g4c73g9db0g77d418e677c9" Key="Talent_IceKing_Description" Source="Talents.lsb">A character with Ice King has an extra 20% Water Resistance, but takes a 15% penalty to Fire Resistance and the maximum Water Resistance is raised by 10. Inflicting Chilled or Frozen now also apply Frostbite, dealing Water damage over time. When Frostbite is reapplied on an active instance, its effectiveness is increased by 25% if it's from Chilled or 100% if it's from Frozen.</content>
     <content contentuid="haa3cebcagba62g47bbg8546gf0c154e0e46f" Key="Talent_Indomitable_Description" Source="Talents.lsb">You gain immunity to stunned, frozen, knocked down, polymorphed, petrified, crippled for 1 turn after being affected by one of these statuses. Can happen once every 3 turns. Increase the duration of Momentum and Lingering by 1 turn.</content>
     <content contentuid="h81ca938fg5ef4g452agb093g1294e2f0718b" Key="Talent_Leech_Description" Source="Talents.lsb">Leech heals you when standing in blood. Also increases Lifesteal by 25%.</content>
-    <content contentuid="h34fa90bdg6d1fg4ee8gb3e7g8c3694c70fae" Key="Talent_MagicCycles_Description" Source="Talents.lsb">At the start of an encounter, you gain one of two statuses: Cycle of Fire and Water or Cycle of Earth and Air. Cycle of Fire and Water increases your Pyrokinetic and Hydrosophist by 3. Cycle of Earth and Air increases your Geomancy and Aerotheurgy by 3. Statuses swap each turn.</content>
     <content contentuid="hbde985cfgb1c4g4bb6g9a61gbec72c9b4ed6" Key="Talent_Mnemonics_Description" Source="Talents.lsb">Mnenomic doubles all points invested in Memory.</content>
     <content contentuid="h278b2bccg1afcg4314gbfcbgb10105ebc12b" Key="Talent_MorningPerson_Description" Source="Talents.lsb">When resurrected, you resurrect to full health. When your turn is skipped because of incapacitating effect(s), you start your next turn with 2 additional AP. You also start combat with 2 stacks of Warmup.</content>
     <content contentuid="h00f565c4g6178g424fgb031g41a2c12bf85d" Key="Talent_ParryMaster_Description" Source="Talents.lsb">[1] gives you [2]% Dodging while dual wielding.</content>
@@ -468,7 +276,7 @@
     <content contentuid="hfb8eec35g3339g4762g8382g712e74a2ac0b" Key="Talent_Slingshot_Description" Source="Talents.lsb">[1] adds an extra [2]m range to your grenade throws and increase their damage by 30%.</content>
     <content contentuid="h8fc505abgfadbg4481g8d79gb73e606117d7" Key="Talent_Soulcatcher_Description" Source="Talents.lsb">When an allied character dies, a Zombie Crawler is raised at their corpse, under their control. Zombie Crawler lasts 3 turns or until character is resurrected. Range 12m. Does not affect summoned creatures. Can happen only once per turn.</content>
     <content contentuid="h878c02c0gc629g470dg955cg80dc2a125cb2" Key="Talent_Stench_Description" Source="Talents.lsb">Stench decreases everyone's attitude towards you by [2], but melee opponents find you less attractive in combat. Increases your Poison resistance by 30% and makes you immune to Diseased and Infected.</content>
-    <content contentuid="h6d76eb15gdb1ag4ebeg8001g58173516a923" Key="Talent_WalkItOff_Description" Source="Talents.lsb">Walk It Off reduces all status durations by 1 turn, including positive statuses. Does not affect statuses with a duration of 1 turn. Also increases elemental resistances by 8% and Physical and Piercing resistances by 4% each time you are directly hit by a character, up to a maximum of 3 times until the next turn.</content>
+    <content contentuid="h6d76eb15gdb1ag4ebeg8001g58173516a923" Key="Talent_WalkItOff_Description" Source="Talents.lsb">Walk It Off reduces all status durations by 1 turn, including positive statuses. Does not affect statuses with a duration of 1 turn. Also increases elemental resistances by 8%, Physical and Piercing resistances by 4% and Toughness by 10 each time you are directly hit by a character, up to a maximum of 3 times until the next turn.</content>
     <content contentuid="hbe66e251g2e6bg4412gb651g6ef6ad271aa1" Key="Target_AxeAttack_Description" Source="WeaponArts.lsb">Perform a heavy attack that deals [1]. If the target armour corresponding to the main damage of the axe is stripped, it also deals 8% of the user max Vitality (up to 75% of the damage done by the hit) as the main axe damage but also increases cooldown by 1 turn.</content>
     <content contentuid="h01c46179g3349g48b8g8f84gae408db7d84b" Key="Target_HeavyAttack_DisplayName" Source="WeaponArts.lsb">Recklessness</content>
     <content contentuid="h1eb02aceg710bg468dgbdecgf2eb25848581" Key="Target_LX_MaceCrush_Description" Source="WeaponArts.lsb">Strike the target to deal [1]. Deals an additional 80% of this hit as armor damage corresponding to the main damage type of the mace. If there is no armor before the hit, cooldown is reduced by 1 turn.</content>
@@ -477,371 +285,188 @@
     <content contentuid="h7515c312gd726g49a5g92b5g0b7766cc5b6c" Key="Target_SwordCleave_DisplayName" Source="WeaponArts.lsb">Cleave</content>
     <content contentuid="hb9957da3g81c9g4fecg8760g913444b41439" Key="Zone_LX_SpearAttack_Description" Source="WeaponArts.lsb">Execute a long range thrust, dealing [1] over 8 meters. When hitting more than two characters, cooldown is increased by 1 turn for each additional hit.</content>
     <content contentuid="h7586aa05gbabfg40dbg8a0bgc648343b41a3" Key="Zone_LX_SpearAttack_DisplayName" Source="WeaponArts.lsb">Lightning Throw</content>
-    <content contentuid="hfaa3ab4335706b6e8ba1c133fa958ddf1cb7" Key="Strength_Cap" Source="Attributes.lsb">(require more Strength to unlock full potential)</content>
-    <content contentuid="h91c052c2b36d42fa72fb1373b6ccfbe2a85d" Key="Finesse_Cap" Source="Attributes.lsb">(require more Finesse to unlock full potential)</content>
-    <content contentuid="h835bc9fddbd679eff84ca99f36f8a419432e" Key="Intelligence_Cap" Source="Attributes.lsb">(require more Intelligence to unlock the full potential)</content>
-    <content contentuid="hadf30f5d217dd214bb01f57430e647419c4b" Key="Condition_OneArmorDown" Source="CustomTooltips.lsb">Enemies need to have Physical or Magic armour down to be targetable.</content>
-    <content contentuid="hf90e173ae17177c6f135cfc631369793c6a8" Key="BaseLevelDamage" Source="CustomTooltips.lsb">Base Level [1] Damage</content>
-    <content contentuid="hdd4ba2ad6c44407d3e11b5943ed9849f78cc" Key="BaseWeaponLevelDamage" Source="CustomTooltips.lsb">Base Weapon Level [1] Damage</content>
-    <content contentuid="h93a9edcf8b95117045dd4853bd26af144e13" Key="AverageLevelDamage" Source="CustomTooltips.lsb">Average Level [1] Damage</content>
-    <content contentuid="h523c3e6cdaefbd9f6024567b52b0b0ae83bf" Key="DamageScalings_Description" Source="CustomTooltips.lsb">Base level damage is level scaled damage for a 100% damage hit. Average Level damage takes into account the average bonus from attributes and abilities and is a good point of reference to evaluate the damage effectiveness of your character.</content>
-    <content contentuid="h8f7a49f03e6928967f7c3151b0fe0e4c2448" Key="Heal_ThresholdMinimum" Source="CustomTooltips.lsb">Heals for a minimum of &quot;..tostring(vitalityAmount)..&quot; Vitality.</content>
-    <content contentuid="haa89613a32aa711fa36246b5a64932fe33f1" Key="Stats_AbsorbStatus_Description" Source="CustomTooltips.lsb">Absorb [1] for [2] turns.</content>
-    <content contentuid="h9119d0232b530c08356bfed2c2bb2d6d804d" Key="Stats_Absorb_DynamicTooltip_B" Source="CustomTooltips.lsb">Creates or reinforce a shield absorbing [1] [2] damage.</content>
-    <content contentuid="hebee7b22e167dbb376aa7a6c0879f01dad6d" Key="Stats_Absorb_DynamicTooltip" Source="CustomTooltips.lsb">Creates a shield absorbing [1] [2] damage.</content>
-    <content contentuid="h5ccaf04e09823b8f9d31476143ddbc36b1cf" Key="Status_Absorb_Description" Source="CustomTooltips.lsb">Shield remaining power: [1]</content>
-    <content contentuid="hc950fff1b4551ba163be622edf58e01d63af" Key="Stats_Property_TryKill_Source" Source="CustomTooltips.lsb">Consume up to [1] Source points to increase the execution threshold by [2] per SP. (current threshold: [3])</content>
-    <content contentuid="haa5bfe4dbedc83a58709ebe02497c20c2e86" Key="Stats_Property_TryKill_Influence" Source="CustomTooltips.lsb">Increase the execution threshold by [1] if the target is under the influence of</content>
-    <content contentuid="h8da653c610d320865e79d34f78758b9cd8b8" Key="Stats_Property_TryKill_Tooltip" Source="CustomTooltips.lsb">Attempt to execute the target if their Vitality falls under [1] HP after the hit.</content>
-    <content contentuid="heb53ca8aa29e3dd6c536526f509c5aa58191" Key="Stats_Property_SurfaceBoost" Source="CustomTooltips.lsb">Absorb surfaces to boost the skill.</content>
-    <content contentuid="h7a5cfdd3263a9adb73b65d978e1af36ae436" Key="Stats_Property_ExplodeTarget" Source="CustomTooltips.lsb">Explode target, causing damage in a [1] meters radius</content>
-    <content contentuid="h94c69118cc3050d09adea0c03704b6d623bd" Key="Stats_Projectiles_PerHit" Source="CustomTooltips.lsb">per hit</content>
-    <content contentuid="hacf63c569c00dbd320dbd460698e273c5d4f" Key="Stats_Property_Spark" Source="CustomTooltips.lsb">Each hit will throw a projectile to the nearest target in a [1] meters radius</content>
-    <content contentuid="hb06c08cb86935896f6bdbb32dcd46ab98c32" Key="Stats_Property_LeaveAction" Source="CustomTooltips.lsb">On [1] expiration</content>
-    <content contentuid="h11034a0113d38715a5df5102c92016523f49" Key="Stats_Property_ActiveDefense" Source="CustomTooltips.lsb">On activation: [1]</content>
-    <content contentuid="h52a593bb407597e19462dec081d100f0924b" Key="Status_Damage_ExtensionWeapon" Source="CustomTooltips.lsb">Weapon bonus: [1]</content>
-    <content contentuid="h523a2cea252d02b44279f38c9e37ad124fc6" Key="Status_Damage_ExtensionStatus" Source="CustomTooltips.lsb">Status: [1]</content>
-    <content contentuid="h0ce3f48b9db99da799b2bbf7248a64188d8b" Key="Tooltip_Generic_BonusFrom" Source="CustomTooltips.lsb">Bonus from</content>
-    <content contentuid="h969c7960f502aacf752f7b3cc305837a7023" Key="Tooltip_BonusFromAttributes" Source="CustomTooltips.lsb">Bonus from Attributes</content>
-    <content contentuid="h452ba44ce3d754c9bc2c55286f0e1390b5e0" Key="Stats_Potion_Overdose" Source="CustomTooltips.lsb">Drinking a second potion during your turn will reduce your AP by 1 the next turn, and drinking a third one will immediatly end your turn and reduce your AP by 3 the next turn.</content>
-    <content contentuid="h5cd04a1f2aee5538b8aa232496e89662b1cf" Key="Stats_Potion_HealingElixir_Custom" Source="CustomTooltips.lsb">Clear Crippled, Atrophy and Diseased.</content>
-    <content contentuid="hd1924a67992c10661c662a6c7b450f60f067" Key="Stats_LX_WalkItOff_DisplayName" Source="">Walk It Off</content>
-    <content contentuid="h3701de706f8c90add548a0c8e092cf758bad" Key="Stats_LX_WalkItOff_2_DisplayName" Source="">Walk It Off (2)</content>
-    <content contentuid="hcbd44a75f69da2c6f6eae9c743c53e867c4c" Key="Stats_LX_WalkItOff_3_DisplayName" Source="">Walk It Off (3)</content>
-    <content contentuid="h414a89e8bbb485f0d61389c303d6e57b5a1f" Key="Stats_LX_WalkItOff_4_DisplayName" Source="">Walk It Off (4)</content>
-    <content contentuid="h22fa16f8a51b4a24fdbe7581116c268972ce" Key="Stats_LX_WalkItOff_5_DisplayName" Source="">Walk It Off (5)</content>
-    <content contentuid="h494168ce0a8af3e97adae4cb5bfbf195b187" Key="Stats_LX_PetPal_DisplayName" Source="">Pet Pal (Summon)</content>
-    <content contentuid="h1e081f1de6625ab88b29c17cd7d9fa1a38d9" Key="Stats_LX_Staggered_DisplayName" Source="">Staggered</content>
-    <content contentuid="hadc58e5ce9a6f165c6addc4fd720d5829739" Key="Stats_LX_Staggered_Description" Source="">This character has staggered during their recovery.</content>
-    <content contentuid="h0c4351c945f146f070b67ce0391c122cc257" Key="Stats_LX_Staggered2_DisplayName" Source="">Staggered (2)</content>
-    <content contentuid="hf14bbc6d1fdbf360b52515dcc41969f24366" Key="Stats_LX_Staggered3_DisplayName" Source="">Staggered (3)</content>
-    <content contentuid="hc1bea0e10a375607a659173464e392bb2e5b" Key="Stats_LX_Confused_DisplayName" Source="">Confused</content>
-    <content contentuid="h0a4836561454c85784be71e87a2f1501beeb" Key="Stats_LX_Confused_Description" Source="">This character has been magically affected during recovery.</content>
-    <content contentuid="hccaa4f02dc3e6547f25d27752d89f8b71bc5" Key="Stats_LX_Confused2_DisplayName" Source="">Confused (2)</content>
-    <content contentuid="hfd437ae70317e03ff7d57fbb2bc2459bfe3b" Key="Stats_LX_Confused3_DisplayName" Source="">Confused (3)</content>
-    <content contentuid="h40ce35d62d118f3e88e4a435717bfe928611" Key="Stats_LX_DodgeFatigue_DisplayName" Source="">Dodge Fatigue</content>
-    <content contentuid="hfc3b3a3893f036a0eb4b995430f9bdc82982" Key="Stats_LX_DodgeFatigue_Description" Source="">This characters dodging has become less effective.</content>
-    <content contentuid="h90f11462bd7a24a72f35169f2031b599ad3c" Key="Stats_LX_DodgeFatigue2_DisplayName" Source="">Dodge Fatigue (2)</content>
-    <content contentuid="hc2a287bc61236aa905dc891e7ee17d2f8d98" Key="Stats_LX_DodgeFatigue3_DisplayName" Source="">Dodge Fatigue (3)</content>
-    <content contentuid="he9aafbd9e8ed6952b4dd748cc41b9b3be296" Key="Stats_LX_DodgeFatigue4_DisplayName" Source="">Dodge Fatigue (4)</content>
-    <content contentuid="ha3c378ad4f5db10e859e3d227c4835fae5b7" Key="Stats_LX_Leech_DisplayName" Source="">Leech</content>
-    <content contentuid="h98ffd02d1930cdc2b2e489fafe4bb70236a0" Key="Stats_LX_Demon_DisplayName" Source="">Demon</content>
-    <content contentuid="h17222fe618c80ce5125d38467f0bfd66afca" Key="Stats_LX_DDGoose_DisplayName" Source="">Duck Duck Goose</content>
-    <content contentuid="h38c60bb6bc79907b971c49eccfe3b70c6df7" Key="Stats_LX_Hothead_DisplayName" Source="">Hothead</content>
-    <content contentuid="hebd4395886b1712dd4f92568b77020b05c33" Key="Stats_LX_PetPalSummoner_DisplayName" Source="">Pet Pal (Summoner)</content>
-    <content contentuid="he4099ebba11a9df2a96305eacbabca7cfe5b" Key="Stats_LX_Duelist_DisplayName" Source="">Duelist</content>
-    <content contentuid="h9dc0454b2f16682994adc7c3b4b1584559d0" Key="Stats_LX_PotionFatigue2_DisplayName" Source="">Potion Fatigue</content>
-    <content contentuid="h2fb5190474322c89a2b40d27d45dbdf4966b" Key="Stats_LX_PotionFatigue2_Description" Source="">This character drank too many potions and could not handle the side effects.</content>
-    <content contentuid="hf78c390173b033eac55ab065a9fa696ce142" Key="Stats_LX_PotionFatigue1_DisplayName" Source="">Potion Fatigue</content>
-    <content contentuid="hda06ffa9ee5fce9596b1e7ac199655693889" Key="Stats_LX_PotionFatigue1_Description" Source="">This character drank too many potions and is experiencing side effects.</content>
-    <content contentuid="h2adb76f0ff2263d882f959026904db406eec" Key="Stats_LX_IceKing_DisplayName" Source="">Ice King</content>
-    <content contentuid="hc6a6a73ced7a14488fae1bd76e80a1cf8c32" Key="Stats_LX_Adrenaline_DisplayName" Source="">Adrenaline</content>
-    <content contentuid="h53ddcb4a2fed0e9d4fd9f4040ebaa40cf94b" Key="Stats_LX_Perseverance_DisplayName" Source="">Perseverance</content>
-    <content contentuid="h0195aadf8986e3858ce19ae24e5ce6ce62ca" Key="Stats_LX_SavageSortilege_DisplayName" Source="">Savage Sortilege</content>
-    <content contentuid="he6628530a191adf7c95fd46b04dd4278b50a" Key="Stats_LX_Escapist_DisplayName" Source="">Escapist</content>
-    <content contentuid="hc82e5dcfb66a64774c9b0c3fc71dc753f3f6" Key="Stats_LX_Stench_DisplayName" Source="">Stench</content>
+    <content contentuid="h5ef3ab659d7d2c752dd12873cd2b79a7b170" Key="Stats_LX_WalkItOff_DisplayName" Source="">Walk It Off</content>
+    <content contentuid="h7aedc5ebdfaad7b9d1840f348a91947c3123" Key="Stats_LX_WalkItOff_2_DisplayName" Source="">Walk It Off (2)</content>
+    <content contentuid="h6e5bb5fc5e1b5376880fd81a498856288433" Key="Stats_LX_WalkItOff_3_DisplayName" Source="">Walk It Off (3)</content>
+    <content contentuid="h57c62a371345b881f469c9d5b231410ba892" Key="Stats_LX_WalkItOff_4_DisplayName" Source="">Walk It Off (4)</content>
+    <content contentuid="hd4c730193a93d45cb2ff7e24365987ae25fa" Key="Stats_LX_WalkItOff_5_DisplayName" Source="">Walk It Off (5)</content>
+    <content contentuid="hf83e4895a702a9838c94525f85e73942998b" Key="Stats_LX_PetPal_DisplayName" Source="">Pet Pal (Summon)</content>
+    <content contentuid="he05c7ffa5721f7de84884b69fce936042a75" Key="Stats_LX_Staggered_DisplayName" Source="">Staggered</content>
+    <content contentuid="hd521271e1395614502b953dfbe796f694834" Key="Stats_LX_Staggered_Description" Source="">This character has staggered during their recovery.</content>
+    <content contentuid="h0ccdc4e7ed1a97eaca16d607c67101ed4c5b" Key="Stats_LX_Staggered2_DisplayName" Source="">Staggered (2)</content>
+    <content contentuid="hc6f4810b408b4215628d3e98864a4be29817" Key="Stats_LX_Staggered3_DisplayName" Source="">Staggered (3)</content>
+    <content contentuid="h49d92e105158435b5e9afce5e03af389c431" Key="Stats_LX_Confused_DisplayName" Source="">Confused</content>
+    <content contentuid="h5707257349b779287641c4de4123765de04c" Key="Stats_LX_Confused_Description" Source="">This character has been magically affected during recovery.</content>
+    <content contentuid="h5b565a2d6f38c6b17be47058beca5222e83e" Key="Stats_LX_Confused2_DisplayName" Source="">Confused (2)</content>
+    <content contentuid="h02bd2f026c68f8d2f4834b94b68698a52c06" Key="Stats_LX_Confused3_DisplayName" Source="">Confused (3)</content>
+    <content contentuid="h3866f7b68d58f1c0a956de7f60d1c235dd1a" Key="Stats_LX_DodgeFatigue_DisplayName" Source="">Dodge Fatigue</content>
+    <content contentuid="hf4e26d1c41bcfe7f79e6a07d8ab45e6df7a2" Key="Stats_LX_DodgeFatigue_Description" Source="">This characters dodging has become less effective.</content>
+    <content contentuid="he5cd4830e93025007a5ae8b0d745706498ad" Key="Stats_LX_DodgeFatigue2_DisplayName" Source="">Dodge Fatigue (2)</content>
+    <content contentuid="h40b9693c1e97fc02ef35829436b1b2fc8883" Key="Stats_LX_DodgeFatigue3_DisplayName" Source="">Dodge Fatigue (3)</content>
+    <content contentuid="h1f2ba6ccd48c9adcb2c94612326a8bdd2d5e" Key="Stats_LX_DodgeFatigue4_DisplayName" Source="">Dodge Fatigue (4)</content>
+    <content contentuid="h781e89a2e1db0f3794ba94aa3f628e020004" Key="Stats_LX_Leech_DisplayName" Source="">Leech</content>
+    <content contentuid="hbd1ceda01e514d1058ca77e9daa3ec4f1fde" Key="Stats_LX_Demon_DisplayName" Source="">Demon</content>
+    <content contentuid="hff1dfe992040af3758467999d30b7bc6ad1d" Key="Stats_LX_Hothead_DisplayName" Source="">Hothead</content>
+    <content contentuid="h0a0a7efb4f4d2fda50c7ef755f65c24cc8a4" Key="Stats_LX_PetPalSummoner_DisplayName" Source="">Pet Pal (Summoner)</content>
+    <content contentuid="h36b3fc5699b068bab64aa7f2aadf27ff9bcc" Key="Stats_LX_Duelist_DisplayName" Source="">Duelist</content>
+    <content contentuid="hfd76fdfbea2fbb28ef901ec837ab08a27d04" Key="Stats_LX_PotionFatigue2_DisplayName" Source="">Potion Fatigue</content>
+    <content contentuid="hce48e70032f56b229f50e2a8e57c8e3f1a43" Key="Stats_LX_PotionFatigue2_Description" Source="">This character drank too many potions and could not handle the side effects.</content>
+    <content contentuid="h5f799561d85a3be3fc3075dcf0ac827bc4b5" Key="Stats_LX_PotionFatigue1_DisplayName" Source="">Potion Fatigue</content>
+    <content contentuid="hf8f86b5ea45c0ca71bb92c3f1fc47751b342" Key="Stats_LX_PotionFatigue1_Description" Source="">This character drank too many potions and is experiencing side effects.</content>
+    <content contentuid="h17f742c4a36df53ca026a0b466ba7faee1d4" Key="Stats_LX_IceKing_DisplayName" Source="">Ice King</content>
+    <content contentuid="h588c64907f2252ed1dab6afc4562a8a0379e" Key="Stats_LX_Adrenaline_DisplayName" Source="">Adrenaline</content>
+    <content contentuid="h3eecc7bae3220c5aa4f053fbd030a472674b" Key="Stats_LX_Perseverance_DisplayName" Source="">Perseverance</content>
+    <content contentuid="hf814b62c2eb7ec808c80c6b1f0992159018c" Key="Stats_LX_SavageSortilege_DisplayName" Source="">Savage Sortilege</content>
+    <content contentuid="hc1cbc46a766af917bf1d1d72c1e8d8a94b05" Key="Stats_LX_Escapist_DisplayName" Source="">Escapist</content>
+    <content contentuid="hf9175bd9754e5f667987ab2c4cd63c397e08" Key="Stats_LX_Stench_DisplayName" Source="">Stench</content>
+    <content contentuid="hb64993e5d0185a8271b8e29b2f39460a0383" Key="Stats_LX_DDGoose_DisplayName" Source="">Duck Duck Goose</content>
+    <content contentuid="h214d0701eb1ae846f4458da410868be1e3af" Key="Shout_LX_CrossbowSignature_DisplayName" Source="">Sniper</content>
+    <content contentuid="h2572bf6c76514a7b815dd1e6952d137acf92" Key="Shout_LX_CrossbowSignature_Description" Source="">While Sniper is active, increase Critical Chance by [1]% every time a non-offensive skill or item is used. When performing a Critical Hit, the bonus is reset to 0 and all stacks of Sniper are converted to Deadly Aim, increasing Critical Multiplier by [2] per stack for 2 turns (refreshed if already active). Sniper ends if the character moves, is attacked in melee or is victim of a crowd control effect.</content>
+    <content contentuid="h7fe1cb6ab80e56eb2c2663121e90effc1565" Key="LX_SNIPER_DisplayName" Source="">Sniper</content>
+    <content contentuid="h940e08356471a664f061175e852574d38d17" Key="LX_SNIPER_Description" Source="">Increase critical chance every non-offensive skill or item used and resets when a critical hit happens.</content>
+    <content contentuid="h6177d37ecdc1d2475e4826110acd37baefde" Key="LX_SNIPER_MULT_DisplayName" Source="">Deadly Aim</content>
+    <content contentuid="h6549683b8689f648970d28c0194b6abfe190" Key="LX_SNIPER_MULT_Description" Source="">Increase critical multiplier every successful critical hit done while Sniper is active. The higher Sniper is, the more critical multiplier is granted.</content>
+    <content contentuid="h2e2a72e6c3031b004def69c9b36342b9ce26" Key="Projectile_LX_QuickShot_DisplayName" Source="">Quick Draw</content>
+    <content contentuid="h358ffae05c0b045596a6ca8ba9b32dac8cd3" Key="Projectile_LX_QuickShot_Description" Source="">Draw an arrow with haste and shoot to gain some time to deal [1]. Hit chance is capped at 80% and is further reduced with the distance from the target by 5% per meter beyond the third and immediately grants free movement equal to the travel distance of the arrow.</content>
+    <content contentuid="haad2b9c058a7505855c5bdbd8a59202a9bc5" Key="Dome_CircleOfProtection_Description" Source="">Create a magic field that increases Tougness by [1], reduces all direct damage taken from sources outside of the dome by 35% and recover Physical and Magic armours on cast.</content>
+    <content contentuid="he7bd71f2d01d865d2a3e9893c267cba0680b" Key="Target_Overpower_Description" Source="">Deal [1]. Reduce the target's Toughness to 0 and prevent Physical and Magic armour recovery for 2 turns. Set Knocked Down.</content>
+    <content contentuid="h117b3564c0166ec0fdef5a0a2d5f41ef04b7" Key="Target_Vaporize_Description" Source="">Vaporize ground surfaces into clouds if possible. Targeting an oil surface will splash it and spread in a 6 meters radius. Targeting a frozen surface costs 1 more AP and will trigger Ice Breaker, dealing damage to all targets on the frozen surface.</content>
+    <content contentuid="h6a772bd570b155c73b5dca62c364cfc4bdfe" Key="LX_UNSTABLE_COOLDOWN_DisplayName" Source="">Equalized</content>
+    <content contentuid="hdb8cecf094a0b1a4f117b5cf594e5353cdfe" Key="LX_UNSTABLE_COOLDOWN_Description" Source="">Unstable effect won't trigger.</content>
+    <content contentuid="hdc64ca8b9b57e0caafd79fdd99e3b0a67939" Key="LX_GUERILLA_COOLDOWN_DisplayName" Source="">Caught Attention</content>
+    <content contentuid="h51b8a2bcc030b0584ca89b56f6fe241385d8" Key="LX_GUERILLA_COOLDOWN_Description" Source="">GUERILLA effect won't trigger.</content>
+    <content contentuid="h89baa02e802dd23fbf0c7cd34fa8184c2272" Key="LX_WALKITOFF_2_DisplayName" Source="">Walk It Off</content>
+    <content contentuid="h8bb99b2e027c4b57ed7cd5b598561cf9d804" Key="LX_WALKITOFF_DisplayName" Source="">Walk It Off</content>
+    <content contentuid="h79d170e14b502c8aff7b8001b2daa1bb7040" Key="LX_WALKITOFF_3_DisplayName" Source="">Walk It Off</content>
+    <content contentuid="h9ad23babf77b2fa91dd72f97a2530170f38f" Key="LX_WALKITOFF_4_DisplayName" Source="">Walk It Off</content>
+    <content contentuid="hf2524598064f1024f57da36f684777c2de44" Key="LX_WALKITOFF_5_DisplayName" Source="">Walk It Off</content>
+    <content contentuid="h47ce6c4e02ab79bcaab6100cf980d06ca2b5" Key="LX_PETPAL_DisplayName" Source="">Weaker Summon</content>
+    <content contentuid="hade1c19fa1c4d784efd433dd954ad2cbed21" Key="LX_PETPAL_Description" Source="">This summon is weaker.</content>
+    <content contentuid="h1c260bd3e364cd46071470fa6cc055e8c892" Key="LX_STAGGERED_DisplayName" Source="">Staggered</content>
+    <content contentuid="h968736ece970d23940b86aedff80cd6ffe20" Key="LX_STAGGERED_Description" Source="">This character have staggered during his recovery.</content>
+    <content contentuid="h0da1b4db5503d5a8eb45da090005a52ab17a" Key="LX_STAGGERED2_DisplayName" Source="">Staggered (2)</content>
+    <content contentuid="h64ee31b27a6e77991555c325df2671cd5310" Key="LX_STAGGERED2_Description" Source="">This character have staggered during his recovery.</content>
+    <content contentuid="h36447c316e13b79d81cae667ef6139588b29" Key="LX_STAGGERED3_DisplayName" Source="">Staggered (3)</content>
+    <content contentuid="hf63bff438fd06d48bde9501a36cc19e3b506" Key="LX_STAGGERED3_Description" Source="">This character have staggered during his recovery.</content>
+    <content contentuid="h0da4f2567aee7001c5edbbb70cc4b71d640b" Key="LX_CONFUSED_DisplayName" Source="">Confused</content>
+    <content contentuid="hdf4a7d51cafd2eec9ea2eb04968cd0f73e80" Key="LX_CONFUSED_Description" Source="">This character have been magically affected during recovery.</content>
+    <content contentuid="hc14d2173d1a74e10b885b87ee8d1ee0aa4d4" Key="LX_CONFUSED2_DisplayName" Source="">Confused (2)</content>
+    <content contentuid="h4a1ebe80a52a6d0b98845449fb4cab8de064" Key="LX_CONFUSED2_Description" Source="">This character have been magically affected during recovery.</content>
+    <content contentuid="h047aa6da51f9a4389d0479922463339da617" Key="LX_CONFUSED3_DisplayName" Source="">Confused (3)</content>
+    <content contentuid="h2d7b6e085d130d4467c33d6af1c72670c15c" Key="LX_CONFUSED3_Description" Source="">This character have been magically affected during recovery.</content>
+    <content contentuid="h14783c41f76ebab9c7eb2a57e30626df6ae2" Key="LX_MOMENTUM_DisplayName" Source="">Momentum</content>
+    <content contentuid="h4c265fb27c137e1680320d58357b0145f62e" Key="LX_MOMENTUM_Description" Source="">Any attempt to apply Knocked Down or Chicken will apply Staggered instead.</content>
+    <content contentuid="h79cbeef6d8555d899b8803b8d243e4647c99" Key="LX_LINGERING_DisplayName" Source="">Lingering</content>
+    <content contentuid="hacc228e497bcde39bd91e067ad22467dbf88" Key="LX_LINGERING_Description" Source="">Any attempt to apply Stunned, Petrified, Frozen, Madness, Terrified or Charm will apply Confused instead.</content>
+    <content contentuid="hd8d06fdeefd17597c12f8e6888dfbc039b3a" Key="LX_DODGE_FATIGUE1_DisplayName" Source="">Dodge Fatigue</content>
+    <content contentuid="hba86e5ffec25dd3d4542108dac38ede27859" Key="LX_DODGE_FATIGUE1_Description" Source="">This character dodges become less effective.</content>
+    <content contentuid="h53eee4873a4e4eb316af7ff45cebc61d8387" Key="LX_DODGE_FATIGUE2_DisplayName" Source="">Dodge Fatigue (2)</content>
+    <content contentuid="h9fc6d538fcd478e684f6f9ef614a08c8cf62" Key="LX_DODGE_FATIGUE2_Description" Source="">This character dodges become less effective.</content>
+    <content contentuid="ha0a604a0c8dfa7c4d094daf2322e64541594" Key="LX_DODGE_FATIGUE3_DisplayName" Source="">Dodge Fatigue (3)</content>
+    <content contentuid="h053cf5e1f0c77c3d7bccd531f5e0d29b7edc" Key="LX_DODGE_FATIGUE3_Description" Source="">This character dodges become less effective.</content>
+    <content contentuid="h9e34e7e0479e3caa2d2affea332aa7f849f4" Key="LX_DODGE_FATIGUE4_DisplayName" Source="">Dodge Fatigue (4)</content>
+    <content contentuid="hd680c557b93c9ddd78967b797e2757ccf57b" Key="LX_DODGE_FATIGUE4_Description" Source="">This character dodges become less effective.</content>
+    <content contentuid="h50c2bd50cb47e6e1d2db08fc3c7d267530c2" Key="ARROWHEAD_FIRE_DisplayName" Source="">Burning Weapons</content>
+    <content contentuid="h66204152765620e896c23424d54b3c0c6525" Key="ARROWHEAD_FIRE_Description" Source="">Adds [1] to weapon attacks and skills.</content>
+    <content contentuid="hf882d1e85f8563d5aeaa72d173b43ff8d8bc" Key="ARROWHEAD_WATER_DisplayName" Source="">Water Weapons</content>
+    <content contentuid="h9d7dd5fc99bd652fc463e6dced2522ded8e1" Key="ARROWHEAD_WATER_Description" Source="">Adds [1] to weapon attacks and skills.</content>
+    <content contentuid="hb870eb94c663256c9de9091dc1a69ee9cdb6" Key="ARROWHEAD_POISON_DisplayName" Source="">Poison Weapons</content>
+    <content contentuid="h41dcb819ff3bcf2dcc93737cba2f41035b1d" Key="ARROWHEAD_POISON_Description" Source="">Adds [1] to weapon attacks and skills.</content>
+    <content contentuid="h7ab4b6ee3a6d059c4bd05e62bcac9392e407" Key="ARROWHEAD_ELECTRIC_DisplayName" Source="">Electric Weapons</content>
+    <content contentuid="h68c7bf16753308b0c2ed1965e47f8b7ae71c" Key="ARROWHEAD_ELECTRIC_Description" Source="">Adds [1] to weapon attacks and skills.</content>
+    <content contentuid="ha6f46354b08087e1e78c96c7eb0e606b9f66" Key="ARROWHEAD_BLOOD_DisplayName" Source="">Bloody Weapons</content>
+    <content contentuid="h3b922a63c11866ff9203cf79eaa9718893b7" Key="ARROWHEAD_BLOOD_Description" Source="">Adds [1] to weapon attacks and skills.</content>
+    <content contentuid="haa8d03fdb9cb99021593f192c697cc084a63" Key="ARROWHEAD_OIL_DisplayName" Source="">Oily Weapons</content>
+    <content contentuid="h43d5044ff0777677cfa239594226392e0713" Key="ARROWHEAD_OIL_Description" Source="">Adds [1] to weapon attacks and skills.</content>
+    <content contentuid="hac6daa28073bb1e23b23c7a6cdba1ca9c8d2" Key="LX_POTIONWARNING_DisplayName" Source="">Potion Dizziness</content>
+    <content contentuid="hcb20c90193372082e93ff38d7cd1b4b55762" Key="LX_POTIONWARNING_Description" Source="">This character drank a lot of potions. One more potion and it's an overdose !</content>
+    <content contentuid="hbab96088917be273588e70bbc5a5b387c65c" Key="LX_POTIONFATIGUE2_DisplayName" Source="">Potion Poisoning</content>
+    <content contentuid="h07a0fd48ef17870419ecda09111aa1e19e21" Key="LX_POTIONFATIGUE2_Description" Source="">This character drank too much potions and could not handle the side effects.</content>
+    <content contentuid="h7927a3097191cbbf44c8b4bebfa308df2db2" Key="LX_POTIONFATIGUE1_DisplayName" Source="">Potion Poisoning</content>
+    <content contentuid="h56d95e144f1eaefb268b1cf9926ad9714309" Key="LX_POTIONFATIGUE1_Description" Source="">This character drank too much potions and start to have side effects.</content>
+    <content contentuid="h98efea94fb4cc9f3a651050b23d29dfed065" Key="LX_SHIELDSUP_DisplayName" Source="">Shields Up</content>
+    <content contentuid="hf6e13c46ed3835b30cb017edb284953154a1" Key="LX_SHIELDSUP_Description" Source="">The amount of damage going through armors is reduced by half.</content>
+    <content contentuid="h79469f2ea1e847b62b3d5b7994865e8bccc2" Key="LX_FOOD_REGENERATION_DisplayName" Source="">Well fed</content>
+    <content contentuid="h261e81af6957dbbd8298996f195c27cc6996" Key="LX_FOOD_REGENERATION_Description" Source="">Regenerate 1% Vitality per turn during combat.</content>
+    <content contentuid="h5b49e7aed7230cb70c16ca7cdd23fef33e0e" Key="LX_FOOD_CLEAN_DisplayName" Source="">Purge</content>
+    <content contentuid="he7d1e2a3b9558e7ee2e65ff2f102d5f3b06e" Key="LX_FOOD_REGENERATION2_DisplayName" Source="">Well fed</content>
+    <content contentuid="hbca89b050684ab9296ff259d172113133600" Key="LX_FOOD_REGENERATION2_Description" Source="">Regenerate 2% Vitality per turn during combat.</content>
+    <content contentuid="hd841f0a6604f1d6c0540b34d2fc682f3a41a" Key="LX_SLOWED_DisplayName" Source="">Slowed</content>
+    <content contentuid="he8c8e5b9703802fcda3af899085f63403ed6" Key="LX_OILYCARAPACE_DisplayName" Source="">Oily Carapace</content>
+    <content contentuid="hbc0f2ab65c6c94fd5f7bdfebd2ac5fe37457" Key="LX_OILYCARAPACE_Description" Source="">Reduce damage going through Physical armour by 100%</content>
+    <content contentuid="hec2e49da8a8aa3446f7a0b5dc49c441f4fa0" Key="LX_CRYOTHERAPY_DisplayName" Source="">Cryotherapy</content>
+    <content contentuid="ha4aa93333b2d12f376e7bb15395df3f985c3" Key="LX_CRYOTHERAPY_Description" Source="">Reduce damage going through Magic armour by 100%</content>
+    <content contentuid="h21b4651fdcdeb13787c4fbc8463acffabd0a" Key="LX_INCQB_DisplayName" Source="">Close Quarter Penalty</content>
+    <content contentuid="haf4a9f80bcfeccba0eb8a75b1eb8019bc5bf" Key="LX_INCQB_Description" Source="">If you attack this character with a ranged weapon, the damage will be lowered.</content>
+    <content contentuid="hc18ad27e64bc4f533e9a88b650a2e0b540cb" Key="SIPHON_POISON_Description" Source="">Adds [2] damage to your weapon attacks and skills. They now also set Acid for 1 turn (3 if Venom Coating is active).</content>
+    <content contentuid="h08d873cd266f6e78385f5c3811b711c413e0" Key="VENOM_COATING_Description" Source="">Adds [1] to weapon attacks and skills.</content>
+    <content contentuid="h161eadedcfeb70b9b777476ce532350418f4" Key="VENOM_AURA_Description" Source="">Adds [1] to weapon attacks and skills.</content>
+    <content contentuid="h62bb19acf14604859acabad42db00d902268" Key="FIRE_BRAND_Description" Source="">Adds [1] to weapon attacks and skills.</content>
+    <content contentuid="hbf89ef2a68508b32839bf02a9ebaec829435" Key="FIRE_BRAND_AURA_Description" Source="">Adds [1] to weapon attacks and skills.</content>
+    <content contentuid="hb0a3719033642eca29df55f94fc53093baac" Key="LX_ADRENALINE_DisplayName" Source="">Adrenaline</content>
+    <content contentuid="hef3ecce70c3a9a7ff497ea51b2660b2d795d" Key="LX_PERSEVERANCE_DisplayName" Source="">Perseverance</content>
+    <content contentuid="h7de039c81617186bd8adc5d784381f970430" Key="LX_EXECUTIONER_DisplayName" Source="">Executioner</content>
+    <content contentuid="h050fa98ba211e76cdbe91316fb91251b1b8c" Key="LX_GB4_MC_EA_DisplayName" Source="">Cycle of Earth and Air</content>
+    <content contentuid="h23a941495980e46d8506e8f360ecb4e740b3" Key="LX_GB4_MC_WF_DisplayName" Source="">Cycle of Water and Fire</content>
+    <content contentuid="h5e70e2f9b8ff886dee45abb9947c72c7af3d" Key="LX_INDOMITABLE_DisplayName" Source="">Indomitable</content>
+    <content contentuid="he80b88c77a630b024e7cc034c568947cd36e" Key="LX_INDOMITABLE_CD_DisplayName" Source="">Exhausted</content>
+    <content contentuid="h1c5974af7a003001a1debf926d030835febe" Key="LX_INDOMITABLE_CD_Description" Source="">The Indomitable talent won't have any effect while this status is present.</content>
+    <content contentuid="h6b6fb589025ed6451081b2eacb2b2c200661" Key="LX_GLADIATOR_CD_DisplayName" Source="">Gladiator</content>
+    <content contentuid="hea0e9566374cff90c4402ae4160ca7e36fe3" Key="LX_GLADIATOR_CD_Description" Source="">The Gladiator talent won't have any effect while this status is present.</content>
+    <content contentuid="hc38550f700984956f25b69715c5eb8ebdd52" Key="LX_SOULCATCHER_DisplayName" Source="">Soulcatcher</content>
+    <content contentuid="he59e8f4991e38b328142c2633f1115ed4836" Key="LX_SOULCATCHER_Description" Source="">Raised as a zombie until status expires or character is resurrected.</content>
+    <content contentuid="h92311bf4b13f1bdab009f21d730ae43a27a2" Key="LX_GB4_JITTERBUG_CD_DisplayName" Source="">Escaped</content>
+    <content contentuid="h7f482f41fc2b5d23d22cb722f9298f115d00" Key="LX_GB4_JITTERBUG_CD_Description" Source="">The Jitterbug talent won't have any effect while this status is present.</content>
+    <content contentuid="hf0c07b0877e7f2c1e3981a2543b37d035b24" Key="LX_SOULCATCHER_CD_DisplayName" Source="">Soulcatcher</content>
+    <content contentuid="h8dffedc4bfb513d74cab09b2d63285505831" Key="LX_SOULCATCHER_CD_Description" Source="">The Soulcatcher talent won't work while this status is active.</content>
+    <content contentuid="h51ef909b50f5f8e529f1d95a84b5b4e218e9" Key="LX_CORROGIC_DisplayName" Source="">Resistance Corrosion</content>
+    <content contentuid="hc9ceee68ccce95d92916727aacb0faa7bfed" Key="LX_CORROGIC_Description" Source="">Resistances are lowered by Corrosive and/or Magic armour damage on Vitality. Cured by Fortified and Magic Shell.</content>
+    <content contentuid="hf44a347c46b3eaf64751f41b0946c3362099" Key="DGM_WARMUP_Description" Source="">The character adapt their blows to the moving targets.</content>
+    <content contentuid="ha4da4f5b48ecae66924c165ae14fa5a0bca7" Key="LX_OVERPOWERED_DisplayName" Source="">Overpowered</content>
+    <content contentuid="h8e88d134eb046acfbe0e9380e99f3a1c63e4" Key="LX_PROTECTION_CIRCLE_DisplayName" Source="">Dome of Protection</content>
+    <content contentuid="hd15da529da2b972a5045e761659fbf54b514" Key="LX_THERMAL_SHOCK_DisplayName" Source="">Thermal Shock</content>
+    <content contentuid="h8243d6bd5bd977ce410367a9b3c9b32ec6c5" Key="LX_FROSTBITE_DisplayName" Source="">Frostbite</content>
+    <content contentuid="h11059a6d5d6c487e1b5870e9cbf5f0ac7419" Key="LX_FROSTBITE_Description" Source="">Deals [1] damage per turn. Effectiveness increased by 25% if reapplied from Chilled, or by 100% if reapplied from Frozen.</content>
+    <content contentuid="h659a054915f3fe6e141d0ec176e1dc68f136" Key="Shout_LX_WeaponArtTrueStrike_DisplayName" Source="">Weapon art: True Strike</content>
+    <content contentuid="hd2c974fad389e88552f38bfc111e74628892" Key="Shout_LX_WeaponArtTrueStrike_Description" Source="">The next weapon attack have a bonus accuracy of 3 times the current Warmup accuracy bonus (up to 30%), but damage is also reduced by the same percentage.</content>
+    <content contentuid="he07dea815734e01ba5201f88cbc02ca6bfe1" Key="LX_WA_TRUESTRIKE_DisplayName" Source="">Weapon art: True Strike</content>
+    <content contentuid="hd003bfdf8d72b559ac569f29b710238f64c1" Key="LX_WA_TRUESTRIKE_Description" Source="">+[1] Accuracy and -[2]% damage on the next weapon attack</content>
+    <content contentuid="hbce6d9c5c9647d537041dfcb83b9af73e7e0" Key="Projectile_LX_SpellConduit_DisplayName" Source="">Staff Of Magus</content>
+    <content contentuid="hf046fece1f60e01fd3004fcb06c2de960096" Key="Projectile_LX_SpellConduit_Description" Source="">Launch a magical missile from your staff that deals [1] damage.</content>
+    <content contentuid="h09f49e3d36bb584e122e22c1ba4bf06f52be" Key="Shout_LX_BowSignature_DisplayName" Source="">Hit and Run</content>
+    <content contentuid="h0beb429763d4b9d1fe5dc177bd4bd9c719dd" Key="Shout_LX_BowSignature_Description" Source="">Until the end of the turn, every hit done with a skill using a bow will provide 1 AP worth of free movement, up to 250% of the character base movement and are not affected by close quarter penalty. Unspent movement at the end of the turn will carry over to the next turn. Hit chance beyond 7 meters range is reduced by 10% per meter.</content>
+    <content contentuid="h91682cb2f71921814006cd9d81cdcb8c1985" Key="LX_BOW_SIGNATURE_DisplayName" Source="">Hit and Run</content>
+    <content contentuid="hd782366240e5e41b195a742b9d294e4a11d3" Key="LX_BOW_SIGNATURE_Description" Source="">Hits done with a skill using a bow will provide 1 AP worth of free movement, up to 250% of the character base movement.</content>
+    <content contentuid="h24226ed8bfe48204cdf8f46a115633c7135f" Key="Shout_LX_WeaponArtDash_DisplayName" Source="">Weapon art: Reckless Dash</content>
+    <content contentuid="h28665bcdf2be2b32821e6e37fc056febbeac" Key="Shout_LX_WeaponArtDash_Description" Source="">Immediately acquire 1 AP worth of movement, but reduce the user toughness by 100 and prevent armours recovery for 1 turn. Cannot use if Guard is active.</content>
+    <content contentuid="h15c7feca932d45e6b9fdd10bd0a234efbe5e" Key="LX_EXPOSED_DisplayName" Source="">Exposed</content>
+    <content contentuid="h769a97ec242dd8ba46317780caf39c95b177" Key="Shout_LX_WeaponArtGuard_DisplayName" Source="">Weapon art: Guard</content>
+    <content contentuid="h117b3fcbdcef70a4cb1c8cb1cfc86ef95f7c" Key="Shout_LX_WeaponArtGuard_Description" Source="">Increase Toughness by 50 until next turn. Warmup cost reduced by 1 if a shield is equipped. Cannot use if Exposed is active.</content>
+    <content contentuid="h430676df48436da260f5abd1ce8345423851" Key="LX_WA_GUARD_DisplayName" Source="">Guard</content>
+    <content contentuid="h581cf559aa46f05f894d377f7ab6d5b84a34" Key="Projectile_Grenade_SilverPowder_DisplayName" Source="">Silver Powder Grenade</content>
+    <content contentuid="h3b8fcfc033a946a47294249c38a5a3118bec" Key="Projectile_Grenade_SilverPowder_Description" Source="">Deals [1] and sets Suffocating for 2 turns.</content>
+    <content contentuid="h8345df305d393a4b18f6bd801b14a04ebe65" Key="LX_FOOD_POISONED_DisplayName" Source="">Food Poisoning</content>
+    <content contentuid="h06e27ca2d185a32368510828382253cef57e" Key="LX_FOOD_POISONED_Description" Source="">Deals [1] damage each turn.</content>
+    <content contentuid="h161ed8a74b801ab8c77dd07963a24897c903" Key="OIL_CARAPACE_Description" Source="">Heals 35% of Physical armour damage taken last turn.</content>
+    <content contentuid="h63c3c0aa48f6e112c6965fa4bf577bd2e07c" Key="CRYOTHERAPY_Description" Source="">Heals 35% of Magic armour damage taken last turn.</content>
+    <content contentuid="ha23ceefdg2365g476cg98d0g3df72fdafc92" Key="DualWielding_TooltipCurrent" Source="">Level [1]: +[2]% Damage, +[3]% Dodging and +[4] Armour Penetration.</content>
+    <content contentuid="hb034efe9g235bg44c9g9307g65a6d96c90e6" Key="DualWielding_TooltipNext" Source="">Next Level [1]: +[2]% damage, +[3]% Dodging and +[4] Armour Penetration.</content>
+    <content contentuid="hf9297ef7afe072f40e545fcd237d629c533d" Key="Polymorph_TooltipCurrent" Source="">Level [1]: +[2] attribute point(s), +[3]% elemental resistance.</content>
+    <content contentuid="hc0725c76f0536656a41dd55d7df2585b6593" Key="Polymorph_TooltipNext" Source="">Next Level [1]: +[2] attribute point(s), +[3]% elemental resistance.</content>
+    <content contentuid="hb37861fe64b1e8cb1ae217544b101cf1c404" Key="Polymorph_TooltipNew" Source="">Next Level [1]: +[2] attribute point(s), +[3]% elemental resistances</content>
     <content contentuid="hfb4361d27c20bdc87867ac52d3c633b97efd" Key="Stats_LX_Reload_DisplayName" Source="">Reload</content>
     <content contentuid="h6bb0cb2ceb04d55a69506c9ca922f6c4fa1b" Key="Stats_LX_AimingStance_DisplayName" Source="">Aiming stance</content>
-    <content contentuid="hc8c32296a9cd13b3b75bb8f27a36b89a26a9" Key="LX_UNSTABLE_COOLDOWN_DisplayName" Source="">Equalized</content>
-    <content contentuid="h414578c7a6cd9bc580820fd98a4afd25267c" Key="LX_UNSTABLE_COOLDOWN_Description" Source="">Unstable effect won't trigger.</content>
-    <content contentuid="h5591a47867ce805bd7d2d3d1069dbf292275" Key="LX_GUERILLA_COOLDOWN_DisplayName" Source="">Caught Attention</content>
-    <content contentuid="hfcab07f2664b522861752af57d735b8e196f" Key="LX_GUERILLA_COOLDOWN_Description" Source="">GUERILLA effect won't trigger.</content>
-    <content contentuid="h8d3c912e5ac93e291b4421af15b4811a830f" Key="LX_WALKITOFF_2_DisplayName" Source="">Walk It Off</content>
-    <content contentuid="h0a3779d5d88d772ec1e8c5171bd1c2bdc087" Key="LX_WALKITOFF_DisplayName" Source="">Walk It Off</content>
-    <content contentuid="h64db4ffb1aaf4b734c49fc5643d3812635b6" Key="LX_WALKITOFF_3_DisplayName" Source="">Walk It Off</content>
-    <content contentuid="h02730913d75b1871da386e2eb52bfddadac7" Key="LX_WALKITOFF_4_DisplayName" Source="">Walk It Off</content>
-    <content contentuid="hc2a335183c04a9f9e913224090dfe4f3d936" Key="LX_WALKITOFF_5_DisplayName" Source="">Walk It Off</content>
-    <content contentuid="h1a1acd84bd21a8ab7bca24ea4feeb7252d99" Key="LX_PETPAL_DisplayName" Source="">Weaker Summon</content>
-    <content contentuid="h2598e3f2aeae60550183acb168d1b5ac4129" Key="LX_PETPAL_Description" Source="">This summon is weaker.</content>
-    <content contentuid="h77e2f7f30db3e4434058d0c26535846c479c" Key="LX_STAGGERED_DisplayName" Source="">Staggered</content>
-    <content contentuid="h61cca656516b670501d2ec20312d6eb0ae72" Key="LX_STAGGERED_Description" Source="">This character have staggered during his recovery.</content>
-    <content contentuid="h96fab77484fd7476e225d29695066f29d480" Key="LX_STAGGERED2_DisplayName" Source="">Staggered (2)</content>
-    <content contentuid="h26268bcd3c24523d0f5a2ad8e679cbfb1ce2" Key="LX_STAGGERED2_Description" Source="">This character have staggered during his recovery.</content>
-    <content contentuid="ha42b59c1b822599f44da58d3da4900a791f2" Key="LX_STAGGERED3_DisplayName" Source="">Staggered (3)</content>
-    <content contentuid="hab49ba2b8b22b7458e1e2cbc5ebc47144542" Key="LX_STAGGERED3_Description" Source="">This character have staggered during his recovery.</content>
-    <content contentuid="h3f64f2793ef833df1c0912cc429b9d69a17b" Key="LX_CONFUSED_DisplayName" Source="">Confused</content>
-    <content contentuid="h80fb1c2022db6d6611aa33b7d8e13b10ee9f" Key="LX_CONFUSED_Description" Source="">This character have been magically affected during recovery.</content>
-    <content contentuid="he287bd50a22f31afebbd3c76dd71ac8e2b9d" Key="LX_CONFUSED2_DisplayName" Source="">Confused (2)</content>
-    <content contentuid="h97cf266a8b232aa3963480354ca1b913ec1a" Key="LX_CONFUSED2_Description" Source="">This character have been magically affected during recovery.</content>
-    <content contentuid="h7a1c10a9ede6101f86a55b59b8921759d5bd" Key="LX_CONFUSED3_DisplayName" Source="">Confused (3)</content>
-    <content contentuid="h94bd9c9a124173854d119a7b4dd10adb9614" Key="LX_CONFUSED3_Description" Source="">This character have been magically affected during recovery.</content>
-    <content contentuid="hd0c546ea58416121d63941d82957a625df8f" Key="LX_MOMENTUM_DisplayName" Source="">Momentum</content>
-    <content contentuid="he075ba60ac1e696cc795aa6906b67a92701b" Key="LX_MOMENTUM_Description" Source="">Any attempt to apply Knocked Down or Chicken will apply Staggered instead.</content>
-    <content contentuid="hcc33b564782f9cfb031d90668a18aa3b05e9" Key="LX_LINGERING_DisplayName" Source="">Lingering</content>
-    <content contentuid="h5b9d1545c072fc717bbe51a20162c6923fde" Key="LX_LINGERING_Description" Source="">Any attempt to apply Stunned, Petrified, Frozen, Madness, Terrified or Charm will apply Confused instead.</content>
-    <content contentuid="h4473e731fcfa784a074ad80a98a32914ae03" Key="LX_DODGE_FATIGUE1_DisplayName" Source="">Dodge Fatigue</content>
-    <content contentuid="h8abb3957cce683427d13a22733a216105756" Key="LX_DODGE_FATIGUE1_Description" Source="">This character dodges become less effective.</content>
-    <content contentuid="h294c511f9bf88c96e15b0cef66f3d08838bb" Key="LX_DODGE_FATIGUE2_DisplayName" Source="">Dodge Fatigue (2)</content>
-    <content contentuid="h46223a55ba9c9c39a10b765000f96e714751" Key="LX_DODGE_FATIGUE2_Description" Source="">This character dodges become less effective.</content>
-    <content contentuid="h60eb099f3b6e04cff76aa2a3c207bbdd68e1" Key="LX_DODGE_FATIGUE3_DisplayName" Source="">Dodge Fatigue (3)</content>
-    <content contentuid="hdf8fec93064ff8587a085ea3ac0ec594e8f9" Key="LX_DODGE_FATIGUE3_Description" Source="">This character dodges become less effective.</content>
-    <content contentuid="h451acda4d7c643855ee356c26107ec3f441b" Key="LX_DODGE_FATIGUE4_DisplayName" Source="">Dodge Fatigue (4)</content>
-    <content contentuid="h8bf148aa30635a64963e64e2d3444d2f672e" Key="LX_DODGE_FATIGUE4_Description" Source="">This character dodges become less effective.</content>
-    <content contentuid="hc9316897cd92eac9ff23fa8f7b2fed5b5e60" Key="ARROWHEAD_FIRE_DisplayName" Source="">Burning Weapons</content>
-    <content contentuid="h7ae174140f158520bac89f0feee207343807" Key="ARROWHEAD_FIRE_Description" Source="">Adds [1] to weapon attacks and skills.</content>
-    <content contentuid="h5261aa401fc3bc16eca18ba3d178d86f78e6" Key="ARROWHEAD_WATER_DisplayName" Source="">Water Weapons</content>
-    <content contentuid="h77a17d4643ea5b11fbf6d15853c4af76c46a" Key="ARROWHEAD_WATER_Description" Source="">Adds [1] to weapon attacks and skills.</content>
-    <content contentuid="hc7e034537bff32b3bc7d76c726e9cbc68a9a" Key="ARROWHEAD_POISON_DisplayName" Source="">Poison Weapons</content>
-    <content contentuid="hf2439cf087f307ffa14f639de2c948e75ebc" Key="ARROWHEAD_POISON_Description" Source="">Adds [1] to weapon attacks and skills.</content>
-    <content contentuid="h63f1e8716a5e75d45e549754eff6c94da44c" Key="ARROWHEAD_ELECTRIC_DisplayName" Source="">Electric Weapons</content>
-    <content contentuid="hb03a694f146741e0547ba0ba73a1e477e160" Key="ARROWHEAD_ELECTRIC_Description" Source="">Adds [1] to weapon attacks and skills.</content>
-    <content contentuid="hb26934645693c5e1012124746c38f58aaa10" Key="ARROWHEAD_BLOOD_DisplayName" Source="">Bloody Weapons</content>
-    <content contentuid="h63af15065ac6593db25a58710b2b15bbc1fd" Key="ARROWHEAD_BLOOD_Description" Source="">Adds [1] to weapon attacks and skills.</content>
-    <content contentuid="h5b7e873ecf4cd4429648b2f1a6a1839793d6" Key="ARROWHEAD_OIL_DisplayName" Source="">Oily Weapons</content>
-    <content contentuid="ha78116c64cd7437f245a90aa33885405021a" Key="ARROWHEAD_OIL_Description" Source="">Adds [1] to weapon attacks and skills.</content>
-    <content contentuid="hff62a8a2b02fe2950903c9b2d6291a19dc9e" Key="LX_POTIONWARNING_DisplayName" Source="">Potion Dizziness</content>
-    <content contentuid="hc715f7d725e6eb42a1bdf847965b06025a2b" Key="LX_POTIONWARNING_Description" Source="">This character drank a lot of potions. One more potion and it's an overdose !</content>
-    <content contentuid="hd8260d04e8913465a49cab32794b6b9ddc4b" Key="LX_POTIONFATIGUE2_DisplayName" Source="">Potion Poisoning</content>
-    <content contentuid="h423066db61b2d63ebfba911cc211428724cf" Key="LX_POTIONFATIGUE2_Description" Source="">This character drank too much potions and could not handle the side effects.</content>
-    <content contentuid="hc110be7552da7a7f8fd8cadce40ce580a671" Key="LX_POTIONFATIGUE1_DisplayName" Source="">Potion Poisoning</content>
-    <content contentuid="hd6c110ac7e9b0a6b65fa372a0f55edbab3d9" Key="LX_POTIONFATIGUE1_Description" Source="">This character drank too much potions and start to have side effects.</content>
-    <content contentuid="hc11b123da4c0e0498d06453cde77347f9fed" Key="LX_SHIELDSUP_DisplayName" Source="">Shields Up</content>
-    <content contentuid="h5fe3d65398955fa36ef182b0a3513da28f65" Key="LX_SHIELDSUP_Description" Source="">The amount of damage going through armors is reduced by half.</content>
-    <content contentuid="h35b9676b75fed0dda7bab35efd1fcec6634d" Key="LX_FOOD_REGENERATION_DisplayName" Source="">Well fed</content>
-    <content contentuid="h5fe61d5d1ffbd29a052aefba9d8064868c55" Key="LX_FOOD_REGENERATION_Description" Source="">Regenerate 1% Vitality per turn during combat.</content>
-    <content contentuid="h7b6ea033ce3ffd48327089d17aff8d633745" Key="LX_FOOD_CLEAN_DisplayName" Source="">Purge</content>
-    <content contentuid="hfae81631c65d01e17fcf60538bcc382fceb4" Key="LX_FOOD_REGENERATION2_DisplayName" Source="">Well fed</content>
-    <content contentuid="h698f0041cd2bb1039055428989b9d548fbc8" Key="LX_FOOD_REGENERATION2_Description" Source="">Regenerate 2% Vitality per turn during combat.</content>
-    <content contentuid="h1214f03ff7019291003109b48a8073e523d6" Key="LX_SLOWED_DisplayName" Source="">Slowed</content>
-    <content contentuid="hfce5d3fe450a1e9fdfef36e1ea1e29f245a6" Key="LX_OILYCARAPACE_DisplayName" Source="">Oily Carapace</content>
-    <content contentuid="h3a205aa24d8103d2d8bc2d12e5415626b0cd" Key="LX_OILYCARAPACE_Description" Source="">Reduce damage going through Physical armour by 100%</content>
-    <content contentuid="hbb2fa3884c9b2666ae5e764bc80069f84f55" Key="LX_CRYOTHERAPY_DisplayName" Source="">Cryotherapy</content>
-    <content contentuid="h5f4342120214162a0e0e2a4bb3eff7221f92" Key="LX_CRYOTHERAPY_Description" Source="">Reduce damage going through Magic armour by 100%</content>
-    <content contentuid="h661d7bc45cab0005b9b211c3dd2791d34a9e" Key="LX_INCQB_DisplayName" Source="">Close Quarter Penalty</content>
-    <content contentuid="h51dd13de09bdd8c6735bf7be1bf50088a653" Key="LX_INCQB_Description" Source="">If you attack this character with a ranged weapon, the damage will be lowered.</content>
-    <content contentuid="h7d192ef84f0d68d64c186b27aaa1ef013552" Key="SIPHON_POISON_Description" Source="">Adds [2] damage to your weapon attacks and skills. They now also set Acid for 1 turn (3 if Venom Coating is active).</content>
-    <content contentuid="hdaa237c019427bec7b832c920d7addf3ad63" Key="VENOM_COATING_Description" Source="">Adds [1] to weapon attacks and skills.</content>
-    <content contentuid="h40c79d47efcc3b2b42c11c182c536a33bf50" Key="VENOM_AURA_Description" Source="">Adds [1] to weapon attacks and skills.</content>
-    <content contentuid="hfbe72f4d336665b7d6fc8bd0fbb3c71d8f99" Key="FIRE_BRAND_Description" Source="">Adds [1] to weapon attacks and skills.</content>
-    <content contentuid="h8385af72c9dec76ad08fc9032b4fefadce60" Key="FIRE_BRAND_AURA_Description" Source="">Adds [1] to weapon attacks and skills.</content>
-    <content contentuid="h46e61196be80b8a7f0d434add32554fb3f69" Key="LX_ADRENALINE_DisplayName" Source="">Adrenaline</content>
-    <content contentuid="h223851f6d4b363911a5afceb6e9bddf1bdb7" Key="LX_PERSEVERANCE_DisplayName" Source="">Perseverance</content>
-    <content contentuid="h4971d2ec10e2ce97aadd2a2d6d8dcdc5039b" Key="LX_EXECUTIONER_DisplayName" Source="">Executioner</content>
-    <content contentuid="hf35e8c0e55327e0f81adb299ec2cd449b90d" Key="LX_GB4_MC_EA_DisplayName" Source="">Cycle of Earth and Air</content>
-    <content contentuid="h420a8eebb4de620596671a544af53d2b5a1e" Key="LX_GB4_MC_WF_DisplayName" Source="">Cycle of Water and Fire</content>
-    <content contentuid="h0479112219928de2bc8a3551b4056c3ec635" Key="LX_INDOMITABLE_DisplayName" Source="">Indomitable</content>
-    <content contentuid="h031ea82f4abb55750d6533b98783922ae18c" Key="LX_INDOMITABLE_CD_DisplayName" Source="">Exhausted</content>
-    <content contentuid="ha9ebb7b0bee975c37e957c0d2f0e53efc5f0" Key="LX_INDOMITABLE_CD_Description" Source="">The Indomitable talent won't have any effect while this status is present.</content>
-    <content contentuid="hb27474d65c3a234b113342dedd739682139d" Key="LX_GLADIATOR_CD_DisplayName" Source="">Gladiator</content>
-    <content contentuid="hd6f5c64b30739c75652a1d5b08c174de33e4" Key="LX_GLADIATOR_CD_Description" Source="">The Gladiator talent won't have any effect while this status is present.</content>
-    <content contentuid="ha6acd1adfe72041b0cd8a79be3bc86a94c6d" Key="LX_SOULCATCHER_DisplayName" Source="">Soulcatcher</content>
-    <content contentuid="h1d4aac53d3acbb1ec3af53914100e641eaec" Key="LX_SOULCATCHER_Description" Source="">Raised as a zombie until status expires or character is resurrected.</content>
-    <content contentuid="h7969797504c33fdf608c5f464ad0208448ec" Key="LX_GB4_JITTERBUG_CD_DisplayName" Source="">Escaped</content>
-    <content contentuid="h4e41fc36e81f798dd089450a90249b4bd037" Key="LX_GB4_JITTERBUG_CD_Description" Source="">The Jitterbug talent won't have any effect while this status is present.</content>
-    <content contentuid="h2dbbeb0756854f38138560a4ce9a676a97c3" Key="LX_SOULCATCHER_CD_DisplayName" Source="">Soulcatcher</content>
-    <content contentuid="h0704ef33a2816c04eb2e60b8521658702a88" Key="LX_SOULCATCHER_CD_Description" Source="">The Soulcatcher talent won't work while this status is active.</content>
-    <content contentuid="h84eea22c576d786a558afc685151a3f7fc4c" Key="LX_CORROGIC_DisplayName" Source="">Resistance Corrosion</content>
-    <content contentuid="h9d731294abae882d733cdcdc626476b18fdd" Key="LX_CORROGIC_Description" Source="">Resistances are lowered by Corrosive and/or Magic armour damage on Vitality. Cured by Fortified and Magic Shell.</content>
-    <content contentuid="h4a3accccf5dfb49ac216dab9ef7b48a35364" Key="DGM_WARMUP_Description" Source="">The character adapt their blows to the moving targets.</content>
-    <content contentuid="h3b958d7434c747e5b5e3b5d899753b9f695a" Key="Shout_LX_WeaponArtTrueStrike_DisplayName" Source="">Weapon art: True Strike</content>
-    <content contentuid="hffd17a2ead67525d33e3e22843e94cdc5830" Key="Shout_LX_WeaponArtTrueStrike_Description" Source="">The next weapon attack have a bonus accuracy of 3 times the current Warmup accuracy bonus (up to 30%), but damage is also reduced by the same percentage.</content>
-    <content contentuid="h3bea1ecd27c3c8ad9a96d83e6c6b35cca1b7" Key="LX_WA_TRUESTRIKE_DisplayName" Source="">Weapon art: True Strike</content>
-    <content contentuid="hab9032051f058b0c615beb67cd70293f4ce9" Key="LX_WA_TRUESTRIKE_Description" Source="">+[1] Accuracy and -[2]% damage on the next weapon attack</content>
-    <content contentuid="hd983691a91035f7a72ac9797300bd677b8cd" Key="Projectile_Grenade_SilverPowder_DisplayName" Source="">Silver Powder Grenade</content>
-    <content contentuid="hfb977237784b8dfbb41e326bb72f4aa0607b" Key="Projectile_Grenade_SilverPowder_Description" Source="">Deals [1] and sets Suffocating for 2 turns.</content>
-    <content contentuid="ha92c0a009f0c8eaa36f097cac0464af134da" Key="LX_FOOD_POISONED_DisplayName" Source="">Food Poisoning</content>
-    <content contentuid="h621efeae9bc9df3bae552d5148c8396c7d25" Key="LX_FOOD_POISONED_Description" Source="">Deals [1] damage each turn.</content>
     <content contentuid="hff83420f803da56bf3580ac068cdc3ea56f9" Key="LX_StatusEfficiency_DisplayName" Source="">Effectiveness</content>
     <content contentuid="h06c018e593eab9a94c3ad30c9d2dfed01860" Key="LX_REFLEX_BONUS_DisplayName" Source="">Hit and Run</content>
     <content contentuid="h153e0e12d71e4b3b2c01fed4ba373ba241ac" Key="Stats_LX_ReflexBonus_DisplayName" Source="">Hit and run</content>
     <content contentuid="h309c8da6904ec1aac975744b0b0cbdf7c9d3" Key="Stats_LX_Suppressed_DisplayName" Source="">Suppressed</content>
-    <content contentuid="h8265a183beac223db394326c06293af27672" Key="Shout_LX_CrossbowSignature_DisplayName" Source="">Bullseye</content>
-    <content contentuid="h01a5a945237967e4e1bc182438e7b8042f47" Key="Shout_LX_CrossbowSignature_Description" Source="">The next attack done with a crossbow will receive an Accuracy and Critical Chance modifier related to the movement speed of the target(s). Movement below 5 meters will provide 10% more Accuracy and Critical chance per meter, and reverse for each meter above 5 meters. Accuracy above 100% converted to Critical chance.</content>
-    <content contentuid="h1e0c42094434bcabc474c594e464eff870dd" Key="LX_SNIPER_DisplayName" Source="">Sniper</content>
-    <content contentuid="h6eaf250833ee2f4376958471ccbe83a81528" Key="LX_SNIPER_Description" Source="">Increase critical chance every non-offensive skill or item used and resets when a critical hit happens.</content>
-    <content contentuid="h6e3e84f0d6bfe5886a9c899657a17badd466" Key="LX_SNIPER_MULT_DisplayName" Source="">Deadly Aim</content>
-    <content contentuid="h87dfb3e1c8c70a3bcbcdd9cf10a9ebef2c66" Key="LX_SNIPER_MULT_Description" Source="">Increase critical multiplier every successful critical hit done while Sniper is active. The higher Sniper is, the more critical multiplier is granted.</content>
-    <content contentuid="h8fb8bf233ce4f3a14e9a23fd661fc37da159" Key="Projectile_LX_QuickShot_DisplayName" Source="">Quick Draw</content>
-    <content contentuid="h1eb43fb18669170bad38dd607b65272baf2d" Key="Projectile_LX_QuickShot_Description" Source="">Draw an arrow with haste and shoot to gain some time to deal [1]. Hit chance is capped at 80% and is further reduced with the distance from the target by 5% per meter beyond the third and immediately grants free movement equal to the travel distance of the arrow.</content>
-    <content contentuid="hd414e3b908559be796c90af1c1c5b75405ed" Key="LX_OVERPOWERED_DisplayName" Source="">Overpowered</content>
-    <content contentuid="h5c9379279dee9f3e76eacecccbf271a16769" Key="LX_PROTECTION_CIRCLE_DisplayName" Source="">Dome of Protection</content>
-    <content contentuid="h6bfed2136c8d2486b9b2eac9fa8b9a93b405" Key="LX_THERMAL_SHOCK_DisplayName" Source="">Thermal Shock</content>
-    <content contentuid="hfd5017c0a4d905fd81745afbe48a3efbed01" Key="LX_FROSTBITE_DisplayName" Source="">Frostbite</content>
-    <content contentuid="he4f56fa52f499dd07ccbd8a1f853865af656" Key="LX_FROSTBITE_Description" Source="">Deals [1] damage per turn.</content>
-    <content contentuid="h5a12445a4877dc0870bfb6b6e5e32a56d2c2" Key="Projectile_LX_SpellConduit_DisplayName" Source="">Staff Of Magus</content>
-    <content contentuid="hf513f1694ddacc7ae684d23f8f4751e9aa88" Key="Projectile_LX_SpellConduit_Description" Source="">Launch a magical missile from your staff that deals [1] damage.</content>
-    <content contentuid="h51f6a367cb3f199a467fdbeefb9668f24e96" Key="Shout_LX_BowSignature_DisplayName" Source="">Hit and Run</content>
-    <content contentuid="hd271859086bd8f0fc82e7da17c26f2f738b9" Key="Shout_LX_BowSignature_Description" Source="">Until the end of the turn, every hit done with a skill using a bow will provide 1 AP worth of free movement, up to 250% of the character base movement and are not affected by close quarter penalty. Unspent movement at the end of the turn will carry over to the next turn. Hit chance beyond 7 meters range is reduced by 10% per meter.</content>
-    <content contentuid="h5f4a3896462ba3123448565f8fc206bcc269" Key="LX_BOW_SIGNATURE_DisplayName" Source="">Hit and Run</content>
-    <content contentuid="hcd4a5f1ede396bcdad89e80f103e4995a3ae" Key="LX_BOW_SIGNATURE_Description" Source="">Hits done with a skill using a bow will provide 1 AP worth of free movement, up to 250% of the character base movement.</content>
-    <content contentuid="hd4841600bda3b3f7545b924cff99aac705fb" Key="LX_CROSSBOW_SIGNATURE_DisplayName" Source="">Bullseye</content>
-    <content contentuid="h9148568d3fcb2bc7b94fab8b456aa4248874" Key="LX_CROSSBOW_SIGNATURE_Description" Source="">The next attack done with a crossbow will receive an Accuracy and Critical Chance modifier related to the movement speed of the target(s).</content>
-    <content contentuid="hcb232797bcfb40acbea95d3dd0e216ce8bef" Key="Shout_LX_WeaponArtDash_DisplayName" Source="">Weapon art: Reckless Dash</content>
-    <content contentuid="h44214222886f4db1b4f47fa92a4fc9629b7d" Key="Shout_LX_WeaponArtDash_Description" Source="">Immediately acquire 1 AP worth of movement, but reduce the user toughness by 100 and prevent armours recovery for 1 turn. Cannot use if Guard is active.</content>
-    <content contentuid="h1174b9bbd576dc878f9ab5831f5e55961178" Key="LX_EXPOSED_DisplayName" Source="">Exposed</content>
-    <content contentuid="haac0600a148c1973b088368efccf26cb26aa" Key="Shout_LX_WeaponArtGuard_DisplayName" Source="">Weapon art: Guard</content>
-    <content contentuid="h124c72529ace14c824a34789c7f9778d4d06" Key="Shout_LX_WeaponArtGuard_Description" Source="">Increase Toughness by 50 until next turn. Warmup cost reduced by 1 if a shield is equipped. Cannot use if Exposed is active.</content>
-    <content contentuid="h07f8d27e320390269247a493d914da996e0c" Key="LX_WA_GUARD_DisplayName" Source="">Guard</content>
-    <content contentuid="h5a55c99e3053de46f66879836f9ac8656c12" Key="OIL_CARAPACE_Description" Source="">Heals 35% of Physical armour damage taken last turn.</content>
-    <content contentuid="ha28042d67629b6686d9f44fdc2cf4486f525" Key="CRYOTHERAPY_Description" Source="">Heals 35% of Magic armour damage taken last turn.</content>
-    <content contentuid="h567a3f5b802be27f068b9e3bd64a14d3163b" Key="Strength_Cap" Source="Attributes.lsb">(require more Strength to unlock full potential)</content>
-    <content contentuid="habc19afd4d6ba2d925d8a4c1a21a32b8d212" Key="Finesse_Cap" Source="Attributes.lsb">(require more Finesse to unlock full potential)</content>
-    <content contentuid="h648734a2f86bbd91f33a477a5efd7d5a9116" Key="Intelligence_Cap" Source="Attributes.lsb">(require more Intelligence to unlock the full potential)</content>
-    <content contentuid="h22af50d6a7831f329acea2c59db756237b0b" Key="Condition_OneArmorDown" Source="CustomTooltips.lsb">Enemies need to have Physical or Magic armour down to be targetable.</content>
-    <content contentuid="h9f743f3e5f10d8a39573af69a1b4b2467622" Key="BaseLevelDamage" Source="CustomTooltips.lsb">Base Level [1] Damage</content>
-    <content contentuid="hd0b75c73868ee5195db8d5919d5ee8a70615" Key="BaseWeaponLevelDamage" Source="CustomTooltips.lsb">Base Weapon Level [1] Damage</content>
-    <content contentuid="h7b18c6433b7d48b47854bba90b87cc56699d" Key="AverageLevelDamage" Source="CustomTooltips.lsb">Average Level [1] Damage</content>
-    <content contentuid="hdcc736bc1723f55f5a8061ed4959bd144d5c" Key="DamageScalings_Description" Source="CustomTooltips.lsb">Base level damage is level scaled damage for a 100% damage hit. Average Level damage takes into account the average bonus from attributes and abilities and is a good point of reference to evaluate the damage effectiveness of your character.</content>
-    <content contentuid="hda0454704ded55616335dfaee6b73032120e" Key="Heal_ThresholdMinimum" Source="CustomTooltips.lsb">Heals for a minimum of &quot;..tostring(vitalityAmount)..&quot; Vitality.</content>
-    <content contentuid="hfafb680ee0b9e7176c3dcb6b4252ecd10951" Key="Stats_AbsorbStatus_Description" Source="CustomTooltips.lsb">Absorb [1] for [2] turns.</content>
-    <content contentuid="h1a6b7b982a365ee1f6a8c6428b7f931de74b" Key="Stats_Absorb_DynamicTooltip_B" Source="CustomTooltips.lsb">Creates or reinforce a shield absorbing [1] [2] damage.</content>
-    <content contentuid="hf14cfa33f7c286977632c533af2b641cd173" Key="Stats_Absorb_DynamicTooltip" Source="CustomTooltips.lsb">Creates a shield absorbing [1] [2] damage.</content>
-    <content contentuid="ha07a5c83d42e4fed6b55d1378a89e1150365" Key="Status_Absorb_Description" Source="CustomTooltips.lsb">Shield remaining power: [1]</content>
-    <content contentuid="h779a3a1a26a49b53a026c3d7b00e400c303a" Key="Stats_Property_TryKill_Source" Source="CustomTooltips.lsb">Consume up to [1] Source points to increase the execution threshold by [2] per SP. (current threshold: [3])</content>
-    <content contentuid="hed00a1461d471f4313e6c7b7f8540809cf1f" Key="Stats_Property_TryKill_Influence" Source="CustomTooltips.lsb">Increase the execution threshold by [1] if the target is under the influence of</content>
-    <content contentuid="h1eac6e5a6f2c4e8482ce4d30ed05df57a6bb" Key="Stats_Property_TryKill_Tooltip" Source="CustomTooltips.lsb">Attempt to execute the target if their Vitality falls under [1] HP after the hit.</content>
-    <content contentuid="hb5388e021fd453c00f741e4eaeb0958b580b" Key="Stats_Property_SurfaceBoost" Source="CustomTooltips.lsb">Absorb surfaces to boost the skill.</content>
-    <content contentuid="h7ff995c33a6ec2025bedb481731e2cadaa6e" Key="Stats_Property_ExplodeTarget" Source="CustomTooltips.lsb">Explode target, causing damage in a [1] meters radius</content>
-    <content contentuid="h0d54b29619f8740e3cee12502bb24eb02afb" Key="Stats_Projectiles_PerHit" Source="CustomTooltips.lsb">per hit</content>
-    <content contentuid="hd2bfaf92bdfdbf83eadb4d46384de47c1d53" Key="Stats_Property_Spark" Source="CustomTooltips.lsb">Each hit will throw a projectile to the nearest target in a [1] meters radius</content>
-    <content contentuid="h8f1202729f0629ef0e5b1e09772ee33fde54" Key="Stats_Property_LeaveAction" Source="CustomTooltips.lsb">On [1] expiration</content>
-    <content contentuid="he6f8979120c8afdb44968acd762c2898cba3" Key="Stats_Property_ActiveDefense" Source="CustomTooltips.lsb">On activation: [1]</content>
-    <content contentuid="h49a7e44d16c17622db865646c909c621da88" Key="Status_Damage_ExtensionWeapon" Source="CustomTooltips.lsb">Weapon bonus: [1]</content>
-    <content contentuid="h1a44edf87fd960575f747f75158c6897059c" Key="Status_Damage_ExtensionStatus" Source="CustomTooltips.lsb">Status: [1]</content>
-    <content contentuid="h1f66db553d3116b7589c0fdc62fdab0e499d" Key="Tooltip_Generic_BonusFrom" Source="CustomTooltips.lsb">Bonus from</content>
-    <content contentuid="h0c1cd0d3dd41966c65c6fc731006f798fe7f" Key="Tooltip_BonusFromAttributes" Source="CustomTooltips.lsb">Bonus from Attributes</content>
-    <content contentuid="h97351fc05acbdd82ba0a48e99074dfa818b2" Key="Stats_Potion_Overdose" Source="CustomTooltips.lsb">Drinking a second potion during your turn will reduce your AP by 1 the next turn, and drinking a third one will immediatly end your turn and reduce your AP by 3 the next turn.</content>
-    <content contentuid="h26429286b5cbd65237ac9b7952fee95f6e1e" Key="Stats_Potion_HealingElixir_Custom" Source="CustomTooltips.lsb">Clear Crippled, Atrophy and Diseased.</content>
-    <content contentuid="hbdc28000d4570ce4e2a11894970bc6e50690" Key="Stats_LX_WalkItOff_DisplayName" Source="">Walk It Off</content>
-    <content contentuid="h99fba621c557588751632da14c422d922985" Key="Stats_LX_WalkItOff_2_DisplayName" Source="">Walk It Off (2)</content>
-    <content contentuid="h13610184e1123477fc4bd751e7a6e2f541b5" Key="Stats_LX_WalkItOff_3_DisplayName" Source="">Walk It Off (3)</content>
-    <content contentuid="h6a1a212c011f71025da596c209d35b613a45" Key="Stats_LX_WalkItOff_4_DisplayName" Source="">Walk It Off (4)</content>
-    <content contentuid="h84d58328e7a4d00223bc868a636c388eea1c" Key="Stats_LX_WalkItOff_5_DisplayName" Source="">Walk It Off (5)</content>
-    <content contentuid="h7c02c5f21cabd130b1f9b0a719e2ec3842de" Key="Stats_LX_PetPal_DisplayName" Source="">Pet Pal (Summon)</content>
-    <content contentuid="hbc19ccbeacef6e5392c99f5305359be66f54" Key="Stats_LX_Staggered_DisplayName" Source="">Staggered</content>
-    <content contentuid="h4c030e21714dcee61b921f3b8856fd36ac25" Key="Stats_LX_Staggered_Description" Source="">This character has staggered during their recovery.</content>
-    <content contentuid="h6ab4f3ef6dd0375d583f4b9368bbef28d0f4" Key="Stats_LX_Staggered2_DisplayName" Source="">Staggered (2)</content>
-    <content contentuid="h7183cc6e5ded268a9a279611ebaac163d4a7" Key="Stats_LX_Staggered3_DisplayName" Source="">Staggered (3)</content>
-    <content contentuid="h5e17b8cb61f0618b522be765e0c5636ff8d3" Key="Stats_LX_Confused_DisplayName" Source="">Confused</content>
-    <content contentuid="h68e7e3bbb6f3e5135c27136de80b21333393" Key="Stats_LX_Confused_Description" Source="">This character has been magically affected during recovery.</content>
-    <content contentuid="hd557bb4903888bdfd13f557ff84361e4a1f8" Key="Stats_LX_Confused2_DisplayName" Source="">Confused (2)</content>
-    <content contentuid="h0be2c1d015ee4d3158e444b3abd5205396cb" Key="Stats_LX_Confused3_DisplayName" Source="">Confused (3)</content>
-    <content contentuid="h31e0804833a73f334782e9b8461684aafec2" Key="Stats_LX_DodgeFatigue_DisplayName" Source="">Dodge Fatigue</content>
-    <content contentuid="h41de79342e8f388fbfc1d035a93f42f6d616" Key="Stats_LX_DodgeFatigue_Description" Source="">This characters dodging has become less effective.</content>
-    <content contentuid="ha2cdd7a5fdd34b9d2b5e5c41c3c9dfda1616" Key="Stats_LX_DodgeFatigue2_DisplayName" Source="">Dodge Fatigue (2)</content>
-    <content contentuid="h6e6d4bd979456fbf92f4c9013bb9acf17d62" Key="Stats_LX_DodgeFatigue3_DisplayName" Source="">Dodge Fatigue (3)</content>
-    <content contentuid="h999bf9c5d96e41cf82c3a425acb140dbdeda" Key="Stats_LX_DodgeFatigue4_DisplayName" Source="">Dodge Fatigue (4)</content>
-    <content contentuid="h1e6d3c6e04ab56a5d2e32162017f4327ba0e" Key="Stats_LX_Leech_DisplayName" Source="">Leech</content>
-    <content contentuid="h88f824b9a94c614bcdc32495075c5eed2f7e" Key="Stats_LX_Demon_DisplayName" Source="">Demon</content>
-    <content contentuid="h332911b88228ea865e11635b42e21b4b3156" Key="Stats_LX_DDGoose_DisplayName" Source="">Duck Duck Goose</content>
-    <content contentuid="h4ae2c61a480f17505f0a207ca69ce4b028aa" Key="Stats_LX_Hothead_DisplayName" Source="">Hothead</content>
-    <content contentuid="h74ecea87319a984fdcfb1e55821aa35c6299" Key="Stats_LX_PetPalSummoner_DisplayName" Source="">Pet Pal (Summoner)</content>
-    <content contentuid="h5afa2a42801891b952def7dd42aaf5549396" Key="Stats_LX_Duelist_DisplayName" Source="">Duelist</content>
-    <content contentuid="h5ff08c03e2c55028e90851d3f7f7db11ffad" Key="Stats_LX_PotionFatigue2_DisplayName" Source="">Potion Fatigue</content>
-    <content contentuid="h4a97960b52d5bcf2d447849e7fed2f3a7010" Key="Stats_LX_PotionFatigue2_Description" Source="">This character drank too many potions and could not handle the side effects.</content>
-    <content contentuid="h71438c6d3e4afbbb010b74a673e1de924292" Key="Stats_LX_PotionFatigue1_DisplayName" Source="">Potion Fatigue</content>
-    <content contentuid="hd314bdd511bff19a25aff19dff6235ae0db4" Key="Stats_LX_PotionFatigue1_Description" Source="">This character drank too many potions and is experiencing side effects.</content>
-    <content contentuid="h0579c5370bb7832e68c3f3105cfddd8911c0" Key="Stats_LX_IceKing_DisplayName" Source="">Ice King</content>
-    <content contentuid="h9ff33ab9311449fcfe6cfafd444432c810f8" Key="Stats_LX_Adrenaline_DisplayName" Source="">Adrenaline</content>
-    <content contentuid="hb5364e02a43f0dcd7b23184fd44437adca25" Key="Stats_LX_Perseverance_DisplayName" Source="">Perseverance</content>
-    <content contentuid="he3b8f4ca03f19ab5aecfdea4d197283be54a" Key="Stats_LX_SavageSortilege_DisplayName" Source="">Savage Sortilege</content>
-    <content contentuid="hd9b582450d8fab0b2df7c91db242d73a1ea6" Key="Stats_LX_Escapist_DisplayName" Source="">Escapist</content>
-    <content contentuid="ha7d57737cc10470eaf6bc8842dd6526dfff1" Key="Stats_LX_Stench_DisplayName" Source="">Stench</content>
-    <content contentuid="hdcba0d94c61bfac2803c2b04803dda3d94fe" Key="Stats_LX_Reload_DisplayName" Source="">Reload</content>
-    <content contentuid="hac0b13d4d07da43f8f46cc02ae41ea967e95" Key="Stats_LX_AimingStance_DisplayName" Source="">Aiming stance</content>
-    <content contentuid="h1e89ba4ad1587094e494485a775f15b440c0" Key="LX_UNSTABLE_COOLDOWN_DisplayName" Source="">Equalized</content>
-    <content contentuid="hdae33df55961520d5117847129d5da260b31" Key="LX_UNSTABLE_COOLDOWN_Description" Source="">Unstable effect won't trigger.</content>
-    <content contentuid="h894fe9a5e2a886222f8bf51d20df4217602b" Key="LX_GUERILLA_COOLDOWN_DisplayName" Source="">Caught Attention</content>
-    <content contentuid="h79d6cd16555155e056ad7f90098815c8d36b" Key="LX_GUERILLA_COOLDOWN_Description" Source="">GUERILLA effect won't trigger.</content>
-    <content contentuid="h9bbb294660bcded90c398275f4c8b32fadc3" Key="LX_WALKITOFF_2_DisplayName" Source="">Walk It Off</content>
-    <content contentuid="hd527c3cb448c779c6d454024553d73b7b427" Key="LX_WALKITOFF_DisplayName" Source="">Walk It Off</content>
-    <content contentuid="h119b310b0ff532974c154de677710d786c5a" Key="LX_WALKITOFF_3_DisplayName" Source="">Walk It Off</content>
-    <content contentuid="h12ba69b206ee9b3d291388eceb3b8438ed7e" Key="LX_WALKITOFF_4_DisplayName" Source="">Walk It Off</content>
-    <content contentuid="h03e34b3750663fa428f0fb95544d2211737a" Key="LX_WALKITOFF_5_DisplayName" Source="">Walk It Off</content>
-    <content contentuid="h0d62e28dc0130565e8f729d5b50c50e5df87" Key="LX_PETPAL_DisplayName" Source="">Weaker Summon</content>
-    <content contentuid="h0214d51d6e12e225fefc2043ca8dbb2eb76d" Key="LX_PETPAL_Description" Source="">This summon is weaker.</content>
-    <content contentuid="h7da3a4f1d5c58c3d37203b1b8d39d74d27bb" Key="LX_STAGGERED_DisplayName" Source="">Staggered</content>
-    <content contentuid="hc67f9d83e620ecc9ec6c09e419b123b0a736" Key="LX_STAGGERED_Description" Source="">This character have staggered during his recovery.</content>
-    <content contentuid="h1e0d1f172502f4318f5c196b0fbb14c2a376" Key="LX_STAGGERED2_DisplayName" Source="">Staggered (2)</content>
-    <content contentuid="h79a90b4962e90cd027aee023dc21e818fef6" Key="LX_STAGGERED2_Description" Source="">This character have staggered during his recovery.</content>
-    <content contentuid="h96c34532c78bdc719825731e1d784261b114" Key="LX_STAGGERED3_DisplayName" Source="">Staggered (3)</content>
-    <content contentuid="h197fe3091f625ad98d5ced943d897292c61f" Key="LX_STAGGERED3_Description" Source="">This character have staggered during his recovery.</content>
-    <content contentuid="h901dfa3c946f048b5a6af286be8bf394f7f4" Key="LX_CONFUSED_DisplayName" Source="">Confused</content>
-    <content contentuid="hbd1800ea24d9bc1dc312c6a8c2e41e6201fd" Key="LX_CONFUSED_Description" Source="">This character have been magically affected during recovery.</content>
-    <content contentuid="he72f3393587704b34b9861b3aadc1558d2c5" Key="LX_CONFUSED2_DisplayName" Source="">Confused (2)</content>
-    <content contentuid="h6fc867a1f0ac10ec60c0fca2e6a64a529639" Key="LX_CONFUSED2_Description" Source="">This character have been magically affected during recovery.</content>
-    <content contentuid="h11cd0d5c9ba984acec73e559e857a168e064" Key="LX_CONFUSED3_DisplayName" Source="">Confused (3)</content>
-    <content contentuid="h93b3eb95ac6801bd63b0ddce6043a6abfc04" Key="LX_CONFUSED3_Description" Source="">This character have been magically affected during recovery.</content>
-    <content contentuid="h17d82d6ab1038148a3d9fbab5db1c65573a8" Key="LX_MOMENTUM_DisplayName" Source="">Momentum</content>
-    <content contentuid="hd19daf099704abe01b5cd9b79065a3c5b5fb" Key="LX_MOMENTUM_Description" Source="">Any attempt to apply Knocked Down or Chicken will apply Staggered instead.</content>
-    <content contentuid="h91014b4fc76035b6e0b43195ea4b2ce59c96" Key="LX_LINGERING_DisplayName" Source="">Lingering</content>
-    <content contentuid="h80495271aafcd06efa650d7b3718ee53fad6" Key="LX_LINGERING_Description" Source="">Any attempt to apply Stunned, Petrified, Frozen, Madness, Terrified or Charm will apply Confused instead.</content>
-    <content contentuid="ha16e5afe229928f506d7fcd194cc8d7cf727" Key="LX_DODGE_FATIGUE1_DisplayName" Source="">Dodge Fatigue</content>
-    <content contentuid="hd5257b096bc70fee12e6beb20fd0ae1308c4" Key="LX_DODGE_FATIGUE1_Description" Source="">This character dodges become less effective.</content>
-    <content contentuid="h048ed0f331c19c0793a1f3e791368224a07e" Key="LX_DODGE_FATIGUE2_DisplayName" Source="">Dodge Fatigue (2)</content>
-    <content contentuid="hf05998c19f2dece1e8718c0d4a61717b2290" Key="LX_DODGE_FATIGUE2_Description" Source="">This character dodges become less effective.</content>
-    <content contentuid="h44ea65ea05c71a9f12e65547d7e61335060c" Key="LX_DODGE_FATIGUE3_DisplayName" Source="">Dodge Fatigue (3)</content>
-    <content contentuid="hc89e4da9471796444c2d094acceaa309899c" Key="LX_DODGE_FATIGUE3_Description" Source="">This character dodges become less effective.</content>
-    <content contentuid="hcc2d217684a1a4c8dcf37cdebf1341fb76f2" Key="LX_DODGE_FATIGUE4_DisplayName" Source="">Dodge Fatigue (4)</content>
-    <content contentuid="h49304df5669310069fba4650cede4b668ef1" Key="LX_DODGE_FATIGUE4_Description" Source="">This character dodges become less effective.</content>
-    <content contentuid="ha54a1bc1767a87d9a16867b9062ca5362b00" Key="ARROWHEAD_FIRE_DisplayName" Source="">Burning Weapons</content>
-    <content contentuid="hb893d284884759ee630fcf9be027b5f46478" Key="ARROWHEAD_FIRE_Description" Source="">Adds [1] to weapon attacks and skills.</content>
-    <content contentuid="h0b837df21ebed0830d8e34be6dcdcf8b0752" Key="ARROWHEAD_WATER_DisplayName" Source="">Water Weapons</content>
-    <content contentuid="hefd711ad154e14b135dc608905c6d9994084" Key="ARROWHEAD_WATER_Description" Source="">Adds [1] to weapon attacks and skills.</content>
-    <content contentuid="h2405e0c38235ea49b9c2b3e0d19a1d5f2f1d" Key="ARROWHEAD_POISON_DisplayName" Source="">Poison Weapons</content>
-    <content contentuid="hbe0c6945ff8ff93fbc1f729a8c5983909b45" Key="ARROWHEAD_POISON_Description" Source="">Adds [1] to weapon attacks and skills.</content>
-    <content contentuid="h97b820535b948fafa78d391c075b669cc775" Key="ARROWHEAD_ELECTRIC_DisplayName" Source="">Electric Weapons</content>
-    <content contentuid="hdd9cfcc670a8384fec968cbb2a801536d188" Key="ARROWHEAD_ELECTRIC_Description" Source="">Adds [1] to weapon attacks and skills.</content>
-    <content contentuid="h7bc3a29e914c898058d6fdf4b489f8fcbff3" Key="ARROWHEAD_BLOOD_DisplayName" Source="">Bloody Weapons</content>
-    <content contentuid="h20247db54ebe5e4680736744925cb0febd4a" Key="ARROWHEAD_BLOOD_Description" Source="">Adds [1] to weapon attacks and skills.</content>
-    <content contentuid="h83edaef10846e58c92e649d03bd92a76464f" Key="ARROWHEAD_OIL_DisplayName" Source="">Oily Weapons</content>
-    <content contentuid="h4005b494dfb11a1d3c2b0cf6b841e1353438" Key="ARROWHEAD_OIL_Description" Source="">Adds [1] to weapon attacks and skills.</content>
-    <content contentuid="hd675f6899e7baaa02123025717f97ddd2234" Key="LX_POTIONWARNING_DisplayName" Source="">Potion Dizziness</content>
-    <content contentuid="h5e6bb3dcd98eb5eedbcbbe951b31e7c14682" Key="LX_POTIONWARNING_Description" Source="">This character drank a lot of potions. One more potion and it's an overdose !</content>
-    <content contentuid="h79181612acea0fc6f9e8051325dd371d67de" Key="LX_POTIONFATIGUE2_DisplayName" Source="">Potion Poisoning</content>
-    <content contentuid="hdaa4fbb698072a8d927c429685d00a89312e" Key="LX_POTIONFATIGUE2_Description" Source="">This character drank too much potions and could not handle the side effects.</content>
-    <content contentuid="h58109f9bd9081d628fcf4cd4a22848216479" Key="LX_POTIONFATIGUE1_DisplayName" Source="">Potion Poisoning</content>
-    <content contentuid="hf1886f5631a72709839e58e6e690bfc69f82" Key="LX_POTIONFATIGUE1_Description" Source="">This character drank too much potions and start to have side effects.</content>
-    <content contentuid="hac52f1ae1c5b9ec2568be567b282bc41316c" Key="LX_SHIELDSUP_DisplayName" Source="">Shields Up</content>
-    <content contentuid="h53bebce0b179ae4affd79927d120848a767f" Key="LX_SHIELDSUP_Description" Source="">The amount of damage going through armors is reduced by half.</content>
-    <content contentuid="h2bcca2491f374ea80231a1023cd4deff7be6" Key="LX_FOOD_REGENERATION_DisplayName" Source="">Well fed</content>
-    <content contentuid="h75264cf020aa0597f1bf3496a851afa4f483" Key="LX_FOOD_REGENERATION_Description" Source="">Regenerate 1% Vitality per turn during combat.</content>
-    <content contentuid="h092b5df482116f7713b79b12aad208841b12" Key="LX_FOOD_CLEAN_DisplayName" Source="">Purge</content>
-    <content contentuid="h892303202eb36ec17073e310ee663b90d73f" Key="LX_FOOD_REGENERATION2_DisplayName" Source="">Well fed</content>
-    <content contentuid="hcf169f3221e08d31bfe57f3cf35768a7ecf5" Key="LX_FOOD_REGENERATION2_Description" Source="">Regenerate 2% Vitality per turn during combat.</content>
-    <content contentuid="h9dc829e4cffcd015d6a5605fefae080fc28b" Key="LX_SLOWED_DisplayName" Source="">Slowed</content>
-    <content contentuid="hbeae7807a63807ce99a9932afb860105a513" Key="LX_OILYCARAPACE_DisplayName" Source="">Oily Carapace</content>
-    <content contentuid="h4344559bee7a22f3c962ee6a8b2525e463c6" Key="LX_OILYCARAPACE_Description" Source="">Reduce damage going through Physical armour by 100%</content>
-    <content contentuid="hd5d3f3d22dc551500ddac68286fed22de8e3" Key="LX_CRYOTHERAPY_DisplayName" Source="">Cryotherapy</content>
-    <content contentuid="h173dfd62bab05006a4b9adc3552a3de8dfdd" Key="LX_CRYOTHERAPY_Description" Source="">Reduce damage going through Magic armour by 100%</content>
-    <content contentuid="hd0b26bf2a41a2e0a8ac20a5a1db2e88f9399" Key="LX_INCQB_DisplayName" Source="">Close Quarter Penalty</content>
-    <content contentuid="h424409ea42ab705bddbd0ae04687134ee89e" Key="LX_INCQB_Description" Source="">If you attack this character with a ranged weapon, the damage will be lowered.</content>
-    <content contentuid="hfdb3d2550c6860675847e3342f2e744b94b3" Key="SIPHON_POISON_Description" Source="">Adds [2] damage to your weapon attacks and skills. They now also set Acid for 1 turn (3 if Venom Coating is active).</content>
-    <content contentuid="h61d49f23316d18da372b84d07f3d61454ddb" Key="VENOM_COATING_Description" Source="">Adds [1] to weapon attacks and skills.</content>
-    <content contentuid="h916571f60891f00405e90d0524cace64f5a6" Key="VENOM_AURA_Description" Source="">Adds [1] to weapon attacks and skills.</content>
-    <content contentuid="hdeafe8aa2579f2c10f4a6a079d052197faf1" Key="FIRE_BRAND_Description" Source="">Adds [1] to weapon attacks and skills.</content>
-    <content contentuid="h5e883b085d9008066966781e37477a005bec" Key="FIRE_BRAND_AURA_Description" Source="">Adds [1] to weapon attacks and skills.</content>
-    <content contentuid="h757b27c6aead9743134e3366e8b3182f04d5" Key="LX_ADRENALINE_DisplayName" Source="">Adrenaline</content>
-    <content contentuid="hc31a6241974a0bba2a860ee16900719303b3" Key="LX_PERSEVERANCE_DisplayName" Source="">Perseverance</content>
-    <content contentuid="h985d500d4003d7647d1e0ca459f05cb05fe8" Key="LX_EXECUTIONER_DisplayName" Source="">Executioner</content>
-    <content contentuid="h74c1ec61763373e5757e47d70778c873fd5b" Key="LX_GB4_MC_EA_DisplayName" Source="">Cycle of Earth and Air</content>
-    <content contentuid="hb03bff4e88f309150328775997c5cdb272d5" Key="LX_GB4_MC_WF_DisplayName" Source="">Cycle of Water and Fire</content>
-    <content contentuid="h0dbf0da309f8f3267681f6eb085616ac7f72" Key="LX_INDOMITABLE_DisplayName" Source="">Indomitable</content>
-    <content contentuid="h5292a88b167cc20f597fcd2c809cffdcd711" Key="LX_INDOMITABLE_CD_DisplayName" Source="">Exhausted</content>
-    <content contentuid="h0edec0dd2a9889f29fbae2c353326b075e0e" Key="LX_INDOMITABLE_CD_Description" Source="">The Indomitable talent won't have any effect while this status is present.</content>
-    <content contentuid="h11c27a95c0bf9193ee98e227c0e4707a8929" Key="LX_GLADIATOR_CD_DisplayName" Source="">Gladiator</content>
-    <content contentuid="ha20aa33d9d34df827ef9738134a091b87b36" Key="LX_GLADIATOR_CD_Description" Source="">The Gladiator talent won't have any effect while this status is present.</content>
-    <content contentuid="h4acd54b156cb92fa6d6f5681208f626a1f75" Key="LX_SOULCATCHER_DisplayName" Source="">Soulcatcher</content>
-    <content contentuid="h7078b84866b09d1f87941ed3db426ffc5331" Key="LX_SOULCATCHER_Description" Source="">Raised as a zombie until status expires or character is resurrected.</content>
-    <content contentuid="hd875bc419bc2425f144e7059edbd89bddfec" Key="LX_GB4_JITTERBUG_CD_DisplayName" Source="">Escaped</content>
-    <content contentuid="h973ab8ae170d9fee78f87464ee63b68f53f4" Key="LX_GB4_JITTERBUG_CD_Description" Source="">The Jitterbug talent won't have any effect while this status is present.</content>
-    <content contentuid="ha3aae2faf924884b1d221599186b002fb5f8" Key="LX_SOULCATCHER_CD_DisplayName" Source="">Soulcatcher</content>
-    <content contentuid="hda1cf2171738bdc680e9287ba12a6376e7c8" Key="LX_SOULCATCHER_CD_Description" Source="">The Soulcatcher talent won't work while this status is active.</content>
-    <content contentuid="he37e4d26c7d4dc6cd28f8bd07f4112bd1b66" Key="LX_CORROGIC_DisplayName" Source="">Resistance Corrosion</content>
-    <content contentuid="hfa2fd8a61d7b59d8f264af326e6fb8ad6495" Key="LX_CORROGIC_Description" Source="">Resistances are lowered by Corrosive and/or Magic armour damage on Vitality. Cured by Fortified and Magic Shell.</content>
-    <content contentuid="h50764fae722fa7930497e742339089f8942c" Key="DGM_WARMUP_Description" Source="">The character adapt their blows to the moving targets.</content>
-    <content contentuid="hb59659d088bcfd6bfba5e4e62b48b673d423" Key="Shout_LX_WeaponArtTrueStrike_DisplayName" Source="">Weapon art: True Strike</content>
-    <content contentuid="h9d7e2bd79aab80e413555a012c818bfc4455" Key="Shout_LX_WeaponArtTrueStrike_Description" Source="">The next weapon attack have a bonus accuracy of 3 times the current Warmup bonus, but damage is also reduced by the same percentage.</content>
-    <content contentuid="ha9d877b65a796ee25e0eed871604e5c0704e" Key="LX_WA_TRUESTRIKE_DisplayName" Source="">Weapon art: True Strike</content>
-    <content contentuid="hfef9f7dc4bc09de80ce25a780ce13390a8df" Key="LX_WA_TRUESTRIKE_Description" Source="">+[1] Accuracy and -[2]% damage on the next weapon attack</content>
-    <content contentuid="he272484385c8b2eff3cac96ea2a7851c8208" Key="Projectile_Grenade_SilverPowder_DisplayName" Source="">Silver Powder Grenade</content>
-    <content contentuid="hdf3583bfdd099213efcb13eb3034c1140ed2" Key="Projectile_Grenade_SilverPowder_Description" Source="">Deals [1] and sets Suffocating for 2 turns.</content>
-    <content contentuid="hdfb36186f721ec55a69d10b7fc053b41ba38" Key="LX_FOOD_POISONED_DisplayName" Source="">Food Poisoning</content>
-    <content contentuid="h146625d6fdd1bc87b64d8a33d88b35544e7d" Key="LX_FOOD_POISONED_Description" Source="">Deals [1] damage each turn.</content>
     <content contentuid="hd5ce653bg07f3g4335gad5bgfa5ac29d3e4f" Key="Teleportation_SwapGround_Description" Source="">Target two circular areas to swap its surfaces and clouds. Refunds the AP cost if the caster is not within one of the areas. Deadly surfaces costs 6 AP, regardless of the situation.</content>
     <content contentuid="hf9747773g225ag4638gb27egea22fcec97b8" Key="Target_TerrifyingCruelty_Description" Source="">Dagger attack that deals [1] and sets Bleeding and Terrified on target character. AP cost is reduced by 1 for each armour above 0 on the target.</content>
-    <content contentuid="hb7454cab3e73232cf549982253e64af3d789" Key="LX_StatusEfficiency_DisplayName" Source="">Effectiveness</content>
     <content contentuid="hf80f57d3g4183g4858gac3dg41c92294faad" Key="Movement_Description" Source="">The distance you can run with one action point.&lt;br&gt;Current Celerity: [1]&lt;br&gt;Celerity is the distance you can run without spending an action point at the start of a turn.</content>
-    <content contentuid="h02528da9fbee5c03aac7d2c264a5bd94c81e" Key="Polymorph_TooltipCurrent" Source="">Level [1]: +[2] attribute point(s), +[3]% elemental resistance.</content>
-    <content contentuid="he30461e827145e6dd49e59f2ca1d8ed43a64" Key="Polymorph_TooltipNext" Source="">Next Level [1]: +[2] attribute point(s), +[3]% elemental resistance.</content>
+    <content contentuid="h34fa90bdg6d1fg4ee8gb3e7g8c3694c70fae" Key="Talent_MagicCycles_Description" Source="">Aerotheurge spells trigger a Vaporize effect wherever they hit. If a Geomancy spell is targeted within a cloud, all enemies within receive 1 turn of Suffocating, up to 2 turns. If an enemy already has 2 turns or more of Suffocating, it increases its effectiveness by 20% instead, up to 200%.&lt;br&gt;Apply Wet or Chilled on a Burning target or vice-versa will trigger Thermal Shock. When it is active, surface ticks of normal Steam Clouds deal Water damage. Fire and Water damage received while Thermal Shock will use the lowest of both corresponding resistances and benefit of a bonus of 25 ArPen.</content>
+    <content contentuid="h4564bbfbgd845g4318g97e7ge85f5923b323" Key="Talent_MagicCycles_DisplayName" Source="">Elemental Havoc</content>
+    <content contentuid="h053fce58ccdb11caad665a9ccbf808346ac0" Key="Target_DualWieldingAttack_DisplayName" Source="">Weapon arts &amp; techniques</content>
+    <content contentuid="hb4a1f8c26b8ab4b69106994b91339380775d" Key="Target_DualWieldingAttack_Description" Source="">List available weapon art skills and other weapon techniques.</content>
+    <content contentuid="h3fd6569396d48990a2736fc4e6e7ebd4da5a" Key="Target_LX_DualWieldingAttack_DisplayName" Source="">Flurry</content>
+    <content contentuid="he184e04938307c8022561ac9782b38fd389d" Key="Target_LX_DualWieldingAttack_Description" Source="">Perform three consecutive attack, dealing [1] each and trigger effects based on the weapons types.</content>
 </contentList>
