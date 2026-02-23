@@ -69,7 +69,8 @@ end)
 ---@param status EclStatus
 ---@param tooltip TooltipData
 Game.Tooltip.RegisterListener("Status", nil, function(character, status, tooltip)
-    if status.StatsId and status.StatsId ~= "" then
+    local statsId, err = xpcall(function() return status.StatsId end, debug.traceback)
+    if statsId and statsId ~= "" then
         local potion = Ext.Stats.Get(status.StatsId, nil, false)
         for customStatField, displayName in pairs(Data.Text.CustomAttributes) do
             if potion[customStatField] and potion[customStatField] ~= 0 and status.StatsMultiplier ~= 0 then
