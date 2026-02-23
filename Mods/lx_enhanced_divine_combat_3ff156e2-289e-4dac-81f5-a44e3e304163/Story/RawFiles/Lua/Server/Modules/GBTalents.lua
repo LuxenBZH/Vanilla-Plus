@@ -93,19 +93,19 @@ end)
 ---@param e EsvLuaBeforeStatusApplyEvent
 Ext.Events.BeforeStatusApply:Subscribe(function(e)
     local instigator = Ext.Utils.IsValidHandle(e.Status.StatusSourceHandle) and Ext.ServerEntity.GetCharacter(e.Status.StatusSourceHandle) or nil
-    if instigator and instigator.Stats.TALENT_MagicCycles then
-        local target = Ext.ServerEntity.GetGameObject(e.Status.TargetHandle)
+    local target = Ext.ServerEntity.GetGameObject(e.Status.TargetHandle)
+    if instigator and instigator ~= target and instigator.Stats.TALENT_MagicCycles then
         local thermalShock = target:GetStatus("LX_THERMAL_SHOCK")
         if ((e.Status.StatusId == "BURNING" or e.Status.StatusId == "NECROFIRE") and (target:GetStatus("WET") or target:GetStatus("CHILLED") or target:GetStatus("FROZEN"))) then
             if thermalShock then
-                thermalShock.CurrentLifeTime = thermalShock.CurrentLifeTime + 6.0
+                thermalShock.CurrentLifeTime = math.max(thermalShock.CurrentLifeTime + 6.0, 18)
                 thermalShock.RequestClientSync = true
             else
                 ApplyStatus(target.MyGuid, "LX_THERMAL_SHOCK", 12, 0, instigator.MyGuid)
             end
         elseif ((e.Status.StatusId == "WET" or e.Status.StatusId == "CHILLED") and (target:GetStatus("BURNING")) or target:GetStatus("NECROFIRE") or target:GetStatus("WARM")) then
             if thermalShock then
-                thermalShock.CurrentLifeTime = thermalShock.CurrentLifeTime + 6.0
+                thermalShock.CurrentLifeTime = math.max(thermalShock.CurrentLifeTime + 6.0, 18)
                 thermalShock.RequestClientSync = true
             else
                 ApplyStatus(target.MyGuid, "LX_THERMAL_SHOCK", 12, 0, instigator.MyGuid)
