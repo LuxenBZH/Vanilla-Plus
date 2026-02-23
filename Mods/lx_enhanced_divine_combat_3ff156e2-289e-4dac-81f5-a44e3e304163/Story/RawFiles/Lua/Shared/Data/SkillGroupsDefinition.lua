@@ -1,7 +1,4 @@
 local WeaponArts = {
-    Target_LX_DualWieldingAttack = function(character)
-        return Game.Math.GetWeaponAbility(character.Stats, character.Stats.MainWeapon) == "DualWielding"
-    end,
     Shout_LX_WeaponArtTrueStrike = function(character)
         return true, false
     end,
@@ -17,7 +14,6 @@ local WeaponArts = {
         return Helpers.Character.GetFightType(character) == "Melee" and offHand == "Shield", false
     end,
     Order = {
-        "Target_LX_DualWieldingAttack",
         "Shout_LX_WeaponArtTrueStrike",
         "Shout_LX_WeaponArtDash",
         "Shout_LX_WeaponArtGuard",
@@ -26,8 +22,7 @@ local WeaponArts = {
 }
 
 local VPlusSimpleSkillGroups = {
-    Target_HeavyAttack = WeaponArts,
-    Target_DualWieldingAttack = WeaponArts
+    Target_LX_WeaponArtMenu = WeaponArts
 }
 
 local VPlusSimpleSkillGroupsSharedCooldown = {

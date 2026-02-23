@@ -72,7 +72,7 @@ end)
 ---@param flags HitFlags
 HitManager:RegisterHitListener("DGM_Hit", "AfterDamageScaling", "VP_WeaponSignatures", function(hit, instigator, target, flags)
     local mainWeapon, offhandWeapon = Helpers.Character.GetWeaponTypes(instigator)
-    if hit.SkillId == "Target_LX_AxeAttack_-1" or (hit.SkillId == "Target_LX_DualWieldingAttack_-1" and ((target.UserVars.VP_ConsecutiveHitFromSkill.Amount == 2 and offhandWeapon == "Axe") or (target.UserVars.VP_ConsecutiveHitFromSkill.Amount ~= 2 and mainWeapon == "Axe"))) then
+    if hit.SkillId == "Target_LX_AxeAttack_-1" or (hit.SkillId == "Target_DualWieldingAttack_-1" and ((target.UserVars.VP_ConsecutiveHitFromSkill.Amount == 2 and offhandWeapon == "Axe") or (target.UserVars.VP_ConsecutiveHitFromSkill.Amount ~= 2 and mainWeapon == "Axe"))) then
         local mainDamage = mainWeapon == "Axe" and instigator.Stats.MainWeapon.StatsEntry['Damage Type'] or instigator.Stats.OffHandWeapon.StatsEntry['Damage Type']
         local correspondingArmor = Data.DamageTypeToArmorType[mainDamage]
         local correspondingDamage = correspondingArmor == "CurrentArmor" and HitHelpers.HitGetPhysicalDamage(hit.Hit) or HitHelpers.HitGetMagicDamage(hit.Hit)
@@ -82,7 +82,7 @@ HitManager:RegisterHitListener("DGM_Hit", "AfterDamageScaling", "VP_WeaponSignat
             HitHelpers.HitAddDamage(hit.Hit, target, instigator, mainDamage, totalDamage)
             Helpers.Character.AddSkillCooldown(instigator, "Target_LX_AxeAttack", 6.0)
         end
-    elseif hit.SkillId == "Target_LX_MaceCrush_-1" or (hit.SkillId == "Target_LX_DualWieldingAttack_-1" and ((target.UserVars.VP_ConsecutiveHitFromSkill.Amount == 2 and offhandWeapon == "Club") or (target.UserVars.VP_ConsecutiveHitFromSkill.Amount ~= 2 and mainWeapon == "Club"))) then
+    elseif hit.SkillId == "Target_LX_MaceCrush_-1" or (hit.SkillId == "Target_DualWieldingAttack_-1" and ((target.UserVars.VP_ConsecutiveHitFromSkill.Amount == 2 and offhandWeapon == "Club") or (target.UserVars.VP_ConsecutiveHitFromSkill.Amount ~= 2 and mainWeapon == "Club"))) then
         local mainDamage = (instigator.Stats.MainWeapon and instigator.Stats.MainWeapon.WeaponType == "Club") and instigator.Stats.MainWeapon.StatsEntry['Damage Type'] or 
             instigator.Stats.OffHandWeapon.StatsEntry['Damage Type']
         local correspondingArmor = Data.DamageTypeToArmorType[mainDamage]
@@ -97,7 +97,7 @@ HitManager:RegisterHitListener("DGM_Hit", "AfterDamageScaling", "VP_WeaponSignat
     elseif hit.SkillId == "Target_LX_SwordCleave_-1" and Helpers.IsCharacter(target) then
         local count = GetVarInteger(instigator.MyGuid, "VP_SwordAttackCount") or 0
         SetVarInteger(instigator.MyGuid, "VP_SwordAttackCount", count+1)
-    elseif hit.SkillId == "Target_LX_DualWieldingAttack_-1" and ((target.UserVars.VP_ConsecutiveHitFromSkill.Amount == 2 and offhandWeapon == "Sword") or (target.UserVars.VP_ConsecutiveHitFromSkill.Amount ~= 2 and mainWeapon == "Sword")) then
+    elseif hit.SkillId == "Target_DualWieldingAttack_-1" and ((target.UserVars.VP_ConsecutiveHitFromSkill.Amount == 2 and offhandWeapon == "Sword") or (target.UserVars.VP_ConsecutiveHitFromSkill.Amount ~= 2 and mainWeapon == "Sword")) then
         local cleaveCandidates = Helpers.GetCharactersAroundPosition(target.WorldPos[1], target.WorldPos[2], target.WorldPos[3], 2)
         local cleaveTarget = nil
         local lowestDistance = 3

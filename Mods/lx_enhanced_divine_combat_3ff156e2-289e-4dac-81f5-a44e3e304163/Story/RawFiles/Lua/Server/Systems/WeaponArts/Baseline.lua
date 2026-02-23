@@ -23,12 +23,29 @@ Ext.Events.BeforeStatusApply:Subscribe(function(e)
     end
 end)
 
-Ext.Osiris.RegisterListener("ItemEquipped", 2, "after", function(_, character)
-    Helpers.Timer.Start(10, function(character)
-        local hasWA = CharacterHasSkill(character, "Target_DualWieldingAttack") == 1
+---@param characterGUID string|GUID
+local function ToggleWeaponArtsMenu(characterGUID)
+    Helpers.Timer.Start(33, function(character)
+        local hasWA = CharacterHasSkill(character, "Target_LX_WeaponArtMenu") == 1
         local character = Ext.ServerEntity.GetCharacter(character)
         if not hasWA and character.Stats.MainWeapon.WeaponType ~= "Wand" then
-            CharacterAddSkill(character.MyGuid, "Target_DualWieldingAttack", 0)
+            CharacterAddSkill(character.MyGuid, "Target_LX_WeaponArtMenu", 0)
+        else
+            CharacterRemoveSkill(character.MyGuid, "Target_LX_WeaponArtMenu")
         end
-    end, nil, character)
+    end, nil, characterGUID)
+end
+
+Ext.Osiris.RegisterListener("ItemEquipped", 2, "after", function(_, character)
+    ToggleWeaponArtsMenu(character)
+end)
+
+Ext.Osiris.RegisterListener("ItemUnEquipped", 2, "after", function(_, character)
+    ToggleWeaponArtsMenu(character)
+end)
+
+Ext.Osiris.RegisterListener("ObjectEnteredCombat", 2, "after", function(object, _)
+    if ObjectIsCharacter(object) == 1 then
+        ToggleWeaponArtsMenu(object)
+    end
 end)
