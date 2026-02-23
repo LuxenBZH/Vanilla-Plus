@@ -14,11 +14,12 @@ Ext.Require("Client/Talents/TalentMechanics.lua")
 Ext.Require("Client/Modules/DivineTalentsClient.lua")
 
 Ext.Require("Client/Fixes/ClientCasting.lua")
-Ext.Require("Client/Systems/CustomStatusAttributes.lua")
 Ext.Require("Client/Tooltips/CustomAttributes.lua")
 Ext.Require("Client/Tooltips/CursorText.lua")
 Ext.Require("Client/Tooltips/Items.lua")
 Ext.Require("Client/Tooltips/CharacterSheet.lua")
+Ext.Require("Client/Tooltips/SkillRequirements.lua")
+-- Ext.Require("Client/Tooltips/StatBonus.lua")
 
 Ext.Require("Client/Sync/Statuses.lua")
 Ext.Require("Client/Sync/Equipment.lua")
@@ -28,6 +29,7 @@ Ext.Require("Client/Systems/WeaponArtsClient.lua")
 Ext.Require("Client/UI/UIHelpers.lua")
 if Mods.EpipEncounters then
 	Epip = Mods.EpipEncounters
+	Generic = Epip.Client.UI.Generic
 	Ext.Require("Client/UI/WeaponArts/SpellConduitUI.lua")
 end
 

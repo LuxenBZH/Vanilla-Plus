@@ -53,7 +53,7 @@ wandr.Callbacks.EvaluateCallback = function (req, ctx, char)
 end
 
 local warmupRequirement = Ext.Stats.AddRequirement("Warmup")
-warmupRequirement.Description = "Consumes [1] stacks of Warmup" --Ext.L10N.GetTranslatedStringFromKey("WarmupRequirement_Description")
+warmupRequirement.Description = "CustomRequirement Warmup Warmup_RequirementDescription"
 ---@param req any
 ---@param ctx any
 ---@param char CDivinityStatsCharacter
@@ -62,10 +62,16 @@ warmupRequirement.Callbacks.EvaluateCallback = function(req, ctx, char)
 end
 
 local warmupRequirement = Ext.Stats.AddRequirement("SpellConduit")
-warmupRequirement.Description = "Requires at least [1] spell conduit(s)" --Ext.L10N.GetTranslatedStringFromKey("WarmupRequirement_Description")
+warmupRequirement.Description = "CustomRequirement SpellConduit SpellConduit_RequirementDescription" --Ext.L10N.GetTranslatedStringFromKey("WarmupRequirement_Description")
 ---@param req any
 ---@param ctx any
 ---@param char CDivinityStatsCharacter
 warmupRequirement.Callbacks.EvaluateCallback = function(req, ctx, char)
     return char.Character.UserVars.LX_SpellConduit and (#char.Character.UserVars.LX_SpellConduit >= req.Param)
 end
+
+Data.CustomRequirements = {
+    WandWeapon = "WandWeapon_RequirementDescription",
+    SpellConduit = "SpellConduit_RequirementDescription",
+    Warmup = "Warmup_RequirementDescription"
+}
