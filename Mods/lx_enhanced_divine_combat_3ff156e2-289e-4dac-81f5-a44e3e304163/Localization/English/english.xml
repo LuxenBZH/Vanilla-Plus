@@ -428,11 +428,11 @@
     <content contentuid="h8243d6bd5bd977ce410367a9b3c9b32ec6c5" Key="LX_FROSTBITE_DisplayName" Source="">Frostbite</content>
     <content contentuid="h11059a6d5d6c487e1b5870e9cbf5f0ac7419" Key="LX_FROSTBITE_Description" Source="">Deals [1] damage per turn. Effectiveness increased by 25% if reapplied from Chilled, or by 100% if reapplied from Frozen.</content>
     <content contentuid="h659a054915f3fe6e141d0ec176e1dc68f136" Key="Shout_LX_WeaponArtTrueStrike_DisplayName" Source="">Weapon art: True Strike</content>
-    <content contentuid="hd2c974fad389e88552f38bfc111e74628892" Key="Shout_LX_WeaponArtTrueStrike_Description" Source="">The next weapon attack have a bonus accuracy of 3 times the current Warmup accuracy bonus (up to 30%), but damage is also reduced by the same percentage.</content>
+    <content contentuid="hd2c974fad389e88552f38bfc111e74628892" Key="Shout_LX_WeaponArtTrueStrike_Description" Source="">The next weapon attack (including chained hits) will benefit of a +25% Accuracy but reduce its damage by 10%.</content>
     <content contentuid="he07dea815734e01ba5201f88cbc02ca6bfe1" Key="LX_WA_TRUESTRIKE_DisplayName" Source="">Weapon art: True Strike</content>
-    <content contentuid="hd003bfdf8d72b559ac569f29b710238f64c1" Key="LX_WA_TRUESTRIKE_Description" Source="">+[1] Accuracy and -[2]% damage on the next weapon attack</content>
-    <content contentuid="hbce6d9c5c9647d537041dfcb83b9af73e7e0" Key="Projectile_LX_SpellConduit_DisplayName" Source="">Staff Of Magus</content>
-    <content contentuid="hf046fece1f60e01fd3004fcb06c2de960096" Key="Projectile_LX_SpellConduit_Description" Source="">Launch a magical missile from your staff that deals [1] damage.</content>
+    <content contentuid="hd003bfdf8d72b559ac569f29b710238f64c1" Key="LX_WA_TRUESTRIKE_Description" Source="">+25% Accuracy and -10% damage on the next weapon attack</content>
+    <content contentuid="hbce6d9c5c9647d537041dfcb83b9af73e7e0" Key="Projectile_LX_SpellConduit_DisplayName" Source="">Spell Conduit</content>
+    <content contentuid="hf046fece1f60e01fd3004fcb06c2de960096" Key="Projectile_LX_SpellConduit_Description" Source="">Release up to 3 conduit charges accumulated by casting spells. The element of each charge is set by the spell ability and each wand can store up to 3 charges.</content>
     <content contentuid="h09f49e3d36bb584e122e22c1ba4bf06f52be" Key="Shout_LX_BowSignature_DisplayName" Source="">Hit and Run</content>
     <content contentuid="h0beb429763d4b9d1fe5dc177bd4bd9c719dd" Key="Shout_LX_BowSignature_Description" Source="">Until the end of the turn, every hit done with a skill using a bow will provide 1 AP worth of free movement, up to 250% of the character base movement and are not affected by close quarter penalty. Unspent movement at the end of the turn will carry over to the next turn. Hit chance beyond 7 meters range is reduced by 10% per meter.</content>
     <content contentuid="h91682cb2f71921814006cd9d81cdcb8c1985" Key="LX_BOW_SIGNATURE_DisplayName" Source="">Hit and Run</content>
@@ -469,4 +469,8 @@
     <content contentuid="hb4a1f8c26b8ab4b69106994b91339380775d" Key="Target_DualWieldingAttack_Description" Source="">List available weapon art skills and other weapon techniques.</content>
     <content contentuid="h3fd6569396d48990a2736fc4e6e7ebd4da5a" Key="Target_LX_DualWieldingAttack_DisplayName" Source="">Flurry</content>
     <content contentuid="he184e04938307c8022561ac9782b38fd389d" Key="Target_LX_DualWieldingAttack_Description" Source="">Perform three consecutive attack, dealing [1] each and trigger effects based on the weapons types.</content>
+    <content contentuid="hd5c0d5841b8d0637397e4444374218b30335" Key="Warmup_RequirementDescription" Source="">Requires [1] stack(s) of Warmup</content>
+    <content contentuid="h28ca49b51a31ae331763fc729ab7b14d57f1" Key="SpellConduit_RequirementDescription" Source="">Requires at least [1] active spell conduit(s)</content>
+    <content contentuid="hc33146597ab0a6f88b85eac969bd8024bbea" Key="Target_LX_CancelGroupSkill_DisplayName" Source="">Cancel</content>
+    <content contentuid="h139ef8a0f82c83853772b69d9dc678d9a3ca" Key="Target_LX_CancelGroupSkill_Description" Source=""/>
 </contentList>
