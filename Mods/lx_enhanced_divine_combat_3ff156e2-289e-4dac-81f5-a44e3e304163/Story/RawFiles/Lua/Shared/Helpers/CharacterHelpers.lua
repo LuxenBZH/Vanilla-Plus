@@ -138,7 +138,10 @@ end
 ---@param character EsvCharacter|EclCharacter
 Helpers.Character.GetWeaponTypes = function(character)
 	local mainHand = character.Stats.MainWeapon and character.Stats.MainWeapon.WeaponType or nil
-	local offHand = character.Stats.OffHandWeapon and character.Stats.OffHandWeapon.WeaponType or nil
+	local offHand = character.Stats:GetItemBySlot("Shield")
+	if offHand then
+		offHand = offHand.ItemType == "Weapon" and offHand.WeaponType or offHand.ItemType
+	end
 	return mainHand, offHand
 end
 
