@@ -17,7 +17,7 @@ local WeaponArts = {
         "Shout_LX_WeaponArtTrueStrike",
         "Shout_LX_WeaponArtDash",
         "Shout_LX_WeaponArtGuard",
-        "Shout_LX_WeaponArtShield"
+        "Shout_LX_WeaponArtGuard_Shield"
     }
 }
 
