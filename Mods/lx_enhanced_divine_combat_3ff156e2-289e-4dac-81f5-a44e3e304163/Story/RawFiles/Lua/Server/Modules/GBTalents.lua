@@ -96,19 +96,19 @@ Ext.Events.BeforeStatusApply:Subscribe(function(e)
     local target = Ext.ServerEntity.GetGameObject(e.Status.TargetHandle)
     if instigator and instigator ~= target and instigator.Stats.TALENT_MagicCycles then
         local thermalShock = target:GetStatus("LX_THERMAL_SHOCK")
-        if ((e.Status.StatusId == "BURNING" or e.Status.StatusId == "NECROFIRE") and (target:GetStatus("WET") or target:GetStatus("CHILLED") or target:GetStatus("FROZEN"))) then
+        if ((e.Status.StatusId == "BURNING" or e.Status.StatusId == "NECROFIRE") and (target:GetStatus("WET") or target:GetStatus("CHILLED") or target:GetStatus("FROZEN"))) or 
+        ((e.Status.StatusId == "WET" or e.Status.StatusId == "CHILLED") and (target:GetStatus("BURNING")) or target:GetStatus("NECROFIRE") or target:GetStatus("WARM")) then
             if thermalShock then
-                thermalShock.CurrentLifeTime = math.max(thermalShock.CurrentLifeTime + 6.0, 18)
+                thermalShock.CurrentLifeTime = math.min(thermalShock.CurrentLifeTime + 6.0, 18)
                 thermalShock.RequestClientSync = true
             else
-                ApplyStatus(target.MyGuid, "LX_THERMAL_SHOCK", 12, 0, instigator.MyGuid)
-            end
-        elseif ((e.Status.StatusId == "WET" or e.Status.StatusId == "CHILLED") and (target:GetStatus("BURNING")) or target:GetStatus("NECROFIRE") or target:GetStatus("WARM")) then
-            if thermalShock then
-                thermalShock.CurrentLifeTime = math.max(thermalShock.CurrentLifeTime + 6.0, 18)
-                thermalShock.RequestClientSync = true
-            else
-                ApplyStatus(target.MyGuid, "LX_THERMAL_SHOCK", 12, 0, instigator.MyGuid)
+                if IsTagged(target.MyGuid, "VP_ThermalShockCooldown") == 0 then
+                    ApplyStatus(target.MyGuid, "LX_THERMAL_SHOCK", 12, 0, instigator.MyGuid)
+                    SetTag(target.MyGuid, "VP_ThermalShockCooldown")
+                    Helpers.Timer.Start(33, function(targetGUID)
+                        ClearTag(targetGUID, "VP_ThermalShockCooldown")
+                    end, nil, target.MyGuid)
+                end
             end
         end
     end
