@@ -3267,34 +3267,6 @@
 					<attribute id="UUID" type="22" value="Talent_MagicCycles_DisplayName"/>
 				</node>
 				<node id="TranslatedStringKey">
-					<attribute id="Content" type="28" handle="h053fce58ccdb11caad665a9ccbf808346ac0" value="Weapon arts &amp; techniques"/>
-					<attribute id="ExtraData" type="23" value=""/>
-					<attribute id="Speaker" type="22" value=""/>
-					<attribute id="Stub" type="19" value="False"/>
-					<attribute id="UUID" type="22" value="Target_DualWieldingAttack_DisplayName"/>
-				</node>
-				<node id="TranslatedStringKey">
-					<attribute id="Content" type="28" handle="hb4a1f8c26b8ab4b69106994b91339380775d" value="List available weapon art skills and other weapon techniques."/>
-					<attribute id="ExtraData" type="23" value=""/>
-					<attribute id="Speaker" type="22" value=""/>
-					<attribute id="Stub" type="19" value="False"/>
-					<attribute id="UUID" type="22" value="Target_DualWieldingAttack_Description"/>
-				</node>
-				<node id="TranslatedStringKey">
-					<attribute id="Content" type="28" handle="h3fd6569396d48990a2736fc4e6e7ebd4da5a" value="Flurry"/>
-					<attribute id="ExtraData" type="23" value=""/>
-					<attribute id="Speaker" type="22" value=""/>
-					<attribute id="Stub" type="19" value="False"/>
-					<attribute id="UUID" type="22" value="Target_LX_DualWieldingAttack_DisplayName"/>
-				</node>
-				<node id="TranslatedStringKey">
-					<attribute id="Content" type="28" handle="he184e04938307c8022561ac9782b38fd389d" value="Perform three consecutive attack, dealing [1] each and trigger effects based on the weapons types."/>
-					<attribute id="ExtraData" type="23" value=""/>
-					<attribute id="Speaker" type="22" value=""/>
-					<attribute id="Stub" type="19" value="False"/>
-					<attribute id="UUID" type="22" value="Target_LX_DualWieldingAttack_Description"/>
-				</node>
-				<node id="TranslatedStringKey">
 					<attribute id="Content" type="28" handle="hd5c0d5841b8d0637397e4444374218b30335" value="Requires [1] stack(s) of Warmup"/>
 					<attribute id="ExtraData" type="23" value=""/>
 					<attribute id="Speaker" type="22" value=""/>
@@ -3316,11 +3288,32 @@
 					<attribute id="UUID" type="22" value="Target_LX_CancelGroupSkill_DisplayName"/>
 				</node>
 				<node id="TranslatedStringKey">
-					<attribute id="Content" type="28" handle="h139ef8a0f82c83853772b69d9dc678d9a3ca" value=""/>
+					<attribute id="Content" type="28" handle="h139ef8a0f82c83853772b69d9dc678d9a3ca" value=" "/>
 					<attribute id="ExtraData" type="23" value=""/>
 					<attribute id="Speaker" type="22" value=""/>
 					<attribute id="Stub" type="19" value="False"/>
 					<attribute id="UUID" type="22" value="Target_LX_CancelGroupSkill_Description"/>
+				</node>
+				<node id="TranslatedStringKey">
+					<attribute id="Content" type="28" handle="h05289da7374b6cc35c265af460822e2afc64" value="Weapon arts &amp; techniques"/>
+					<attribute id="ExtraData" type="23" value=""/>
+					<attribute id="Speaker" type="22" value=""/>
+					<attribute id="Stub" type="19" value="False"/>
+					<attribute id="UUID" type="22" value="Target_LX_WeaponArtMenu_DisplayName"/>
+				</node>
+				<node id="TranslatedStringKey">
+					<attribute id="Content" type="28" handle="h5ddf3f6f91377279a207e80503acc9aa6103" value="List available weapon art skills and other weapon techniques."/>
+					<attribute id="ExtraData" type="23" value=""/>
+					<attribute id="Speaker" type="22" value=""/>
+					<attribute id="Stub" type="19" value="False"/>
+					<attribute id="UUID" type="22" value="Target_LX_WeaponArtMenu_Description"/>
+				</node>
+				<node id="TranslatedStringKey">
+					<attribute id="Content" type="28" handle="h13efa7ca8a93c70536255a8445cbc54f8878" value="Perform three consecutive attack, dealing [1] each and trigger effects based on the weapons types."/>
+					<attribute id="ExtraData" type="23" value=""/>
+					<attribute id="Speaker" type="22" value=""/>
+					<attribute id="Stub" type="19" value="False"/>
+					<attribute id="UUID" type="22" value="Target_DualWieldingAttack_Description"/>
 				</node>
 			</children>
 		</node>
