@@ -1,56 +1,20 @@
 ---- Talents ----
+
 ---@param character EsvCharacter
----@param talent string
+---@param status string
 ---@param unlocked boolean
-function CheckBoostTalents(character, talent, unlocked)
-	--Ext.Print("Talent ",talent," changed :",unlocked)
-	if unlocked == 1 then
-		unlocked = true
+local function BoostFromTalentInt(character, status, unlocked)
+	if unlocked then
+		ApplyStatus(character, status, -1.0, 1)
 	else
-		unlocked = false
-	end
-	
-	if talent == "Resurrection" then
-		--Ext.Print("[LXGDM_Talents.CheckBoostTalents] Check Talents after resurrection...")
-		CheckAllTalents(character)
-	end
-	
-	if talent == "Demon" then
-		BoostFromTalentInt(character, "LX_DEMON", unlocked)
-	elseif talent == "IceKing" then
-		BoostFromTalentInt(character, "LX_ICEKING", unlocked)
-	elseif talent == "Leech" then
-		BoostFromTalentInt(character, "LX_LEECH", unlocked)
-	elseif talent == "Stench" then
-		BoostFromTalentInt(character, "LX_STENCH", unlocked)
-	elseif talent == "AnimalEmpathy" then
-		BoostFromTalentInt(character, "LX_PETPALSUMMONER", unlocked)
-	elseif talent == "NoAttackOfOpportunity" then
-		BoostFromTalentInt(character, "LX_DDGOOSE", unlocked)
-	elseif talent == "Memory" then
-		ManageMemory(character, unlocked)
-	elseif talent == "Perfectionist" then
-		CheckHothead(character)
-	elseif talent == "ViolentMagic" then
-		BoostFromTalentInt(character, "LX_SAVAGESORTILEGE", unlocked)
-	elseif talent == "Raistlin" then -- Glass Cannon
-		BoostFromTalentInt(character, "LX_GLASSCANNON", unlocked)
-	elseif talent == "Escapist" then
-		BoostFromTalentInt(character, "LX_ESCAPIST", unlocked)
+		RemoveStatus(character, status)
 	end
 end
 
-Ext.Osiris.RegisterListener("CharacterUnlockedTalent", 2, "before", function(character, talent)
-	CheckBoostTalents(character, talent, 1)
-end)
-Ext.Osiris.RegisterListener("CharacterLockedTalent", 2, "before", function(character, talent)
-	CheckBoostTalents(character, talent, 0)
-end)
-
-
+---- Mnemonics
 ---@param character string UUID
 ---@param unlocked boolean
-function ManageMemory(character, unlocked)
+local function ManageMemory(character, unlocked)
 	if unlocked then
 		-- if CharacterGetHostCharacter() == character then Ext.Print("MEMORY UNLOCKED") end
 		local currentBoost = NRD_CharacterGetPermanentBoostInt(character, "Memory")
@@ -98,9 +62,9 @@ local function MnemonicLocked(character, talent)
 	CharacterAddAttribute(character, "Dummy", 0)
 end
 
-Ext.RegisterOsirisListener("CharacterLockedTalent", 2, "before", MnemonicLocked)
+Ext.Osiris.RegisterListener("CharacterLockedTalent", 2, "before", MnemonicLocked)
 
-Ext.RegisterOsirisListener("CharacterCreationFinished", 1, "after", function(character)
+Ext.Osiris.RegisterListener("CharacterCreationFinished", 1, "after", function(character)
 	if Helpers.ServerSafeGetCharacter(character) == nil then return end
 	if Helpers.ServerSafeGetCharacter(character).Stats.TALENT_Memory then
 		ManageMemory(character, true)
@@ -110,7 +74,7 @@ Ext.RegisterOsirisListener("CharacterCreationFinished", 1, "after", function(cha
 	ClearTag(character, "DGM_MemoryManagement")
 end)
 
-Ext.RegisterOsirisListener("TimerFinished", 1, "after", function(timer)
+Ext.Osiris.RegisterListener("TimerFinished", 1, "after", function(timer)
 	if string.starts(timer, "MEMORY_") then
 		local character = string.gsub(timer, "MEMORY_", "")
 		NRD_CharacterSetPermanentBoostInt(character, "Memory", 0)
@@ -120,31 +84,7 @@ Ext.RegisterOsirisListener("TimerFinished", 1, "after", function(timer)
 end)
 
 ---@param character EsvCharacter
-function CheckAllTalents(character)
-	local boostedTalents = {
-		"Demon",
-		"IceKing",
-		"Leech",
-		"Stench",
-		"AnimalEmpathy",
-		"NoAttackOfOpportunity",
-		"Perfectionist",
-		"ViolentMagic",
-		"Raistlin",
-		
-	}
-	for i,talent in pairs(boostedTalents) do
-		local hasTalent = CharacterHasTalent(character, talent)
-		--print("[LXDGM_Talents.CheckAllTalents] Character has talent:",talent,hasTalent)
-		if hasTalent == 1 then CheckBoostTalents(character, talent, 1) end
-	end
-	if CharacterHasTalent(character, "ExtraStatPoints") == 1 then CheckDuelist(character) end
-end
-
-Ext.Osiris.RegisterListener("CharacterResurrected", 1, "before", CheckAllTalents)
-
----@param character EsvCharacter
-function CheckDuelist(_, character)
+local function CheckDuelist(_, character)
 	if ObjectExists(character) == 1 then
 		local character = Ext.ServerEntity.GetCharacter(character)
 		if character.Stats.TALENT_ExtraStatPoints then
@@ -164,73 +104,36 @@ end
 Ext.Osiris.RegisterListener("ItemEquipped", 2, "before", CheckDuelist)
 Ext.Osiris.RegisterListener("ItemUnEquipped", 2, "before", CheckDuelist)
 
----@param character EsvCharacter
----@param status string
----@param unlocked boolean
-function BoostFromTalentInt(character, status, unlocked)
-	if unlocked then
-		ApplyStatus(character, status, -1.0, 1)
-	else
-		RemoveStatus(character, status)
-	end
-end
-
----@param target EsvCharacter
----@param handle string
-function SetWalkItOff(target, handle)
-	-- Call this function during damage control to potentially apply Walk It Off bonus
-	local hasTalent = CharacterHasTalent(target, "WalkItOff")
-	-- Ext.Print("Target has WalkItOff: ",hasTalent)
-	if hasTalent == 1 then
-		local surfaceHit = NRD_StatusGetInt(target, handle, "Surface")
-		local dot = NRD_StatusGetInt(target, handle, "DoT")
-		local reflection = NRD_StatusGetInt(target, handle, "Reflection")
-		if surfaceHit == 0 and dot == 0 and reflection == 0 then
-			WalkItOffReplacement(target)
+---- Walk if off
+--- @param hit EsvStatusHit
+--- @param instigator EsvCharacter
+--- @param target EsvItem|EsvCharacter
+--- @param flags HitFlags
+HitManager:RegisterHitListener("DGM_Hit", "AfterDamageScaling", "VP_AbsorbShields", function(hit, instigator, target, flags)
+	if flags.IsDirectAttack and not flags.Blocked and not flags.Missed and not flags.Dodged then
+		if CharacterHasTalent(target.MyGuid, "WalkItOff") == 1 then
+			local walkItOff = target:GetStatus("LX_WALKITOFF")
+			if walkItOff then
+				if walkItOff.StatsMultiplier < 5.0 then
+					Helpers.Status.Multiply(walkItOff, walkItOff.StatsMultiplier + 1)
+				end
+			else
+				ApplyStatus(target.MyGuid, "LX_WALKITOFF", 6.0, 1, target.MyGuid)
+			end
 		end
 	end
-end
+end)
 
----@param character EsvCharacter
-function WalkItOffReplacement(character)
-	local hasStatus = 0
-	local wioStates = {"LX_WALKITOFF", "LX_WALKITOFF_2", "LX_WALKITOFF_3"}
-	local reapply = false
-	for i=1,3,1 do
-		if reapply == true then
-			ApplyStatus(character, wioStates[i], 6.0)
-			return 
-		end
-		hasStatus = HasActiveStatus(character, wioStates[i])
-		--Ext.Print("Has ",stage, ": ", hasStatus)
-		if hasStatus == 1 then reapply = true end
-		if hasStatus == 1 and wioStates[i] == "LX_WALKITOFF_3" then return end
-	end
-	ApplyStatus(character, "LX_WALKITOFF", 6.0)
-end
-
----@param character EsvCharacter
+---@param character GUID
 local function CheckHothead(character, remainingVitality)
 	if remainingVitality < Ext.ExtraData.DGM_HotheadApplicationThreshold then
 		RemoveStatus(character, "LX_HOTHEAD")
 	elseif remainingVitality >= Ext.ExtraData.DGM_HotheadApplicationThreshold and CharacterHasTalent(character, "Perfectionist") == 1 then
-		ApplyStatus(character, "LX_HOTHEAD", -1.0, 1) 
+		ApplyStatus(character, "LX_HOTHEAD", -1.0, 1, character) 
 	end
 end
 
 Ext.Osiris.RegisterListener("CharacterVitalityChanged", 2, "before", CheckHothead)
-
----@param character EsvCharacter
----@param skill string
----@param cooldown number
-function ManageAllSkilledUp(character, skill, cooldown)
-	-- local hasUsedSkill = GetVarInteger(character, "LX_AllSkilledUp_Counter")
-	-- if hasUsedSkill == 0 and cooldown > 6.0 then
-	-- 	NRD_SkillSetCooldown(character, skill, (cooldown-6.0))
-	-- 	SetVarInteger(character, "LX_AllSkilledUp_Counter", 1)
-	-- end
-end
-
 
 
 ---Pet Pal management
@@ -261,7 +164,7 @@ Ext.Osiris.RegisterListener("CharacterDied", 1, "before", function(summon)
 end)
 
 ---@param character GUID
-function ManagePetPal(character)
+local function ManagePetPal(character)
 	local summons = {}
 	for summon, owner in pairs(PersistentVars.PetPalArray) do
 		if owner == character then table.insert(summons, summon) end
@@ -279,7 +182,7 @@ function ManagePetPal(character)
 end
 
 ---@param character GUID
-function RestorePetPalPower(character)
+local function RestorePetPalPower(character)
 	-- Call this function on DB remove of the second summon
 	local summons = {}
 	for summon, owner in pairs(PersistentVars.PetPalArray) do
@@ -290,7 +193,7 @@ function RestorePetPalPower(character)
 	end
 end
 
-
+---- Executioner
 local function ExecutionerHaste(defender, attackerOwner, attacker)
 	if ObjectIsCharacter(attacker) == 0 then return end
 	local attacker = Helpers.ServerSafeGetCharacter(attacker)
@@ -299,12 +202,12 @@ local function ExecutionerHaste(defender, attackerOwner, attacker)
 	end
 end
 
-Ext.RegisterOsirisListener("CharacterKilledBy", 3, "before", ExecutionerHaste)
+Ext.Osiris.RegisterListener("CharacterKilledBy", 3, "before", ExecutionerHaste)
 
 ---- Ambidextrous refund
 ---@param item EsvItem
 ---@param char EsvCharacter
-Ext.RegisterOsirisListener("ItemEquipped", 2, "before", function(item, char)
+Ext.Osiris.RegisterListener("ItemEquipped", 2, "before", function(item, char)
 	local character = Helpers.ServerSafeGetCharacter(char) ---@type EsvCharacter
 	if character and character.Stats.TALENT_Ambidextrous and CharacterIsInCombat(char) == 1 then
 		item = Ext.GetItem(item) ---@type EsvItem
@@ -316,14 +219,13 @@ end)
 
 ---- Ambidextrous counter reset
 ---@param char EsvCharacter
-Ext.RegisterOsirisListener("ObjectTurnStarted", 1, "before", function(char)
+Ext.Osiris.RegisterListener("ObjectTurnStarted", 1, "before", function(char)
 	if Helpers.ServerSafeGetCharacter(char).Stats.TALENT_Ambidextrous then
 		SetVarInteger(char, "DGM_AmbidextrousCount", 2)
 	end
 end)
 
 ---- Elemental Ranger
-
 local typeMap = {
 	Fire = "FIRE",
 	Water = "WATER",
@@ -376,11 +278,12 @@ local surfaceTypeMap = {
 	BloodCloudCursed = "BLOOD",
 }
 
+---- Elemental Ranger bonus status on special arrow usage
 --- @param character string GUID
 --- @param skill string Name
 --- @param skillType string Type
 --- @param skillElement string Elements enum
-Ext.RegisterOsirisListener("CharacterUsedSkill", 4, "before", function(character, skill, skillType, skillElement)
+Ext.Osiris.RegisterListener("CharacterUsedSkill", 4, "before", function(character, skill, skillType, skillElement)
 	if not Helpers.ServerSafeGetCharacter(character).Stats.TALENT_ElementalRanger then return end
 	local skill = Ext.GetStat(skill)
 	if (skill.ProjectileType == "Grenade" and skill.Requirement == "None") or (skill.ProjectileType == "Arrow" and skill.Requirement == "RangedWeapon") and skill.IsEnemySkill == "Yes" and skill["Memory Cost"] == 0 then
@@ -438,12 +341,14 @@ end)
 
 ---- Guerilla invisibility effect
 Helpers.RegisterTurnTrueEndListener(function(character)
-	if CharacterHasTalent(character, "Guerilla") == 1 and HasActiveStatus(character, "SNEAKING") == 1 and HasActiveStatus(character, "LX_GUERILLA_COOLDOWN") == 0 then
+	local cloudSurface = GetSurfaceCloudAt(character)
+	if CharacterHasTalent(character, "Guerilla") == 1 and (cloudSurface == "SurfaceSmokeCloud" or cloudSurface == "SurfaceSmokeCloudBlessed" or cloudSurface == "SurfaceSmokeCloudCursed") and HasActiveStatus(character, "LX_GUERILLA_COOLDOWN") == 0 then
 		ApplyStatus(character, "INVISIBLE", 6.0, 1, character)
-		ApplyStatus(character, "LX_GUERILLA_COOLDOWN", 18.0, 1, character)
+		ApplyStatus(character, "LX_GUERILLA_COOLDOWN", 12.0, 1, character)
 	end
 end)
 
+---- Elemental Affinity rework
 Data.ElementalAffinityAiFlags = {
     Fire = { "Lava", "Fire", "FireCloud" },
     Water = { "Water", "WaterCloud" },
@@ -454,7 +359,6 @@ Data.ElementalAffinityAiFlags = {
     Sulfurology = { "Sulfurium" }
 }
 
----- Elemental Affinity rework
 --- @param e LuaGetSkillAPCostEvent
 local function ServerElementalAffinityRework(e)
 	local skill = e.Skill
@@ -522,20 +426,6 @@ end)
 
 Data.APCostManager.RegisterGlobalSkillAPFormula("VP_ServerElementalAffinityRework", ServerElementalAffinityRework, 1)
 
----------
----@param e EsvLuaBeforeStatusApplyEvent
--- Ext.Events.Status:Subscribe(function(e)
--- 	if e.Status.StatusId == "CONSUME" then
--- 		if not e.Status.StatsIds then return end
--- 		local entry = Ext.Stats.Get(e.Status.StatsIds[1].StatsId) ---@type StatEntryPotion
--- 		_DS(e.Status)
--- 		e.Status.StatsMultiplier = 0.5
--- 		-- if entry.IsConsumable == "Yes" or entry.IsFood == "Yes" then
-
--- 		-- end
--- 	end
--- end)
-
 
 ---Five Stars Diner double hack
 ---@param target string
@@ -563,8 +453,7 @@ Ext.Osiris.RegisterListener("NRD_OnStatusAttempt", 4, "before", function(target,
 	end
 end)
 
-
---- All Skill Up CD reduction
+---- All Skill Up CD reduction
 Ext.Osiris.RegisterListener("ObjectTurnStarted", 1, "before", function(character)
 	if ObjectIsCharacter(character) == 1 and CharacterHasTalent(character, "ExtraSkillPoints") == 1 then
 		SetVarInteger(character, "LX_AllSkilledUp_Counter", 0)
@@ -583,6 +472,7 @@ Ext.Osiris.RegisterListener("CharacterUsedSkill", 4, "before", function(characte
 	end
 end)
 
+---- Ice king + Frostbite mechanic
 Helpers.RegisterTurnTrueStartListener(function(object)
 	local object = Ext.ServerEntity.GetGameObject(object)
 	local status = object:GetStatus("CHILLED") or object:GetStatus("FROZEN")
@@ -618,3 +508,77 @@ Ext.Osiris.RegisterListener("CharacterStatusApplied", 3, "after", function(chara
 		end
 	end
 end)
+
+---- Talents custom boosts application
+---@param character EsvCharacter
+---@param talent string
+---@param unlocked boolean
+local function CheckBoostTalents(character, talent, unlocked)
+	--Ext.Print("Talent ",talent," changed :",unlocked)
+	if unlocked == 1 then
+		unlocked = true
+	else
+		unlocked = false
+	end
+	
+	if talent == "Resurrection" then
+		--Ext.Print("[LXGDM_Talents.CheckBoostTalents] Check Talents after resurrection...")
+		CheckAllTalents(character)
+	end
+	
+	if talent == "Demon" then
+		BoostFromTalentInt(character, "LX_DEMON", unlocked)
+	elseif talent == "IceKing" then
+		BoostFromTalentInt(character, "LX_ICEKING", unlocked)
+	elseif talent == "Leech" then
+		BoostFromTalentInt(character, "LX_LEECH", unlocked)
+	elseif talent == "Stench" then
+		BoostFromTalentInt(character, "LX_STENCH", unlocked)
+	elseif talent == "AnimalEmpathy" then
+		BoostFromTalentInt(character, "LX_PETPALSUMMONER", unlocked)
+	elseif talent == "NoAttackOfOpportunity" then
+		BoostFromTalentInt(character, "LX_DDGOOSE", unlocked)
+	elseif talent == "Memory" then
+		ManageMemory(character, unlocked)
+	elseif talent == "Perfectionist" then
+		CheckHothead(character)
+	elseif talent == "ViolentMagic" then
+		BoostFromTalentInt(character, "LX_SAVAGESORTILEGE", unlocked)
+	elseif talent == "Raistlin" then -- Glass Cannon
+		BoostFromTalentInt(character, "LX_GLASSCANNON", unlocked)
+	elseif talent == "Escapist" then
+		BoostFromTalentInt(character, "LX_ESCAPIST", unlocked)
+	end
+end
+
+Ext.Osiris.RegisterListener("CharacterUnlockedTalent", 2, "before", function(character, talent)
+	CheckBoostTalents(character, talent, 1)
+end)
+Ext.Osiris.RegisterListener("CharacterLockedTalent", 2, "before", function(character, talent)
+	CheckBoostTalents(character, talent, 0)
+end)
+
+---- Reapply talent custom boosts on resurrection
+---@param character GUID
+local function CheckAllTalents(character)
+	local boostedTalents = {
+		"Demon",
+		"IceKing",
+		"Leech",
+		"Stench",
+		"AnimalEmpathy",
+		"NoAttackOfOpportunity",
+		"Perfectionist",
+		"ViolentMagic",
+		"Raistlin",
+		
+	}
+	for i,talent in pairs(boostedTalents) do
+		local hasTalent = CharacterHasTalent(character, talent)
+		--print("[LXDGM_Talents.CheckAllTalents] Character has talent:",talent,hasTalent)
+		if hasTalent == 1 then CheckBoostTalents(character, talent, 1) end
+	end
+	if CharacterHasTalent(character, "ExtraStatPoints") == 1 then CheckDuelist(nil, character) end
+end
+
+Ext.Osiris.RegisterListener("CharacterResurrected", 1, "before", CheckAllTalents)
