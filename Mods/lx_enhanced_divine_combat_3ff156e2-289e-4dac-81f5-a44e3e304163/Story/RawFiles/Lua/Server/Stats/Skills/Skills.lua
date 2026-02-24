@@ -71,6 +71,7 @@ end)
 ---@param target EsvCharacter
 ---@param flags HitFlags
 HitManager:RegisterHitListener("DGM_Hit", "AfterDamageScaling", "VP_WeaponSignatures", function(hit, instigator, target, flags)
+    if not instigator then return end
     local mainWeapon, offhandWeapon = Helpers.Character.GetWeaponTypes(instigator)
     if hit.SkillId == "Target_LX_AxeAttack_-1" or (hit.SkillId == "Target_DualWieldingAttack_-1" and ((target.UserVars.VP_ConsecutiveHitFromSkill.Amount == 2 and offhandWeapon == "Axe") or (target.UserVars.VP_ConsecutiveHitFromSkill.Amount ~= 2 and mainWeapon == "Axe"))) then
         local mainDamage = mainWeapon == "Axe" and instigator.Stats.MainWeapon.StatsEntry['Damage Type'] or instigator.Stats.OffHandWeapon.StatsEntry['Damage Type']
