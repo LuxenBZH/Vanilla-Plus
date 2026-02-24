@@ -26,12 +26,14 @@ end)
 ---@param characterGUID string|GUID
 local function ToggleWeaponArtsMenu(characterGUID)
     Helpers.Timer.Start(33, function(character)
-        local hasWA = CharacterHasSkill(character, "Target_LX_WeaponArtMenu") == 1
-        local character = Ext.ServerEntity.GetCharacter(character)
-        if not hasWA and character.Stats.MainWeapon.WeaponType ~= "Wand" then
-            CharacterAddSkill(character.MyGuid, "Target_LX_WeaponArtMenu", 0)
-        else
-            CharacterRemoveSkill(character.MyGuid, "Target_LX_WeaponArtMenu")
+        if ObjectExists(character) == 1 then
+            local hasWA = CharacterHasSkill(character, "Target_LX_WeaponArtMenu") == 1
+            local character = Ext.ServerEntity.GetCharacter(character)
+            if not hasWA and character.Stats.MainWeapon.WeaponType ~= "Wand" then
+                CharacterAddSkill(character.MyGuid, "Target_LX_WeaponArtMenu", 0)
+            elseif hasWA and character.Stats.MainWeapon.WeaponType == "Wand" then
+                CharacterRemoveSkill(character.MyGuid, "Target_LX_WeaponArtMenu")
+            end
         end
     end, nil, characterGUID)
 end
