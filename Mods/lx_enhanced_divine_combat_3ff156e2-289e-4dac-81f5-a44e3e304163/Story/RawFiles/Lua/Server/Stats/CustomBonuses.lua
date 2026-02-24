@@ -7,7 +7,6 @@ CustomStatusManager = {
         DGM_NoWeapon = true,
         DGM_OneHanded = true,
         DGM_Ranged = true,
-        DGM_CrossbowSlow = true,
         GM_SELECTED = true,
         GM_SELECTEDDISCREET = true,
         GM_TARGETED = true,
@@ -20,7 +19,6 @@ CustomStatusManager = {
         LEADERSHIP = true,
         LEADERLIB_RECALC = true,
         DGM_RECALC = true,
-        LX_CROSSBOWCLEAR = true
     },
     ExtendedBanList = {
         Data.Stats.CustomAttributeBonuses,
@@ -77,7 +75,7 @@ function CustomStatusManager:Create(name, stats, template, sync)
         return Ext.Stats.Get(name)
     end
     local newPotion
-    if not NRD_StatExists(name.."Potion") then
+    if not NRD_StatExists(name.."_Potion") then
         newPotion = Ext.Stats.Create(name.."_Potion", "Potion", template)
         for field, value in pairs(stats.Potion) do
             newPotion[field] = value
@@ -209,18 +207,6 @@ CustomStatusManager:RegisterCharacterSyncListener("DGM_AbilitiesSync", function(
         end
     end
 end, 2)
-
---- @param character EsvCharacter
-CustomStatusManager:RegisterCharacterSyncListener("DGM_CrossbowPenalty", function(character)
-    if character:GetStatus("LX_CROSSBOWINIT") and character.Stats.MainWeapon and character.Stats.MainWeapon.WeaponType == "Crossbow" then
-        local weapon = character.Stats.MainWeapon
-        local scaledPenalty = weapon.Level * Ext.ExtraData.DGM_CrossbowLevelGrowthPenalty + Ext.ExtraData.DGM_CrossbowBasePenalty
-        local status = CustomStatusManager:Create("DGM_CrossbowSlow", {Potion = {Movement = -1}, Status = {StackId = "DGM_CrossbowSlow"}})
-        CustomStatusManager:Apply(character, status.Name, -1.0, scaledPenalty)
-    elseif character.Stats.MainWeapon and character.Stats.MainWeapon.WeaponType == "Crossbow" then
-        ApplyStatus(character.MyGuid, "LX_CROSSBOWCLEAR", 0.0, 1, character.MyGuid)
-    end
-end, 3)
 
 ---@param target GUID|EsvCharacter
 ---@param statusID string

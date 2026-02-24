@@ -27,11 +27,6 @@ local function DataLoadStatsInfo(e)
 			AirResistance=Ext.ExtraData.DGM_PolymorphResistanceBonus
 		}, Status = {StackId = "DGM_Polymorph"}}
 	}
-	
-	Data.Stats.CrossbowMovementPenalty = {
-		Base = Ext.ExtraData.DGM_CrossbowBasePenalty,
-		Level = Ext.ExtraData.DGM_CrossbowLevelGrowthPenalty
-	}
 
 	Data.Stats.WeaponAbilitiesBonuses = {
 		SingleHanded = Ext.ExtraData.DGM_SingleHandedDamageBonus,
@@ -71,8 +66,6 @@ local nilTableHandler = {
 
 Data.Stats.WeaponAbilitiesBonuses = {}
 setmetatable(Data.Stats.WeaponAbilitiesBonuses, nilTableHandler)
-Data.Stats.CrossbowMovementPenalty = {}
-setmetatable(Data.Stats.CrossbowMovementPenalty, nilTableHandler)
 Data.Stats.CustomWeaponAbilityBonuses = {}
 setmetatable(Data.Stats.CustomWeaponAbilityBonuses, nilTableHandler)
 Data.Stats.CustomAttributeBonuses = {}

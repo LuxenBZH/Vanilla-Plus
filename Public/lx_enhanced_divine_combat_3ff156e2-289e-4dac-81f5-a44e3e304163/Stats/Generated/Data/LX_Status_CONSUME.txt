@@ -430,12 +430,6 @@ data "FormatColor" "Red"
 data "StatsId" "Stats_LX_PotionFatigue1"
 data "StackId" "Stack_PotionDizziness"
 
-new entry "LX_CROSSBOWPENALTY"
-type "StatusData"
-data "StatusType" "CONSUME"
-data "StatsId" "Stats_CrossbowPenalty"
-data "StackId" "Stack_CrossbowPenalty"
-
 new entry "LX_SHIELDSUP"
 type "StatusData"
 data "StatusType" "CONSUME"
@@ -481,15 +475,6 @@ data "DescriptionParams" "Status:LX_FOOD_REGEN2:HealAmount"
 data "Icon" "Talent_FiveStarDiner"
 data "ImmuneFlag" "RegeneratingImmunity"
 data "StackId" "Stack_Food_Regeneration_2"
-
-new entry "LX_CROSSBOWINIT"
-type "StatusData"
-data "StatusType" "CONSUME"
-
-new entry "LX_CROSSBOWCLEAR"
-type "StatusData"
-data "StatusType" "CONSUME"
-data "StackId" "DGM_CrossbowSlow"
 
 new entry "MEDUSA_HEAD"
 type "StatusData"

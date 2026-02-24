@@ -15,10 +15,6 @@ local defaultDataValues = {
     DGM_DamageThroughArmorDepleted = 25,
     DGM_RangedCQBPenalty = 35,
     DGM_RangedCQBPenaltyRange = 2,
-    DGM_StaffSkillMultiplier = 10,
-    DGM_WandSkillMultiplier = 5,
-    DGM_CrossbowBasePenalty = -88,
-    DGM_CrossbowLevelGrowthPenalty = -12,
     DGM_PerseveranceVitalityRecovery = 2,
     DGM_NpcScalingMainAttributeCorrection = 50,
     DGM_NpcScalingSecondaryAttributeCorrection = 70,
@@ -47,11 +43,6 @@ local idToVariable = {
     ArmourDamagePassDepleted = "DGM_DamageThroughArmorDepleted",
     CQBPenalty = "DGM_RangedCQBPenalty",
     CQBPenaltyRange = "DGM_RangedCQBPenaltyRange",
-    StaffSkillMult = "DGM_StaffSkillMultiplier",
-    WandSkillMult = "DGM_WandSkillMultiplier",
-    WandSurfaceMult = "DGM_WandSurfaceBonus",
-    CrossbowPenaltyBase = "DGM_CrossbowBasePenalty",
-    CrossbowPenaltyGrowth = "DGM_CrossbowLevelGrowthPenalty",
     PerseveranceVitality = "DGM_PerseveranceVitalityRecovery",
     NPCStatsMainCorrection = "DGM_NpcScalingMainAttributeCorrection",
     NPCStatsSecondaryCorrection = "DGM_NpcScalingSecondaryAttributeCorrection",
@@ -71,8 +62,6 @@ local requireRestart = {
     FinesseMovement = true,
     FinesseCriticalChance = true,
     IntelligenceAccuracyBonus = true,
-    CrossbowPenaltyBase = true,
-    CrossbowPenaltyGrowth = true,
     NPCStatsMainCorrection = true,
     NPCStatsSecondaryCorrection = true,
     NPCStatsNoArchetypeCorrection = true,
@@ -159,11 +148,6 @@ Ext.RegisterListener("SessionLoaded", function()
     settings.Global:AddLocalizedVariable("PotionFatigue", "LXDGM_PotionFatigue", Ext.ExtraData.DGM_PotionFatigue, -1, 6, 1, "LXDGM_PotionFatigue_Description")
     settings.Global:AddLocalizedVariable("CQBPenalty", "LXDGM_CQBPenalty", Ext.ExtraData.DGM_RangedCQBPenalty, 0, 100, 1, "LXDGM_CQBPenalty_Description")
     settings.Global:AddLocalizedVariable("CQBPenaltyRange", "LXDGM_CQBPenaltyRange", Ext.ExtraData.DGM_RangedCQBPenaltyRange, 0, 10, 1, "LXDGM_CQBPenaltyRange_Description")
-    settings.Global:AddLocalizedVariable("StaffSkillMult", "LXDGM_StaffSkillMult", Ext.ExtraData.DGM_StaffSkillMultiplier, 0, 100, 0.5, "LXDGM_StaffSkillMult_Description")
-    settings.Global:AddLocalizedVariable("WandSkillMult", "LXDGM_WandSkillMult", Ext.ExtraData.DGM_WandSkillMultiplier, 0, 100, 0.5, "LXDGM_WandSkillMult_Description")
-    settings.Global:AddLocalizedVariable("WandSurfaceMult", "LXDGM_WandSurfaceMult", Ext.ExtraData.DGM_WandSurfaceBonus, 0, 100, 0.5, "LXDGM_WandSurfaceMult_Description")
-    settings.Global:AddLocalizedVariable("CrossbowPenaltyBase", "LXDGM_CrossbowPenaltyBase", Ext.ExtraData.DGM_CrossbowBasePenalty, -300, 0, 1, "LXDGM_CrossbowPenaltyBase_Description")
-    settings.Global:AddLocalizedVariable("CrossbowPenaltyGrowth", "LXDGM_CrossbowPenaltyGrowth", Ext.ExtraData.DGM_CrossbowLevelGrowthPenalty, -100, 0, 1, "LXDGM_CrossbowPenaltyGrowth_Description")
     settings.Global:AddLocalizedVariable("PerseveranceResistance", "LXDGM_PerseveranceResistance", Ext.ExtraData.DGM_PerseveranceResistance, 0, 10, 1, "LXDGM_PerseveranceResistance_Description")
     settings.Global:AddLocalizedVariable("CCParryDuration", "LXDGM_CCParryDuration", Ext.ExtraData.DGM_CCParryDuration, 0, 5, 1, "LXDGM_CCParryDuration_Description")
     settings.Global:AddLocalizedVariable("ArmourReductionMultiplier", "LXDGM_ArmourReductionMultiplier", Ext.ExtraData.DGM_ArmourReductionMultiplier, 50, 300, 5, "LXDGM_ArmourReductionMultiplier_Description")
@@ -227,12 +211,6 @@ Ext.RegisterListener("SessionLoaded", function()
                     "PotionFatigue",
                     "CQBPenalty",
                     "CQBPenaltyRange",
-                    "StaffSkillMult",
-                    "WandSkillMult",
-                    "WandSurfaceMult",
-                    "CrossbowPenaltyBase",
-                    "CrossbowPenaltyGrowth",
-                    "PerseveranceResistance",
                     "CCParryDuration",
                     "ArmourReductionMultiplier"
                 }},
