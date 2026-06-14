@@ -177,9 +177,9 @@ local function OnAbilityTooltip(character, stat, tooltip)
 
     if stat == string.gsub(Ext.L10N.GetTranslatedString("h03d68693g35e7g4721ga1b3g9f9882f08b12", "Dual-Wielding"), " ", "-") then
         if stats.DualWielding > 0 then
-            abilityDescription.CurrentLevelEffect = Helpers.GetDynamicTranslationStringFromKey("DualWielding_TooltipCurrent", stats.DualWielding, attrBonus["dual"], attrBonus["dualDodge"], math.floor(attrBonus["dualArpen"]))
+            abilityDescription.CurrentLevelEffect = Helpers.GetDynamicTranslationStringFromKey("DualWielding_TooltipCurrent", stats.DualWielding, attrBonus["dual"], attrBonus["dualDodge"], attrBonus["dualArpen"])
         end
-        abilityDescription.NextLevelEffect = Helpers.GetDynamicTranslationStringFromKey("DualWielding_TooltipNext", stats.DualWielding+1, attrBonusNew["dual"], attrBonusNew["dualDodge"], math.floor(attrBonus["dualArpen"]))
+        abilityDescription.NextLevelEffect = Helpers.GetDynamicTranslationStringFromKey("DualWielding_TooltipNext", stats.DualWielding+1, attrBonusNew["dual"], attrBonusNew["dualDodge"], attrBonusNew["dualArpen"])
         
     elseif stat == Ext.L10N.GetTranslatedString("hdda30cb9g17adg433ag9071g867e97c09c3a", "Ranged") then
         if stats.Ranged > 0 then
@@ -207,10 +207,10 @@ local function OnAbilityTooltip(character, stat, tooltip)
         local current = pointValue * stats.Perseverance
         local next = pointValue * (stats.Perseverance + 1)
         if stats.Perseverance > 0 then
-            abilityDescription.CurrentLevelEffect = Helpers.GetDynamicTranslationStringFromKey("Perseverance_TooltipCurrent", stats.Perseverance, current)
+            abilityDescription.CurrentLevelEffect = Helpers.GetDynamicTranslationStringFromKey("Perseverance_TooltipCurrent", stats.Perseverance, current, Ext.Utils.Round(Data.Math.GetArmorScaledValue(stats.Level)*0.15*stats.Perseverance))
         end
         
-        abilityDescription.NextLevelEffect = Helpers.GetDynamicTranslationStringFromKey("Perseverance_TooltipNext", stats.Perseverance+1, next)
+        abilityDescription.NextLevelEffect = Helpers.GetDynamicTranslationStringFromKey("Perseverance_TooltipNext", stats.Perseverance+1, next, Ext.Utils.Round(Data.Math.GetArmorScaledValue(stats.Level)*0.15*(stats.Perseverance+1)))
     
     elseif stat == Ext.L10N.GetTranslatedString("h21354580g6870g411dgbef4g52f34942686a", "Hydrosophist") then
         if stats.WaterSpecialist > 0 then
