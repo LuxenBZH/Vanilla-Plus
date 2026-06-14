@@ -232,7 +232,6 @@ local tooltipFix = {
     Intelligence = "h33d41553g12cag401eg8c71g640d3d654054",
     SingleHanded = "ha74334b1gd56bg49c2g8738g44da4decd00a",
     TwoHanded = "h3fb5cd5ag9ec8g4746g8f9cg03100b26bd3a",
-    CrossbowSlow = "h52ee27b1g46a7g4a0dg95b3gf519d1072d3b",
     Perseverance = "h5b61fccfg5d2ag4a81g9cacg068403d61b5c",
     Corrogic = "hb24edf38gd48ag477fgbf75g3bd3de8c6eec",
     Warmup = "h565877e2g71eag43aag928fgfee5ca4f0c4f",
