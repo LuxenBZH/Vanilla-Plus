@@ -83,20 +83,6 @@ if Ext.IsServer() then
 			-- status.StatsId = newStatName
 			-- Ext.Stats.Sync(newStatName, true)
 			-- Helpers.Status.MultipliedStats[status] = newStatName
-		elseif status.StatusType == "DAMAGE" then
-			if status.OriginalWeaponStatsId == "" then
-				status.OriginalWeaponStatsId = status.DamageStats
-			end
-			local stat = Ext.Stats.Get(status.OriginalWeaponStatsId)
-			local newStatName = stat.Name.."_x"..tostring(multiplier)
-			if not Ext.Stats.Get(newStatName, nil, false) then
-				Ext.Stats.Create(newStatName, "Weapon", stat.Name)
-			end
-			local multipliedStat = Ext.Stats.Get(newStatName) ---@type StatEntryWeapon
-			multipliedStat.DamageFromBase = Ext.Utils.Round(stat.DamageFromBase * multiplier)
-			Ext.Stats.Sync(newStatName, true)
-			status.DamageStats = newStatName
-			Helpers.Status.MultipliedStats[status] = newStatName
 		end
 		status.RequestClientSync = true -- Triggers the client refresh
 		Ext.Net.BroadcastMessage("VP_MultiplyStatus", Ext.Json.Stringify({
@@ -112,6 +98,34 @@ if Ext.IsServer() then
 			end, nil, status.TargetHandle, status.StatusHandle, status.StatsId)
 		end
 		Helpers.Status.TriggerMultipliedStatusesListeners(status, multiplier, previousMultiplier)
+	end
+
+	Helpers.Status.MultiplyDoT = function(status, multiplier)
+		if status.StatusType == "DAMAGE" then
+			if status.DamageStats == "" then
+				status.DamageStats = Ext.Stats.Get(status.StatusId).DamageStats
+			end
+			if status.OriginalWeaponStatsId == "" then
+				status.OriginalWeaponStatsId = status.DamageStats
+			end
+			local stat = Ext.Stats.Get(status.OriginalWeaponStatsId)
+			local newStatName = stat.Name.."_x"..tostring(multiplier)
+			if not Ext.Stats.Get(newStatName, nil, false) then
+				Ext.Stats.Create(newStatName, "Weapon", stat.Name)
+			end
+			local multipliedStat = Ext.Stats.Get(newStatName) ---@type StatEntryWeapon
+			multipliedStat.DamageFromBase = Ext.Utils.Round(stat.DamageFromBase * multiplier)
+			Ext.Stats.Sync(newStatName, false)
+			status.DamageStats = newStatName
+			Helpers.Status.MultipliedStats[status] = newStatName
+		end
+		status.RequestClientSync = true -- Triggers the client refresh
+		if status.StatsId ~= "" then
+			Helpers.Timer.Start(10, function(characterHandle, statusHandle, statsId)
+				local status = Ext.ServerEntity.GetStatus(characterHandle, statusHandle)
+				status.StatsId = "" -- The statsId will be recovered to its previous value automatically (client communication?)
+			end, nil, status.TargetHandle, status.StatusHandle, status.StatsId)
+		end
 	end
 
 	Helpers.Status.StatusAppliedListeners = {}

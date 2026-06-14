@@ -373,9 +373,10 @@ Data.Math.GetCharacterComputedDamageBonus = function(character, target, flags, s
 			attributes.DamageBonus = attributes.DamageBonus + (1 + (character.Stats[weaponAbility] + (modifier and modifier[weaponAbility] or 0)) * Data.Stats.WeaponAbilitiesBonuses[weaponAbility])
 		end
 		attributes.GlobalMultiplier = attributes.GlobalMultiplier + Data.Math.ApplyCQBPenalty(target, character)
-	-- DoT Boost
+	-- Prevent damage boosts on DoT
 	elseif flags.IsStatusDamage then
-		attributes.DamageBonus = attributes.Wits * Ext.ExtraData.DGM_WitsDotBonus
+		-- attributes.DamageBonus = attributes.Wits * Ext.ExtraData.DGM_WitsDotBonus
+		attributes.DamageBonus = 0
 	end
 	-- Intelligence Boost
 	if skill and skill.Name ~= "Target_LX_NormalAttack" then

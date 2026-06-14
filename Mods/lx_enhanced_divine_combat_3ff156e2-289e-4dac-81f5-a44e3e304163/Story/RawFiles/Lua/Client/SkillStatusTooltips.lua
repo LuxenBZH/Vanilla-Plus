@@ -279,31 +279,7 @@ Ext.RegisterListener("SkillGetDescriptionParam", SkillGetDescriptionParam)
 ---@param target StatCharacter
 ---@param par string
 local function StatusGetDescriptionParam(status, statusSource, target, par)
-    if par == "Damage" then
-        local dmgStat = Ext.Stats.Get(status.DamageStats, nil, false)
-        if statusSource == nil then return end
-        local globalMult = 1 + (statusSource.Wits-Ext.ExtraData.AttributeBaseValue) * (Ext.ExtraData.DGM_WitsDotBonus*0.01) --From the overhaul
-        local dmg = 0
-		if dmgStat.Damage == 1 then
-			dmg = Game.Math.GetAverageLevelDamage(statusSource.Level)
-		elseif dmgStat.Damage == 0 and dmgStat.BonusWeapon == nil then
-			dmg = Game.Math.GetLevelScaledDamage(statusSource.Level)
-		else
-			dmg = Game.Math.GetLevelScaledWeaponDamage(statusSource.Level)
-		end
-        dmg = dmg*(dmgStat.DamageFromBase/100)
-		local dmgRange = dmg*(dmgStat["Damage Range"])*0.005
-        local schoolBonus = 1
-        local pass, characterSource = pcall(Ext.ClientEntity.GetCharacter, statusSource.NetID)
-        if pass then
-            schoolBonus = schoolBonus + Game.Math.GetDamageBoostByType(characterSource.Stats, dmgStat["Damage Type"])
-        end
-		local minDmg = math.floor(Ext.Utils.Round(dmg - dmgRange)* globalMult * schoolBonus)
-        local maxDmg = math.ceil(Ext.Utils.Round(dmg + dmgRange)* globalMult * schoolBonus)
-        if maxDmg <= minDmg then maxDmg = maxDmg+1 end
-		local color = Helpers.GetDamageColor(dmgStat["Damage Type"])
-		return "<font color="..color..">"..tostring(minDmg).."-"..tostring(maxDmg).." "..dmgStat["Damage Type"].." "..Ext.L10N.GetTranslatedString("h9531fd22g6366g4e93g9b08g11763cac0d86", "damage").."</font>"
-    elseif par == "HealAmount" then
+    if par == "HealAmount" then
         local stat = Ext.Stats.Get(status.StatusName, nil, false)
         if stat.HealType == "Qualifier" then
             local computedValue = Data.Math.GetHealScaledWisdomValue(stat, statusSource.Character)
@@ -329,6 +305,32 @@ Game.Tooltip.RegisterListener("Status", nil, function(character, status, tooltip
             Label = "<font color='#188EDE'><font size='15'>◆</font> "..Ext.L10N.GetTranslatedString("LX_StatusEffectiveness_DisplayName", "Effectiveness")..": "..tostring(Ext.Utils.Round(status.StatsMultiplier*100)).."%</font>",
             Type = "StatusDescription"
         })
+    end
+    --- Manage the DoT damage increase
+    if status.StatusType == "DAMAGE" then
+        local dmgStat = Ext.Stats.Get(status.DamageStats, nil, false)
+        -- if statusSource == nil then return end
+        -- local globalMult = 1 + (statusSource.Wits-Ext.ExtraData.AttributeBaseValue) * (Ext.ExtraData.DGM_WitsDotBonus*0.01)
+        local dmg = 0
+		if dmgStat.Damage == 1 then
+			dmg = Game.Math.GetAverageLevelDamage(status.DamageLevel)
+		elseif dmgStat.Damage == 0 and dmgStat.BonusWeapon == nil then
+			dmg = Game.Math.GetLevelScaledDamage(status.DamageLevel)
+		else
+			dmg = Game.Math.GetLevelScaledWeaponDamage(status.DamageLevel)
+		end
+        local schoolBonus = 1
+        if Ext.Utils.IsValidHandle(status.StatusSourceHandle) then
+            schoolBonus = schoolBonus + Game.Math.GetDamageBoostByType(Ext.ClientEntity.GetCharacter(status.StatusSourceHandle).Stats, dmgStat["Damage Type"])
+        end
+		local minDmg = Ext.Utils.Round(math.ceil(dmg * (dmgStat.DamageFromBase-dmgStat["Damage Range"]/2)/100) * schoolBonus)
+        local maxDmg = Ext.Utils.Round(math.floor(dmg * (dmgStat.DamageFromBase+dmgStat["Damage Range"]/2)/100) * schoolBonus)
+        _P(dmg, (dmgStat.DamageFromBase-dmgStat["Damage Range"]/2), schoolBonus)
+        if maxDmg <= minDmg then maxDmg = minDmg+1 end
+		local color = Helpers.GetDamageColor(dmgStat["Damage Type"])
+        local description = tooltip:GetDescriptionElement()
+        local text = description.Label
+        description.Label = text:gsub("[0-9]*-[0-9]* ", "<font color="..color..">"..tostring(minDmg).."-"..tostring(maxDmg).."</font>".." ")
     end
 end)
 
