@@ -1,5 +1,6 @@
 _OrderedScriptsLoad = {
 	"Server/ServerHelpers",
+	"Server/Systems/Mechanics/StatusApplicationLogic",
 	"Server/Systems/Mechanics/CustomAttributes",
 	"Server/Fixes/GeneralFixes",
 	"Server/Fixes/Taunt",
