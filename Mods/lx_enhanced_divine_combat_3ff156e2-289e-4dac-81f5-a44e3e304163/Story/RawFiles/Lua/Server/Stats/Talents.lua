@@ -483,7 +483,8 @@ Helpers.RegisterTurnTrueStartListener(function(object)
 			if instigator.Stats.TALENT_IceKing then
 				local frostBite = object:GetStatus("LX_FROSTBITE")
 				if frostBite then
-					Helpers.Status.Multiply(frostBite, math.min(frostBite.StatsMultiplier + (status.StatusId == "CHILLED" and 0.25 or 1.0), 3.0))
+					local currentDamageMultiplier = tonumber(string.gsub(frostBite.DamageStats, ".*_x", "") or 1.0)
+					Helpers.Status.MultiplyDoT(frostBite, math.min(currentDamageMultiplier + (status.StatusId == "CHILLED" and 0.25 or 1.0), 3.0))
 					frostBite.CurrentLifeTime = frostBite.CurrentLifeTime + 6.0
 				else
 					ApplyStatus(object.MyGuid, "LX_FROSTBITE", 12.0, 0, instigator.MyGuid)
@@ -502,7 +503,8 @@ Ext.Osiris.RegisterListener("CharacterStatusApplied", 3, "after", function(chara
 		local frostBite = character:GetStatus("LX_FROSTBITE")
 		if frostBite then
 			frostBite.CurrentLifeTime = frostBite.CurrentLifeTime + 6.0
-			Helpers.Status.Multiply(frostBite, math.min(frostBite.StatsMultiplier + (status == "CHILLED" and 0.25 or 1.0), 3.0))
+			local currentDamageMultiplier = tonumber(string.gsub(frostBite.DamageStats, ".*_x", "") or 1.0)
+			Helpers.Status.MultiplyDoT(frostBite, math.min(currentDamageMultiplier + (status == "CHILLED" and 0.25 or 1.0), 3.0))
 		else
 			ApplyStatus(character.MyGuid, "LX_FROSTBITE", 12.0, 0, instigator)
 		end
