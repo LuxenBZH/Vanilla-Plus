@@ -477,18 +477,16 @@ Helpers.RegisterTurnTrueStartListener(function(object)
 	local object = Ext.ServerEntity.GetGameObject(object)
 	local status = object:GetStatus("CHILLED") or object:GetStatus("FROZEN")
 	if status then
-		local instigatorHandle = status.StatusSourceHandle
-		if Ext.Utils.IsValidHandle(instigatorHandle) then
+		local frostBite = object:GetStatus("LX_FROSTBITE")
+		if frostBite then
+			local currentDamageMultiplier = tonumber(string.gsub(frostBite.DamageStats, ".*_x", "") or 1.0)
+			Helpers.Status.MultiplyDoT(frostBite, math.min(currentDamageMultiplier + (status.StatusId == "CHILLED" and 0.25 or 1.0), 3.0))
+			frostBite.CurrentLifeTime = frostBite.CurrentLifeTime + 6.0
+		else
+			local instigatorHandle = status.StatusSourceHandle
 			local instigator = Ext.ServerEntity.GetCharacter(instigatorHandle)
-			if instigator.Stats.TALENT_IceKing then
-				local frostBite = object:GetStatus("LX_FROSTBITE")
-				if frostBite then
-					local currentDamageMultiplier = tonumber(string.gsub(frostBite.DamageStats, ".*_x", "") or 1.0)
-					Helpers.Status.MultiplyDoT(frostBite, math.min(currentDamageMultiplier + (status.StatusId == "CHILLED" and 0.25 or 1.0), 3.0))
-					frostBite.CurrentLifeTime = frostBite.CurrentLifeTime + 6.0
-				else
-					ApplyStatus(object.MyGuid, "LX_FROSTBITE", 12.0, 0, instigator.MyGuid)
-				end
+			if Ext.Utils.IsValidHandle(instigatorHandle) and instigator.Stats.TALENT_IceKing then
+				ApplyStatus(object.MyGuid, "LX_FROSTBITE", 12.0, 0, instigator.MyGuid)
 			end
 		end
 	end
