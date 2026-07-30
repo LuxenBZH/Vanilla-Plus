@@ -7,3 +7,18 @@ Data.Math.HitChance.RegisterListener("VP_TrueStrike", function(attacker, target,
     end
     return hitChance
 end)
+
+Data.Math.HitChance.RegisterListener("LX_CrossbowSignature", function(attacker, target, hitChance)
+    if Ext.IsClient() then
+        local freeMovement = attacker.Character.RemainingMoveDistance * Data.Math.GetCharacterMovement(attacker.Character).Movement
+        if attacker.Character.SkillManager.CurrentSkill ~= null and attacker.Character.SkillManager.CurrentSkill.SkillId == "Projectile_LX_Sniper_-1" then
+            return hitChance + math.floor(freeMovement/10)
+        end
+    else
+        local freeMovement = attacker.Character.PartialAP * Data.Math.GetCharacterMovement(attacker.Character).Movement
+        if attacker.Character:HasTag("LX_CrossbowSignature") then
+            return hitChance + math.floor(freeMovement/10)
+        end
+    end
+    return hitChance
+end)
