@@ -139,7 +139,6 @@ local function OnStatTooltip(character, stat, tooltip)
     -- Ext.Dump(tooltip:GetElement("StatName"))
     local stat = tooltip:GetElement("StatName").Label
     local statsDescription = tooltip:GetElement("StatsDescription")
-
     if stat == "UNKNOWN STAT" and isLifestealTooltip then
         tooltip:GetElement("StatName").Label = "Lifesteal"
         statsDescription.Label = "Damage dealt to Vitality restores yours by this percentage of damage dealt."
@@ -151,12 +150,10 @@ local function OnStatTooltip(character, stat, tooltip)
             })
         end
         isLifestealTooltip = false
-
     elseif stat == "UNKNOWN STAT" and isIngressTooltip then
         tooltip:GetElement("StatName").Label = "Ingress"
         statsDescription.Label = "The amount of resistance percentage that is ignored when attacking."
         isIngressTooltip = false
-
     elseif stat == "UNKNOWN STAT" and isWisdomTooltip then
         tooltip:GetElement("StatName").Label = "Wisdom"
         statsDescription.Label = "Increase all non-necromantic healings done."
@@ -234,6 +231,10 @@ local function OnStatTooltip(character, stat, tooltip)
             -- end
             -- previousEl = element
         end
+    elseif stat == "Movement" then
+        local description = tooltip:GetElement("StatsDescription")
+        local celerity = Data.Math.ComputeCharacterCelerity(character)
+        description.Label = Data.Text.SubstituteString(description.Label, celerity)
     end
 end
 
