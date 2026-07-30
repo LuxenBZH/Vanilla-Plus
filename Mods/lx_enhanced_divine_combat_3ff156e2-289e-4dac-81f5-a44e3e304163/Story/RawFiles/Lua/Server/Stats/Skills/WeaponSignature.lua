@@ -59,3 +59,44 @@ Ext.Osiris.RegisterListener("ItemUnequipped", 2, "after", function(item, charact
     RemoveStatus(character, "LX_SNIPER")
     RemoveStatus(character, "LX_SNIPER_MULT")
 end)
+
+Ext.Osiris.RegisterListener("CharacterUsedSkillOnTarget", 5, "after", function(characterGUID, targetGUID, skillName, _, _)
+    if skillName == "Projectile_LX_Sniper" then
+        SetTag(characterGUID, "LX_CrossbowSignature")
+        SetVarString(characterGUID, "LX_CrossbowSignatureTarget", targetGUID)
+    end
+end)
+
+Data.Math.CriticalChance:RegisterCalculationListener("LX_CrossbowSignature", function(hit, target, attacker, hitType, criticalRoll, critChance, flags)
+    local hitChance = Game.Math.CalculateHitChance(attacker, target)
+    if attacker.Character:HasTag("LX_CrossbowSignature") then
+        return critChance + math.max(0, hitChance - 100)
+    end
+    return critChance
+end)
+
+Data.Math.CriticalMultiplier:RegisterCalculationListener("LX_CrossbowSignature", function(weapon, character, criticalMultiplier)
+    local target = GetVarString(character.Character.MyGuid, "LX_CrossbowSignatureTarget")
+    if target and target ~= "" then
+        local hitChance = Game.Math.CalculateHitChance(character, Ext.ServerEntity.GetCharacter(target).Stats)
+        local chanceOverflow = character.CriticalChance - 100
+        local bonus = hitChance - 100 + chanceOverflow
+        if character and bonus > 0 then
+            criticalMultiplier = criticalMultiplier + bonus
+        end
+    end
+	return criticalMultiplier
+end)
+
+--- @param hit EsvStatusHit
+--- @param instigator EsvCharacter
+--- @param target EsvItem|EsvCharacter
+--- @param flags HitFlags
+--- @param instigatorDGMStats table
+HitManager:RegisterHitListener("DGM_Hit", "BeforeDamageScaling", "DGM_Specifics", function(hit, instigator, target, flags)
+    if hit.SkillId == "Projectile_LX_Sniper_-1" then
+        ClearTag(instigator.MyGuid, "LX_CrossbowSignature")
+        SetVarString(instigator.MyGuid, "LX_CrossbowSignatureTarget", "")
+        instigator.PartialAP = 0
+    end
+end)
