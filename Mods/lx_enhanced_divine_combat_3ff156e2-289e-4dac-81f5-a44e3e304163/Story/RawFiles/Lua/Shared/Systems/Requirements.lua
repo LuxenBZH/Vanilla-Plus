@@ -53,7 +53,7 @@ wandr.Callbacks.EvaluateCallback = function (req, ctx, char)
 end
 
 local warmupRequirement = Ext.Stats.AddRequirement("Warmup")
-warmupRequirement.Description = "CustomRequirement Warmup Warmup_RequirementDescription"
+warmupRequirement.Description = "CustomRequirement Warmup WarmupRequirement_Description"
 ---@param req any
 ---@param ctx any
 ---@param char CDivinityStatsCharacter
@@ -61,13 +61,22 @@ warmupRequirement.Callbacks.EvaluateCallback = function(req, ctx, char)
     return Helpers.Character.GetWarmupStacks(char.Character) >= req.Param
 end
 
-local warmupRequirement = Ext.Stats.AddRequirement("SpellConduit")
-warmupRequirement.Description = "CustomRequirement SpellConduit SpellConduit_RequirementDescription" --Ext.L10N.GetTranslatedStringFromKey("WarmupRequirement_Description")
+local spellConduitRequirement = Ext.Stats.AddRequirement("SpellConduit")
+spellConduitRequirement.Description = "CustomRequirement SpellConduit SpellConduitRequirement_Description" --Ext.L10N.GetTranslatedStringFromKey("WarmupRequirement_Description")
 ---@param req any
 ---@param ctx any
 ---@param char CDivinityStatsCharacter
-warmupRequirement.Callbacks.EvaluateCallback = function(req, ctx, char)
+spellConduitRequirement.Callbacks.EvaluateCallback = function(req, ctx, char)
     return char.Character.UserVars.LX_SpellConduit and (#char.Character.UserVars.LX_SpellConduit >= req.Param)
+end
+
+local noMoveRequirement = Ext.Stats.AddRequirement("NoMove")
+noMoveRequirement.Description = "CustomRequirement NoMove NoMoveRequirement_Description" --Ext.L10N.GetTranslatedStringFromKey("NoMoveRequirement_Description")
+---@param req any
+---@param ctx any
+---@param char CDivinityStatsCharacter
+noMoveRequirement.Callbacks.EvaluateCallback = function(req, ctx, char)
+    return not char.Character:HasTag("LX_MovedDuringTurn")
 end
 
 Data.CustomRequirements = {
