@@ -90,3 +90,7 @@ Data.Text.Concatenate = function(elements, lineBreak)
     end
     return table.concat(elements, (lineBreak and "<br> " or " "))
 end
+
+Data.Text.GetDynamicTranslationStringFromKey = Helpers.GetDynamicTranslationStringFromHandle
+Data.Text.GetDynamicTranslationStringFromHandle = Helpers.GetDynamicTranslationStringFromHandle
+Data.Text.SubstituteString = Helpers.SubstituteString
