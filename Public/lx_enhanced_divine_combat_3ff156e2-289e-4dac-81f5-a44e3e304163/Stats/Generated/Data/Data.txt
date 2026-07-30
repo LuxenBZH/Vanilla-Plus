@@ -4,9 +4,9 @@ key "ExpectedConGrowthForArmorCalculation","1"
 
 key "ExpectedDamageBoostFromWeaponAbilityPerLevel","0.015"
 
-key "VitalityToDamageRatio","4"
+key "VitalityToDamageRatio","6"
 
-key "VitalityToDamageRatioGrowth","0.65"
+key "VitalityToDamageRatioGrowth","0.4"
 
 key "UnstableRadius","4"
 
@@ -32,7 +32,7 @@ key "CharacterBaseMemoryCapacityGrowth","0.5"
 
 key "CombatAbilityReflectionBonus","8"
 
-key "CombatAbilityDodgingBonus","3"
+key "CombatAbilityDodgingBonus","2"
 
 key "CombatAbilityAccuracyBonus","2"
 
@@ -50,9 +50,9 @@ key "CombatAbilityLevelGrowth","1"
 
 key "LeadershipRange","12"
 
-key "LeadershipDodgingBonus","2"
+key "LeadershipDodgingBonus","0"
 
-key "LeadershipAllResBonus","3"
+key "LeadershipAllResBonus","0"
 
 key "SkillAbilityVitalityRestoredPerPoint","4"
 
@@ -210,10 +210,6 @@ key "VitalityLinearGrowth","0"
 
 key "SkillAbilityMovementSpeedPerPoint","20"
 
-key "DGM_CrossbowBasePenalty","-58"
-
-key "DGM_CrossbowLevelGrowthPenalty","-8"
-
 
 
 key "LivingArmorHealPercentage","35"
@@ -291,3 +287,5 @@ key "VP_BaseToughness","50"
 key "VP_ToughnessMultiplierArmorBroken","0.5"
 
 key "VP_PolymorphResistanceBonus","3"
+
+key "VP_DualWieldingArpenBonus","2.5"
