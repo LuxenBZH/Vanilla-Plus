@@ -11,7 +11,7 @@ end
 ---@param attacker StatCharacter
 ---@param target StatCharacter
 ---@param cth number
-Data.Math.HitChance:RegisterListener(function(attacker, target, cth)
+Data.Math.HitChance.RegisterListener("LX_BowSignature", function(attacker, target, cth)
     if Ext.IsClient() and attacker.Character.SkillManager.CurrentSkill and attacker.Character.SkillManager.CurrentSkill.SkillId == "Projectile_LX_QuickShot_-1" then
         return QuickShotAccuracy(attacker, target, cth)
     elseif Ext.IsServer() and attacker.Character.ActionMachine.Layers[1].State and attacker.Character.ActionMachine.Layers[1].State.Type == "UseSkill" and attacker.Character.ActionMachine.Layers[1].State.Skill.SkillId == "Projectile_LX_QuickShot_-1" then
