@@ -169,7 +169,7 @@ local function DamageControl(target, instigator, hitDamage, handle)
     flags.Blocked = NRD_StatusGetInt(target.MyGuid, hit.StatusHandle, "Blocked") == 1
     flags.IsDirectAttack = hit.DamageSourceType == "Attack" or hit.SkillId ~= "" or hit.DamageSourceType == "Offhand"
 	flags.FromReflection = NRD_StatusGetInt(target.MyGuid, handle, "Reflection") == 1
-    flags.IsWeaponAttack = hit.Hit.HitWithWeapon or (hit.DamageSourceType == "Attack" and ((not skill and Game.Math.IsRangedWeapon(instigator.Stats.MainWeapon) or (skill and skill.UseWeaponDamage == "No")))) --- EsvHit.HitWithWeapon returns False for ranged weapons
+    flags.IsWeaponAttack = hit.Hit.HitWithWeapon or (hit.DamageSourceType == "Attack" and ((not skill and Game.Math.IsRangedWeapon(instigator.Stats.MainWeapon) or (skill and skill.UseWeaponDamage == "Yes")))) --- EsvHit.HitWithWeapon returns False for ranged weapons
 	flags.IsStatusDamage = NRD_StatusGetInt(target.MyGuid, handle, "DoT") == 1
 
 	if ((skill and skill.Name == "Projectile_Talent_Unstable") and IsTagged(instigator.MyGuid, "LX_UNSTABLE_COOLDOWN") == 1) 
@@ -245,36 +245,3 @@ local function DamageControl(target, instigator, hitDamage, handle)
 end
 
 Ext.Osiris.RegisterListener("NRD_OnHit", 4, "before", DamageControl)
-
----@param e EsvLuaBeforeStatusApplyEvent
-Ext.Events.BeforeStatusApply:Subscribe(function(e)
-	if e.Status.StatusType == "DAMAGE" then
-		local instigator = Ext.Utils.IsValidHandle(e.Status.StatusSourceHandle) and Ext.ServerEntity.GetGameObject(e.Status.StatusSourceHandle) or nil
-		local target = Ext.ServerEntity.GetGameObject(e.Status.TargetHandle)
-		local applied
-		local witsMultiplier = 1.0
-		if Helpers.IsCharacter(instigator) then
-			applied = target:GetStatus(e.Status.StatusId)
-			witsMultiplier = 1.0 + (instigator.Stats.Wits - Ext.ExtraData.AttributeBaseValue) * Ext.ExtraData.DGM_WitsDotBonus / 100
-		end
-		if applied then
-			local currentDamageMultiplier = tonumber(string.gsub(applied.DamageStats, ".*_x", "") or 1.0)
-			if currentDamageMultiplier and currentDamageMultiplier > witsMultiplier then
-				Helpers.Timer.Start(33, function(targetHandle, statusHandle, multiplier)
-					Helpers.Status.MultiplyDoT(Ext.ServerEntity.GetStatus(targetHandle,statusHandle), multiplier)
-				end, nil, e.Status.TargetHandle, e.Status.StatusHandle, currentDamageMultiplier)
-			end
-			return
-		elseif witsMultiplier <= 0 then
-			e.PreventStatusApply = true
-			return
-		end
-		if witsMultiplier ~= 1.0 then
-			Helpers.Timer.Start(33, function(targetHandle, statusHandle, multiplier)
-				if Ext.Utils.IsValidHandle(statusHandle) then
-					Helpers.Status.MultiplyDoT(Ext.ServerEntity.GetStatus(targetHandle,statusHandle), multiplier)
-				end
-			end, nil, e.Status.TargetHandle, e.Status.StatusHandle, witsMultiplier)
-		end
-	end
-end)
