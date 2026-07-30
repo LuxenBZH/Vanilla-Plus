@@ -9,13 +9,15 @@ local function PreventClientVertcasting()
     local skill = Helpers.GetFormattedSkillID(skillState.SkillId)
     local statEntry = Ext.Stats.Get(skill)
     skillProperties = statEntry.SkillProperties
-    local cleanProperties = {}
-    for i, property in pairs(statEntry.SkillProperties) do
-      if property.Type ~= "SurfaceChange" then
-        table.insert(cleanProperties, property)
+    if skillProperties then
+      local cleanProperties = {}
+      for i, property in pairs(statEntry.SkillProperties) do
+        if property.Type ~= "SurfaceChange" then
+          table.insert(cleanProperties, property)
+        end
       end
+      statEntry.SkillProperties = cleanProperties
     end
-    statEntry.SkillProperties = cleanProperties
     return false
   end
 
