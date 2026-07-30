@@ -109,11 +109,16 @@ function CustomStatusManager:Apply(character, name, duration, multiplier, cap)
     if exists and ((cap and multiplier <= cap) or not cap) and exists.StatsMultiplier == multiplier then
         return
     end
-    local status = Ext.PrepareStatus(character.MyGuid, name, duration)
-    if multiplier ~= 1.0 then
-        status.StatsMultiplier = math.min(multiplier, cap or 9999999)
+    local status = character:GetStatus(name)
+    if status then
+        Helpers.Status.Multiply(status, math.min(multiplier, cap or 9999999))
+    else
+        status = Ext.PrepareStatus(character.MyGuid, name, duration)
+        if multiplier ~= 1.0 then
+            status.StatsMultiplier = math.min(multiplier, cap or 9999999)
+        end
+        Ext.ApplyStatus(status)
     end
-    Ext.ApplyStatus(status)
     ApplyStatus(character.MyGuid, "DGM_RECALC", 0.0, 1)
 end
 
@@ -171,6 +176,12 @@ end)
 
 Ext.Osiris.RegisterListener("CharacterResurrected", 1, "before", function(character)
     CustomStatusManager:SynchronizeDGMBonuses(Helpers.ServerSafeGetCharacter(character))
+end)
+
+Ext.Osiris.RegisterListener("ObjectEnteredCombat", 2, "after", function(object, _)
+    if ObjectIsCharacter(object) == 1 then
+        CustomStatusManager:SynchronizeDGMBonuses(Helpers.ServerSafeGetCharacter(object))
+    end
 end)
 
 --[[
