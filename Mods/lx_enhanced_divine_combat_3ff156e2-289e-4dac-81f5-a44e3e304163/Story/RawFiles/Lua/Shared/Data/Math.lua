@@ -477,7 +477,11 @@ Data.Math.HitChance = {
 ---@param name string
 ---@param handle function
 Data.Math.HitChance.RegisterListener = function(name, handle)
-	Data.Math.HitChance.Listeners[name] = handle
+	if type(name) ~= "string" then
+		_VError("Incorrect HitChance listener registration!")
+	else
+		Data.Math.HitChance.Listeners[name] = handle
+	end
 end
 
 Data.Math.HitChance.RemoveListener = function(name)
@@ -507,19 +511,12 @@ local function DGM_CalculateHitChance(attacker, target)
 		end
         return 100 - diff * Ext.ExtraData.WeaponAccuracyPenaltyPerLevel
 	end
-	
 	local _, accuracyFromStatuses = Data.Math.ComputeStatIntegerFromStatus(attacker.Character, "AccuracyBoost")
-	local accuracy
-	if Ext.IsServer() then
-		accuracy = attacker.Accuracy + Data.Math.ComputeStatIntegerFromEquipment(attacker.Character, "AccuracyBoost") + accuracyFromStatuses
-	else
-		accuracy = attacker.Accuracy
-	end
+	local accuracy = attacker.Accuracy
 	local dodge = target.Dodge
 	if target.Character:GetStatus("KNOCKED_DOWN") and dodge > 0 then
 		dodge = 0
 	end
-
 	local chanceToHit1 = accuracy - dodge
 	chanceToHit1 = Data.Math.HitChance.CallListeners(attacker, target, chanceToHit1)
 	-- chanceToHit1 = math.max(0, math.min(100, chanceToHit1))
@@ -673,6 +670,7 @@ local function GetCriticalHitMultiplier(weapon, character)
         end
     end
 	criticalMultiplier = Data.Math.CriticalMultiplier:CallListeners(weapon, character, criticalMultiplier)
+	_P(Ext.IsServer() and "SERVER" or "CLIENT", criticalMultiplier)
     return criticalMultiplier * 0.01
 end
 
