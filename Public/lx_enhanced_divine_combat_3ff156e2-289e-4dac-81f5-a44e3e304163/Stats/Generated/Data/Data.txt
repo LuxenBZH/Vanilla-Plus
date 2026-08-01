@@ -289,3 +289,11 @@ key "VP_ToughnessMultiplierArmorBroken","0.5"
 key "VP_PolymorphResistanceBonus","3"
 
 key "VP_DualWieldingArpenBonus","2.5"
+
+key "VP_LeadershipFriendlyFireReduction","4"
+
+key "VP_LeadershipArmourRecoveryBase","5"
+
+key "VP_LeadershipArmourRecoveryMultiplier","4"
+
+key "VP_LeadershipMaxRecoveryALDMultiplier","3"
