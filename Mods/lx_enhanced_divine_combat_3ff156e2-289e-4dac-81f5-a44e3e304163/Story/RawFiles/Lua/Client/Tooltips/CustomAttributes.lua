@@ -35,12 +35,12 @@ Game.Tooltip.RegisterListener("Item", nil, function(item, tooltip)
     if statsEntry == "Armor" or statsEntry == "Weapon" or statsEntry == "Shield" then
         local customAttributes = {}
         local itemStats = {} -- avoid console warnings for undeclared custom stats for this specific stat type
-        for statField,value in pairs(item.Stats) do
-            itemStats[statField] = value
+        for statField,value in pairs(item.Stats.StatsEntry) do
+            itemStats[statField] = true
         end
         for customStatField, displayName in pairs(Data.Text.CustomAttributes) do
             if itemStats[customStatField] then
-                customAttributes[customStatField] = (customAttributes[customStatField] or 0) + (item.Stats[customStatField] or 0)
+                -- customAttributes[customStatField] = (customAttributes[customStatField] or 0) + (item.Stats[customStatField] or 0)
                 for i,dynamicStat in pairs(item.Stats.DynamicStats) do
                     if dynamicStat.ObjectInstanceName ~= "" then 
                         customAttributes[customStatField] = (customAttributes[customStatField] or 0) + Ext.Stats.Get(dynamicStat.ObjectInstanceName)[customStatField]
@@ -69,7 +69,7 @@ end)
 ---@param status EclStatus
 ---@param tooltip TooltipData
 Game.Tooltip.RegisterListener("Status", nil, function(character, status, tooltip)
-    local statsId, err = xpcall(function() return status.StatsId end, debug.traceback)
+    local b, statsId = xpcall(function() return status.StatsId end, debug.traceback)
     if statsId and statsId ~= "" then
         local potion = Ext.Stats.Get(status.StatsId, nil, false)
         for customStatField, displayName in pairs(Data.Text.CustomAttributes) do
