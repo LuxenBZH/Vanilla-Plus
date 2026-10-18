@@ -60,15 +60,6 @@ Ext.Vars.RegisterUserVariable("LX_StatusConsumeMultiplier", {
     SyncOnTick = false,
 })
 
-Ext.Vars.RegisterUserVariable("LX_WarmupManager", {
-    Server = true,
-    Client = true, 
-    SyncToClient = false,
-    Persistent = true,
-    SyncOnWrite = true,
-    SyncOnTick = false,
-})
-
 Ext.Vars.RegisterUserVariable("VP_MagicCycles", {
     Server = true,
     Client = false, 

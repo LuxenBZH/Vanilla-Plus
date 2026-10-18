@@ -234,7 +234,6 @@ local tooltipFix = {
     TwoHanded = "h3fb5cd5ag9ec8g4746g8f9cg03100b26bd3a",
     Perseverance = "h5b61fccfg5d2ag4a81g9cacg068403d61b5c",
     Corrogic = "hb24edf38gd48ag477fgbf75g3bd3de8c6eec",
-    Warmup = "h565877e2g71eag43aag928fgfee5ca4f0c4f",
 }
 
 -- Tooltip here is the fix for not being able to put a translation key on generated statuses for custom bonuses

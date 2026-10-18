@@ -56,12 +56,4 @@ end)
 --     statusConsole:ExternalInterfaceCall("BackToGMPressed")
 -- end)
 
-Ext.RegisterNetListener("DGM_RefreshWarmup", function(channel, payload)
-	local info = Ext.JsonParse(payload)
-	local character = Ext.ClientEntity.GetCharacter(info.Character)
-	if character and character:GetStatus(info.Status) then
-		character:GetStatus(info.Status).CurrentLifeTime = 6.0
-	end
-end)
-
 -- Helpers.UI = {}

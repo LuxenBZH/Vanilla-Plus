@@ -29,20 +29,6 @@ Ext.Events.StatusDelete:Subscribe(function(e)
 end)
 ---END Forbearance
 
-Ext.Osiris.RegisterListener("CharacterStartAttackObject", 3, "before", function(defender, owner, attacker)
-    if CharacterIsInCombat(attacker) == 1 then
-        SetTag(attacker, "LX_Warmup")
-    end
-end)
-
-Ext.Osiris.RegisterListener("ObjectTurnEnded", 1, "before", function(object)
-    ClearTag(object, "LX_Warmup")
-end)
-
-Ext.Osiris.RegisterListener("ObjectLeftCombat", 2, "before", function(object, combatID)
-    ClearTag(object, "LX_Warmup")
-end)
-
 --- Challenge scaling
 ---@param character string
 ---@param statusId string

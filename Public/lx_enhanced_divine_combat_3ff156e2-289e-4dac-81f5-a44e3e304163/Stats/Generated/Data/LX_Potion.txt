@@ -1948,18 +1948,6 @@ new entry "Stats_LX_Warmup"
 type "Potion"
 data "Tags" "DGM_Warmup1"
 
-new entry "Stats_LX_Warmup2"
-type "Potion"
-data "Tags" "DGM_Warmup2"
-
-new entry "Stats_LX_Warmup3"
-type "Potion"
-data "Tags" "DGM_Warmup3"
-
-new entry "Stats_LX_Warmup4"
-type "Potion"
-data "Tags" "DGM_Warmup4"
-
 new entry "Stats_Blessed"
 type "Potion"
 data "Act" "1"

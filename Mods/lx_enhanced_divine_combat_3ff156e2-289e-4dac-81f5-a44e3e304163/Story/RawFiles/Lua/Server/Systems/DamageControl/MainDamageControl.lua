@@ -102,11 +102,6 @@ Ext.Osiris.RegisterListener("ProcObjectTimerFinished", 2, "after", function(char
 	end
 end)
 
-Ext.Osiris.RegisterListener("ObjectLeftCombat", 2, "before", function(object, combatID)
-	if ObjectIsCharacter(object) == 1 then
-		Ext.ServerEntity.GetCharacter(object).UserVars.LX_WarmupManager = 0
-	end
-end)
 
 HitManager:RegisterHitListener("DGM_Hit", "AfterDamageScaling", "LX_RegisterTurnDamage", function(hit, instigator, target, flags)
 	if CharacterIsInCombat(target.MyGuid) == 1 and target.LifeTime ~= 0 and flags.Blocked or flags.Dodged or flags.Missed or not target.Stats then

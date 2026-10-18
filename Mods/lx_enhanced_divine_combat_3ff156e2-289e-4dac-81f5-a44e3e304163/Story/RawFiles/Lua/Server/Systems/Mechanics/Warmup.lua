@@ -1,130 +1,30 @@
----@param character EsvCharacter
----@param step number|nil
----@param fromMiss boolean|nil
-function ApplyWarmup(character, step, fromMiss)
-	local warmup = FindStatus(character, "DGM_WARMUP")
-	local isMeleeTwoHanded = character.Stats.MainWeapon.IsTwoHanded and not Game.Math.IsRangedWeapon(character.Stats.MainWeapon)
-	local stage
-	if step then
-		stage = step
-	elseif warmup then
-		stage = string.sub(warmup, 11, 11)
-		stage = math.min(tonumber(stage)+1, 4)
-		ObjectSetFlag(character.MyGuid, "DGM_WarmupReapply", 0)
-	else
-		stage = 1
-	end
-	if fromMiss and isMeleeTwoHanded then
-		stage = math.min(stage + 1, 4)
-	end
-	ApplyStatus(character.MyGuid, "DGM_WARMUP"..tostring(stage), 6.0, 1, character.MyGuid)
-end
-
----@param character EsvCharacter
----@param amount number
-function ConsumeWarmup(character, amount)
-	local warmup = Helpers.Character.GetStatus(character, "DGM_WARMUP")
-	local warmupStacks = Helpers.Character.GetWarmupStacks(character)
-	RemoveStatus(character.MyGuid, warmup)
-	if warmupStacks - amount > 0 then
-		ApplyStatus(character.MyGuid,  "DGM_WARMUP"..tostring(warmupStacks - amount), 6.0, 1, character.MyGuid)
-	end
-end
-
----@param character string
----@param status string
----@param causee string
-Ext.Osiris.RegisterListener("NRD_OnStatusAttempt", 4, "before", function(target, statusId, handle, instigator)
-	if statusId == "DGM_WARMUP" and ObjectIsCharacter(target) == 1 then
-		NRD_StatusPreventApply(target, handle, 1)
-		ApplyWarmup(Ext.ServerEntity.GetCharacter(target))
+--- Let the hit still happen
+Ext.Events.ComputeCharacterHit:Subscribe(function(e)
+	if e.Attacker and e.Attacker.Character:GetStatus("DGM_WARMUP") and (e.Hit.Dodged or e.Hit.Missed) then
+		e.NoHitRoll = true
+		local hit = Game.Math.ComputeCharacterHit(e.Target, e.Attacker, e.Weapon, e.DamageList, e.HitType, e.NoHitRoll, e.ForceReduceDurability, e.Hit, e.AlwaysBackstab, e.HighGround, e.CriticalRoll) ---@type EsvStatusHit
+		e.Hit.Hit = true
+		e.Hit.Missed = e.Hit.Missed
+		e.Hit.Dodged = e.Hit.Dodged
+		if not e.Handled and hit then
+			e.Handled = true
+		end
 	end
 end)
-
---- @param hit EsvStatusHit
---- @param instigator EsvCharacter
---- @param target EsvItem|EsvCharacter
---- @param flags HitFlags
---- @param instigatorDGMStats table
-HitManager:RegisterHitListener("DGM_Hit", "BeforeDamageScaling", "DGM_Specifics", function(hit, instigator, target, flags)
-	--- WARMUP application
-	if (flags.Missed or flags.Dodged) and not target:GetStatus("EVADING") and Helpers.IsCharacter(instigator) then
-		ApplyWarmup(instigator, nil, true)
-	end
-end, 51)
 
 --- @param hit EsvStatusHit
 --- @param instigator EsvCharacter
 --- @param target EsvItem|EsvCharacter
 --- @param flags HitFlags
 HitManager:RegisterHitListener("DGM_Hit", "AfterDamageScaling", "VP_WarmupManagement", function(hit, instigator, target, flags)
-	--- Warmup after 3 hits
-	if getmetatable(instigator) == "esv::Character" and instigator:GetStatus("COMBAT") and flags.IsWeaponAttack and not Game.Math.IsRangedWeapon(instigator.Stats.MainWeapon) then
-		if not instigator.UserVars.LX_WarmupManager or type(instigator.UserVars.LX_WarmupManager) == "number" then
-			instigator.UserVars.LX_WarmupManager = {
-				Counter = 0,
-				LastSkillHitID = 0,
-				LastTarget = ""
-			}
-		end
-		if not hit.Hit.Dodged and not hit.Hit.Missed then
-			if hit.SkillId ~= "" then
-				local skill = Ext.Stats.Get(Helpers.GetFormattedSkillID(hit.SkillId))
-				---Make sure a character can get a warmup count only once for AoE skills, but can still get as many count as there are hits for a single target skill
-				if ((instigator.UserVars.LX_WarmupManager.LastSkillHitID ~= Helpers.UserVars.GetVar(instigator, "VP_LastSkillsUsed")[1].ID) or
-				(instigator.UserVars.LX_WarmupManager.LastSkillHitID == Helpers.UserVars.GetVar(instigator, "VP_LastSkillsUsed")[1].ID and instigator.UserVars.LX_WarmupManager.LastTarget == target.MyGuid)) or
-				(instigator.UserVars.LX_WarmupManager.LastSkillHitID == Helpers.UserVars.GetVar(instigator, "VP_LastSkillsUsed")[1].ID and instigator.UserVars.LX_WarmupManager.LastTarget ~= target.MyGuid and skill.SkillType == "MultiStrike") and
-				skill.UseWeaponDamage == "Yes" then
-					instigator.UserVars.LX_WarmupManager.Counter = instigator.UserVars.LX_WarmupManager.Counter + 1
-				end
-				instigator.UserVars.LX_WarmupManager.LastSkillHitID = Helpers.UserVars.GetVar(instigator, "VP_LastSkillsUsed")[1].ID
-				instigator.UserVars.LX_WarmupManager.LastTarget = target.MyGuid
-			else
-				instigator.UserVars.LX_WarmupManager.Counter = instigator.UserVars.LX_WarmupManager.Counter + 1
-			end
-			if instigator.UserVars.LX_WarmupManager.Counter >= 3 then
-				instigator.UserVars.LX_WarmupManager.Counter = 0
-				ApplyWarmup(instigator)
-			end
+	if Helpers.IsCharacter(instigator) and Helpers.IsCharacter(target) and flags.IsWeaponAttack and (hit.Hit.Dodged or hit.Hit.Missed) then
+		if instigator:GetStatus("DGM_WARMUP") then
+			local hitChance = Game.Math.CalculateHitChance(instigator.Stats, target.Stats)
+			local damageMultiplier = math.min(math.max(hitChance/200, 0))
+			HitHelpers.HitMultiplyDamage(hit.Hit, target, instigator, damageMultiplier)
+			CharacterStatusText(target.MyGuid, "Scraped!")
 		else
-			instigator.UserVars.LX_WarmupManager.Counter = 0
-		end
-		-- _P(instigator.MyGuid, "Warmup counter:", instigator.UserVars.LX_WarmupManager.Counter)
-	end
-	--- Refresh Warmup status if the character attack while it's at 0 turn left
-	if getmetatable(instigator) == "esv::Character" then
-		local warmup = FindStatus(instigator, "DGM_WARMUP")
-		if instigator:GetStatus("COMBAT") and warmup then
-			local status = instigator:GetStatus(warmup)
-			status.CurrentLifeTime = 6.0
-			Ext.Net.BroadcastMessage("DGM_RefreshWarmup", Ext.JsonStringify({
-				Character = instigator.NetID,
-				Status = warmup
-			}))
+			ApplyStatus(instigator.MyGuid, "DGM_WARMUP", 6, 1, instigator.MyGuid)
 		end
 	end
 end, 52)
-
----@param e EsvLuaStatusDeleteEvent
-Ext.Events.BeforeStatusDelete:Subscribe(function(e)
-    if Data.Stats.Warmup[e.Status.StatusId] then
-        local object = Ext.ServerEntity.GetGameObject(e.Status.TargetHandle)
-        if Helpers.IsCharacter(object) and object:HasTag("LX_Warmup") then
-            e.Status.CurrentLifeTime = 6.0
-            e:PreventAction()
-            ClearTag(object.MyGuid, "LX_Warmup")
-        else
-            ApplyStatus(object.MyGuid, Data.Stats.Warmup[Data.Stats.Warmup[e.Status.StatusId]-1] or "", 6.0, 1, object.MyGuid)
-        end
-    end
-end)
-
---- Warmup skill requirement stack consumption
-Ext.Osiris.RegisterListener("CharacterUsedSkill", 4, "before", function(character, skill, skillType, element)
-    local statEntry = Ext.Stats.Get(skill)
-    for i,requirement in pairs(statEntry.Requirements) do
-        if requirement.Requirement == "Warmup" then
-            ConsumeWarmup(Ext.ServerEntity.GetCharacter(character), requirement.Param)
-        end
-    end
-end)
