@@ -27,14 +27,16 @@ end)
 
 Ext.Osiris.RegisterListener("CharacterLeveledUp", 1, "before", function(character)
     local character = Ext.ServerEntity.GetCharacter(character)
+    local offHandItem = character.Stats:GetItemBySlot("Shield")
     if character.Stats.MainWeapon then
         WeaponLevelUpInRange(character.Stats.MainWeapon.GameObject, character)
     end
+    
     if character.Stats.OffHandWeapon then
         WeaponLevelUpInRange(character.Stats.OffHandWeapon.GameObject, character)
     end
-    if character.Stats.Shield then
-        WeaponLevelUpInRange(character.Stats.OffHandWeapon.GameObject, character)
+    if offHandItem ~= nil and offHandItem.ItemType == "Shield" then
+        WeaponLevelUpInRange(offHandItem.GameObject, character)
     end
 end)
 

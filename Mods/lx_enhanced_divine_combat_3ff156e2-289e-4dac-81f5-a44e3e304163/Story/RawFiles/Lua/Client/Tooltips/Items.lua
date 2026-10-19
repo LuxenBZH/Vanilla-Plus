@@ -28,15 +28,6 @@ Ext.Events.SessionLoaded:Subscribe(function(e)
                 equipment["RequirementMet"] = false
                 tooltip:AppendElementAfter(equipment, "ExtraProperties")
             end
-
-            if item.WeaponType == "Crossbow" then
-                local equipment = {
-                    Type = "ItemRequirement",
-                    Label = Helpers.GetDynamicTranslationStringFromKey("Weapon_Crossbow_MovementPenalty", -1*Ext.ExtraData.DGM_CrossbowBasePenalty/100+(-1*Ext.ExtraData.DGM_CrossbowLevelGrowthPenalty/100*item.Level)),
-                    RequirementMet = false
-                }
-                tooltip:AppendElementAfter(equipment, "ExtraProperties")
-            end
         end        
     end)
 
