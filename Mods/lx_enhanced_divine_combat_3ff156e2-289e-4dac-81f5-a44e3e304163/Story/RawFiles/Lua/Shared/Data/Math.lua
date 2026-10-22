@@ -361,7 +361,7 @@ Data.Math.GetCharacterComputedDamageBonus = function(character, target, flags, s
     end
 	if skill and not (skill.Damage == "BaseLevelDamage" or skill.Damage == "AverageLevelDamge" or skill.Damage == "MonsterWeaponDamage") then attributes.DamageBonus = 0; return end
 	-- Weapon Boost
-	if flags.IsWeaponAttack or (skill and (skill.Name == "Target_TentacleLash" or skill.UseWeaponDamage == "Yes")) then
+	if flags.IsWeaponAttack or (skill and (skill.Name == "Target_TentacleLash" or skill.UseWeaponDamage == "Yes")) or flags.Grazed then
 		if (flags.DamageSourceType == "Offhand" and character.Stats.OffHandWeapon.WeaponType == "Wand") or character.Stats.MainWeapon.WeaponType == "Wand" then
 			attributes.DamageBonus = attributes.DamageBonus + attributes.Intelligence * Ext.ExtraData.DGM_IntelligenceSkillBonus
 		else

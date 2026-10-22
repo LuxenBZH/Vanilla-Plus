@@ -171,6 +171,7 @@ local function DamageControl(target, instigator, hitDamage, handle)
 	flags.FromReflection = NRD_StatusGetInt(target.MyGuid, handle, "Reflection") == 1
     flags.IsWeaponAttack = hit.Hit.HitWithWeapon or (hit.DamageSourceType == "Attack" and ((not skill and Game.Math.IsRangedWeapon(instigator.Stats.MainWeapon) or (skill and skill.UseWeaponDamage == "Yes")))) --- EsvHit.HitWithWeapon returns False for ranged weapons
 	flags.IsStatusDamage = NRD_StatusGetInt(target.MyGuid, handle, "DoT") == 1
+	flags.Grazed = hit.SkillId == "Target_LX_GrazedHit"
 
 	if ((skill and skill.Name == "Projectile_Talent_Unstable") and IsTagged(instigator.MyGuid, "LX_UNSTABLE_COOLDOWN") == 1) 
 	 or flags.Blocked then
@@ -191,6 +192,15 @@ local function DamageControl(target, instigator, hitDamage, handle)
 		end
 		target.UserVars.LX_StatusConsumeMultiplier = nil
 	end
+
+	--- Catch the Grazed hit "marker" to avoid incorrect scaling and condition triggers over downstream function calls
+	if flags.Grazed then
+		hit.SkillId = ""
+		skillId = nil
+		skill = nil
+	end
+
+	HitManager:TriggerHitListeners("DGM_Hit", "BeforeDamageScaling", hit, instigator, target, flags, skillId)
 
 	-- Don't scale damage from surfaces, GM, scriting , reflection, or if the damage type doesn't fit scaling
 	if flags.FromReflection
@@ -219,7 +229,6 @@ local function DamageControl(target, instigator, hitDamage, handle)
 		attacker.GlobalMultiplier = 1
 	end
 	-- _VPrint("General multiplier:", "HitManager", attacker.DamageBonus, attacker.GlobalMultiplier)
-	HitManager:TriggerHitListeners("DGM_Hit", "BeforeDamageScaling", hit, instigator, target, flags, skillId)
 	local damageTable = hit.Hit.DamageList:ToTable()
 	NRD_HitStatusClearAllDamage(target.MyGuid, handle)
 	for i,element in pairs(damageTable) do

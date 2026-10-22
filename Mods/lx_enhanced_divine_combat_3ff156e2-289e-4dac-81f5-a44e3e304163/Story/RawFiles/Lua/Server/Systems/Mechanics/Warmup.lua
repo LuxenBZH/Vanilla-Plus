@@ -13,7 +13,6 @@ Ext.Events.ComputeCharacterHit:Subscribe(function(e)
 	end
 end)
 
-
 --- @param hit EsvStatusHit
 --- @param instigator EsvCharacter
 --- @param target EsvItem|EsvCharacter
@@ -28,10 +27,7 @@ HitManager:RegisterHitListener("DGM_Hit", "AfterDamageScaling", "VP_WarmupManage
 			grazedHit.Hit.DamageList:CopyFrom(hit.Hit.DamageList)
 			HitHelpers.HitMultiplyDamage(grazedHit.Hit, target, instigator, damageMultiplier)
 			grazedHit.StatusSourceHandle = instigator.Handle
-			grazedHit.Hit.HitWithWeapon = true
 			grazedHit.Hit.Hit = true
-			grazedHit.DamageSourceType = 6
-			grazedHit.HitReason = 0
 			grazedHit.LifeTime = 1
 			grazedHit.SkillId = "Target_LX_GrazedHit"
 			Ext.ApplyStatus(grazedHit)

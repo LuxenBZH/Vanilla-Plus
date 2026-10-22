@@ -103,7 +103,8 @@ HitFlags = {
     IsDirectAttack = false,
     IsWeaponAttack = false,
 	IsStatusDamage = false,
-	FromReflection = false
+	FromReflection = false,
+    Grazed = false,
 }
 
 HitFlags.__index = HitFlags
