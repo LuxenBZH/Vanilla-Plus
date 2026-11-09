@@ -26,7 +26,7 @@ end
 
 
 HitManager:RegisterHitListener("DGM_Hit", "AfterDamageScaling", "VP_LeadershipFriendlyFireDR", function(hit, instigator, target, flags)
-	if CharacterIsAlly(instigator.MyGuid, target.MyGuid) == 1 then
+	if not Helpers.Alignment.IsEnemy(instigator, target) then
         HitHelpers.HitMultiplyDamage(hit.Hit, target, instigator, 1-math.min(1, (target.Stats.Leadership * Ext.ExtraData.VP_LeadershipFriendlyFireReduction * 2 / 100)))
     end
     if target:GetStatus("LEADERSHIP") and target.UserVars.LX_LastTurnDamageTaken then
