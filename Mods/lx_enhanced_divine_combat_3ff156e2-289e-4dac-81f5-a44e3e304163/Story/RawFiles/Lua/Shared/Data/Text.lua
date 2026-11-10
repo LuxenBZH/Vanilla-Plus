@@ -30,6 +30,7 @@ Data.Text.DamageTypeColors = {
 	Shadow ="'#6600ff'",
     Piercing ="'#C80030'",
     None ="'#C80030'",
+    Chaos = "'#9440B3'"
 }
 
 Data.Text.CustomAttributes = {

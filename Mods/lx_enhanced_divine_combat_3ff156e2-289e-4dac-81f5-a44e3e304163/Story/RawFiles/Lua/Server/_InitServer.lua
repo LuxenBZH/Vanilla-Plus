@@ -27,10 +27,10 @@ _OrderedScriptsLoad = {
 	"Server/Stats/Skills/Skills",
 	"Server/Systems/Mechanics/SkillGroupServer",
 	"Server/Stats/Abilities",
-	"Server/Systems/WeaponArts/SpellConduit",
 	"Server/Systems/WeaponArts/Baseline",
 	"Server/Stats/Skills/RangedSignature",
 	"Server/Stats/Skills/WeaponSignature",
+	"Server/Stats/Skills/SpellConduit",
 	"Server/Systems/Mechanics/TurnMovementChecker"
 }
 

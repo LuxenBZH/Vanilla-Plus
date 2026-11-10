@@ -1,5 +1,3 @@
-Generic = Epip.Client.UI.Generic
-
 local conduits = {}
 local SCHOOL_TO_ICON = {
     Fire = "pyrokinetic",
@@ -15,9 +13,9 @@ local conduitMain
 ---@param character EclCharacter
 local function UpdateConduitSize(character)
     local mainHand, offHand = Helpers.Character.GetWeaponTypes(character)
-    _P(mainHand, offHand)
+    -- _P(mainHand, offHand)
     local conduitSize = 3 * ((mainHand == "Wand" and 1 or 0) + (offHand == "Wand" and 1 or 0))
-    _P("Conduit size:", conduitSize)
+    -- _P("Conduit size:", conduitSize)
     if conduitSize == 0 then
         conduitMain:SetVisible(false)
         return 0

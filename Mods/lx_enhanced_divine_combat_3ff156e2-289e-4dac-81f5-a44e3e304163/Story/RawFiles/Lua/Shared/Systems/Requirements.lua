@@ -52,22 +52,14 @@ wandr.Callbacks.EvaluateCallback = function (req, ctx, char)
     return true and ((char.MainWeapon and char.MainWeapon.WeaponType == "Wand") or (char.OffHandWeapon and char.OffHandWeapon.WeaponType == "Wand")) or false
 end
 
-local warmupRequirement = Ext.Stats.AddRequirement("Warmup")
-warmupRequirement.Description = "CustomRequirement Warmup WarmupRequirement_Description"
----@param req any
----@param ctx any
----@param char CDivinityStatsCharacter
-warmupRequirement.Callbacks.EvaluateCallback = function(req, ctx, char)
-    return Helpers.Character.GetWarmupStacks(char.Character) >= req.Param
-end
-
+Ext.L10N.CreateTranslatedStringKey("SpellConduitRequirement_Description", "h28ca49b51a31ae331763fc729ab7b14d57f1") -- For some reason, the game refuses to create a key for this string
 local spellConduitRequirement = Ext.Stats.AddRequirement("SpellConduit")
-spellConduitRequirement.Description = "CustomRequirement SpellConduit SpellConduitRequirement_Description" --Ext.L10N.GetTranslatedStringFromKey("WarmupRequirement_Description")
+spellConduitRequirement.Description = "CustomRequirement SpellConduit SpellConduitRequirement_Description" --Ext.L10N.GetTranslatedStringFromKey("SpellConduitRequirement_Description")
 ---@param req any
 ---@param ctx any
 ---@param char CDivinityStatsCharacter
 spellConduitRequirement.Callbacks.EvaluateCallback = function(req, ctx, char)
-    return char.Character.UserVars.LX_SpellConduit and (#char.Character.UserVars.LX_SpellConduit >= req.Param)
+    return char.Character.UserVars.LX_SpellConduit and #char.Character.UserVars.LX_SpellConduit > 0 or false
 end
 
 local noMoveRequirement = Ext.Stats.AddRequirement("NoMove")
@@ -80,7 +72,6 @@ noMoveRequirement.Callbacks.EvaluateCallback = function(req, ctx, char)
 end
 
 Data.CustomRequirements = {
-    WandWeapon = "WandWeapon_RequirementDescription",
-    SpellConduit = "SpellConduit_RequirementDescription",
-    Warmup = "Warmup_RequirementDescription"
+    WandWeapon = "WandWeaponRequirement_Description",
+    SpellConduit = "SpellConduitRequirement_Description",
 }

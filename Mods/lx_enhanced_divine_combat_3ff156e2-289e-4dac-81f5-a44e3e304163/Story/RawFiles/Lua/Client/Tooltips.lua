@@ -342,6 +342,23 @@ local function ComputeTooltipHealings(character, skill, tooltip)
     end
 end
 
+---@param character EsvCharacter
+---@param skill string
+---@param tooltip TooltipData
+local function SpellConduitTooltip(character, skill, tooltip)
+    local conduits = character.UserVars.LX_SpellConduit
+    local description = tooltip:GetElement("SkillDescription")
+    if conduits and #conduits > 0 then
+        description.Label = description.Label.."<br>"
+        for i = 1,#conduits,1 do
+            local element = conduits[i]
+            if element then
+                description.Label = description.Label..tostring(i)..". <font color="..Data.Text.DamageTypeColors[element]..">"..element.."</font><br>"
+            end
+        end
+    end
+end
+
 ---comment
 ---@param e LuaEmptyEvent
 local function DGM_Tooltips_Init(e)
@@ -355,6 +372,7 @@ local function DGM_Tooltips_Init(e)
     Game.Tooltip.RegisterListener("Skill", "Teleportation_Netherswap", TeleportTooltip)
     Game.Tooltip.RegisterListener("Skill", "Shout_Adrenaline", AdrenalineTooltip)
     Game.Tooltip.RegisterListener("Skill", nil, ComputeTooltipHealings)
+    Game.Tooltip.RegisterListener("Skill", "Projectile_LX_SpellConduit", SpellConduitTooltip)
 end
 
 Ext.Events.SessionLoaded:Subscribe(DGM_Tooltips_Init)

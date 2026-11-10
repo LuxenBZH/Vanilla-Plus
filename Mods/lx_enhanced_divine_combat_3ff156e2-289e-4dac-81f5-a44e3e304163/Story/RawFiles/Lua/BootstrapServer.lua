@@ -88,6 +88,7 @@ end)
 Ext.RegisterNetListener("LX_AskClientInfo", function(channel, payload, ...)
     local character = Ext.ServerEntity.GetCharacter(tonumber(payload))
     Ext.Net.PostMessageToUser(character.UserID or character.ReservedUserID, "LX_RetrieveClientInfo", tostring(character.UserID or character.ReservedUserID))
+    Ext.Utils.DirtyUserVariables() -- Also sync UserVars that does not have SyncOnTick
 end)
 
 -- Ext.Osiris.RegisterListener("UserConnected", 3, "after", function(userID, userName, userProfile)

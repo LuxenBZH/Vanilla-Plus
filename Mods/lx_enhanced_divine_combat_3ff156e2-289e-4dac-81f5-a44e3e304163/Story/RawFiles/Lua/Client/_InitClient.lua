@@ -24,14 +24,14 @@ Ext.Require("Client/Tooltips/SkillRequirements.lua")
 Ext.Require("Client/Sync/Statuses.lua")
 Ext.Require("Client/Sync/Equipment.lua")
 Ext.Require("Client/Systems/SkillGroupClient.lua")
-Ext.Require("Client/Systems/WeaponArtsClient.lua")
+Ext.Require("Client/Systems/SkillsBehavior.lua")
 
 Ext.Require("Client/UI/UIHelpers.lua")
-if Mods.EpipEncounters then
-	Epip = Mods.EpipEncounters
-	Generic = Epip.Client.UI.Generic
-	Ext.Require("Client/UI/WeaponArts/SpellConduitUI.lua")
-end
+-- if Mods.EpipEncounters then
+-- 	Epip = Mods.EpipEncounters
+-- 	Generic = Epip.Client.UI.Generic
+-- 	Ext.Require("Client/UI/WeaponArts/SpellConduitUI.lua")
+-- end
 
 -- Ext.Require("Client/Systems/SkillCastManager.lua")
 
