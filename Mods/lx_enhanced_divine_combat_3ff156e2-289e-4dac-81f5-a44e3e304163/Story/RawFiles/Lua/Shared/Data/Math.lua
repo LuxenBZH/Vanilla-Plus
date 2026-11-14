@@ -670,7 +670,6 @@ local function GetCriticalHitMultiplier(weapon, character)
         end
     end
 	criticalMultiplier = Data.Math.CriticalMultiplier:CallListeners(weapon, character, criticalMultiplier)
-	_P(Ext.IsServer() and "SERVER" or "CLIENT", criticalMultiplier)
     return criticalMultiplier * 0.01
 end
 
