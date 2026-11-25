@@ -74,7 +74,23 @@ Ext.Events.SessionLoaded:Subscribe(function(e)
                 Value = ""
             })
         end
-    end)    
+    end)
+
+    --- Ambidextrous tag on weapons
+    ---@param item EclItem
+    ---@param tooltip TooltipData
+    Game.Tooltip.RegisterListener("Item", nil, function(item, tooltip)
+        for _,tag in ipairs(item:GetTags()) do
+            if string.starts(tag, "AmbidextrousChar:") then
+                local character = Ext.ClientEntity.GetCharacter(string.gsub(tag, "AmbidextrousChar:", ""))
+                tooltip:AppendElement({
+                    Type = "Tags",
+                    Label = "Used by the Ambidextrous character: "..character.DisplayName,
+                    Value = ""
+                })
+            end
+        end
+    end)
 end)
 
 -- Ext.Events.GameStateChanged:Subscribe(function(e)

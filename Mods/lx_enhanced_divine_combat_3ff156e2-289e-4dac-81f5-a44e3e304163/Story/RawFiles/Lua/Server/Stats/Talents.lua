@@ -205,23 +205,87 @@ end
 Ext.Osiris.RegisterListener("CharacterKilledBy", 3, "before", ExecutionerHaste)
 
 ---- Ambidextrous refund
----@param item EsvItem
+-- -@param item EsvItem
+-- -@param char EsvCharacter
+-- Ext.Osiris.RegisterListener("ItemEquipped", 2, "before", function(item, char)
+-- 	local character = Helpers.ServerSafeGetCharacter(char) ---@type EsvCharacter
+-- 	if character and character.Stats.TALENT_Ambidextrous and CharacterIsInCombat(char) == 1 then
+-- 		item = Ext.GetItem(item) ---@type EsvItem
+-- 		if item.Stats.WeaponType and item.Stats.WeaponType ~= "Crossbow" then
+-- 			CharacterAddActionPoints(char, 1)
+-- 		end
+-- 	end
+-- end)
+
+---- Ambidextrous counter reset
 ---@param char EsvCharacter
-Ext.Osiris.RegisterListener("ItemEquipped", 2, "before", function(item, char)
-	local character = Helpers.ServerSafeGetCharacter(char) ---@type EsvCharacter
-	if character and character.Stats.TALENT_Ambidextrous and CharacterIsInCombat(char) == 1 then
-		item = Ext.GetItem(item) ---@type EsvItem
-		if item.Stats.WeaponType and item.Stats.WeaponType ~= "Crossbow" then
-			CharacterAddActionPoints(char, 1)
+-- Ext.Osiris.RegisterListener("ObjectTurnStarted", 1, "before", function(char)
+-- 	if Helpers.ServerSafeGetCharacter(char).Stats.TALENT_Ambidextrous then
+-- 		SetVarInteger(char, "DGM_AmbidextrousCount", 2)
+-- 	end
+-- end)
+
+
+Ext.Osiris.RegisterListener("CharacterUnlockedTalent", 2, "after", function(cGUID, talent)
+	if talent == "Ambidextrous" then
+		CharacterAddSkill(cGUID, "Shout_LX_AmbidextrousSwitch", 1)
+	end
+end)
+
+Ext.Osiris.RegisterListener("CharacterLockedTalent", 2, "after", function(cGUID, talent)
+	if talent == "Ambidextrous" then
+		CharacterRemoveSkill(cGUID, "Shout_LX_AmbidextrousSwitch")
+	end
+end)
+
+Ext.Osiris.RegisterListener("CharacterUsedSkill", 4, "before", function(cGUID, skill, _, _)
+	if skill == "Shout_LX_AmbidextrousSwitch" then
+		local character = Ext.ServerEntity.GetCharacter(cGUID)
+		local mainHand = CharacterGetEquippedItem(cGUID, "Weapon")
+		local offHand = CharacterGetEquippedItem(cGUID, "Shield")
+		if mainHand == character.UserVars.VP_Ambidextrous[1][1] and ((offHand == "" and not character.UserVars.VP_Ambidextrous[1][2]) or offHand == character.UserVars.VP_Ambidextrous[1][2])  then
+			CharacterEquipItem(cGUID, character.UserVars.VP_Ambidextrous[2][1])
+			if character.UserVars.VP_Ambidextrous[2][2] then
+				CharacterEquipItem(cGUID, character.UserVars.VP_Ambidextrous[2][2])
+			end
+		elseif mainHand == character.UserVars.VP_Ambidextrous[2][1] and ((offHand == "" and not character.UserVars.VP_Ambidextrous[2][2]) or offHand == character.UserVars.VP_Ambidextrous[2][2]) then
+			CharacterEquipItem(cGUID, character.UserVars.VP_Ambidextrous[1][1])
+			if character.UserVars.VP_Ambidextrous[1][2] then
+				CharacterEquipItem(cGUID, character.UserVars.VP_Ambidextrous[1][2])
+			end
 		end
 	end
 end)
 
----- Ambidextrous counter reset
----@param char EsvCharacter
-Ext.Osiris.RegisterListener("ObjectTurnStarted", 1, "before", function(char)
-	if Helpers.ServerSafeGetCharacter(char).Stats.TALENT_Ambidextrous then
-		SetVarInteger(char, "DGM_AmbidextrousCount", 2)
+Ext.Osiris.RegisterListener("ItemRemovedFromCharacter", 2, "after", function(item, cGUID)
+	if CharacterHasTalent(cGUID, "Ambidextrous") == 1 then
+		local character = Ext.ServerEntity.GetCharacter(cGUID)
+		if character.UserVars.VP_Ambidextrous then
+			for i,set in pairs(character.UserVars.VP_Ambidextrous) do
+				for j,equipment in pairs(set) do
+					if equipment ==  GetUUID(item) then
+						character.UserVars.VP_Ambidextrous[i][j] = nil
+						ClearTag(equipment, "AmbidextrousChar:"..character.MyGuid)
+					end
+				end
+			end
+		end
+	end
+end)
+
+Ext.RegisterNetListener("VP_SetAmbidextrous", function(_, payload, _)
+	local info = Ext.Json.Parse(payload)
+	local character = Ext.ServerEntity.GetCharacter(info.Character)
+	for i,set in pairs(character.UserVars.VP_Ambidextrous) do
+		for j,equipment in pairs(set) do
+			ClearTag(equipment, "AmbidextrousChar:"..character.MyGuid)
+		end
+	end
+	character.UserVars.VP_Ambidextrous = info.Sets
+	for i,set in pairs(info.Sets) do
+		for j,equipment in pairs(set) do
+			SetTag(equipment, "AmbidextrousChar:"..character.MyGuid)
+		end
 	end
 end)
 

@@ -49,6 +49,16 @@ Ext.Vars.RegisterUserVariable("LX_LastTurnMagicArmorDamageTaken", {
     SyncOnTick = false,
 })
 
+Ext.Vars.RegisterUserVariable("VP_Ambidextrous", {
+    Server = true,
+    Client = true,
+    WriteableOnClient = true,
+    SyncToClient = true,
+    Persistent = true,
+    SyncOnWrite = true,
+    SyncOnTick = false,
+})
+
 Ext.Require("Shared/_InitShared.lua")
 
 Ext.Events.SessionLoading:Subscribe(function(e)

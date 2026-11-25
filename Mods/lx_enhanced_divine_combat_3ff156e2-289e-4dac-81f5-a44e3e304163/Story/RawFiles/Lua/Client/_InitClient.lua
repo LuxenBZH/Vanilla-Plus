@@ -25,7 +25,7 @@ Ext.Require("Client/Sync/Statuses.lua")
 Ext.Require("Client/Sync/Equipment.lua")
 Ext.Require("Client/Systems/SkillGroupClient.lua")
 Ext.Require("Client/Systems/SkillsBehavior.lua")
-
+Ext.Require("Client/UI/ContextMenu.lua")
 Ext.Require("Client/UI/UIHelpers.lua")
 -- if Mods.EpipEncounters then
 -- 	Epip = Mods.EpipEncounters
