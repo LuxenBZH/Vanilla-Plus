@@ -33,7 +33,10 @@ Ext.Events.BeforeStatusApply:Subscribe(function(e)
 		if witsMultiplier ~= 1.0 then
 			Helpers.Timer.Start(33, function(targetHandle, statusHandle, multiplier)
 				if Ext.Utils.IsValidHandle(statusHandle) then
-					Helpers.Status.MultiplyDoT(Ext.ServerEntity.GetStatus(targetHandle,statusHandle), multiplier)
+					local status = Ext.ServerEntity.GetStatus(targetHandle,statusHandle)
+					if status then
+						Helpers.Status.MultiplyDoT(status, multiplier)
+					end
 				end
 			end, nil, e.Status.TargetHandle, e.Status.StatusHandle, witsMultiplier)
 		end
