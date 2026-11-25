@@ -251,7 +251,7 @@ data "TargetGroundEffect" "RS3_FX_Items_Weapons_Impact_Weapon_Flurry_Root_01:roo
 data "OverrideMinAP" "Yes"
 data "CycleConditions" "Enemy;!Dead"
 
-new entry "Shout_LX_WeaponArtTrueStrike
+new entry "Shout_LX_WeaponArtTrueStrike"
 type "SkillData"
 data "SkillType" "Shout"
 data "ForGameMaster" "Yes"
