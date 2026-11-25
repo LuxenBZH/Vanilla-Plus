@@ -907,3 +907,8 @@ data "FormatColor" "Orange"
 data "StatusEffect" ""
 data "StatsId" ""
 data "StackId" "Stack_LX_TermalShock"
+
+new entry "DYING"
+type "StatusData"
+data "StatusType" "DYING"
+data "FreezeCooldowns" "Yes"
